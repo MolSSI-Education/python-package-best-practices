@@ -17,6 +17,22 @@ capabilities.
 
 ## Why testing
 
+Software should be tested regularly throughout the development cycle to insure
+correct operation. Thorough testing is typically an afterthought, but for
+larger projects it can be essential for ensuring changes in some parts of the
+code do not negatively affect other parts.
+
+Two main types of testing are strongly encouraged:
+
+- Regression tests – given a known input, does the software correctly and
+consistently return the correct values?
+
+- Unit tests – Similar to general testing, except testing is done on much
+smaller units (such as single functions or classes). This is helpful for
+catching errors in uncommonly-used parts of the code which may be skipped in
+general testing. Unit tests can be added as new features are added, resulting
+in better code coverage.
+
 ## Unit and regression testing
 
 ## Pytest examples
