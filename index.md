@@ -4,15 +4,11 @@ root: .  # Is the only page that don't follow the partner /:path/index.html
 permalink: index.html  # Is the only page that don't follow the partner /:path/index.html
 ---
 
-This lesson by the [Molecular Sciences Software Institute]({{ site.molssi_site }})
+This lesson by the [Molecular Sciences Software Institute]({{ site.molssi_site }})(MolSSI)
+teaches users [MolSSI's best practices](http://molssi.org/education/best-practices/)
+in Python module setup. To see the full MolSSI's education mission statement, please see
+[here](http://molssi.org/education/education-mission-statement/).
 
-This lesson shows how to use the
-[Software Carpentry]({{ site.swc_site }}) and
-[Data Carpentry]({{ site.dc_site }}) lesson template.
-For guidelines on how to help improve our lessons and this template,
-please see [the contribution guidelines][contributing];
-for guidelines on how to set up your machine to preview changes locally,
-please see [the setup instructions]({{ page.root }}{% link setup.md %}).
 
 > ## Prerequisites
 >
