@@ -1,7 +1,7 @@
 ---
 title: "Community"
 teaching: 30
-exercises: 0
+exercises: 60
 questions:
 - "How can you get your project out there?"
 objectives:

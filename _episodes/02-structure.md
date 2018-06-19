@@ -1,7 +1,7 @@
 ---
 title: "Python Module Structure"
 teaching: 30
-exercises: 30
+exercises: 60
 questions:
 - "What is the layout of a Python module?"
 objectives:
