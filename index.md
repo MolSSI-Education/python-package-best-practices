@@ -19,6 +19,8 @@ yourself, within a small group, or a large community project. If your project
 is small and personal you may want to consider each topic in detail before
 implementing while for large community projects each topic is quite crucial.
 
+**This lesson is under development, please report issues to the [GitHub
+repository](https://github.com/MolSSI-Education/CMS-Python-DevOps)**
 
 > ## Prerequisites
 >
