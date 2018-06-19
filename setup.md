@@ -1,6 +1,5 @@
 ---
 title: "Setup"
-permalink: /setup/
 ---
 
 ## Installing Python Using Anaconda
