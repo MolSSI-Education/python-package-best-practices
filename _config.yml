@@ -6,10 +6,10 @@
 carpentry: "swc"
 
 # Overall title for pages.
-title: "Lesson Example"
+title: "CMS Python Module Development"
 
 # Contact email address.
-email: "mailto:lessons@software-carpentry.org"
+email: "mailto:education@molssi.org"
 
 #------------------------------------------------------------
 # Constant URL addresses across lessons
@@ -22,11 +22,12 @@ swc_github: "https://github.com/swcarpentry"
 swc_site: "https://software-carpentry.org"
 swc_pages: "https://swcarpentry.github.io"
 lc_site: "http://librarycarpentry.github.io/"
+molssi_site: "http://molssi.org/"
 template_repo: "https://github.com/carpentries/styles"
-example_repo: "https://github.com/carpentries/lesson-example"
-example_site: "https://carpentries.github.com/lesson-example"
-workshop_repo: "https://github.com/carpentries/workshop-template"
-workshop_site: "https://carpentries.github.io/workshop-template"
+example_repo: "https://github.com/MolSSI-Education/CMS-Python-DevOps"
+example_site: "https://molssi-education.github.io/CMS-Python-DevOps/"
+workshop_repo: "https://github.com/MolSSI-Education/CMS-Python-DevOps"
+workshop_site: "https://molssi-education.github.io/CMS-Python-DevOps/"
 training_site: "https://carpentries.github.io/instructor-training"
 
 # Surveys.
@@ -42,7 +43,7 @@ kind: "lesson"
 
 # Magic to make URLs resolve both locally and on GitHub.
 # See https://help.github.com/articles/repository-metadata-on-github-pages/.
-repository: <USERNAME>/<PROJECT>
+repository: MolSSI-Education/CMS-Python-DevOps
 
 # Start time in minutes (0 to be clock-independent, 540 to show a start at 09:00 am)
 start_time: 0

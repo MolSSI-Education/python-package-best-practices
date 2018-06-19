@@ -4,6 +4,8 @@ root: .  # Is the only page that don't follow the partner /:path/index.html
 permalink: index.html  # Is the only page that don't follow the partner /:path/index.html
 ---
 
+This lesson by the [Molecular Sciences Software Institute]({{ site.molssi_site }})
+
 This lesson shows how to use the
 [Software Carpentry]({{ site.swc_site }}) and
 [Data Carpentry]({{ site.dc_site }}) lesson template.
