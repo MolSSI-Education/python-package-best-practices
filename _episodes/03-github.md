@@ -3,7 +3,7 @@ title: "Git and GitHub"
 teaching: 50
 exercises: 80
 questions:
-- "How to write a lesson using RMarkdown?"
+- "How do I use git and GitHub?"
 objectives:
 - "Explain how to use RMarkdown with the new lesson template."
 - "Demonstrate how to include pieces of code, figures, and challenges."
@@ -24,6 +24,17 @@ changes and when it happened.
 This is greatly beneficial whether you are working independently or within a
 team.
 
+Recommended Hosting Service: [GitHub](https://github.com/)
+Other hosting Services: [GitLab](https://gitlab.com/), [BitBucket](https://bitbucket.org/)
+
+Other Tutorials:
+ - [Software Carpentry Version Control with Git](http://swcarpentry.github.io/git-novice/)
+ - [GitHub 15 Minutes to Learn Git](https://try.github.io/)
+ - [Git Commit Best Practices](https://github.com/trein/dev-best-practices/wiki/Git-Commit-Best-Practices)
+
+
 ## Intoduction to Git
+
+## Best practices
 
 {% include links.md %}
