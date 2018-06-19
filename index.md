@@ -4,7 +4,7 @@ root: .  # Is the only page that don't follow the partner /:path/index.html
 permalink: index.html  # Is the only page that don't follow the partner /:path/index.html
 ---
 
-This lesson by the [Molecular Sciences Software Institute]({{ site.molssi_site }})(MolSSI)
+This lesson by the [Molecular Sciences Software Institute]({{ site.molssi_site }}) (MolSSI)
 teaches users [MolSSI's best practices](http://molssi.org/education/best-practices/)
 in Python module setup. To see the full MolSSI's education mission statement, please see
 [here](http://molssi.org/education/education-mission-statement/).
