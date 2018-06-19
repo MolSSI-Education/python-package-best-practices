@@ -1,7 +1,7 @@
 ---
 title: "Making a Open-Source Python Module"
-teaching: 20
-exercises: 20
+teaching: 40
+exercises: 30
 questions:
 - "How do we setup a new repository?"
 objectives:

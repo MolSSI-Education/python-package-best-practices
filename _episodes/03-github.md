@@ -1,7 +1,7 @@
 ---
 title: "Git and GitHub"
-teaching: 50
-exercises: 80
+teaching: 90
+exercises: 120
 questions:
 - "How do I use git and GitHub?"
 objectives:

@@ -1,7 +1,7 @@
 ---
 title: "Documentation"
 teaching: 30
-exercises: 15
+exercises: 40
 questions:
 - "How can we document out module?"
 objectives:

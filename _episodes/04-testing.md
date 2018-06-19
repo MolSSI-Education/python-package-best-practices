@@ -1,7 +1,7 @@
 ---
 title: "Python Testing"
-teaching: 10
-exercises: 0
+teaching: 30
+exercises: 50
 questions:
 - "How is a Python module tested?"
 objectives:
