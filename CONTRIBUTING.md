@@ -1,5 +1,10 @@
 # Contributing
 
+*The Molecular Sciences Software Institute educational tutorials build on the
+work of [Software Carpentry]({{site.swc_site}}) and [Data
+Carpentry]({{site.dc_site}}). It uses the same contributing process as these
+projects. This can be found below.*
+
 [Software Carpentry][swc-site] and [Data Carpentry][dc-site] are open source projects,
 and we welcome contributions of all kinds:
 new lessons,
