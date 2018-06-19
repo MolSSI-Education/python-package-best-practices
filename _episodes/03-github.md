@@ -1,8 +1,8 @@
 ---
 source: Rmd
 title: "Using RMarkdown"
-teaching: 10
-exercises: 2
+teaching: 50
+exercises: 80
 questions:
 - "How to write a lesson using RMarkdown?"
 objectives:
