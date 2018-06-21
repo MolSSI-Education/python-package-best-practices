@@ -11,6 +11,11 @@ keypoints:
 - "It shouldn't be difficult"
 ---
 
+> ## Prerequisites
+>
+> In this episode we start with the Git repositories created in Episode 1.
+{: .prereq}
+
 ## Version Control
 
 Version control keeps a complete history of your work on a given project. It
