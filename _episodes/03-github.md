@@ -84,6 +84,142 @@ $ git config --list
 ~~~
 {: .bash}
 
+## Making Commits
+
+Now that we have Git configured, let's try using Git do something that is actually helpful.
+In this section, we are going to add the python module that we created earlier to our local Git repositories and then update GitHub to reflect this addition.
+
+Look at your repository on GitHub.
+Other than the .gitignore and LICENSE files that were created when you first created the repository, it should be completely empty.
+Our goal in this section is to upload MODULE.py to the repository on GitHub.
+
+First, use a terminal to cd into the top directory of the local repository.
+Then, check the status of the project:
+
+~~~
+$ git status
+~~~
+{: .bash}
+
+
+~~~
+On branch master
+
+Initial commit
+
+Untracked files:
+   (use "git add <file>..." to include in what will be committed)
+
+	MODULE.py
+nothing added to commit but untracked files present (use "git add" to track)
+~~~
+{: .output}
+
+The part about "untracked files" tells you that there are certain files located within your local repository that Git is not tracking (i.e., not doing version control on).
+At a minimum, you should see 'MODULE.py' listed as an untracked file.
+Depending on which text editor you are using, you might also see some backup files, like 'MODULE.py~', listed here.
+
+To tell Git to start tracking 'MODULE.py', do:
+
+~~~
+$ git add MODULE.py
+~~~
+{: .bash}
+
+Then check the status again:
+
+~~~
+$ git status
+~~~
+{: .bash}
+
+~~~
+On branch master
+
+Initial commit
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+	new file:   MODULE.py
+
+~~~
+{: .output}
+
+Git now knows that it's supposed to keep track of `MODULE.py`,
+but it hasn't recorded these changes as a commit yet.
+To get it to do that,
+we need to run one more command:
+
+~~~
+$ git commit -m "Adds MODULE.py"
+~~~
+{: .bash}
+
+~~~
+[master (root-commit) f22b25e] Adds MODULE.py
+ 1 file changed, 1 insertion(+)
+ create mode 100644 MODULE.py
+~~~
+{: .output}
+
+When we run `git commit`,
+Git takes everything we have told it to save by using `git add`
+and stores a copy permanently inside the special `.git` directory.
+This permanent copy is called a [commit]({{ page.root }}/reference/#commit)
+(or [revision]({{ page.root }}/reference/#revision)) and its short identifier is `f22b25e`.
+Your commit may have another identifier.
+
+We use the `-m` flag (for "message")
+to record a short, descriptive, and specific comment that will help us remember later on what we did and why.
+If we just run `git commit` without the `-m` option,
+Git will launch `nano` (or whatever other editor we configured as `core.editor`)
+so that we can write a longer message.
+
+[Good commit messages][commit-messages] start with a brief (<50 characters) statement about the
+changes made in the commit. Generally, the message should complete the sentence "If applied, this commit will" <commit message here>.
+If you want to go into more detail, add a blank line between the summary line and your additional notes. Use this additional space to explain why you made changes and/or what their impact will be.
+
+If we run `git status` now:
+
+~~~
+$ git status
+~~~
+{: .bash}
+
+~~~
+On branch master
+nothing to commit, working directory clean
+~~~
+{: .output}
+
+it tells us everything is up to date.
+If we want to know what we've done recently,
+we can ask Git to show us the project's history using `git log`:
+
+~~~
+$ git log
+~~~
+{: .bash}
+
+~~~
+commit f22b25e3233b4645dabd0d81e651fe074bd8e73b
+Author: <Firstname> <Lastname> <<email address>>
+Date:   Thu Aug 22 09:51:46 2013 -0400
+
+    Adds MODULE.py
+~~~
+{: .output}
+
+`git log` lists all commits  made to a repository in reverse chronological order.
+The listing for each commit includes
+the commit's full identifier
+(which starts with the same characters as
+the short identifier printed by the `git commit` command earlier),
+the commit's author,
+when it was created,
+and the log message Git was given when the commit was created.
+
 ## Best practices
 
 {% include links.md %}
