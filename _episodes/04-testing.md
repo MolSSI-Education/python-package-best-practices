@@ -33,10 +33,12 @@ catching errors in uncommonly-used parts of the code which may be skipped in
 general testing. Unit tests can be added as new features are added, resulting
 in better code coverage.
 
-## Unit and regression testing
+## Unit vs Regression testing
 
 ## Pytest examples
 
 ## Advanced features of pytest (fixtures, parameterize)
+
+
 
 {% include links.md %}
