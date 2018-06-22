@@ -90,7 +90,7 @@ Now that we have Git configured, let's try using Git do something that is actual
 In this section, we are going to add the python module that we created earlier to our local Git repositories and then update GitHub to reflect this addition.
 
 Look at your repository on GitHub.
-Other than the .gitignore and LICENSE files that were created when you first created the repository, it should be completely empty.
+Other than the '.gitignore' and 'LICENSE' files that were created when you first created the repository, it should be completely empty.
 Our goal in this section is to upload MODULE.py to the repository on GitHub.
 
 First, use a terminal to cd into the top directory of the local repository.
@@ -219,6 +219,19 @@ the short identifier printed by the `git commit` command earlier),
 the commit's author,
 when it was created,
 and the log message Git was given when the commit was created.
+
+Now that you have commited your module, check the GitHub repository again.
+It should still only have the '.gitignore' and 'LICENSE' files.
+This is because your local Git repository is separate from the remote GitHub repository.
+To make your changes show up on GitHub, you will need to run:
+
+~~~
+$ git push
+~~~
+{: .bash}
+
+This command sends all of the new commits in your local repository to the GitHub repository.
+Now if you refresh the GitHub webpage you should be able to see that 'MODULE.py' has been added to the repository.
 
 ## Best practices
 
