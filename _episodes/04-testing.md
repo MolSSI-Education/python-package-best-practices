@@ -37,6 +37,17 @@ in better code coverage.
 
 ## Pytest examples
 
+The Python testing framework was chosen to be [pytest](https://pytest.org) for this project. Other testing frameworks are available;
+however, the authors believe the combination of easy [parametrization of tests](https://docs.pytest.org/en/latest/parametrize.html),
+[fixtures](https://docs.pytest.org/en/latest/fixture.html), and [test marking](https://docs.pytest.org/en/latest/example/markers.html)
+make `pytest` particularly suited for computational chemistry.
+
+To get started additional tests can be added to the `project/tests/` folder. Any function starting with `test_*` will automatically be
+included in the testing framework. While these can be added in anywhere in your directory structure, it is highly recommended to keep them
+contained within the `project/tests/` folder.
+
+Tests can be run with the `py.test -v` command. There are a number of additional command line arguments to [explore](https://docs.pytest.org/en/latest/usage.html).
+
 ## Advanced features of pytest (fixtures, parameterize)
 
 
