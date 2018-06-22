@@ -40,6 +40,50 @@ Other Tutorials:
 
 ## Intoduction to Git
 
+## Configuring Git
+
+The first time you use Git on a particular computer, you need to configure some things.
+
+First, you should set your identity.
+One of the most important things that version control like Git does is to keep track of who changes what.
+This helps repository maintainers coordinate the efforts of all the people who contribute to the project.
+Most importantly, it makes it easier to figure out who to blame when something goes wrong.
+You can provide git your name and contact information with the following commands:
+
+~~~
+$ git config --global user.name "<Firstname> <Lastname>"
+$ git config --global user.email "<email address>"
+~~~
+{: .bash}
+
+Next, you might want to change the Git text editor.
+As we will see later, certain Git commands will open text files.
+When this happens, Git will use your environment's default text editor, which might not be the editor you are most comfortable using.
+You can configure Git to use a particular editor by issuing one of the commands in the table below:
+
+| Editor             | Configuration command                            |
+|:-------------------|:-------------------------------------------------|
+| Atom | `$ git config --global core.editor "atom --wait"`|
+| nano               | `$ git config --global core.editor "nano -w"`    |
+| BBEdit (Mac, with command line tools) | `$ git config --global core.editor "bbedit -w"`    |
+| Sublime Text (Mac) | `$ git config --global core.editor "/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl -n -w"` |
+| Sublime Text (Win, 32-bit install) | `$ git config --global core.editor "'c:/program files (x86)/sublime text 3/sublime_text.exe' -w"` |
+| Sublime Text (Win, 64-bit install) | `$ git config --global core.editor "'c:/program files/sublime text 3/sublime_text.exe' -w"` |
+| Notepad++ (Win, 32-bit install)    | `$ git config --global core.editor "'c:/program files (x86)/Notepad++/notepad++.exe' -multiInst -notabbar -nosession -noPlugin"`|
+| Notepad++ (Win, 64-bit install)    | `$ git config --global core.editor "'c:/program files/Notepad++/notepad++.exe' -multiInst -notabbar -nosession -noPlugin"`|
+| Kate (Linux)       | `$ git config --global core.editor "kate"`       |
+| Gedit (Linux)      | `$ git config --global core.editor "gedit --wait --new-window"`   |
+| Scratch (Linux)       | `$ git config --global core.editor "scratch-text-editor"`  |
+| Emacs              | `$ git config --global core.editor "emacs"`   |
+| Vim                | `$ git config --global core.editor "vim"`   |
+
+You can check the configuration commands that you have set using:
+
+~~~
+$ git config --list
+~~~
+{: .bash}
+
 ## Best practices
 
 {% include links.md %}
