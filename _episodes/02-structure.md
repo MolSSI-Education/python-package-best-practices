@@ -16,11 +16,27 @@ This episode describes the structure of a Python module and the differentiantion
 between a Python module and a set of Python scripts.
 
 ## Basic Structure
-    - Module folder name
-    - Basics of init
-    - File imports
-    - Functions in import
-    - Style Guides
+Let us layout our first module like the following:
+
+
+├── LICENSE                         <- License file
+├── README.md                       <- Description of project which GitHub will render
+├── module
+│   ├── __init__.py                 <- Basic Python Package import file
+│   ├── first_module.py             <- Starting packge module
+│   ├── data                        <- Sample additional data (non-code) which can be packaged
+│   │   ├── README.md
+│   │   └── look_and_say.dat
+│   └── tests                       <- Unit test directory with sample tests
+│       ├── __init__.py
+│       └── test1.py
+├── setup.py                        <- Your package's setup file for installing with additional options that can be set
+└── .gitignore                      <- Stock helper file telling git what file name patterns to ignore when adding 
+
+## Python local installs
+For development work it is often recommended to do a "local" python install via
+`pip install -e .`. This command will insert your new project into your Python
+site-packages folder so that it can be found in any directory on your computer.
 
 
 ## Style Guides
