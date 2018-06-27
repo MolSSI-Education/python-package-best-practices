@@ -59,23 +59,22 @@ $ git config --global user.email "<email address>"
 Next, you might want to change the Git text editor.
 As we will see later, certain Git commands will open text files.
 When this happens, Git will use your environment's default text editor, which might not be the editor you are most comfortable using.
-You can configure Git to use a particular editor by issuing one of the commands in the table below:
+Using configuration commands, you can tell Git to use your favorite editor.
+To use Emacs, you can do:
 
-| Editor             | Configuration command                            |
-|:-------------------|:-------------------------------------------------|
-| Atom | `$ git config --global core.editor "atom --wait"`|
-| nano               | `$ git config --global core.editor "nano -w"`    |
-| BBEdit (Mac, with command line tools) | `$ git config --global core.editor "bbedit -w"`    |
-| Sublime Text (Mac) | `$ git config --global core.editor "/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl -n -w"` |
-| Sublime Text (Win, 32-bit install) | `$ git config --global core.editor "'c:/program files (x86)/sublime text 3/sublime_text.exe' -w"` |
-| Sublime Text (Win, 64-bit install) | `$ git config --global core.editor "'c:/program files/sublime text 3/sublime_text.exe' -w"` |
-| Notepad++ (Win, 32-bit install)    | `$ git config --global core.editor "'c:/program files (x86)/Notepad++/notepad++.exe' -multiInst -notabbar -nosession -noPlugin"`|
-| Notepad++ (Win, 64-bit install)    | `$ git config --global core.editor "'c:/program files/Notepad++/notepad++.exe' -multiInst -notabbar -nosession -noPlugin"`|
-| Kate (Linux)       | `$ git config --global core.editor "kate"`       |
-| Gedit (Linux)      | `$ git config --global core.editor "gedit --wait --new-window"`   |
-| Scratch (Linux)       | `$ git config --global core.editor "scratch-text-editor"`  |
-| Emacs              | `$ git config --global core.editor "emacs"`   |
-| Vim                | `$ git config --global core.editor "vim"`   |
+~~~
+$ git config --global core.editor "emacs"
+~~~
+{: .bash}
+
+For Vim, do:
+
+~~~
+$ git config --global core.editor "vim"
+~~~
+{: .bash}
+
+A more complete list of possible editors is available [here](http://swcarpentry.github.io/git-novice/02-setup/index.html).
 
 You can check the configuration commands that you have set using:
 
