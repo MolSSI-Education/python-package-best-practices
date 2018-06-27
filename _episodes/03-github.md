@@ -234,11 +234,27 @@ Now if you refresh the GitHub webpage you should be able to see that 'MODULE.py'
 
 ## Working With Multiple Repositories
 
-Make another clone of the remote.
+One of the most potentially frustrating problems in software development is keeping track of all the different copies of the code.
+For example, we might start a project on a local desktop computer, switch to working on a laptop during a conference, and then do performance optimization on a supercomputer.
+In ye olden days, switching between computers was typically accomplished by copying files via a USB drive, or with ssh, or by emailing things to oneself.
+After copying the files, it was very easy to make an important change on one computer, forget about it, and go back to working on the original version of the code on another computer.
+Of course, when collaborating with other people these problems get dramatically worse.
+
+Git greatly simplifies the process of having multiple copies of a code development project.
+Let's see this in action by making another clone of our GitHub repository.
+
+~~~
+$ cd <location of first clone>
+$ git clone git@github.com:<repository> friend
+$ cd friend
+~~~
+{: .bash}
 
 Make a change to the new clone.
 
 Push the change, then Pull it to the first clone.
+
+Create a clone of the first clone, and demonstrate that the first clone has all the same functionality as the GitHub repository.
 
 ## Ignoring Files
 
