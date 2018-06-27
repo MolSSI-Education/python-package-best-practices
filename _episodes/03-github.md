@@ -60,14 +60,14 @@ Next, you might want to change the Git text editor.
 As we will see later, certain Git commands will open text files.
 When this happens, Git will use your environment's default text editor, which might not be the editor you are most comfortable using.
 Using configuration commands, you can tell Git to use your favorite editor.
-To use Emacs, you can do:
+To use Emacs as your text editor, you can do:
 
 ~~~
 $ git config --global core.editor "emacs"
 ~~~
 {: .bash}
 
-For Vim, do:
+Alternatively, to use Vim as your text editor, do:
 
 ~~~
 $ git config --global core.editor "vim"
@@ -231,6 +231,36 @@ $ git push
 
 This command sends all of the new commits in your local repository to the GitHub repository.
 Now if you refresh the GitHub webpage you should be able to see that 'MODULE.py' has been added to the repository.
+
+## Working With Multiple Repositories
+
+Make another clone of the remote.
+
+Make a change to the new clone.
+
+Push the change, then Pull it to the first clone.
+
+## Ignoring Files
+
+## Conflict Resolution
+
+Make conflicting commits in the two different repositories.
+
+Push one, then try to push the other.
+
+Illustrate what kinds of commits conflict and what types don't.
+
+## Pull requests
+
+## Branching and Forking
+
+## Managing a Repository
+
+Giving access to collaborators.
+
+Evaluating pull requests.
+
+Keeping branches under control.
 
 ## Best practices
 
