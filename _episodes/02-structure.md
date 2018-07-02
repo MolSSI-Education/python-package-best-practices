@@ -18,7 +18,7 @@ between a Python module and a set of Python scripts.
 ## Basic Structure
 Let us layout our first module like the following:
 
-
+```
 ├── LICENSE                         <- License file
 ├── README.md                       <- Description of project which GitHub will render
 ├── module
@@ -32,11 +32,29 @@ Let us layout our first module like the following:
 │       └── test1.py
 ├── setup.py                        <- Your package's setup file for installing with additional options that can be set
 └── .gitignore                      <- Stock helper file telling git what file name patterns to ignore when adding 
+```
+
+## Creating the first python files
+
+Create the `__init__.py` and `first_module.py`
+
+## Introduction to importing
+
+Go over how importing modules and submodules works
+
+
+## Go over setup.py
+
+This file is mostly boiler plate, but go over which fields should be updated
 
 ## Python local installs
 For development work it is often recommended to do a "local" python install via
-`pip install -e .`. This command will insert your new project into your Python
-site-packages folder so that it can be found in any directory on your computer.
+`pip install -e .`. This command will insert a link to your new project into your Python
+site-packages folder so that it can be found when you are in any directory on your computer.
+
+(Which site-packages? The one in your environment!)
+
+Show a quick python REPL loading the library that was installed
 
 
 ## Style Guides
