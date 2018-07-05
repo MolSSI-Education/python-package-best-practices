@@ -266,17 +266,23 @@ Push one, then try to push the other.
 
 Illustrate what kinds of commits conflict and what types don't.
 
+## Exploring History
+
 ## Pull requests
 
 ## Branching and Forking
 
+## Using GitHub
+
+## Pull requests
+
 ## Managing a Repository
+
+Keeping branches under control
 
 Giving access to collaborators.
 
 Evaluating pull requests.
-
-Keeping branches under control.
 
 ## Best practices
 
