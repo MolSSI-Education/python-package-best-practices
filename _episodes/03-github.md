@@ -502,6 +502,97 @@ drwxr-xr-x  8 tbarnes  staff    256 Jul  9 01:19 myexample
 ~~~
 {: .output}
 
+## Exploring History
+
+First, let's add a line to the end of testing.txt:
+
+~~~
+$ emacs testing.txt
+~~~
+{: .bash}
+
+~~~
+I added this file from a new clone!
+This line doesn't add any value.
+
+~~~
+
+When working on a project, it is easy to forget exactly what changes we have made to a file.
+To check this, do
+
+~~~
+$ git diff HEAD testing.txt
+~~~
+{: .bash}
+
+~~~
+diff --git a/testing.txt b/testing.txt
+index 166776a..bdc1cb7 100644
+--- a/testing.txt
++++ b/testing.txt
+@@ -1 +1,2 @@
+ I added this file from a new clone!
++This line doesn't add any value.
+~~~
+{: .output}
+
+"HEAD" just means the most recent commit.
+To compare against the commit just before the most recent commit, add "~1" to end of "HEAD":
+
+~~~
+$ git diff HEAD~1 testing.txt
+~~~
+{: .bash}
+
+~~~
+diff --git a/testing.txt b/testing.txt
+new file mode 100644
+index 0000000..bdc1cb7
+--- /dev/null
++++ b/testing.txt
+@@ -0,0 +1,2 @@
++I added this file from a new clone!
++This line doesn't add any value.
+~~~
+{: .output}
+
+For the commit befor that, you can do `git diff HEAD~2 MODULE.py`, and so on.
+
+If we want to compare against a specific commit, we can first do "git log" to find the commit's ID, and then do:
+
+~~~
+$ git diff f67d82fc72ba33aaa34a52a649fe6e0e3b831711 testing.txt
+~~~
+{: .bash}
+
+~~~
+diff --git a/testing.txt b/testing.txt
+new file mode 100644
+index 0000000..bdc1cb7
+--- /dev/null
++++ b/testing.txt
+@@ -0,0 +1,2 @@
++I added this file from a new clone!
++This line doesn't add any value.
+~~~
+{: .output}
+
+Another problem that we sometimes encounter is wanting to undo all of our changes to a particular file.
+This can be done with
+
+~~~
+$ git checkout HEAD testing.txt
+$ cat testing.txt
+~~~
+{: .bash}
+
+~~~
+I added this file from a new clone!
+~~~
+{: .output}
+
+Of course, you could also replace `HEAD` here with `HEAD~1` or a specific commit ID.
+
 
 
 ## Ignoring Files
@@ -513,8 +604,6 @@ Make conflicting commits in the two different repositories.
 Push one, then try to push the other.
 
 Illustrate what kinds of commits conflict and what types don't.
-
-## Exploring History
 
 ## Pull requests
 
