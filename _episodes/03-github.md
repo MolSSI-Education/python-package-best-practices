@@ -597,6 +597,158 @@ Of course, you could also replace `HEAD` here with `HEAD~1` or a specific commit
 
 ## Ignoring Files
 
+Sometimes while you work on a project, you may end up creating some temporary files.
+For example, if your text editor is Emacs, you may end up with lots of files called `~<filename>`.
+By default, Git tracks all files, including these.
+This tends to be annoying, since it means that any time you do "git status", all of these unimportant files show up.
+
+We are now going to find out how to tell Git to ignore these files, so that it doesn't keep telling us about them ever time we do "git status".
+Even if you aren't working with Emacs, someone else working on your project might, so let's do the courtesy of telling Git not to track these temporary files.
+First, lets ensure that we have a few dummy files:
+
+~~~
+$ touch testing.txt~
+$ touch README.md~
+$ ls -l
+~~~
+{: .bash}
+
+While we're at it, also make some other files that aren't important to the project:
+
+~~~
+$ mkdir data
+$ touch data/calculation.in data/calculation.out
+$ ls -l
+~~~
+{: .bash}
+
+~~~
+total 184
+-rw-r--r--@ 1 tbarnes  staff   1464 Jul  9 01:19 LICENSE
+-rw-r--r--  1 tbarnes  staff    620 Jul  9 01:19 README.md
+-rw-r--r--  1 tbarnes  staff      0 Jul  9 02:54 README.md~
+drwxr-xr-x  4 tbarnes  staff    128 Jul  9 02:57 data
+drwxr-xr-x  5 tbarnes  staff    160 Jul  9 01:19 devtools
+drwxr-xr-x  9 tbarnes  staff    288 Jul  9 01:19 docs
+drwxr-xr-x  8 tbarnes  staff    256 Jul  9 01:19 myexample
+-rw-r--r--  1 tbarnes  staff    550 Jul  9 01:19 setup.cfg
+-rw-r--r--  1 tbarnes  staff   1557 Jul  9 01:19 setup.py
+-rw-r--r--  1 tbarnes  staff     36 Jul  9 02:49 testing.txt
+-rw-r--r--  1 tbarnes  staff     36 Jul  9 02:54 testing.txt~
+-rw-r--r--@ 1 tbarnes  staff  68611 Jul  9 01:19 versioneer.py
+~~~
+{: .output}
+
+
+Now check what Git says about these files:
+
+~~~
+$ git status
+~~~
+{: .bash}
+
+~~~
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	README.md~
+	data/
+	testing.txt~
+
+nothing added to commit but untracked files present (use "git add" to track)
+~~~
+{: .output}
+
+Now we will make Git stop telling us about these files.
+Remember that wierd ".gitignore" file from earlier?
+This is what that file is for.
+If you open it up, you will see
+
+~~~
+$ emacs .gitignore
+~~~
+{: .bash}
+
+~~~
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+env/
+build/
+develop-eggs/
+...
+~~~
+
+Git looks at .gitignore and ignores any files or directories that match one of the lines.
+Add the following to the end of .gitignore:
+
+~~~
+# emacs
+*~
+
+# temporary data files
+data
+
+~~~
+
+Now do "git status" again:
+
+~~~
+$ git status
+~~~
+{: .bash}
+
+~~~
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   .gitignore
+
+no changes added to commit (use "git add" and/or "git commit -a")
+~~~
+{: .output}
+
+We want these additions to .gitignore to become a permanent part of the repository, so do
+
+~~~
+$ git add .gitignore
+$ git commit -m "Ignores Emacs temporary files and data directory"
+$ git push
+~~~
+{: .bash}
+
+One nice feature of .gitignore is that prevents us from accidentally adding a file that shouldn't be part of the repository.
+For example:
+
+~~~
+$ git add data/calculation.in
+~~~
+{: .bash}
+
+~~~
+The following paths are ignored by one of your .gitignore files:
+data/calculation.in
+Use -f if you really want to add them.
+~~~
+{: .output}
+
+It is possible to overide this with the "-f" option for git add.
+
+
 ## Conflict Resolution
 
 Make conflicting commits in the two different repositories.
