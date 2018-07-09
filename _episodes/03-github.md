@@ -721,7 +721,7 @@ Of course, you could also replace `HEAD` here with `HEAD~1` or a specific commit
 ## Ignoring Files
 
 Sometimes while you work on a project, you may end up creating some temporary files.
-For example, if your text editor is Emacs, you may end up with lots of files called `~<filename>`.
+For example, if your text editor is Emacs, you may end up with lots of files called `<filename>~`.
 By default, Git tracks all files, including these.
 This tends to be annoying, since it means that any time you do "git status", all of these unimportant files show up.
 
