@@ -77,8 +77,6 @@ $ git config --list
 
 Finally, we want to upload an ssh key to GitHub so that it doesn't ask for our password every time we try to do something.
 
-GitHub ssh Keys:
-
 Check for existing keys using:
 
 ~~~
