@@ -75,6 +75,136 @@ $ git config --list
 ~~~
 {: .bash}
 
+Finally, we want to upload an ssh key to GitHub so that it doesn't ask for our password every time we try to do something.
+
+GitHub ssh Keys:
+
+Check for existing keys using:
+
+~~~
+$ ls -al ~/.ssh
+~~~
+{: .bash}
+
+If you see something like `id_rsa.pub`, then you don't need to generate a new key.
+Otherwise, do:
+
+~~~
+$ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+~~~
+{: .bash}
+
+Generating public/private rsa key pair.
+Enter a file in which to save the key (/Users/you/.ssh/id_rsa): (Press enter)
+Enter same passphrase again: (Type passphrase again)
+
+On a Mac, do:
+
+~~~
+$ eval "$(ssh-agent -s)"
+~~~
+{: .bash}
+
+~~~
+Agent pid 59566
+~~~
+{: .output}
+
+If using macOS Sierra 10.12.2 or later, also add this to the end of ~/.ssh/config
+
+~~~
+Host *
+ AddKeysToAgent yes
+ UseKeychain yes
+ IdentityFile ~/.ssh/id_rsa
+~~~
+
+~~~
+$ ssh-add -K ~/.ssh/id_rsa
+~~~
+{: .bash}
+
+On a Windows machine, do:
+
+~~~
+$ eval $(ssh-agent -s)
+~~~
+{: .bash}
+
+~~~
+Agent pid 59566
+~~~
+{: .output}
+
+~~~
+$ ssh-add ~/.ssh/id_rsa
+~~~
+{: .bash}
+
+
+On Linux, do:
+
+~~~
+$ eval "$(ssh-agent -s)"
+~~~
+{: .bash}
+
+~~~
+Agent pid 59566
+~~~
+{: .output}
+
+~~~
+$ ssh-add ~/.ssh/id_rsa
+~~~
+{: .bash}
+
+Now copy the SSH key to your clipboard:
+
+On Mac:
+
+~~~
+$ pbcopy < ~/.ssh/id_rsa.pub
+~~~
+{: .bash}
+
+On Windows:
+
+~~~
+$ clip < ~/.ssh/id_rsa.pub
+~~~
+{: .bash}
+
+On Linux:
+
+~~~
+$ sudo apt-get install xclip
+$ xclip -sel clip < ~/.ssh/id_rsa.pub
+~~~
+{: .bash}
+
+
+Now we will upload the ssh key to GitHub.
+
+Go to GitHub using a web browser, click on your user image on the top right, and then select “settings” from the drop-down menu.
+
+Click “SSH and GPG keys” on the left.
+
+Click “New SSH key on the top right.
+
+Add a title that will remind you which machine this is for, then paste the key into the “Key” field.
+
+Click “Add SSH key”
+
+
+
+
+
+
+
+
+
+
 ## Making Commits
 
 Now that we have Git configured, let's try using Git do something that is actually helpful.
