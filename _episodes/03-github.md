@@ -928,9 +928,110 @@ $ git push
 
 
 
-## Pull requests
+## Forks
 
-## Branching and Forking
+We have seen how it is possible to allow other people to contribute to a project by listing them as collaborators.  This works fine for a project that only a handful of people work on, but what about large open-source projects that might have hundreds of people who are interested in adding their own features?  No one wants to add of those names to the list of collaborators, and giving everyone who asks the ability to push anything they want to the repository is guaranteed to lead to problems.  The solution to this question comes in the form of “forks.”
+
+Unfortunately, the work “fork” has multiple possible meanings in the context of open-source software development.
+Once upon a time, open-source software developers used the word “fork” to refer to the idea of taking an existing software project, making a copy of it, changing the name, and then developing it completely independently of the original project.
+For the purpose of this discussion, every time we use the word “fork,” we mean what happens when you push the fork button in GitHub.
+
+A fork is a copy of a repository that is largely independent of the original.
+The maintainer of the original repository doesn’t have to do anything or know about the existence of the fork.
+Want to make changes to an open-source project, but aren’t listed as a collaborator on the project?  Just make a fork, which you own and can manage in the same way as any other repository that you create on GitHub.
+If you want to submit changes to the project’s official repository, you can create a “pull request”, which we will discuss in more detail in the next section.
+
+For now, we will learn how to create and maintain a fork.
+During this section, you will need to partner up with someone else.
+
+From your partner, get the URL of their GitHub
+This should look like `https://github.com/<username>/<repo name>`
+Navigate to this URL in your web browser.
+
+Create a personal fork of the repository by pressing the “Fork” button near the top right of the web int\
+erface.
+
+Then, make a clone of the fork:
+
+~~~
+$ cd ../
+$ git clone <fork URL> fork_clone
+$ cd fork_clone
+~~~
+{: .bash}
+
+Open testing.txt and add a new line ("This line was added by <my username>."), so that it looks like:
+
+~~~
+***************************************
+This is the start of testing.txt
+***************************************
+
+I added this file from a new clone!
+Now I added a new line!
+I added this line from the GitHub web interface!
+This line was added by <my username>.
+
+***************************************
+This is the end of testing.txt
+***************************************
+~~~
+
+Now commit and push this change:
+
+~~~
+$ git add testing.txt
+$ git commit -m "Adds a line to the fork"
+$ git pull
+$ git push
+~~~
+{: .bash}
+
+Use your browser to confirm that this change shows up in the fork.
+Have your partner check their repository - does the change appear for them?
+
+Have your partner use the web interface to create and commit a new file called `another_test.txt`.
+Check the web interface for your fork.
+Does `another_test.txt` appear in it?
+
+While you work on your fork, you should keep it synced with the original repository.
+To do this, you need to tell Git where to find the repository that you forked from (the `upstream`) repository.
+Git tracks the remote repositories that a particular clone is associated with, which you can see by doing:
+
+~~~
+$ git remote -v
+~~~
+{: .bash}
+
+~~~
+origin https://github.com/YOUR_USERNAME/YOUR_FORK.git (fetch)
+origin https://github.com/YOUR_USERNAME/YOUR_FORK.git (push)
+~~~
+{: .output}
+
+The `origin` remote corresponds to the fork that you cloned from.
+We want to tell Git where the `upstream` remote is:
+
+~~~
+git remote add upstream <original repo’s URL>
+git remote -v
+~~~
+{: .bash}
+
+~~~
+origin    https://github.com/YOUR_USERNAME/YOUR_FORK.git (fetch)
+origin    https://github.com/YOUR_USERNAME/YOUR_FORK.git (push)
+upstream https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git (fetch)
+upstream https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git (push)
+~~~
+{: .output}
+
+~~~
+git pull upstream master
+git push
+~~~
+{: .bash}
+
 
 ## Using GitHub
 
