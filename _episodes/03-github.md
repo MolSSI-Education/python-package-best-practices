@@ -345,17 +345,164 @@ Git greatly simplifies the process of having multiple copies of a code developme
 Let's see this in action by making another clone of our GitHub repository.
 
 ~~~
-$ cd <location of first clone>
-$ git clone git@github.com:<repository> friend
+$ cd ../
+$ git clone git@github.com:git@github.com:taylor-a-barnes/git_example.git friend
 $ cd friend
 ~~~
 {: .bash}
 
-Make a change to the new clone.
+Let's create a file in this new directory.
 
-Push the change, then Pull it to the first clone.
+~~~
+$ emacs testing.txt
+~~~
+{: .bash}
 
-Create a clone of the first clone, and demonstrate that the first clone has all the same functionality as the GitHub repository.
+~~~
+I added this file from a new clone!
+
+~~~
+
+Now we will commit this new file:
+
+~~~
+$ git status
+~~~
+{: .bash}
+
+~~~
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+  testing.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+~~~
+{: .output}
+
+~~~
+$ git add testing.txt
+$ git status
+~~~
+{: .bash}
+
+~~~
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+  new file:   testing.txt
+
+~~~
+{: .output}
+
+~~~
+$ git commit -m "Adds testing.txt"
+$ git log
+~~~
+{: .bash}
+
+~~~
+commit 449f3859032a1043cb8e6c0b737c1f60317fcd65 (HEAD -> master)
+Author: Taylor Barnes <tbarnes1@vt.edu>
+Date:   Mon Jul 9 02:14:44 2018 -0400
+
+    Adds testing.txt
+
+commit f67d82fc72ba33aaa34a52a649fe6e0e3b831711 (origin/master, origin/HEAD)
+Author: Taylor Barnes <tbarnes1@vt.edu>
+Date:   Mon Jul 9 01:43:15 2018 -0400
+
+    Adds initial module structure
+
+commit 0e6266107cf8db6034d0c0cc6695851043249e5d
+Author: taylor-a-barnes <taylor.a.barnes@gmail.com>
+Date:   Mon Jul 9 01:07:00 2018 -0400
+
+    Initial commit
+
+~~~
+{: .output}
+
+Now push the commit:
+
+~~~
+$ git push
+~~~
+{: .bash}
+
+If you check the GitHub page, you should see the testing.txt file.
+
+Now change directories into the original local clone, and check if testing.txt is there:
+
+~~~
+$ cd ../<original clone>
+$ ls -l
+~~~
+{: .bash}
+
+~~~
+total 168
+-rw-r--r--@ 1 tbarnes  staff   1464 Jul  9 01:19 LICENSE
+-rw-r--r--  1 tbarnes  staff    620 Jul  9 01:19 README.md
+drwxr-xr-x  5 tbarnes  staff    160 Jul  9 01:19 devtools
+drwxr-xr-x  9 tbarnes  staff    288 Jul  9 01:19 docs
+drwxr-xr-x  8 tbarnes  staff    256 Jul  9 01:19 myexample
+-rw-r--r--  1 tbarnes  staff    550 Jul  9 01:19 setup.cfg
+-rw-r--r--  1 tbarnes  staff   1557 Jul  9 01:19 setup.py
+-rw-r--r--@ 1 tbarnes  staff  68611 Jul  9 01:19 versioneer.py
+~~~
+{: .output}
+
+To get the newest commit into this clone, we need to pull from the GitHub repository:
+
+~~~
+$ git pull
+~~~
+{: .bash}
+
+~~~
+remote: Counting objects: 3, done.
+remote: Compressing objects: 100% (1/1), done.
+remote: Total 3 (delta 1), reused 3 (delta 1), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+From github.com:taylor-a-barnes/git_example
+   f67d82f..449f385  master     -> origin/master
+Updating f67d82f..449f385
+Fast-forward
+ testing.txt | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 testing.txt
+~~~
+{: .output}
+
+Now we can actually see `testing.txt`:
+
+~~~
+$ ls -l
+~~~
+{: .bash}
+
+~~~
+total 176
+-rw-r--r--@ 1 tbarnes  staff   1464 Jul  9 01:19 LICENSE
+-rw-r--r--  1 tbarnes  staff    620 Jul  9 01:19 README.md
+drwxr-xr-x  5 tbarnes  staff    160 Jul  9 01:19 devtools
+drwxr-xr-x  9 tbarnes  staff    288 Jul  9 01:19 docs
+drwxr-xr-x  8 tbarnes  staff    256 Jul  9 01:19 myexample
+-rw-r--r--  1 tbarnes  staff    550 Jul  9 01:19 setup.cfg
+-rw-r--r--  1 tbarnes  staff   1557 Jul  9 01:19 setup.py
+-rw-r--r--  1 tbarnes  staff     36 Jul  9 02:22 testing.txt
+-rw-r--r--@ 1 tbarnes  staff  68611 Jul  9 01:19 versioneer.py
+~~~
+{: .output}
+
+
 
 ## Ignoring Files
 
