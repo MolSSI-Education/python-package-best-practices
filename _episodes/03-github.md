@@ -751,11 +751,182 @@ It is possible to overide this with the "-f" option for git add.
 
 ## Conflict Resolution
 
-Make conflicting commits in the two different repositories.
+Now we will make a few new edits to testing.txt:
 
-Push one, then try to push the other.
+~~~
+$ emacs testing.txt
+~~~
+{: .bash}
 
-Illustrate what kinds of commits conflict and what types don't.
+Add a dummy header and footer the testing.txt, so that it looks like this:
+
+~~~
+***************************************
+This is	the start of testing.txt
+***************************************
+
+I added this file from a new clone!
+
+***************************************
+This is	the end	of testing.txt
+***************************************
+~~~
+
+Now commit and push this edit.
+
+~~~
+$ git add testing.txt
+$ git commit -m "Adds a new line to testing.txt"
+$ git push
+~~~
+{: .bash}
+
+Now switch over to the `friend` clone.
+
+~~~
+$ cd ../friend
+~~~
+{: .bash}
+
+We are going to add another line to testing.txt, so that it looks like this
+
+~~~
+I added this file from a new clone!
+Now I added a new line!
+~~~
+
+Now try committing and pushing the change:
+
+~~~
+$ git add testing.txt
+$ git commit -m "Adds another line to testing.txt"
+$ git push
+~~~
+{: .bash}
+
+~~~
+To github.com:taylor-a-barnes/git_example.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'git@github.com:taylor-a-barnes/git_example.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+~~~
+{: .output}
+
+The push failed, because the `friend` clone is not up-to-date with the repository on GitHub.
+We can fix this by doing a pull:
+
+~~~
+$ git pull
+~~~
+{: .bash}
+
+~~~
+remote: Counting objects: 3, done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 1), reused 3 (delta 1), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+From github.com:taylor-a-barnes/git_example
+   b0b7d79..64e358f  master     -> origin/master
+Auto-merging testing.txt
+CONFLICT (content): Merge conflict in testing.txt
+Automatic merge failed; fix conflicts and then commit the result.
+~~~
+{: .output}
+
+Unfortunately, the `pull` also failed, due to a `conflict`.
+To see which files have the conflict, we can do:
+
+~~~
+$ git status
+~~~
+{: .bash}
+
+~~~
+On branch master
+Your branch and 'origin/master' have diverged,
+and have 1 and 1 different commits each, respectively.
+  (use "git pull" to merge the remote branch into yours)
+
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+  (use "git merge --abort" to abort the merge)
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+
+	both modified:   testing.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+~~~
+{: .output}
+
+The conflict is in testing.txt, so let's open it up:
+
+~~~
+$ emacs testing.txt
+~~~
+{: .bash}
+
+~~~
+***************************************
+This is the start of testing.txt
+***************************************
+
+I added this file from a new clone!
+<<<<<<< HEAD
+Now I added a new line!
+=======
+
+***************************************
+This is the end of testing.txt
+***************************************
+>>>>>>> 12651a37de10d61d9e9eea31c260c15b7ef3b5d4
+~~~
+
+The conflict is shown within the `<<<<<<<` and '>>>>>>>' bits.
+The part before the `=======` is what we added in the commit in the `friend` clone, while the part after it comes from the original local clone.
+We need to decide what to do about the conflict, tidy it up, and then make a new commit.
+Edit testing.txt so that it reads:
+
+~~~
+***************************************
+This is the start of testing.txt
+***************************************
+
+I added this file from a new clone!
+Now I added a new line!
+
+***************************************
+This is the end of testing.txt
+***************************************
+
+~~~
+
+
+~~~
+$ git add testing.txt
+$ git commit -m "Fixed merge conflicts in testing.txt"
+$ git push
+~~~
+{: .bash}
+
+This time everything should work correctly.
+Generally speaking, your procedure when ready to commit should be:
+
+
+~~~
+$ git commit -m "Commit message"
+$ git pull
+$ <fix any merge conflicts>
+$ git push
+~~~
+{: .bash}
+
+
 
 ## Pull requests
 
