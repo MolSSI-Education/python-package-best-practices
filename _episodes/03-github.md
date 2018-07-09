@@ -4,16 +4,11 @@ teaching: 90
 exercises: 120
 questions:
 - "How do I use git and GitHub?"
-objectives:
-- "Explain how to use RMarkdown with the new lesson template."
-- "Demonstrate how to include pieces of code, figures, and challenges."
-keypoints:
-- "It shouldn't be difficult"
 ---
 
 > ## Prerequisites
 >
-> In this episode we start with the Git repositories created in Episode 1.
+> We will start with the Git repositories created in Episode 1.
 {: .prereq}
 
 ## Version Control
@@ -36,9 +31,6 @@ Other Tutorials:
  - [Software Carpentry Version Control with Git](http://swcarpentry.github.io/git-novice/)
  - [GitHub 15 Minutes to Learn Git](https://try.github.io/)
  - [Git Commit Best Practices](https://github.com/trein/dev-best-practices/wiki/Git-Commit-Best-Practices)
-
-
-## Intoduction to Git
 
 ## Configuring Git
 
