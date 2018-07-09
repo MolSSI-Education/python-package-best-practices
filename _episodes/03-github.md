@@ -1010,7 +1010,7 @@ This is the end of testing.txt
 >>>>>>> 12651a37de10d61d9e9eea31c260c15b7ef3b5d4
 ~~~
 
-The conflict is shown within the `<<<<<<<` and '>>>>>>>' bits.
+The conflict is shown within the `<<<<<<<` and `>>>>>>>` bits.
 The part before the `=======` is what we added in the commit in the `friend` clone, while the part after it comes from the original local clone.
 We need to decide what to do about the conflict, tidy it up, and then make a new commit.
 Edit testing.txt so that it reads:
