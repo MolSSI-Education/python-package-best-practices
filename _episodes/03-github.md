@@ -930,6 +930,61 @@ $ git push
 
 ## Using GitHub
 
+Navigate to the GitHub page for your project.
+Click on "testing.txt".
+Here you can see the file and make changes to it.
+Click the edit button, which looks like a small pencil near the upper right of the file text box.
+Add a line that says "I added this line from the GitHub web interface!", so that the file looks like:
+
+~~~
+***************************************
+This is the start of testing.txt
+***************************************
+
+I added this file from a new clone!
+Now I added a new line!
+I added this line from the GitHub web interface!
+
+***************************************
+This is the end of testing.txt
+***************************************
+
+~~~
+
+Scroll to the bottom of the page and write the name "Added a line to testing.txt from the web interface" for this commit.
+Then, click the green "Commit changes" button at the bottom left.
+You should now see that your change appears in the text box.
+
+Click the "Blame" button to find out who is responsible for each line of code.
+Click the "History" button to see a list of all commits that affected this file.
+You can click on a commit to see exactly what it did.
+
+Go back to the main project page, and click the "commits" button.
+Here you can see a list of all the commits for this project.
+Clicking them reveals how they changed the code.
+
+The "Issues" tab lets you create discussions about bugs, performance limitations, feature requests, or ongoing work that are shared with everyone else who is working on the project.
+Try filling out a quick issue now.
+Then comment and close the issue.
+
+Now let's look at some of your repository's settings.
+Click the "Settings" button to the right of the little gear.
+This will take you to some options that will help you to maintain your repository.
+
+This page lets you do several important things, including rename, relocate, transfer, or delete your repository.
+
+Underneath the "Features" heading you will notice an option to "Restrict editing to collaborators only".
+This option prevents random strangers from being able to push changes to your repository, and should always be kept on.
+To allow other people to work with you, you can assign collaborators.
+Click the "Collaborators" tab on the left.
+This will take you to a searchbar where you can search for the names of other github users.
+By finding someone using the searchbar and then clicking "Add collaborator", you can allow specific people to contribute to your project.
+Generally speaking, you should only list someone as a collaborator if you work with them closely and trust that they won't do anything especially unwise with your repository.
+
+People you don't know very well shouldn't be listed as collaborators, but there are still ways for them to contribute improvements to your project.
+In the next couple of sections, we will explore how this works in detail.
+
+
 
 ## Forks
 
