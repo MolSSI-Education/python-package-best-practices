@@ -928,6 +928,9 @@ $ git push
 
 
 
+## Using GitHub
+
+
 ## Forks
 
 We have seen how it is possible to allow other people to contribute to a project by listing them as collaborators.  This works fine for a project that only a handful of people work on, but what about large open-source projects that might have hundreds of people who are interested in adding their own features?  No one wants to add of those names to the list of collaborators, and giving everyone who asks the ability to push anything they want to the repository is guaranteed to lead to problems.  The solution to this question comes in the form of “forks.”
@@ -1004,8 +1007,8 @@ $ git remote -v
 {: .bash}
 
 ~~~
-origin https://github.com/YOUR_USERNAME/YOUR_FORK.git (fetch)
-origin https://github.com/YOUR_USERNAME/YOUR_FORK.git (push)
+origin   https://github.com/YOUR_USERNAME/YOUR_FORK.git (fetch)
+origin   https://github.com/YOUR_USERNAME/YOUR_FORK.git (push)
 ~~~
 {: .output}
 
@@ -1021,8 +1024,8 @@ git remote -v
 ~~~
 origin    https://github.com/YOUR_USERNAME/YOUR_FORK.git (fetch)
 origin    https://github.com/YOUR_USERNAME/YOUR_FORK.git (push)
-upstream https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git (fetch)
-upstream https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git (push)
+upstream  https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git (fetch)
+upstream  https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git (push)
 ~~~
 {: .output}
 
@@ -1033,9 +1036,56 @@ git push
 {: .bash}
 
 
-## Using GitHub
 
 ## Pull requests
+
+It is now time to incorporate the edits you have made in you fork into the original repository.
+To do this, we must create a `Pull Request`.
+
+Navigate to the URL of your fork.
+Click the "New pull request" button that is located to the right of the "Branch" button.
+You should now see a summary of what the pull request will do.
+Click the green "Create pull request" button.
+
+Add a title to the pull request.
+We will go with "Improvements to testing.txt"
+Underneath the title, write something like:
+
+~~~
+## Description
+Adds a line to testing.txt that improves it for these specific reasons:
+ - It adds a specific useful feature: _______.
+ - It improves the readability of a particular part of the code by doing a specific thing.
+ - It enhances the performance of a particular part of the code, which I have testing under these specific conditions.
+
+Also, here are some details about the motivation behind the changes made by this pull request.
+
+## Todos
+ - This change is intended to be a stepping-stone towards ________.
+ - I plan to submit a future pull request that builds on this one in these specific ways:
+
+## Questions
+ - Are these changes consistent with the overal goal of the project?
+ - I noticed that changes recently made by _______ seem to affect similar regions of the code.  Are conflicts between our efforts likely.  What could be done to avoid this.
+ - What could I do to improve the quality of my pull request?
+ 
+## Status
+ - These specific planned features: _______ are not yet fully implemented.
+
+Thank you for taking at look at these proposed changes.  I look forward to hearing any feedback you might have.
+~~~
+
+Submit the pull request.
+
+Ask your partner to review the pull request.
+They can do this by going to the URL of their personal repository and then clicking the "Pull Requests" tab.
+They should see a single pull request listed.
+If they click it, they will see everything that you wrote.
+They should now click the "Merge Pull Request" button, followed by "Confirm merge".
+
+Your changes should now appear in your partner's repository.
+Congratulations on your first successful pull request!
+
 
 ## Managing a Repository
 
@@ -1045,6 +1095,5 @@ Giving access to collaborators.
 
 Evaluating pull requests.
 
-## Best practices
 
-{% include links.md %}
+
