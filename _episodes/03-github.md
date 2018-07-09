@@ -90,7 +90,7 @@ In this section, we are going to add the python module that we created earlier t
 
 Look at your repository on GitHub.
 Other than the '.gitignore' and 'LICENSE' files that were created when you first created the repository, it should be completely empty.
-Our goal in this section is to upload MODULE.py to the repository on GitHub.
+Our goal in this section is to upload our new module to the repository on GitHub.
 
 First, use a terminal to cd into the top directory of the local repository.
 Then, check the status of the project:
@@ -100,86 +100,84 @@ $ git status
 ~~~
 {: .bash}
 
-
 ~~~
 On branch master
+Your branch is up to date with 'origin/master'.
 
-Initial commit
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+  modified:   .gitignore
+  modified:   LICENSE
+  modified:   README.md
 
 Untracked files:
-   (use "git add <file>..." to include in what will be committed)
+  (use "git add <file>..." to include in what will be committed)
 
-	MODULE.py
-nothing added to commit but untracked files present (use "git add" to track)
+  .DS_Store
+  .codecov.yml
+  .github/
+  .travis.yml
+  devtools/
+  docs/
+  myexample/
+  setup.cfg
+  setup.py
+  versioneer.py
+
+no changes added to commit (use "git add" and/or "git commit -a")
 ~~~
 {: .output}
 
-The part about "untracked files" tells you that there are certain files located within your local repository that Git is not tracking (i.e., not doing version control on).
-At a minimum, you should see 'MODULE.py' listed as an untracked file.
-Depending on which text editor you are using, you might also see some backup files, like 'MODULE.py~', listed here.
-
-To tell Git to start tracking 'MODULE.py', do:
-
+The part about "Changes not staged for commit" lists all of the "tracked" files that git knows are part of your repository.
+We want to tell Git to store all of the changes we have made to these files in the form of a "commit".
+You can prepare these for inclusion in the next commit by doing:
 ~~~
-$ git add MODULE.py
-~~~
-{: .bash}
-
-Then check the status again:
-
-~~~
+$ git add -u
 $ git status
 ~~~
 {: .bash}
 
 ~~~
+$ git status
 On branch master
-
-Initial commit
+Your branch is up to date with 'origin/master'.
 
 Changes to be committed:
-  (use "git rm --cached <file>..." to unstage)
+  (use "git reset HEAD <file>..." to unstage)
 
-	new file:   MODULE.py
+  modified:   .gitignore
+  modified:   LICENSE
+  modified:   README.md
 
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+  .DS_Store
+  .codecov.yml
+  .github/
+  .travis.yml
+  devtools/
+  docs/
+  myexample/
+  setup.cfg
+  setup.py
+  versioneer.py
 ~~~
 {: .output}
 
-Git now knows that it's supposed to keep track of `MODULE.py`,
-but it hasn't recorded these changes as a commit yet.
-To get it to do that,
-we need to run one more command:
+
+The part about "untracked files" tells you that there are certain files located within your local repository that Git is not tracking (i.e., not doing version control on).
+
+To tell Git to start tracking these files, do:
 
 ~~~
-$ git commit -m "Adds MODULE.py"
+$ git add <filename>
 ~~~
 {: .bash}
 
-~~~
-[master (root-commit) f22b25e] Adds MODULE.py
- 1 file changed, 1 insertion(+)
- create mode 100644 MODULE.py
-~~~
-{: .output}
-
-When we run `git commit`,
-Git takes everything we have told it to save by using `git add`
-and stores a copy permanently inside the special `.git` directory.
-This permanent copy is called a [commit]({{ page.root }}/reference/#commit)
-(or [revision]({{ page.root }}/reference/#revision)) and its short identifier is `f22b25e`.
-Your commit may have another identifier.
-
-We use the `-m` flag (for "message")
-to record a short, descriptive, and specific comment that will help us remember later on what we did and why.
-If we just run `git commit` without the `-m` option,
-Git will launch `nano` (or whatever other editor we configured as `core.editor`)
-so that we can write a longer message.
-
-[Good commit messages][commit-messages] start with a brief (<50 characters) statement about the
-changes made in the commit. Generally, the message should complete the sentence "If applied, this commit will" <commit message here>.
-If you want to go into more detail, add a blank line between the summary line and your additional notes. Use this additional space to explain why you made changes and/or what their impact will be.
-
-If we run `git status` now:
+After adding all of the files that belong in the repository check the status again:
 
 ~~~
 $ git status
@@ -188,13 +186,108 @@ $ git status
 
 ~~~
 On branch master
-nothing to commit, working directory clean
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+  new file:   .DS_Store
+  new file:   .codecov.yml
+  new file:   .github/CONTRIBUTING.md
+  new file:   .github/PULL_REQUEST_TEMPLATE.md
+  modified:   .gitignore
+  new file:   .travis.yml
+  modified:   LICENSE
+  modified:   README.md
+  new file:   devtools/README.md
+  new file:   devtools/conda-recipe/bld.bat
+  new file:   devtools/conda-recipe/build.sh
+  new file:   devtools/conda-recipe/meta.yaml
+  new file:   devtools/travis-ci/before_install.sh
+  new file:   docs/Makefile
+  new file:   docs/README.md
+  new file:   docs/_static/README.md
+  new file:   docs/_templates/README.md
+  new file:   docs/conf.py
+  new file:   docs/index.rst
+  new file:   docs/make.bat
+  new file:   myexample/__init__.py
+  new file:   myexample/_version.py
+  new file:   myexample/data/README.md
+  new file:   myexample/data/look_and_say.dat
+  new file:   myexample/myexample.py
+  new file:   myexample/tests/__init__.py
+  new file:   myexample/tests/test_ssexample.py
+  new file:   setup.cfg
+  new file:   setup.py
+  new file:   versioneer.py
+
 ~~~
 {: .output}
 
-it tells us everything is up to date.
-If we want to know what we've done recently,
-we can ask Git to show us the project's history using `git log`:
+Git now knows which files it's supposed to keep track of, but it hasn't recorded these changes as a commit yet.
+To get it to do that, we need to run one more command:
+
+~~~
+$ git commit -m "Adds initial module structure"
+~~~
+{: .bash}
+
+~~~
+[master f67d82f] Adds initial module structure
+ 30 files changed, 3107 insertions(+), 37 deletions(-)
+ create mode 100644 .DS_Store
+ create mode 100644 .codecov.yml
+ create mode 100644 .github/CONTRIBUTING.md
+ create mode 100644 .github/PULL_REQUEST_TEMPLATE.md
+ create mode 100644 .travis.yml
+ rewrite LICENSE (82%)
+ rewrite README.md (100%)
+ create mode 100644 devtools/README.md
+ create mode 100644 devtools/conda-recipe/bld.bat
+ create mode 100755 devtools/conda-recipe/build.sh
+ create mode 100644 devtools/conda-recipe/meta.yaml
+ create mode 100755 devtools/travis-ci/before_install.sh
+ create mode 100644 docs/Makefile
+ create mode 100644 docs/README.md
+ create mode 100644 docs/_static/README.md
+ create mode 100644 docs/_templates/README.md
+ create mode 100644 docs/conf.py
+ create mode 100644 docs/index.rst
+ create mode 100644 docs/make.bat
+ create mode 100644 myexample/__init__.py
+ create mode 100644 myexample/_version.py
+ create mode 100644 myexample/data/README.md
+ create mode 100644 myexample/data/look_and_say.dat
+ create mode 100644 myexample/myexample.py
+ create mode 100644 myexample/tests/__init__.py
+ create mode 100644 myexample/tests/test_ssexample.py
+ create mode 100644 setup.cfg
+ create mode 100644 setup.py
+ create mode 100644 versioneer.py
+~~~
+{: .output}
+
+This command tells Git to save all of our changes to a new commit.
+
+If we run `git status` now, we see that the files we added to the last commit are no longer listed.
+
+~~~
+$ git status
+~~~
+{: .bash}
+
+~~~
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+~~~
+{: .output}
+
+We can see a history of all of our changes by doing `git log`:
 
 ~~~
 $ git log
@@ -202,11 +295,18 @@ $ git log
 {: .bash}
 
 ~~~
-commit f22b25e3233b4645dabd0d81e651fe074bd8e73b
-Author: <Firstname> <Lastname> <<email address>>
-Date:   Thu Aug 22 09:51:46 2013 -0400
+$ git log
+commit f67d82fc72ba33aaa34a52a649fe6e0e3b831711 (HEAD -> master)
+Author: Taylor Barnes <tbarnes1@vt.edu>
+Date:   Mon Jul 9 01:43:15 2018 -0400
 
-    Adds MODULE.py
+    Adds initial module structure
+
+commit 0e6266107cf8db6034d0c0cc6695851043249e5d (origin/master, origin/HEAD)
+Author: taylor-a-barnes <taylor.a.barnes@gmail.com>
+Date:   Mon Jul 9 01:07:00 2018 -0400
+
+    Initial commit
 ~~~
 {: .output}
 
@@ -220,7 +320,7 @@ when it was created,
 and the log message Git was given when the commit was created.
 
 Now that you have commited your module, check the GitHub repository again.
-It should still only have the '.gitignore' and 'LICENSE' files.
+It should still only have the '.gitignore', 'LICENSE', and 'README.md' files.
 This is because your local Git repository is separate from the remote GitHub repository.
 To make your changes show up on GitHub, you will need to run:
 
@@ -230,7 +330,8 @@ $ git push
 {: .bash}
 
 This command sends all of the new commits in your local repository to the GitHub repository.
-Now if you refresh the GitHub webpage you should be able to see that 'MODULE.py' has been added to the repository.
+Now if you refresh the GitHub webpage you should be able to see all of the new files you added to the repository.
+
 
 ## Working With Multiple Repositories
 
