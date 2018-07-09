@@ -1113,7 +1113,7 @@ In the next couple of sections, we will explore how this works in detail.
 
 We have seen how it is possible to allow other people to contribute to a project by listing them as collaborators.  This works fine for a project that only a handful of people work on, but what about large open-source projects that might have hundreds of people who are interested in adding their own features?  No one wants to add of those names to the list of collaborators, and giving everyone who asks the ability to push anything they want to the repository is guaranteed to lead to problems.  The solution to this question comes in the form of “forks.”
 
-Unfortunately, the work “fork” has multiple possible meanings in the context of open-source software development.
+Unfortunately, the word “fork” has multiple possible meanings in the context of open-source software development.
 Once upon a time, open-source software developers used the word “fork” to refer to the idea of taking an existing software project, making a copy of it, changing the name, and then developing it completely independently of the original project.
 For the purpose of this discussion, every time we use the word “fork,” we mean what happens when you push the fork button in GitHub.
 
