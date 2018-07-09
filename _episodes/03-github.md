@@ -92,9 +92,12 @@ $ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 ~~~
 {: .bash}
 
+~~~
 Generating public/private rsa key pair.
 Enter a file in which to save the key (/Users/you/.ssh/id_rsa): (Press enter)
 Enter same passphrase again: (Type passphrase again)
+~~~
+{: .output}
 
 On a Mac, do:
 
