@@ -362,6 +362,7 @@ def test_many(num_list, expected_mean):
     # assert mean(num_list) == expected_mean
     assert np.isclose(mean(num_list), expected_mean, 1e-6)
 ~~~
+{: .python}
 
 Here, the @parametrize decorator defines four different (test_input, expected) tuples 
 so that the `test_many` function will run four times using them in turn. 
