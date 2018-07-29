@@ -40,6 +40,7 @@ Let us layout our first module like the following:
 ```
 ├── LICENSE                         <- License file
 ├── README.md                       <- Description of project which GitHub will render
+├── docs                            <- Documentation for the project
 ├── <project>
 │   ├── __init__.py                 <- Basic Python Package import file
 │   ├── string_util.py              <- Example python file - string utilities
@@ -138,14 +139,13 @@ def title_string(s):
     This Is A String To Be Converted
     """
 
-    def title_string(s):
-        ret = s[0].upper()
-        for i in range(1, len(s)):
-            if s[i-1] == ' ':
-                ret += s[i].upper()
-            else:
-                ret += s[i].lower()
-        return ret
+    ret = s[0].upper()
+    for i in range(1, len(s)):
+        if s[i-1] == ' ':
+            ret += s[i].upper()
+        else:
+            ret += s[i].lower()
+    return ret
 ~~~
 {: .python}
 
@@ -175,6 +175,7 @@ Modifications:
   - Remove versioneer
   - Remove `cmdclass`
   - Change name, version, description, author, author_email, url
+  - Remove entries under `install_requires`
   - Can remove version restriction on sphinx
 
 ## Python local installs
@@ -194,6 +195,7 @@ Show a quick python REPL loading the library that was installed
 Show that importing the module works from anywhere on the system, as long
 as you are in the right environment.
 
+Optional dependencies can be installed as well with `pip install -e .[docs,tests]
 
 ## Style Guides
 
@@ -223,6 +225,70 @@ This file will be used by yapf, allowing you to override some default options.
 
 ## Sphinx documentation
 
-Do sphinx documentation
+Documentation for python projects is usually written with Sphinx
+(http://www.sphinx-doc.org).  The output of the documentation is
+usually HTML, which can be uploaded to services such as ReadTheDocs
+(https://readthedocs.org) or Github Pages (https://pages.github.com/).
+
+Documentation can be started by changing to the `docs` directory , 
+running `sphinx-quickstart`, and then answering the questions.
+
+After that, have a look a the `conf.py` file and make any other necessary
+modifications.
+
+- Add numpydoc to the extensions list
+- Change the theme to `sphinx_rtd_theme`
+
+Then, try to build it with `make html`. If successful, you can open
+the `_build/index.html` file in your browser.
+
+Modify the the `index.rst` file, putting more information about your project.
+
+One powerful feature of sphinx is the ability to pull out the docstrings
+that you put in your code. This is done with the `autodoc` module that you
+hopefully included when you ran the quickstart.
+
+Create the file `module_doc.rst`.
+
+~~~
+Module Documentation
+====================
+
+math - Miscellaneous Math Functions
+-----------------------------------
+
+.. automodule:: msfdevops.math
+   :members:
+
+
+string_util - Some string functions
+-----------------------------------
+
+.. automodule:: msfdevops.string_util
+   :members:
+
+~~~
+{: .rst}
+
+
+Also, add the newly-created file to the table of contents on the main documentation
+page (index.rst)
+
+~~~
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
+   module_doc
+~~~
+{: .rst}
+
+Rebuild (`make html`), and docstring documenation should show up on the generated HTML page.
+
+
+
+
+
+
 
 {% include links.md %}
