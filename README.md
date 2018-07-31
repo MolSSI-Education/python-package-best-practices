@@ -10,31 +10,21 @@ including detailed instructions on design, setup, and formatting.
 
 ## Quick Instructions
 
-1.  Do *not* fork this repository directly on GitHub.
-    Instead, please follow the instructions in [the setup instructions][setup]
-    to create a repository for your lesson by importing material
-    from [the styles repository][styles].
+1.  Please read [the episodes of this lesson][rendered] to format your material.
 
-2.  Once you have created your repository,
-    run `bin/lesson_initialize.py` to create standard lesson-specific files.
-    You *must* edit several values in `_config.yml`
-    so that GitHub Pages will render your lesson correctly.
-
-3.  Please read [the episodes of this lesson][rendered] to format your material.
-
-4.  Please keep the master copy of your lesson in your repository's `gh-pages` branch,
+2.  Please keep the master copy of your lesson in your repository's `gh-pages` branch,
     since that is what is
     [automatically published as a website by GitHub][github-pages].
 
-5.  To preview material,
+3.  To preview material,
     please run `make serve` from the command line
     to launch Jekyll with the correct parameters,
     or push to your repository's `gh-pages` branch
     and let GitHub take care of the rendering.
 
-6.  Run `make lesson-check` to check that your files follow our formatting rules.
+4.  Run `make lesson-check` to check that your files follow our formatting rules.
 
-7.  If you find an error or omission in this documentation,
+5.  If you find an error or omission in this documentation,
     please [file an issue in this repository][example-issues].
     If you find an error or omission in the lesson template,
     please [file an issue in the styles repository][styles-issues] instead.
