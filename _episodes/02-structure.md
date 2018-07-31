@@ -53,6 +53,9 @@ Let us layout our first module like the following:
 └── .gitignore                      <- Stock helper file telling git what file name patterns to ignore when adding 
 ```
 
+To visualize your project like above you will use "tree"
+(linux) if you do not have tree you can get using $sudo apt-get install tree
+
 ## Creating the first python files
 
 First, create the overall directory structure
