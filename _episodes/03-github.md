@@ -1267,9 +1267,9 @@ Congratulations on your first successful pull request!
 
 ## Branching
 
-[https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging]
+[Git Branching Tutorial](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
 
 
 ## Rebasing
 
-[https://git-scm.com/book/en/v2/Git-Branching-Rebasing]
+[Git Rebasing Tutorial](https://git-scm.com/book/en/v2/Git-Branching-Rebasing)
