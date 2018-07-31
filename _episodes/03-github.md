@@ -452,7 +452,8 @@ $ git push
 ~~~
 {: .bash}
 
-This command sends all of the new commits in your local repository to the GitHub repository.
+This command sends all of the new commits in your local repository to the GitHub repository. Note that it might be a good habit to mention
+remote and branch names right after git push command (check git documentations for more details). 
 Now if you refresh the GitHub webpage you should be able to see all of the new files you added to the repository.
 
 
