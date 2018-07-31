@@ -15,7 +15,7 @@ keypoints:
 
 This episode describes how to go about starting a open-source Python
 module on Github. The reasons for choosing open-source, git vs. github,
-and choosing an appropriate license are discussed. 
+and choosing an appropriate license are discussed.
 
 ## Why GitHub for a Python Module?
 
@@ -31,10 +31,10 @@ This section may be made as either presentation slides or a webpage
   - Googleableness
 2. **Licenses**
   - GPL vs LGPL
-  - Prefer BSD-3C, but others acceptable 
+  - Prefer BSD-3C, but others acceptable
   - Copyright (just mention that it depends on university and employer)
 3. **Programming Language**
-  - How might this influence license and 
+  - How might this influence license choice
 
 ## Creating an environment (Conda)
 
