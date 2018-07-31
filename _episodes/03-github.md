@@ -4,6 +4,9 @@ teaching: 90
 exercises: 120
 questions:
 - "How do I use git and GitHub?"
+objectives:
+- "Explain the purpose of version control."
+- "Introduce common git commands."
 ---
 
 > ## Prerequisites
@@ -1246,7 +1249,7 @@ Also, here are some details about the motivation behind the changes made by this
  - Are these changes consistent with the overal goal of the project?
  - I noticed that changes recently made by _______ seem to affect similar regions of the code.  Are conflicts between our efforts likely.  What could be done to avoid this.
  - What could I do to improve the quality of my pull request?
- 
+
 ## Status
  - These specific planned features: _______ are not yet fully implemented.
 
