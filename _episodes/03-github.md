@@ -1265,21 +1265,11 @@ Your changes should now appear in your partner's repository.
 Congratulations on your first successful pull request!
 
 
-## Managing a Repository
+## Branching
 
-Whenever you manage or contribute to a Git project, you will find yourself asking many practical questions, like "How big should my commits be?", “Should I make one big pull request, or lots of smaller ones?”, “How often should I sync my fork with the original project?”.
-
-Broadly speaking, there are two main philosophies for managing a Git repo: “branching” and “continuous integration” (CI).
-
-For many years, the prevailing opinion was that anyone working on a new feature for a code should create a development branch where they can work in isolation from the master branch.
-Branches would only be merged back into the master after features were completed and thoroughly bug tested.
-In principle, this meant that the master was kept “pristine,” with no partially implemented features or buggy code.
-In practice, this approach tended to lead to a tedious, conflict-laden merge process that was itself prone to produce bugs.
-
-At MolSSI, we recommend the CI approach.
-The idea behind CI is that developers contribute their modifications to the code early and often – typically at least once a day.
-This approach helps to ensure that merges are relatively painless, bug-free processes, while also making the code easier to maintain.
-CI-based approaches also tend to emphasize the importance of regular bug testing.
+[https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging]
 
 
+## Rebasing
 
+[https://git-scm.com/book/en/v2/Git-Branching-Rebasing]
