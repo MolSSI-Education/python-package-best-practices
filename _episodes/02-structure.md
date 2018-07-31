@@ -44,7 +44,7 @@ Let us layout our first module like the following:
 ├── <project>
 │   ├── __init__.py                 <- Basic Python Package import file
 │   ├── string_util.py              <- Example python file - string utilities
-│   ├── math.py                     <- Example python file - some math function
+│   ├── my_math.py                     <- Example python file - some math function
 │   ├── data                        <- Sample additional data (non-code) which can be packaged
 │   │   ├── README.md               <- Always helpful to have README in subdirectories
 │   └── tests                       <- Unit test directory with sample tests
@@ -57,9 +57,9 @@ Let us layout our first module like the following:
 
 First, create the overall directory structure
 
-Create the `__init__.py` and `math.py`.
+Create the `__init__.py` and `my_math.py`.
 
-In the `math.py` file, we are going to create a function that takes the mean/average
+In the `my_math.py` file, we are going to create a function that takes the mean/average
 of a list.
 
 1. What goes at the top of the file? File documentation
