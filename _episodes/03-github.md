@@ -7,6 +7,7 @@ questions:
 objectives:
 - "Explain the purpose of version control."
 - "Introduce common git commands."
+- "Go through an exercise of pull requests on forked repositories."
 keypoints:
 - "Git provides a way to track changes and differences between versions."
 - "Branches allow you to make changes without affecting the code on the master branch."
