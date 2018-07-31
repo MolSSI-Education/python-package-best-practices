@@ -26,6 +26,10 @@ you are ready to go as soon as the workshop begins.
    default settings. The only exception is to check the 
    **Make Anaconda the default Python** option.
 
+Alternatively, if you are running Windows 10, you can install the 
+[Windows Subsystem for Linux][wsl-windows]
+and follow the Linux tutorial.
+
 ### Mac OS X - [Video tutorial][video-mac]
 
 1. Open [http://continuum.io/downloads][continuum-mac]
@@ -111,3 +115,4 @@ $ python
 [python]: https://python.org
 [video-mac]: https://www.youtube.com/watch?v=TcSAln46u9U
 [video-windows]: https://www.youtube.com/watch?v=xxQ0mzZ8UvA
+[wsl-windows]: https://docs.microsoft.com/en-us/windows/wsl/install-win10
