@@ -197,6 +197,12 @@ Add a title that will remind you which machine this is for, then paste the key i
 
 Click “Add SSH key”
 
+Alternatively, if you don't want to setup ssh keys, you can decrease the number of times git asks you for your password by using:
+
+~~~
+$ git config --global credential.helper cache
+~~~
+
 
 
 
