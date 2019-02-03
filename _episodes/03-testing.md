@@ -77,7 +77,7 @@ contained within the `project/tests/` folder.
 
 ### Start by a simple pytest file
 
-If you don't have `pytest' installed or it's not updated to version 3, install it using:
+If you don't have `pytest` installed or it's not updated to version 3, install it using:
 ~~~
 $ pip install -U pytest
 ~~~
