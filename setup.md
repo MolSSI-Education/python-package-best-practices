@@ -9,10 +9,9 @@ general-purpose programming as well. Installing all of its scientific packages
 individually can be a bit difficult, however, so we recommend the all-in-one
 installer [Anaconda][anaconda].
 
-Throughout the rest of this set-up, we will assume
+Throughout the rest of this set-up, we will assume that you are using [Anaconda] and the `conda` package manager.
 
-Regardless of how you choose to install it, please make sure you install Python
-version 3.x (e.g., 3.4 is fine). Also, please set up your python environment at
+Please set up your python environment at
 least a day in advance of the workshop.  If you encounter problems with the
 installation procedure, ask your workshop organizers via e-mail for assistance so
 you are ready to go as soon as the workshop begins.
