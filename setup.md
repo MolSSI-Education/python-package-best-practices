@@ -87,7 +87,7 @@ It's considered a best practice to create a new Python environment for each proj
 To create an environment for this project using `conda`,
 
 ~~~
-conda create --name molssi_devops python=3.6
+$ conda create --name molssi_devops python=3.6
 ~~~
 {: .language-bash}
 
@@ -138,14 +138,14 @@ $ conda list
 Packages can be installed using the `conda install package_name` command. For example, to install NumPy,
 
 ~~~
-conda install numpy
+$ conda install numpy
 ~~~
 {: .language-bash}
 
 Further, the desired version of NumPy can be specified:
 
 ~~~
-conda install numpy=1.15
+$ conda install numpy=1.15
 ~~~
 {: .language-bash}
 
