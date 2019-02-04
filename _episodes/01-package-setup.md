@@ -11,7 +11,7 @@ objectives:
 - "Use the CMS CookieCutter to build a Python package."
 keypoints:
 - "There is a common way to structure Python packages"
-- "You can use the [CMS CookieCutter] to quickly create the layout for a Python package"
+- "You can use the CMS CookieCutter to quickly create the layout for a Python package"
 ---
 
 # Examples of Python package structure
@@ -192,6 +192,7 @@ Optional dependencies can be installed as well with `pip install -e .[docs,tests
 
 
 {% include links.md %}
+[setup]: https://molssi-education.github.io/CMS-Python-DevOps/setup.html
 [numpy]: https://github.com/numpy/numpy
 [scipy]: https://github.com/scipy/scipy
 [scikit-learn]: https://github.com/scikit-learn/scikit-learn
