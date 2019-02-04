@@ -125,7 +125,6 @@ $ conda deactivate
 ~~~
 {: .language-bash}
 
-
 ### Package installation using conda
 Using `conda`, we can install packages to our environments. **Note**: Make sure you have activated the environment where you want to install packages.
 
@@ -150,7 +149,27 @@ conda install numpy=1.15
 ~~~
 {: .language-bash}
 
-At the end of this set-up, you should have created a Python environment (`molssi_devops`) which has Python 3.6 and `numpy` installed.
+## CMS CookieCutter Installation
+
+For this workshop, we will create the structure of our Python package using the [CMS CookieCutter]. Please have this package installed **in your `molssi_devops` environment**.
+
+First, switch to your environment for this workshop if you are not in it.
+
+~~~
+$ conda activate molssi_devops
+~~~
+{: .language-bash}
+
+Install the general cookiecutter with the following commands.
+
+~~~
+$ conda config --add channels conda-forge
+$ conda install cookiecutter
+~~~
+{: .language-bash}
+
+At the end of this set-up, you should have created a Python environment (`molssi_devops`) which has Python 3.6, `numpy`, and `cookiecutter` installed.
+
 
 
 [anaconda]: https://www.continuum.io/anaconda
@@ -164,3 +183,4 @@ At the end of this set-up, you should have created a Python environment (`molssi
 [video-mac]: https://www.youtube.com/watch?v=TcSAln46u9U
 [video-windows]: https://www.youtube.com/watch?v=xxQ0mzZ8UvA
 [wsl-windows]: https://docs.microsoft.com/en-us/windows/wsl/install-win10
+[CMS CookieCutter]: https://github.com/MolSSI/cookiecutter-cms
