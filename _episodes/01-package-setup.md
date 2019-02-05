@@ -135,7 +135,7 @@ To visualize your project like above you will use "tree" if you do not have tree
 
 CookieCutter has created a lot of files! We will be working in the `molssi_devops` folder initially to develop our functions and tests. The other created directories, `devtools`, and `docs`, are related to package deployment and documentation respectively.
 
-> ### Packages and modules
+> ## Packages and modules
 >
 > What 'packages', 'libraries', or 'modules' in Python are may be confusing.
 > In general, 'module' refers to a single `.py` file contains Python definitions and statements, and be imported for use in another module or script. The module name is determined by the file name. A function defined in a module is used (once the module is imported) using the syntax `module_name.function_name()`.
