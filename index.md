@@ -6,7 +6,7 @@ permalink: index.html  # Is the only page that don't follow the partner /:path/i
 
 This lesson by the [Molecular Sciences Software Institute]({{ site.molssi_site }}) (MolSSI)
 teaches users [MolSSI's best practices](http://molssi.org/education/best-practices/)
-in Python module setup. To see the full MolSSI's education mission statement, please click
+in Python package setup. To see the full MolSSI's education mission statement, please click
 [here](http://molssi.org/education/education-mission-statement/).
 
 MolSSI best practices provides a starting point to get into software
@@ -19,20 +19,7 @@ yourself, within a small group, or a large community project. If your project
 is small and personal you may want to consider each topic in detail before
 implementing while for large community projects each topic is quite crucial.
 
-**This lesson is under development, please report issues to the [GitHub
-repository](https://github.com/MolSSI-Education/CMS-Python-DevOps)**
-
-> ## Prerequisites
->
-> Use the `.prereq` style to specify prerequisites.
-{: .prereq}
-
-> ## Things You Need To Know
->
-> 0.  Don't panic.
-> 1.  File issues and fixes in the [styles repository][styles],
->     and enhancements to this documentation in this one.
-{: .checklist}
+**This lesson is under development, please report issues to the [CMS Python DevOps repository]**
 
 {% include links.md %}
-
+[CMS Python DevOps repository]: https://github.com/MolSSI-Education/CMS-Python-DevOps
