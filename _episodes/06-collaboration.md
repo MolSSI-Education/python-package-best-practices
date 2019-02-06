@@ -1,3 +1,18 @@
+---
+title: "Git and GitHub"
+teaching: 30
+exercises: 5
+questions:
+- "How do I use git and GitHub?"
+objectives:
+- "Explain the purpose of version control."
+- "Introduce common git commands."
+- "Resolve a merge conflict"
+keypoints:
+- "Git provides a way to track changes and differences between versions."
+- "Branches allow you to make changes without affecting the code on the master branch."
+---
+
 ## Using GitHub
 
 Navigate to the GitHub page for your project.
