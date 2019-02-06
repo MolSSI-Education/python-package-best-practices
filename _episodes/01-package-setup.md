@@ -195,9 +195,9 @@ md.molssi_math.canvas()
 
 This should print a quote, as we saw when we looked at the `canvas` function above.
 
-> ### Exercise
-What happens if we use `conda deactivate` and attempt to execute the code above? What if we switch directories?
-> > ## Solution
+> ## Exercise
+> What happens if we use `conda deactivate` and attempt to execute the code above? What if we switch directories?
+>> ## Solution
 >> If you are in the project directory, the code will still work. However, it will not work in any other location.
 > {: .solution}
 {: .challenge}
