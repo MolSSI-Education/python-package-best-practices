@@ -81,7 +81,9 @@ In brief:
 [example-issues]: https://github.com/carpentries/lesson-example/issues/
 [github-pages]: https://help.github.com/articles/creating-project-pages-manually/
 [GitHub]: https://github.com
+[lesson pages]: https://molssi-education.github.io/CMS-Python-DevOps/
 [issues]: https://github.com/carpentries/lesson-example/issues
+[MolSSI's Best Practices]: https://molssi.org/education/best-practices/
 [pytest]: https://pytest.org
 [readthedocs]: https://readthedocs.org
 [rendered]: https://carpentries.github.io/lesson-example/
