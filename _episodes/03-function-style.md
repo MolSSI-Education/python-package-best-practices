@@ -48,7 +48,7 @@ Keeping your previous Python interpreter open, type the following:
 help(md.canvas)
 ~~~
 
-**Note: Do not use `help(md.canvas())`, this will actually execute your code, and that is not what you want.**
+**Note: Do not use `help(md.canvas())`, this will actually execute your code (not what we want).**
 
 The code above calls Python's built-in function, `help`. For our canvas function, it displays the multi-line comment (called a `docstring`), that is written beneath the function definition.
 
@@ -77,18 +77,20 @@ We will want to write one of these for our new mean function. This way, it will 
 ~~~
 def mean(num_list):
     """
-    Calculate the mean/average of a list of numbers
+    Calculate the mean/average of a list of numbers.
 
     Parameters
-    ------------------
+    -----------
     num_list : list
         The list to take the average of
+
     Returns
-    -------------------
+    --------
     mean_list: float
         The mean of the list
+
     Examples
-    --------------------
+    ---------
     >>> mean([1, 2, 3, 4, 5])
     3.0
     """
@@ -100,8 +102,68 @@ def mean(num_list):
 {: .language-python}
 
 
-## docstrings
-We've now added a multi-line comment (called a `docstring`), to our function. Docstrings occur right after a function definition, and are opened and closed with three quotes
+## Docstrings
+We've now added a multi-line comment (called a `docstring`, short for "doumentation string"), to the beginning of our function. Docstrings **are the first statment after a function or module definition** and are opened and closed with three quotes.
+
+The docstring should explain what the function or module does (and not how it is done).
+
+> ## The `__doc__` attribute
+>
+> When you add a docstring to a function or module, python automatically adds this to the `__doc__` attribute of the object.
+>
+> You can also see an object's docstring by typing `object.__doc__` into the Python interpreter. For example, to see the docstring associated with the canvas function, `molssi_devops.canvas.__doc__` into the Python interpreter (after importing `molssi_devops`, of course.)
+{: .callout}
+
+### Sections of a Docstring
+There are many ways you could format this docstring (different styles/conventions). We recommend using [numpy style docstrings], and this is what the example above and `mean` funtion are written in.
+
+Each docstring has a number of sections which are separated by headings. Headings should be underlined with hyphens (`-----`). There are many options for sections, we will only cover the most relevant here. If you would like to see a full list, check out the documentation for [numpy style docstrings].
+
+#### 1. Short summary
+A one-line summary that does not use the variable name or the function name. In our `mean` function, this corresponds to the following.
+
+~~~
+"""
+Calculate the mean/average of a list of numbers.
+"""
+~~~
+{: .language-python}
+
+#### 2. Extended summary
+A few sentences giving a detailed description of the function or module. This section should be used to clarify *functionality*, not to discuss implementation.  
+
+We do not have an extended summary in our `mean` function, since it is relatively straightforward.
+
+#### 3. Parameters
+This section contains a description of the function arguments - keywords and expected types.
+
+The parameters for our `mean` function is shown below:
+
+~~~
+Parameters
+-----------
+num_list : list
+    The list to take the average of
+~~~
+{: .language-python}
+
+Here, you can see that the parameter section begins with the section title ("Parameters"), followed by a line of hypens ("----"). On the next line, we have the argument name (`num_list`), then a colon followed by the input type of the argument. This line says that the argument `num_list` should be of type list. The next line gives a more detailed description of the variable.
+
+#### 4. Returns
+This section is very similar to the `Parameters` section above. In contrast to the `Parameters` section, each returned value does not have to be named, but the type of the return value is required.
+
+For our `mean` function, our `Returns` section looks like the following.
+
+~~~
+Returns
+--------
+mean_list: float
+    The mean of the list
+~~~
+{: .language-python}
+
+
+
 
 # Coding Style
 Code style is important so that new developers can quickly read, understand, and contribute to
@@ -148,3 +210,4 @@ This file will be used by yapf, allowing you to override some default options.
 
 [PEP8]: https://www.python.org/dev/peps/pep-0008/
 [YAPF]: https://github.com/google/yapf
+[numpy style docstrings]: https://docs.scipy.org/doc/numpy/docs/howto_document.html#numpydoc-docstring-guide
