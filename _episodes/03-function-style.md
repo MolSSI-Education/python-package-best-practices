@@ -25,7 +25,7 @@ def mean(num_list):
 ~~~
 {: .language-python}
 
-This function should now be accessible when we execute it in the interactive Python interpreter. Let's test this. Open the interactive Python interpreter and type the following
+This function should now be accessible when we execute it in the interactive Python interpreter. Test this by opening the interactive Python interpreter and typing the following
 
 ~~~
 >>> import molssi_devops as md
@@ -72,7 +72,9 @@ canvas(with_attribution=True)
 ~~~
 {: .output}
 
-We will want to write one of these for our new mean function. This way, it will be clear to new developers who use our code what the function does, and be accessible to any users using the function interactively. Returning, to the `molssi_math.py` module, edit your `mean` function to look like the following:
+If we try the same thing on our `mean` function, we don't get a helpful error message.
+
+We will want to write a docstring for our new mean function. This way, it will be clear to new developers who use our code what the function does, and be accessible to any users using the function interactively. Returning, to the `molssi_math.py` module file, edit your `mean` function to look like the following:
 
 ~~~
 def mean(num_list):
@@ -143,7 +145,7 @@ The parameters for our `mean` function is shown below:
 Parameters
 -----------
 num_list : list
-    The list to take the average of
+    The list to take the average of.
 ~~~
 {: .language-python}
 
@@ -162,51 +164,80 @@ mean_list: float
 ~~~
 {: .language-python}
 
+#### 5. Examples
+This is an optional section to show examples of functionality. This section is meant to illustrate usage. Though this section is optional, its use is strongly encouraged.
 
-
-
-# Coding Style
-Code style is important so that new developers can quickly read, understand, and contribute to
-code. While code style is typically quite personal, languages often have at
-least a few dominant coding styles which are familiar to most programmers in
-that language.  
-
-For Python, the common convention for code style is called [PEP8]. PEP8 is a document that gives guidelines for best practices in Python coding style.
-
-> ## Python PEP
->
-> If you spend a lot of time programming in Python, you will see references to PEPs a lot. PEP stands for "Python Enhancement Proposal". These are design documents which provide information about features. PEPs come from the Python community, meaning anyone can author a PEP (however, there is a strict review process). PEPs are classified into three categories - standards, informational, or process.
->
-> You can read more about PEPs in [Python's documentation](https://www.python.org/dev/peps/pep-0001/). PEP1 outlines what a PEP is and how they work.
-{: .callout}
-
-## Style Guides
+## Coding Style
 
 As a developer, you spend a lot of time thinking about writing your code. However, code is read much more often than it is written. Following a style guide will help others (and perhaps you in the future!) to read your code.
 
-PEP8 is a recommendation, not rule. However, you should follow this convention when possible.
+ For Python, the common convention for code style is called [PEP8]. PEP8 is a document that gives guidelines for best practices in Python coding style. PEP8 is a recommendation, not rule. However, you should follow this convention when possible.
 
+ > ## Python PEP
+ >
+ > If you spend a lot of time programming in Python, you will see references to PEPs a lot. PEP stands for "Python Enhancement Proposal". These are design documents which provide information about features. PEPs come from the Python community, meaning anyone can author a PEP (however, there is a strict review process). PEPs are classified into three categories - standards, informational, or process.
+ >
+ > You can read more about PEPs in [Python's documentation](https://www.python.org/dev/peps/pep-0001/). PEP1 outlines what a PEP is and how they work.
+ {: .callout}
 
-- Python Style Guide [PEP 8](https://www.python.org/dev/peps/pep-0008/)
-- Python: [YAPF] (enforces [PEP8])
+If you look at PEP8, you will see that it is quite long. While you should definitely read it if you spend a lot of time programming in Python, there are luckily tools which will help us make sure our code is following PEP8 convention. We will you [yapf], an open source formatter for Python files from Google.
 
-Install yapf via pip. Mangle one of the python files, and then show that `yapf` correctly fixes it.
-
-Automatic formatting can enforce a particular coding style, and
-are often configurable for each project.
-
-## Create the setup.cfg
-
-Create a `setup.cfg` file in the root directory containing the following:
+Install yapf using pip. In your terminal, type
 
 ~~~
-[yapf]
-COLUMN_LIMIT = 119
-INDENT_WIDTH = 4
-USE_TABS = False
+$ pip install yapf
 ~~~
 
-This file will be used by yapf, allowing you to override some default options.
+Now we can use yapf on our python files. Just to see the power of yapf, let's mangle one of our functions and use yapf to reformat it.
+
+~~~
+def mean(num_list):
+            """
+    Calculate the mean/average of a list of numbers.
+
+    Parameters
+    -----------
+    num_list : list
+        The list to take the average of
+
+    Returns
+    --------
+    mean_list: float
+        The mean of the list
+
+    Examples
+    ---------
+    >>> mean([1, 2, 3, 4, 5])
+    3.0
+            """
+
+            mean_list = (sum(num_list    )               /
+            len(num_list))
+
+            return mean_list
+~~~
+{: .language-python}
+
+If you save the file and test your function in the command line, you will see that it still works when formated this way. However, it is significantly harder to read in the text editor. We can use yapf to format this automatically. In your terminal, run yapf with the following command -
+
+~~~
+$ yapf -i molssi_devops/molssi_math.py
+~~~
+
+Here, the `-i` flag indicates to do this "in-place", this means your file will be overwritten with yapf's changes. If you examine the file after running yapf, you should see that it is returned to an easily readable format.
+
+> ## yapf settings
+>
+> CookieCutter created some settings for yapf for us when we ran it. In the file `setup.cfg` in the top level directory.
+>
+> ~~~
+>[yapf]
+>COLUMN_LIMIT = 119
+>INDENT_WIDTH = 4
+>USE_TABS = False
+> ~~~
+> This section overwrites some default parameters for yapf. You can change this to your preferences.
+{: .callout}
 
 [PEP8]: https://www.python.org/dev/peps/pep-0008/
 [YAPF]: https://github.com/google/yapf
