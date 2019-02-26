@@ -131,21 +131,21 @@ Now we can examine the project layout the CookieCutter has set up for us. Naviga
 ```
 {: .output}
 
-To visualize your project like above you will use "tree" if you do not have tree you can get using `sudo apt-get install tree` on linux, or `brew install tree` on Mac.
+To visualize your project like above you will use "tree". If you do not have tree you can get using `sudo apt-get install tree` on linux, or `brew install tree` on Mac.
 
 CookieCutter has created a lot of files! We will be working in the `molssi_devops` folder initially to develop our functions and tests. The other created directories, `devtools`, and `docs`, are related to package deployment and documentation respectively.
 
 > ## Packages and modules
 >
-> What 'packages', 'libraries', or 'modules' in Python are may be confusing.
-> In general, 'module' refers to a single `.py` file contains Python definitions and statements, and be imported for use in another module or script. The module name is determined by the file name. A function defined in a module is used (once the module is imported) using the syntax `module_name.function_name()`.
+> What 'packages' or 'modules' are in Python may be confusing.
+> In general, 'module' refers to a single `.py` file containing Python definitions and statements. It may be imported for use in another module or script. The module name is determined by the file name. A function defined in a module is used (once the module is imported) using the syntax `module_name.function_name()`.
 > 'Package' refers to a collection of Python modules.
 >
 > To read more about Python packages vs. modules, check out [Python's documentation].
 {: .callout}
 
 ### Our first function
-Once inside of the `molssi_devops` folder (`molssi_devops/molssi_devops`), examine the files that are there. View the first module (`molssi_math.py`) in a text editor. We see a few things about this file. The top begins with a description of this module. Right now, that is the file name, followed by our short description, then the sentence "Handles the primary functions". We will change this to be more descriptive later. CookieCutter has also created a placeholder function in called `canvas`.  At the start of the `canvas` function, we have a `docstring` (more about this in documentation), which describes the function. Lastly, there is a `__main__` section in this file that defines what this file will do if run on it's own.
+Once inside of the `molssi_devops` folder (`molssi_devops/molssi_devops`), examine the files that are there. View the first module (`molssi_math.py`) in a text editor. We see a few things about this file. The top begins with a description of this module. Right now, that is the file name, followed by our short description, then the sentence "Handles the primary functions". We will change this to be more descriptive later. CookieCutter has also created a placeholder function in called `canvas`.  At the start of the `canvas` function, we have a `docstring` (more about this in [documentation]), which describes the function. Lastly, there is a `__main__` section in this file that defines what this file will do if run on it's own.
 
 ~~~
 python molssi_math.py
