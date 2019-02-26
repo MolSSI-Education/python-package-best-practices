@@ -25,11 +25,11 @@ keypoints:
 ## Version Control
 
 Version control keeps a complete history of your work on a given project. It
-facilitates collaboration on projects where everyone can work freely on an part
+facilitates collaboration on projects where everyone can work freely on a part
 of the project without overriding others’ changes. You can move between past
-versions and rollback when needed, nothing is lost. Also, you can review the
-history of your project through commit messages that describe each added change
-and see what exactly has changed in the contents. You can see who made the
+versions and rollback when needed. Also, you can review the
+history of your project through commit messages that describe changes on the source code 
+and see what exactly has been modified in any given commit. You can see who made the
 changes and when it happened.
 
 This is greatly beneficial whether you are working independently or within a
@@ -50,7 +50,7 @@ Other hosting Services: [GitLab], [BitBucket]
 ## Making Commits
 
 Now that we have Git configured, let's try using Git do something that is actually helpful.
-In this section, we are going to  edit files in the python package that we created earlier, and use `git` to track those changes.
+In this section, we are going to  edit files in the Python package that we created earlier, and use `git` to track those changes.
 
 First, use a terminal to `cd` into the top directory of the local repository.
 
@@ -75,7 +75,7 @@ nothing to commit, working tree clean
 ~~~
 {: .output}
 
-This tells us that we are on the `master` branch, and that no files have been changed since the last commmit.
+This tells us that we are on the `master` branch, and that no files have been changed since the last commit.
 
 Next, type
 ~~~
@@ -95,7 +95,7 @@ Date:   Mon Feb 4 10:45:26 2019 -0500
 
 When we have more commits (or versions) of our code, `git log` will show a history of these commits. Right now, we have only one commit - the one created by the CMS CookieCutter.
 
-Now, we will change some files and use `git` to track those changes. Let's edit our README. Open `README.md` in your text editor of choice. On line 8, you should see the description of the repository we typed when running the cookiecutter. Add the following sentence to your `README` under the initial description.
+Now, we will change some files and use `git` to track those changes. Let's edit our README. Open `README.md` in your text editor of choice. On line 8, you should see the description of the repository we typed when running the CookieCutter. Add the following sentence to your `README` under the initial description.
 
 ~~~
 This repository is currently under development. To do a developmental install, download this repository and type
@@ -184,14 +184,12 @@ Date:   Mon Feb 4 10:45:26 2019 -0500
 ~~~
 {: .output}
 
-Now, we have a second commit at the top of of our git log with the message we just typed. `git log` lists all commits  made to a repository in reverse chronological order.
+Now, we have a second commit at the top of our git log with the message we just typed. `git log` lists all commits  made to a repository in reverse chronological order.
 The listing for each commit includes
 the commit's full identifier
-(which starts with the same characters as
-the short identifier printed by the `git commit` command earlier),
 the commit's author,
 when it was created,
-and the log message Git was given when the commit was created.
+and the commit title.
 
 > ## Exercise
 > What list of commands would mimic what CMS CookieCutter did when it created the repository and performed the first commit? (hint - to initialize a repository, you use `git init`)
@@ -342,7 +340,7 @@ $ git push
 
 If you check the GitHub page, you should see the testing.txt file.
 
-Now change directories into the original local clone, and check if testing.txt is there:
+Now change directories into the original local clone, and check if `testing.txt` is there:
 
 ~~~
 $ cd ../<original clone>
@@ -546,8 +544,8 @@ wheels/
 ...
 ~~~
 
-Git looks at .gitignore and ignores any files or directories that match one of the lines.
-Add the following to the end of .gitignore:
+Git looks at `.gitignore` and ignores any files or directories that match one of the lines.
+Add the following to the end of `.gitignore`:
 
 ~~~
 # emacs
