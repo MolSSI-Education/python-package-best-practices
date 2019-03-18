@@ -167,6 +167,15 @@ mean_list: float
 #### 5. Examples
 This is an optional section to show examples of functionality. This section is meant to illustrate usage. Though this section is optional, its use is strongly encouraged.
 
+Now that we've written a function in our project, we should commit our changes and push to [GitHub].
+
+~~~
+$ git add .
+$ git commit -m "add mean function to molssi_math"
+$ git push origin master
+~~~
+{: .bash}
+
 ## Coding Style
 
 As a developer, you spend a lot of time thinking about writing your code. However, code is read much more often than it is written. Following a style guide will help others (and perhaps you in the future!) to read your code.
@@ -238,6 +247,17 @@ Here, the `-i` flag indicates to do this "in-place", this means your file will b
 > ~~~
 > This section overwrites some default parameters for yapf. You can change this to your preferences.
 {: .callout}
+
+Commit these Changes
+
+Now that we've written a function in our project, we should commit our changes and push to [GitHub].
+
+~~~
+$ git add .
+$ git commit -m "run yapf on molssi_math"
+$ git push origin master
+~~~
+{: .bash}
 
 [PEP8]: https://www.python.org/dev/peps/pep-0008/
 [YAPF]: https://github.com/google/yapf
