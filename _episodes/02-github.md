@@ -28,7 +28,7 @@ Version control keeps a complete history of your work on a given project. It
 facilitates collaboration on projects where everyone can work freely on a part
 of the project without overriding others’ changes. You can move between past
 versions and rollback when needed. Also, you can review the
-history of your project through commit messages that describe changes on the source code 
+history of your project through commit messages that describe changes on the source code
 and see what exactly has been modified in any given commit. You can see who made the
 changes and when it happened.
 
@@ -777,6 +777,45 @@ $ <fix any merge conflicts>
 $ git push
 ~~~
 {: .bash}
+
+## More GitHub Features
+
+Navigate to the GitHub page for your project.
+Click on "testing.txt".
+Here you can see the file and make changes to it.
+Click the edit button, which looks like a small pencil near the upper right of the file text box.
+Add a line that says "I added this line from the GitHub web interface!", so that the file looks like:
+
+~~~
+***************************************
+This is the start of testing.txt
+***************************************
+
+I added this file from a new clone!
+Now I added a new line!
+I added this line from the GitHub web interface!
+
+***************************************
+This is the end of testing.txt
+***************************************
+
+~~~
+
+Scroll to the bottom of the page and write the name "Added a line to testing.txt from the web interface" for this commit.
+Then, click the green "Commit changes" button at the bottom left.
+You should now see that your change appears in the text box.
+
+Click the "Blame" button to find out who is responsible for each line of code.
+Click the "History" button to see a list of all commits that affected this file.
+You can click on a commit to see exactly what it did.
+
+Go back to the main project page, and click the "commits" button.
+Here you can see a list of all the commits for this project.
+Clicking them reveals how they changed the code.
+
+The "Issues" tab lets you create discussions about bugs, performance limitations, feature requests, or ongoing work that are shared with everyone else who is working on the project.
+Try filling out a quick issue now.
+Then comment and close the issue.
 
 ## More Tutorials
 If you want more `git`, see the following tutorials.
