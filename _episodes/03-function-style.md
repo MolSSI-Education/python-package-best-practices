@@ -82,17 +82,17 @@ def mean(num_list):
     Calculate the mean/average of a list of numbers.
 
     Parameters
-    -----------
+    ----------
     num_list : list
         The list to take the average of
 
     Returns
-    --------
+    -------
     mean_list: float
         The mean of the list
 
     Examples
-    ---------
+    --------
     >>> mean([1, 2, 3, 4, 5])
     3.0
     """
@@ -143,7 +143,7 @@ The parameters for our `mean` function is shown below:
 
 ~~~
 Parameters
------------
+----------
 num_list : list
     The list to take the average of.
 ~~~
@@ -158,7 +158,7 @@ For our `mean` function, our `Returns` section looks like the following.
 
 ~~~
 Returns
---------
+-------
 mean_list: float
     The mean of the list
 ~~~
