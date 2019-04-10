@@ -1,58 +1,24 @@
 ---
-title: "Git and GitHub"
+title: "Code Collaboration using GitHub"
 teaching: 30
 exercises: 5
 questions:
-- "How do I use git and GitHub?"
+- "How can others contribute to my project on GitHub?"
+- "How can I contribute to the projects of others?"
 objectives:
-- "Explain the purpose of version control."
-- "Introduce common git commands."
-- "Resolve a merge conflict"
+- "Learn what a fork is on GitHub"
+- "Understand how to open a pull request."
 keypoints:
-- "Git provides a way to track changes and differences between versions."
-- "Branches allow you to make changes without affecting the code on the master branch."
+- "To contribute to someone else's project, you should fork their repository."
+- "All development work should be done on a new branch. Each branch should implement one feature."
+- "Once you've implemented a new feature, push to your repository and create a pull request on the original repo."
 ---
 
-## Using GitHub
+## Repository collaborators
 
-Navigate to the GitHub page for your project.
-Click on "testing.txt".
-Here you can see the file and make changes to it.
-Click the edit button, which looks like a small pencil near the upper right of the file text box.
-Add a line that says "I added this line from the GitHub web interface!", so that the file looks like:
+Now that we have a Python package with a function, we may want others to be able to contribute to our project. There are several ways for people to contribute to your project. If you are working with a small number of people who you know well, you may simply choose to add them as collaborators to your repo. This will give them the ability to push to your repository.
 
-~~~
-***************************************
-This is the start of testing.txt
-***************************************
-
-I added this file from a new clone!
-Now I added a new line!
-I added this line from the GitHub web interface!
-
-***************************************
-This is the end of testing.txt
-***************************************
-
-~~~
-
-Scroll to the bottom of the page and write the name "Added a line to testing.txt from the web interface" for this commit.
-Then, click the green "Commit changes" button at the bottom left.
-You should now see that your change appears in the text box.
-
-Click the "Blame" button to find out who is responsible for each line of code.
-Click the "History" button to see a list of all commits that affected this file.
-You can click on a commit to see exactly what it did.
-
-Go back to the main project page, and click the "commits" button.
-Here you can see a list of all the commits for this project.
-Clicking them reveals how they changed the code.
-
-The "Issues" tab lets you create discussions about bugs, performance limitations, feature requests, or ongoing work that are shared with everyone else who is working on the project.
-Try filling out a quick issue now.
-Then comment and close the issue.
-
-Now let's look at some of your repository's settings.
+To add collaborators to your project, navigate to your repository on GitHub
 Click the "Settings" button to the right of the little gear.
 This will take you to some options that will help you to maintain your repository.
 
@@ -89,10 +55,9 @@ From your partner, get the URL of their GitHub
 This should look like `https://github.com/<username>/<repo name>`
 Navigate to this URL in your web browser.
 
-Create a personal fork of the repository by pressing the “Fork” button near the top right of the web int\
-erface.
+Create a personal fork of the repository by pressing the “Fork” button near the top right of the web interface.
 
-Then, make a clone of the fork:
+Then, make a clone of the fork on your personal computer.
 
 ~~~
 $ cd ../
@@ -101,124 +66,247 @@ $ cd fork_clone
 ~~~
 {: .bash}
 
-Open testing.txt and add a new line ("This line was added by <my username>."), so that it looks like:
+In a real development situation, we would also create a new `conda` environment for developing in this repository. For this workshop, we will use the same development environment. However, if we wish to test functions we are developing, we will have to do a developmental install of this package (`pip install -e .`).
 
-~~~
-***************************************
-This is the start of testing.txt
-***************************************
-
-I added this file from a new clone!
-Now I added a new line!
-I added this line from the GitHub web interface!
-This line was added by <my username>.
-
-***************************************
-This is the end of testing.txt
-***************************************
-~~~
-
-Now commit and push this change:
-
-~~~
-$ git add testing.txt
-$ git commit -m "Adds a line to the fork"
-$ git pull
-$ git push
-~~~
-{: .bash}
-
-Use your browser to confirm that this change shows up in the fork.
-Have your partner check their repository - does the change appear for them?
-
-Have your partner use the web interface to create and commit a new file called `another_test.txt`.
-Check the web interface for your fork.
-Does `another_test.txt` appear in it?
-
-While you work on your fork, you should keep it synced with the original repository.
-To do this, you need to tell Git where to find the repository that you forked from (the `upstream`) repository.
-Git tracks the remote repositories that a particular clone is associated with, which you can see by doing:
-
+## Adding an upstream to our forks
+In your terminal window, type
 ~~~
 $ git remote -v
 ~~~
-{: .bash}
+{: .language-bash}
+
+You should see output similar to the following
 
 ~~~
-origin   https://github.com/YOUR_USERNAME/YOUR_FORK.git (fetch)
-origin   https://github.com/YOUR_USERNAME/YOUR_FORK.git (push)
+origin https://github.com/YOUR_GITHUB_USERNAME/FORKED_REPO_NAME.git (fetch)
+origin https://github.com/YOUR_GITHUB_USERNAME/FORKED_REPO_NAME.git (push)
+~~~
+{: .language-bash}
+
+This is similar to our own repository. However, since this is fork, we will want to add another remote to track the original repository. The standard names for remotes are `origin` for the repository we have cloned from, and `upstream` for the repository we forked from. Add an upstream using the following command
+
+~~~
+$ git remote add upstream https://github.com/YOUR_PARTNERS_GITHUB_USERNAME/ORIGINAL_REPO_NAME.git
+~~~
+
+Now, when you check the remotes (`git remote -v`), it should list both the `origin`, and `upstream` repositories. If we wanted to pull changes from the original repo, we could do `git pull upstream branch_name`
+
+# Developing a new feature
+We will implement a new module and function in our partner's package. We will be writing a function to convert a string to title case (explained below).
+
+When creating a new feature, it is a good practice to develop each feature on a new branch in the new repository. Create a new branch in your repo called `title_case`.
+
+~~~
+$ git checkout -b title_case
+~~~
+{: .language-bash}
+
+This command creates the branch and checks it out (the `-b` stands for `branch`). Alternatively, we could have used the commands `git branch title_case` and `git checkout title_case`.
+
+You will see the output
+
+~~~
+Switched to a new branch 'title_case'
+~~~
+{: .language-output}
+
+Now, create a new file called "util.py" in the same folder as our first module (molssi_math). If you are in the top level of our repository, you can do
+
+~~~
+$ touch molssi_devops/util.py
+~~~
+{: .language-bash}
+
+Open this file in your text editor of choice. As discussed in the previous episode, the first thing we should do in this file is...write a docstring for the top of the file!
+
+~~~
+"""
+util.py
+A sample repository for the MolSSI Python package development workshop
+
+Misc. utility functions
+"""
+~~~
+{: .language-python}
+
+Now, we are ready to add our title case function.
+
+> ## Exercise
+> Using the given docstring, implement a title case function. You can *not* use the .title() function.
+> ~~~
+> def title_case(sentence):
+>   """
+>   Convert a string to title case.
+>
+>   Title case means that the first letter of each word is capitalized, and all other letters in the word are lowercase.
+>   
+>   Parameters
+>   ----------
+>   sentence: str
+>     String to be converted to title case
+>   
+>   Returns
+>   -------
+>   ret: str
+>     String converted to title case.
+>
+>   Example
+>   -------
+>   >>> title_case('ThIS is a STRinG to BE ConVerTeD.')
+>   'This Is A String To Be Converted.'
+>   """
+> ~~~
+> {: .language-python}
+> > ## Solution
+>> This is a solution - note that there are many. This can be one you use if you don't feel like writing one.
+>> ~~~
+>> # Capitalize first letter
+>> ret = sentence[0].upper()
+>>
+>> # Loop through the rest of the characters
+>> for i in range(1, len(sentence)):
+>>     if sentence[i - 1] == ' ':
+>>         ret = ret + sentence[i].upper()
+>>     else:
+>>         ret = ret + sentence[i].lower()
+>>
+>>  return ret
+>> ~~~
+>> {: .language-python}
+> {: .solution}
+{: .challenge}
+
+## Trying out our function
+
+Let's test this in the command line. Open a python interpreter
+
+~~~
+$ python
+~~~
+{: .language-bash}
+
+~~~
+>>> import molssi_devops as md
+>>> test_string = 'ThIS iS a TeSt STrinG.'
+>>> md.util.title_case(test_string)
+~~~
+{: .language-python}
+
+When you execute the previous code, you should get the following
+
+~~~
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: module 'molssi_devops_2019' has no attribute 'util'
 ~~~
 {: .output}
 
-The `origin` remote corresponds to the fork that you cloned from.
-We want to tell Git where the `upstream` remote is:
+This happened because we forgot to import the module in our `__init__.py` file. `__init__.py` files are required for Python packages, and tell Python to treat directories as packages. We need to import functions from our new module. Open your `__init__.py` file in a text editor. You should see the following:
 
 ~~~
-git remote add upstream <original repo’s URL>
-git remote -v
+"""
+molssi_devops_2019
+A sample repo for the 2019 MolSSI Software Fellow Bootcamp
+"""
+
+# Make Python 2 and 3 imports work the same
+# Safe to remove with Python 3-only code
+from __future__ import absolute_import
+
+# Add imports here
+from .molssi_math import *
+
+# Handle versioneer
+from ._version import get_versions
+versions = get_versions()
+__version__ = versions['version']
+__git_revision__ = versions['full-revisionid']
+del get_versions, versions
+~~~
+{: .language-python}
+
+> ## Lots of ways to do imports
+>
+> In Python, there are several ways you might choose to import packages or modules. Here are some different variations you might see.
+> 1. `from module import *`
+> 2. `from module import function1, function2`
+> 3. `import module`  
+> All of these will import functions from `module` so they can be used by the Python interpreter. Options 1 and 2 behave in similar ways, except that 1 will import everything in the module, while option 2 will only import the specified functions (`function1` and `function2`). Sometimes using option 1 is considered a bad practice, as it will import all names in a module (except those beginning with an underscore), and can introduce an unknown set of names into the interpreter, possibly hiding some of the things you have already defined. Instead, it is recommended to specify functions which should be importe (ie - option 2).
+>
+> If we imagine a function (`function1`) in our module (`module`), the imports above would result in the following usage of the function:
+> 1. `>>> function1()`
+> 2. `>>> function1()`
+> 3. `>>> module.function1()`
+>
+{: .callout}
+
+We are concerned with the part under `# Add imports here`. Change your section so that it looks like the following:
+~~~
+from .molssi_math import canvas, mean
+from .util import title_case
+~~~
+{: .language-python}
+
+Save your changed `__init__.py` file. If you haven't already, **close your previous Python interpreter and open a new one.** Try the above code again.
+
+~~~
+>>> import molssi_devops as md
+>>> test_string = 'ThIS iS a TeSt STrinG.'
+>>> md.util.title_case(test_string)
+~~~
+{: .language-python}
+
+This time, you should see the following output
+
+~~~
+'This Is A Test String.'
+~~~
+{: .language-output}
+
+Let's add and commit these changes (in two different commits)
+
+~~~
+$ git add molssi_devops/util.py
+$ git commit -m "Add util module and title_case function"
+$ git add molssi_devops/__init__.py
+$ git commit -m "Add util import to __init__"
+$ git push origin title_case
 ~~~
 {: .bash}
 
-~~~
-origin    https://github.com/YOUR_USERNAME/YOUR_FORK.git (fetch)
-origin    https://github.com/YOUR_USERNAME/YOUR_FORK.git (push)
-upstream  https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git (fetch)
-upstream  https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git (push)
-~~~
-{: .output}
+Here, the last line indicates that we are pushing to `origin` (our fork) to the `title_case` branch.
+
+As part of the output from this command, you should see the following:
 
 ~~~
-git pull upstream master
-git push
+remote:
+remote: Create a pull request for 'title_case' on GitHub by visiting:
+remote:      https://github.com/YOUR_GITHUB_USERNAME/FORKED_REPO_NAME/pull/new/title_case
+remote:
 ~~~
-{: .bash}
+{: .language-output}
 
+`git` is correct. What we will want to do next is create a pull request on the original repository to get our changes incorporated.
 
+Use your browser to confirm that this change shows up in the fork.
+Have your partner check their repository - does the change appear for them?
 
 ## Pull requests
 
 It is now time to incorporate the edits you have made in you fork into the original repository.
 To do this, we must create a `Pull Request`.
 
-Navigate to the URL of your fork.
-Click the "New pull request" button that is located to the right of the "Branch" button.
-You should now see a summary of what the pull request will do.
-Click the green "Create pull request" button.
+Navigate to the URL of your fork. You should see a highlighted area and green button which says "Compare and Pull Request". Alternatively, you can navigate to the URL given in the message where you did a push.
 
-Add a title to the pull request.
-We will go with "Improvements to testing.txt"
-Underneath the title, write something like:
-
-~~~
-## Description
-Adds a line to testing.txt that improves it for these specific reasons:
- - It adds a specific useful feature: _______.
- - It improves the readability of a particular part of the code by doing a specific thing.
- - It enhances the performance of a particular part of the code, which I have testing under these specific conditions.
-
-Also, here are some details about the motivation behind the changes made by this pull request.
-
-## Todos
- - This change is intended to be a stepping-stone towards ________.
- - I plan to submit a future pull request that builds on this one in these specific ways:
-
-## Questions
- - Are these changes consistent with the overal goal of the project?
- - I noticed that changes recently made by _______ seem to affect similar regions of the code.  Are conflicts between our efforts likely.  What could be done to avoid this.
- - What could I do to improve the quality of my pull request?
-
-## Status
- - These specific planned features: _______ are not yet fully implemented.
-
-Thank you for taking at look at these proposed changes.  I look forward to hearing any feedback you might have.
-~~~
+Once you are on the page that says "Open a pull request", you should see fields which ask for the name of the pull request, as well as a larger text box which has space for a description. Make the title of this pull request "add util module and title_case function". Edit the description to describe what you have done in your pull request.
 
 Submit the pull request.
 
-Ask your partner to review the pull request.
+Ask your partner to review the pull request. You should also have a pull request to review from your partner.
 They can do this by going to the URL of their personal repository and then clicking the "Pull Requests" tab.
 They should see a single pull request listed.
-If they click it, they will see everything that you wrote.
+If they click it, they will see everything that you wrote. If you would like to pull their changes to your repo before accepting the pull request click "view command line instructions" next to the green "Merge pull request" button and follow the instructions.
+
 They should now click the "Merge Pull Request" button, followed by "Confirm merge".
 
 Your changes should now appear in your partner's repository.
@@ -230,7 +318,6 @@ If you want more `git`, see the following tutorials.
 ### Branching
 
 [Git Branching Tutorial](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
-
 
 ### Rebasing
 
