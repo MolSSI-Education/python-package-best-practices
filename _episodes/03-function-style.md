@@ -82,17 +82,17 @@ def mean(num_list):
     Calculate the mean/average of a list of numbers.
 
     Parameters
-    -----------
+    ----------
     num_list : list
         The list to take the average of
 
     Returns
-    --------
+    -------
     mean_list: float
         The mean of the list
 
     Examples
-    ---------
+    --------
     >>> mean([1, 2, 3, 4, 5])
     3.0
     """
@@ -143,7 +143,7 @@ The parameters for our `mean` function is shown below:
 
 ~~~
 Parameters
------------
+----------
 num_list : list
     The list to take the average of.
 ~~~
@@ -158,7 +158,7 @@ For our `mean` function, our `Returns` section looks like the following.
 
 ~~~
 Returns
---------
+-------
 mean_list: float
     The mean of the list
 ~~~
@@ -166,6 +166,15 @@ mean_list: float
 
 #### 5. Examples
 This is an optional section to show examples of functionality. This section is meant to illustrate usage. Though this section is optional, its use is strongly encouraged.
+
+Now that we've written a function in our project, we should commit our changes and push to [GitHub].
+
+~~~
+$ git add .
+$ git commit -m "add mean function to molssi_math"
+$ git push origin master
+~~~
+{: .bash}
 
 ## Coding Style
 
@@ -238,6 +247,17 @@ Here, the `-i` flag indicates to do this "in-place", this means your file will b
 > ~~~
 > This section overwrites some default parameters for yapf. You can change this to your preferences.
 {: .callout}
+
+Commit these Changes
+
+Now that we've written a function in our project, we should commit our changes and push to [GitHub].
+
+~~~
+$ git add .
+$ git commit -m "run yapf on molssi_math"
+$ git push origin master
+~~~
+{: .bash}
 
 [PEP8]: https://www.python.org/dev/peps/pep-0008/
 [YAPF]: https://github.com/google/yapf
