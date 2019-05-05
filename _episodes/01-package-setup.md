@@ -108,7 +108,7 @@ Now we can examine the project layout the CookieCutter has set up for us. Naviga
 │   │   ├── build.sh
 │   │   └── meta.yaml
 │   ├── scripts
-│   │   └── create_conda_env.py     <- OS anostic Helper script to make conda environments based on simple flags
+│   │   └── create_conda_env.py     <- OS agnostic Helper script to make conda environments based on simple flags
 │   └── travis-ci
 │       └── install.sh
 ├── docs                            <- Documentation template folder with many settings already filled in
@@ -122,7 +122,7 @@ Now we can examine the project layout the CookieCutter has set up for us. Naviga
 ├── setup.cfg                       <- Near-master config file to make house INI-like settings for Coverage, Flake8, YAPF, etc.
 ├── setup.py                        <- Your package's setup file for installing with additional options that can be set
 ├── versioneer.py                   <- Automatic version control with Versioneer
-├── .github                         <- GitHub hooks for user contrubtion and pull request guides
+├── .github                         <- GitHub hooks for user contribution and pull request guides
 │   ├── CONTRIBUTING.md
 │   └── PULL_REQUEST_TEMPLATE.md
 ├── .codecov.yml                    <- Codecov config to help reduce its verbosity to more reasonable levels
