@@ -49,7 +49,7 @@ Other hosting Services: [GitLab], [BitBucket]
 
 ## Making Commits
 
-Now that we have Git configured, let's try using Git do something that is actually helpful.
+Now that we have Git configured, let's try using Git to do something that is actually helpful.
 In this section, we are going to  edit files in the Python package that we created earlier, and use `git` to track those changes.
 
 First, use a terminal to `cd` into the top directory of the local repository.
@@ -57,8 +57,9 @@ First, use a terminal to `cd` into the top directory of the local repository.
 When we ran the CMS CookieCutter, it actually initialized the use of `git` for us, added our files, and made a commit (how convenient!). We can see this by typing
 
 ~~~
-ls -la
+$ ls -la
 ~~~
+{: .bash}
 
 Here, the `-la` says that we want to list the files in long format (`-l`), and show hidden files (`-a`). You should see several files starting with `.git`. In particular, `.git` is a directory where `git` stores the repository data. We can tell from this output that we are in a git repository.
 
@@ -221,6 +222,8 @@ Before we follow these directions, let's look at a few things in the repository.
 ~~~
 $ git remote -v
 ~~~
+{: .language-bash}
+
 
 You should see no output. Now, follow the instructions on GitHub under "...or push an existing repository from the command line"
 ~~~
@@ -470,7 +473,6 @@ $ ls -l
 While we're at it, also make some other files that aren't important to the project:
 
 ~~~
-$ mkdir data
 $ touch molssi_devops/data/calculation.in molssi_devops/data/calculation.out
 $ ls -l
 ~~~

@@ -113,7 +113,7 @@ molssi_devops/tests/test_molssi_devops.py .                    [100%]
 
 =========================== 1 passed in 0.06 seconds ===========================
 ~~~
-{: .language-output}
+{: .output}
 
 Here, `pytest` has looked through our directory and its subdirectories for anything matching `test*`. It found the `tests` folder, and within that folder, it found the file `test_molssi_devops.py`. It then executed the function `test_molssi_devops_imported` within that module. Since our `assertion` was True, the test passed.
 
@@ -164,7 +164,7 @@ def test_mean():
     """Test that mean function calculates what we expect."""
     test_list = [1, 2, 3, 4, 5]
     expected = 3
-    calculated =  molssi_devops_2019.mean(test_list)
+    calculated =  molssi_devops.mean(test_list)
     assert expected == calculated
 ~~~
 {: .language-python}
@@ -176,6 +176,7 @@ Run this test using `pytest`. In the terminal window, type
 ~~~
 pytest -v
 ~~~
+{: .language-bash}
 
 You should now see the following.
 
@@ -191,7 +192,7 @@ molssi_devops/tests/test_molssi_math.py::test_mean PASSED           [100%]
 
 =========================== 2 passed in 0.07 seconds ===========================
 ~~~
-{: .language-output}
+{: .output}
 
 We now see that we have two tests which have been run, and they both passed.
 
@@ -222,14 +223,14 @@ __________________________________ test_mean ___________________________________
         """Test that mean function calculates what we expect."""
         test_list = [1, 2, 3, 4, 5]
         expected = 2
-        calculated =  molssi_devops_2019.mean(test_list)
+        calculated =  molssi_devops.mean(test_list)
 >       assert expected == calculated
 E       assert 2 == 3.0
 
 molssi_devops_2019/tests/test_molssi_math.py:19: AssertionError
 ====================== 1 failed, 1 passed in 0.17 seconds ======================
 ~~~
-{: .language-output}
+{: .output}
 
 Pytest shows a detailed failure report, including the source code around the failing line. The line that failed is marked with `>`.
 Next, it shows the values used in the assert comparison at runtime, that is `3.0 == 2`. This runtime analysis is one of the advantages of pytest that help you debug your code.
@@ -261,7 +262,7 @@ Change the expected value back to 3 so that your tests pass.
 >>     """Test the title case function."""
 >>     test_string = 'ThIS is a STRinG to BE ConVerTeD.'
 >>     expected = 'This Is A String To Be Converted.'
->>     calculated =  molssi_devops_2019.title_case(test_string)
+>>     calculated =  molssi_devops.title_case(test_string)
 >>     assert expected == calculated
 >> ~~~
 >> {: .language-python}
@@ -393,6 +394,7 @@ def test_zero_length():
     with pytest.raises(ValueError):
         molssi_devops.mean(test_list)
 ~~~
+{: .language-python}
 
 ### More Pytest Features - Pytest Marks
 
@@ -406,7 +408,7 @@ def test_mean_type_error():
     test_variable = 'this is a string'
 
     with pytest.raises(TypeError):
-        molssi_devops_2019.mean(test_variable)
+        molssi_devops.mean(test_variable)
 ~~~
 {: .python}
 
@@ -437,11 +439,11 @@ def test_zero_length():
     test_list = []
 
     with pytest.raises(ValueError):
-        molssi_devops_2019.mean(test_list)
+        molssi_devops.mean(test_list)
 ~~~
 {: .python}
 
-You can run `pytest -m 'not my_test` to run all tests that are NOT marked with
+You can run `pytest -m "not my_test"` to run all tests that are NOT marked with
 `@pytest.mark.my_test`.
 
 ## Edge and Corner Cases
@@ -497,7 +499,7 @@ import numpy as np
     ([1, 2, 3, 4, 5], 3),
     ([0, 2, 4, 6], 3),
     ([1, 2, 3, 4], 2.5),
-    (range(1, 1000000), 1000000/2.0)
+    (list(range(1, 1000000)), 1000000/2.0)
 ])
 
 def test_many(num_list, expected_mean):
