@@ -16,9 +16,9 @@ This workshop walks students through setting up, writing code, and setting up mu
 
 - [x] Setting up a python package using the MolSSI Computational Molecular Sciences [(CMS) CookieCutter][cookiecutter]
 - [x] Basic use of `git` and [GitHub].
-- [ ] Python coding style, docstrings.
-- [ ] Code collaboration on [GitHub] (Fork-PR workflow)
-- [ ] Unit testing using [pytest].
+- [x] Python coding style, docstrings.
+- [x] Code collaboration on [GitHub] (Fork-PR workflow)
+- [x] Unit testing using [pytest].
 - [ ] Continuous integration using [travis-ci].
 - [ ] Documentation using [sphinx] and [readthedocs]
 - [ ] Deploying packages on [conda-forge]
