@@ -9,8 +9,9 @@ objectives:
 - "Explain the reasons why testing is important."
 - "Understand how to write tests using the pytest framework."
 keypoints:
-- "Enumerate the types of testing and the importance of each."
-- "Explain pytest features and why pytest was selected."
+- "Tests should cover individual functions/features and behaviour of the software as a whole."
+- "Write tests during development! It's harder to write tests after the package is complete."
+- "Try to test as much of your package as you can, but don't go overboard, most packages don't have 100% test coverage."
 ---
 
 Until now, we have been writing functions and checking their behavior using an interactive Python interpreter and manually inspecting the output. While this seems to work, it can be tedious, and prone to error. In this lesson, we'll discuss how to write tests and run them using the `pytest` testing framework.
@@ -66,7 +67,7 @@ make `pytest` particularly suited for computational chemistry.
 
 If you don't have `pytest` installed or it's not updated to version 3, install it using:
 ~~~
-$ pip install -U pytest
+$ pip install -U pytest-cov
 ~~~
 {: .bash}
 
@@ -445,6 +446,7 @@ def test_zero_length():
 
 You can run `pytest -m "not my_test"` to run all tests that are NOT marked with
 `@pytest.mark.my_test`.
+Custom marks are a great way to organize tests into groups so you can quickly run subsets of your tests while debugging your code.
 
 ## Edge and Corner Cases
 
@@ -525,3 +527,113 @@ def test_foo(x, y):
 
 This will run the test with the arguments set to x=0/y=2, x=1/y=2, x=0/y=3,
 and x=1/y=3 exhausting parameters in the order of the decorators.
+
+### Testing Documentation Examples
+As our package changes over time, we want to make sure that the examples in our docstrings still behave as originally written, but checking these by hand can be a real pain.
+Luckily, `pytest` has a feature that will look for examples in docstrings and make sure their outputs still match what is shown in the docstring.
+
+From the main `molssi_devops` directory:
+
+~~~
+$ pytest -v --doctest-modules molssi_devops/molssi_math.py
+~~~
+{: .language-bash}
+
+~~~
+================================================= test session starts =================================================
+platform darwin -- Python 3.6.7, pytest-4.4.1, py-1.8.0, pluggy-0.9.0 -- /Users/jets/miniconda3/envs/omp_mpi/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/jets/Google Drive/research/MolSSI/CU_Boulder_Workshop/molssi_devops
+plugins: cov-2.6.1
+collected 1 item                                                                                                      
+
+molssi_devops/molssi_math.py::molssi_devops.molssi_math.mean PASSED                                             [100%]
+
+============================================== 1 passed in 0.06 seconds ===============================================
+~~~
+{: .output}
+
+We can test the dosctring examples at the same time as our unittests with:
+
+~~~
+pytest -v --doctest-modules molssi_devops
+~~~
+{: .language-bash}
+
+~~~
+================================================= test session starts =================================================
+platform darwin -- Python 3.6.7, pytest-4.4.1, py-1.8.0, pluggy-0.9.0 -- /Users/jets/miniconda3/envs/omp_mpi/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/jets/Google Drive/research/MolSSI/CU_Boulder_Workshop/molssi_devops
+plugins: cov-2.6.1
+collected 12 items                                                                                                    
+
+molssi_devops/molssi_math.py::molssi_devops.molssi_math.mean PASSED                                             [  8%]
+molssi_devops/util.py::molssi_devops.util.title_case PASSED                                                     [ 16%]
+molssi_devops/tests/test_molssi_devops.py::test_molssi_devops_imported PASSED                                   [ 25%]
+molssi_devops/tests/test_molssi_math.py::test_many[num_list0-3] PASSED                                          [ 33%]
+molssi_devops/tests/test_molssi_math.py::test_many[num_list1-3] PASSED                                          [ 41%]
+molssi_devops/tests/test_molssi_math.py::test_many[num_list2-2.5] PASSED                                        [ 50%]
+molssi_devops/tests/test_molssi_math.py::test_many[num_list3-500000.0] PASSED                                   [ 58%]
+molssi_devops/tests/test_molssi_math.py::test_mean PASSED                                                       [ 66%]
+molssi_devops/tests/test_molssi_math.py::test_mean_type_error PASSED                                            [ 75%]
+molssi_devops/tests/test_molssi_math.py::test_zero_length PASSED                                                [ 83%]
+molssi_devops/tests/test_util.py::test_type_error PASSED                                                        [ 91%]
+molssi_devops/tests/test_util.py::test_title_case PASSED                                                        [100%]
+
+============================================== 12 passed in 0.25 seconds ==============================================
+~~~
+{: .output}
+
+### Code Coverage Pt. 1
+
+Now that we have a set of modules and associated tests, we want to see how much of our package is "covered" by our tests.
+We'll measure this by counting the lines of our packages that are touched, i.e. used, during our tests.
+
+We already have everything we need for this since we installed `pytest-cov` earlier which includes the coverage tools on top of the `pytest` package.
+
+We can summarize our code coverage as follows:
+
+~~~
+pytest --cov=molssi_devops
+~~~
+{: .language-bash}
+
+~~~
+================================================= test session starts =================================================
+platform darwin -- Python 3.6.7, pytest-4.4.1, py-1.8.0, pluggy-0.9.0
+rootdir: /Users/jets/Google Drive/research/MolSSI/CU_Boulder_Workshop/molssi_devops
+plugins: cov-2.6.1
+collected 10 items                                                                                                    
+
+molssi_devops/tests/test_molssi_devops.py .                                                                     [ 10%]
+molssi_devops/tests/test_molssi_math.py .......                                                                 [ 80%]
+molssi_devops/tests/test_util.py ..                                                                             [100%]
+
+---------- coverage: platform darwin, python 3.6.7-final-0 -----------
+Name                           Stmts   Miss  Cover
+--------------------------------------------------
+molssi_devops/__init__.py          7      0   100%
+molssi_devops/molssi_math.py      17      7    59%
+molssi_devops/util.py              9      0   100%
+--------------------------------------------------
+TOTAL                             33      7    79%
+
+
+============================================== 10 passed in 0.36 seconds ==============================================
+~~~
+{: .output}
+
+For each file in the package the output shows how many statements are in the file (i.e. not comments), how many weren't executed during testing, and the percentage of statements that were.
+For the example above, we have perfect coverage of `util.py`, but not `molssi_math.py`.
+
+We can see exactly which lines were touched in the `.coverage` file.
+For anything larger than our test package this file becomes too convoluted to be human readable and we will need more tools to help us determine how to improve out tests.
+That will be the subject of Code Coverage pt. 2.
+
+> ## Do we need to get 100% coverage?
+>
+> Code coverage is a useful tool to assess how comprehensive our set of tests are and in general the higher our code coverage the better.
+> __However__, trying to achieve 100% coverage on packages any larger than this sample package is a bit unrealistic and would require more time than that last bit of coverage is worth.
+>
+{: .callout}
