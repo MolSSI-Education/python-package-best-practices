@@ -77,7 +77,7 @@ When we run `pytest`, it will look for directories and files which start with `t
 
 ~~~
 """
-Unit and regression test for the molssi_devops_2019 package.
+Unit and regression test for the molssi_devops package.
 """
 
 # Import package, test suite, and other packages as needed
@@ -157,7 +157,7 @@ Unit and regression test for the molssi_math module.
 """
 
 # Import package, test suite, and other packages as needed
-import molssi_devops_2019
+import molssi_devops
 import pytest
 import sys
 
@@ -255,7 +255,7 @@ Change the expected value back to 3 so that your tests pass.
 >> """
 >>
 >> # Import package, test suite, and other packages as needed
->> import molssi_devops_2019
+>> import molssi_devops
 >> import pytest
 >> import sys
 >>
@@ -531,31 +531,83 @@ and x=1/y=3 exhausting parameters in the order of the decorators.
 ### Testing Documentation Examples
 As our package changes over time, we want to make sure that the examples in our docstrings still behave as originally written, but checking these by hand can be a real pain.
 Luckily, `pytest` has a feature that will look for examples in docstrings and run them as tests.
-It will compare their output to the output in the docstring and check that they match.
 
-From the main `molssi_devops` directory, we can test the examples in the docstrings of `molssi_math.py`:
+`pytest` searches the docstrings for the Python shell code, which it executes and compares to the outputs in the docstring.
+For example, in the docstring of our function `title_case` we have:
 
 ~~~
-$ pytest -v --doctest-modules molssi_devops/molssi_math.py
+>>> title_case('ThIS is a STRinG to BE ConVerTeD.')
+'This Is A String To Be Converted.'
+~~~
+{: .language-python}
+
+`pytest` will find and execute `title_case('ThIS is a STRinG to BE ConVerTeD.')`.
+If the output is not `'This Is A String To Be Converted.'`, `pytest` will treat the test as a failure.
+
+From the main `molssi_devops` directory, we can test the examples in the docstrings of `util.py`:
+
+~~~
+$ pytest -v --doctest-modules molssi_devops/util.py
 ~~~
 {: .language-bash}
 
 ~~~
-================================================= test session starts =================================================
+================================================= test session starts ==================================================
 platform darwin -- Python 3.6.7, pytest-4.4.1, py-1.8.0, pluggy-0.9.0 -- /Users/jets/miniconda3/envs/omp_mpi/bin/python
 cachedir: .pytest_cache
 rootdir: /Users/jets/Google Drive/research/MolSSI/CU_Boulder_Workshop/molssi_devops
 plugins: cov-2.6.1
-collected 1 item                                                                                                      
+collected 1 item                                                                                                       
 
-molssi_devops/molssi_math.py::molssi_devops.molssi_math.mean PASSED                                             [100%]
+molssi_devops/util.py::molssi_devops.util.title_case PASSED                                                      [100%]
 
-============================================== 1 passed in 0.06 seconds ===============================================
+=============================================== 1 passed in 0.10 seconds ===============================================
 ~~~
 {: .output}
 
-`pytest` also allows us to do this for multiple files at once by specify a directory or using wildcards (`*`).
-We can test the dosctring examples at the same time as our unit tests with:
+If we change the example in the `title_case` docstring to:
+
+~~~
+>>> title_case('ThIS is a STRinG to BE ConVerTeD.')
+'This Is A String To Be Converted'
+~~~
+{: .language-python}
+
+and re-run the test we get the following error:
+
+~~~
+================================================= test session starts ==================================================
+platform darwin -- Python 3.6.7, pytest-4.4.1, py-1.8.0, pluggy-0.9.0 -- /Users/jets/miniconda3/envs/omp_mpi/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/jets/Google Drive/research/MolSSI/CU_Boulder_Workshop/molssi_devops
+plugins: cov-2.6.1
+collected 1 item                                                                                                       
+
+molssi_devops/util.py::molssi_devops.util.title_case FAILED                                                      [100%]
+
+======================================================= FAILURES =======================================================
+_______________________________________ [doctest] molssi_devops.util.title_case ________________________________________
+010     String to be converted to title case
+011
+012   Returns
+013   -------
+014   ret: str
+015     String converted to title case.
+016
+017   Example
+018   -------
+019   >>> title_case('ThIS is a STRinG to BE ConVerTeD.')
+Expected:
+    'This Is A String To Be Converted'
+Got:
+    'This Is A String To Be Converted.'
+
+/Users/jets/Google Drive/research/MolSSI/CU_Boulder_Workshop/molssi_devops/molssi_devops/util.py:19: DocTestFailure
+=============================================== 1 failed in 0.06 seconds ==============================================
+~~~
+{: .output}
+
+We can test multiple docstring examples at once and can even test the dosctring examples at the same time as our unit tests with:
 
 ~~~
 pytest -v --doctest-modules molssi_devops
