@@ -9,8 +9,8 @@ objectives:
 - "Explain the reasons why testing is important."
 - "Understand how to write tests using the pytest framework."
 keypoints:
-- "Tests should cover individual functions/features and behaviour of the software as a whole."
-- "Write tests during development! It's harder to write tests after the package is complete."
+- "A good set of tests covers individual functions/features __and__ behavior of the software as a whole."
+- "It's better to write tests during development so you can check your progress along the way. The longer you wait to start the harder it is."
 - "Try to test as much of your package as you can, but don't go overboard, most packages don't have 100% test coverage."
 ---
 
@@ -530,9 +530,10 @@ and x=1/y=3 exhausting parameters in the order of the decorators.
 
 ### Testing Documentation Examples
 As our package changes over time, we want to make sure that the examples in our docstrings still behave as originally written, but checking these by hand can be a real pain.
-Luckily, `pytest` has a feature that will look for examples in docstrings and make sure their outputs still match what is shown in the docstring.
+Luckily, `pytest` has a feature that will look for examples in docstrings and run them as tests.
+It will compare their output to the output in the docstring and check that they match.
 
-From the main `molssi_devops` directory:
+From the main `molssi_devops` directory, we can test the examples in the docstrings of `molssi_math.py`:
 
 ~~~
 $ pytest -v --doctest-modules molssi_devops/molssi_math.py
@@ -553,7 +554,8 @@ molssi_devops/molssi_math.py::molssi_devops.molssi_math.mean PASSED             
 ~~~
 {: .output}
 
-We can test the dosctring examples at the same time as our unittests with:
+`pytest` also allows us to do this for multiple files at once by specify a directory or using wildcards (`*`).
+We can test the dosctring examples at the same time as our unit tests with:
 
 ~~~
 pytest -v --doctest-modules molssi_devops
@@ -624,15 +626,16 @@ TOTAL                             33      7    79%
 ~~~
 {: .output}
 
-For each file in the package the output shows how many statements are in the file (i.e. not comments), how many weren't executed during testing, and the percentage of statements that were.
+For each file in the package, the output shows how many statements are in the file (i.e. not comments), how many weren't executed during testing, and the percentage of statements that were.
 For the example above, we have perfect coverage of `util.py`, but not `molssi_math.py`.
 
 We can see exactly which lines were touched in the `.coverage` file.
-For anything larger than our test package this file becomes too convoluted to be human readable and we will need more tools to help us determine how to improve out tests.
+For anything larger than our test package, this file becomes too convoluted to be human readable and we will need more tools to help us determine how to improve out tests.
 That will be the subject of Code Coverage pt. 2.
 
 > ## Do we need to get 100% coverage?
 >
+> Short answer: no.
 > Code coverage is a useful tool to assess how comprehensive our set of tests are and in general the higher our code coverage the better.
 > __However__, trying to achieve 100% coverage on packages any larger than this sample package is a bit unrealistic and would require more time than that last bit of coverage is worth.
 >
