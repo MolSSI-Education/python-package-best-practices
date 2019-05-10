@@ -594,7 +594,7 @@ We'll measure this by counting the lines of our packages that are touched, i.e. 
 
 We already have everything we need for this since we installed `pytest-cov` earlier which includes the coverage tools on top of the `pytest` package.
 
-We can summarize our code coverage as follows:
+We can assess our code coverage as follows:
 
 ~~~
 pytest --cov=molssi_devops
@@ -626,16 +626,16 @@ TOTAL                             33      7    79%
 ~~~
 {: .output}
 
-For each file in the package, the output shows how many statements are in the file (i.e. not comments), how many weren't executed during testing, and the percentage of statements that were.
+The output shows how many statements (i.e. not comments) are in a file, how many weren't executed during testing, and the percentage of statements that were.
 For the example above, we have perfect coverage of `util.py`, but not `molssi_math.py`.
 
-We can see exactly which lines were touched in the `.coverage` file.
-For anything larger than our test package, this file becomes too convoluted to be human readable and we will need more tools to help us determine how to improve out tests.
-That will be the subject of Code Coverage pt. 2.
+To improve our coverage, we also want to see exactly which lines we missed and we can determine this using the `.coverage` file produced by `pytest`.
+Unfortunately, this strategy becomes impractical when we are working with anything larger than our test package because the `.coverage` file becomes too convoluted to read.
+We will need more tools to help us determine how to improve out tests and that will be the subject of Code Coverage pt. 2, which we will cover in Episode 6.
 
 > ## Do we need to get 100% coverage?
 >
-> Short answer: no.
+> Short answer: __no__.
 > Code coverage is a useful tool to assess how comprehensive our set of tests are and in general the higher our code coverage the better.
 > __However__, trying to achieve 100% coverage on packages any larger than this sample package is a bit unrealistic and would require more time than that last bit of coverage is worth.
 >
