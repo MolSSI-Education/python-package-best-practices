@@ -189,13 +189,14 @@ As a developer, you spend a lot of time thinking about writing your code. Howeve
  > You can read more about PEPs in [Python's documentation](https://www.python.org/dev/peps/pep-0001/). PEP1 outlines what a PEP is and how they work.
  {: .callout}
 
-If you look at PEP8, you will see that it is quite long. While you should definitely read it if you spend a lot of time programming in Python, there are luckily tools which will help us make sure our code is following PEP8 convention. We will you [yapf], an open source formatter for Python files from Google.
+If you look at PEP8, you will see that it is quite long. While you should definitely read it if you spend a lot of time programming in Python, there are luckily tools which will help us make sure our code is following PEP8 convention. We will use [yapf], an open source formatter for Python files from Google.
 
 Install yapf using pip. In your terminal, type
 
 ~~~
 $ pip install yapf
 ~~~
+{: .language-bash}
 
 Now we can use yapf on our python files. Just to see the power of yapf, let's mangle one of our functions and use yapf to reformat it.
 
@@ -232,6 +233,7 @@ If you save the file and test your function in the command line, you will see th
 ~~~
 $ yapf -i molssi_devops/molssi_math.py
 ~~~
+{: .language-bash}
 
 Here, the `-i` flag indicates to do this "in-place", this means your file will be overwritten with yapf's changes. If you examine the file after running yapf, you should see that it is returned to an easily readable format.
 

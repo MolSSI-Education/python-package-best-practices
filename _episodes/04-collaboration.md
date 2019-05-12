@@ -37,7 +37,7 @@ In the next couple of sections, we will explore how this works in detail.
 
 ## Forks
 
-We have seen how it is possible to allow other people to contribute to a project by listing them as collaborators.  This works fine for a project that only a handful of people work on, but what about large open-source projects that might have hundreds of people who are interested in adding their own features?  No one wants to add of those names to the list of collaborators, and giving everyone who asks the ability to push anything they want to the repository is guaranteed to lead to problems.  The solution to this question comes in the form of “forks.”
+We have seen how it is possible to allow other people to contribute to a project by listing them as collaborators.  This works fine for a project that only a handful of people work on, but what about large open-source projects that might have hundreds of people who are interested in adding their own features?  No one wants to add all of those names to the list of collaborators, and giving everyone who asks the ability to push anything they want to the repository is guaranteed to lead to problems.  The solution to this question comes in the form of “forks.”
 
 Unfortunately, the word “fork” has multiple possible meanings in the context of open-source software development.
 Once upon a time, open-source software developers used the word “fork” to refer to the idea of taking an existing software project, making a copy of it, changing the name, and then developing it completely independently of the original project.
@@ -108,7 +108,7 @@ You will see the output
 ~~~
 Switched to a new branch 'title_case'
 ~~~
-{: .language-output}
+{: .output}
 
 Now, create a new file called "util.py" in the same folder as our first module (molssi_math). If you are in the top level of our repository, you can do
 
@@ -261,7 +261,7 @@ This time, you should see the following output
 ~~~
 'This Is A Test String.'
 ~~~
-{: .language-output}
+{: .output}
 
 Let's add and commit these changes (in two different commits)
 
@@ -284,7 +284,7 @@ remote: Create a pull request for 'title_case' on GitHub by visiting:
 remote:      https://github.com/YOUR_GITHUB_USERNAME/FORKED_REPO_NAME/pull/new/title_case
 remote:
 ~~~
-{: .language-output}
+{: .output}
 
 `git` is correct. What we will want to do next is create a pull request on the original repository to get our changes incorporated.
 
@@ -293,7 +293,7 @@ Have your partner check their repository - does the change appear for them?
 
 ## Pull requests
 
-It is now time to incorporate the edits you have made in you fork into the original repository.
+It is now time to incorporate the edits you have made in your fork into the original repository.
 To do this, we must create a `Pull Request`.
 
 Navigate to the URL of your fork. You should see a highlighted area and green button which says "Compare and Pull Request". Alternatively, you can navigate to the URL given in the message where you did a push.
