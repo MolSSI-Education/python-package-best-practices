@@ -160,15 +160,15 @@ When creating a new feature, it is a good practice to develop each feature on a 
 
 Before branching, imagine a git commit history that looks like this. In the diagram below, each circle represents a git commit. There have been two commits, and the HEAD is currently after commit 2.
 
-<img src='../fig/github_workflows/git_history_0.png'>
+<center><img src='../fig/github_workflows/git_history_0.png'></center>
 
 After we have created a new branch and checked it out, we can imagine our git history looking like this. The sodium branch 'branches' or starts from the point where we used the git branch command. 
 
-<img src = '../fig/github_workflows/git_branch.png'>
+<center><img src = '../fig/github_workflows/git_branch.png'></center>
 
 Now, when we make a commit on the `sodium` branch, our changes will continue from this point, leaving the master branch unchanged. Note that we have not yet made a commit, but this diagram is for illustrative purposes.
 
-<img src = "../fig/github_workflows/branch_development.png">
+<center><img src = "../fig/github_workflows/branch_development.png"></center>
 
 ## The importance of branching
 
