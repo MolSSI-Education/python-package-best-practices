@@ -1,5 +1,5 @@
 ---
-title: "Git and GitHub"
+title: "Intro to Version Control with Git"
 teaching: 30
 exercises: 5
 questions:
@@ -49,7 +49,8 @@ Other hosting Services: [GitLab], [BitBucket]
 
 ## Making Commits
 
-Now that we have Git configured, let's try using Git to do something that is actually helpful.
+You should have git installed and configured from the [setup] instructions.
+
 In this section, we are going to  edit files in the Python package that we created earlier, and use `git` to track those changes.
 
 First, use a terminal to `cd` into the top directory of the local repository.
@@ -96,6 +97,8 @@ Date:   Mon Feb 4 10:45:26 2019 -0500
 
 When we have more commits (or versions) of our code, `git log` will show a history of these commits. Right now, we have only one commit - the one created by the CMS CookieCutter.
 
+## The 3 steps of a commit
+
 Now, we will change some files and use `git` to track those changes. Let's edit our README. Open `README.md` in your text editor of choice. On line 8, you should see the description of the repository we typed when running the CookieCutter. Add the following sentence to your `README` under the initial description.
 
 ~~~
@@ -106,14 +109,13 @@ This repository is currently under development. To do a developmental install, d
 in the repository directory.
 ~~~
 
-Once you have saved this file, type
+#### git add, git status, git commit
 
-~~~
-$ git status
-~~~
-{: .language-bash}
+Making a commit is like making a checkpoint for a particular version of your code. You can easily return to, or revert to that checkpoint.
 
-and you should see
+To create the checkpoint, we first have to make changes to our project. We might modify *many* files at a time in a repository. Thus, the first step in creating a checkpoint (or commit) is to tell `git` which files we want to include in the checkpoint. We do this with a command called `git add`. This adds files to what is called the *staging area*.
+
+Let's look at our output from `git status` again.
 
 ~~~
 On branch master
@@ -121,34 +123,76 @@ Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git checkout -- <file>..." to discard changes in working directory)
 
-	modified:   README.md
+        modified:   README.md
 
 no changes added to commit (use "git add" and/or "git commit -a")
 ~~~
 {: .output}
 
-This tells that since the last commit, we have modified the file `README.md`. In order to commit these changes using `git`, we first have to "stage" the changes using `git add`, then store the changes using `git commit`.
+Git even tells us to use `git add` to include what will be committed. Let's follow the instructions and tell `git` that we want to create a checkpoint with the current version of `README.md`
 
 ~~~
 $ git add README.md
 ~~~
 {: .language-bash}
 
-Now, when we check the status, we should see the following:
+~~~
+$ git status
+~~~
+{: .language-bash}
 
 ~~~
 On branch master
 Changes to be committed:
   (use "git reset HEAD <file>..." to unstage)
 
-	modified:   README.md
+        modified:   README.md
 ~~~
 {: .output}
 
-Now, we see that we have staged this file to be committed. Commit the file
+We are now on the second step of creating a commit. We have `added` our files to the staging area. In our case, we only have one file in the staging area, but we could add more if we needed.
+
+To create the checkpoint, or commit, we will now use the `git commit` command. We add a `-m` after the command for "message." Whenever you create a commit, you should write a message about what the commit does.
 
 ~~~
-$ git commit -m "Add instructions for developmental install to README"
+$ git commit -m "update readme to have instructions for developmental install"
+~~~
+{: .bash}
+
+
+Now when we look at our log using `git log`, we see the commit we just made along with information about the author and the date of the commit.
+
+Let's continue to edit this readme to include more information. This is a file which will describe what is in this directory. Open `README.md` in your text editor of choice and add the following to the end 
+
+~~~
+This package requires the following:
+  - numpy
+  - matplotlib
+~~~
+
+This file is using a language called [markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet). 
+
+> ## Check your understanding
+> Create a commit for these changes to your repository.
+>> ## Answer
+>> To add the file to the staging area and tell `git` we would like to track the changes to the file, we first use the `git add` command.
+>> ~~~
+>> $ git add README.md
+>> ~~~
+>> {: .language-bash}
+>> Now the file is *staged* for a commit.
+>> Next, create the commit using the `git commit` command.
+>> ~~~
+>> $ git commit -m "add information about dependencies to readme"
+>> ~~~
+>> {: .language-bash}
+> {: .solution}
+{: .challenge}
+
+Once you have saved this file, type
+
+~~~
+$ git log
 ~~~
 {: .language-bash}
 
@@ -170,27 +214,61 @@ $ git log
 ~~~
 {: .bash}
 
+We now have a log with three commits. This means there are three versions of the repository we are working in.
+
+`git log` lists all commits  made to a repository in reverse chronological order.
+The listing for each commit includes the commit's full identifier,the commit's author, when it was created, and the commit title.
+
+We can see differences in files between commits using git diff.
+
 ~~~
-commit 2ac484309fe62f9a847a4daae1a1fa078dca306b (HEAD -> master)
-Author: Jessica Nash <janash@vt.edu>
-Date:   Wed Feb 6 12:47:45 2019 -0500
+$ git diff HEAD~1
+~~~
+{: .language-bash}
 
-    Add instructions for developmental install to README
+Here HEAD refers to the point in our commit history (and current branch). When we use `~1`, we are asking git to show us the different of the current point minus one commit.
 
-commit 25ab1f1a066f68e433a17454c66531e5a86c112d (tag: 0.0.0)
-Author: Jessica Nash <janash@vt.edu>
-Date:   Mon Feb 4 10:45:26 2019 -0500
+Lines that have been added are indicated in green with a plus sign next to them ('+'), while lines that have been deleted are indicated in red with a minus sign next to them ('-')
 
-    Initial commit after CMS Cookiecutter creation, version 1.0
+## Viewing out previous versions
+
+If you need to check out a previous version
+
+~~~
+$ git checkout COMMIT_ID
+~~~
+
+This will temporarily revert the repository to whatever the state was at the specified commit ID.
+
+Let's checkout the version before we made the most recent edit to the README.
+
+~~~
+$ git log --oneline
+~~~
+
+~~~
+d857c74 (HEAD -> master) add information about dependencies to readme
+3c0e1c6 update readme to have instructions for developmental install
+116f0cf (tag: 0.0.0) Initial commit after CMS Cookiecutter creation, version 1.1
 ~~~
 {: .output}
 
-Now, we have a second commit at the top of our git log with the message we just typed. `git log` lists all commits  made to a repository in reverse chronological order.
-The listing for each commit includes
-the commit's full identifier
-the commit's author,
-when it was created,
-and the commit title.
+In this log, the commit ID is the first number on the left.
+
+To revert to the version of the repository where we first edited the readme, use the git checkout command with the appropriate commit id.
+
+~~~
+$ git checkout 3c0e1c6
+~~~
+{: .language-bash}
+
+If you now view your readme, it is the previous version of the file.
+
+To return to the most recent point,
+
+~~~
+$ git checkout master
+~~~
 
 > ## Exercise
 > What list of commands would mimic what CMS CookieCutter did when it created the repository and performed the first commit? (hint - to initialize a repository, you use `git init`)
@@ -208,616 +286,6 @@ $ git commit -m "Initial commit after CMS Cookiecutter creation, version 1.0"
 > {: .solution}
 {: .challenge}
 
-## Putting your repository on GitHub.
-Now, let's put this project on GitHub so that we can share it with others. In your browser, navigate to `github.com`. Log in to you account if you are not already logged in. On the left side of the page, click the green button that says `New` to create a new repository. Give the repository the name `molssi_devops`.
-
-Note for the last question, "Initialize this repository with a README". We will leave this unchecked in our case because we have an existing repository (as described by GitHub, "This will let you immediately clone the repository to your computer. Skip this step if you’re importing an existing repository."). If you were creating the repository on GitHub, you would select this. There are also options for adding a `.gitignore` file or a license. However, since cookiecutter created these for us, we will not add them.
-
-Click `Create repository`.
-
-Now, GitHub very helpfully gives us directions for how to get our code on GitHub.
-
-Before we follow these directions, let's look at a few things in the repository. When you want to be able to put your code online in a repository, you have to add what git calls `remotes`. Currently, our repository has no remotes. See this by typing
-
-~~~
-$ git remote -v
-~~~
-{: .language-bash}
-
-
-You should see no output. Now, follow the instructions on GitHub under "...or push an existing repository from the command line"
-~~~
-$ git remote add origin https://github.com/janash/molssi_devops.git
-$ git push -u origin master
-~~~
-{: .language-bash}
-
-The first command adds a remote named `origin` and sets the URL to our repository. The second command pushes our repo to where we have set as origin. The word `master` means we are pushing the `master` branch.
-
-Now if you refresh the GitHub webpage you should be able to see all of the new files you added to the repository.
-
-## Working With Multiple Repositories
-
-One of the most potentially frustrating problems in software development is keeping track of all the different copies of the code.
-For example, we might start a project on a local desktop computer, switch to working on a laptop during a conference, and then do performance optimization on a supercomputer.
-In ye olden days, switching between computers was typically accomplished by copying files via a USB drive, or with ssh, or by emailing things to oneself.
-After copying the files, it was very easy to make an important change on one computer, forget about it, and go back to working on the original version of the code on another computer.
-Of course, when collaborating with other people these problems get dramatically worse.
-
-Git greatly simplifies the process of having multiple copies of a code development project.
-Let's see this in action by making another clone of our GitHub repository.
-
-~~~
-$ cd ../
-$ git clone https://github.com/janash/molssi_devops.git devops_friend
-$ cd devops_friend
-~~~
-{: .bash}
-
-Create the file `testing.txt` in this new directory and make it contain the following.
-
-~~~
-$ touch testing.txt
-~~~
-{: .bash}
-
-~~~
-I added this file from a new clone!
-~~~
-
-Now we will commit this new file:
-
-~~~
-$ git status
-~~~
-{: .bash}
-
-~~~
-On branch master
-Your branch is up to date with 'origin/master'.
-
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-
-  testing.txt
-
-nothing added to commit but untracked files present (use "git add" to track)
-~~~
-{: .output}
-
-~~~
-$ git add .
-$ git status
-~~~
-{: .bash}
-
-> ## git add
-> Here, we've used `git add .` instead of `git add testing.txt`. Using this command will add all untracked or changed files.
-{: .callout}
-
-~~~
-On branch master
-Your branch is up to date with 'origin/master'.
-
-Changes to be committed:
-  (use "git reset HEAD <file>..." to unstage)
-
-  new file:   testing.txt
-
-~~~
-{: .output}
-
-~~~
-$ git commit -m "Adds testing.txt"
-$ git log
-~~~
-{: .bash}
-
-~~~
-commit 754da2b322d649fc358d4d85041a651337eb8241 (HEAD -> master)
-Author: Jessica Nash <janash@vt.edu>
-Date:   Wed Feb 6 16:29:45 2019 -0500
-
-    Adds testing.txt
-
-commit 2ac484309fe62f9a847a4daae1a1fa078dca306b (origin/master, origin/HEAD)
-Author: Jessica Nash <janash@vt.edu>
-Date:   Wed Feb 6 12:47:45 2019 -0500
-
-    Add instructions for developmental install to README
-
-commit 25ab1f1a066f68e433a17454c66531e5a86c112d
-Author: Jessica Nash <janash@vt.edu>
-Date:   Mon Feb 4 10:45:26 2019 -0500
-
-    Initial commit after CMS Cookiecutter creation, version 1.0
-~~~
-{: .output}
-
-Now push the commit:
-
-~~~
-$ git push
-~~~
-{: .bash}
-
-If you check the GitHub page, you should see the testing.txt file.
-
-Now change directories into the original local clone, and check if `testing.txt` is there:
-
-~~~
-$ cd ../<original clone>
-$ ls -l
-~~~
-{: .bash}
-
-To get the newest commit into this clone, we need to pull from the GitHub repository:
-
-~~~
-$ git pull origin master
-~~~
-{: .bash}
-
-~~~
-remote: Enumerating objects: 4, done.
-remote: Counting objects: 100% (4/4), done.
-remote: Compressing objects: 100% (1/1), done.
-remote: Total 3 (delta 1), reused 3 (delta 1), pack-reused 0
-Unpacking objects: 100% (3/3), done.
-From https://github.com/janash/molssi_devops
- * branch            master     -> FETCH_HEAD
-   2ac4843..754da2b  master     -> origin/master
-Updating 2ac4843..754da2b
-Fast-forward
- testing.txt | 1 +
- 1 file changed, 1 insertion(+)
- create mode 100644 testing.txt
-~~~
-{: .output}
-
-Now we can actually see `testing.txt` in our original repository.
-
-## Exploring History
-
-In your original repository, open the `testing.txt` file and add the following line to the end of the file.
-
-~~~
-I added this file from a new clone!
-This line doesn't add any value.
-
-~~~
-
-When working on a project, it is easy to forget exactly what changes we have made to a file.
-To check this, do
-
-~~~
-$ git diff HEAD testing.txt
-~~~
-{: .bash}
-
-~~~
-diff --git a/testing.txt b/testing.txt
-index 166776a..a634bfb 100644
---- a/testing.txt
-+++ b/testing.txt
-@@ -1 +1,3 @@
- I added this file from a new clone!
-+This line doesn't add any value.
-+
-~~~
-{: .output}
-
-"HEAD" just means the most recent commit.
-To compare against the commit just before the most recent commit, add "~1" to end of "HEAD":
-
-~~~
-$ git diff HEAD~1 testing.txt
-~~~
-{: .bash}
-
-~~~
-diff --git a/testing.txt b/testing.txt
-new file mode 100644
-index 0000000..a634bfb
---- /dev/null
-+++ b/testing.txt
-@@ -0,0 +1,3 @@
-+I added this file from a new clone!
-+This line doesn't add any value.
-+
-~~~
-{: .output}
-
-
-If we want to compare against a specific commit, we can first do "git log" to find the commit's ID, and then do:
-
-~~~
-$ git diff *commit_id* testing.txt
-~~~
-{: .bash}
-
-Another problem that we sometimes encounter is wanting to undo all of our changes to a particular file.
-This can be done with
-
-~~~
-$ git checkout HEAD testing.txt
-$ cat testing.txt
-~~~
-{: .bash}
-
-~~~
-I added this file from a new clone!
-~~~
-{: .output}
-
-Of course, you could also replace `HEAD` here with `HEAD~1` or a specific commit ID.
-
-## Ignoring Files
-
-Sometimes while you work on a project, you may end up creating some temporary files.
-For example, if your text editor is Emacs, you may end up with lots of files called `<filename>~`.
-By default, Git tracks all files, including these.
-This tends to be annoying, since it means that any time you do "git status", all of these unimportant files show up.
-
-We are now going to find out how to tell Git to ignore these files, so that it doesn't keep telling us about them ever time we do "git status".
-Even if you aren't working with Emacs, someone else working on your project might, so let's do the courtesy of telling Git not to track these temporary files.
-First, lets ensure that we have a few dummy files:
-
-~~~
-$ touch testing.txt~
-$ touch README.md~
-$ ls -l
-~~~
-{: .bash}
-
-While we're at it, also make some other files that aren't important to the project:
-
-~~~
-$ touch molssi_devops/data/calculation.in molssi_devops/data/calculation.out
-$ ls -l
-~~~
-{: .bash}
-
-Now check what Git says about these files:
-
-~~~
-$ git status
-~~~
-{: .bash}
-
-~~~
-On branch master
-Your branch is up to date with 'origin/master'.
-
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-
-	README.md~
-	molssi_devops/data/calculation.in
-	molssi_devops/data/calculation.out
-	testing.txt~
-
-nothing added to commit but untracked files present (use "git add" to track)
-~~~
-{: .output}
-
-Now we will make Git stop telling us about these files.
-
-Earlier, when we looked at the hidden files, you may have noticed a file called `.gitignore`. Cookiecutter created this for us, however, GitHub also has built in `.gitignore` files you can add when creating an empty repository.
-
-This file is to tell `git` which types of files we would like to ignore (thus the name `.gitignore`)
-
-Look at the contents of `.gitignore`
-
-~~~
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
-
-# C extensions
-*.so
-
-# Distribution / packaging
-.Python
-env/
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
-
-...
-~~~
-
-Git looks at `.gitignore` and ignores any files or directories that match one of the lines.
-Add the following to the end of `.gitignore`:
-
-~~~
-# emacs
-*~
-
-# temporary data files
-*.in
-*.out
-
-~~~
-
-Now do "git status" again. Notice that the files we added are no longer recognized by git.
-
-~~~
-$ git status
-~~~
-{: .bash}
-
-~~~
-On branch master
-Your branch is up to date with 'origin/master'.
-
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
-
-	modified:   .gitignore
-
-no changes added to commit (use "git add" and/or "git commit -a")
-~~~
-{: .output}
-
-We want these additions to .gitignore to become a permanent part of the repository, so do
-
-~~~
-$ git add .gitignore
-$ git commit -m "Ignores Emacs temporary files and data directory"
-$ git push
-~~~
-{: .bash}
-
-One nice feature of .gitignore is that prevents us from accidentally adding a file that shouldn't be part of the repository.
-For example:
-
-~~~
-$ git add data/calculation.in
-~~~
-{: .bash}
-
-~~~
-The following paths are ignored by one of your .gitignore files:
-data/calculation.in
-Use -f if you really want to add them.
-~~~
-{: .output}
-
-It is possible to override this with the "-f" option for git add.
-
-## Conflict Resolution
-
-Now we will make a few new edits to testing.txt:
-
-~~~
-$ emacs testing.txt
-~~~
-{: .bash}
-
-Add a dummy header and footer the testing.txt, so that it looks like this:
-
-~~~
-***************************************
-This is	the start of testing.txt
-***************************************
-
-I added this file from a new clone!
-
-***************************************
-This is	the end	of testing.txt
-***************************************
-~~~
-
-Now commit and push this edit.
-
-~~~
-$ git add testing.txt
-$ git commit -m "Adds a new line to testing.txt"
-$ git push
-~~~
-{: .bash}
-
-Now switch over to the `friend` clone.
-
-~~~
-$ cd ../devops_friend
-~~~
-{: .bash}
-
-We are going to add another line to testing.txt, so that it looks like this
-
-~~~
-I added this file from a new clone!
-Now I added a new line!
-~~~
-
-Now try committing and pushing the change:
-
-~~~
-$ git add testing.txt
-$ git commit -m "Adds another line to testing.txt"
-$ git push
-~~~
-{: .bash}
-
-~~~
-To https://github.com/janash/molssi_devops.git
- ! [rejected]        master -> master (fetch first)
-error: failed to push some refs to 'https://github.com/janash/molssi_devops.git'
-hint: Updates were rejected because the remote contains work that you do
-hint: not have locally. This is usually caused by another repository pushing
-hint: to the same ref. You may want to first integrate the remote changes
-hint: (e.g., 'git pull ...') before pushing again.
-hint: See the 'Note about fast-forwards' in 'git push --help' for details.
-~~~
-{: .output}
-
-The push failed, because the `friend` clone is not up-to-date with the repository on GitHub.
-We can fix this by doing a pull:
-
-~~~
-$ git pull
-~~~
-{: .bash}
-
-~~~
-remote: Enumerating objects: 9, done.
-remote: Counting objects: 100% (9/9), done.
-remote: Compressing objects: 100% (4/4), done.
-remote: Total 6 (delta 3), reused 5 (delta 2), pack-reused 0
-Unpacking objects: 100% (6/6), done.
-From https://github.com/janash/molssi_devops
-   754da2b..de54818  master     -> origin/master
-Auto-merging testing.txt
-CONFLICT (content): Merge conflict in testing.txt
-Automatic merge failed; fix conflicts and then commit the result.
-~~~
-{: .output}
-
-Unfortunately, the `pull` also failed, due to a `conflict`.
-To see which files have the conflict, we can do:
-
-~~~
-$ git status
-~~~
-{: .bash}
-
-~~~
-On branch master
-Your branch and 'origin/master' have diverged,
-and have 1 and 2 different commits each, respectively.
-  (use "git pull" to merge the remote branch into yours)
-
-You have unmerged paths.
-  (fix conflicts and run "git commit")
-  (use "git merge --abort" to abort the merge)
-
-Changes to be committed:
-
-	modified:   .gitignore
-
-Unmerged paths:
-  (use "git add <file>..." to mark resolution)
-
-	both modified:   testing.txt
-
-~~~
-{: .output}
-
-The conflict is in testing.txt, so let's open it up:
-
-~~~
-***************************************
-This is the start of testing.txt
-***************************************
-
-I added this file from a new clone!
-<<<<<<< HEAD
-Now I added a new line!
-=======
-
-***************************************
-This is the end of testing.txt
-***************************************
->>>>>>> 12651a37de10d61d9e9eea31c260c15b7ef3b5d4
-~~~
-
-The conflict is shown within the `<<<<<<<` and `>>>>>>>` bits.
-The part before the `=======` is what we added in the commit in the `devops_friend` clone, while the part after it comes from the original local clone.
-We need to decide what to do about the conflict, tidy it up, and then make a new commit.
-Edit testing.txt so that it reads:
-
-~~~
-***************************************
-This is the start of testing.txt
-***************************************
-
-I added this file from a new clone!
-Now I added a new line!
-
-***************************************
-This is the end of testing.txt
-***************************************
-
-~~~
-
-~~~
-$ git add .
-$ git commit -m "Fixed merge conflicts in testing.txt"
-$ git push
-~~~
-{: .bash}
-
-This time everything should work correctly.
-Generally speaking, your procedure when ready to commit should be:
-
-~~~
-$ git commit -m "Commit message"
-$ git pull
-$ <fix any merge conflicts>
-$ git push
-~~~
-{: .bash}
-
-## More GitHub Features
-
-Navigate to the GitHub page for your project.
-Click on "testing.txt".
-Here you can see the file and make changes to it.
-Click the edit button, which looks like a small pencil near the upper right of the file text box.
-Add a line that says "I added this line from the GitHub web interface!", so that the file looks like:
-
-~~~
-***************************************
-This is the start of testing.txt
-***************************************
-
-I added this file from a new clone!
-Now I added a new line!
-I added this line from the GitHub web interface!
-
-***************************************
-This is the end of testing.txt
-***************************************
-
-~~~
-
-Scroll to the bottom of the page and write the name "Added a line to testing.txt from the web interface" for this commit.
-Then, click the green "Commit changes" button at the bottom left.
-You should now see that your change appears in the text box.
-
-Click the "Blame" button to find out who is responsible for each line of code.
-Click the "History" button to see a list of all commits that affected this file.
-You can click on a commit to see exactly what it did.
-
-Go back to the main project page, and click the "commits" button.
-Here you can see a list of all the commits for this project.
-Clicking them reveals how they changed the code.
-
-The "Issues" tab lets you create discussions about bugs, performance limitations, feature requests, or ongoing work that are shared with everyone else who is working on the project.
-Try filling out a quick issue now.
-Then comment and close the issue.
 
 ## More Tutorials
 If you want more `git`, see the following tutorials.
