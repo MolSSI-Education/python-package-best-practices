@@ -16,7 +16,7 @@ keypoints:
 
 ## Repository collaborators
 
-Now that we have a Python package with a function, we may want others to be able to contribute to our project. There are several ways for people to contribute to your project. If you are working with a small number of people who you know well, you may simply choose to add them as collaborators to your repo. This will give them the ability to push to your repository.
+Now that we know the basics of git, we might want to know about code collaboration. There are several ways for people to contribute to your project. If you are working with a small number of people who you know well, you may simply choose to add them as collaborators to your repo. This will give them the ability to push to your repository.
 
 To add collaborators to your project, navigate to your repository on GitHub
 Click the "Settings" button to the right of the little gear.
@@ -49,24 +49,48 @@ Want to make changes to an open-source project, but aren’t listed as a collabo
 If you want to submit changes to the project’s official repository, you can create a “pull request”, which we will discuss in more detail in the next section.
 
 For now, we will learn how to create and maintain a fork.
-During this section, you will need to partner up with someone else.
 
-From your partner, get the URL of their GitHub
-This should look like `https://github.com/<username>/<repo name>`
-Navigate to this URL in your web browser.
+During this section, we will all fork a central repository, make changes, then submit something called a Pull Request to have those changes incorporated into the code. We will leave the package we are developing for this section.
 
-Create a personal fork of the repository by pressing the “Fork” button near the top right of the web interface.
+Navigate to the URL https://github.com/molssi-education/periodic-table in your web browser. You should see a GitHub repo. This repository contains code to make a website which has the periodic table. View the website https://molssi-education.github.io/periodic-table/ . On the website page, elements which appear with a red background have a page and information filled in. You can read more about each element by clicking on it. Elements with a white background do not yet have a page. Take a minute or two to click around. 
 
-Then, make a clone of the fork on your personal computer.
+Create a personal fork of the repository by pressing the “Fork” button near the top right of the web interface. GitHub will copy the repository to your profile. It should automatically redirect when it's done. You should notice at the top of the page, the name of the repository has a 'fork' symbol by it. It should say 'YOUR_USERNAME/periodic-table', and under that say 'forked from molssi-education/periodic-table.'
+
+You can use the following diagram to visualize what you just did.
+
+<center><img src="../fig/github_workflows/github_fork.png"></center>
+
+Then, make a clone of the fork on your personal computer. Before you make the clone, MAKE SURE YOU ARE NOT IN A GIT REPOSITORY.
+
+Type
 
 ~~~
-$ cd ../
-$ git clone <fork URL> fork_clone
-$ cd fork_clone
+$ git status
+~~~
+{: .language-bash}
+
+You should see the message
+
+~~~
+fatal: not a git repository (or any of the parent directories): .git
+~~~
+{: .output}
+
+If you do not see this message, navigate using `cd` until you do.
+
+Next, clone the repository to your computer. Use the green button (Clone or download) on your fork to get the fork URL.
+
+~~~
+$ git clone <fork URL>
+$ cd periodic-table
 ~~~
 {: .bash}
 
-In a real development situation, we would also create a new `conda` environment for developing in this repository. For this workshop, we will use the same development environment. However, if we wish to test functions we are developing, we will have to do a developmental install of this package (`pip install -e .`).
+Now, when we visualize what our repositories look like, we have a copy of our fork on our local machine. 
+
+<center><img src="../fig/github_workflows/github_clone_fork.png"></center>
+
+In a real development situation, we would also create a new `conda` environment for developing in this repository.
 
 ## Adding an upstream to our forks
 In your terminal window, type
@@ -78,218 +102,159 @@ $ git remote -v
 You should see output similar to the following
 
 ~~~
-origin https://github.com/YOUR_GITHUB_USERNAME/FORKED_REPO_NAME.git (fetch)
-origin https://github.com/YOUR_GITHUB_USERNAME/FORKED_REPO_NAME.git (push)
+origin https://github.com/YOUR_GITHUB_USERNAME/periodic-table.git (fetch)
+origin https://github.com/YOUR_GITHUB_USERNAME/periodic-table.git (push)
 ~~~
 {: .language-bash}
 
 This is similar to our own repository. However, since this is fork, we will want to add another remote to track the original repository. The standard names for remotes are `origin` for the repository we have cloned from, and `upstream` for the repository we forked from. Add an upstream using the following command
 
 ~~~
-$ git remote add upstream https://github.com/YOUR_PARTNERS_GITHUB_USERNAME/ORIGINAL_REPO_NAME.git
+$ git remote add upstream https://github.com/molssi-education/periodic-table.git
 ~~~
 
 Now, when you check the remotes (`git remote -v`), it should list both the `origin`, and `upstream` repositories. If we wanted to pull changes from the original repo, we could do `git pull upstream branch_name`
 
-# Developing a new feature
-We will implement a new module and function in our partner's package. We will be writing a function to convert a string to title case (explained below).
+<center><img src="../fig/github_workflows/github_remotes.png"></center>
 
-When creating a new feature, it is a good practice to develop each feature on a new branch in the new repository. Create a new branch in your repo called `title_case`.
+Next type
 
 ~~~
-$ git checkout -b title_case
+$ git fetch upstream
+~~~
+{: .bash}
+
+To get a copy of the upstream repository. This will be in a hidden branch. You should be able to see both the origin and upstream hidden branches by typing
+
+~~~
+$ git branch -a
+~~~
+{: .bash}
+
+We will use remotes/upstream/master to keep track of new changes that happen upstream that we do not have in our local master.
+
+# Developing a new feature - creating branches
+We will implement a new element for the webpage.
+
+Create a new branch in your repo with your element of choice. For this demo, I will be editing the sodium page. You should choose another element. This can either be an element that exists (red background), or an element that doesn't exist yet (white background).
+
+~~~
+$ git checkout -b sodium
 ~~~
 {: .language-bash}
 
-This command creates the branch and checks it out (the `-b` stands for `branch`). Alternatively, we could have used the commands `git branch title_case` and `git checkout title_case`.
+This command creates the branch and checks it out (the `-b` stands for `branch`). Alternatively, we could have used the commands `git branch sodium` and `git checkout sodium`. In general, your branch name should describe the feature or changes that you plan to make on the branch.
 
 You will see the output
 
 ~~~
-Switched to a new branch 'title_case'
+Switched to a new branch 'sodium'
 ~~~
 {: .output}
 
-Now, create a new file called "util.py" in the same folder as our first module (molssi_math). If you are in the top level of our repository, you can do
+We have now created a new branch called `sodium` and checked it out.
+
+
+## More about branching
+When creating a new feature, it is a good practice to develop each feature on a new branch in the new repository.  Branching in git is exactly what it sounds like. You can create a branch from a certain commit (when using the `git branch` command), and when you switch to that branch, it is an independent copy of the repository moving forward from that branch point. 
+
+Before branching, imagine a git commit history that looks like this. In the diagram below, each circle represents a git commit. There have been two commits, and the HEAD is currently after commit 2.
+
+<img src='../fig/github_workflows/git_history_0.png'>
+
+After we have created a new branch and checked it out, we can imagine our git history looking like this. The sodium branch 'branches' or starts from the point where we used the git branch command. 
+
+<img src = '../fig/github_workflows/git_branch.png'>
+
+Now, when we make a commit on the `sodium` branch, our changes will continue from this point, leaving the master branch unchanged. Note that we have not yet made a commit, but this diagram is for illustrative purposes.
+
+<img src = "../fig/github_workflows/branch_development.png">
+
+## The importance of branching
+
+When you are doing development, particularly on a fork (but also if you are collaborating), it is very important that all development work be done on a branch. In the case of a collaborative repository where you are pushing directly, this will allow you to do pull requests from branches (more on pull requests below), and that your code is reviewed by another developer on the project before being merged to the master branch.
+
+The most important reason to work on a branch is to keep your master branch clean. In the workflow you are learning today, the master branch should track upstream, and only be changed by pulling from upstream. This will ensure that you **always have a working piece of software on the master branch.** It will make it easier to correct mistakes if they arise, and keep your repository clean if you have multiple collaborators. 
+
+## Editing our element
+
+Now it's time to edit our periodic table element. If you have picked an element which exists already, there will be a file with the name `element_name.md` where element name is the element you've chosen. If the file does not exist, create it.
+
+For example, to create the sodium file, 
 
 ~~~
-$ touch molssi_devops/util.py
+$ touch sodium.md
 ~~~
 {: .language-bash}
 
-Open this file in your text editor of choice. As discussed in the previous episode, the first thing we should do in this file is...write a docstring for the top of the file!
+Once the file is created, open it in your text editor of choice. It is important that every element have the following at the top of the page (note - spacing is very important!)
 
 ~~~
-"""
-util.py
-A sample repository for the MolSSI Python package development workshop
-
-Misc. utility functions
-"""
+---
+layout: page
+title: ELEMENT_NAME
+---
 ~~~
-{: .language-python}
 
-Now, we are ready to add our title case function.
-
-> ## Exercise
-> Using the given docstring, implement a title case function. You can *not* use the .title() function.
-> ~~~
-> def title_case(sentence):
->   """
->   Convert a string to title case.
->
->   Title case means that the first letter of each word is capitalized, and all other letters in the word are lowercase.
->   
->   Parameters
->   ----------
->   sentence: str
->     String to be converted to title case
->   
->   Returns
->   -------
->   ret: str
->     String converted to title case.
->
->   Example
->   -------
->   >>> title_case('ThIS is a STRinG to BE ConVerTeD.')
->   'This Is A String To Be Converted.'
->   """
-> ~~~
-> {: .language-python}
-> > ## Solution
->> This is a solution - note that there are many. This can be one you use if you don't feel like writing one.
->> ~~~
->> # Capitalize first letter
->> ret = sentence[0].upper()
->>
->> # Loop through the rest of the characters
->> for i in range(1, len(sentence)):
->>     if sentence[i - 1] == ' ':
->>         ret = ret + sentence[i].upper()
->>     else:
->>         ret = ret + sentence[i].lower()
->>
->>  return ret
->> ~~~
->> {: .language-python}
-> {: .solution}
-{: .challenge}
-
-## Trying out our function
-
-Let's test this in the command line. Open a python interpreter
+If you are creating a new page, fill in the appropriate element name. Add some text about the element below the heading. For example, our sodium page might look like the following.
 
 ~~~
-$ python
+---
+layout: page
+title: Sodium
+---
+
+Symbol : Na  
+Atomic Number : 11  
+~~~
+
+Save your file after you edit it.
+
+## Testing out the website
+
+If you have [jekyll](https://jekyllrb.com) installed, you can view a local copy of the webpage. This is not a necessary step. If you do not have jekyll installed, or do not wish to install Jekyll skipt this step. 
+
+Execute the command
+
+~~~
+$ bundle exec jekyll serve
 ~~~
 {: .language-bash}
 
-~~~
->>> import molssi_devops as md
->>> test_string = 'ThIS iS a TeSt STrinG.'
->>> md.util.title_case(test_string)
-~~~
-{: .language-python}
+in the terminal the top level of your project to render a local copy of the webpage. Naviage to the local address to view your website and make sure your new element is working. 
 
-When you execute the previous code, you should get the following
+## Committing the change
+
+Let's add and commit these changes.
 
 ~~~
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-AttributeError: module 'molssi_devops_2019' has no attribute 'util'
-~~~
-{: .output}
-
-This happened because we forgot to import the module in our `__init__.py` file. `__init__.py` files are required for Python packages, and tell Python to treat directories as packages. We need to import functions from our new module. Open your `__init__.py` file in a text editor. You should see the following:
-
-~~~
-"""
-molssi_devops_2019
-A sample repo for the 2019 MolSSI Software Fellow Bootcamp
-"""
-
-# Make Python 2 and 3 imports work the same
-# Safe to remove with Python 3-only code
-from __future__ import absolute_import
-
-# Add imports here
-from .molssi_math import *
-
-# Handle versioneer
-from ._version import get_versions
-versions = get_versions()
-__version__ = versions['version']
-__git_revision__ = versions['full-revisionid']
-del get_versions, versions
-~~~
-{: .language-python}
-
-> ## Lots of ways to do imports
->
-> In Python, there are several ways you might choose to import packages or modules. Here are some different variations you might see.
-> 1. `from module import *`
-> 2. `from module import function1, function2`
-> 3. `import module`  
-> All of these will import functions from `module` so they can be used by the Python interpreter. Options 1 and 2 behave in similar ways, except that 1 will import everything in the module, while option 2 will only import the specified functions (`function1` and `function2`). Sometimes using option 1 is considered a bad practice, as it will import all names in a module (except those beginning with an underscore), and can introduce an unknown set of names into the interpreter, possibly hiding some of the things you have already defined. Instead, it is recommended to specify functions which should be importe (ie - option 2).
->
-> If we imagine a function (`function1`) in our module (`module`), the imports above would result in the following usage of the function:
-> 1. `>>> function1()`
-> 2. `>>> function1()`
-> 3. `>>> module.function1()`
->
-{: .callout}
-
-We are concerned with the part under `# Add imports here`. Change your section so that it looks like the following:
-~~~
-from .molssi_math import canvas, mean
-from .util import title_case
-~~~
-{: .language-python}
-
-Save your changed `__init__.py` file. If you haven't already, **close your previous Python interpreter and open a new one.** Try the above code again.
-
-~~~
->>> import molssi_devops as md
->>> test_string = 'ThIS iS a TeSt STrinG.'
->>> md.util.title_case(test_string)
-~~~
-{: .language-python}
-
-This time, you should see the following output
-
-~~~
-'This Is A Test String.'
-~~~
-{: .output}
-
-Let's add and commit these changes (in two different commits)
-
-~~~
-$ git add molssi_devops/util.py
-$ git commit -m "Add util module and title_case function"
-$ git add molssi_devops/__init__.py
-$ git commit -m "Add util import to __init__"
-$ git push origin title_case
+$ git add elements/YOUR_ELEMENT.md
+$ git commit -m "update YOUR_ELEMENT page"
 ~~~
 {: .bash}
 
-Here, the last line indicates that we are pushing to `origin` (our fork) to the `title_case` branch.
+Next, we must push these changes. But, where do we want to push the changes? We would like to have our changes incorporated into the central repository, but do not have permission to push upstream. We will have to push to origin (our repository) on the `sodium` branch (or whatever branch you're working on), then we will request that the maintainers of the upstream repository incorporate our changes, or pull from our repository. This is why it is called a `Pull Request`. We are literally requesting them to pull from our repository.
+
+~~~
+$ git push origin sodium
+~~~
+{: .bash}
+
+Here, the last line indicates that we are pushing to `origin` (our fork) to the `sodium` branch. The branch name you type in place of sodium should match the name of the branch you are working on. If you view your repository on GitHub, you should now see that you have another branch in addition to the master branch.
+
+<center><img src="../fig/github_workflows/push_branch.png"></center>
 
 As part of the output from this command, you should see the following:
 
 ~~~
 remote:
-remote: Create a pull request for 'title_case' on GitHub by visiting:
-remote:      https://github.com/YOUR_GITHUB_USERNAME/FORKED_REPO_NAME/pull/new/title_case
+remote: Create a pull request for 'sodium' on GitHub by visiting:
+remote:      https://github.com/YOUR_GITHUB_USERNAME/periodic-table/pull/new/sodium
 remote:
 ~~~
 {: .output}
 
 `git` is correct. What we will want to do next is create a pull request on the original repository to get our changes incorporated.
-
-Use your browser to confirm that this change shows up in the fork.
-Have your partner check their repository - does the change appear for them?
 
 ## Pull requests
 
@@ -298,19 +263,59 @@ To do this, we must create a `Pull Request`.
 
 Navigate to the URL of your fork. You should see a highlighted area and green button which says "Compare and Pull Request". Alternatively, you can navigate to the URL given in the message where you did a push.
 
-Once you are on the page that says "Open a pull request", you should see fields which ask for the name of the pull request, as well as a larger text box which has space for a description. Make the title of this pull request "add util module and title_case function". Edit the description to describe what you have done in your pull request.
+Once you are on the page that says "Open a pull request", you should see fields which ask for the name of the pull request, as well as a larger text box which has space for a description. Make the title of this pull request "add sodium page". Edit the description to describe what you have done in your pull request.
 
 Submit the pull request.
 
-Ask your partner to review the pull request. You should also have a pull request to review from your partner.
-They can do this by going to the URL of their personal repository and then clicking the "Pull Requests" tab.
-They should see a single pull request listed.
-If they click it, they will see everything that you wrote. If you would like to pull their changes to your repo before accepting the pull request click "view command line instructions" next to the green "Merge pull request" button and follow the instructions.
+Now, the maintainers of the repository can review your material, and request changes if they feel it necessary. 
 
-They should now click the "Merge Pull Request" button, followed by "Confirm merge".
+Anyone can see Pull Requests on public repositories. Try reviewing a few pull requests on the periodic table repository. You can leave comments/reactions. Take a few minutes to review someone else's pull request.
 
-Your changes should now appear in your partner's repository.
-Congratulations on your first successful pull request!
+Once your changes have been accepted, upstream will have those changes on the `master` branch. This is indicated in the figure below through the change in color of the the word 'master'. 
+
+<center><img src="../fig/github_workflows/accepted_PR.png"></center>
+
+## Incorporating upstream changes to local
+
+After your change has been accepted to upstream, you will want to incorporate the changes into your local master branch. First, switch to your master branch.
+
+~~~
+$ git checkout master
+~~~
+{: .bash}
+
+You can get changes to your local master by either doing a `git pull` from upstream master, or by doing a `git fetch` from upstream master, followed by a merge. For now, just do a pull.
+
+~~~
+$ git pull upstream master
+~~~
+{: .bash}
+
+Next, you will want to update your origin master. Push from the local master to origin.
+
+~~~
+$ git push origin master
+~~~
+{: .bash}
+
+Now, your upstream master and origin master should be at the same point.
+
+If you are done working with your feature branch, you can now delete it. 
+
+~~~
+$ git branch -d sodium
+~~~
+
+The `-d` option means to delete the branch.
+
+To delete the branch on your origin repository on GitHub, you can use teh command
+
+~~~
+$ git push origin --delete sodium
+~~~
+{: .bash}
+
+<center><img src="../fig/github_workflows/final.png"></center>
 
 ## More Tutorials
 If you want more `git`, see the following tutorials.
