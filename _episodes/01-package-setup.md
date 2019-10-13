@@ -1,7 +1,7 @@
 ---
 title: "Python Package Set-up and Structure"
-teaching: 25
-exercises: 0
+teaching: 40
+exercises: 5
 questions:
 - "What is the layout of a Python package?"
 - "How can I quickly create the structure of a Python package?"
@@ -42,7 +42,9 @@ $ cookiecutter gh:molssi/cookiecutter-cms
 ~~~
 {: .language-bash}
 
-This command will bring up an interactive prompt which asks questions about your project. Here, the prompt is given first, followed by the default value in square brackets. The first question will be on your project name. You have very cleverly decided to give it the name `molecool` (it's like molecule, but with `cool` instead, because of your cool visualizations - get it?)
+This command runs the cookiecutter software (`cookiecutter` in the command) and tells cookiecutter to look at GitHub (`gh`) n the repository under `molssi/cookiecutter-cms`. This repository contains a template which cookiecutter uses to create your project, once you have provided some 
+
+You will see an interactive prompt which asks questions about your project. Here, the prompt is given first, followed by the default value in square brackets. The first question will be on your project name. You have very cleverly decided to give it the name `molecool` (it's like molecule, but with `cool` instead, because of your cool visualizations - get it?)
 
 Answer the questions according to the following.
 If nothing is given after the colon (`:`), hit enter to use the default value.
@@ -180,7 +182,7 @@ A Python package is defined by a special file recognized by the Python interpret
 ~~~
 """
 molecool
-A Python package for analyzingnd visualizing xyz files. For MolSSI Workshop.
+A Python package for analyzing and visualizing xyz files. For MolSSI Workshop.
 """
 
 # Add imports here
@@ -214,7 +216,7 @@ To develop this package, we will want to something called a developmental instal
 Return to the top directory (`molecool`). One of the files CookieCutter generated is a `setup.py` file. `setup.py` is the build script for [setuptools]. It tells setuptools about your package (such as the name and version) as well as which code files to include. We'll be using this file in the next section.
 
 #### Installing your package
-A developer install will allow you to import your package and use it from anywhere on your computer. In essence, you will then be able to import your package into scripts in the same way you import `matplotlib` or `numpy`. 
+A developer install will allow you to import your package and use it from anywhere on your computer. You will then be able to import your package into scripts in the same way you import `matplotlib` or `numpy`. 
 
 A local install uses the `setup.py` file to install your package by inserting a link to your new project into your Python site-packages folder. To find the location of your site packages folder, you can check your Python path. Open Python (type `python` into your terminal window), and type
 
