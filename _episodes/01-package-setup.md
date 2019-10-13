@@ -288,12 +288,7 @@ import molecool.measure
 
 Then, when you call the function, you must use `molecool.measure.canvas()`.
 
-We will stick with our `from .measure` command. However, it is generally considered bad practice to use a `*` on imports. Change your import so that you only import the `canvas` function.
-
-~~~
-from .molecool import canvas
-~~~
-{: .language-python}
+We will stick with our `from .measure` command. However, it is generally considered bad practice to use a `*` on imports. 
 
 
 {% include links.md %}
