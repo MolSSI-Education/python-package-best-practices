@@ -1,5 +1,5 @@
 ---
-title: "Python Package Set-up and Structure"
+title: "Python Package Set-up"
 teaching: 40
 exercises: 5
 questions:
@@ -42,7 +42,7 @@ $ cookiecutter gh:molssi/cookiecutter-cms
 ~~~
 {: .language-bash}
 
-This command runs the cookiecutter software (`cookiecutter` in the command) and tells cookiecutter to look at GitHub (`gh`) n the repository under `molssi/cookiecutter-cms`. This repository contains a template which cookiecutter uses to create your project, once you have provided some 
+This command runs the cookiecutter software (`cookiecutter` in the command) and tells cookiecutter to look at GitHub (`gh`) n the repository under `molssi/cookiecutter-cms`. This repository contains a template which cookiecutter uses to create your project, once you have provided some starting information.
 
 You will see an interactive prompt which asks questions about your project. Here, the prompt is given first, followed by the default value in square brackets. The first question will be on your project name. You have very cleverly decided to give it the name `molecool` (it's like molecule, but with `cool` instead, because of your cool visualizations - get it?)
 
@@ -51,7 +51,7 @@ If nothing is given after the colon (`:`), hit enter to use the default value.
 ~~~
 project_name [ProjectName]: molecool
 repo_name [molecool]:
-first_module_name [molecool]: measure
+first_module_name [functions]: 
 author_name [Your name (or your organization/company/team)]: *YOUR_NAME_HERE*
 author_email [Your email (or your organization/company/team)]: *YOUR_EMAIL_ADDRESS_HERE*
 description [A short description of the project.]: A Python package for analyzing and visualizing xyz files. For MolSSI Workshop Python Package development workshop.
@@ -79,13 +79,13 @@ Choose from 1, 2 (1, 2) [1]:
 ### About these decisions
 
 #### License Choice
-Choosing which license to use is often confusing for new developers. The MIT license (option 1) is a very common license and the default on GitHub. It allows for anyone to use, modify, or redistribute your work with no restristions (and also no warranty)
+Choosing which license to use is often confusing for new developers. The MIT license (option 1) is a very common license and the default on GitHub. It allows for anyone to use, modify, or redistribute your work with no restristions (and also no warranty).
 
 Here, we have chosen the `BSD-3-Clause`. The `BSD-3-Clause` license is an open-source, permissive license (meaning that few requirements are placed on deveopers of derivative works), similar to the MIT license. However, it prohibits others from using the name of the project or its contributors to promote derived products without written consent.
 
-If there is no license in a repository, you should assume that the project is not open source, and you cannot modify or redistribute the software.
+If there is no license in a repository, you should assume that the project is **not** open source, and you cannot modify or redistribute the software.
 
-For most of your projects, the license you choose will not matter a great deal. However, remember that if you ever want to change a license, you must get permission of all contributors. So, if you ever start a project that becomes popular or has contributors, be sure to decide your license early!
+For most of your projects, it is likely that the license you choose will not matter a great deal. However, remember that if you ever want to change a license, you must get permission of all contributors. So, if you ever start a project that becomes popular or has contributors, be sure to decide your license early!
 
 > ## Types of Open-Source Licenses
 >
@@ -95,11 +95,10 @@ For most of your projects, the license you choose will not matter a great deal. 
 {: .callout}
 
 #### Dependency Source
-TODO - explanation here
-
+This determines some things in set-up for what will be used to install dependencies for testing. This mostly has consequence for the section on Continuous Integration. We have chosen to install dependencies from anaconda with pip fallback. Don't worry too much about this choice for now.
 
 ### Reviewing directory contents
-Now we can examine the project layout the CookieCutter has set up for us. Navigate to the newly created `molssi_devops` directory. You should see the following directory structure.
+Now we can examine the project layout the CookieCutter has set up for us. Navigate to the newly created `molecool` directory. You should see the following directory structure.
 
 ```
 .
@@ -108,13 +107,13 @@ Now we can examine the project layout the CookieCutter has set up for us. Naviga
 ├── appveyor.yml                    <- AppVeyor config file for Windows testing (if chosen)
 ├── molecool
 │   ├── __init__.py                 <- Basic Python Package import file
-│   ├── measure.py              <- Starting package module
+│   ├── functions.py              <- Starting package module
 │   ├── data                        <- Sample additional data (non-code) which can be packaged
 │   │   ├── README.md
 │   │   └── look_and_say.dat
 │   ├── tests                       <- Unit test directory with sample tests
 │   │   ├── __init__.py
-│   │   └── test_molecool.py
+│   │   └── test_functions.py
 │   └── _version.py                 <- Automatic version control with Versioneer
 ├── devtools                        <- Deployment, packaging, and CI helpers directory
 │   ├── README.md
@@ -148,7 +147,7 @@ Now we can examine the project layout the CookieCutter has set up for us. Naviga
 ```
 {: .output}
 
-To visualize your project like above you will use "tree". If you do not have tree you can get using `sudo apt-get install tree` on linux, or `brew install tree` on Mac.
+To visualize your project like above you will use "tree". If you do not have tree you can get using `sudo apt-get install tree` on linux, or `brew install tree` on Mac. Note - tree will not show you the helpful labels after '<-' (those were added by us).
 
 CookieCutter has created a lot of files! We will be working on and focusing in the `molecool` folder initially to develop our functions and tests. The other created directories, `devtools`, and `docs`, are related to package deployment and documentation respectively.
 
@@ -156,7 +155,7 @@ CookieCutter has created a lot of files! We will be working on and focusing in t
 >
 > What 'packages' or 'modules' are in Python may be confusing.
 > In general, 'module' refers to a single `.py` file containing Python definitions and statements. It may be imported for use in another module or script. The module name is determined by the file name. A function defined in a module is used (once the module is imported) using the syntax `module_name.function_name()`.
-> 'Package' refers to a collection of Python modules.
+> 'Package' refers to a collection of Python modules, along with an `__init__.py` file.
 >
 > To read more about Python packages vs. modules, check out [Python's documentation].
 {: .callout}
@@ -169,12 +168,6 @@ $ cd molecool
 ~~~
 {: .language-bash}
 
-
-### Our first module
-Once inside of the `molecool` folder (`molecool/molecool`), examine the files that are there. View the first module (`measure.py`) in a text editor. We see a few things about this file. The top begins with a description of this module. Right now, that is the file name, followed by our short description, then the sentence "Handles the primary functions". We will change this to be more descriptive later. CookieCutter has also created a placeholder function in called `canvas`.  At the start of the `canvas` function, we have a `docstring` (more about this in [documentation]), which describes the function.
-
-We will be moving all of the functions we defined in the jupyter notebook into python modules (`.py` files) like these.
-
 ### The `__init__.py` file
 
 A Python package is defined by a special file recognized by the Python interpreter called `__init__.py`. Without an `__init__.py`, we don't have a Python package. This file can be blank in some cases, however, we will use it to define how the user interacts with the functions in our package.
@@ -186,7 +179,7 @@ A Python package for analyzing and visualizing xyz files. For MolSSI Workshop.
 """
 
 # Add imports here
-from .molecool import *
+from .functions import *
 
 # Handle versioneer
 from ._version import get_versions
@@ -197,6 +190,8 @@ del get_versions, versions
 ~~~
 {: .language-python}
 
+The very first section of this file contains a string opened and closed with three quotations. This is a docstring, and has a short description of the file.
+
 The section we will be concerned with is under `# Add imports here`. This is how we define the way functions from modules are used.
 
 In particular, the line
@@ -206,7 +201,14 @@ from .molecule import *
 ~~~
 {: .language}
 
-goes to the `molecool.py` file, and brings everything that is defined there into the file. When we use our function defined in `molecool.py`, that means we will be able to just say `molecool.canvas()` instead of giving the full path `molecool.molecool.canvas()`. If that's confusing, don't worry too much for now. We will be returning to this file in a few minutes. For now, just note that it exists and makes our directory into a package.
+goes to the `molecool.py` file, and brings everything that is defined there into the file. When we use our function defined in `molecool.py`, that means we will be able to just say `molecool.canvas()` instead of giving the full path `molecool.functions.canvas()`. If that's confusing, don't worry too much for now. We will be returning to this file in a few minutes. For now, just note that it exists and makes our directory into a package.
+
+
+### Our first module
+Once inside of the `molecool` folder (`molecool/molecool`), examine the files that are there. View the first module (`functions.py` - maybe we should have picked better names!) in a text editor. We see a few things about this file. The top begins with a description of this module. Right now, that is the file name, followed by our short description, then the sentence "Handles the primary functions". We will change this to be more descriptive later. CookieCutter has also created a placeholder function in called `canvas`.  At the start of the `canvas` function, we have a `docstring` (more about this in [documentation]), which describes the function.
+
+We will be moving all of the functions we defined in the jupyter notebook into python modules (`.py` files) like these.
+
 
 ### Python local installs
 
@@ -268,9 +270,15 @@ We mentioned before that we would use the `__init__.py` file to define some thin
 
 Let's break down this line so that we understand what is going on.
 
-`from .molecool` means 'from the molecool.py module'. We use a `.` at the beginning of this module name to indicate that this is a relative import (the module is in the same directory as the `__init__.py` file). The `*` says to import everything that is in the file. For now, that is only the `canvas` function.
+`from .functions` means 'from the functions.py module'. We use a `.` at the beginning of this module name to indicate that this is a relative import and that this module is in the same directory as the `__init__.py` file. If you are used to navigating in bash, this should be familiar. The `*` says to import everything that is in the file. For now, that is only the `canvas` function.
 
 Comment this line out and try using your function again. You should get the message
+
+~~~
+>>> import molecool
+>>> molecool.canvas()
+~~~
+{: .language-python}
 
 ~~~
 Traceback (most recent call last):
@@ -286,7 +294,7 @@ import molecool.measure
 ~~~
 {: .language-python}
 
-Then, when you call the function, you must use `molecool.measure.canvas()`.
+Then, when you call the function, you must use `molecool.molecool.canvas()`.
 
 We will stick with our `from .measure` command. However, it is generally considered bad practice to use a `*` on imports. 
 
