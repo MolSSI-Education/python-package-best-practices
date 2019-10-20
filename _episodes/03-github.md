@@ -1,5 +1,5 @@
 ---
-title: "Git and GitHub"
+title: "GitHub"
 teaching: 30
 exercises: 5
 questions:
