@@ -1,17 +1,15 @@
 ---
-title: "GitHub"
+title: "Using GitHub"
 teaching: 30
 exercises: 5
 questions:
 - "How do I use git and GitHub?"
 objectives:
-- "Explain the purpose of version control."
-- "Introduce common git commands."
-- "Explain use of .gitignore file"
-- "Resolve a merge conflict"
+- "Explain reasons to use GitHub."
+
 keypoints:
-- "Git provides a way to track changes and differences between versions."
-- "git can be used with an online repository (GitHub) so that you can access a copy of your code from any machine"
+- "You can use GitHub to store your project online where you or others can access it from a central repository."
+- ""
 
 ---
 
