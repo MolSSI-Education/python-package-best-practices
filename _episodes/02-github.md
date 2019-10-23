@@ -3,16 +3,14 @@ title: "Intro to Version Control with Git"
 teaching: 30
 exercises: 5
 questions:
-- "How do I use git and GitHub?"
+- "How do I use git to keep a record of my project?"
 objectives:
 - "Explain the purpose of version control."
 - "Introduce common git commands."
-- "Explain use of .gitignore file"
-- "Resolve a merge conflict"
+- "Understand how to view and check out previous versions of files."
 keypoints:
-- "Git provides a way to track changes and differences between versions."
-- "git can be used with an online repository (GitHub) so that you can access a copy of your code from any machine"
-
+- "Git provides a way to track changes in your project."
+- "Git is a software for version control, and is separate from GitHub."
 ---
 
 > ## Prerequisites
