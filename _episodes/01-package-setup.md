@@ -317,7 +317,7 @@ import molecool.functions
 
 Then, when you call the function, you must use `molecool.functions.canvas()`.
 
-We will stick with our `from .measure` command. However, it is generally considered bad practice to use a `*` on imports. 
+We will stick with our `from .functions` command. However, it is generally considered bad practice to use a `*` on imports. 
 
 
 {% include links.md %}
