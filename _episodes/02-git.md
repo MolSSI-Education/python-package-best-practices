@@ -36,7 +36,7 @@ team.
 > ## git vs. GitHub
 >
 > `git` is the software used for version control, while GitHub is a hosting service. You can use `git` locally (without using an online hosting service), or you can use it with other hosting services such as GitLab or BitBucket.
-> Other examples of version control software include SVN, and Mercurial.
+> Other examples of version control software include SVN and Mercurial.
 >
 {: .callout}
 
@@ -52,6 +52,8 @@ You should have git installed and configured from the [setup] instructions.
 In this section, we are going to  edit files in the Python package that we created earlier, and use `git` to track those changes.
 
 First, use a terminal to `cd` into the top directory of the local repository.
+
+In order for git to keep track of your project, or any changes in your project, you must first tell it that you want it to do this. You must manually create check-points in your project if you wish to have points to return to. If you were not using the CookieCutter, you would first have to initialize your project (ie tell git that you were working on a project) using the command `git init`. 
 
 When we ran the CMS CookieCutter, it actually initialized the use of `git` for us, added our files, and made a commit (how convenient!). We can see this by typing
 
@@ -93,7 +95,34 @@ Date:   Mon Feb 4 10:45:26 2019 -0500
 ~~~
 {: .output}
 
-When we have more commits (or versions) of our code, `git log` will show a history of these commits. Right now, we have only one commit - the one created by the CMS CookieCutter.
+Each line of this log tells you something important about the commit, or check point that exists for the project. On the first line,
+
+~~~
+commit 25ab1f1a066f68e433a17454c66531e5a86c112d (HEAD -> master, tag: 0.0.0)
+~~~
+
+You have a unique identifier for the commit (25ab1...). You can use this number to reference this checkpoint.
+
+Then, git records the name of the author who made the change.
+
+~~~
+Author: Your Name <your_email@something.com>
+~~~
+
+This should be your information. This way, anyone who downloads this project can see who made each commit. Note that this name and email address matches what you specified when you configured git in the setup, with the name and email address you specified in the cookiecutter having no effect.
+
+~~~
+Date:   Mon Feb 4 10:45:26 2019 -0500
+~~~
+Next, it lists the date and time the commit was made. 
+
+~~~
+
+    Initial commit after CMS Cookiecutter creation, version 1.0
+~~~
+Finally, there will be a blank line followed by a commit message. The commit message is a message whoever made the commit chose to write, but should describe the change that took place when the commit was made. This commit message was written by the cookiecutter for you.
+
+When we have more commits (or versions) of our code, `git log` will show a history of these commits, and they will all have the same format discussed above. Right now, we have only one commit - the one created by the CMS CookieCutter.
 
 ## The 3 steps of a commit
 
