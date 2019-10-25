@@ -26,9 +26,9 @@ If you look at the GitHub repositories for several large Python packages such as
 Having a similar way to lay out Python packages allows people to more easily understand and contribute to your code.
 
 ## Creating a Python package using CookieCutter
-To create a skeletal structure for our project, we will use the MolSSI [CMS CookieCutter]. The [CMS CookieCutter] is a special cookiecutter created specifically by MolSSI to use the tools and services we recommend in developing a Python project.
+To create a skeletal structure for our project, we will use the MolSSI Computational Molecular Science (CMS) CookieCutter. The [CMS CookieCutter] is a special cookiecutter created specifically by MolSSI to use the tools and services we recommend in developing a Python project.
 
-CookieCutter will not only create our directory layout, but will also set up many tools we will use including testing, continuous integration, documentation, and git. We will discuss what all of these are later in the workshop.
+CookieCutter will not only create our directory layout, but will also set up many tools we will use including testing, continuous integration, documentation, and version control using git. We will discuss what all of these are later in the workshop.
 
 ### Obtaining CookieCutter
 
@@ -51,7 +51,7 @@ If nothing is given after the colon (`:`), hit enter to use the default value.
 ~~~
 project_name [ProjectName]: molecool
 repo_name [molecool]:
-first_module_name [functions]: 
+first_module_name [molecool]: functions
 author_name [Your name (or your organization/company/team)]: *YOUR_NAME_HERE*
 author_email [Your email (or your organization/company/team)]: *YOUR_EMAIL_ADDRESS_HERE*
 description [A short description of the project.]: A Python package for analyzing and visualizing xyz files. For MolSSI Workshop Python Package development workshop.
@@ -77,6 +77,12 @@ Choose from 1, 2 (1, 2) [1]:
 ~~~
 
 ### About these decisions
+
+The first two questions are for the project and repository name. The project name is the name of the project, while the repo name is the name of the folder that cookiecutter will create. Usually, you will leave these two to be the same thing. The `repo_name` is the name which you will use to import the package you eventually create, and because of that has some rules. The `repo_name` must be a valid Python module name and cannot contain spaces.
+
+The next choice is about the first module name. Modules are the `.py` files which contain python code. The default for this is the `repo_name`, but we will change this to avoid confusion (the module `molecool.py` in a folder named `molecool` in a folder named `molecool`??). For now, we'll just name our first module `functions`, and this is where we will put all of our starting functions.
+
+Another thing the CookieCutter checks for is your email address. Be sure to provide a valid email address to the cookiecutter (it must have an `@` symbol followed by a domain name, or the cookiecutter will fail.). Note that your email address is not recorded or kept by the software. Your email is asked for insertion into created files so that people using your software will have contact information for you. 
 
 #### License Choice
 Choosing which license to use is often confusing for new developers. The MIT license (option 1) is a very common license and the default on GitHub. It allows for anyone to use, modify, or redistribute your work with no restristions (and also no warranty).
@@ -107,7 +113,7 @@ Now we can examine the project layout the CookieCutter has set up for us. Naviga
 ├── appveyor.yml                    <- AppVeyor config file for Windows testing (if chosen)
 ├── molecool
 │   ├── __init__.py                 <- Basic Python Package import file
-│   ├── functions.py              <- Starting package module
+│   ├── functions.py                <- Starting package module
 │   ├── data                        <- Sample additional data (non-code) which can be packaged
 │   │   ├── README.md
 │   │   └── look_and_say.dat
@@ -149,7 +155,24 @@ Now we can examine the project layout the CookieCutter has set up for us. Naviga
 
 To visualize your project like above you will use "tree". If you do not have tree you can get using `sudo apt-get install tree` on linux, or `brew install tree` on Mac. Note - tree will not show you the helpful labels after '<-' (those were added by us).
 
-CookieCutter has created a lot of files! We will be working on and focusing in the `molecool` folder initially to develop our functions and tests. The other created directories, `devtools`, and `docs`, are related to package deployment and documentation respectively.
+CookieCutter has created a lot of files! This can be thought of as three sections. In the top level of our project we have a folder for tools related to development (`devtools`), documentation (`docs`) and to the package itself (`molecool`). We will first be working in the `molecool` folder to build our package, and adding more things later.
+
+~~~
+...
+├── molecool
+│   ├── __init__.py                 <- Basic Python Package import file
+│   ├── functions.py                <- Starting package module
+│   ├── data                        <- Sample additional data (non-code) which can be packaged
+│   │   ├── README.md
+│   │   └── look_and_say.dat
+│   ├── tests                       <- Unit test directory with sample tests
+│   │   ├── __init__.py
+│   │   └── test_functions.py
+│   └── _version.py                 <- Automatic version control with Versioneer
+~~~
+{: .output}
+
+This the only folder we actually have to work with to build our package. The other folders relate to "best practices", which do not technically have to be used in order for your package to be working (but you should do them, and we will talk about them later). You could build this directory structure by hand, but we have just used cookiecutter to set it up for us. This directory will contain all of our python code for our project, as well as sample data (in the `data` folder), and tests (in the `tests` folder.)
 
 > ## Packages and modules
 >
@@ -197,18 +220,16 @@ The section we will be concerned with is under `# Add imports here`. This is how
 In particular, the line
 
 ~~~
-from .molecule import *
+from .functions import *
 ~~~
 {: .language}
 
-goes to the `molecool.py` file, and brings everything that is defined there into the file. When we use our function defined in `molecool.py`, that means we will be able to just say `molecool.canvas()` instead of giving the full path `molecool.functions.canvas()`. If that's confusing, don't worry too much for now. We will be returning to this file in a few minutes. For now, just note that it exists and makes our directory into a package.
-
+goes to the `molecool.py` file, and brings everything that is defined there into the file. When we use our function defined in `functions.py`, that means we will be able to just say `molecool.canvas()` instead of giving the full path `molecool.functions.canvas()`. If that's confusing, don't worry too much for now. We will be returning to this file in a few minutes. For now, just note that it exists and makes our directory into a package.
 
 ### Our first module
-Once inside of the `molecool` folder (`molecool/molecool`), examine the files that are there. View the first module (`functions.py` - maybe we should have picked better names!) in a text editor. We see a few things about this file. The top begins with a description of this module. Right now, that is the file name, followed by our short description, then the sentence "Handles the primary functions". We will change this to be more descriptive later. CookieCutter has also created a placeholder function in called `canvas`.  At the start of the `canvas` function, we have a `docstring` (more about this in [documentation]), which describes the function.
+Once inside of the `molecool` folder (`molecool/molecool`), examine the files that are there. View the first module (`functions.py`) in a text editor. We see a few things about this file. The top begins with a description of this module. Right now, that is the file name, followed by our short description, then the sentence "Handles the primary functions". We will change this to be more descriptive later. CookieCutter has also created a placeholder function in called `canvas`.  At the start of the `canvas` function, we have a `docstring` (more about this in [documentation]), which describes the function.
 
 We will be moving all of the functions we defined in the jupyter notebook into python modules (`.py` files) like these.
-
 
 ### Python local installs
 
@@ -290,11 +311,11 @@ AttributeError: module 'molecool' has no attribute 'canvas'
 If you wanted to specify the module name for calling this function, you could change your `__init__.py`.
 
 ~~~
-import molecool.measure
+import molecool.functions
 ~~~
 {: .language-python}
 
-Then, when you call the function, you must use `molecool.molecool.canvas()`.
+Then, when you call the function, you must use `molecool.functions.canvas()`.
 
 We will stick with our `from .measure` command. However, it is generally considered bad practice to use a `*` on imports. 
 
