@@ -9,12 +9,12 @@ objectives:
 
 keypoints:
 - "You can use GitHub to store your project online where you or others can access it from a central repository."
-- ""
+- "You can use GitHub to store your projects so you can work on them from multiple computers."
 
 ---
 
 ## Putting your repository on GitHub.
-Now, let's put this project on GitHub so that we can share it with others. In your browser, navigate to `github.com`. Log in to you account if you are not already logged in. On the left side of the page, click the green button that says `New` to create a new repository. Give the repository the name `molssi_devops`.
+Now, let's put this project on GitHub so that we can share it with others. In your browser, navigate to `github.com`. Log in to you account if you are not already logged in. On the left side of the page, click the green button that says `New` to create a new repository. Give the repository the name `molecool`.
 
 Note for the last question, "Initialize this repository with a README". We will leave this unchecked in our case because we have an existing repository (as described by GitHub, "This will let you immediately clone the repository to your computer. Skip this step if you’re importing an existing repository."). If you were creating the repository on GitHub, you would select this. There are also options for adding a `.gitignore` file or a license. However, since cookiecutter created these for us, we will not add them.
 
@@ -32,12 +32,12 @@ $ git remote -v
 
 You should see no output. Now, follow the instructions on GitHub under "...or push an existing repository from the command line"
 ~~~
-$ git remote add origin https://github.com/janash/molssi_devops.git
+$ git remote add origin https://github.com/YOUR_GITHUB_USERNAME/molecool.git
 $ git push -u origin master
 ~~~
 {: .language-bash}
 
-The first command adds a remote named `origin` and sets the URL to our repository. The second command pushes our repo to where we have set as origin. The word `master` means we are pushing the `master` branch.
+The first command adds a remote named `origin` and sets the URL to our repository. The word `origin` here is simply a word that is a shortcut for the location of our repository. We could have called it anything (like `pickle`, or `banana`, or anything we wanted), but `origin` is used by convention. Now, whenever we say `origin`, git knows that we really mean `https://github.com/YOUR_GITHUB_USERNAME/molecool.git`. The second command copies (or "pushes") everything which we have tracked using git to `origin`. The word `master` means we are pushing the `master` branch. 
 
 Now if you refresh the GitHub webpage you should be able to see all of the new files you added to the repository.
 
@@ -50,14 +50,43 @@ After copying the files, it was very easy to make an important change on one com
 Of course, when collaborating with other people these problems get dramatically worse.
 
 Git greatly simplifies the process of having multiple copies of a code development project.
-Let's see this in action by making another clone of our GitHub repository.
+Let's see this in action by making another clone of our GitHub repository. For this next exercise **you must first navigate out of your project folder**.
 
 ~~~
 $ cd ../
-$ git clone https://github.com/janash/molssi_devops.git devops_friend
-$ cd devops_friend
+$ git status
 ~~~
 {: .bash}
+
+Before continuing to the next command, make sure you see the following output:
+
+~~~
+fatal: Not a git repository (or any of the parent directories): .git
+~~~
+{: .output}
+
+If you do not get this message, do `cd ../` until you see it.
+
+Next, make another copy of your repository. We'll use this to simulate working on another computer.
+
+~~~
+$ git clone https://github.com/YOUR_GITHUB_USERNAME/molecool.git molecool_friend
+$ cd molecool_friend
+~~~
+{: .bash}
+
+Check the remote on this repository. Notice that when you clone a repository from GitHub, it automatically has that repository listed as `origin`, and you do not have to add
+the remote the way we did when we did not clone the repository.
+
+~~~
+$ git remote -v
+~~~
+{: .language-bash}
+
+~~~
+origin  https://github.com/YOUR_GITHUB_USERNAME/molecool.git (fetch)
+origin  https://github.com/YOUR_GITHUB_USERNAME/molecool.git (push)
+~~~
 
 Create the file `testing.txt` in this new directory and make it contain the following.
 
@@ -118,27 +147,6 @@ $ git log
 ~~~
 {: .bash}
 
-~~~
-commit 754da2b322d649fc358d4d85041a651337eb8241 (HEAD -> master)
-Author: Jessica Nash <janash@vt.edu>
-Date:   Wed Feb 6 16:29:45 2019 -0500
-
-    Adds testing.txt
-
-commit 2ac484309fe62f9a847a4daae1a1fa078dca306b (origin/master, origin/HEAD)
-Author: Jessica Nash <janash@vt.edu>
-Date:   Wed Feb 6 12:47:45 2019 -0500
-
-    Add instructions for developmental install to README
-
-commit 25ab1f1a066f68e433a17454c66531e5a86c112d
-Author: Jessica Nash <janash@vt.edu>
-Date:   Mon Feb 4 10:45:26 2019 -0500
-
-    Initial commit after CMS Cookiecutter creation, version 1.0
-~~~
-{: .output}
-
 Now push the commit:
 
 ~~~
@@ -169,7 +177,7 @@ remote: Counting objects: 100% (4/4), done.
 remote: Compressing objects: 100% (1/1), done.
 remote: Total 3 (delta 1), reused 3 (delta 1), pack-reused 0
 Unpacking objects: 100% (3/3), done.
-From https://github.com/janash/molssi_devops
+From https://github.com/YOUR_GITHUB_USERNAME/molecool
  * branch            master     -> FETCH_HEAD
    2ac4843..754da2b  master     -> origin/master
 Updating 2ac4843..754da2b
@@ -278,7 +286,7 @@ $ ls -l
 While we're at it, also make some other files that aren't important to the project:
 
 ~~~
-$ touch molssi_devops/data/calculation.in molssi_devops/data/calculation.out
+$ touch molecool/data/calculation.in molecool/data/calculation.out
 $ ls -l
 ~~~
 {: .bash}
@@ -298,8 +306,8 @@ Untracked files:
   (use "git add <file>..." to include in what will be committed)
 
 	README.md~
-	molssi_devops/data/calculation.in
-	molssi_devops/data/calculation.out
+	molecool/data/calculation.in
+	molecool/data/calculation.out
 	testing.txt~
 
 nothing added to commit but untracked files present (use "git add" to track)
@@ -446,7 +454,7 @@ $ git push
 Now switch over to the `friend` clone.
 
 ~~~
-$ cd ../devops_friend
+$ cd ../molecool_friend
 ~~~
 {: .bash}
 
@@ -467,9 +475,9 @@ $ git push
 {: .bash}
 
 ~~~
-To https://github.com/janash/molssi_devops.git
+To https://github.com/YOUR_GITHUB_USERNAME/molecool.git
  ! [rejected]        master -> master (fetch first)
-error: failed to push some refs to 'https://github.com/janash/molssi_devops.git'
+error: failed to push some refs to 'https://github.com/YOUR_GITHUB_USERNAME/molecool.git'
 hint: Updates were rejected because the remote contains work that you do
 hint: not have locally. This is usually caused by another repository pushing
 hint: to the same ref. You may want to first integrate the remote changes
@@ -492,7 +500,7 @@ remote: Counting objects: 100% (9/9), done.
 remote: Compressing objects: 100% (4/4), done.
 remote: Total 6 (delta 3), reused 5 (delta 2), pack-reused 0
 Unpacking objects: 100% (6/6), done.
-From https://github.com/janash/molssi_devops
+From https://github.com/YOUR_GITHUB_USERNAME/molecool
    754da2b..de54818  master     -> origin/master
 Auto-merging testing.txt
 CONFLICT (content): Merge conflict in testing.txt
@@ -623,6 +631,212 @@ Clicking them reveals how they changed the code.
 The "Issues" tab lets you create discussions about bugs, performance limitations, feature requests, or ongoing work that are shared with everyone else who is working on the project.
 Try filling out a quick issue now.
 Then comment and close the issue.
+
+> ## Exercise
+> Add all of the functions from your Jupyter notebook to the module `functions.py` in your package. Commit and push your changes to GitHub.
+>> ## Solution
+>> First, copy all of your imports from the first cell and paste them into the top of your file.
+>> 
+>> Next, copy the function definitions from the first cell and paste them above or below the `canvas` function. 
+>> 
+>> Your file should look something like this.
+>> ~~~
+>> """
+>> functions.py
+>> A Python package for analyzing and visualizing xyz files. For MolSSI Workshop Python Package development workshop.
+>> 
+>> Handles the primary functions
+>> """
+>> 
+>> import os
+>> import numpy as np
+>> import matplotlib.pyplot as plt
+>> 
+>> from mpl_toolkits.mplot3d import Axes3D
+>> 
+>> 
+>> def canvas(with_attribution=True):
+>>     """
+>>     Placeholder function to show example docstring (NumPy format)
+>> 
+>>     Replace this function and doc string for your own project
+>> 
+>>     Parameters
+>>     ----------
+>>     with_attribution : bool, Optional, default: True
+>>         Set whether or not to display who the quote is from
+>> 
+>>     Returns
+>>     -------
+>>     quote : str
+>>         Compiled string including quote and optional attribution
+>>     """
+>> 
+>>     quote = "The code is but a canvas to our imagination."
+>>     if with_attribution:
+>>         quote += "\n\t- Adapted from Henry David Thoreau"
+>>     return quote
+>> 
+>> def calculate_distance(rA, rB):
+>>     d=(rA-rB)
+>>     dist=np.linalg.norm(d)
+>>     return dist
+>> 
+>> def open_pdb(f_loc):
+>>     with open(f_loc) as f:
+>>         data = f.readlines()
+>>     c = []
+>>     sym = []
+>>     for l in data:
+>>         if 'ATOM' in l[0:6] or 'HETATM' in l[0:6]:
+>>             sym.append(l[76:79].strip())
+>>             c2 = [float(x) for x in l[30:55].split()]
+>>             c.append(c2)
+>>     coords = np.array(c)
+>>     return sym, coords
+>> 
+>> atomic_weights = {
+>>     'H': 1.00784,
+>>     'C': 12.0107,
+>>     'N': 14.0067,
+>>     'O': 15.999,
+>>     'P': 30.973762,
+>>     'F': 18.998403,
+>>     'Cl': 35.453,
+>>     'Br': 79.904,
+>> }
+>> 
+>> 
+>> def open_xyz(file_location):
+>>     
+>>     # Open an xyz file and return symbols and coordinates.
+>>     xyz_file = np.genfromtxt(fname=file_location, skip_header=2, dtype='unicode')
+>>     symbols = xyz_file[:,0]
+>>     coords = (xyz_file[:,1:])
+>>     coords = coords.astype(np.float)
+>>     return symbols, coords
+>> 
+>> def write_xyz(file_location, symbols, coordinates):
+>>     
+>>     num_atoms = len(symbols)
+>>     
+>>     with open(file_location, 'w+') as f:
+>>         f.write('{}\n'.format(num_atoms))
+>>         f.write('XYZ file\n')
+>>         
+>>         for i in range(num_atoms):
+>>             f.write('{}\t{}\t{}\t{}\n'.format(symbols[i], 
+>>                                               coordinates[i,0], coordinates[i,1], coordinates[i,2]))
+>> 
+>> def draw_molecule(coordinates, symbols, draw_bonds=None, save_location=None, dpi=300):
+>>     
+>>     # Create figure
+>>     fig = plt.figure()
+>>     ax = fig.add_subplot(111, projection='3d')
+>>     
+>>     # Get colors - based on atom name
+>>     colors = []
+>>     for atom in symbols:
+>>         colors.append(atom_colors[atom])
+>>     
+>>     size = np.array(plt.rcParams['lines.markersize'] ** 2)*200/(len(coordinates))
+>> 
+>>     ax.scatter(coordinates[:,0], coordinates[:,1], coordinates[:,2], marker="o",
+>>                edgecolors='k', facecolors=colors, alpha=1, s=size)
+>>     
+>>     # Draw bonds
+>>     if draw_bonds:
+>>         for atoms, bond_length in draw_bonds.items():
+>>             atom1 = atoms[0]
+>>             atom2 = atoms[1]
+>>             
+>>             ax.plot(coordinates[[atom1,atom2], 0], coordinates[[atom1,atom2], 1],
+>>                     coordinates[[atom1,atom2], 2], color='k')
+>>             
+>>     plt.axis('square')
+>>     
+>>     # Save figure
+>>     if save_location:
+>>         plt.savefig(save_location, dpi=dpi, graph_min=0, graph_max=2)
+>>     
+>>     return ax
+>> 
+>> def calculate_angle(rA, rB, rC, degrees=False):
+>>     AB = rB - rA
+>>     BC = rB - rC
+>>     theta=np.arccos(np.dot(AB, BC)/(np.linalg.norm(AB)*np.linalg.norm(BC)))
+>> 
+>>     if degrees:
+>>         return np.degrees(theta)
+>>     else:
+>>         return theta
+>> 
+>> def bond_histogram(bond_list, save_location=None, dpi=300, graph_min=0, graph_max=2):
+>>     
+>>     lengths = []
+>>     for atoms, bond_length in bond_list.items():
+>>         lengths.append(bond_length)
+>>     
+>>     bins = np.linspace(graph_min, graph_max)
+>>     
+>>     fig = plt.figure()
+>>     ax = fig.add_subplot(111)
+>>     
+>>     plt.xlabel('Bond Length (angstrom)')
+>>     plt.ylabel('Number of Bonds')
+>>     
+>>     
+>>     ax.hist(lengths, bins=bins)
+>>     
+>>     # Save figure
+>>     if save_location:
+>>         plt.savefig(save_location, dpi=dpi)
+>>     
+>>     return ax
+>>         
+>> def build_bond_list(coordinates, max_bond=1.5, min_bond=0):
+>>     
+>>     # Find the bonds in a molecule
+>>     bonds = {}
+>>     num_atoms = len(coordinates)
+>> 
+>>     for atom1 in range(num_atoms):
+>>         for atom2 in range(atom1, num_atoms):
+>>             distance = calculate_distance(coordinates[atom1], coordinates[atom2])
+>>             if distance > min_bond and distance < max_bond:
+>>                 bonds[(atom1, atom2)] = distance
+>> 
+>>     return bonds
+>> 
+>> atom_colors = {
+>>     'H': 'white',
+>>     'C': '#D3D3D3',
+>>     'N': '#add8e6',
+>>     'O': 'red',
+>>     'P': '#FFA500',
+>>     'F': '#FFFFE0',
+>>     'Cl': '#98FB98',
+>>     'Br': '#F4A460',
+>>     'S': 'yellow'
+>> }
+>> 
+>> 
+>> if __name__ == "__main__":
+>>     # Do something if this file is invoked on its own
+>>     print(canvas())
+>> 
+>> ~~~
+>> {: .language-python}
+>> After you have saved this file, you must do a `git add`, a `git commit` and finally, a `git push` to get it to show up on your central repository.
+>> ~~~
+>> $ git add .
+>> $ git commit -m "add functions to package"
+>> $ git push origin master
+>> ~~~
+>> {: .language-bash}
+>> Your package should now have all of your functions, and the code should be updated on GitHub.
+> {: .solution}
+ {: .challenge}
 
 ## More Tutorials
 If you want more `git`, see the following tutorials.
