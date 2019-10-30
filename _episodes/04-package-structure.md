@@ -164,37 +164,11 @@ Our `functions.py` file contains two functions that handle taking measurements, 
 This module is for functions which perform measurements.
 """
 def calculate_distance(rA, rB):
-    """Calculate the distance between two points.
-
-    Parameters
-    ----------
-    rA, rB : np.ndarray
-        The coordinates of each point.
-    
-    Returns
-    -------
-    distance : float
-        The distance between the two points.
-    """
     dist_vec = (rA - rB)
     distance = np.linalg.norm(dist_vec)
     return distance
 
 def calculate_angle(rA, rB, rC, degrees=False):
-    """Calculate the angle between three points.
-
-    Parameters
-    ----------
-    rA, rB, rC : np.ndarray
-        The coordinates of each point
-    degrees : bool , optional
-        Return unit of the calculated answer. Default is in radians.
-
-    Returns
-    -------
-    angle : float
-        The angle measurement for the three points.
-    """
     AB = rB - rA
     BC = rB - rC
     theta=np.arccos(np.dot(AB, BC)/(np.linalg.norm(AB)*np.linalg.norm(BC)))
@@ -213,29 +187,6 @@ Similarly, we have two functions that handle visulaization of molecules. We will
 Functions for visualization of molecules
 """
 def draw_molecule(coordinates, symbols, draw_bonds=None, save_location=None, dpi=300):
-    """Draw a picture of a molecule.
-
-    Parameters
-    ----------
-    coordinates : np.ndarray
-        The coordinates of the molecule.
-    symbols : list
-        The element of each atom in the molecule.
-    draw_bonds : dict, (optional)
-        Bonds to draw. Bonds should be indicated in a dictionary where the indices 
-        of bonded atoms are given as the keys of the dictionary. The default is None -
-        no bonds are drawn.
-    save_location : str, (optional)
-        The location to save the image
-    dpi : int, (optional)
-        The resolution of the saved image
-
-    Returns
-    -------
-    ax : matplotlib axis
-        The axis of the plot.
-
-    """
     # Create figure
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
@@ -268,20 +219,6 @@ def draw_molecule(coordinates, symbols, draw_bonds=None, save_location=None, dpi
     return ax
 
 def bond_histogram(bond_list, save_location=None, dpi=300, graph_min=0, graph_max=2):
-    """Draw a histogram of bonds lengths in a molecule.
-
-    Parameters
-    ---------
-    bond_list : dict
-        Bonds to draw. Bonds should be indicated in a dictionary where the indices 
-        of bonded atoms are given as the keys of the dictionary. The default is None -
-        no bonds are drawn.
-    save_location : str, (optional)
-        The location to save the image
-    dpi : int, (optional)
-        The resolution of the saved image
-    """
-    
     lengths = []
     for atoms, bond_length in bond_list.items():
         lengths.append(bond_length)
@@ -310,30 +247,6 @@ def bond_histogram(bond_list, save_location=None, dpi=300, graph_min=0, graph_ma
 Our last function is `build_bond_list` which is not particularly related to any of our other functions. The name `functions.py` does not really give a lot of information about what is available in the module. We can rename the module to something more fitting, say `molecule.py`.
 ```
 def build_bond_list(coordinates, max_bond=1.5, min_bond=0):
-    """Calculate bonds in a molecule base on a distance criteria.
-
-    The pairwise distance between atoms is computed. If it is in the range 
-    `min_bond` to `max_bond`, the atoms are counted as bonded.
-
-    Parameters
-    ----------
-    coordinates : array-like
-        The coordinates of the atoms.
-    max_bond : float (optional)
-        The maximum distance for two points to be considered bonded. The default
-        is 1.5
-    min_bond : float (optional)
-        The minimum distance for two points to be considered bonded. The default
-        is 0.
-    
-    Returns
-    -------
-    bonds : dict
-        A dictionary where the keys are tuples of the bonded atom indices, and the
-        associated values are the bond length.
-
-    """
-
     if min_bond < 0:
         raise ValueError("Bond length can not be less than zero.")
 
@@ -365,25 +278,6 @@ Create a new directory called io within the package and create two new files (us
 Functions for manipulating pdb files.
 """
 def open_pdb(file_location):
-    """Open and read coordinates and atom symbols from a pdb file.
-
-    The pdb file must specify the atom elements in the last column, and follow
-    the conventions outlined in the PDB format specification.
-    
-    Parameters
-    ----------
-    file_location : str
-        The location of the xyz file to read in.
-    
-    Returns
-    -------
-    coords : np.ndarray
-        The coordinates of the xyz file.
-    symbols : list
-        The atomic symbols of the xyz file.
-
-    """
-
     with open(file_location) as f:
         data = f.readlines()
     
@@ -410,22 +304,6 @@ and `xyz.py`
 Functions for manipulating xyz files.
 """
 def open_xyz(file_location):
-    """Open and read coordinates and atom symbols from a xyz file.
-
-    Parameters
-    ----------
-    file_location : str
-        The location of the xyz file to read in.
-    
-    Returns
-    -------
-    coords : np.ndarray
-        The coordinates of the xyz file.
-    symbols : np.ndarray
-        The atomic symbols of the xyz file.
-
-    """
-    
     # Open an xyz file and return symbols and coordinates.
     xyz_file = np.genfromtxt(fname=file_location, skip_header=2, dtype='unicode')
     symbols = xyz_file[:,0]
@@ -434,18 +312,6 @@ def open_xyz(file_location):
     return symbols, coords
 
 def write_xyz(file_location, symbols, coordinates):
-    """Write an xyz file.
-
-    Parameters
-    ----------
-    file_location : str
-        The location of the xyz file to read in.
-    coords : np.ndarray
-        The coordinates to write to the xyz file.
-    symbols : list
-        The atomic symbols to write to the xyz file.
-    """
-    
     num_atoms = len(symbols)
     
     with open(file_location, 'w+') as f:
