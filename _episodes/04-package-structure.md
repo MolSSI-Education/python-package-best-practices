@@ -10,7 +10,7 @@ keypoints:
 - "Your package should be broken up into modules and subpackages depending on the amount of code and functionality."
 ---
 
-As new features are added into codes, it is natural for new functions and objects to be added. In many projects, this often leads to a large number of functionalities defined within a single module. For small, single developer codes, this is not a major issue, but it can still make it difficult to work with. With large or multi-developer codes, this can slow development progress to a crawl as it is difficult to both understand and work with the code.
+As new features are implemented in codes, it is natural for new functions and objects to be added. In many projects, this often leads to a large number of functionalities defined within a single module. For small, single developer codes, this is not a major issue, but it can still make it difficult to work with. With large or multi-developer codes, this can slow development progress to a crawl as it is difficult to both understand and work with the code.
 
 In this lesson, we will simulate a developing code by starting with a single python module containing all the methods we have developed, and converting it into a well structured package.
 
@@ -115,8 +115,7 @@ Right at the start we can see two dictionaries of atom data. Clearly these are r
 Lets start making new modules to place our related functions into.
 
 ### Atom Data
-We will take the `atom_weights` and `atom_colors` dictionaries and move them into a separate module called `atom_data.py`. This is enclosing the constant data that our system is using in a single place. This allows all of the new modules we create to access the data from a single location, avoiding the need to copy the dictionaries to each module that needs them. We could leave them in the main module of our package, but if methods in another module need them we may end up with circular dependencies.
-
+We will take the `atom_weights` and `atom_colors` dictionaries and move them into a separate module called `atom_data.py`. This is enclosing the constant data that our system is using in a single place. This allows all of the new modules we create to access the data from a single location, avoiding the need to copy the dictionaries to each module that needs them. If we have any other data, related to atoms, used by many of our functions, adding them to this module would be a good idea.
 ```
 """
 Data used for the rest of the package.
@@ -146,134 +145,24 @@ atom_colors = {
 ```
 {: .language-python}
 
-### I/O Package
-When looking at the three I/O functions, it may be easy to jump ahead and create an I/O module, as mentioned previously, however, what we really have is two distinct groups of functions that are related. More specifically, we have two functions that handle the input and output of a `.xyz` file and another function that handles the input of a `.pdb`. Each group is handling input and output, but are still somewhat unrelated because of their file type. Instead of making a single module, we are going to create a subpackage to handle i/o and place a module for each group within it.
-
-Create a new directory called io within the package and create two new files (using your operating system or `touch` as prefered):
-`pdb.py`
-```
-"""
-Functions for manipulating pdb files.
-"""
-
-import numpy as np
-
-
-def open_pdb(file_location):
-    """Open and read coordinates and atom symbols from a pdb file.
-
-    The pdb file must specify the atom elements in the last column, and follow
-    the conventions outlined in the PDB format specification.
-    
-    Parameters
-    ----------
-    file_location : str
-        The location of the xyz file to read in.
-    
-    Returns
-    -------
-    coords : np.ndarray
-        The coordinates of the xyz file.
-    symbols : list
-        The atomic symbols of the xyz file.
-
-    """
-
-    with open(file_location) as f:
-        data = f.readlines()
-    
-    coordinates = []
-    symbols = []
-    
-    for line in data:
-        if 'ATOM' in line[0:6] or 'HETATM' in line[0:6]:
-            symbols.append(line[76:79].strip())
-            
-            coords = [float(x) for x in line[30:55].split()]
-            coordinates.append(coords)
-        
-    coords = np.array(coordinates)
-    symbols = np.array(symbols)
-
-    return symbols, coords
-```
-{: .language-python}
-
-and `xyz.py`
-```
-"""
-Functions for manipulating xyz files.
-"""
-
-import numpy as np
-
-def open_xyz(file_location):
-    """Open and read coordinates and atom symbols from a xyz file.
-
-    Parameters
-    ----------
-    file_location : str
-        The location of the xyz file to read in.
-    
-    Returns
-    -------
-    coords : np.ndarray
-        The coordinates of the xyz file.
-    symbols : np.ndarray
-        The atomic symbols of the xyz file.
-
-    """
-    
-    # Open an xyz file and return symbols and coordinates.
-    xyz_file = np.genfromtxt(fname=file_location, skip_header=2, dtype='unicode')
-    symbols = xyz_file[:,0]
-    coords = (xyz_file[:,1:])
-    coords = coords.astype(np.float)
-    return symbols, coords
-
-def write_xyz(file_location, symbols, coordinates):
-    """Write an xyz file.
-
-    Parameters
-    ----------
-    file_location : str
-        The location of the xyz file to read in.
-    coords : np.ndarray
-        The coordinates to write to the xyz file.
-    symbols : list
-        The atomic symbols to write to the xyz file.
-    """
-    
-    num_atoms = len(symbols)
-    
-    with open(file_location, 'w+') as f:
-        f.write('{}\n'.format(num_atoms))
-        f.write('XYZ file\n')
-        
-        for i in range(num_atoms):
-            f.write('{}\t{}\t{}\t{}\n'.format(symbols[i], 
-                                              coordinates[i,0], coordinates[i,1], coordinates[i,2]))
-```
-{: .language-python}
-Don't forget to inclue the import statement for numpy:
-```
-import numpy as np
-```
-{: .language-python}
-
-Any time you move code into a new module, make sure you bring with it any import statements that the code needs, otherwise it will be unable to find it.
-
-Now any module that needs to handle input and output can import the needed module from the `io` package. Since these are currently small modules, it would not be a big deal to import all of them, but consider a large I/O suite contianing a large number of file types and functionalities, it will quickly create inefficiencies to leave them in one module.
+> ## Exercise
+> Take approximately 10 minutes to look through the rest of the functions in the `functions` module and group them together. Create a module for each group with a reasonable name.
+>> ## Answer
+>> Here is how we decided to break up the functions:
+>> - `calculate_angle` and `calculate_distance` go together in a `measure` module.
+>> - `draw_molecule` and `bond_histogram` go into a `visualize` module.
+>> - `build_bond_list` is placed into a `molecule` module.
+>> - `open_pdb` into a `pdb` module in an `io` package.
+>> - `open_xyz` and `write_xyz` are placed into an `xyz` module in an `io` package.
+> {: .solution}
+{: .challenge}
 
 ### Measure
-Our `functions.py` file contains two functions that handle taking measurements, `calculate_distance` and `calculate_angle`. Simliar to `atom_data`, we will simply place these in a module within the main package. Since both functions are taking measurements, we will call it `measure.py`. Again, we include the import statement for `numpy`.
+Our `functions.py` file contains two functions that handle taking measurements, `calculate_distance` and `calculate_angle`. Simliar to `atom_data`, we will simply place these in a module within the main package. Since both functions are taking measurements, we will call it `measure.py`.
 ```
 """
 This module is for functions which perform measurements.
 """
-
-import numpy as np
-
 def calculate_distance(rA, rB):
     """Calculate the distance between two points.
 
@@ -323,9 +212,6 @@ Similarly, we have two functions that handle visulaization of molecules. We will
 """
 Functions for visualization of molecules
 """
-import numpy as np
-import matplotlib.pyplot as plt
-
 def draw_molecule(coordinates, symbols, draw_bonds=None, save_location=None, dpi=300):
     """Draw a picture of a molecule.
 
@@ -418,17 +304,7 @@ def bond_histogram(bond_list, save_location=None, dpi=300, graph_min=0, graph_ma
     return ax
 ```
 {: .language-python}
-In addition to the `numpy` import statement, we also move the `matplotlib` import statement. We have an additional problem with this module. The `draw_molecule` function uses the `atom_colors` dictionary. When all of our code was in a single module, we could simply reference the dictionary by name and use it. However, we have now moved `atom_colors` and `atom_weights` into a separate module. In order to reference the dictionaries in `visualize.py`, we need to import them using an import statement.
-```
-from .atom_data import atom_colors
-```
-{: .language-python}
-This import statement looks a bit different from the other import statements in our code, we have a `.` before the name. Lets first look at the dot in a different import statement:
-```
-import matplotlib.pyplot as plt
-```
-{: .language-python}
-In this case, the `.` is saying look within the package `matplotlib` and grab the subpackage (or module) `pyplot`. In our case, we are not using a name before the `.` so where is it looking? It is looking within the current package/directory, or in this case `molecool` for a module or package named `atom_data`, from which it will import the `atom_colors` dictionary.
+
 
 ### Molecule
 Our last function is `build_bond_list` which is not particularly related to any of our other functions. The name `functions.py` does not really give a lot of information about what is available in the module. We can rename the module to something more fitting, say `molecule.py`.
@@ -477,18 +353,158 @@ def build_bond_list(coordinates, max_bond=1.5, min_bond=0):
     return bonds
 ```
 {: .language-python}
-Like visualize, this function uses a function that no longer exists in the same module, so we will need to import it.
+
+
+### I/O Package
+When looking at the three I/O functions, it may be easy to jump ahead and create an I/O module, as mentioned previously, however, what we really have is two distinct groups of functions that are related. More specifically, we have two functions that handle the input and output of a `.xyz` file and another function that handles the input of a `.pdb`. Each group is handling input and output, but are still somewhat unrelated because of their file type. Instead of making a single module, we are going to create a subpackage to handle i/o and place a module for each group within it.
+
+Create a new directory called io within the package and create two new files (using your operating system or `touch` as prefered):
+`pdb.py`
+```
+"""
+Functions for manipulating pdb files.
+"""
+def open_pdb(file_location):
+    """Open and read coordinates and atom symbols from a pdb file.
+
+    The pdb file must specify the atom elements in the last column, and follow
+    the conventions outlined in the PDB format specification.
+    
+    Parameters
+    ----------
+    file_location : str
+        The location of the xyz file to read in.
+    
+    Returns
+    -------
+    coords : np.ndarray
+        The coordinates of the xyz file.
+    symbols : list
+        The atomic symbols of the xyz file.
+
+    """
+
+    with open(file_location) as f:
+        data = f.readlines()
+    
+    coordinates = []
+    symbols = []
+    
+    for line in data:
+        if 'ATOM' in line[0:6] or 'HETATM' in line[0:6]:
+            symbols.append(line[76:79].strip())
+            
+            coords = [float(x) for x in line[30:55].split()]
+            coordinates.append(coords)
+        
+    coords = np.array(coordinates)
+    symbols = np.array(symbols)
+
+    return symbols, coords
+```
+{: .language-python}
+
+and `xyz.py`
+```
+"""
+Functions for manipulating xyz files.
+"""
+def open_xyz(file_location):
+    """Open and read coordinates and atom symbols from a xyz file.
+
+    Parameters
+    ----------
+    file_location : str
+        The location of the xyz file to read in.
+    
+    Returns
+    -------
+    coords : np.ndarray
+        The coordinates of the xyz file.
+    symbols : np.ndarray
+        The atomic symbols of the xyz file.
+
+    """
+    
+    # Open an xyz file and return symbols and coordinates.
+    xyz_file = np.genfromtxt(fname=file_location, skip_header=2, dtype='unicode')
+    symbols = xyz_file[:,0]
+    coords = (xyz_file[:,1:])
+    coords = coords.astype(np.float)
+    return symbols, coords
+
+def write_xyz(file_location, symbols, coordinates):
+    """Write an xyz file.
+
+    Parameters
+    ----------
+    file_location : str
+        The location of the xyz file to read in.
+    coords : np.ndarray
+        The coordinates to write to the xyz file.
+    symbols : list
+        The atomic symbols to write to the xyz file.
+    """
+    
+    num_atoms = len(symbols)
+    
+    with open(file_location, 'w+') as f:
+        f.write('{}\n'.format(num_atoms))
+        f.write('XYZ file\n')
+        
+        for i in range(num_atoms):
+            f.write('{}\t{}\t{}\t{}\n'.format(symbols[i], 
+                                              coordinates[i,0], coordinates[i,1], coordinates[i,2]))
+```
+{: .language-python}
+Now any module that needs to handle input and output can import the needed module from the `io` package. Since these are currently small modules, it would not be a big deal to import all of them, but consider a large I/O suite contianing a large number of file types and functionalities, it will quickly create inefficiencies to leave them in one module.
+
+## Fixing Imports
+If you try and run some of these functions, you may find yourself with an `ImportError`. This is because the functions can only see the code that has been "loaded" into the module. Each set of functions now exists as standalones within their module. 
+
+If we look at our original `functions.py` module, we will see that we had a number of import statements at the top of the file:
+```
+import os
+import numpy as np
+import matplotlib.pyplot as plt
+```
+{: .language-python}
+These are modules that some of the functions need to run. Now that we have moved the functions into separate modules, we need to add in the import statements into each file where they are needed. Lets start by looking at `measure.py`. Looking through the functions, we can see that each of them has a reference to `np`, which is what we imported `numpy` as in `functions.py`. In order to make these functions work again, we need to add the import statement
+```
+import numpy as np
+```
+{: .language-python}
+to the top of our file.
+
+As a second example, let us look at the `visualize.py` module. We can quikly see that there is a reference to `np` in each of the methods, so we need to add our `numpy` import statement again. We also see references to `plt` which was the name given to `matplotlib.pyplot` when it was imported. Add both of the import statements to the top of the `visualize.py` module.
+```
+import numpy as np
+import matplotlib.pyplot as plt
+```
+{: .language-python}
+If you look closely at the `draw_molecule` function, you will see we have an additional problem with this module. The `draw_molecule` function uses the `atom_colors` dictionary. When all of our code was in a single module, we could simply reference the dictionary by name and use it. However, we have now moved `atom_colors` and `atom_weights` into a separate module. In order to reference the dictionaries in `visualize.py`, we need to import them using an import statement.
+```
+from .atom_data import atom_colors
+```
+{: .language-python}
+This import statement looks a bit different from the other import statements in our code, we have a `.` before the name. Lets first look at the dot in a different import statement:
+```
+import matplotlib.pyplot as plt
+```
+{: .language-python}
+In this case, the `.` is saying look within the package `matplotlib` and grab the subpackage (or module) `pyplot`. In our case, we are not using a name before the `.` so where is it looking? It is looking within the current package/directory, or in this case `molecool` for a module or package named `atom_data`, from which it will import the `atom_colors` dictionary.
+
+
 > ## Check your understanding
-> Add an import statement for the `calculate_distance` function to your `molecule.py` module.
+> The `molecule.py` module also utilizes functions that are no longer available in the module. Correct the missing import statements in the module.
 >> ## Answer
->> The calculate_distance function is in the `measure` module, so we want to create a relative import from the `measure` module.
+>> The `build_bond_list` functions utilizes the `calculate_distance` function, which is now in the `measure` module, so we want to create a relative import from the `measure` module.
 >> ~~~
 >> from .measure import calculate_distance
 >> ~~~
 >> {: .language-python}
 > {: .solution}
 {: .challenge}
-
 
 
 [package setup]: https://molssi-education.github.io/python-package-best-practices/01-package-setup/index.html
