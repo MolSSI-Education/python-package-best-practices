@@ -253,7 +253,7 @@ Next, it shows the values used in the assert comparison at runtime, that is `2 =
 >  
 >  -
 >> ## Answer
->> If you remove the word `assert`, you should notice that your test still passes. This is because the expression evaluated to `False`, but since there was no Assertion, there was no error. Since there was no error, the pytest counted it as a passing test. The `assert` statement causes an error when it evaluates to False.
+>> If you remove the word `assert`, you should notice that your test still passes. This is because the expression evaluated to `False`, but since there was no Assertion, there was no error. Since there was no error, pytest counted it as a passing test. The `assert` statement causes an error when it evaluates to False.
 > {: .solution}
 {: .challenge}
 
