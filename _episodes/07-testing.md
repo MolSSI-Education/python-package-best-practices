@@ -1,6 +1,6 @@
 ---
 title: "Python Testing"
-teaching: 45
+teaching: 60
 exercises: 10
 questions:
 - "How is a Python module tested?"
@@ -16,23 +16,24 @@ keypoints:
 
 Until now, we have been writing functions and checking their behavior using an interactive Python interpreter and manually inspecting the output. While this seems to work, it can be tedious, and prone to error. In this lesson, we'll discuss how to write tests and run them using the `pytest` testing framework.
 
+Using a testing framework will allow us to easily define tests for all of our functions and modules, and to test these each time we make a change. This will ensure that our code is behaving the way we expect, and that we do not break any features existing in the code by making new changes.
+
 This episode explains the importance of code testing and demonstrates the possible capabilities.
 
 ## Why testing
 
 Software should be tested regularly throughout the development cycle to ensure correct operation. Thorough testing is typically an afterthought, but for larger projects, it is essential for ensuring changes in some parts of the code do not negatively affect other parts.
 
-Software testing is checking the behavior of part of the code (such as a method, class, or a module) by comparing its expected output or behavior with the observed one. We will explain this in more details shortly.
-
+**Software testing is checking the behavior of part of the code (such as a method, class, or a module) by comparing its expected output or behavior with the observed one.** We will explain this in more detail shortly.
 
 ## Unit vs Regression vs Integration testing
 
-There are many types of testing. There are three main levels of testing:
+There are three main levels of testing:
 
 - **Unit tests**: the purpose is to verify that each part of the code is functioning as expected.
 Unit testing is done on smaller units (such as single functions or classes) as you work on
 your code.
-This is helpful for catching errors in uncommonly-used parts of the code. Unit tests can
+This is helpful for catching errors in uncommonly-used parts of the code. Unit tests should
 be added as new features are added, resulting in better code coverage.
 In unit tests, you are testing a part of your code independent of any other factors;
 therefore, you should avoid using the file system, databases, network, or any other
@@ -41,29 +42,26 @@ resources unless you are testing a function directly related to that resource.
 - **Integration tests**: this is a more holistic approach where you test the interface
 between modules, and how they combine and integrate together.
 
-- **System tests**: where you test your system as a whole to check if meets all the
+- **System tests**: where you test your system as a whole to check if it meets all the
 requirements.
-
 
 Another important type of testing is **Regression tests**. In Regression tests,
 given a known input, does the software correctly and consistently return the correct
-values? This kind of testing can catch problems in previously working code that may
- has been broken by new changes or new features.
+values? This kind of testing can catch problems in previously working code that may has been broken by new changes or new features.
 
 It is highly encouraged to have Unit tests that *cover* most of your code. It is
 also helpful to have some Integration and System tests.
 
-In this lesson, we are focusing on unit testing, along with regression testing.
+In this lesson, we are focusing on unit testing.
 Same concepts here can be applied to perform Integration tests across modules.
-We will be using Python version 3.5 or above.
 
 ## The pytest testing framework
 
-The Python testing framework was chosen to be [pytest](https://pytest.org) for this project.
+MolSSI recommends using the [pytest](https://pytest.org) testing framework.
 Other testing frameworks are available (such as unittest and nose tests);
-however, the authors believe the combination of easy [parametrization of tests](https://docs.pytest.org/en/latest/parametrize.html),
+however, the combination of easy implementation, [parametrization of tests](https://docs.pytest.org/en/latest/parametrize.html),
 [fixtures](https://docs.pytest.org/en/latest/fixture.html), and [test marking](https://docs.pytest.org/en/latest/example/markers.html)
-make `pytest` particularly suited for computational chemistry.
+make `pytest` an ideal testing framework.
 
 If you don't have `pytest` installed or it's not updated to version 3, install it using:
 ~~~
@@ -73,27 +71,29 @@ $ pip install -U pytest-cov
 
 ### Running our first test
 
-When we run `pytest`, it will look for directories and files which start with `test` or `test_`. CookieCutter has already created a test for us. Let's examine this file. In a text editor, open `molss_devops/tests/test_molssi_devops.py`
+When we run `pytest`, it will look for directories and files which start with `test` or `test_`. It then looks inside of those files and executes any functions that begin with the word `test_`. This syntax lets pytest know that these functions are tests. If these functions do not result in an error, `pytest` counts the function as passing. If an error occurs, the test fails.
+
+CookieCutter has already created a test for us. Let's examine this file. In a text editor, open `molecool/tests/test_molecool.py`.
 
 ~~~
 """
-Unit and regression test for the molssi_devops package.
+Unit and regression test for the molecool package.
 """
 
 # Import package, test suite, and other packages as needed
-import molssi_devops
+import molecool
 import pytest
 import sys
 
-def test_molssi_devops_imported:
+def test_molecool_imported:
     """Sample test, will always pass so long as import statement worked"""
-    assert "molssi_devops" in sys.modules
+    assert "molecool" in sys.modules
 ~~~
 {: .language-python}
 
-This file begins with `test_`, and contains a single function `test_molssi_devops_imported`. This module will import our package, then checks to see if it has been imported correctly by checking if the package name is in the list of imported modules.
+This file begins with `test_`, and contains a single function `test_molecool`. This module will import our package, then checks to see if it has been imported correctly by checking if the package name is in the list of imported modules.
 
-The last line, containing the python keyword `assert`, is called an assertion. Assertions are used to check the behavior of the code during runtime. The `assert` keyword halts code execution instantly if the comparison is False, and does nothing if the comparison is True.
+The last line, containing the python keyword `assert`, is called an assertion. Assertions are used to check the behavior of the code during runtime. The `assert` keyword halts code execution instantly if the comparison is `False`, and does nothing if the comparison is `True`. Remember that pytest counts a test as passing if no error occurs while it is being run.
 
 We can see if this function works by running `pytest` in our terminal. In the top level of your package, run the following command.
 
@@ -110,13 +110,13 @@ platform darwin -- Python 3.6.8, pytest-3.6.4, py-1.5.4, pluggy-0.6.0
 rootdir: /Users/jessica/dev/molssi_devops, inifile:
 collected 1 item
 
-molssi_devops/tests/test_molssi_devops.py .                    [100%]
+molecool/tests/test_molecool.py .                    [100%]
 
 =========================== 1 passed in 0.06 seconds ===========================
 ~~~
 {: .output}
 
-Here, `pytest` has looked through our directory and its subdirectories for anything matching `test*`. It found the `tests` folder, and within that folder, it found the file `test_molssi_devops.py`. It then executed the function `test_molssi_devops_imported` within that module. Since our `assertion` was True, the test passed.
+Here, `pytest` has looked through our directory and its subdirectories for anything matching `test*`. It found the `tests` folder, and within that folder, it found the file `test_functions.py`. It then executed the function `test_molecool_imported` within that module. Since our `assertion` was `True`, our test did not result in an error and the test passed.
 
 We can see the names of the tests `pytest` ran by adding a `-v` tag to the pytest command.
 
@@ -125,7 +125,7 @@ $ pytest -v
 ~~~
 {: .language-bash}
 
-Using the command argument ` -v` will result in pytest, listing which tests are executed and whether they pass or not. There are a number of
+Using the command argument `-v` will result in pytest listing which tests are executed and whether they pass or not. There are a number of
 additional command line arguments to [explore](https://docs.pytest.org/en/latest/usage.html).
 
 ~~~
@@ -135,7 +135,7 @@ cachedir: .pytest_cache
 rootdir: /Users/jessica/dev/molssi_devops, inifile:
 collected 1 item
 
-molssi_devops/tests/test_molssi_devops.py::test_molssi_devops_imported PASSED [100%]
+molecool/tests/test_molecool.py::test_molecool_imported PASSED [100%]
 
 =========================== 1 passed in 0.06 seconds ===========================
 ~~~
@@ -145,15 +145,13 @@ Now we see that `pytest` dsiplays the test name for us, as well as `PASSED` next
 
 ## Testing our functions
 
-We will now add tests to test our functions.
+We will now add tests to test our functions. After dividing our package into modules, we have four modules and one subpackage. It is considered good practices to also break your tests into different files depending on the module or subpackage.
 
-Recall that we have two functions. `mean` in `molssi_math`, and `title_case` in `util`. Let's first write some functions for our `mean` function.
-
-Create a new file called `test_molssi_math.py` in the `tests` directory with the following contents.
+Create a new file called `test_measure.py` in the `tests` directory with the following contents.
 
 ~~~
 """
-Unit and regression test for the molssi_math module.
+Unit and regression test for the measure module.
 """
 
 # Import package, test suite, and other packages as needed
@@ -161,16 +159,21 @@ import molssi_devops
 import pytest
 import sys
 
-def test_mean():
-    """Test that mean function calculates what we expect."""
-    test_list = [1, 2, 3, 4, 5]
-    expected = 3
-    calculated =  molssi_devops.mean(test_list)
-    assert expected == calculated
+def test_calculate_distance():
+    """Test that calculate_distance function calculates what we expect."""
+    
+    r1 = np.array([0, 0, 0])
+    r2 = np.array([0, 1, 0])
+
+    expected_distance = 1
+
+    calculated_distance = molecool.calculate_distance(r1, r2)
+
+    assert expected_distance == calculated_distance
 ~~~
 {: .language-python}
 
-We have written one test in this file. It calculates the mean of a test list, and asserts that it is equal to our expected value.
+We have written one test in this file. In our test function `test_calculate_distance`, we defined two points. We know that these points should be a distance of 1 from one another.
 
 Run this test using `pytest`. In the terminal window, type
 
@@ -179,23 +182,22 @@ pytest -v
 ~~~
 {: .language-bash}
 
-You should now see the following.
+You should now see an output similar to the following
 
 ~~~
-============================= test session starts ==============================
-platform darwin -- Python 3.6.8, pytest-3.6.4, py-1.5.4, pluggy-0.6.0 -- /Users/jessica/miniconda3/bin/python
-cachedir: .pytest_cache
-rootdir: /Users/jessica/dev/molssi_devops, inifile:
+============================================================ test session starts ============================================================
+platform darwin -- Python 3.7.3, pytest-5.2.1, py-1.8.0, pluggy-0.13.0
+rootdir: /Users/jessica/lessons/molecool
 collected 2 items
 
-molssi_devops/tests/test_molssi_devops.py::test_molssi_devops_2019_imported PASSED [ 50%]
-molssi_devops/tests/test_molssi_math.py::test_mean PASSED           [100%]
+molssi_devops/tests/test_molecool.py::test_molecool_imported PASSED [ 50%]
+molssi_devops/tests/test_measure.py::test_calculate_distance PASSED           [100%]
 
 =========================== 2 passed in 0.07 seconds ===========================
 ~~~
 {: .output}
 
-We now see that we have two tests which have been run, and they both passed.
+We now see that we have two tests which have been run, and they both passed. This means that our calculated distance was equal to what we set as the expected distance, and the assertion did not fail.
 
 ### Failing tests
 Let's see what happens when one of the test fails.
@@ -208,245 +210,316 @@ $ pytest -v
 {: .language-bash}
 
 ~~~
-============================= test session starts ==============================
-platform darwin -- Python 3.6.8, pytest-3.6.4, py-1.5.4, pluggy-0.6.0 -- /Users/jessica/miniconda3/bin/python
-cachedir: .pytest_cache
-rootdir: /Users/jessica/dev/molssi_devops, inifile:
+============================================================ test session starts ============================================================
+platform darwin -- Python 3.7.3, pytest-5.2.1, py-1.8.0, pluggy-0.13.0
+rootdir: /Users/jessica/lessons/molecool
 collected 2 items
 
-molssi_devops_2019/tests/test_molssi_devops_2019.py::test_molssi_devops_2019_imported PASSED [ 50%]
-molssi_devops/tests/test_molssi_math.py::test_mean FAILED    [100%]
+molssi_devops/tests/test_molecool.py::test_molecool_imported PASSED [ 50%]
+molssi_devops/tests/test_measure.py::test_calculate_distance FAILED           [100%]
 
-=================================== FAILURES ===================================
-__________________________________ test_mean ___________________________________
+=========================== 2 passed in 0.07 seconds ===========================
 
-    def test_mean():
-        """Test that mean function calculates what we expect."""
-        test_list = [1, 2, 3, 4, 5]
-        expected = 2
-        calculated =  molssi_devops.mean(test_list)
->       assert expected == calculated
-E       assert 2 == 3.0
+================================================================== FAILURES ===================================================================
+___________________________________________________________ test_calculate_distance ___________________________________________________________
 
-molssi_devops_2019/tests/test_molssi_math.py:19: AssertionError
-====================== 1 failed, 1 passed in 0.17 seconds ======================
+    def test_calculate_distance():
+        """Test the calculate_distance function"""
+    
+        r1 = np.array([0, 0, 0])
+        r2 = np.array([0, 1, 0])
+    
+        expected_distance = 2
+    
+        calculated_distance = molecool.calculate_distance(r1, r2)
+    
+>       assert expected_distance == calculated_distance
+E       assert 2 == 1.0
+
+molecool/tests/test_measure.py:26: AssertionError
+======================================================== 1 failed, 1 passed in 0.56s =========================================================
 ~~~
 {: .output}
 
 Pytest shows a detailed failure report, including the source code around the failing line. The line that failed is marked with `>`.
-Next, it shows the values used in the assert comparison at runtime, that is `3.0 == 2`. This runtime analysis is one of the advantages of pytest that help you debug your code.
+Next, it shows the values used in the assert comparison at runtime, that is `2 == 1.0`. This runtime analysis is one of the advantages of pytest that help you debug your code.
 
-Change the expected value back to 3 so that your tests pass.
+> ## Check Your Understanding
+> What happens if you leave your `expected_value` equal to 2, but remove the assertion? Change your assertion line to the following
+> ~~~
+> expected_distance == calculated_distance
+> ~~~
+> {: .language-python}
+>  
+>  -
+>> ## Answer
+>> If you remove the word `assert`, you should notice that your test still passes. This is because the expression evaluated to `False`, but since there was no Assertion, there was no error. Since there was no error, pytest counted it as a passing test. The `assert` statement causes an error when it evaluates to False.
+> {: .solution}
+{: .challenge}
+
+Change the expected value back to 1 so that your tests pass and make sure you have the `assert` statement.
 
 > ## Exercise
-> Create a test for your `title_case` function. Use the example string in the docstring for the function. You will need to create a new file in the `tests` folder for this.
+> Create a test for the `calculate_angle ` function. Use the three points
+> ~~~
+> r1 = np.array([0, 0, -1])
+> r2 = np.array([0, 0, 0])
+> r3 = np.array([1, 0, 0])
+> ~~~
+> {: .language-python}
 >
-> In other words, test that the string 'ThIS is a STRinG to BE ConVerTeD.' is correctly converted to 'This Is A String To Be Converted.'
->
+> These three points correspond to an angle of 90 degrees.
+> 
 > Verify that your test is working by running pytest. You should now see three passing tests.
 >> ## Solution
->> First, create a new file in the `tests` directory. We will call our file `test_util.py`.
->>
->> Here is a sample of the contents of `test_util.py` with the specified test written.
+>> Since `calculate_angle` is in the `measure` module, the tests for this function should go in the same file as `calculate_distance`. You should define a new function in `test_measure` called `test_calculate_angle`
 >>
 >> ~~~
->> """
->> Unit and regression test for the util module.
->> """
->>
->> # Import package, test suite, and other packages as needed
->> import molssi_devops
->> import pytest
->> import sys
->>
->> def test_title_case():
->>     """Test the title case function."""
->>     test_string = 'ThIS is a STRinG to BE ConVerTeD.'
->>     expected = 'This Is A String To Be Converted.'
->>     calculated =  molssi_devops.title_case(test_string)
->>     assert expected == calculated
+>> def test_calculate_angle():
+>>    """Test the calculate_angle function"""
+>> 
+>>    r1 = np.array([1, 0, 0])
+>>    r2 = np.array([0, 0, 0])
+>>    r3 = np.array([0, 1, 0])
+>> 
+>>    expected_value = 90
+>> 
+>>    calculated_value = molecool.calculate_angle(r1, r2, r3, degrees=True)
+>>    assert expected_value == calculated_value
 >> ~~~
 >> {: .language-python}
 > {: .solution}
 {: .challenge}
 
-> ## Test Driven Development - TDD
-> Sometimes, tests are written before code is actually written. This is called "Test Driven Development" or TDD. In this case, you would write tests which define the behavior of your code, run the tests to see they pass, then write code to pass each test. TDD is common when developing a library with well-defined interfaces and features.
-{: .callout}
-
-### Checking inputs - raising errors
-
-Let's return to the terminal window temporarily to consider behavior of our functions. Currently, our `title_case` function has some unexpected behavior. Consider the following example. In the python command line,
+Let's also make a test for the `build_bond_list` function. We start with defining the test.
 
 ~~~
->>> import molssi_devops as md
->>> test_case = ['this', 'is', 'not', 'a', 'string']
->>> md.title_case(test_case)
+def test_build_bond_list():
 ~~~
 {: .language-python}
 
-~~~
-'THISisnotastring'
-~~~
-{: .output}
+Next we must have some coordinates to test. In our Jupyter Notebook, we were reading this data from an xyz file. However, remember that for unit tests, we do not want to make our test dependent on any other functions. Therefore, we will just make up some coordinates in our test.
 
-Because of the way our function is written, it gives unexpected behavior. Worse, our program does not actually fail. If we were calling this in a script, it would continue without giving an error. Because of this, we want to check the user inputs in our functions.
-
-For the `title_case` function, we will want to check that the user input is type `string`.
-
-Modify your `title_case` function to contain the following after the docstring.
+Next, there are several things we might test about this function. We could check that we find the correct number of bonds, and that those bonds are the correct length. You should write at least one test per function, but you may have multiple assertions in the same test. For example, we could write the following test for `build_bond_list`.
 
 ~~~
-# Check that input is string
-  if not isinstance(sentence, str):
-      raise TypeError('Invalid input, type %s - Input must be type string' %(type(sentence)))
+def test_build_bond_list():
+
+    coordinates = np.array([[1,1,1], [2.4,1,1], [-0.4, 1, 1], [1, 1, 2.4], [1, 1, -0.4]])
+
+    bonds = molecool.build_bond_list(coordinates)
+
+    assert len(bonds) == 4
+
+    for atoms, bonds in bonds.items():
+        assert bonds == 1.4
 ~~~
 {: .language-python}
 
-In the first line, we are checking that the input `sentence` is a string. If it is not, we are raising a `TypeError`, then giving a custom error message saying that the input must be of type string.
-
-Now, if we try the previous example again, we get the following error
-
-~~~
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-  File "/Users/jessica/dev/molssi_devops/molssi_devops/util.py", line 31, in title_case
-    raise TypeError('Invalid input, type %s - Input must be type string.' %(type(sentence)))
-TypeError: Invalid input, type <class 'list'> - Input must be type string.
-~~~
-{: .output}
+Here, we are asserting that the correct number of bonds were found, and next we are iterating through the dictionary to ensure that a distance of 1.4 angstrom was calculated for each bond.
 
 ### Testing Expected Exceptions
 
 If you expect your code to raise exceptions, you can test this behavior with pytest.
-First, you need to import `pytest`. We can test that an exception is properly raised when we input the wrong type to our `title_case` function.
+You need to import `pytest` in your testing modules in order to do this. 
 
-In your `test_util.py` file, add the following.
+In our `build_bond_list` function, we have added a check on the input that ensures that the coordinates array is not empty. If an empty array or list is passed, a `ValueError` is raised. Using pytest, we can test this behavior
+
+In the `test_molecule.py` file, add the following.
 
 ~~~
 def test_type_error():
-    test_case = ['this', 'is', 'not', 'a', 'string']
+    test_case = [[]
 
-    with pytest.raises(TypeError):
-        md.title_case(test_case)
+    with pytest.raises(ValueError):
+        molecool.build_bond_list(test_case)
 ~~~
 {: .language-python}
 
-The test will pass if the `title_case` method raises a 'TypeError', otherwise, the test will fail.
+The test will pass if the `build_bond_list` method raises a 'TypeError', otherwise, the test will fail.
 
-What are some thing we might want to check on user input for the `mean` function. If you think for a bit, you may come up with the following responses:
+## Test Driven Development - TDD - Homework Assignment
 
-1. Check that input is type `list`
-2. Check that input list has length (ie that it is not an empty list)
-3. Check that all elements of the input list is numeric.
+Sometimes, tests are written before code is actually written. This is called "Test Driven Development" or TDD. In this case, you would write tests which define the behavior of your code, run the tests to see they pass, then write code to pass each test. TDD is common when developing a library with well-defined interfaces and features.
 
-> ## Exercise
-> Modify your mean function to check that inputs meet all three criteria outlined above.
+TDD has another benefit of never having false positives. If you ensure that your tests first fail THEN pass, you know that you have really written a function that works and that your test is not just passing by default.
+
+> ## Exercise (Homework Assignment #1)
+> For this homework assignment, you are given a function specification and a test. You should write a function to make the test pass.
+>
+> Add the following function definition and docstring to `molecule.py`.
+>
+> ~~~
+> def calculate_molecular_mass(symbols):
+>    """Calculate the mass of a molecule.
+>    
+>    Parameters
+>    ----------
+>    symbols : list
+>        A list of elements.
+>    
+>    Returns
+>    -------
+>    mass : float
+>        The mass of the molecule
+>    """
+>    pass
+> ~~~
+> {: .language-python}
+>
+> This defines a function, inputs, and what the function should return.
+> Next, add  the following test into `test_molecule.py`.
+> ~~~
+> def test_molecular_mass(test_molecule):
+>     symbols = ['C', 'H', 'H', 'H', 'H']
+>     
+>     calculated_mass = molecool.calculate_molecular_mass(symbols)
+> 
+>     actual_mass = molecool.atom_data.atom_weights['C'] + molecool.atom_data.atom_weights['H'] +\
+>          molecool.atom_data.atom_weights['H'] + molecool.atom_data.atom_weights['H']
+>     
+>     assert actual_mass == calculated_mass
+> ~~~
+> {: .language-python}
+>
+> If you run `pytest`, this test should fail. Your assignment is to write the function to make the tests pass. You should use the `atomic_weights` data in the `atom_data` module.
 >> ## Solution
+>> Here is a potential solution. 
 >> ~~~
->> def mean(num_list):
->>    """
->>    Computes the mean of a list of numbers.
->>
->>    Parameters
->>    ----------
->>    num_list: list
->>        List to calculate mean of
->>
->>    Returns
->>    -------
->>    list_mean: float
->>    Mean of list of numbers
->>    """
->>
->>     # Check that input is type list
->>    if not isinstance(num_list, list):
->>        raise TypeError('Invalid input %s - must be type list' %(num_list))
->>
->>    # Check that list is not empty
->>    if not num_list:
->>        raise ValueError('Cannot calculate the mean of an empty list.')
->>
->>    try:
->>        list_mean = sum(num_list) / len(num_list)
->>    except TypeError:
->>        raise TypeError('Cannot calculate mean of list - all list elements must be numeric')
->>
->>    return list_mean
+>> def calculate_molecular_mass(symbols):
+>>     """Calculate the mass of a molecule.
+>>     
+>>     Parameters
+>>     ----------
+>>     symbols : list
+>>         A list of elements.
+>>     
+>>     Returns
+>>     -------
+>>     mass : float
+>>         The mass of the molecule
+>>     """
+>> 
+>>     mass = 0
+>>     for atom in symbols:
+>>         mass += atom_weights[atom]
+>>     
+>>     return mass
 >> ~~~
 >> {: .language-python}
->>
 > {: .solution}
 {: .challenge}
 
-We can modify our tests to check that all of the expected exceptions are raised.
-
-Add the following two tests to `test_molssi_math.py`
-~~~
-def test_mean_type_error():
-    test_variable = 'this is a string'
-
-    with pytest.raises(TypeError):
-        molssi_devops.mean(test_variable)
-
-def test_zero_length():
-    test_list = []
-
-    with pytest.raises(ValueError):
-        molssi_devops.mean(test_list)
-~~~
-{: .language-python}
-
-### More Pytest Features - Pytest Marks
-
-Marks are an easy way to add annotations to your tests. For instance, you can mark some tests to be skipped
-by adding the skip decorator to your test method `pytest.mark.skip`.
-Add the following code to your `test_molssi_math.py`.
-
-~~~
-@pytest.mark.skip
-def test_mean_type_error():
-    test_variable = 'this is a string'
-
-    with pytest.raises(TypeError):
-        molssi_devops.mean(test_variable)
-~~~
-{: .python}
-
-after running `pytest -v`, pytest will run the other tests, skipping test_mean_type_error.
-~~~
-============================= test session starts ==============================
-platform darwin -- Python 3.6.8, pytest-3.6.4, py-1.5.4, pluggy-0.6.0 -- /Users/jessica/miniconda3/bin/python
-cachedir: .pytest_cache
-rootdir: /Users/jessica/dev/molssi_devops, inifile:
-collected 5 items
-
-molssi_devops/tests/test_molssi_devops_2019.py::test_molssi_devops_imported PASSED [ 20%]
-molssi_devops/tests/test_molssi_math.py::test_mean PASSED           [ 40%]
-molssi_devops/tests/test_molssi_math.py::test_mean_type_error SKIPPED [ 60%]
-molssi_devops/tests/test_molssi_math.py::test_zero_length PASSED    [ 80%]
-molssi_devops/tests/test_util.py::test_title_case PASSED            [100%]
-
-===================== 4 passed, 1 skipped in 0.11 seconds ======================
-~~~
-{: .output}
-
-You can also use your own custom marks and run pytest with some selected tests. Let's mark
-this method with the mark `@pytest.mark.my_test`
-
-~~~
-@pytest.mark.my_test
-def test_zero_length():
-    test_list = []
-
-    with pytest.raises(ValueError):
-        molssi_devops.mean(test_list)
-~~~
-{: .python}
-
-You can run `pytest -m "not my_test"` to run all tests that are NOT marked with
-`@pytest.mark.my_test`.
-Custom marks are a great way to organize tests into groups so you can quickly run subsets of your tests while debugging your code.
+> ## Exercise - (Homework Assignment #2)
+> Consider the following function definition and the test written.
+> def calculate_center_of_mass(symbols, coordinates):
+> ~~~
+> def calculate_center_of_mass(symbols, coordinates):
+>    """Calculate the center of mass of a molecule.
+>    
+>    The center of mass is weighted by each atom's weight.
+>    
+>    Parameters
+>    ----------
+>    symbols : list
+>        A list of elements for the molecule
+>    coordinates : np.ndarray
+>        The coordinates of the molecule.
+>    
+>    Returns
+>    -------
+>    center_of_mass: np.ndarray
+>        The center of mass of the molecule.
+>
+>    Notes
+>    -----
+>    The center of mass is calculated with the formula
+>    
+>    .. math:: \\vec{R}=\\frac{1}{M} \\sum_{i=1}^{n} m_{i}\\vec{r_{}i}
+>    
+>    """
+>
+>    return np.array([])
+> ~~~
+> {: .language-python}
+> 
+> and the test
+> ~~~
+> def test_center_of_mass():
+>     symbols = np.array(['C', 'H', 'H', 'H', 'H'])
+>     coordinates = np.array([[1,1,1], [2.4,1,1], [-0.4, 1, 1], [1, 1, 2.4], [1, 1, -0.4]])
+> 
+>     center_of_mass = molecool.calculate_center_of_mass(symbols, coordinates)
+> 
+>     expected_center = np.array([1,1,1])
+> 
+>     assert center_of_mass.all() == expected_center.all()
+> ~~~
+> {: .language-python}
+>
+> Notice that this test always passes. Even if we were to write our function, we would not know it was right.
+> 
+> Fix this test so that it fails. **Hint** - You will have to compare two arrays (look into the function `numpy.array_equal`)
+>> ## Solution - Fixing the test
+>> The problem with `.all()` is that it does not compare arrays element-wise, it simply evaluates as True if all values in the array are True, or False if not. The numpy function `array_equal` returns True if two arrays have the same shape and elements.
+>>
+>> ~~~
+>> def test_center_of_mass(test_molecule):
+>>     symbols = np.array(['C', 'H', 'H', 'H', 'H'])
+>>     coordinates = np.array([[1,1,1], [2.4,1,1], [-0.4, 1, 1], [1, 1, 2.4], [1, 1, -0.4]])
+>> 
+>>     center_of_mass = molecool.calculate_center_of_mass(symbols, coordinates)
+>> 
+>>     expected_center = np.array([1,1,1])
+>> 
+>>     assert np.array_equal(center_of_mass, expected_center)
+>> ~~~
+>> {: .language-python}
+> {: .solution}
+>
+> Below is an implementation of the function which meets the specification outlined by the test.
+>
+>> ## Function Implementation
+>> ~~~
+>> def calculate_center_of_mass(symbols, coordinates):
+>>    """Calculate the center of mass of a molecule.
+>>    
+>>    The center of mass is weighted by each atom's weight.
+>>    
+>>    Parameters
+>>    ----------
+>>    symbols : list
+>>        A list of elements for the molecule
+>>    coordinates : np.ndarray
+>>        The coordinates of the molecule.
+>>    
+>>    Returns
+>>    -------
+>>    center_of_mass: np.ndarray
+>>        The center of mass of the molecule.
+>>
+>>    Notes
+>>    -----
+>>    The center of mass is calculated with the formula
+>>    
+>>    .. math:: \\vec{R}=\\frac{1}{M} \\sum_{i=1}^{n} m_{i}\\vec{r_{}i}
+>>    
+>>    """
+>>
+>>    total_mass = calculate_molecular_mass(symbols)
+>>    
+>>    mass_array = np.zeros([len(symbols), 1])
+>>    
+>>    for i in range(len(symbols)):
+>>        mass_array[i] = atom_weights[symbols[i]]
+>>    
+>>    center_of_mass = sum(coordinates * mass_array) / total_mass
+>>    
+>>    return center_of_mass
+>> ~~~
+>> {: .language-python}
+> {: .solution}
+{: .challenge}
 
 ## Edge and Corner Cases
 
@@ -464,55 +537,163 @@ When two or more edge cases are combined, it is called a corner case. If a funct
 
 ### Pytest Fixtures
 
+In your `test_molecule` module, you may have noticed that you kept having to create coordinates and symbols over and over again in each test. For this particular case, you could use a global variable, but a better approach is to create something called a `pytest fixture`. 
+
 Fixtures are resources that tests can repeatedly request to use. Fixtures can be used for dependency injection (a way of passing or supplying resources from one object to another) which help decouple the code and make it cleaner.
 
-To use fixtures, we need to import `pytest`. Fixtures can be defined as methods, where the name of the method is the name of this resource, and
-the returned data is its value. For this example:
+To use fixtures, we need to import `pytest` and use the `@pytest.fixture` decorator. Fixtures can be defined as methods, where the name of the method is the name of this resource, and the returned data is its value.
 
 ~~~
 @pytest.fixture
-def num_list_3():
-    return [1, 2, 3, 4, 5]
+def methane_molecule():
+    symbols = np.array(['C', 'H', 'H', 'H', 'H'])
+    coordinates = np.array([[1,1,1], [2.4,1,1], [-0.4, 1, 1], [1, 1, 2.4], [1, 1, -0.4]])
+    return symbols, coordinates
 ~~~
 {: .python}
 
-we defined a fixture named `num_list_3` which will have the value `[1, 2, 3, 4, 5]`. Now, any test
-method can request this fixture by adding its name to its input argument as follows.
+we defined a fixture named `methane_molecule` which has symbols and coordinates. Now, any test
+method can request this fixture by adding its name to its input argument. For example, our `test_molecular_mass` function becomes.
 
 ~~~
-def test_mean(num_list_3):
-    assert mean(num_list_3) == 3.0
+def test_molecular_mass(methane_molecule):
+    symbols, coordinates = methane_molecule
+    
+    calculated_mass = molecool.calculate_molecular_mass(symbols)
+
+    actual_mass = molecool.atom_data.atom_weights['C'] + molecool.atom_data.atom_weights['H'] +\
+         molecool.atom_data.atom_weights['H'] + molecool.atom_data.atom_weights['H'] + molecool.atom_data.atom_weights['H']
+
+    assert actual_mass == calculated_mass
 ~~~
 {: .python}
 
 Fixtures can be reused by other tests too. Also, test methods can request multiple fixtures.
 
+> ## Check Your Understanding
+> What other tests could we use our fixtures in?
+>> ## Answer
+>> We could also use this fixture in `test_build_bond_list`, and `test_center_of_mass`.
+> {: .solution}
+{: .challenge}
+
+After filling in your fixture to other tests, your `test_molecule` file should look something like this.
+
+~~~
+"""
+Testing for molecule module
+"""
+
+import molecool
+import pytest
+import sys
+
+import numpy as np
+import os
+
+@pytest.fixture
+def methane_molecule():
+    symbols = np.array(['C', 'H', 'H', 'H', 'H'])
+    coordinates = np.array([[1,1,1], [2.4,1,1], [-0.4, 1, 1], [1, 1, 2.4], [1, 1, -0.4]])
+    return symbols, coordinates
+
+def test_build_bond_list(methane_molecule):
+    symbols, coordinates = methane_molecule
+
+    bonds = molecool.build_bond_list(coordinates)
+
+    assert len(bonds) == 4
+
+    for atoms, bonds in bonds.items():
+        assert bonds == 1.4
+
+def test_molecular_mass(methane_molecule):
+    symbols, coordinates = methane_molecule
+    
+    calculated_mass = molecool.calculate_molecular_mass(symbols)
+
+    actual_mass = molecool.atom_data.atom_weights['C'] + molecool.atom_data.atom_weights['H'] +\
+         molecool.atom_data.atom_weights['H'] + molecool.atom_data.atom_weights['H'] + molecool.atom_data.atom_weights['H']
+
+    assert actual_mass == calculated_mass
+
+def test_build_bond_list_failure():
+    coordinates = np.array([])
+    
+    with pytest.raises(ValueError):
+        molecool.build_bond_list(coordinates)
+
+def test_center_of_mass(methane_molecule):
+    symbols, coordinates = methane_molecule
+
+    center_of_mass = molecool.calculate_center_of_mass(symbols, coordinates)
+
+    expected_center = np.array([1,1,1])
+    
+    assert np.array_equal(center_of_mass, expected_center)
+~~~
+{: .language-python}
+
+> ## Using fixtures across different test files
+> If during implementing your tests you realize that you want to use a fixture function from multiple test files you can move it to a conftest.py file. You don’t need to import the fixture you want to use in a test, it automatically gets discovered by pytest. Read more about this [here](https://www.tutorialspoint.com/pytest/pytest_conftest_py.htm).
+{: .callout}
 
 ### Pytest Parametrize
 
-The built-in `pytest.mark.parametrize` decorator enables parametrization of arguments for a test function.
-Here is a typical example of a test function that implements checking that a certain input leads to an expected output.
+For some of our functions like `calculate_distance` or `calculate_angle`, we have only tested one measurement so far. This is not very complete, and we may be missing testing edge cases. You may think of writing another test where you change the values which you input into the calculation. This is definitely something you can do, but `pytest` has a feature which makes it easy to run a test with multiple inputs/values.
+
+This is called the `pytest.mark.parametrize` decorator. The syntax for this decorator is
 
 ~~~
-import pytest
-import numpy as np
-
-@pytest.mark.parametrize("num_list, expected_mean" , [
-    ([1, 2, 3, 4, 5], 3),
-    ([0, 2, 4, 6], 3),
-    ([1, 2, 3, 4], 2.5),
-    (list(range(1, 1000000)), 1000000/2.0)
+@pytest.mark.parametrize("variable_name1, variable_name2, ...variable_nameN, expected_answer", [
+    (variable_value1, variable_value2, ...variable_valueN, expected_answer_value),
+    (variable_value1, variable_value2, ...variable_valueN, expected_answer_value), ...
 ])
-
-def test_many(num_list, expected_mean):
-    # assert mean(num_list) == expected_mean
-    assert np.isclose(mean(num_list), expected_mean, 1e-6)
+def test_name(variable_name1, variable_name2, ... variable_nameN, expected_answer):
 ~~~
-{: .python}
+{: .language-python}
+Where each line in the middle (in parenthesis) gives a set of values for the test. Then, these variables are passed to the test written under the decorator.
 
-Here, the @parametrize decorator defines four different (test_input, expected) tuples
-so that the `test_many` function will run four times using them in turn.
-Here, we used the `numpy` method `isclose` to compare float values within the range `1e-6`.
+For example, for testing our `calculate_angle` function, we might test several angles at one time.
+
+~~~
+@pytest.mark.parametrize("p1, p2, p3, expected_angle", [
+    (np.array([np.sqrt(2)/2, np.sqrt(2)/2, 0]), np.array([0, 0, 0]), np.array([1, 0, 0]), 45),
+    (np.array([0, 0, -1]), np.array([0, 1, 0]), np.array([1, 0, 0]), 60  ),
+    (np.array([np.sqrt(3)/2, (1/2), 0]), np.array([0, 0, 0]), np.array([1, 0, 0]), 30),
+])
+def test_calculate_angle_many(p1, p2, p3, expected_angle):
+
+    calculated_angle = molecool.calculate_angle(p1, p2, p3, degrees=True)
+
+    assert expected_angle == pytest.approx(calculated_angle), F'{calculated_angle} {expected_angle}'
+~~~
+{: .language-python}
+
+Run these tests, but this time add another special option to pytest `-k` which allows you to specify the name of the test you want to run.
+
+~~~
+$ pytest -v -k "test_calculate_angle_many"
+~~~
+{: .language-bash}
+
+~~~
+============================================================= test session starts =============================================================
+platform darwin -- Python 3.7.3, pytest-5.2.1, py-1.8.0, pluggy-0.13.0 -- /Users/jessica/miniconda3/envs/molssi_devops/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/jessica/lessons/molecool
+collected 14 items / 11 deselected / 3 selected                                                                                               
+
+molecool/tests/test_measure.py::test_calculate_angle_many[p10-p20-p30-45] PASSED                                                        [ 33%]
+molecool/tests/test_measure.py::test_calculate_angle_many[p11-p21-p31-60] PASSED                                                        [ 66%]
+molecool/tests/test_measure.py::test_calculate_angle_many[p12-p22-p32-30] PASSED                                                        [100%]
+
+====================================================== 3 passed, 7 deselected in 0.44s =======================================================
+~~~
+{: .output}
+
+Running this test resulted in three different tests with three different values.
+
 
 To get all combinations of multiple parametrized arguments you can stack parametrize decorators:
 
@@ -533,109 +714,91 @@ As our package changes over time, we want to make sure that the examples in our 
 Luckily, `pytest` has a feature that will look for examples in docstrings and run them as tests.
 
 `pytest` searches the docstrings for the Python shell code, which it executes and compares to the outputs in the docstring.
-For example, in the docstring of our function `title_case` we have:
+For example, in the docstring of our function `calculate_distance` we have:
 
 ~~~
->>> title_case('ThIS is a STRinG to BE ConVerTeD.')
-'This Is A String To Be Converted.'
+>>> r1 = np.array([0, 0, 0])
+>>> r2 = np.array([0, 0.1, 0])
+>>> calculate_distance(r1, r2)
+0.1
 ~~~
 {: .language-python}
 
-`pytest` will find and execute `title_case('ThIS is a STRinG to BE ConVerTeD.')`.
-If the output is not `'This Is A String To Be Converted.'`, `pytest` will treat the test as a failure.
+`pytest` will find and execute this code (indicated by `>>>`).
+If the output is not `0.1`, `pytest` will treat the test as a failure.
 
-From the main `molssi_devops` directory, we can test the examples in the docstrings of `util.py`:
-
+We can test docstrings by adding the option `--doctest-modules`. If you are in the top level of your project, you will have to also give the name of the project folder (which is `molecool`) after the option.
 ~~~
-$ pytest -v --doctest-modules molssi_devops/util.py
+$ pytest -v --doctest-modules molecool
 ~~~
 {: .language-bash}
 
 ~~~
-================================================= test session starts ==================================================
-platform darwin -- Python 3.6.7, pytest-4.4.1, py-1.8.0, pluggy-0.9.0 -- /Users/jets/miniconda3/envs/omp_mpi/bin/python
+=========================================================================== test session starts ===========================================================================
+platform darwin -- Python 3.7.3, pytest-5.2.1, py-1.8.0, pluggy-0.13.0 -- /Users/jessica/miniconda3/envs/molssi_devops/bin/python
 cachedir: .pytest_cache
-rootdir: /Users/jets/Google Drive/research/MolSSI/CU_Boulder_Workshop/molssi_devops
-plugins: cov-2.6.1
-collected 1 item                                                                                                       
+rootdir: /Users/jessica/lessons/molecool
+collected 11 items                                                                                                                                                        
 
-molssi_devops/util.py::molssi_devops.util.title_case PASSED                                                      [100%]
+molecool/measure.py::molecool.measure.calculate_distance PASSED                                                                                                     [  9%]
+molecool/tests/test_measure.py::test_molecool_imported PASSED                                                                                                       [ 18%]
+molecool/tests/test_measure.py::test_calculate_distance PASSED                                                                                                      [ 27%]
+molecool/tests/test_measure.py::test_calculate_angle_90 PASSED                                                                                                      [ 36%]
+molecool/tests/test_measure.py::test_calculate_angle_many[p10-p20-p30-45] PASSED                                                                                    [ 45%]
+molecool/tests/test_measure.py::test_calculate_angle_many[p11-p21-p31-60] PASSED                                                                                    [ 54%]
+molecool/tests/test_measure.py::test_calculate_angle_many[p12-p22-p32-30] PASSED                                                                                    [ 63%]
+molecool/tests/test_molecule.py::test_build_bond_list_default PASSED                                                                                                [ 72%]
+molecool/tests/test_molecule.py::test_molecular_mass PASSED                                                                                                         [ 81%]
+molecool/tests/test_molecule.py::test_build_bond_list_failure PASSED                                                                                                [ 90%]
+molecool/tests/test_molecule.py::test_center_of_mass PASSED                                                                                                         [100%]
 
-=============================================== 1 passed in 0.10 seconds ===============================================
+=========================================================================== 11 passed in 0.42s ============================================================================
 ~~~
 {: .output}
 
-If we change the example in the `title_case` docstring to:
+The first test run is now a test of the docstring for the `calculate_distance` function.
+
+
+Change the expected answer to 0.2 in the docstring and re-run the test to get the following error:
 
 ~~~
->>> title_case('ThIS is a STRinG to BE ConVerTeD.')
-'This Is A String To Be Converted'
-~~~
-{: .language-python}
-
-and re-run the test we get the following error:
-
-~~~
-================================================= test session starts ==================================================
-platform darwin -- Python 3.6.7, pytest-4.4.1, py-1.8.0, pluggy-0.9.0 -- /Users/jets/miniconda3/envs/omp_mpi/bin/python
+=========================================================================== test session starts ===========================================================================
+platform darwin -- Python 3.7.3, pytest-5.2.1, py-1.8.0, pluggy-0.13.0 -- /Users/jessica/miniconda3/envs/molssi_devops/bin/python
 cachedir: .pytest_cache
-rootdir: /Users/jets/Google Drive/research/MolSSI/CU_Boulder_Workshop/molssi_devops
-plugins: cov-2.6.1
-collected 1 item                                                                                                       
+rootdir: /Users/jessica/lessons/molecool
+collected 11 items                                                                                                                                                        
 
-molssi_devops/util.py::molssi_devops.util.title_case FAILED                                                      [100%]
+molecool/measure.py::molecool.measure.calculate_distance FAILED                                                                                                     [  9%]
+molecool/tests/test_measure.py::test_molecool_imported PASSED                                                                                                       [ 18%]
+molecool/tests/test_measure.py::test_calculate_distance PASSED                                                                                                      [ 27%]
+molecool/tests/test_measure.py::test_calculate_angle_90 PASSED                                                                                                      [ 36%]
+molecool/tests/test_measure.py::test_calculate_angle_many[p10-p20-p30-45] PASSED                                                                                    [ 45%]
+molecool/tests/test_measure.py::test_calculate_angle_many[p11-p21-p31-60] PASSED                                                                                    [ 54%]
+molecool/tests/test_measure.py::test_calculate_angle_many[p12-p22-p32-30] PASSED                                                                                    [ 63%]
+molecool/tests/test_molecule.py::test_build_bond_list_default PASSED                                                                                                [ 72%]
+molecool/tests/test_molecule.py::test_molecular_mass PASSED                                                                                                         [ 81%]
+molecool/tests/test_molecule.py::test_build_bond_list_failure PASSED                                                                                                [ 90%]
+molecool/tests/test_molecule.py::test_center_of_mass PASSED                                                                                                         [100%]
 
-======================================================= FAILURES =======================================================
-_______________________________________ [doctest] molssi_devops.util.title_case ________________________________________
-010     String to be converted to title case
-011
-012   Returns
-013   -------
-014   ret: str
-015     String converted to title case.
-016
-017   Example
-018   -------
-019   >>> title_case('ThIS is a STRinG to BE ConVerTeD.')
+================================================================================ FAILURES =================================================================================
+______________________________________________________________ [doctest] molecool.measure.calculate_distance ______________________________________________________________
+015     Returns
+016     -------
+017     distance : float
+018         The distance between the two points.
+019     
+020     Examples
+021     --------
+022     >>> r1 = np.array([0, 0, 0])
+023     >>> r2 = np.array([0, 0.1, 0])
+024     >>> calculate_distance(r1, r2)
 Expected:
-    'This Is A String To Be Converted'
+    0.2
 Got:
-    'This Is A String To Be Converted.'
+    0.1
 
-/Users/jets/Google Drive/research/MolSSI/CU_Boulder_Workshop/molssi_devops/molssi_devops/util.py:19: DocTestFailure
-=============================================== 1 failed in 0.06 seconds ==============================================
-~~~
-{: .output}
-
-We can test multiple docstring examples at once and can even test the dosctring examples at the same time as our unit tests with:
-
-~~~
-pytest -v --doctest-modules molssi_devops
-~~~
-{: .language-bash}
-
-~~~
-================================================= test session starts =================================================
-platform darwin -- Python 3.6.7, pytest-4.4.1, py-1.8.0, pluggy-0.9.0 -- /Users/jets/miniconda3/envs/omp_mpi/bin/python
-cachedir: .pytest_cache
-rootdir: /Users/jets/Google Drive/research/MolSSI/CU_Boulder_Workshop/molssi_devops
-plugins: cov-2.6.1
-collected 12 items                                                                                                    
-
-molssi_devops/molssi_math.py::molssi_devops.molssi_math.mean PASSED                                             [  8%]
-molssi_devops/util.py::molssi_devops.util.title_case PASSED                                                     [ 16%]
-molssi_devops/tests/test_molssi_devops.py::test_molssi_devops_imported PASSED                                   [ 25%]
-molssi_devops/tests/test_molssi_math.py::test_many[num_list0-3] PASSED                                          [ 33%]
-molssi_devops/tests/test_molssi_math.py::test_many[num_list1-3] PASSED                                          [ 41%]
-molssi_devops/tests/test_molssi_math.py::test_many[num_list2-2.5] PASSED                                        [ 50%]
-molssi_devops/tests/test_molssi_math.py::test_many[num_list3-500000.0] PASSED                                   [ 58%]
-molssi_devops/tests/test_molssi_math.py::test_mean PASSED                                                       [ 66%]
-molssi_devops/tests/test_molssi_math.py::test_mean_type_error PASSED                                            [ 75%]
-molssi_devops/tests/test_molssi_math.py::test_zero_length PASSED                                                [ 83%]
-molssi_devops/tests/test_util.py::test_type_error PASSED                                                        [ 91%]
-molssi_devops/tests/test_util.py::test_title_case PASSED                                                        [100%]
-
-============================================== 12 passed in 0.25 seconds ==============================================
+/Users/jessica/lessons/molecool/molecool/measure.py:24: DocTestFailure
+====================================================================== 1 failed, 10 passed in 0.41s =======================================================================
 ~~~
 {: .output}
 
@@ -649,41 +812,44 @@ We already have everything we need for this since we installed `pytest-cov` earl
 We can assess our code coverage as follows:
 
 ~~~
-pytest --cov=molssi_devops
+pytest --cov=molecool
 ~~~
 {: .language-bash}
 
 ~~~
-================================================= test session starts =================================================
-platform darwin -- Python 3.6.7, pytest-4.4.1, py-1.8.0, pluggy-0.9.0
-rootdir: /Users/jets/Google Drive/research/MolSSI/CU_Boulder_Workshop/molssi_devops
-plugins: cov-2.6.1
-collected 10 items                                                                                                    
+=========================================================================== test session starts ===========================================================================
+platform darwin -- Python 3.7.3, pytest-5.2.1, py-1.8.0, pluggy-0.13.0
+rootdir: /Users/jessica/lessons/molecool
+plugins: cov-2.8.1
+collected 10 items                                                                                                                                                        
 
-molssi_devops/tests/test_molssi_devops.py .                                                                     [ 10%]
-molssi_devops/tests/test_molssi_math.py .......                                                                 [ 80%]
-molssi_devops/tests/test_util.py ..                                                                             [100%]
+molecool/tests/test_measure.py ......                                                                                                                               [ 60%]
+molecool/tests/test_molecule.py ....                                                                                                                                [100%]
 
----------- coverage: platform darwin, python 3.6.7-final-0 -----------
-Name                           Stmts   Miss  Cover
---------------------------------------------------
-molssi_devops/__init__.py          7      0   100%
-molssi_devops/molssi_math.py      17      7    59%
-molssi_devops/util.py              9      0   100%
---------------------------------------------------
-TOTAL                             33      7    79%
+---------- coverage: platform darwin, python 3.7.3-final-0 -----------
+Name                      Stmts   Miss  Cover
+---------------------------------------------
+molecool/__init__.py          9      0   100%
+molecool/atom_data.py         2      0   100%
+molecool/io/__init__.py       2      0   100%
+molecool/io/pdb.py           14     12    14%
+molecool/io/xyz.py           14     11    21%
+molecool/measure.py          12      1    92%
+molecool/molecule.py         28      1    96%
+molecool/visualize.py        33     28    15%
+---------------------------------------------
+TOTAL                       114     53    54%
 
 
-============================================== 10 passed in 0.36 seconds ==============================================
+=========================================================================== 10 passed in 0.70s ============================================================================
 ~~~
 {: .output}
 
 The output shows how many statements (i.e. not comments) are in a file, how many weren't executed during testing, and the percentage of statements that were.
-For the example above, we have perfect coverage of `util.py`, but not `molssi_math.py`.
 
 To improve our coverage, we also want to see exactly which lines we missed and we can determine this using the `.coverage` file produced by `pytest`.
 Unfortunately, this strategy becomes impractical when we are working with anything larger than our test package because the `.coverage` file becomes too convoluted to read.
-We will need more tools to help us determine how to improve out tests and that will be the subject of Code Coverage pt. 2, which we will cover in Episode 6.
+We will need more tools to help us determine how to improve out tests and that will be the subject of Code Coverage pt. 2, which we will cover later in the workshop.
 
 > ## Do we need to get 100% coverage?
 >
