@@ -116,7 +116,7 @@ molecool/tests/test_molecool.py .                    [100%]
 ~~~
 {: .output}
 
-Here, `pytest` has looked through our directory and its subdirectories for anything matching `test*`. It found the `tests` folder, and within that folder, it found the file `test_functions.py`. It then executed the function `test_molecool_imported` within that module. Since our `assertion` was `True`, our did not result in an erorr and the test passed.
+Here, `pytest` has looked through our directory and its subdirectories for anything matching `test*`. It found the `tests` folder, and within that folder, it found the file `test_functions.py`. It then executed the function `test_molecool_imported` within that module. Since our `assertion` was `True`, our test did not result in an error and the test passed.
 
 We can see the names of the tests `pytest` ran by adding a `-v` tag to the pytest command.
 
