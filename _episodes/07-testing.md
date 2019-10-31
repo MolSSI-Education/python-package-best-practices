@@ -42,7 +42,7 @@ resources unless you are testing a function directly related to that resource.
 - **Integration tests**: this is a more holistic approach where you test the interface
 between modules, and how they combine and integrate together.
 
-- **System tests**: where you test your system as a whole to check if meets all the
+- **System tests**: where you test your system as a whole to check if it meets all the
 requirements.
 
 Another important type of testing is **Regression tests**. In Regression tests,
