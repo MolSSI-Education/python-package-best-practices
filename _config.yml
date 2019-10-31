@@ -6,7 +6,7 @@
 carpentry: "swc"
 
 # Overall title for pages.
-title: "CMS Python Package Development"
+title: "Python Package Best Practices"
 
 # Contact email address.
 email: "mailto:education@molssi.org"
@@ -24,10 +24,10 @@ swc_pages: "https://swcarpentry.github.io"
 lc_site: "http://librarycarpentry.github.io/"
 molssi_site: "http://molssi.org/"
 template_repo: "https://github.com/carpentries/styles"
-example_repo: "https://github.com/MolSSI-Education/CMS-Python-DevOps"
-example_site: "https://molssi-education.github.io/CMS-Python-DevOps/"
-workshop_repo: "https://github.com/MolSSI-Education/CMS-Python-DevOps"
-workshop_site: "https://molssi-education.github.io/CMS-Python-DevOps/"
+example_repo: "https://github.com/MolSSI-Education/python-package-best-practices"
+example_site: "https://molssi-education.github.io/python-package-best-practices/"
+workshop_repo: "https://github.com/MolSSI-Education/python-package-best-practices"
+workshop_site: "https://molssi-education.github.io/python-package-best-practices/"
 training_site: "https://carpentries.github.io/instructor-training"
 
 # Surveys.
