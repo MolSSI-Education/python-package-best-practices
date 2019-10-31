@@ -71,7 +71,7 @@ $ pip install -U pytest-cov
 
 ### Running our first test
 
-When we run `pytest`, it will look for directories and files which start with `test` or `test_`. It then looks inside of those files and executes and functions that begin with the word `test_`. This syntax lets pytest know that these functions are tests. If these functions do not result in an error, `pytest` counts the function as passing. If an error occurs, the test fails.
+When we run `pytest`, it will look for directories and files which start with `test` or `test_`. It then looks inside of those files and executes any functions that begin with the word `test_`. This syntax lets pytest know that these functions are tests. If these functions do not result in an error, `pytest` counts the function as passing. If an error occurs, the test fails.
 
 CookieCutter has already created a test for us. Let's examine this file. In a text editor, open `molecool/tests/test_molecool.py`.
 
