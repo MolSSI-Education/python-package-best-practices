@@ -19,7 +19,7 @@ yourself, within a small group, or a large community project. If your project
 is small and personal you may want to consider each topic in detail before
 implementing while for large community projects each topic is quite crucial.
 
-**This lesson is under development, please report issues to the [CMS Python DevOps repository]**
+**This lesson is under development, please report issues to the [workshop repository]**
 
 {% include links.md %}
-[CMS Python DevOps repository]: https://github.com/MolSSI-Education/CMS-Python-DevOps
+[ workshop repository]: https://github.com/MolSSI-Education/python-package-best-practices
