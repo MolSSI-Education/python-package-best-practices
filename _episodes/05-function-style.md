@@ -13,8 +13,8 @@ keypoints:
 - "All functions and modules should be documented with docstrings."
 ---
 
-# Adding a function to our package
-We will now add a new function to our Python package. Open your `molecool/io/pdb.py` module in a text editor. Our new function will open and read coordinates and atom symbols from a pdb file.
+# Editing function to our package
+Let's look at one of the functions in our package. Open your `molecool/io/pdb.py` module in a text editor. The function `open_pdb` reads coordinates and atom symbols from a pdb file.
 
 ~~~
 def open_pdb(f_loc):
@@ -32,7 +32,7 @@ def open_pdb(f_loc):
 ~~~
 {: .language-python}
 
-This function should now be accessible when we execute it in the interactive Python interpreter. Test this by opening the interactive Python interpreter and typing the following
+This function is accessible when we execute it in the interactive Python interpreter. Test this by opening the interactive Python interpreter and typing the following
 
 ~~~
 >>> import os
@@ -55,7 +55,7 @@ You can also see the atomic coordinates by executing:
 ~~~
 {: .language-python}
 
-Hooray! We've successfully implemented and are able to use our own custom function! However, our function might be hard to read and understand for others so we might want to consider styling it properly.
+Hooray! It seems like this function works! However, our function might be hard to read and understand for others so we might want to consider styling it properly.
 
 ## Coding Style
 
@@ -70,32 +70,82 @@ For Python, the common convention for code style is called [PEP8]. PEP8 is a doc
 > You can read more about PEPs in [Python's documentation](https://www.python.org/dev/peps/pep-0001/). PEP1 outlines what a PEP is and how they work.
 {: .callout}
 
-> ## Exercise
-> Let's reformat our `open_pdb` function to follow PEP8 styling.
->> ## Solution
->> ~~~
->> def open_pdb(file_location):
->>     with open(file_location) as f:
->>         data = f.readlines()
->>
->>     coordinates = []
->>     symbols = []
->>
->>     for line in data:
->>         if 'ATOM' in line[0:6] or 'HETATM' in line[0:6]:
->>             symbols.append(line[76:79].strip())
->>
->>             coords = [float(x) for x in line[30:55].split()]
->>             coordinates.append(coords)
->>
->>     coords = np.array(coordinates)
->>     symbols = np.array(symbols)
->>
->>     return symbols, coords
->> ~~~
->> {: .language-python}
-> {: .solution}
-{: .challenge}
+PEP8 tells us several things about styling that will make our code easier to read. Let's consider some of these and how they might change our function.
+
+## Variable names
+PEP8 recommends that
+
+> Never use the characters 'l' (lowercase letter el), 'O' (uppercase letter oh), or 'I' (uppercase letter eye) as single character variable names.
+ 
+> Function names should be lowercase, with words separated by underscores as necessary to improve readability.
+
+Though not specifically reference in PEP8, we also recommend making all variable names descriptive so that someone reading your code can easily understand what the variable is. 
+
+Consider a few variable we have defined in our function (`c`, `sym`, `c2`, `l`). Is it clear what these are or mean? We can change them to be more descriptive and readable.
+
+~~~
+def open_pdb(file_location):
+    with open(file_location) as f:
+        data = f.readlines()
+    coordinates = []
+    symbols = []
+    for line in data:
+        if 'ATOM' in line[0:6] or 'HETATM' in line[0:6]:
+            symbols.append(line[76:79].strip())
+            atom_coords = [float(x) for x in line[30:55].split()]
+            coordinates.append(atom_coords)
+    coords = np.array(coordinates)
+    return symbols, coords
+~~~
+{: .language-python}
+
+For this rewrite of the function, we have made the following changes in variable names
+
+- `f_loc`  ---> `file_location`
+- `c` ---> `coordinates`
+- `sym` ---> `symbols`
+- `l` ---> `line`
+- `c2` ---> `atom_coords`
+
+These variable names follow PEP8 convention and are much more descriptive and readable. 
+
+## Indentation
+
+PEP8 indicates that indentation should be 4 spaces per indentation level. Our code meets this criteria.
+
+## Whitespace
+
+> Always surround these binary operators with a single space on either side: assignment (=), augmented assignment (+=, -= etc.), comparisons (==, <, >, !=, <>, <=, >=, in, not in, is, is not), Booleans (and, or, not).
+
+This means that every time we have an expression assigning a variable, it should be `variable = value` instead of `variable=value`.
+
+You can also use whitespace to separate ideas within a function or code.
+
+> Use blank lines in functions, sparingly, to indicate logical sections.
+
+Using these rules, our function becomes
+
+~~~
+def open_pdb(file_location):
+    
+    with open(file_location) as f:
+        data = f.readlines()
+
+    coordinates = []
+    symbols = []
+    for line in data:
+        if 'ATOM' in line[0:6] or 'HETATM' in line[0:6]:
+            symbols.append(line[76:79].strip())
+            atom_coords = [float(x) for x in line[30:55].split()]
+            coordinates.append(coords)
+
+    coords = np.array(coordinates)
+    symbols = np.array(symbols)
+
+    return symbols, coords
+~~~
+{: .language-python}
+
 Now that we've written a new function in our project, we should commit our changes and push to GitHub.
 
 ~~~
@@ -104,6 +154,8 @@ $ git commit -m "add open_pdb function to molecool"
 $ git push origin master
 ~~~
 {: .bash}
+
+
 
 > ## Exercise
 > Below is the `calculate_distance` that takes two points in 3D space and returns the distance between them. Even though it works just fine, the variable names are not very clear and it doesn't follow PEP8 styling. Take a couple of minutes to reformat this function and add it to `molecool/measure.py` module.
@@ -176,10 +228,21 @@ def calculate_distance(rA, rB):
     -------
     distance : float
         The distance between the two points.
+    
+    Examples
+    --------
+    >>> r1 = np.array([0, 0, 0])
+    >>> r2 = np.array([0, 0.1, 0])
+    >>> calculate_distance(r1, r2)
+    0.1
     """
+
     dist_vec = (rA - rB)
     distance = np.linalg.norm(dist_vec)
+    
     return distance
+
+    
 ~~~
 {: .language-python}
 
@@ -222,10 +285,12 @@ This section contains a description of the function arguments - keywords and exp
 The parameters for our `calculate_distance` function is shown below:
 
 ~~~
+"""
 Parameters
 ----------
 rA, rB : np.ndarray
     The coordinates of each point.
+"""
 ~~~
 {: .language-python}
 
@@ -237,34 +302,61 @@ This section is very similar to the `Parameters` section above. In contrast to t
 For our `calculate_distance` function, our `Returns` section looks like the following.
 
 ~~~
+"""
 Returns
 -------
 distance : float
     The distance between the two points.
+"""
 ~~~
 {: .language-python}
 
 #### 5. Examples
 This is an optional section to show examples of functionality. This section is meant to illustrate usage. Though this section is optional, its use is strongly encouraged.
 
+Consider the example we have in our docstring
+
 ~~~
-Example
--------
->>> calculate_distance([0.0, 0.0, 0.0], [3.0, 0.0, 0.0])
-3.0
+"""
+Examples
+--------
+>>> r1 = np.array([0, 0, 0])
+>>> r2 = np.array([0, 0.1, 0])
+>>> calculate_distance(r1, r2)
+0.1
+"""
 ~~~
+{: .language-python}
+
+It is important that your Examples in docstrings be working Python. We will see in the `testing` lesson how we can run automatic tests on our docstrings, and in the `documentation` lesson, we will see how we can display examples in documentation to our users. 
+
+We have three lines of code for our example. In examples, lines of code begin with `>>>`. The first two lines define numpy arrays that are used in our `calculate_distance` function. Note that `r1` and `r2` must be numpy arrays (as indicated by our `Parameters` section), or our Example will not give valid Python code (our function would erorr if we ran it). On the last line, you give the output (with no `>>>` in front.)
 
 Now that we've written a function in our project, we should commit our changes and push to GitHub.
 
 ~~~
 $ git add .
-$ git commit -m "add calculate_distance function to molecool"
+$ git commit -m "edit style of calculate_distance function"
 $ git push origin master
 ~~~
 {: .bash}
 
 > ## Exercise
 > Let's add a docstring to our `open_pdb` function including short summary, extended summary, parameters, and returns sections.
+>
+> Start with the following docstring. You will need to add the `Parameters` and `Returns` sections and edit the one-line description. We have filled in an extended summary.
+> 
+> ~~~
+> def open_pdb(file_location):
+>     """One line description here.
+>
+>     The pdb file must specify the atom elements in the last column, and follow
+>     the conventions outlined in the PDB format specification.
+>     
+>     """
+> ~~~ 
+> {: .language-python}
+> 
 >> ## Solution
 >> ~~~
 >> def open_pdb(file_location):
