@@ -321,22 +321,52 @@ Here, we are asserting that the correct number of bonds were found, and next we 
 ### Testing Expected Exceptions
 
 If you expect your code to raise exceptions, you can test this behavior with pytest.
-You need to import `pytest` in your testing modules in order to do this. 
 
-In our `build_bond_list` function, we have added a check on the input that ensures that the coordinates array is not empty. If an empty array or list is passed, a `ValueError` is raised. Using pytest, we can test this behavior
+In our `calculate_angle` function, our inputs must be numpy arrays, or the function will error.
 
-In the `test_molecule.py` file, add the following.
+Consider this example
 
 ~~~
-def test_type_error():
-    test_case = [[]
-
-    with pytest.raises(ValueError):
-        molecool.build_bond_list(test_case)
+>>> import molecool
+>>> r1 = [0 ,0, 0]
+>>> r2 = [0, 0, 1]
+>>> molecool.calculate_distance(r1, r2)
 ~~~
 {: .language-python}
 
-The test will pass if the `build_bond_list` method raises a 'TypeError', otherwise, the test will fail.
+~~~
+ TypeError: unsupported operand type(s) for -: 'list' and 'list'
+~~~
+{: .output}
+
+We can add a type check to the function so that a more informative message is given to the user.
+
+Add the following to your `calculate_distance` function.
+
+~~~
+if not isinstance(rA, np.ndarray) or not isinstance(rB, np.ndarray):
+        raise TypeError("Input must be type np.ndarray!")
+
+~~~
+
+Now, if `rA` or `rB` is not a numpy array, we raise a TypeError and print a message.
+
+We can test that this TypeError is raised in our testing functions.
+
+In the `test_measure.py` file, add the following.
+
+~~~
+def test_calculate_distance():
+
+    r1 = [0, 0, 0]
+    r2 = [1, 0, 0]
+
+    with pytest.raises(TypeError):
+        molecool.calculate_distance(r1, r2)
+~~~
+{: .language-python}
+
+The test will pass if the `calculate_distance` method raises a 'TypeError', otherwise, the test will fail.
 
 ## Test Driven Development - TDD - Homework Assignment
 
