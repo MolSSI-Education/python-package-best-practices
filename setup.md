@@ -212,7 +212,7 @@ For this workshop, we will create the structure of our Python package using the 
 First, switch to your environment for this workshop if you are not in it.
 
 ~~~
-$ conda activate molssi_devops
+$ conda activate molssi_best_practices
 ~~~
 {: .language-bash}
 
