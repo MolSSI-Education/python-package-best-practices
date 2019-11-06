@@ -372,6 +372,25 @@ In this case, the `.` is saying look within the package `matplotlib` and grab th
 > {: .solution}
 {: .challenge}
 
+### Fixing Package Imports
+Currently we can import any of the functions we need from our modules and from the `io` subpackage. However, there is a bit of hassle in importing the functions from the modules within the `io` subpackage. Since the package contains submodules, in order to import `open_xyz`, we need to do the following:
+```
+from molecool.io.xyz import open_xyz
+```
+{: .language-python}
+This will work, however, the main reason we broke up the modules within the `io` package was for development convenience. Right now this has come at the cost of slightly more complicated import statements to get access to any function. To correct this, we can create an `__init__.py` file for our subpackage to handle some of the imports for us.
+
+Within the `io` directory, create a new file called `__init__.py`. Open that file within your desired editor and add the following two lines:
+```
+from .pdb import open_pdb
+from .xyz import open_xyz, write_xyz
+```
+{: .language-python}
+The `__init__.py` file contains python code that is called when a module is imported. These lines are relative import statments to the functions within the `io` package. Think of them as pointers to the functions, i.e. when we look at the `io` package, it directs us to the location of the underlying functions, so we do not need to look within each submodule. This allows us to use the following import statement to access the functions:
+```
+from molecool.io import open_pdb, open_xyz, write_xyz
+```
+{: .language-python}
 
 [package setup]: https://molssi-education.github.io/python-package-best-practices/01-package-setup/index.html
 [PEP8]: https://www.python.org/dev/peps/pep-0008/
