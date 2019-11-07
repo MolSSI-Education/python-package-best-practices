@@ -107,7 +107,7 @@ You should see an output similar to the following.
 ~~~
 ============================= test session starts ==============================
 platform darwin -- Python 3.6.8, pytest-3.6.4, py-1.5.4, pluggy-0.6.0
-rootdir: /Users/jessica/dev/molssi_devops, inifile:
+rootdir: /Users/jessica/dev/molecool, inifile:
 collected 1 item
 
 molecool/tests/test_molecool.py .                    [100%]
@@ -132,7 +132,7 @@ additional command line arguments to [explore](https://docs.pytest.org/en/latest
 ============================= test session starts ==============================
 platform darwin -- Python 3.6.8, pytest-3.6.4, py-1.5.4, pluggy-0.6.0 -- /Users/jessica/miniconda3/bin/python
 cachedir: .pytest_cache
-rootdir: /Users/jessica/dev/molssi_devops, inifile:
+rootdir: /Users/jessica/dev/molecool, inifile:
 collected 1 item
 
 molecool/tests/test_molecool.py::test_molecool_imported PASSED [100%]
@@ -155,7 +155,7 @@ Unit and regression test for the measure module.
 """
 
 # Import package, test suite, and other packages as needed
-import molssi_devops
+import molecool
 import pytest
 import sys
 
@@ -190,8 +190,8 @@ platform darwin -- Python 3.7.3, pytest-5.2.1, py-1.8.0, pluggy-0.13.0
 rootdir: /Users/jessica/lessons/molecool
 collected 2 items
 
-molssi_devops/tests/test_molecool.py::test_molecool_imported PASSED [ 50%]
-molssi_devops/tests/test_measure.py::test_calculate_distance PASSED           [100%]
+molecool/tests/test_molecool.py::test_molecool_imported PASSED [ 50%]
+molecool/tests/test_measure.py::test_calculate_distance PASSED           [100%]
 
 =========================== 2 passed in 0.07 seconds ===========================
 ~~~
@@ -215,8 +215,8 @@ platform darwin -- Python 3.7.3, pytest-5.2.1, py-1.8.0, pluggy-0.13.0
 rootdir: /Users/jessica/lessons/molecool
 collected 2 items
 
-molssi_devops/tests/test_molecool.py::test_molecool_imported PASSED [ 50%]
-molssi_devops/tests/test_measure.py::test_calculate_distance FAILED           [100%]
+molecool/tests/test_molecool.py::test_molecool_imported PASSED [ 50%]
+molecool/tests/test_measure.py::test_calculate_distance FAILED           [100%]
 
 =========================== 2 passed in 0.07 seconds ===========================
 
@@ -709,7 +709,7 @@ $ pytest -v -k "test_calculate_angle_many"
 
 ~~~
 ============================================================= test session starts =============================================================
-platform darwin -- Python 3.7.3, pytest-5.2.1, py-1.8.0, pluggy-0.13.0 -- /Users/jessica/miniconda3/envs/molssi_devops/bin/python
+platform darwin -- Python 3.7.3, pytest-5.2.1, py-1.8.0, pluggy-0.13.0 -- /Users/jessica/miniconda3/envs/molecool/bin/python
 cachedir: .pytest_cache
 rootdir: /Users/jessica/lessons/molecool
 collected 14 items / 11 deselected / 3 selected                                                                                               
@@ -765,7 +765,7 @@ $ pytest -v --doctest-modules molecool
 
 ~~~
 =========================================================================== test session starts ===========================================================================
-platform darwin -- Python 3.7.3, pytest-5.2.1, py-1.8.0, pluggy-0.13.0 -- /Users/jessica/miniconda3/envs/molssi_devops/bin/python
+platform darwin -- Python 3.7.3, pytest-5.2.1, py-1.8.0, pluggy-0.13.0 -- /Users/jessica/miniconda3/envs/molecool/bin/python
 cachedir: .pytest_cache
 rootdir: /Users/jessica/lessons/molecool
 collected 11 items                                                                                                                                                        
@@ -793,7 +793,7 @@ Change the expected answer to 0.2 in the docstring and re-run the test to get th
 
 ~~~
 =========================================================================== test session starts ===========================================================================
-platform darwin -- Python 3.7.3, pytest-5.2.1, py-1.8.0, pluggy-0.13.0 -- /Users/jessica/miniconda3/envs/molssi_devops/bin/python
+platform darwin -- Python 3.7.3, pytest-5.2.1, py-1.8.0, pluggy-0.13.0 -- /Users/jessica/miniconda3/envs/molecool/bin/python
 cachedir: .pytest_cache
 rootdir: /Users/jessica/lessons/molecool
 collected 11 items                                                                                                                                                        
