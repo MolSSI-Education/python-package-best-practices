@@ -400,13 +400,13 @@ TDD has another benefit of never having false positives. If you ensure that your
 > This defines a function, inputs, and what the function should return.
 > Next, add  the following test into `test_molecule.py`.
 > ~~~
-> def test_molecular_mass(test_molecule):
+> def test_molecular_mass():
 >     symbols = ['C', 'H', 'H', 'H', 'H']
 >     
 >     calculated_mass = molecool.calculate_molecular_mass(symbols)
 > 
 >     actual_mass = molecool.atom_data.atom_weights['C'] + molecool.atom_data.atom_weights['H'] +\
->          molecool.atom_data.atom_weights['H'] + molecool.atom_data.atom_weights['H']
+>          molecool.atom_data.atom_weights['H'] + molecool.atom_data.atom_weights['H']+ molecool.atom_data.atom_weights['H']
 >     
 >     assert actual_mass == calculated_mass
 > ~~~
@@ -489,12 +489,12 @@ TDD has another benefit of never having false positives. If you ensure that your
 >
 > Notice that this test always passes. Even if we were to write our function, we would not know it was right.
 > 
-> Fix this test so that it fails. **Hint** - You will have to compare two arrays (look into the function `numpy.array_equal`)
+> Fix this test so that it fails. **Hint** - You will have to compare two arrays (look into numpy functions which compare two arrays.)
 >> ## Solution - Fixing the test
 >> The problem with `.all()` is that it does not compare arrays element-wise, it simply evaluates as True if all values in the array are True, or False if not. The numpy function `array_equal` returns True if two arrays have the same shape and elements.
 >>
 >> ~~~
->> def test_center_of_mass(test_molecule):
+>> def test_center_of_mass():
 >>     symbols = np.array(['C', 'H', 'H', 'H', 'H'])
 >>     coordinates = np.array([[1,1,1], [2.4,1,1], [-0.4, 1, 1], [1, 1, 2.4], [1, 1, -0.4]])
 >> 
