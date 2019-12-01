@@ -1,9 +1,9 @@
 Python Package Development
-==============
+==========================
 
-This repository contains lessons for the MolSSI Workshop "Best Practices in Python Package Development". To complete the lessons, navigate to the [lesson pages].
+This repository contains lessons for the MolSSI Workshop "Best Practices in Python Package Development". To complete the lessons, navigate to the [lesson pages]. Make sure to visit [setup] first to obtain lesson materials and install required software.
 
-This workshop is designed to take place in two days. At the end, all participants should have a repository on GitHub which implements [MolSSI's Best Practices] for a Python package. Depending on the level of students taking this course, all lessons may not be accomplished in two days. Workshops should cover at least lessons 1-6 (outlined below), with more potentially being added for more advanced groups.
+This workshop is designed to take place in one and a half to two days. Students begin the workshop with python code stored in a Jupyter notebook. During the workshop, we refactor and format the code into a Python package. At the end, all participants should have a repository on GitHub which implements [MolSSI's Best Practices] for a Python package. Depending on the level of students taking this course, all lessons may not be accomplished in two days. Workshops should cover at least lessons 1-6 (outlined below), with more potentially being added for more advanced groups.
 
 Lessons for this module were developed using the [Software Carpentry lesson template][styles],
 and is itself an example of the use of that template.
@@ -75,6 +75,7 @@ In brief:
 
 
 [cookiecutter]: https://github.com/MolSSI/cookiecutter-cms
+[setup]: https://molssi-education.github.io/python-package-best-practices/setup.html
 [collections]: https://jekyllrb.com/docs/collections/
 [conda-forge]: https://conda-forge.org/
 [editing-config]: https://carpentries.github.io/lesson-example/03-organization/
