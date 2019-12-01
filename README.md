@@ -3,7 +3,7 @@ Python Package Development
 
 This repository contains lessons for the MolSSI Workshop "Best Practices in Python Package Development". To complete the lessons, navigate to the [lesson pages].
 
-This workshop is designed to take place in one day. At the end, all participants should have a repository on GitHub which implements [MolSSI's Best Practices] for a Python package. Depending on the level of students taking this course, all lessons may not be accomplished in one day. Workshops should cover at least lessons 1-6 (outlined below), with more potentially being added for more advanced groups.
+This workshop is designed to take place in two days. At the end, all participants should have a repository on GitHub which implements [MolSSI's Best Practices] for a Python package. Depending on the level of students taking this course, all lessons may not be accomplished in two days. Workshops should cover at least lessons 1-6 (outlined below), with more potentially being added for more advanced groups.
 
 Lessons for this module were developed using the [Software Carpentry lesson template][styles],
 and is itself an example of the use of that template.
@@ -19,8 +19,8 @@ This workshop walks students through setting up, writing code, and setting up mu
 - [x] Python coding style, docstrings.
 - [x] Code collaboration on [GitHub] (Fork-PR workflow)
 - [x] Unit testing using [pytest].
-- [ ] Continuous integration using [travis-ci].
-- [ ] Documentation using [sphinx] and [readthedocs]
+- [x] Continuous integration using [travis-ci].
+- [x] Documentation using [sphinx] and [readthedocs]
 - [ ] Deploying packages on [conda-forge]
 
 ## Contributing to these lessons
@@ -81,7 +81,7 @@ In brief:
 [example-issues]: https://github.com/carpentries/lesson-example/issues/
 [github-pages]: https://help.github.com/articles/creating-project-pages-manually/
 [GitHub]: https://github.com
-[lesson pages]: https://molssi-education.github.io/CMS-Python-DevOps/
+[lesson pages]: https://molssi-education.github.io/python-package-best-practices/
 [issues]: https://github.com/carpentries/lesson-example/issues
 [MolSSI's Best Practices]: https://molssi.org/education/best-practices/
 [pytest]: https://pytest.org
