@@ -248,7 +248,7 @@ def calculate_distance(rA, rB):
 
 
 ## Docstrings
-We've now added a multi-line comment (called a `docstring`, short for "doumentation string"), to the beginning of our function. Docstrings **are the first statment after a function or module definition** and are opened and closed with three quotes.
+We've now added a multi-line comment (called a `docstring`, short for "documentation string"), to the beginning of our function. Docstrings **are the first statement after a function or module definition** and are opened and closed with three quotes.
 
 The docstring should explain what the function or module does (and not how it is done).
 
