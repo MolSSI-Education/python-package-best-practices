@@ -95,7 +95,7 @@ For most of your projects, it is likely that the license you choose will not mat
 
 > ## Types of Open-Source Licenses
 >
-> Open-source licenses can either be 'permissive' or 'copy-left'. Copy-left licenses require that derivative works also be open source. Out of the choices given above, MIT and BSD-3-Clause are permissive, while LGLLv3 is a copy left license.
+> Open-source licenses can either be 'permissive' or 'copy-left'. Copy-left licenses require that derivative works also be open source. Out of the choices given above, MIT and BSD-3-Clause are permissive, while LGPLv3 is a copy left license.
 >
 > We recommend that you spend some time reading about licensing. One place to start is this [helpful guide] from the Chodera Lab or the website [choosealicense.com](https://choosealicense.com).  
 {: .callout}
@@ -322,7 +322,7 @@ We will stick with our `from .functions` command. However, it is generally consi
 
 {% include links.md %}
 [Python's documentation]: https://docs.python.org/3/tutorial/modules.html
-[setup]: https://molssi-education.github.io/CMS-Python-DevOps/setup.html
+[setup]: https://molssi-education.github.io/python-package-best-practices/setup.html
 [numpy]: https://github.com/numpy/numpy
 [scipy]: https://github.com/scipy/scipy
 [scikit-learn]: https://github.com/scikit-learn/scikit-learn
