@@ -311,7 +311,7 @@ def test_build_bond_list():
 
     assert len(bonds) == 4
 
-    for atoms, bonds in bonds.items():
+    for bonds in bonds.values():
         assert bonds == 1.4
 ~~~
 {: .language-python}
@@ -345,7 +345,7 @@ Add the following to your `calculate_distance` function.
 
 ~~~
 if not isinstance(rA, np.ndarray) or not isinstance(rB, np.ndarray):
-        raise TypeError("Input must be type np.ndarray!")
+    raise TypeError("Input must be type np.ndarray!")
 
 ~~~
 
@@ -405,9 +405,8 @@ TDD has another benefit of never having false positives. If you ensure that your
 >     
 >     calculated_mass = molecool.calculate_molecular_mass(symbols)
 > 
->     actual_mass = molecool.atom_data.atom_weights['C'] + molecool.atom_data.atom_weights['H'] +\
->          molecool.atom_data.atom_weights['H'] + molecool.atom_data.atom_weights['H']+ molecool.atom_data.atom_weights['H']
->     
+>     actual_mass = sum(molecool.atom_data.atom_weights[atom] for atom in symbols)
+>
 >     assert actual_mass == calculated_mass
 > ~~~
 > {: .language-python}
@@ -593,8 +592,7 @@ def test_molecular_mass(methane_molecule):
     
     calculated_mass = molecool.calculate_molecular_mass(symbols)
 
-    actual_mass = molecool.atom_data.atom_weights['C'] + molecool.atom_data.atom_weights['H'] +\
-         molecool.atom_data.atom_weights['H'] + molecool.atom_data.atom_weights['H'] + molecool.atom_data.atom_weights['H']
+    actual_mass = sum(molecool.atom_data.atom_weights[atom] for atom in symbols)
 
     assert actual_mass == calculated_mass
 ~~~
@@ -636,7 +634,7 @@ def test_build_bond_list(methane_molecule):
 
     assert len(bonds) == 4
 
-    for atoms, bonds in bonds.items():
+    for bonds in bonds.values():
         assert bonds == 1.4
 
 def test_molecular_mass(methane_molecule):
@@ -644,9 +642,8 @@ def test_molecular_mass(methane_molecule):
     
     calculated_mass = molecool.calculate_molecular_mass(symbols)
 
-    actual_mass = molecool.atom_data.atom_weights['C'] + molecool.atom_data.atom_weights['H'] +\
-         molecool.atom_data.atom_weights['H'] + molecool.atom_data.atom_weights['H'] + molecool.atom_data.atom_weights['H']
-
+    actual_mass = sum(molecool.atom_data.atom_weights[atom] for atom in symbols)
+    
     assert actual_mass == calculated_mass
 
 def test_build_bond_list_failure():
@@ -691,7 +688,7 @@ For example, for testing our `calculate_angle` function, we might test several a
 ~~~
 @pytest.mark.parametrize("p1, p2, p3, expected_angle", [
     (np.array([np.sqrt(2)/2, np.sqrt(2)/2, 0]), np.array([0, 0, 0]), np.array([1, 0, 0]), 45),
-    (np.array([0, 0, -1]), np.array([0, 1, 0]), np.array([1, 0, 0]), 60  ),
+    (np.array([0, 0, -1]), np.array([0, 1, 0]), np.array([1, 0, 0]), 60),
     (np.array([np.sqrt(3)/2, (1/2), 0]), np.array([0, 0, 0]), np.array([1, 0, 0]), 30),
 ])
 def test_calculate_angle_many(p1, p2, p3, expected_angle):
