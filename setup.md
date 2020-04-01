@@ -2,7 +2,7 @@
 title: "Setup"
 ---
 
-This setup tutorial will walk you through installing the software you will need for this workshop. 
+This setup tutorial will walk you through installing the software you will need for this workshop.
 
 For this workshop, you will need to have Python installed. We recommend and assume you will have Python installed using Anaconda, and will be talking about package management using conda and Anaconda (see instructions below). You will also need to download workshop materials, and configure git.
 
@@ -20,23 +20,23 @@ We will cover the following topics. Click on a particular topic to skip to that 
 
 In this workshop, we will be moving code from a Jupyter notebook into a Python package that we can install and import into other scripts.
 
-- Create a folder on your desktop called `molssi_best_practices`. 
+- Create a folder on your desktop called `molssi_best_practices`.
 - Download the starting workshop materials [here](./data/starting_material.zip)
     - This will be a `zip` file. You should unzip this file into the folder you have created on your desktop. After downloading and unzipping, verify that you see the following directory structure.
-    ```
+    ~~~
     molssi_best_practices
-    └── starting_material
-        ├── data
-        │   ├── pdb
-        │   │   ├── 1bna.pdb
-        │   │   ├── benzene.pdb
-        │   │   └── water.pdb
-        │   └── xyz
-        │       ├── 1bna.xyz
-        │       ├── benzene.xyz
-        │       └── water.xyz
-        └── starting_notebook.ipynb
-    ```
+    └── starting_material  
+            ├── data
+            │   ├── pdb
+            │   │   ├── 1bna.pdb
+            │   │   ├── benzene.pdb
+            │   │   └── water.pdb
+            │   └── xyz
+            │       ├── 1bna.xyz
+            │       ├── benzene.xyz
+            │       └── water.xyz
+            └── starting_notebook.ipynb
+    ~~~
 
 ## Choosing a text editor <a name="text_editor"></a>
 You will need an editor for Python files for this workshop. If you do not have a prefered text editor, we recommend [atom](https://atom.io/) or [Visual Studio Code](https://code.visualstudio.com/)
@@ -197,7 +197,7 @@ For this workshop, you will need to install the following packages into your env
 - Matplotlib
 - jupyter
 
-You can install all of them in one line with 
+You can install all of them in one line with
 
 ~~~
 $ conda install numpy matplotlib jupyter
