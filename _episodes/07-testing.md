@@ -412,7 +412,7 @@ TDD has another benefit of never having false positives. If you ensure that your
 > ~~~
 > {: .language-python}
 >
-> If you run `pytest`, this test should fail. Your assignment is to write the function to make the tests pass. You should use the `atomic_weights` data in the `atom_data` module.
+> If you run `pytest`, this test should fail. Your assignment is to write the function to make the tests pass. You should use the `atom_weights` data in the `atom_data` module.
 >> ## Solution
 >> Here is a potential solution. 
 >> ~~~
@@ -433,6 +433,8 @@ TDD has another benefit of never having false positives. If you ensure that your
 >>     mass = 0
 >>     for atom in symbols:
 >>         mass += atom_weights[atom]
+>> 
+>>     # mass = sum(atom_weights[atom] for atom in symbols)    # another potential solution using Python "Generator Comprehension"
 >>     
 >>     return mass
 >> ~~~
