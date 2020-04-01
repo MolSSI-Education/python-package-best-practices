@@ -322,7 +322,7 @@ We will stick with our `from .functions` command. However, it is generally consi
 
 {% include links.md %}
 [Python's documentation]: https://docs.python.org/3/tutorial/modules.html
-[setup]: https://molssi-education.github.io/CMS-Python-DevOps/setup.html
+[setup]: https://molssi-education.github.io/python-package-best-practices/setup.html
 [numpy]: https://github.com/numpy/numpy
 [scipy]: https://github.com/scipy/scipy
 [scikit-learn]: https://github.com/scikit-learn/scikit-learn
