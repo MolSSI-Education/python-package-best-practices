@@ -276,7 +276,7 @@ $ git config --list
 Create an account on [github.com]. Remember the user name and password. If you are making a GitHub account, please remember that your username should be *recognizable* and *professional*.
 
 ### Conclusion
-At the end of this set-up, you should have created a Python environment (`molssi_best_practices`) which has Python 3.6, `numpy`, `matplotlib`, and `cookiecutter` installed. You should also have installed and created an account on GitHub and configured git.
+At the end of this set-up, you should have created a Python environment (`molssi_best_practices`) which has Python 3.7, `numpy`, `matplotlib`, `jupyter`, and `cookiecutter` installed. You should also have installed and created an account on GitHub and configured git.
 
 
 [anaconda]: https://www.anaconda.com
