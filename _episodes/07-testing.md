@@ -582,7 +582,7 @@ def methane_molecule():
     coordinates = np.array([[1,1,1], [2.4,1,1], [-0.4, 1, 1], [1, 1, 2.4], [1, 1, -0.4]])
     return symbols, coordinates
 ~~~
-{: .python}
+{: .language-python}
 
 we defined a fixture named `methane_molecule` which has symbols and coordinates. Now, any test
 method can request this fixture by adding its name to its input argument. For example, our `test_molecular_mass` function becomes.
@@ -598,7 +598,7 @@ def test_molecular_mass(methane_molecule):
 
     assert actual_mass == calculated_mass
 ~~~
-{: .python}
+{: .language-python}
 
 Fixtures can be reused by other tests too. Also, test methods can request multiple fixtures.
 
