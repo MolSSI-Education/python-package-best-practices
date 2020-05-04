@@ -122,6 +122,8 @@ A `conda` environment contains a specific collection of packages you have instal
 
 It's considered a best practice to create a new Python environment for each project you work on.
 
+This section uses the command line interface (CLI) to create an environment using `conda`. If you are on Mac or Linux, you will type these commands into your terminal.  If you are on Windows, you should use the Anaconda Navigator. 
+
 To create an environment for this project using `conda`,
 
 ~~~
