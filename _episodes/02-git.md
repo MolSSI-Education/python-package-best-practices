@@ -55,14 +55,23 @@ First, use a terminal to `cd` into the top directory of the local repository.
 
 In order for git to keep track of your project, or any changes in your project, you must first tell it that you want it to do this. You must manually create check-points in your project if you wish to have points to return to. If you were not using the CookieCutter, you would first have to initialize your project (ie tell git that you were working on a project) using the command `git init`. 
 
-When we ran the CMS CookieCutter, it actually initialized the use of `git` for us, added our files, and made a commit (how convenient!). We can see this by typing
+When we ran the CMS CookieCutter, it actually initialized the use of `git` for us, added our files, and made a commit (how convenient!). We can see this by typing the following into the terminal on Linux or Mac
 
 ~~~
 $ ls -la
 ~~~
 {: .bash}
 
-Here, the `-la` says that we want to list the files in long format (`-l`), and show hidden files (`-a`). You should see several files starting with `.git`. In particular, `.git` is a directory where `git` stores the repository data. We can tell from this output that we are in a git repository.
+Here, the `-la` says that we want to list the files in long format (`-l`), and show hidden files (`-a`). 
+
+If you are on Windows and using the Anaconda Navigator:
+
+~~~
+dir /a
+~~~
+{: .cmd}
+
+You should see several files starting with `.git`. In particular, `.git` is a directory where `git` stores the repository data. We can tell from this output that we are in a git repository.
 
 Next, type
 
