@@ -344,10 +344,17 @@ $ git checkout -b zen
 ~~~
 {: .language-bash}
 
-Next, add a new function to your `functions.py` module
+Next, add a new function to your `functions.py` module. We are going to add the ability to print "The Zen of Python". You can get the Zen of Python by typing
 
 ~~~
-def zen():
+import this
+~~~
+{: .language-python}
+
+into the interactive Python prompt
+
+~~~
+def zen(with_attribution=True):
     quote = """Beautiful is better than ugly.
     Explicit is better than implicit.
     Simple is better than complex.
@@ -367,6 +374,9 @@ def zen():
     If the implementation is hard to explain, it's a bad idea.
     If the implementation is easy to explain, it may be a good idea.
     Namespaces are one honking great idea -- let's do more of those!"""
+
+    if with_attribution:
+      quote += "\n\tTim Peters"
 
     return quote
 ~~~
@@ -400,7 +410,31 @@ When you look at the `functions.py` module on the master branch, you should not 
 
 You can verify this by using the `git log` command.
 
-To incorporate these changes in master, you will need to do a `git merge`. When you do a merge, you should be on the branch you would like to merge into. In this case, we want the changes from our `zen` branch, so we should be on our `master` branch. Next we will use the `git merge` command.
+Consider that at the same time we have some changes or features we'd like to implement. Let's make a branch to do a documentation update.
+
+Create a new branch
+
+~~~
+$ git checkout -b doc_update
+~~~
+{: .language-bash}
+
+Let's add some information about developing on branches to the README. Update your README to include this information:
+
+~~~
+
+Features should be developed on branches. To create and switch to a branch, use the command
+
+`git checkout -b new_branch_name`
+
+To switch to an existing branch, use
+
+`git checkout new_branch_name`
+~~~
+
+Save and commit this change.
+
+To incorporate these changes in master, you will need to do a `git merge`. When you do a merge, you should be on the branch you would like to merge into. In this case, we will first merge the changes from our `doc_update` branch, then our `zen` branch, so we should be on our `master` branch. Next we will use the `git merge` command.
 
 The syntax for this command is 
 
@@ -411,6 +445,15 @@ $ git merge branch_name
 
 where `branch_name` is the name of the branch you would like to merge.
 
+We can merge our `doc_update` branch to get changes on our master branch:
+
+~~~
+$ get merge doc_update
+~~~
+{: .language-bash}
+
+Now our changes from the branch are on master.
+
 We can merge our `zen` branch to get our changes on master:
 
 ~~~
@@ -418,7 +461,15 @@ $ git merge zen
 ~~~
 {: .language-bash}
 
-Now our changes from the branch are on master.
+This time, you will see a different message, and a text editor will open for a merge commit message.
+
+~~~
+Merge made by the 'recursive' strategy.
+~~~
+
+This is because `master` and `zen` had development histories which have diverged. Git had to do some work in this case to merge the branches. A merge commit was created. 
+
+Merge commits create a branched git history. We can visualize the history of our project by adding `--graph`. There are other workflows you can use to make the commit history more linear, but we will not discuss them in this course.
 
 Once we are done with a feature branch,  we can delete it:
 
@@ -679,6 +730,7 @@ If you want more `git`, see the following tutorials.
 ### Basic git
  - [Software Carpentry Version Control with Git](http://swcarpentry.github.io/git-novice/)
  - [GitHub 15 Minutes to Learn Git](https://try.github.io/)
+ - [More on branches and merging](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
  - [Git Commit Best Practices](https://github.com/trein/dev-best-practices/wiki/Git-Commit-Best-Practices)
 
 
