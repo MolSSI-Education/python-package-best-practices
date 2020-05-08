@@ -178,7 +178,7 @@ This the only folder we actually have to work with to build our package. The oth
 >
 > What 'packages' or 'modules' are in Python may be confusing.
 > In general, 'module' refers to a single `.py` file containing Python definitions and statements. It may be imported for use in another module or script. The module name is determined by the file name. A function defined in a module is used (once the module is imported) using the syntax `module_name.function_name()`.
-> 'Package' refers to a collection of Python modules, along with an `__init__.py` file.
+> 'Package' refers to a collection of Python modules. The package may also have an `__init__.py` file.
 >
 > To read more about Python packages vs. modules, check out [Python's documentation].
 {: .callout}
@@ -193,7 +193,7 @@ $ cd molecool
 
 ### The `__init__.py` file
 
-A Python package is defined by a special file recognized by the Python interpreter called `__init__.py`. Without an `__init__.py`, we don't have a Python package. This file can be blank in some cases, however, we will use it to define how the user interacts with the functions in our package.
+The `__init__.py` file is a special file recognized by the Python interpreter which makes a directory into a package. This file can be blank in some cases, however, we will use it to define how the user interacts with the functions in our package.
 
 ~~~
 """
