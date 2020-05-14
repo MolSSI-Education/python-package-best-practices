@@ -55,7 +55,10 @@ You can also see the atomic coordinates by executing:
 ~~~
 {: .language-python}
 
-Hooray! It seems like this function works! This should come as no surprise since we authored the functions and know its internal structure. This is not necessarily true for someone editing our code and specially not true for someone just using our code. There are instances where even though the code is executed correctly, i.e., there where no syntax errors, the code should be able to stop itself to prevent a malfunction. 
+Hooray! It seems like this function works! This should come as no surprise since we are the authors of the function and know its internal structure. This is not necessarily true for someone editing our code and specially not true for someone just using our code. There are instances where even though the code is executed correctly, i.e., there where no syntax errors, an unwanted expected behavior occurs. In these cases, our code should be able to stop itself to prevent a malfunction. 
+
+## Raising Errors 
+
 Take for example the division by zero. If we try to calculate 
 ~~~
 >>> 1/0
@@ -67,9 +70,7 @@ ZeroDivisionError: division by zero
 ~~~
 {: .output}
 
-This is an example where the code was smart enough to identify that a division by zero was trying to get executed and halted instead of throwing something like a `NaN`. This is called an exception error. There are several built-in exception such as the "ZeroDivisionError", but in general one can simply use a `raise Exception`. Let us see how we could accomplish this. 
-
-## Raising Errors 
+This is an example where the code was smart enough to identify the division by zero, and halted instead of throwing an ugly `NaN`. This is called an exception error. There are several built-in exception such as the "ZeroDivisionError", but in general one can simply use a `raise Exception`. Let us see how we could accomplish this. 
 
 Consider our function `calculate distance.py`
 
@@ -81,7 +82,7 @@ def calculate_distance(rA, rB):
 ~~~
 {: .language-python}
 
-The function calculates no mater what the two points are. Now, imagine our xyz file contained a repeated line, our function would do its job and print that the distance is equal to `0.0`, but this would be unphysical and could lead into plotting two atoms in the same spot. This is a perfect place to raise an exception. The syntax to accomplish this is as follows:
+The function returns a distance no mater what the two points are. Now, imagine that an xyz file contained a repeated line, our function would do its job and print a distance equal to `0.0`. This is clearly unphysical and could lead into plotting two atoms in the same point. This is a perfect place to raise an exception. The syntax is as follows
 
 ~~~
 def calculate_distance(rA, rB):
@@ -93,14 +94,14 @@ def calculate_distance(rA, rB):
 ~~~
 {: .language-python}
 
-In this way, trying to calculate the distance between two points would throw:
+In this way, trying to calculate the distance between two points would throw
 
 ~~~
 Exception: Two atoms are located in the same point in space
 ~~~
 {: .output}
 
-This is a general exception that requires a very explicit line to describe what the problem is. The already built-in give are created to answer many exceptions that are common while programming. For example, our function requires explicit use of numpy arrays. Nevertheless a user may be tempted to use a list of length 3 to describe the position of two atoms. We know that one cannot perform arithmetic with entire lists. In this case we might use the exception type `TypeError` and it can be executed in our code as:
+This is a general exception that requires a very explicit line to describe what the problem is. The already built-in exceptions include errors that that are common while programming. For example, our function requires explicit use of numpy arrays. Nevertheless, a user may be tempted to use a list of length 3 to describe the position of two atoms. We know that it is not possible to perform arithmetic with full lists. In this case we might use the exception type `TypeError`
 
 ~~~
 def calculate_distance(rA, rB):
@@ -121,18 +122,11 @@ TypeError: rA and rB must be numpy arrays
 ~~~
 {: .output}
 
-And then we would immediately know that the error that we need to address is related to the type of the input that we are giving to our function. 
+With the built-in exception, we would immediately know that the error we need to address is related to the type of input that we are giving to tht functions.
 
 Other types of exceptions include having variables not being defined (NameError) or asserting that two numbers are the same (assert). The latter will be particularly useful when we want to automatize testing within our package. 
 
-
-
-However, our function might be hard to read and understand for others so we might want to consider styling it properly.
-
-## Raising Errors 
-
-As authors of the function, we know how it internally opperates and what errors we could expect. This is not necesarily true for someone else
-
+Our functions are now smarter and will better guide users when using them. However, our function still might be hard to read and understand for others so we might want to consider styling it properly.
 
 ## Coding Style
 
