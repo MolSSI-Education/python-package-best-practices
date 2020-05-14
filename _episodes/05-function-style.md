@@ -5,6 +5,7 @@ exercises: 15
 questions:
 - "How can I write python code that is readable?"
 objectives:
+- "Learn how to raise exceptions"
 - "Understand how to follow PEP8 style for Python."
 - "Understand what docstrings are and their importance."
 - "Learn to write docstrings in numpy style"
