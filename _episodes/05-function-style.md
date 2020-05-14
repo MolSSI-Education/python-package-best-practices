@@ -55,7 +55,7 @@ You can also see the atomic coordinates by executing:
 ~~~
 {: .language-python}
 
-Hooray! It seems like this function works! This should come as no surprise since we are the authors of the function and know its internal structure. This is not necessarily true for someone editing our code and specially not true for someone just using our code. There are instances where even though the code is executed correctly, i.e., there where no syntax errors, an unwanted expected behavior occurs. In these cases, our code should be able to stop itself to prevent a malfunction. 
+Hooray! It seems like this function works! This should come as no surprise since we are the authors of the function and we know its internal structure. This is not necessarily true for someone editing our code and specially not true for someone just using our code. There are instances where even though the code is executed correctly, i.e., there where no syntax errors, an unwanted expected behavior occurs. In these cases, our code should be able to stop itself to prevent a malfunction. 
 
 ## Raising Errors 
 
@@ -70,7 +70,7 @@ ZeroDivisionError: division by zero
 ~~~
 {: .output}
 
-This is an example where the code was smart enough to identify the division by zero, and halted instead of throwing an ugly `NaN`. This is called an exception error. There are several built-in exception such as the "ZeroDivisionError", but in general one can simply use a `raise Exception`. Let us see how we could accomplish this. 
+In this example, the code was smart enough to identify the division by zero and halted. This type of feedback is much more helpful than just throwing an ugly `NaN`. This is called an exception error. There are several built-in exception such as the "ZeroDivisionError", but in general one can simply use a `raise Exception`. Let us see how we could accomplish this. 
 
 Consider our function `calculate distance.py`
 
@@ -101,7 +101,7 @@ Exception: Two atoms are located in the same point in space
 ~~~
 {: .output}
 
-This is a general exception that requires a very explicit line to describe what the problem is. The already built-in exceptions include errors that that are common while programming. For example, our function requires explicit use of numpy arrays. Nevertheless, a user may be tempted to use a list of length 3 to describe the position of two atoms. We know that it is not possible to perform arithmetic with full lists. In this case we might use the exception type `TypeError`
+This is a general exception that requires a very explicit line to describe what the problem is. The already built-in exceptions include errors that are common while programming. For example, our function requires explicit use of numpy arrays. Nevertheless, a user may be tempted to use a list of length 3 to describe the position of two atoms. We know that it is not possible to perform arithmetic with full lists. In this case we might use the exception type `TypeError`
 
 ~~~
 def calculate_distance(rA, rB):
@@ -122,11 +122,11 @@ TypeError: rA and rB must be numpy arrays
 ~~~
 {: .output}
 
-With the built-in exception, we would immediately know that the error we need to address is related to the type of input that we are giving to tht functions.
+With the built-in exception, we would immediately know that the error is related to the type of input we are giving to the function.
 
-Other types of exceptions include having variables not being defined (NameError) or asserting that two numbers are the same (assert). The latter will be particularly useful when we want to automatize testing within our package. 
+Other types of common exceptions include variables not being defined (NameError) or asserting that two numbers are the same (assert). The latter will be particularly useful when we want to automatize testing within our package. 
 
-Our functions are now smarter and will better guide users when using them. However, our function still might be hard to read and understand for others so we might want to consider styling it properly.
+Our functions are now smarter and will better guide users while using them. However, our function still might be hard to read and understand for others so we might want to consider styling it properly.
 
 ## Coding Style
 
