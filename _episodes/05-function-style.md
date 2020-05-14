@@ -48,14 +48,85 @@ array(['O', 'H', 'H'], dtype='<U1')
 ~~~
 {: .output}
 
-You should get a numpy array with atomic sybols of the water molecule from executing this code.
+You should get a numpy array with atomic symbols of the water molecule from executing this code.
 You can also see the atomic coordinates by executing:
 ~~~
 >>> coords
 ~~~
 {: .language-python}
 
-Hooray! It seems like this function works! However, our function might be hard to read and understand for others so we might want to consider styling it properly.
+Hooray! It seems like this function works! This should come as no surprise since we authored the functions and know its internal structure. This is not necessarily true for someone editing our code and specially not true for someone just using our code. There are instances where even though the code is executed correctly, i.e., there where no syntax errors, the code should be able to stop itself to prevent a malfunction. 
+Take for example the division by zero. If we try to calculate 
+```
+1/0
+```
+We would get
+
+```
+ZeroDivisionError: division by zero
+```
+
+This is an example where the code was smart enough to identify that a division by zero was trying to get executed and halted instead of throwing something like a `NaN`. This is called an exception error. There are several built-in exception such as the "ZeroDivisionError", but in general one can simply use a `raise Exception`. Let us see how we could accomplish this. 
+
+## Raising Errors 
+
+Consider our function `calculate distance.py`
+
+~~~
+def calculate_distance(rA, rB):
+    dist_vec = (rA - rB)
+    distance = np.linalg.norm(dist_vec)
+    return distance
+~~~
+
+The function calculates no mater what the two points are. Now, imagine our xyz file contained a repeated line, our function would do its job and print that the distance is equal to `0.0`, but this would be unphysical and could lead into plotting two atoms in the same spot. This is a perfect place to raise an exception. The syntax to accomplish this is as follows:
+
+~~~
+def calculate_distance(rA, rB):
+    dist_vec = (rA - rB)
+    distance = np.linalg.norm(dist_vec)
+    if distance == 0.0:
+        raise Exception("Two atoms are located in the same point in space")
+    return distance
+~~~
+
+In this way, trying to calculate the distance between two points would throw:
+
+```
+Exception: Two atoms are located in the same point in space
+```
+
+This is a general exception that requires a very explicit line to describe what the problem is. The already built-in give are created to answer many exceptions that are common while programming. For example, our function requires explicit use of numpy arrays. Nevertheless a user may be tempted to use a list of length 3 to describe the position of two atoms. We know that one cannot perform arithmetic with entire lists. In this case we might use the exception type `TypeError` and it can be executed in our code as:
+
+~~~
+def calculate_distance(rA, rB):
+    if isinstance(rA,np.ndarray) or isinstance(rB,np.ndarray) is False:
+        raise TypeError("rA and rB must be numpy arrays")
+    dist_vec = (rA - rB)
+    distance = np.linalg.norm(dist_vec)
+    if distance == 0.0:
+        raise Exception("Two atoms are located in the same point in space")
+    return distance
+~~~
+
+If we try to use lists instead of numpy arrays, our function then would stop and print 
+
+```
+TypeError: rA and rB must be numpy arrays
+```
+
+And then we would immediately know that the error that we need to address is related to the type of the input that we are giving to our function. 
+
+Other types of exceptions include having variables not being defined (NameError) or asserting that two numbers are the same (assert). The latter will be particularly useful when we want to automatize testing within our package. 
+
+
+
+However, our function might be hard to read and understand for others so we might want to consider styling it properly.
+
+## Raising Errors 
+
+As authors of the function, we know how it internally opperates and what errors we could expect. This is not necesarily true for someone else
+
 
 ## Coding Style
 
