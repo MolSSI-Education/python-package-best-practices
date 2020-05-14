@@ -326,10 +326,9 @@ def write_xyz(file_location, symbols, coordinates):
 Now any module that needs to handle input and output can import the needed module from the `io` package. Since these are currently small modules, it would not be a big deal to import all of them, but consider a large I/O suite contianing a large number of file types and functionalities, it will quickly create inefficiencies to leave them in one module.
 
 ## Fixing Imports
-When we first copied the functions from the Jupyter Notebook into `functions.py`, we also modified the `__init__` in the main folder in order to have quick access to the functions within it. You will find that now that we have extracted the functions from that file, we won't be able to import those functions in the same way. In fact we won't be able to access them at all. Every time we restructure our code or create new folders we have to be careful and modify the init accordingly. Let us then add the new functions into the `__init__`.
+When we first copied the functions from the Jupyter Notebook into `functions.py`, we also modified the `__init__` in the main folder to access the functions within it. After we extracted the functions from that file, we won't be able to import those functions in the same way. In fact we won't be able to access them at all. Every time we restructure our code or create new folders we have to be careful and modify the init accordingly. Let us then add the new functions into the `__init__`
 
 ~~~
-"""
 # Add imports here
 from .functions import *
 from .measure import calculate_distance, calculate_angle
@@ -342,11 +341,11 @@ In this way, we should be able to call each of the functions after importing our
 
 ~~~
 >>> import molecool
->>> molecool.build_bond_list(coordinates)
+>>> molecool.build_bond_list()
 ~~~
 {: .language-python}
 
-If you try and run some of these functions, you may find yourself with an `ImportError`. This is because the functions can only see the code that has been "loaded" into the module. Each set of functions now exists as standalones within their module. 
+Even with the imports fixed, if you try and run some of these functions, you may find yourself with an `ImportError`. This is because the functions can only see the code that has been "loaded" into the module. Each set of functions now exists as standalones within their module. 
 
 If we look at our original `functions.py` module, we will see that we had a number of import statements at the top of the file:
 ```
@@ -412,11 +411,9 @@ from molecool.io import open_pdb, open_xyz, write_xyz
 ```
 {: .language-python}
 
-If we wanted to mimic the same functionality as the other functions outside the `io` folder we would need to have an additional line in the main init.
+Although this is easier, it is still different from how we call all the other functions in our code. If we wanted the io functions to mimic the imports from the rest of the modules, we would need to modify the init from the main folder as well
 
 ~~~
-"""
-# Add imports here
 from .functions import *
 from .measure import calculate_distance, calculate_angle
 from .molecule import build_bond_list
@@ -433,10 +430,9 @@ This would allow us now to call the functions with
 ~~~
 {: .language-python}
 
-And if we wanted to skip the use of `io` we could do 
+And we could even make these functions more accessible by removing the need for the  `io`
 
-"""
-# Add imports here
+~~~
 from .functions import *
 from .measure import calculate_distance, calculate_angle
 from .molecule import build_bond_list
@@ -446,14 +442,13 @@ from .io.xyz import *
 ~~~
 {: .language-python}
 
-Which would allow us to have an import like
+Which would allow us to call functions by simply typing
 ~~~
 >>> molecool.open_pdb()
 ~~~
 {: .language-python}
 
-You can now appreciate how much relevance the `init` file has when it comes to defining how the user uses and imports the function in your package. 
-
+You can now appreciate how the `init` file plays such an important role in defining how the user imports the functions in the package. 
 
 [package setup]: https://molssi-education.github.io/python-package-best-practices/01-package-setup/index.html
 [PEP8]: https://www.python.org/dev/peps/pep-0008/
