@@ -97,7 +97,7 @@ def calculate_distance(rA, rB):
 ~~~
 {: .language-python}
 
-In this way, trying to calculate the distance between two points would throw
+In this way, trying to calculate the distance between the same two points would throw
 
 ~~~
 Exception: Two atoms are located in the same point in space
@@ -129,9 +129,9 @@ With the built-in exception, we would immediately know that the error is related
 
 Other types of common exceptions include variables not being defined (NameError) or asserting that two numbers are the same (assert). The latter will be particularly useful when we want to automatize testing within our package. 
 
-Our functions are now smarter and will better guide users while using them. However, our function still might be hard to read and understand for others so we might want to consider styling it properly.
-
 ## Coding Style
+
+Our functions are now smarter and will better guide users while using them. However, our function still might be hard to read and understand for others so we might want to consider styling it properly.
 
 As a developer, you spend a lot of time thinking about writing your code. However, code is read much more often than it is written. Following a style guide will help others (and perhaps you in the future!) to read your code.
 
