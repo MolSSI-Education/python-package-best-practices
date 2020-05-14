@@ -326,6 +326,26 @@ def write_xyz(file_location, symbols, coordinates):
 Now any module that needs to handle input and output can import the needed module from the `io` package. Since these are currently small modules, it would not be a big deal to import all of them, but consider a large I/O suite contianing a large number of file types and functionalities, it will quickly create inefficiencies to leave them in one module.
 
 ## Fixing Imports
+When we first copied the functions from the Jupyter Notebook into `functions.py`, we also modified the `__init__` in the main folder in order to have quick access to the functions within it. You will find that now that we have extracted the functions from that file, we won't be able to import those functions in the same way. In fact we won't be able to access them at all. Every time we restructure our code or create new folders we have to be careful and modify the init accordingly. Let us then add the new functions into the `__init__`.
+
+~~~
+"""
+# Add imports here
+from .functions import *
+from .measure import calculate_distance, calculate_angle
+from .molecule import build_bond_list
+from .visualize import draw_molecule, bond_histogram
+~~~
+{: .language-python}
+
+In this way, we should be able to call each of the functions after importing our module
+
+~~~
+>>> import molecool
+>>> molecool.build_bond_list(coordinates)
+~~~
+{: .language-python}
+
 If you try and run some of these functions, you may find yourself with an `ImportError`. This is because the functions can only see the code that has been "loaded" into the module. Each set of functions now exists as standalones within their module. 
 
 If we look at our original `functions.py` module, we will see that we had a number of import statements at the top of the file:
@@ -386,11 +406,54 @@ from .pdb import open_pdb
 from .xyz import open_xyz, write_xyz
 ```
 {: .language-python}
-The `__init__.py` file contains python code that is called when a module is imported. These lines are relative import statments to the functions within the `io` package. Think of them as pointers to the functions, i.e. when we look at the `io` package, it directs us to the location of the underlying functions, so we do not need to look within each submodule. This allows us to use the following import statement to access the functions:
+The `__init__.py` file contains python code that is called when a module is imported. These lines are relative import statements to the functions within the `io` package. Think of them as pointers to the functions, i.e. when we look at the `io` package, it directs us to the location of the underlying functions, so we do not need to look within each submodule. This allows us to use the following import statement to access the functions:
 ```
 from molecool.io import open_pdb, open_xyz, write_xyz
 ```
 {: .language-python}
+
+If we wanted to mimic the same functionality as the other functions outside the `io` folder we would need to have an additional line in the main init.
+
+~~~
+"""
+# Add imports here
+from .functions import *
+from .measure import calculate_distance, calculate_angle
+from .molecule import build_bond_list
+from .visualize import draw_molecule, bond_histogram
+import molecool.io
+~~~
+{: .language-python}
+
+
+This would allow us now to call the functions with 
+
+~~~
+>>> molecool.io.open_pdb()
+~~~
+{: .language-python}
+
+And if we wanted to skip the use of `io` we could do 
+
+"""
+# Add imports here
+from .functions import *
+from .measure import calculate_distance, calculate_angle
+from .molecule import build_bond_list
+from .visualize import draw_molecule, bond_histogram
+from .io.pdb import *
+from .io.xyz import *
+~~~
+{: .language-python}
+
+Which would allow us to have an import like
+~~~
+>>> molecool.open_pdb()
+~~~
+{: .language-python}
+
+You can now appreciate how much relevance the `init` file has when it comes to defining how the user uses and imports the function in your package. 
+
 
 [package setup]: https://molssi-education.github.io/python-package-best-practices/01-package-setup/index.html
 [PEP8]: https://www.python.org/dev/peps/pep-0008/
