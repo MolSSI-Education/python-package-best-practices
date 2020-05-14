@@ -66,6 +66,8 @@ Take for example the division by zero. If we try to calculate
 ~~~
 >>> 1/0
 ~~~
+{: .language-python}
+
 We would get
 
 ~~~
@@ -97,14 +99,14 @@ def calculate_distance(rA, rB):
 ~~~
 {: .language-python}
 
-In this way, trying to calculate the distance between the same two points would throw
+In this way, trying to calculate the distance between the same two points would now show
 
 ~~~
 Exception: Two atoms are located in the same point in space
 ~~~
 {: .output}
 
-This is a general exception that requires a very explicit line to describe what the problem is. The already built-in exceptions include errors that are common while programming. For example, our function requires explicit use of numpy arrays. Nevertheless, a user may be tempted to use a list of length 3 to describe the position of two atoms. We know that it is not possible to perform arithmetic with full lists. In this case we might use the exception type `TypeError`
+This is a general exception that requires a very explicit line to describe what the problem is. The already built-in exceptions include errors that are common while programming. For example, our function requires explicit use of numpy arrays. Nevertheless, a user may be tempted to use a list of length 3 to describe the position of two atoms. We know that it is not possible to perform arithmetic between full lists. In this case we might use the exception type `TypeError`
 
 ~~~
 def calculate_distance(rA, rB):
@@ -544,6 +546,7 @@ $ git push origin master
 ~~~
 {: .bash}
 
+[Exceptions]: https://realpython.com/python-exceptions/#the-try-and-except-block-handling-exceptions
 [PEP8]: https://www.python.org/dev/peps/pep-0008/
 [YAPF]: https://github.com/google/yapf
 [numpy style docstrings]: https://docs.scipy.org/doc/numpy/docs/howto_document.html#numpydoc-docstring-guide
