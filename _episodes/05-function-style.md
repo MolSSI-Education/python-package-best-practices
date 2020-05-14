@@ -33,7 +33,9 @@ def open_pdb(f_loc):
 ~~~
 {: .language-python}
 
-This function is accessible when we execute it in the interactive Python interpreter. Test this by opening the interactive Python interpreter and typing the following
+If we want to test our function, we require a pdb file. The workshop materials downloaded during the setup include a set of pdb examples. These are found in `molssi_beter_practices/starting_material/data/pdb/`. Now, we want to access to these files from our molecool directory. Luckily, cookicutter created a folder designed specifically for that. This is found in `molecool/data/`. Go ahead and copy the pdb files in a new folder `pdb` inside the data folder. This folder can contain any data useful for testing of the basic functionality of our code. Be mindful since this folder is part of our repository, so do not include data whose size is significant. 
+
+With the files in our molecool folder, we can access the function when we execute it in the interactive Python interpreter. Test this by opening the interactive Python interpreter and typing the following
 
 ~~~
 >>> import os
