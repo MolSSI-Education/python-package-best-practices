@@ -110,7 +110,7 @@ This is a general exception that requires a very explicit line to describe what 
 
 ~~~
 def calculate_distance(rA, rB):
-    if isinstance(rA,np.ndarray) or isinstance(rB,np.ndarray) is False:
+    if isinstance(rA,np.ndarray) is False or isinstance(rB,np.ndarray) is False:
         raise TypeError("rA and rB must be numpy arrays")
     dist_vec = (rA - rB)
     distance = np.linalg.norm(dist_vec)
