@@ -5,6 +5,7 @@ exercises: 15
 questions:
 - "How can I write python code that is readable?"
 objectives:
+- "Learn how to raise exceptions"
 - "Understand how to follow PEP8 style for Python."
 - "Understand what docstrings are and their importance."
 - "Learn to write docstrings in numpy style"
@@ -32,7 +33,9 @@ def open_pdb(f_loc):
 ~~~
 {: .language-python}
 
-This function is accessible when we execute it in the interactive Python interpreter. Test this by opening the interactive Python interpreter and typing the following
+If we want to test our function, we require a pdb file. The workshop materials downloaded during the setup include a set of pdb examples. These are found in `molssi_beter_practices/starting_material/data/pdb/`. We want to store these files in our molecool directory. Luckily, cookicutter created a folder designed specifically for that purpose. The folder is in `molecool/data/`. This folder can contain any data useful for testing of the basic functionality of our code. Be mindful given that this folder is also downloaded when installing our package, so do not include data whose size is significant. 
+
+ Go ahead and copy the pdb files in a new folder `pdb` inside the data folder. With the files in our molecool folder, we can access the function when we execute it in the interactive Python interpreter. Test this by opening the interactive Python interpreter and typing the following
 
 ~~~
 >>> import os
@@ -48,16 +51,89 @@ array(['O', 'H', 'H'], dtype='<U1')
 ~~~
 {: .output}
 
-You should get a numpy array with atomic sybols of the water molecule from executing this code.
+You should get a numpy array with atomic symbols of the water molecule from executing this code.
 You can also see the atomic coordinates by executing:
 ~~~
 >>> coords
 ~~~
 {: .language-python}
 
-Hooray! It seems like this function works! However, our function might be hard to read and understand for others so we might want to consider styling it properly.
+Hooray! It seems like this function works! This should come as no surprise since we are the authors of the function and we know its internal structure. This is not necessarily true for someone editing our code and specially not true for someone just using our code. There are instances where even though the code is executed correctly, i.e., there where no syntax errors, an unwanted expected behavior occurs. In these cases, our code should be able to stop itself to prevent a malfunction. 
+
+## Raising Errors 
+
+Take for example the division by zero. If we try to calculate 
+~~~
+>>> 1/0
+~~~
+{: .language-python}
+
+We would get
+
+~~~
+ZeroDivisionError: division by zero
+~~~
+{: .output}
+
+In this example, the code was smart enough to identify the division by zero and halted. This type of feedback is much more helpful than just throwing an ugly `NaN`. This is called an exception error. There are several built-in exception such as the "ZeroDivisionError", but in general one can simply use a `raise Exception`. Let us see how we could accomplish this. 
+
+Consider our function `calculate distance.py`
+
+~~~
+def calculate_distance(rA, rB):
+    dist_vec = (rA - rB)
+    distance = np.linalg.norm(dist_vec)
+    return distance
+~~~
+{: .language-python}
+
+The function returns a distance no mater what the two points are. Now, imagine that an xyz file contained a repeated line, our function would do its job and print a distance equal to `0.0`. This is clearly unphysical and could lead into plotting two atoms in the same point. This is a perfect place to raise an exception. The syntax is as follows
+
+~~~
+def calculate_distance(rA, rB):
+    dist_vec = (rA - rB)
+    distance = np.linalg.norm(dist_vec)
+    if distance == 0.0:
+        raise Exception("Two atoms are located in the same point in space")
+    return distance
+~~~
+{: .language-python}
+
+In this way, trying to calculate the distance between the same two points would now show
+
+~~~
+Exception: Two atoms are located in the same point in space
+~~~
+{: .output}
+
+This is a general exception that requires a very explicit line to describe what the problem is. The already built-in exceptions include errors that are common while programming. For example, our function requires explicit use of numpy arrays. Nevertheless, a user may be tempted to use a list of length 3 to describe the position of two atoms. We know that it is not possible to perform arithmetic between full lists. In this case we might use the exception type `TypeError`
+
+~~~
+def calculate_distance(rA, rB):
+    if isinstance(rA,np.ndarray) is False or isinstance(rB,np.ndarray) is False:
+        raise TypeError("rA and rB must be numpy arrays")
+    dist_vec = (rA - rB)
+    distance = np.linalg.norm(dist_vec)
+    if distance == 0.0:
+        raise Exception("Two atoms are located in the same point in space")
+    return distance
+~~~
+{: .language-python}
+
+If we try to use lists instead of numpy arrays, our function then would stop and print 
+
+~~~
+TypeError: rA and rB must be numpy arrays
+~~~
+{: .output}
+
+With the built-in exception, we would immediately know that the error is related to the type of input we are giving to the function.
+
+Other types of common exceptions include variables not being defined (NameError) or asserting that two numbers are the same (assert). The latter will be particularly useful when we want to automatize testing within our package. 
 
 ## Coding Style
+
+Our functions are now smarter and will better guide users while using them. However, our function still might be hard to read and understand for others so we might want to consider styling it properly.
 
 As a developer, you spend a lot of time thinking about writing your code. However, code is read much more often than it is written. Following a style guide will help others (and perhaps you in the future!) to read your code.
 
@@ -470,6 +546,7 @@ $ git push origin master
 ~~~
 {: .bash}
 
+[Exceptions]: https://realpython.com/python-exceptions/#the-try-and-except-block-handling-exceptions
 [PEP8]: https://www.python.org/dev/peps/pep-0008/
 [YAPF]: https://github.com/google/yapf
 [numpy style docstrings]: https://docs.scipy.org/doc/numpy/docs/howto_document.html#numpydoc-docstring-guide
