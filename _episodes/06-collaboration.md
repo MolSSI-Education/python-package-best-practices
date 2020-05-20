@@ -27,13 +27,76 @@ This page lets you do several important things, including rename, relocate, tran
 Underneath the "Features" heading you will notice an option to "Restrict editing to collaborators only".
 This option prevents random strangers from being able to push changes to your repository, and should always be kept on.
 To allow other people to work with you, you can assign collaborators.
-Click the "Collaborators" tab on the left.
-This will take you to a searchbar where you can search for the names of other github users.
-By finding someone using the searchbar and then clicking "Add collaborator", you can allow specific people to contribute to your project.
+Click the "Manage access" tab on the left. This will bring up a page where you can see some details about your repository. The box under the heading "Manage access" will allow you to invite collaborators to your project.
+
+A pop up with a search bar will appear where you can search for the names of other github users.
+By finding someone using the search bar and then clicking "Add collaborator", you can allow specific people to contribute to your project.
 Generally speaking, you should only list someone as a collaborator if you work with them closely and trust that they won't do anything especially unwise with your repository.
 
+Adding them to the repository as a collaborator will allow them to push to the repository the same way you do. 
+
 People you don't know very well shouldn't be listed as collaborators, but there are still ways for them to contribute improvements to your project.
-In the next couple of sections, we will explore how this works in detail.
+
+### Protecting your Master Branch
+If you choose to work with collaborators, there are still ways for you to protect your code. Click the "Branches" tab. You will see a heading which says "Branch protection rule". Adding the name of a branch here will make it a "protected branch" and the rules you choose in the section below will protect the branch (under the heading "protect matching branches"). For example, you may want to choose to protect the `master` branch so that pull requests and reviews are required to change the branch. This way, your collaborators will not be able to push to the master branch, and must submit a `pull request` more on this later in order for their changes to be incorporated. You can read more about branch protection [here](https://help.github.com/en/enterprise/2.18/admin/developer-workflow/configuring-protected-branches-and-required-status-checks#enabling-a-protected-branch-for-a-repository).
+
+### Pull Requests - Branch and Pull Request (PR)
+Protecting your master branch will require contributors to submit their changes through a process called a Pull Request. As the repository owner, you can also change the code through a pull request on GitHub.
+
+Previously, we discussed that all changes should take place on branches. This is still true, however, we are now going to incorporate those changes through a pull request on GitHub rather than through a merge.
+
+Create a new branch in your repository to make a small change.
+
+~~~
+$ git checkout -b collab_instructions
+~~~
+{: .language-bash}
+
+Add the following to your README and commit the change.
+
+~~~
+To submit your feature to be incorporated to the master branch, you should submit a `Pull Request`. The repository maintainers will review your pull request before accepting your changes.
+~~~
+
+~~~
+$ git add README.md
+$ git commit -m "add collaboration instructions to readme"
+~~~
+{: .language-bash}
+
+We want these changes incorporated into the master branch. You could do as we did before and switch to the `master` branch, `merge` then changes, and push to GitHub for the changes to be present there on the `master` branch. If you are the repository owner, this will work even if you have branch protection rules. However, if you are not, your push from master will be rejected by GitHub.
+
+We will want to push to a new branch on the repo then open a pull request. 
+
+~~~
+$ git push origin collab_instructions
+~~~
+{: .language-bash}
+
+You will get an output similar to the following:
+
+~~~
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 470 bytes | 470.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0)
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+remote: 
+remote: Create a pull request for 'collab_instructions' on GitHub by visiting:
+remote:      https://github.com/YOUR_USERNAME/molecool/pull/new/collab_instructions
+remote: 
+To https://github.com/YOUR_USERNAME/molecool.git
+ * [new branch]      collab_instructions -> collab_instructions
+~~~
+{: .output}
+
+This message tells you that a new branch has been created on your repository, and also tells you that you may want to open a pull request. You can click this link or copy and paste it to open a pull request. Write a description of the pull request in the box, then click "Create Pull Request".
+
+Once the PR is created, you will see a page describing the PR. On the top of the repo, you should see a button called "Pull Requests" and it should show that one is open for your repo. You can then choose to review the PR, or in this case you can just merge it without a review. To review a PR, click the 'Files changed' tab. You can review the changes (green Review changes button). Since you are looking at your own PR, you won't be able to "Approve" if you have put in the branch protection rule. However, you can comment on and merge the changes if you wish.
+
+This kind of workflow is fine if you and everyone contributing has write access to the repo. However, this will sometimes not be the case and you will want to contribute to repos where you do not have write access. In the next couple of sections, we will explore how this works in detail.
 
 ## Forks
 
