@@ -82,7 +82,6 @@ Unit and regression test for the molecool package.
 
 # Import package, test suite, and other packages as needed
 import molecool
-import pytest
 import sys
 
 def test_molecool_imported:
@@ -156,8 +155,7 @@ Unit and regression test for the measure module.
 
 # Import package, test suite, and other packages as needed
 import molecool
-import pytest
-import sys
+import numpy as np
 
 def test_calculate_distance():
     """Test that calculate_distance function calculates what we expect."""
@@ -254,6 +252,25 @@ Next, it shows the values used in the assert comparison at runtime, that is `2 =
 >  -
 >> ## Answer
 >> If you remove the word `assert`, you should notice that your test still passes. This is because the expression evaluated to `False`, but since there was no Assertion, there was no error. Since there was no error, pytest counted it as a passing test. The `assert` statement causes an error when it evaluates to False.
+>
+> It's very important to remember that `pytest` counts a test as failing when some type of exception occurs. You could also do something like the following to make your test fail:
+>
+> ~~~
+> def test_calculate_distance():
+>     """Test that calculate distance function calculates what we expect"""
+> 
+>     r1 = np.array([0, 0, 0])
+>     r2 = np.array([0, 1, 0])
+> 
+>     expected_distance = 2
+> 
+>     calculated_distance = molecool.calculate_distance(r1, r2)
+> 
+>     if expected_distance != calculated_distance:
+>         raise Exception("My test will fail!")
+> ~~~
+> {: .language-python}
+> You can see that an `AssertionError` is easier than something like this :)
 > {: .solution}
 {: .challenge}
 
@@ -305,14 +322,20 @@ Next, there are several things we might test about this function. We could check
 ~~~
 def test_build_bond_list():
 
-    coordinates = np.array([[1,1,1], [2.4,1,1], [-0.4, 1, 1], [1, 1, 2.4], [1, 1, -0.4]])
+    coordinates = np.array([
+        [1, 1, 1],
+        [2.4, 1, 1],
+        [-0.4, 1, 1],
+        [1, 1, 2.4],
+        [1, 1, -0.4],
+    ])
 
     bonds = molecool.build_bond_list(coordinates)
 
     assert len(bonds) == 4
 
-    for atoms, bonds in bonds.items():
-        assert bonds == 1.4
+    for bond_length in bonds.values():
+        assert bond_length == 1.4
 ~~~
 {: .language-python}
 
@@ -324,49 +347,45 @@ If you expect your code to raise exceptions, you can test this behavior with pyt
 
 In our `calculate_angle` function, our inputs must be numpy arrays, or the function will error.
 
-Consider this example
+Consider our `build_bond_list` function. We may want to raise a `ValueError` if `min_bond` is set to be less than zero:
 
 ~~~
->>> import molecool
->>> r1 = [0 ,0, 0]
->>> r2 = [0, 0, 1]
->>> molecool.calculate_distance(r1, r2)
+
 ~~~
 {: .language-python}
-
-~~~
- TypeError: unsupported operand type(s) for -: 'list' and 'list'
-~~~
-{: .output}
 
 We can add a type check to the function so that a more informative message is given to the user.
 
 Add the following to your `calculate_distance` function.
 
 ~~~
-if not isinstance(rA, np.ndarray) or not isinstance(rB, np.ndarray):
-        raise TypeError("Input must be type np.ndarray!")
-
+if min_bond < 0:
+        raise ValueError("Invalid minimum bond distance entered! Minimum bond distance must be greater than zero!")
 ~~~
 
-Now, if `rA` or `rB` is not a numpy array, we raise a TypeError and print a message.
+We can test that this `ValueError` is raised in our testing functions.
 
-We can test that this TypeError is raised in our testing functions.
-
-In the `test_measure.py` file, add the following.
+In the `test_molecule.py` file, copy and modify your first test to check for this. Note that you must alter your imports to also `import pytest`.
 
 ~~~
-def test_calculate_distance():
+import pytest
 
-    r1 = [0, 0, 0]
-    r2 = [1, 0, 0]
+def test_build_bond_failure():
 
-    with pytest.raises(TypeError):
-        molecool.calculate_distance(r1, r2)
+    coordinates = np.array([
+        [1, 1, 1],
+        [2.4, 1, 1],
+        [-0.4, 1, 1],
+        [1, 1, 2.4],
+        [1, 1, -0.4],
+    ])
+
+    with pytest.raises(ValueError):
+        bonds = molecool.build_bond_list(coordinates, min_bond=-1)
 ~~~
 {: .language-python}
 
-The test will pass if the `calculate_distance` method raises a 'TypeError', otherwise, the test will fail.
+The test will pass if the `build_bond_list` method raises a 'TypeError', otherwise, the test will fail.
 
 ## Test Driven Development - TDD - Homework Assignment
 
@@ -551,19 +570,54 @@ TDD has another benefit of never having false positives. If you ensure that your
 > {: .solution}
 {: .challenge}
 
-## Edge and Corner Cases
+## Advanced features of pytest
 
-### Edge cases
-The situation where the test examines either the beginning or the end of a range, but not the middle, is called an edge case.
-In a simple, one-dimensional problem, the two edge cases should always be tested along with at least one internal point.
-This ensures that you have good coverage over the range of values.
+### Pytest Marks
+Pytest marks allow you to mark your functions. There are built in marks for pytest and you can also define your own marks.
 
-Anecdotally, it is important to test edges cases because this is where errors tend to arise. Qualitatively different behavior happens at boundaries. As such, they tend to have special code dedicated to them in the implementation.
+For example, one built in mark is `pytest.mark.skip`. Modify your `test_calculate_distance` function to use this mark
 
-### Corner cases
-When two or more edge cases are combined, it is called a corner case. If a function is parametrized by two linear and independent variables, a test that is at the extreme of both variables is in a corner.
+When you run your tests, you will see that this test is now skipped:
 
-## Advanced features of pytest (fixtures, parameterize)
+~~~
+molecool/tests/test_measure.py::test_calculate_distance SKIPPED
+~~~
+{: .output}
+
+You might also use the `pytest.mark.xfail` if you expect a test to fail.
+
+You can also define your own marks. Let's consider if some of our tests were slow or took a long time. Maybe we would not want to run these tests every time. We could add our own mark
+
+~~~
+pytest.mark.slow
+def test_calculate_distance():
+    """Test that calculate distance function calculates what we expect"""
+
+    r1 = np.array([0, 0, 0])
+    r2 = np.array([0, 1, 0])
+
+    expected_distance = 1
+
+    calculated_distance = molecool.calculate_distance(r1, r2)
+
+    assert expected_distance == calculated_distance
+~~~
+{: .language-python}
+
+We could then run the slow tests only using the `-m` argument on the command line:
+
+~~~
+$ pytest -v -m "slow"
+~~~
+{: .language-bash}
+
+Or, you could choose to skip the slow tests:
+
+~~~
+$ pytest -v -m "not slow"
+~~~
+{: .language-bash}
+
 
 ### Pytest Fixtures
 
@@ -580,7 +634,7 @@ def methane_molecule():
     coordinates = np.array([[1,1,1], [2.4,1,1], [-0.4, 1, 1], [1, 1, 2.4], [1, 1, -0.4]])
     return symbols, coordinates
 ~~~
-{: .python}
+{: .language-python}
 
 we defined a fixture named `methane_molecule` which has symbols and coordinates. Now, any test
 method can request this fixture by adding its name to its input argument. For example, our `test_molecular_mass` function becomes.
@@ -596,7 +650,7 @@ def test_molecular_mass(methane_molecule):
 
     assert actual_mass == calculated_mass
 ~~~
-{: .python}
+{: .language-python}
 
 Fixtures can be reused by other tests too. Also, test methods can request multiple fixtures.
 
@@ -664,6 +718,42 @@ def test_center_of_mass(methane_molecule):
 ~~~
 {: .language-python}
 
+#### Fixture Scope
+
+By default the fixture has the scope of "function". This means a new object is created for each test function. For example, consider adding the following test which moves the carbon atom in our methane molecule.
+
+~~~
+def test_move_methane(methane_molecule):
+    symbols, coordinates = methane_molecule
+
+    coordinates[0] += 5
+~~~
+{: .language-python}
+
+When you run your tests, you will see that everything passes
+
+If you have an "expensive" fixture (one that takes a lot of time to generate), you may want to change this so that the fixture is created fewer times. You can do this by adding the `scope` argument to the fixture. One scope we might pick is `module`, meaning that a new fixture will be created for each testing module.
+
+~~~
+@pytest.fixture(scope="module")
+def methane_molecule():
+    symbols = np.array(['C', 'H', 'H', 'H'])
+    coordinates = np.array([
+        [1, 1, 1],
+        [2.4, 1, 1],
+        [-0.4, 1, 1],
+        [1, 1, 2.4],
+        [1, 1, -0.4],
+    ])
+
+    return symbols, coordinates
+~~~
+{: .language-python}
+
+Notice that now when you run your tests, the `build_bond_list` test will fail. This is because the `move_methane` test moved the carbon atom and since the scope was module, it remained moved for the following tests. 
+
+The `scope` keyword can be helpful for saving time, however, be aware if you are changing properties of the fixture in other tests!
+
 > ## Using fixtures across different test files
 > If during implementing your tests you realize that you want to use a fixture function from multiple test files you can move it to a conftest.py file. You don’t need to import the fixture you want to use in a test, it automatically gets discovered by pytest. Read more about this [here](https://www.tutorialspoint.com/pytest/pytest_conftest_py.htm).
 {: .callout}
@@ -671,6 +761,21 @@ def test_center_of_mass(methane_molecule):
 ### Pytest Parametrize
 
 For some of our functions like `calculate_distance` or `calculate_angle`, we have only tested one measurement so far. This is not very complete, and we may be missing testing edge cases. You may think of writing another test where you change the values which you input into the calculation. This is definitely something you can do, but `pytest` has a feature which makes it easy to run a test with multiple inputs/values.
+
+> ## Edge and Corner Cases
+> 
+> ### Edge cases
+> The situation where the test examines either the beginning or the end of a range, but not the middle, is called an edge case.
+> In a simple, one-dimensional problem, the two edge cases should always be tested along with at least one internal point.
+> This ensures that you have good coverage over the range of values.
+> 
+> Anecdotally, it is important to test edges cases because this is where errors tend to arise. Qualitatively different behavior happens at boundaries. As such, they tend to have special code dedicated to them in the implementation.
+>
+> 
+> ### Corner cases
+> When two or more edge cases are combined, it is called a corner case. If a function is parametrized by two linear and independent variables, a test that is at the extreme of both variables is in a corner.
+{: .callout}
+
 
 This is called the `pytest.mark.parametrize` decorator. The syntax for this decorator is
 
@@ -682,6 +787,7 @@ This is called the `pytest.mark.parametrize` decorator. The syntax for this deco
 def test_name(variable_name1, variable_name2, ... variable_nameN, expected_answer):
 ~~~
 {: .language-python}
+
 Where each line in the middle (in parenthesis) gives a set of values for the test. Then, these variables are passed to the test written under the decorator.
 
 For example, for testing our `calculate_angle` function, we might test several angles at one time.
