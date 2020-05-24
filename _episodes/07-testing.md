@@ -252,25 +252,25 @@ Next, it shows the values used in the assert comparison at runtime, that is `2 =
 >  -
 >> ## Answer
 >> If you remove the word `assert`, you should notice that your test still passes. This is because the expression evaluated to `False`, but since there was no Assertion, there was no error. Since there was no error, pytest counted it as a passing test. The `assert` statement causes an error when it evaluates to False.
->
-> It's very important to remember that `pytest` counts a test as failing when some type of exception occurs. You could also do something like the following to make your test fail:
->
-> ~~~
-> def test_calculate_distance():
->     """Test that calculate distance function calculates what we expect"""
-> 
->     r1 = np.array([0, 0, 0])
->     r2 = np.array([0, 1, 0])
-> 
->     expected_distance = 2
-> 
->     calculated_distance = molecool.calculate_distance(r1, r2)
-> 
->     if expected_distance != calculated_distance:
->         raise Exception("My test will fail!")
-> ~~~
-> {: .language-python}
-> You can see that an `AssertionError` is easier than something like this :)
+>>
+>> It's very important to remember that `pytest` counts a test as failing when some type of exception occurs. You could also do something like the following to make your test fail:
+>>
+>> ~~~
+>> def test_calculate_distance():
+>>     """Test that calculate distance function calculates what we expect"""
+>> 
+>>     r1 = np.array([0, 0, 0])
+>>     r2 = np.array([0, 1, 0])
+>> 
+>>     expected_distance = 2
+>> 
+>>     calculated_distance = molecool.calculate_distance(r1, r2)
+>> 
+>>     if expected_distance != calculated_distance:
+>>         raise Exception("My test will fail!")
+>> ~~~
+>> {: .language-python}
+>> You can see that an `AssertionError` is easier than something like this :)
 > {: .solution}
 {: .challenge}
 
@@ -451,7 +451,7 @@ TDD has another benefit of never having false positives. If you ensure that your
 >> 
 >>     mass = 0
 >>     for atom in symbols:
->>         mass += atom_weights[atom]
+>>         mass += atomic_weights[atom]
 >>     
 >>     return mass
 >> ~~~
