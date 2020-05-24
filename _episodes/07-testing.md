@@ -421,13 +421,12 @@ TDD has another benefit of never having false positives. If you ensure that your
 > ~~~
 > def test_molecular_mass():
 >     symbols = ['C', 'H', 'H', 'H', 'H']
->     
+>
 >     calculated_mass = molecool.calculate_molecular_mass(symbols)
 > 
->     actual_mass = molecool.atom_data.atom_weights['C'] + molecool.atom_data.atom_weights['H'] +\
->          molecool.atom_data.atom_weights['H'] + molecool.atom_data.atom_weights['H']+ molecool.atom_data.atom_weights['H']
->     
->     assert actual_mass == calculated_mass
+>     actual_mass = 16.04
+> 
+>     assert pytest.approx(actual_mass, abs=1e-2) == calculated_mass
 > ~~~
 > {: .language-python}
 >
