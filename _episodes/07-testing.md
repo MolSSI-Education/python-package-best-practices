@@ -571,10 +571,21 @@ TDD has another benefit of never having false positives. If you ensure that your
 
 ## Advanced features of pytest
 
-### Pytest Marks
-Pytest marks allow you to mark your functions. There are built in marks for pytest and you can also define your own marks.
+> ## Python Decorators
+> Some of pytest's advanced features make use of decorators. Decorators are a very powerful tool in programming, which we will not
+> explore in depth here. You can think of them as functions that act on other functions. To decorate a particular function, you write 
+> the name of the decorator, preceeded by `@`, in the line above the `def` statement:
+>
+> ~~~
+> @decorator
+> def foo():
+>     pass
+> ~~~
+> {: .language-python}
+{: .callout}
 
-For example, one built in mark is `pytest.mark.skip`. Modify your `test_calculate_distance` function to use this mark
+### Pytest Marks
+Pytest marks allow you to mark your functions. There are built in marks for pytest and you can also define your own marks. Marks are implemented using decorators. One of the built-in marks in pytest is `@pytest.mark.skip`. Modify your `test_calculate_distance` function to use this mark.
 
 When you run your tests, you will see that this test is now skipped:
 
@@ -588,7 +599,7 @@ You might also use the `pytest.mark.xfail` if you expect a test to fail.
 You can also define your own marks. Let's consider if some of our tests were slow or took a long time. Maybe we would not want to run these tests every time. We could add our own mark
 
 ~~~
-pytest.mark.slow
+@pytest.mark.slow
 def test_calculate_distance():
     """Test that calculate distance function calculates what we expect"""
 
@@ -759,7 +770,7 @@ The `scope` keyword can be helpful for saving time, however, be aware if you are
 
 ### Pytest Parametrize
 
-For some of our functions like `calculate_distance` or `calculate_angle`, we have only tested one measurement so far. This is not very complete, and we may be missing testing edge cases. You may think of writing another test where you change the values which you input into the calculation. This is definitely something you can do, but `pytest` has a feature which makes it easy to run a test with multiple inputs/values.
+For some of our functions like `calculate_distance` or `calculate_angle`, we have only tested one measurement so far. This is not very complete, and we may be missing testing edge cases. You may think of writing another test where you change the values which you input into the calculation. This is definitely something you can do, but `pytest` has a feature which makes it easy to run a test with multiple inputs/values - the `parametrize` mark.
 
 > ## Edge and Corner Cases
 > 
@@ -776,7 +787,7 @@ For some of our functions like `calculate_distance` or `calculate_angle`, we hav
 {: .callout}
 
 
-This is called the `pytest.mark.parametrize` decorator. The syntax for this decorator is
+The syntax for the `pytest.mark.parametrize` decorator is:
 
 ~~~
 @pytest.mark.parametrize("variable_name1, variable_name2, ...variable_nameN, expected_answer", [
