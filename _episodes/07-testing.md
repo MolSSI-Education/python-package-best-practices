@@ -770,7 +770,7 @@ The `scope` keyword can be helpful for saving time, however, be aware if you are
 
 ### Pytest Parametrize
 
-For some of our functions like `calculate_distance` or `calculate_angle`, we have only tested one measurement so far. This is not very complete, and we may be missing testing edge cases. You may think of writing another test where you change the values which you input into the calculation. This is definitely something you can do, but `pytest` has a feature which makes it easy to run a test with multiple inputs/values - the `parameterize` mark.
+For some of our functions like `calculate_distance` or `calculate_angle`, we have only tested one measurement so far. This is not very complete, and we may be missing testing edge cases. You may think of writing another test where you change the values which you input into the calculation. This is definitely something you can do, but `pytest` has a feature which makes it easy to run a test with multiple inputs/values - the `parametrize` mark.
 
 > ## Edge and Corner Cases
 > 
@@ -787,7 +787,7 @@ For some of our functions like `calculate_distance` or `calculate_angle`, we hav
 {: .callout}
 
 
-The syntax for the `pytest.mark.parameterize` decorator is:
+The syntax for the `pytest.mark.parametrize` decorator is:
 
 ~~~
 @pytest.mark.parametrize("variable_name1, variable_name2, ...variable_nameN, expected_answer", [
