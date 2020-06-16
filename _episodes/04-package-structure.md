@@ -115,13 +115,13 @@ Right at the start we can see two dictionaries of atom data. Clearly these are r
 Lets start making new modules to place our related functions into.
 
 ### Atom Data
-We will take the `atom_weights` and `atom_colors` dictionaries and move them into a separate module called `atom_data.py`. This is enclosing the constant data that our system is using in a single place. This allows all of the new modules we create to access the data from a single location, avoiding the need to copy the dictionaries to each module that needs them. If we have any other data, related to atoms, used by many of our functions, adding them to this module would be a good idea.
+We will take the `atomic_weights` and `atom_colors` dictionaries and move them into a separate module called `atom_data.py`. This is enclosing the constant data that our system is using in a single place. This allows all of the new modules we create to access the data from a single location, avoiding the need to copy the dictionaries to each module that needs them. If we have any other data, related to atoms, used by many of our functions, adding them to this module would be a good idea.
 ```
 """
 Data used for the rest of the package.
 """
 
-atom_weights = {
+atomic_weights = {
     'H': 1.00784,
     'C': 12.0107,
     'N': 14.0067,
@@ -367,7 +367,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 ```
 {: .language-python}
-If you look closely at the `draw_molecule` function, you will see we have an additional problem with this module. The `draw_molecule` function uses the `atom_colors` dictionary. When all of our code was in a single module, we could simply reference the dictionary by name and use it. However, we have now moved `atom_colors` and `atom_weights` into a separate module. In order to reference the dictionaries in `visualize.py`, we need to import them using an import statement.
+If you look closely at the `draw_molecule` function, you will see we have an additional problem with this module. The `draw_molecule` function uses the `atom_colors` dictionary. When all of our code was in a single module, we could simply reference the dictionary by name and use it. However, we have now moved `atom_colors` and `atomic_weights` into a separate module. In order to reference the dictionaries in `visualize.py`, we need to import them using an import statement.
 ```
 from .atom_data import atom_colors
 ```
