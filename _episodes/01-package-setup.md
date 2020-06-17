@@ -287,7 +287,7 @@ This should work from anywhere on your computer.
 Optional dependencies can be installed as well with `pip install -e .[docs,tests]`
 
 ### Returning to `__init__.py`
-We mentioned before that we would use the `__init__.py` file to define some things about how our package behaves. Open the file again and look at the line `from .measure import *`.
+We mentioned before that we would use the `__init__.py` file to define some things about how our package behaves. Open the file again and look at the line `from .functions import *`.
 
 Let's break down this line so that we understand what is going on.
 
