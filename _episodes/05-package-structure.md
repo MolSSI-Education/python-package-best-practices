@@ -63,7 +63,7 @@ Lets start by reviewing the package structure provided to us by the [CMS CookieC
 ```
 {: .output}
 
-The easiest way to start is to see what we currently have and try and decide what is related to one another. Looking through the `functions.py` file, we see a number of different functions, we abreviate them here:
+The easiest way to start is to see what we currently have and try and decide what is related to one another. Looking through the `functions.py` file, we see a number of different functions, and for the sake of simplicity we abbreviate and rearrange them here:
 ```
 atomic_weights = {
     'H': 1.00784,
