@@ -14,8 +14,13 @@ keypoints:
 - "All functions and modules should be documented with docstrings."
 ---
 
+> ## Prerequisites
+>
+> - Completed Using Branches - Exercise in Episode 2.
+{: .prereq}
+
 # Editing function to our package
-Let's look at one of the functions in our package. Open your `molecool/io/pdb.py` module in a text editor. The function `open_pdb` reads coordinates and atom symbols from a pdb file.
+Let's look at one of the functions in our package. Open your `molecool/functions.py` module in a text editor. The function `open_pdb` reads coordinates and atom symbols from a pdb file.
 
 ~~~
 def open_pdb(f_loc):
@@ -35,7 +40,7 @@ def open_pdb(f_loc):
 
 If we want to test our function, we require a pdb file. The workshop materials downloaded during the setup include a set of pdb examples. These are found in `molssi_beter_practices/starting_material/data/pdb/`. We want to store these files in our molecool directory. Luckily, cookicutter created a folder designed specifically for that purpose. The folder is in `molecool/data/`. This folder can contain any data useful for testing of the basic functionality of our code. Be mindful given that this folder is also downloaded when installing our package, so do not include data whose size is significant. 
 
- Go ahead and copy the pdb files in a new folder `pdb` inside the data folder. With the files in our molecool folder, we can access the function when we execute it in the interactive Python interpreter. Test this by opening the interactive Python interpreter and typing the following
+Go ahead and copy the pdb files in a new folder `pdb` inside the data folder. With the files in our molecool folder, we can access the function when we execute it in the interactive Python interpreter. Test this by opening the interactive Python interpreter and typing the following
 
 ~~~
 >>> import os
@@ -47,16 +52,25 @@ If we want to test our function, we require a pdb file. The workshop materials d
 {: .language-python}
 
 ~~~
-array(['O', 'H', 'H'], dtype='<U1')
+['O', 'H', 'H']
 ~~~
 {: .output}
 
-You should get a numpy array with atomic symbols of the water molecule from executing this code.
+You should get a list of atomic symbols of the water molecule from executing this code.
 You can also see the atomic coordinates by executing:
 ~~~
 >>> coords
 ~~~
 {: .language-python}
+
+You should get a numpy array of atomic coordinates.
+
+~~~
+array([[ 9.626,  6.787, 12.673],
+       [ 9.626,  8.42 , 12.673],
+       [10.203,  7.604, 12.673]])
+~~~
+{: .output}
 
 Hooray! It seems like this function works! This should come as no surprise since we are the authors of the function and we know its internal structure. This is not necessarily true for someone editing our code and specially not true for someone just using our code. There are instances where even though the code is executed correctly, i.e., there where no syntax errors, an unwanted expected behavior occurs. In these cases, our code should be able to stop itself to prevent a malfunction. 
 
@@ -77,7 +91,7 @@ ZeroDivisionError: division by zero
 
 In this example, the code was smart enough to identify the division by zero and halted. This type of feedback is much more helpful than just throwing an ugly `NaN`. This is called an exception error. There are several built-in exception such as the "ZeroDivisionError", but in general one can simply use a `raise Exception`. Let us see how we could accomplish this. 
 
-Consider our function `calculate distance.py`
+Consider our function `calculate_distance`
 
 ~~~
 def calculate_distance(rA, rB):
@@ -234,7 +248,7 @@ $ git push origin master
 
 
 > ## Exercise
-> Below is the `calculate_distance` that takes two points in 3D space and returns the distance between them. Even though it works just fine, the variable names are not very clear and it doesn't follow PEP8 styling. Take a couple of minutes to reformat this function and add it to `molecool/measure.py` module.
+> Below is the `calculate_distance` function that takes two points in 3D space and returns the distance between them. Even though it works just fine, the variable names are not very clear and it doesn't follow PEP8 styling. Take a couple of minutes to reformat this function in `molecool/functions.py` module.
 > ~~~
 > def calculate_distance(rA, rB):
 >    d=(rA-rB)
@@ -289,7 +303,7 @@ canvas(with_attribution=True)
 
 If we try the same thing on our `calculate_distance` function, we don't get a helpful message.
 
-We will want to write a docstring for our new `calculate_distance` function. This way, it will be clear to new developers who use our code what the function does, and be accessible to any users using the function interactively. Returning, to the `measure.py` module file, edit your `calculate_distance` function to look like the following:
+We will want to write a docstring for our new `calculate_distance` function. This way, it will be clear to new developers who use our code what the function does, and be accessible to any users using the function interactively. Returning, to the `functions.py` module file, edit your `calculate_distance` function to look like the following:
 
 ~~~
 def calculate_distance(rA, rB):
@@ -336,7 +350,7 @@ The docstring should explain what the function or module does (and not how it is
 {: .callout}
 
 ### Sections of a Docstring
-There are many ways you could format this docstring (different styles/conventions). We recommend using [numpy style docstrings], and this is what the example above and `calculate_distance` funtion are written in.
+There are many ways you could format this docstring (different styles/conventions). We recommend using [numpy style docstrings], and this is what the example above and `calculate_distance` function are written in.
 
 Each docstring has a number of sections which are separated by headings. Headings should be underlined with hyphens (`-----`). There are many options for sections, we will only cover the most relevant here. If you would like to see a full list, check out the documentation for [numpy style docstrings].
 
@@ -406,7 +420,7 @@ Examples
 
 It is important that your Examples in docstrings be working Python. We will see in the `testing` lesson how we can run automatic tests on our docstrings, and in the `documentation` lesson, we will see how we can display examples in documentation to our users. 
 
-We have three lines of code for our example. In examples, lines of code begin with `>>>`. The first two lines define numpy arrays that are used in our `calculate_distance` function. Note that `r1` and `r2` must be numpy arrays (as indicated by our `Parameters` section), or our Example will not give valid Python code (our function would erorr if we ran it). On the last line, you give the output (with no `>>>` in front.)
+We have three lines of code for our example. In examples, lines of code begin with `>>>`. The first two lines define numpy arrays that are used in our `calculate_distance` function. Note that `r1` and `r2` must be numpy arrays (as indicated by our `Parameters` section), or our Example will not give valid Python code (our function would error if we ran it). On the last line, you give the output (with no `>>>` in front.)
 
 Now that we've written a function in our project, we should commit our changes and push to GitHub.
 
@@ -516,7 +530,7 @@ def calculate_distance(rA, rB):
 If you save the file and test your function in the command line, you will see that it still works when formated this way. However, it is significantly harder to read in the text editor. We can use yapf to format this automatically. In your terminal, run yapf with the following command -
 
 ~~~
-$ yapf -i molecool/measure.py
+$ yapf -i molecool/functions.py
 ~~~
 {: .language-bash}
 
