@@ -95,9 +95,9 @@ Consider our function `calculate_distance`
 
 ~~~
 def calculate_distance(rA, rB):
-    dist_vec = (rA - rB)
-    distance = np.linalg.norm(dist_vec)
-    return distance
+    d=(rA-rB)
+    dist=np.linalg.norm(d)
+    return dist
 ~~~
 {: .language-python}
 
@@ -105,11 +105,11 @@ The function returns a distance no mater what the two points are. Now, imagine t
 
 ~~~
 def calculate_distance(rA, rB):
-    dist_vec = (rA - rB)
-    distance = np.linalg.norm(dist_vec)
-    if distance == 0.0:
+    d=(rA-rB)
+    dist=np.linalg.norm(d)
+    if dist == 0.0:
         raise Exception("Two atoms are located in the same point in space")
-    return distance
+    return dist
 ~~~
 {: .language-python}
 
@@ -126,11 +126,11 @@ This is a general exception that requires a very explicit line to describe what 
 def calculate_distance(rA, rB):
     if isinstance(rA,np.ndarray) is False or isinstance(rB,np.ndarray) is False:
         raise TypeError("rA and rB must be numpy arrays")
-    dist_vec = (rA - rB)
-    distance = np.linalg.norm(dist_vec)
-    if distance == 0.0:
+    d=(rA-rB)
+    dist=np.linalg.norm(d)
+    if dist == 0.0:
         raise Exception("Two atoms are located in the same point in space")
-    return distance
+    return dist
 ~~~
 {: .language-python}
 
@@ -251,17 +251,29 @@ $ git push origin master
 > Below is the `calculate_distance` function that takes two points in 3D space and returns the distance between them. Even though it works just fine, the variable names are not very clear and it doesn't follow PEP8 styling. Take a couple of minutes to reformat this function in `molecool/functions.py` module.
 > ~~~
 > def calculate_distance(rA, rB):
->    d=(rA-rB)
->    dist=np.linalg.norm(d)
->    return dist
+>     if isinstance(rA,np.ndarray) is False or isinstance(rB,np.ndarray) is False:
+>         raise TypeError("rA and rB must be numpy arrays")
+>     d=(rA-rB)
+>     dist=np.linalg.norm(d)
+>     if dist == 0.0:
+>         raise Exception("Two atoms are located in the same point in space")
+>     return dist
 > ~~~
 >> ## Solution
 >> Here is a better formatted version of `calculate_distance` which is easier to read and understand.
 >>
 >> ~~~
 >> def calculate_distance(rA, rB):
+>>
+>>    if isinstance(rA,np.ndarray) is False or isinstance(rB,np.ndarray) is False:
+>>        raise TypeError("rA and rB must be numpy arrays")
+>>
 >>    dist_vec = (rA - rB)
 >>    distance = np.linalg.norm(dist_vec)
+>>
+>>    if distance == 0.0:
+>>        raise Exception("Two atoms are located in the same point in space")
+>>
 >>    return distance
 >> ~~~
 >> {: .language-python}
@@ -327,9 +339,15 @@ def calculate_distance(rA, rB):
     0.1
     """
 
+    if isinstance(rA,np.ndarray) is False or isinstance(rB,np.ndarray) is False:
+        raise TypeError("rA and rB must be numpy arrays")
+
     dist_vec = (rA - rB)
     distance = np.linalg.norm(dist_vec)
     
+    if distance == 0.0:
+        raise Exception("Two atoms are located in the same point in space")
+        
     return distance
 
     
