@@ -44,7 +44,7 @@ Go ahead and copy the pdb files in a new folder `pdb` inside the data folder. Wi
 
 ~~~
 >>> import os
->>> from molecool.io import open_pdb
+>>> from molecool import open_pdb
 >>> pdb_file = os.path.join('molecool', 'data', 'pdb', 'water.pdb')
 >>> symbols, coords = open_pdb(pdb_file)
 >>> symbols
