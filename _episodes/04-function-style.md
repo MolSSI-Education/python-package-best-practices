@@ -476,14 +476,14 @@ $ git push origin master
 >>     Parameters
 >>     ----------
 >>     file_location : str
->>         The location of the xyz file to read in.
+>>         The location of the pdb file to read in.
 >>
 >>     Returns
 >>     -------
 >>     coords : np.ndarray
->>         The coordinates of the xyz file.
+>>         The coordinates of the pdb file.
 >>     symbols : list
->>         The atomic symbols of the xyz file.
+>>         The atomic symbols of the pdb file.
 >>
 >>     """
 >>
