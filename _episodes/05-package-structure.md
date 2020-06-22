@@ -326,7 +326,7 @@ def write_xyz(file_location, symbols, coordinates):
 Now any module that needs to handle input and output can import the needed module from the `io` package. Since these are currently small modules, it would not be a big deal to import all of them, but consider a large I/O suite contianing a large number of file types and functionalities, it will quickly create inefficiencies to leave them in one module.
 
 ## Fixing Imports
-When we first copied the functions from the Jupyter Notebook into `functions.py`, we also modified the `__init__` in the main folder to access the functions within it. After we extracted the functions from that file, we won't be able to import those functions in the same way. In fact we won't be able to access them at all. Every time we restructure our code or create new folders we have to be careful and modify the init accordingly. Let us then add the new functions into the `__init__`
+When we first copied the functions from the Jupyter Notebook into `functions.py`, we were able to import `molecool` package and access the functions within `functions.py`. After we extracted the functions from that file, we won't be able to import those functions in the same way. In fact we won't be able to access them at all. Every time we restructure our code or create new folders we have to be careful and modify the init accordingly. Let us then add the new functions into the `__init__`
 
 ~~~
 # Add imports here
