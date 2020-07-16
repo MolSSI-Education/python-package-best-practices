@@ -43,7 +43,7 @@ kind: "lesson"
 
 # Magic to make URLs resolve both locally and on GitHub.
 # See https://help.github.com/articles/repository-metadata-on-github-pages/.
-repository: MolSSI-Education/CMS-Python-DevOps
+repository: MolSSI-Education/python-package-best-practices
 
 # Start time in minutes (0 to be clock-independent, 540 to show a start at 09:00 am)
 start_time: 0
