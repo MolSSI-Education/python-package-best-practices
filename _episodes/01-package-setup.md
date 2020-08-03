@@ -87,11 +87,11 @@ Another thing the CookieCutter checks for is your email address. Be sure to prov
 #### License Choice
 Choosing which license to use is often confusing for new developers. The MIT license (option 1) is a very common license and the default on GitHub. It allows for anyone to use, modify, or redistribute your work with no restristions (and also no warranty).
 
-Here, we have chosen the `BSD-3-Clause`. The `BSD-3-Clause` license is an open-source, permissive license (meaning that few requirements are placed on deveopers of derivative works), similar to the MIT license. However, it prohibits others from using the name of the project or its contributors to promote derived products without written consent.
+Here, we have chosen the `BSD-3-Clause`. The `BSD-3-Clause` license is an open-source, permissive license (meaning that few requirements are placed on deveopers of derivative works), similar to the MIT license. However, it adds a copyright notice with your name and requires redistributors of the code to keep the notice. It also prohibits others from using the name of the project or its contributors to promote derived products without written consent.
 
-If there is no license in a repository, you should assume that the project is **not** open source, and you cannot modify or redistribute the software.
+If there is no license in a repository, you should assume that the project is **not** open source, and [you cannot modify or redistribute the software](https://choosealicense.com/no-permission/).
 
-For most of your projects, it is likely that the license you choose will not matter a great deal. However, remember that if you ever want to change a license, you must get permission of all contributors. So, if you ever start a project that becomes popular or has contributors, be sure to decide your license early!
+For most of your projects, it is likely that the license you choose will not matter a great deal. However, remember that if you ever want to change a license, you may have to get permission of all contributors. So, if you ever start a project that becomes popular or has contributors, be sure to decide your license early!
 
 > ## Types of Open-Source Licenses
 >
