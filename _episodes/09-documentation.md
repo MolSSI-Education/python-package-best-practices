@@ -25,15 +25,15 @@ The documentation typically involves several components:
  - How to compile/build/test/install
  - How to use the software (through the API or through inputs)
  - Some examples
- 
+
 
 ## README documentation
 
-So far in our project, we have added things like installation and use instructions to our `README.md` which is displayed on our GitHub repository. This works well for small projects, and may be all of the documentation you need for many of your projects. 
+So far in our project, we have added things like installation and use instructions to our `README.md` which is displayed on our GitHub repository. This works well for small projects, and may be all of the documentation you need for many of your projects.
 
 ## Sphinx for complex modules
 
-When you want to improve your documentation strategies for Python packages, use [Sphinx](https://www.sphinx-doc.org/en/master/). Sphinx is a tool for creating documentation, and was originally created for documentation of the Python programming language. 
+When you want to improve your documentation strategies for Python packages, use [Sphinx](https://www.sphinx-doc.org/en/master/). Sphinx is a tool for creating documentation, and was originally created for documentation of the Python programming language.
 
 With Sphinx and some extensions, you can write documentation giving instructions and examples of your software, AND pull out the in code documentation we have already written as docstrings. The ability to pull out in-code doc-strings as documentation is an advantage - you won't have to maintain documentation in two places. Later, we will see how we can automatically generate our documentation every time we push to the repository.
 
@@ -46,7 +46,7 @@ CookieCutter has already set up files which we need to get started with Sphinx.
 To build your Sphinx documentation locally, you will first need to install Sphinx. This command installs Sphinx, and the Sphinx Read The Docs theme (the theme you use defines the style of your pages). There are many themes available for Sphinx, and if you view the Sphinx [examples](https://www.sphinx-doc.org/en/master/examples.html) you will see several themes you could choose from.
 
 ~~~
-$ conda install sphinx sphinx_rtd_theme 
+$ conda install sphinx sphinx_rtd_theme
 ~~~
 {: .language-bash}
 
@@ -73,7 +73,7 @@ _static             conf.py             make.bat
 
 These are the files we will use to build our documentation.
 
-The important files for you to edit in this directory end with the extension `.rst`. These are `reStructured text` files, and they are what Sphinx will use to build each page or section of your documentation. We have three restructured text files here to begin (`index.rst`, `getting_started.rst`, `api.rst`). 
+The important files for you to edit in this directory end with the extension `.rst`. These are `reStructured text` files, and they are what Sphinx will use to build each page or section of your documentation. We have three restructured text files here to begin (`index.rst`, `getting_started.rst`, `api.rst`).
 
 When you build your documentation, the `index.rst` will be the index, or main page of your documentation. The other `rst` files are examples of pages you might want to have (from CookieCutter). Any time you want to make a new page, you can create a file with an `.rst` extension.
 
@@ -84,7 +84,7 @@ $ make html
 ~~~
 {: .language-bash}
 
-This command tells Sphinx to generate your documentation as html pages. With this command, we are building HTML files from the reStructured text files. 
+This command tells Sphinx to generate your documentation as html pages. With this command, we are building HTML files from the reStructured text files.
 
 Now notice when you type `ls` a some new directories have appeared.
 
@@ -108,8 +108,8 @@ You can change the content of these files by editing the rst files and rebuildin
 Welcome to molecool's documentation!
 =========================================================
 molecool is a Python package designed to read in, perfom analysis,
-and visualize molecular coordinates. The file formats `xyz` and `pdb` are 
-currently supported. 
+and visualize molecular coordinates. The file formats `xyz` and `pdb` are
+currently supported.
 ~~~
 
 Next, clean your previous build and rebuild your pages.
@@ -137,7 +137,7 @@ Getting Started
 =============================
 
 molecool is currently under development, and can not yet be installed from PyPI
-or conda. 
+or conda.
 
 Installation
 ------------
@@ -190,7 +190,7 @@ Usage
 Once installed, you can use the package. This example draws a benzene molecule from an xyz file.::
 
     import molecool
-    
+
     benzene_symbols, benzene_coords = molecool.open_xyz('benzene.xyz')
     benzene_bonds = molecool.build_bond_list(benzene_coords)
     molecool.draw_molecule(benzene_coords, benzene_symbols, draw_bonds=benzene_bonds)
@@ -224,14 +224,14 @@ Note that you add the __file name__ in the TOC Tree, but the title of the page (
 >> About this package
 >> ----------------
 >> This package and documentation are a sample created for the Best Practices Workshop held by `The Molecular Sciences Software Institute <https://molssi.org>`_.
->> 
+>>
 >> ~~~
 >> Then, in `index.rst` add the name of the file at the top of your table of contents.
 >> ~~~
 >> .. toctree::
 >>    :maxdepth: 2
 >>    :caption: Contents:
->> 
+>>
 >>    getting_started
 >>    api
 >>    about
@@ -243,7 +243,7 @@ Note that you add the __file name__ in the TOC Tree, but the title of the page (
 >> ~~~
 >> {: .error}
 >> Sphinx will warn you if you've created a page and not linked to it.
->> 
+>>
 >{: .solution}
 {: .challenge}
 
@@ -294,11 +294,11 @@ API Documentation
 > ## Exercise
 > Add documentation for the `calculate_angle` function.
 >
->> ## Answer 
+>> ## Answer
 >> ~~~
 >> .. autosummary::
 >>     :toctree: autosummary
->> 
+>>
 >>     molecool.canvas
 >>     molecool.calculate_distance
 >>     molecool.calculate_angle
@@ -411,5 +411,46 @@ conda:
 
 Commit to these changes and push to your repository. You should now see your documentation strings.
 
+
+#### Automatically Generating Documentation Using Sphinx-AutoAPI
+Sphinx includes an alternative to autodoc/autosummary that will automatically generate an "API Reference" page based
+on the docstrings throughout the projet's source code upon compiling using `make html`.
+This is [Spinx-AutoAPI](https://github.com/readthedocs/sphinx-autoapi). To install Sphinx-AutoAPI, use `pip`:
+
+``pip install sphinx-autoapi``
+
+There are a few modifications necessary to use Sphinx-AutoAPI.  
+ - In the the conda-env file `devtools/conda-envs/test_env.yaml`, include `sphinx-autoapi` under
+ `dependencies`, pip-only installs  
+ - At the end of the `docs/requirements.yml` file, under `pip-only installs`, include`- sphinx-autoapi`
+ - In `docs/conf.py`, remove `sphinx.ext.autodoc` and `sphinx.ext.autosummary` and add `autoapi.extension` to the
+ `extensions` list variable. Then comment out or delete the line: `autosummary_generate = True`.
+ - Optional: remove `* :ref:'modindex'` from `index.rst`, since API Reference will show up autmoatically in
+ `.. toctree::`
+
+Once all of this is configured, you may now choose the modules and functions you would like Sphinx-AutoAPI to include
+or ignore in its automatic generation of documentation. To do this, in the `docs/conf.py` file, you may now add the
+following lines:
+
+~~~
+autoapi_dirs = ['../molecool']
+autoapi_ignore = ["*/tests/*",
+                  "*_version.py"]
+# for a detailed explanation of all the options below, visit the Sphinx-AutoAPI documentation. From there:
+# private-members: Include private objects (eg. _foo in Python)
+# special-members: Include special objects (eg. __foo__ in Python)
+autoapi_options = [ 'members',
+                    'undoc-members',
+                    #'private-members',
+                    #'special-members',
+                    'show-inheritance',
+                    'show-module-summary',
+                    'imported-members']
+~~~
+
+Once compiled, this will generate documentation for all files in the `molecool` source directory, as well as exclude
+generating documentation for the tests and versioneering files in the project. The `index.rst` file will be updated
+to include an `API Reference` page, and the resultant `.html` files can be viewed in the `_build` directory upon 
+compilation.
 
 {% include links.md %}
