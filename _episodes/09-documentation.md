@@ -412,25 +412,27 @@ conda:
 Commit to these changes and push to your repository. You should now see your documentation strings.
 
 
-#### Automatically Generating Documentation Using Sphinx-AutoAPI
+## Automatically Generating Documentation Using Sphinx-AutoAPI
 Sphinx includes an alternative to autodoc/autosummary that will automatically generate an "API Reference" page based
 on the docstrings throughout the projet's source code upon compiling using `make html`.
 This is [Spinx-AutoAPI](https://github.com/readthedocs/sphinx-autoapi). To install Sphinx-AutoAPI, use `pip`:
 
-``pip install sphinx-autoapi``
+~~~
+pip install sphinx-autoapi
+~~~
+{: .language-bash}
+
 
 There are a few modifications necessary to use Sphinx-AutoAPI.  
- - In the the conda-env file `devtools/conda-envs/test_env.yaml`, include `sphinx-autoapi` under
- `dependencies`, pip-only installs  
  - At the end of the `docs/requirements.yml` file, under `pip-only installs`, include`- sphinx-autoapi`
  - In `docs/conf.py`, remove `sphinx.ext.autodoc` and `sphinx.ext.autosummary` and add `autoapi.extension` to the
  `extensions` list variable. Then comment out or delete the line: `autosummary_generate = True`.
- - Optional: remove `* :ref:'modindex'` from `index.rst`, since API Reference will show up autmoatically in
- `.. toctree::`
+ - Optional: remove `* :ref:'modindex'` from `docs/index.rst`, since an API Reference tab will show up autmoatically in
+ `.. toctree::` after compilation.
 
-Once all of this is configured, you may now choose the modules and functions you would like Sphinx-AutoAPI to include
+Once this is configured, you may now choose the modules and functions you would like Sphinx-AutoAPI to include
 or ignore in its automatic generation of documentation. To do this, in the `docs/conf.py` file, you may now add the
-following lines:
+following lines directly following the declaration of the `extensions` variable:
 
 ~~~
 autoapi_dirs = ['../molecool']
@@ -447,6 +449,42 @@ autoapi_options = [ 'members',
                     'show-module-summary',
                     'imported-members']
 ~~~
+{: .language-python}
+
+All together, this section of the `conf.py` should look like:
+
+~~~
+...
+
+extensions = [
+    'autoapi.extension',
+    'sphinx.ext.mathjax',
+    'sphinx.ext.viewcode',
+    'sphinx.ext.napoleon',
+    'sphinx.ext.intersphinx',
+    'sphinx.ext.extlinks',
+]
+
+autoapi_dirs = ['../molecool']
+autoapi_ignore = ["*/tests/*",
+                  "*_version.py"]
+                  
+autoapi_options = ['members', 
+		'undoc-members', 
+		#'private-members', 
+		#'special-members', 
+		'show-inheritance', 
+		'show-module-summary', 
+		'imported-members']
+	
+# autosummary_generate = True	# or delete this
+napoleon_google_docstring = False
+napoleon_use_param = False
+napoleon_use_ivar = True
+                  
+...
+~~~
+{: .language-python}
 
 Once compiled, this will generate documentation for all files in the `molecool` source directory, as well as exclude
 generating documentation for the tests and versioneering files in the project. The `index.rst` file will be updated
