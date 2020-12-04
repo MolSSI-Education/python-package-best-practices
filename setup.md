@@ -9,12 +9,12 @@ For this workshop, you will need to have Python installed. We recommend and assu
 We will cover the following topics. Click on a particular topic to skip to that section.
 
 1. [Downloading workshop materials](#materials_download)
+1. [Installing Python using Anaconda](#python_install)
 1. [Downloading a text editor](#text_editor)
-2. [Installing Python using Anaconda](#python_install)
-3. [Creating a Python environment using `conda`](#python_environment)
-4. [Installation of cookiecutter](#cookiecutter)
-5. [Creating a GitHub Account](#github_account)
-6. [Installing and Configuring git](#git_configuration)
+1. [Creating a Python environment using `conda`](#python_environment)
+1. [Installation of cookiecutter](#cookiecutter)
+1. [Creating a GitHub Account](#github_account)
+1. [Installing and Configuring git](#git_configuration)
 
 ## Workshop materials <a name="materials_download"></a>
 
@@ -38,16 +38,13 @@ In this workshop, we will be moving code from a Jupyter notebook into a Python p
             └── starting_notebook.ipynb
     ~~~
 
-## Choosing a text editor <a name="text_editor"></a>
-You will need an editor for Python files for this workshop. If you do not have a prefered text editor, we recommend [Visual Studio Code](https://code.visualstudio.com/)
-
 ## Installing Python Using Anaconda <a name="python_install"></a>
 
 If you already have a Python 3 verison Anaconda or MiniConda installed, you can skip this step.
 
 [Python][python] is a popular language for scientific computing, and great for
 general-purpose programming as well.  We recommend using Python with the conda package manager. 
-You can obtain Python and conda by either installing [Miniconda](https://docs.conda.io/en/latest/miniconda.html) (minimal installer) or [Anaconda](https://www.anaconda.com/products/individual). Anaconda comes bundled with many more python packages than miniconda. Anaconda is more user-friendly. If you are uncomfortable navigating the terminal, or are unsure of which you need, install Anaconda.
+You can obtain Python and conda by either installing [Miniconda](https://docs.conda.io/en/latest/miniconda.html) (minimal installer) or [Anaconda](https://www.anaconda.com/products/individual). Anaconda comes bundled with many more python packages than miniconda. Anaconda is more user-friendly. If you are uncomfortable navigating the terminal, or are unsure of which you need, install Anaconda. Anaconda will also come bundled with the text editor Visual Studio Code, so you will not need to install a text editor in the next step.
 
 The installer for Anaconda can be found on [this page](https://www.anaconda.com/products/individual). Choose the appropriate version for your Operating System.
 
@@ -58,6 +55,8 @@ as far in advance as possible.  If you encounter problems with the
 installation procedure, ask your workshop organizers via e-mail for assistance so
 you are ready to go as soon as the workshop begins.
 
+## Choosing a text editor <a name="text_editor"></a>
+You will need an editor for Python files for this workshop. If you do not have a prefered text editor, we recommend [Visual Studio Code](https://code.visualstudio.com/). If you installed a recent version of Anaconda, you will have VSCode installed already. You should be able to open it from the Anaconda Navigator window. If you have another prefered text editor, you should use that for the workshop.
 
 ## Using Anaconda and conda
 
@@ -214,6 +213,13 @@ $ git config --global core.editor "vim"
 
 A more complete list of possible editors is available [here](http://swcarpentry.github.io/git-novice/02-setup/index.html).
 
+To use VSCode as your core editor, do
+
+~~~
+$ git config --global core.editor "code --wait"
+~~~
+{: .language-bash}
+
 You can check the configuration commands that you have set using:
 
 ~~~
@@ -222,18 +228,14 @@ $ git config --list
 {: .bash}
 
 ## Create GitHub Account <a name="github_account"></a>
-Create an account on [github.com]. Remember the user name and password. If you are making a GitHub account, please remember that your username should be *recognizable* and *professional*.
+Create an account on [github.com] if you do not have one already. Remember the user name and password. If you are making a GitHub account, please remember that your username should be *recognizable* and *professional*.
 
 ### Conclusion
-At the end of this set-up, you should have created a Python environment (`molssi_best_practices`) which has Python 3.7, `numpy`, `matplotlib`, `jupyter`, and `cookiecutter` installed. You should also have installed and created an account on GitHub and configured git.
+At the end of this set-up, you should have created a Python environment (`molssi_best_practices`) which has Python 3.7, `numpy`, `matplotlib`, `jupyter`, and `cookiecutter` installed. You should also have downloaded starting material, installed and created an account on GitHub, and configured git.
 
 
 [anaconda]: https://www.anaconda.com
 [https://www.anaconda.com/download]: https://www.anaconda.com/download
-[Download and install git for your operating system.]: https://git-scm.com/downloads
 [python]: https://python.org
 [github.com]: https://github.coms
-[video-mac]: https://www.youtube.com/watch?v=TcSAln46u9U
-[video-windows]: https://www.youtube.com/watch?v=xxQ0mzZ8UvA
-[wsl-windows]: https://docs.microsoft.com/en-us/windows/wsl/install-win10
 [CMS CookieCutter]: https://github.com/MolSSI/cookiecutter-cms
