@@ -39,7 +39,7 @@ In this workshop, we will be moving code from a Jupyter notebook into a Python p
     ~~~
 
 ## Choosing a text editor <a name="text_editor"></a>
-You will need an editor for Python files for this workshop. If you do not have a prefered text editor, we recommend [atom](https://atom.io/) or [Visual Studio Code](https://code.visualstudio.com/)
+You will need an editor for Python files for this workshop. If you do not have a prefered text editor, we recommend [Visual Studio Code](https://code.visualstudio.com/)
 
 ## Installing Python Using Anaconda <a name="python_install"></a>
 
@@ -47,7 +47,7 @@ If you already have a Python 3 verison Anaconda or MiniConda installed, you can 
 
 [Python][python] is a popular language for scientific computing, and great for
 general-purpose programming as well.  We recommend using Python with the conda package manager. 
-You can obtain Python and conda by either installing [Miniconda](https://docs.conda.io/en/latest/miniconda.html) (minimal installer) or [Anaconda](https://www.anaconda.com/products/individual). Anaconda comes bundled with many more python packages than miniconda. If you are unsure of which you would like, install [Anaconda].
+You can obtain Python and conda by either installing [Miniconda](https://docs.conda.io/en/latest/miniconda.html) (minimal installer) or [Anaconda](https://www.anaconda.com/products/individual). Anaconda comes bundled with many more python packages than miniconda. Anaconda is more user-friendly. If you are uncomfortable navigating the terminal, or are unsure of which you need, install Anaconda.
 
 The installer for Anaconda can be found on [this page](https://www.anaconda.com/products/individual). Choose the appropriate version for your Operating System.
 
@@ -70,7 +70,7 @@ A `conda` environment contains a specific collection of packages you have instal
 
 It's considered a best practice to create a new Python environment for each project you work on.
 
-This section uses the command line interface (CLI) to create an environment using `conda`. If you are on Mac or Linux, you will type these commands into your terminal.  If you are on Windows, you should use the Anaconda Navigator. 
+This section uses the command line interface (CLI) to create an environment using `conda`. If you are on Mac or Linux, you will type these commands into your terminal.  If you are on Windows, you should use the Anaconda Prompt. 
 
 To create an environment for this project using `conda`,
 
@@ -177,7 +177,12 @@ $ conda install cookiecutter
 ## Installing and configuring git <a name="git_configuration"></a>
 
 ### Installation
-[Download and install git for your operating system.]
+Install git. You can install using conda
+
+~~~
+$ conda install git
+~~~
+{: .language-bash}
 
 ### Configuring Git
 
@@ -199,14 +204,8 @@ Next, you might want to change the Git text editor.
 As we will see later, certain Git commands will open text files.
 When this happens, Git will use your environment's default text editor, which might not be the editor you are most comfortable using.
 Using configuration commands, you can tell Git to use your favorite editor.
-To use Emacs as your text editor, you can do:
 
-~~~
-$ git config --global core.editor "emacs"
-~~~
-{: .bash}
-
-Alternatively, to use Vim as your text editor, do:
+A popular chose is Vim. To use Vim, do
 
 ~~~
 $ git config --global core.editor "vim"
