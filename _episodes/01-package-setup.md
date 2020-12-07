@@ -70,7 +70,7 @@ Select dependency_source:
 
 Choose from 1, 2, 3 (1, 2, 3) [1]:
 
-Select Include_Windows_continuous_integration:
+Select include_ReadTheDocs:
 1 - y
 2 - n
 Choose from 1, 2 (1, 2) [1]:
@@ -85,11 +85,15 @@ The next choice is about the first module name. Modules are the `.py` files whic
 Another thing the CookieCutter checks for is your email address. Be sure to provide a valid email address to the cookiecutter (it must have an `@` symbol followed by a domain name, or the cookiecutter will fail.). Note that your email address is not recorded or kept by the software. Your email is asked for insertion into created files so that people using your software will have contact information for you. 
 
 #### License Choice
-Choosing which license to use is often confusing for new developers. The MIT license (option 1) is a very common license and the default on GitHub. It allows for anyone to use, modify, or redistribute your work with no restristions (and also no warranty).
+Choosing which license to use is often confusing for new developers. The MIT license (option 1) is a very common license and the default on GitHub. It allows for anyone to use, modify, or redistribute your work with no restrictions (and also no warranty).
 
-Here, we have chosen the `BSD-3-Clause`. The `BSD-3-Clause` license is an open-source, permissive license (meaning that few requirements are placed on deveopers of derivative works), similar to the MIT license. However, it adds a copyright notice with your name and requires redistributors of the code to keep the notice. It also prohibits others from using the name of the project or its contributors to promote derived products without written consent.
+Here, we have chosen the `BSD-3-Clause`. The `BSD-3-Clause` license is an open-source, permissive license (meaning that few requirements are placed on developers of derivative works), similar to the MIT license. However, it adds a copyright notice with your name and requires redistributors of the code to keep the notice. It also prohibits others from using the name of the project or its contributors to promote derived products without written consent.
 
-If there is no license in a repository, you should assume that the project is **not** open source, and [you cannot modify or redistribute the software](https://choosealicense.com/no-permission/).
+You can see more detailed information on each license at [choosealicense.com](https://choosealicense.com) or by clicking the links below:
+1. [MIT License](https://choosealicense.com/licenses/mit/)
+1. [BSD-3-Clause](https://choosealicense.com/licenses/bsd-3-clause/)
+1. [LGPLv3](https://choosealicense.com/licenses/gpl-3.0/)
+1. Not Open Source - In this case, the cookiecutter will not generate a license. You can add a custom license, or choose to not add a license. If there is no license in a repository, you should assume that the project is **not** open source, and [you cannot modify or redistribute the software](https://choosealicense.com/no-permission/).
 
 For most of your projects, it is likely that the license you choose will not matter a great deal. However, remember that if you ever want to change a license, you may have to get permission of all contributors. So, if you ever start a project that becomes popular or has contributors, be sure to decide your license early!
 
@@ -103,53 +107,60 @@ For most of your projects, it is likely that the license you choose will not mat
 #### Dependency Source
 This determines some things in set-up for what will be used to install dependencies for testing. This mostly has consequence for the section on Continuous Integration. We have chosen to install dependencies from anaconda with pip fallback. Don't worry too much about this choice for now.
 
+#### Support for ReadTheDocs
+This option is to choose whether you would like files associated with the documentation hosting service [ReadTheDocs](https://readthedocs.org/). Choose yes for this workshop.
+
 ### Reviewing directory contents
 Now we can examine the project layout the CookieCutter has set up for us. Navigate to the newly created `molecool` directory. You should see the following directory structure.
 
 ```
 .
+├── CODE_OF_CONDUCT.md              <- Code of Conduct for developers and users
 ├── LICENSE                         <- License file
+├── MANIFEST.in                     <- Packaging information for pip
 ├── README.md                       <- Description of project which GitHub will render
-├── appveyor.yml                    <- AppVeyor config file for Windows testing (if chosen)
-├── molecool
-│   ├── __init__.py                 <- Basic Python Package import file
-│   ├── functions.py                <- Starting package module
-│   ├── data                        <- Sample additional data (non-code) which can be packaged
+├── {{repo_name}}                   <- Basic Python Package import file
+s│   ├── __init__.py                 <- Basic Python Package import file
+│   ├── _version.py                 <- Automatic version control with Versioneer
+│   ├── data                        <- Sample additional data (non-code) which can be packaged. Just an example, delete in production
 │   │   ├── README.md
 │   │   └── look_and_say.dat
-│   ├── tests                       <- Unit test directory with sample tests
-│   │   ├── __init__.py
-│   │   └── test_functions.py
-│   └── _version.py                 <- Automatic version control with Versioneer
+│   └── tests                       <- Unit test directory with sample tests
+│       ├── __init__.py
+│       └── test_{{repo_name}}.py
 ├── devtools                        <- Deployment, packaging, and CI helpers directory
 │   ├── README.md
-│   ├── conda-envs                  <- Environments for testing
+│   ├── conda-envs                  <- Conda environments for testing
 │   │   └── test_env.yaml
-│   ├── conda-recipe                <- Conda build and deployment skeleton
-│   │   ├── bld.bat                 <- Win specific file, not present if Win CI not chosen
-│   │   ├── build.sh
-│   │   └── meta.yaml
-│   ├── scripts
-│   │   └── create_conda_env.py     <- OS agnostic Helper script to make conda environments based on simple flags
-│   └── travis-ci
-│       └── install.sh
+│   ├── legacy-miniconda-setup      <- Legacy Travis CI Helper, will likely be removed in later version
+│   │   └── before_install.sh
+│   └── scripts
+│       └── create_conda_env.py     <- OS agnostic Helper script to make conda environments based on simple flags
 ├── docs                            <- Documentation template folder with many settings already filled in
 │   ├── Makefile
 │   ├── README.md                   <- Instructions on how to build the docs
 │   ├── _static
+│   │   └── README.md
 │   ├── _templates
+│   │   └── README.md
+│   ├── api.rst
 │   ├── conf.py
+│   ├── getting_started.rst
 │   ├── index.rst
-│   └── make.bat
+│   ├── make.bat
+│   └── requirements.yaml           <- Documenation building specific requirements. Usually a smaller set than the main program
+├── readthedocs.yml
 ├── setup.cfg                       <- Near-master config file to make house INI-like settings for Coverage, Flake8, YAPF, etc.
 ├── setup.py                        <- Your package's setup file for installing with additional options that can be set
 ├── versioneer.py                   <- Automatic version control with Versioneer
-├── .github                         <- GitHub hooks for user contribution and pull request guides
-│   ├── CONTRIBUTING.md
-│   └── PULL_REQUEST_TEMPLATE.md
 ├── .codecov.yml                    <- Codecov config to help reduce its verbosity to more reasonable levels
-├── .gitignore                      <- Stock helper file telling git what file name patterns to ignore when adding
-└── .travis.yml                     <- Travis-CI config file for Linux and OSX testing
+├── .github                         <- GitHub hooks for user contribution, pull request guides and GitHub Actions CI
+│   ├── CONTRIBUTING.md
+│   ├── PULL_REQUEST_TEMPLATE.md
+│   └── workflows
+│       └── CI.yaml
+├── .gitignore                      <- Stock helper file telling git what file name patterns to ignore when adding files
+└── .lgtm.yml
 ```
 {: .output}
 
@@ -227,7 +238,7 @@ from .functions import *
 goes to the `molecool.py` file, and brings everything that is defined there into the file. When we use our function defined in `functions.py`, that means we will be able to just say `molecool.canvas()` instead of giving the full path `molecool.functions.canvas()`. If that's confusing, don't worry too much for now. We will be returning to this file in a few minutes. For now, just note that it exists and makes our directory into a package.
 
 ### Our first module
-Once inside of the `molecool` folder (`molecool/molecool`), examine the files that are there. View the first module (`functions.py`) in a text editor. We see a few things about this file. The top begins with a description of this module. Right now, that is the file name, followed by our short description, then the sentence "Handles the primary functions". We will change this to be more descriptive later. CookieCutter has also created a placeholder function in called `canvas`.  At the start of the `canvas` function, we have a `docstring` (more about this in [documentation]), which describes the function.
+Once inside of the `molecool` folder (`molecool/molecool`), examine the files that are there. View the first module (`functions.py`) in a text editor. We see a few things about this file. The top begins with a description of this module surrounded by three quotations (`"""`). Right now, that is the file name, followed by our short description, then the sentence "Handles the primary functions". We will change this to be more descriptive later. CookieCutter has also created a placeholder function in called `canvas`.  At the start of the `canvas` function, we have a `docstring` (more about this in [documentation]), which describes the function.
 
 We will be moving all of the functions we defined in the jupyter notebook into python modules (`.py` files) like these.
 
@@ -249,7 +260,7 @@ A local install uses the `setup.py` file to install your package by inserting a 
 ~~~
 {: .language-python}
 
-This will give a list of locations python looks for packages when you do an import. One of the locations should end with `python3.7/site_packages`
+This will give a list of locations python looks for packages when you do an import. One of the locations should end with `python3.7/site_packages`. The site packages folder is where all of your installed packages for a particular environment are located.
 
 To do a local install, type
 
@@ -258,7 +269,7 @@ $ pip install -e .
 ~~~
 {: .language-bash}
 
-Here, the `-e` indicates that we are installing this project in 'editable' mode (i.e. setuptools "develop mode"), while `.` indicates to install from the local directory (you could also specify a path here). Now, if you navigate to your site packages folder, you should see a link to `molecool` (`molecool.egg-link`). The folder has also been added to your path (check `sys.path` again.)
+Here, the `-e` indicates that we are installing this project in 'editable' mode (i.e. setuptools "develop mode"), while `.` indicates to install from the local directory (you could also specify a path here). Now, if you examine the contents of your site packages folder, you should see a link to `molecool` (`molecool.egg-link`). The folder has also been added to your path (check `sys.path` again.)
 
 Now, we can use our package from any directory, similar to how we can use other installed packages like `numpy`. Open Python, and type
 
@@ -285,39 +296,6 @@ This should work from anywhere on your computer.
 {: .challenge}
 
 Optional dependencies can be installed as well with `pip install -e .[docs,tests]`
-
-### Returning to `__init__.py`
-We mentioned before that we would use the `__init__.py` file to define some things about how our package behaves. Open the file again and look at the line `from .functions import *`.
-
-Let's break down this line so that we understand what is going on.
-
-`from .functions` means 'from the functions.py module'. We use a `.` at the beginning of this module name to indicate that this is a relative import and that this module is in the same directory as the `__init__.py` file. If you are used to navigating in bash, this should be familiar. The `*` says to import everything that is in the file. For now, that is only the `canvas` function.
-
-Comment this line out and try using your function again. You should get the message
-
-~~~
->>> import molecool
->>> molecool.canvas()
-~~~
-{: .language-python}
-
-~~~
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-AttributeError: module 'molecool' has no attribute 'canvas'
-~~~
-{: .output}
-
-If you wanted to specify the module name for calling this function, you could change your `__init__.py`.
-
-~~~
-import molecool.functions
-~~~
-{: .language-python}
-
-Then, when you call the function, you must use `molecool.functions.canvas()`.
-
-We will stick with our `from .functions` command. However, it is generally considered bad practice to use a `*` on imports. 
 
 
 {% include links.md %}

@@ -64,14 +64,21 @@ $ ls -la
 
 Here, the `-la` says that we want to list the files in long format (`-l`), and show hidden files (`-a`). 
 
-If you are on Windows and using the Anaconda Navigator:
+If you are on Windows and using the Anaconda Prompt:
 
 ~~~
 dir /a
 ~~~
 {: .cmd}
 
-You should see several files starting with `.git`. In particular, `.git` is a directory where `git` stores the repository data. We can tell from this output that we are in a git repository.
+If you are on Windows and using the Anaconda PowerShell Prompt:
+
+~~~
+> ls -hidden
+~~
+{: .bash}
+
+You should an output called `.git`, `.git` is a directory where `git` stores the repository data. This is one way that we are in a git repository.
 
 Next, type
 
@@ -86,7 +93,7 @@ nothing to commit, working tree clean
 ~~~
 {: .output}
 
-This tells us that we are on the `master` branch, and that no files have been changed since the last commit.
+This tells us that we are on the `master` branch (more about branching later), and that no files have been changed since the last commit.
 
 Next, type
 ~~~
@@ -94,7 +101,8 @@ $ git log
 ~~~
 {: .bash}
 
-You will get an output resembling the following:
+You will get an output resembling the following. This is something called your git commit log. Whenever you make a version, or checkpoint, of your project, you will be able to see information about that checkpoint using the `git log` command. The cookie cutter has already made a commit and written a message for you, and that is what we see for this first commit in the log.
+
 ~~~
 commit 25ab1f1a066f68e433a17454c66531e5a86c112d (HEAD -> master, tag: 0.0.0)
 Author: Your Name <your_email@something.com>
@@ -135,7 +143,7 @@ When we have more commits (or versions) of our code, `git log` will show a histo
 
 ## The 3 steps of a commit
 
-Now, we will change some files and use `git` to track those changes. Let's edit our README. Open `README.md` in your text editor of choice. On line 8, you should see the description of the repository we typed when running the CookieCutter. Add the following sentence to your `README` under the initial description.
+Now, we will change some files and use `git` to track those changes. Let's edit our README. Open `README.md` in your text editor of choice. On line 8, you should see the description of the repository we typed when running the CookieCutter. Add the following sentence to your `README` under the initial description and save the file.
 
 ~~~
 This repository is currently under development. To do a developmental install, download this repository and type
