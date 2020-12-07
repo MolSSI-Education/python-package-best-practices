@@ -89,61 +89,81 @@ ZeroDivisionError: division by zero
 ~~~
 {: .output}
 
-In this example, the code was smart enough to identify the division by zero and halted. This type of feedback is much more helpful than just throwing an ugly `NaN`. This is called an exception error. There are several built-in exception such as the "ZeroDivisionError", but in general one can simply use a `raise Exception`. Let us see how we could accomplish this. 
+In this example, the code was smart enough to identify the division by zero and halted. This type of feedback is much more helpful than just throwing an ugly `NaN`. This is called an exception error. There are several built-in exception such as the "ZeroDivisionError". You can choose to raise errors yourself when you think a function should fail (instead of the function not failing, or running until it hit a failure.)
 
-Consider our function `calculate_distance`
-
-~~~
-def calculate_distance(rA, rB):
-    d=(rA-rB)
-    dist=np.linalg.norm(d)
-    return dist
-~~~
-{: .language-python}
-
-The function returns a distance no mater what the two points are. Now, imagine that an xyz file contained a repeated line, our function would do its job and print a distance equal to `0.0`. This is clearly unphysical and could lead into plotting two atoms in the same point. This is a perfect place to raise an exception. The syntax is as follows
+Consider our function `write_xyz`
 
 ~~~
-def calculate_distance(rA, rB):
-    d=(rA-rB)
-    dist=np.linalg.norm(d)
-    if dist == 0.0:
-        raise Exception("Two atoms are located in the same point in space")
-    return dist
+def write_xyz(file_location, symbols, coordinates):
+    
+    # Write an xyz file given a file location, symbols, and coordinates.
+
+    num_atoms = len(symbols)
+    with open(file_location, 'w+') as f:
+        f.write('{}\n'.format(num_atoms))
+        f.write('XYZ file\n')
+        
+        for i in range(num_atoms):
+            f.write('{}\t{}\t{}\t{}\n'.format(symbols[i], 
+                                              coordinates[i,0], coordinates[i,1], coordinates[i,2]))
 ~~~
 {: .language-python}
 
-In this way, trying to calculate the distance between the same two points would now show
+When examining this function, you may see a few opportunities for failure. For example, a user could supply `symbols` and `coordinates` with different lengths. If the `coordinates` argument is the longer one, we will not see an error raised. The function will simply ignore the last coordinate. If `symbols` is the longer argument, we will not have enough `coordinates` and an error will occur. Neither of these is our intention, and one of them would complete without us knowing (some errors are silent)!
+
+Let's try this out. In a python interpreter, try the following:
 
 ~~~
-Exception: Two atoms are located in the same point in space
+>>> import molecool
+>>> import numpy as np
+>>> test_atoms = ["H", "O"]
+>>> test_coords = np.array([[1,0,0],[0,0,0], [0,1,0]])
+>>> molecool.write_xyz("test.xyz", test_atoms, test_coords)
+~~~
+{: .lanuage-python}
+
+You will see that no error occurs. If we open the written XYZ file, the last coordinate point has been discarded.
+
+We probably intend for these variables to have the same number of elements. When they don't, there's no way to tell what the user wanted, or if they have accidentally passed us incorrect data. We should check the length of theses and raise an appropriate exception to halt the program if necessary. 
+
+~~~
+def write_xyz(file_location, symbols, coordinates):
+    
+    # Write an xyz file given a file location, symbols, and coordinates.
+    num_atoms = len(symbols)
+    
+    if num_atoms != len(coordinates):
+        raise ValueError(f"write_xyz : the number of symbols ({num_atoms}) and number of coordinates ({len(coordinates)}) must be the same to write xyz file!")
+    
+    with open(file_location, 'w+') as f:
+        f.write('{}\n'.format(num_atoms))
+        f.write('XYZ file\n')
+        
+        for i in range(num_atoms):
+            f.write('{}\t{}\t{}\t{}\n'.format(symbols[i], 
+                                              coordinates[i,0], coordinates[i,1], coordinates[i,2]))
+~~~
+{: .language-python}
+
+As you can see, custom error messages can be quite descriptive of the problem. Let's try this out with some fake data. Using the same example as before:
+
+~~~
+>>> import molecool
+>>> import numpy as np
+>>> test_atoms = ["H", "O"]
+>>> test_coords = np.array([[1,0,0],[0,0,0], [0,1,0]])
+>>> molecool.write_xyz("test.xyz", test_atoms, test_coords)
+~~~
+{: .lanuage-python}
+
+~~~
+ValueError: write_xyz : the number of symbols (2) and number of coordinates (3) must be the same to write xyz file!
 ~~~
 {: .output}
 
-This is a general exception that requires a very explicit line to describe what the problem is. The already built-in exceptions include errors that are common while programming. For example, our function requires explicit use of numpy arrays. Nevertheless, a user may be tempted to use a list of length 3 to describe the position of two atoms. We know that it is not possible to perform arithmetic between full lists. In this case we might use the exception type `TypeError`
+The already built-in exceptions include errors that are common while programming. For example, our function requires explicit use of numpy arrays. Nevertheless, a user may be tempted to use a list of length 3 to describe the position of two atoms. We know that it is not possible to perform arithmetic between full lists. In this case we might use the exception type `TypeError`.
 
-~~~
-def calculate_distance(rA, rB):
-    if isinstance(rA,np.ndarray) is False or isinstance(rB,np.ndarray) is False:
-        raise TypeError("rA and rB must be numpy arrays")
-    d=(rA-rB)
-    dist=np.linalg.norm(d)
-    if dist == 0.0:
-        raise Exception("Two atoms are located in the same point in space")
-    return dist
-~~~
-{: .language-python}
-
-If we try to use lists instead of numpy arrays, our function then would stop and print 
-
-~~~
-TypeError: rA and rB must be numpy arrays
-~~~
-{: .output}
-
-With the built-in exception, we would immediately know that the error is related to the type of input we are giving to the function.
-
-Other types of common exceptions include variables not being defined (NameError) or asserting that two numbers are the same (assert). The latter will be particularly useful when we want to automatize testing within our package. 
+Other types of common exceptions include variables not being defined (`NameError`) or asserting that two numbers are the same (assert). The latter will be particularly useful when we want to automatize testing within our package. 
 
 ## Coding Style
 
@@ -245,18 +265,12 @@ $ git push origin master
 ~~~
 {: .bash}
 
-
-
 > ## Exercise
 > Below is the `calculate_distance` function that takes two points in 3D space and returns the distance between them. Even though it works just fine, the variable names are not very clear and it doesn't follow PEP8 styling. Take a couple of minutes to reformat this function in `molecool/functions.py` module.
 > ~~~
 > def calculate_distance(rA, rB):
->     if isinstance(rA,np.ndarray) is False or isinstance(rB,np.ndarray) is False:
->         raise TypeError("rA and rB must be numpy arrays")
 >     d=(rA-rB)
 >     dist=np.linalg.norm(d)
->     if dist == 0.0:
->         raise Exception("Two atoms are located in the same point in space")
 >     return dist
 > ~~~
 >> ## Solution
@@ -265,14 +279,8 @@ $ git push origin master
 >> ~~~
 >> def calculate_distance(rA, rB):
 >>
->>    if isinstance(rA,np.ndarray) is False or isinstance(rB,np.ndarray) is False:
->>        raise TypeError("rA and rB must be numpy arrays")
->>
 >>    dist_vec = (rA - rB)
 >>    distance = np.linalg.norm(dist_vec)
->>
->>    if distance == 0.0:
->>        raise Exception("Two atoms are located in the same point in space")
 >>
 >>    return distance
 >> ~~~
@@ -338,19 +346,10 @@ def calculate_distance(rA, rB):
     >>> calculate_distance(r1, r2)
     0.1
     """
-
-    if isinstance(rA,np.ndarray) is False or isinstance(rB,np.ndarray) is False:
-        raise TypeError("rA and rB must be numpy arrays")
-
     dist_vec = (rA - rB)
     distance = np.linalg.norm(dist_vec)
-    
-    if distance == 0.0:
-        raise Exception("Two atoms are located in the same point in space")
         
     return distance
-
-    
 ~~~
 {: .language-python}
 
@@ -513,67 +512,33 @@ $ git push origin master
 
 ## More on Coding Style
 
-If you look at PEP8, you will see that it is quite long. While you should definitely read it if you spend a lot of time programming in Python, there are luckily tools which will help us make sure our code is following PEP8 convention. We will use [yapf], an open source formatter for Python files from Google.
+If you look at PEP8, you will see that it is quite long. While you should definitely read it if you spend a lot of time programming in Python, there are luckily tools which will help us make sure our code is following PEP8 convention or other styling guidelines. Popular tools include `yapf` and `Black`. 
 
-Install yapf using pip. In your terminal, type
+These automatic code formatters will parse over your python files and format them according to standards defined by that code formatter. It is usually a good idea to use a formatter (of your choice) when working on a python project. In particular, Black
 
-~~~
-$ pip install yapf
-~~~
-{: .language-bash}
+We will use [Black] in this workshop. Black is an autoformatter which is almost entirely non customizable, ensuring all of your files will be uniform. 
 
-Now we can use yapf on our python files. Just to see the power of yapf, let's mangle one of our functions and use yapf to reformat it.
+Install black using pip. In your terminal, type
 
 ~~~
-def calculate_distance(rA, rB):
-          """
-    Calculate the distance between two points.
-
-    Parameters
-    ----------
-    rA, rB : np.ndarray
-        The coordinates of each point.
-
-    Returns
-    -------
-    distance : float
-        The distance between the two points.
-          """
-          dist_vec = (rA - rB)
-          distance = np.linalg.norm(dist_vec)
-          return distance
-~~~
-{: .language-python}
-
-If you save the file and test your function in the command line, you will see that it still works when formated this way. However, it is significantly harder to read in the text editor. We can use yapf to format this automatically. In your terminal, run yapf with the following command -
-
-~~~
-$ yapf -i molecool/functions.py
+$ pip install black
 ~~~
 {: .language-bash}
 
-Here, the `-i` flag indicates to do this "in-place", this means your file will be overwritten with yapf's changes. If you examine the file after running yapf, you should see that it is returned to an easily readable format.
+Now we can use black on our python files.
 
-> ## yapf settings
->
-> CookieCutter created some settings for yapf for us when we ran it. In the file `setup.cfg` in the top level directory.
->
-> ~~~
->[yapf]
->COLUMN_LIMIT = 119
->INDENT_WIDTH = 4
->USE_TABS = False
-> ~~~
-> This section overwrites some default parameters for yapf. You can change this to your preferences.
-{: .callout}
+~~~
+$ black molecool/functions.py
+~~~
+{: .language-bash}
 
-Commit these Changes
+You can see the changes to the `write_xyz` function, for example. You'll notice that Black also has some rules which are in addition to PEP8 formatting. For example, strings are all normalized to use double quotes.
 
-Now that we've written a function in our project, we should commit our changes and push to GitHub.
+Now that we've changed and formatted some functions in our project, we should commit our changes and push to GitHub.
 
 ~~~
 $ git add .
-$ git commit -m "run yapf on molecool"
+$ git commit -m "run black on molecool"
 $ git push origin master
 ~~~
 {: .bash}
