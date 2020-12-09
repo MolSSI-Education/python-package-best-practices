@@ -4,10 +4,13 @@ teaching: 30
 exercises: 0
 questions:
 - "How should I break my code into modules?"
+- "How can I handle imports in my package?"
 objectives:
 - "Break code into modules and subpackages based on functionality."
+- "Understand how the __init__.py file affects your Python package"
 keypoints:
 - "Your package should be broken up into modules and subpackages depending on the amount of code and functionality."
+- "You can use the __init__.py file to define what packages are imported with your package, and how the user interacts with it."
 ---
 
 As new features are implemented in codes, it is natural for new functions and objects to be added. In many projects, this often leads to a large number of functionalities defined within a single module. For small, single developer codes, this is not a major issue, but it can still make it difficult to work with. With large or multi-developer codes, this can slow development progress to a crawl as it is difficult to both understand and work with the code.
@@ -244,16 +247,30 @@ def bond_histogram(bond_list, save_location=None, dpi=300, graph_min=0, graph_ma
 
 
 ### Molecule
-Our last function is `build_bond_list` which is not particularly related to any of our other functions. The name `functions.py` does not really give a lot of information about what is available in the module. We can rename the module to something more fitting, say `molecule.py`.
+Our last function is `build_bond_list` which is not particularly related to any of our other functions (docstring added). The name `functions.py` does not really give a lot of information about what is available in the module. We can rename the module to something more fitting, say `molecule.py`.
 ```
 def build_bond_list(coordinates, max_bond=1.5, min_bond=0):
-    if min_bond < 0:
-        raise ValueError("Bond length can not be less than zero.")
+    """
+    Build a list of bonds in a set of coordinates based on a distance criteria.
 
-    if len(coordinates) < 1:
-        raise ValueError("Bond list can not be calculated for coordinate length less than 1.")
-    
-    # Find the bonds in a molecule
+    Parameters
+    ----------
+    coordinates: np.ndarray
+        The coordinates of the atoms to analyze in an (natoms, ndim) array.
+
+    max_bond: float, optional
+        The maximum distance for two atoms to be considered bonded.
+
+    min_bond: float, optional
+        The minimum distance for two atoms to be considered bonded.
+
+    Returns
+    -------
+    bonds: dict
+        A dictionary containing bonded atoms with atom pairs as keys and the distance between the atoms as the value.
+    """
+
+    # Find the bonds in a molecule (set of coordinates) based on distance criteria.
     bonds = {}
     num_atoms = len(coordinates)
 
@@ -271,7 +288,9 @@ def build_bond_list(coordinates, max_bond=1.5, min_bond=0):
 ### I/O Package
 When looking at the three I/O functions, it may be easy to jump ahead and create an I/O module, as mentioned previously, however, what we really have is two distinct groups of functions that are related. More specifically, we have two functions that handle the input and output of a `.xyz` file and another function that handles the input of a `.pdb`. Each group is handling input and output, but are still somewhat unrelated because of their file type. Instead of making a single module, we are going to create a subpackage to handle i/o and place a module for each group within it.
 
-Create a new directory called io within the package and create two new files (using your operating system or `touch` as prefered):
+Create a new directory called io within the package and create two new files `pdb.py` and `xyz.py`:
+
+
 `pdb.py`
 ```
 """
@@ -298,7 +317,7 @@ def open_pdb(file_location):
 ```
 {: .language-python}
 
-and `xyz.py`
+`xyz.py`
 ```
 """
 Functions for manipulating xyz files.
@@ -354,25 +373,45 @@ import numpy as np
 import matplotlib.pyplot as plt
 ```
 {: .language-python}
-These are modules that some of the functions need to run. Now that we have moved the functions into separate modules, we need to add in the import statements into each file where they are needed. Lets start by looking at `measure.py`. Looking through the functions, we can see that each of them has a reference to `np`, which is what we imported `numpy` as in `functions.py`. In order to make these functions work again, we need to add the import statement
+These are modules that some of the functions need to run. Now that we have moved the functions into separate modules, we need to add in the import statements into each file where they are needed. Lets start by looking at `measure.py`. Looking through the functions, we can see that each of them has a reference to `np`, which is what 
+we imported `numpy` as in `functions.py`. 
+
+Besides visual inspection, you could have also seen these missing imports by using `flake8` on the modules.
+
+~~~
+$ flake8 measure.py
+~~~
+{: .language-bash}
+
+You will see a message which says "undefined name np"
+
+In order to make these functions work again, we need to add the import statement
 ```
 import numpy as np
 ```
 {: .language-python}
+
 to the top of our file.
 
-As a second example, let us look at the `visualize.py` module. We can quikly see that there is a reference to `np` in each of the methods, so we need to add our `numpy` import statement again. We also see references to `plt` which was the name given to `matplotlib.pyplot` when it was imported. Add both of the import statements to the top of the `visualize.py` module.
+As a second example, let us look at the `visualize.py` module. We can quickly see that there is a reference to `np` in each of the methods, so we need to add our `numpy` import statement again. We also see references to `plt` which was the name given to `matplotlib.pyplot` when it was imported. Add imports of the external libraries to the top of the `visualize.py` module. Of course, don't forget our "unused import" for 3D axes.
 ```
 import numpy as np
 import matplotlib.pyplot as plt
+
+from mpl_toolkits.mplot3d import Axes3D  # noqa: F401
 ```
 {: .language-python}
-If you look closely at the `draw_molecule` function, you will see we have an additional problem with this module. The `draw_molecule` function uses the `atom_colors` dictionary. When all of our code was in a single module, we could simply reference the dictionary by name and use it. However, we have now moved `atom_colors` and `atomic_weights` into a separate module. In order to reference the dictionaries in `visualize.py`, we need to import them using an import statement.
+
+If you use `flake8` (or if you carefully inspect), you will also see that `atom_colors` is missing. The `draw_molecule` function uses the `atom_colors` dictionary. When all of our code was in a single module, we could simply reference the dictionary by name and use it. However, we have now moved `atom_colors` and `atomic_weights` into a separate module. In order to reference the dictionaries in `visualize.py`, we need to import them using an import statement. This is an intra-package import, meaning that we are importing modules from within our packages to other imports in our package (see intra package imports [here](https://docs.python.org/3/tutorial/modules.html))
+
 ```
 from .atom_data import atom_colors
 ```
 {: .language-python}
-This import statement looks a bit different from the other import statements in our code, we have a `.` before the name. Lets first look at the dot in a different import statement:
+
+This import statement looks a bit different from the other import statements in our code, we have a `.` before the name. This is because it is a *relative import*. Just like when using bash, a dot (.) means to look in the current folder. 
+
+To think about this more, lets first look at the dot in a different import statement:
 ```
 import matplotlib.pyplot as plt
 ```
@@ -391,13 +430,100 @@ In this case, the `.` is saying look within the package `matplotlib` and grab th
 > {: .solution}
 {: .challenge}
 
-### Fixing Package Imports
-Currently we can import any of the functions we need from our modules and from the `io` subpackage. However, there is a bit of hassle in importing the functions from the modules within the `io` subpackage. Since the package contains submodules, in order to import `open_xyz`, we need to do the following:
-```
-from molecool.io.xyz import open_xyz
-```
+### Fixing Package Imports - what is `__init__.py`?
+Currently, your `__init__.py` file should look like this:
+
+~~~
+"""
+molecool
+A python package for visualizing and analyzing molecular files. This is a sample package for a Best Practices Workshop from MolSSI.
+"""
+
+# Add imports here
+from .functions import *
+
+# Handle versioneer
+from ._version import get_versions
+
+versions = get_versions()
+__version__ = versions["version"]
+__git_revision__ = versions["full-revisionid"]
+del get_versions, versions
+~~~
 {: .language-python}
-This will work, however, the main reason we broke up the modules within the `io` package was for development convenience. Right now this has come at the cost of slightly more complicated import statements to get access to any function. To correct this, we can create an `__init__.py` file for our subpackage to handle some of the imports for us.
+
+We have moved all of our functions into modules, but we haven't changed our `__init__.py` file. If you use a python interpreter in a directory which is not directly above your project, you can see the consequences of this. We can use the `dir` functions to see what is available in a particular module or object:
+
+~~~
+>>> import molecool
+>>> dir(molecool)
+~~~
+{: .language-python}
+
+You should see something similar to the following
+
+~~~
+['__builtins__', '__cached__', '__doc__', '__file__', '__git_revision__', '__loader__', '__name__', '__package__', '__path__', '__spec__', '__version__', '_version', 'functions', 'np', 'plt']
+~~~
+{: .output}
+
+These are all of the things available to us from importhing `molecool`. You will see your `functions` module, but you will also see `np` and `plt`. This comes from using `from .functions import *` and is why using `import *` is usually considered a bad practice. You will notice that we cannot call `molecool.measure.calculate_distance`
+
+~~~
+help(molecool.measure.calculate_distance)
+~~~
+{: .language-python}
+
+~~~
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: module 'molecool' has no attribute 'measure'
+~~~
+{: .error}
+
+You can, however, do the following without getting an error:
+
+~~~
+import molecool.measure
+help(molecool.measure.calculate_distance)
+~~~
+{: .language-python}
+
+To change this behavior, we will need to modify our `__init__.py` file. The `__init__.py` file contains python code that is called when a module is imported. We edit it to import modules when the package loads so that functions in the `measure.py` module (for example) will be imported when the package is first imported. 
+
+Modify your `__init__.py` file:
+
+~~~
+# Add imports here
+from .functions import *
+from .measure import calculate_distance, calculate_angle
+from .molecule import build_bond_list
+from .visualize import draw_molecule, bond_histogram
+~~~
+{: .language-python}
+
+Now the behavior should be the same as before. You can also delete `functions.py` if you would like since we no longer have functions in that file (you must also delete it from your `__init__.py` file, of course.)
+
+We haven't yet included our `io` subpackage, meaning that the user would have to import this package if they wanted to use it. For example, to use the xyz functions
+
+~~~
+import molecool.io.xyz
+dir(molecool.io.open_xyz)
+~~~
+{: .language-python}
+
+This will work, however, the main reason we broke up the modules within the `io` package was for development convenience. Right now this has come at the cost of slightly more complicated import statements to get access to any function.
+
+We can, of course, edit our `__init__.py` file to make this simpler. At this point, the way we actually do this import is going to be stylistic - how do you want people to interact with your package?
+
+The goal we are going to go for is to call an IO function using:
+
+~~~
+molecool.io.IO_FUNCTION
+~~~
+{: .language-python}
+
+where `IO_FUNCTION` is any function relating to IO.
 
 Within the `io` directory, create a new file called `__init__.py`. Open that file within your desired editor and add the following two lines:
 ```
@@ -405,32 +531,22 @@ from .pdb import open_pdb
 from .xyz import open_xyz, write_xyz
 ```
 {: .language-python}
-The `__init__.py` file contains python code that is called when a module is imported. These lines are relative import statements to the functions within the `io` package. Think of them as pointers to the functions, i.e. when we look at the `io` package, it directs us to the location of the underlying functions, so we do not need to look within each submodule. This allows us to use the following import statement to access the functions:
+
+These lines are relative import statements to the functions within the `io` package. Think of them as pointers to the functions, i.e. when we look at the `io` package, it directs us to the location of the underlying functions, so we do not need to look within each submodule. This allows us to use the following import statement to our top level `__init__.py` to access the functions:
+
 ```
-from molecool.io import open_pdb, open_xyz, write_xyz
+from . import io
 ```
 {: .language-python}
 
-Although this is easier, it is still different from how we call all the other functions in our code. If we wanted the io functions to mimic the imports from the rest of the modules, we would need to modify the init from the main folder as well
-
-~~~
-from .functions import *
-from .measure import calculate_distance, calculate_angle
-from .molecule import build_bond_list
-from .visualize import draw_molecule, bond_histogram
-import molecool.io
-~~~
-{: .language-python}
-
-
-This would allow us now to call the functions with 
+We can now call our IO functions using our target syntax.
 
 ~~~
 >>> molecool.io.open_pdb()
 ~~~
 {: .language-python}
 
-And we could even make these functions more accessible by removing the need for the  `io`
+If we wanted the io functions to mimic the imports from the rest of the modules, we could modify our top level `__init__.py` file to reflect that.
 
 ~~~
 from .functions import *
@@ -440,6 +556,9 @@ from .visualize import draw_molecule, bond_histogram
 from .io import open_pdb, open_xyz, write_xyz
 ~~~
 {: .language-python}
+
+
+And we could even make these functions more accessible by removing the need for the  `io`
 
 Which would allow us to call functions by simply typing
 ~~~
