@@ -261,7 +261,7 @@ Now that we've written a new function in our project, we should commit our chang
 ~~~
 $ git add .
 $ git commit -m "add open_pdb function to molecool"
-$ git push origin master
+$ git push origin main
 ~~~
 {: .bash}
 
@@ -444,7 +444,7 @@ Now that we've written a function in our project, we should commit our changes a
 ~~~
 $ git add .
 $ git commit -m "edit style of calculate_distance function"
-$ git push origin master
+$ git push origin main
 ~~~
 {: .bash}
 
