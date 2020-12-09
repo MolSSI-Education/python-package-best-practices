@@ -37,7 +37,7 @@ Adding them to the repository as a collaborator will allow them to push to the r
 
 People you don't know very well shouldn't be listed as collaborators, but there are still ways for them to contribute improvements to your project.
 
-### Protecting your Master Branch
+### Protecting your main Branch
 If you choose to work with collaborators, there are still ways for you to protect your code. Click the "Branches" tab. You will see a heading which says "Branch protection rule". Adding the name of a branch here will make it a "protected branch" and the rules you choose in the section below will protect the branch (under the heading "protect matching branches"). For example, you may want to choose to protect the `master` branch so that pull requests and reviews are required to change the branch. This way, your collaborators will not be able to push to the master branch, and must submit a `pull request` more on this later in order for their changes to be incorporated. You can read more about branch protection [here](https://help.github.com/en/enterprise/2.18/admin/developer-workflow/configuring-protected-branches-and-required-status-checks#enabling-a-protected-branch-for-a-repository).
 
 ### Pull Requests - Branch and Pull Request (PR)
