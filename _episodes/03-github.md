@@ -33,11 +33,16 @@ $ git remote -v
 You should see no output. Now, follow the instructions on GitHub under "...or push an existing repository from the command line"
 ~~~
 $ git remote add origin https://github.com/YOUR_GITHUB_USERNAME/molecool.git
-$ git push -u origin master
+dgit branch -M main
+git push -u origin main
 ~~~
 {: .language-bash}
 
-The first command adds a remote named `origin` and sets the URL to our repository. The word `origin` here is simply a word that is a shortcut for the location of our repository. We could have called it anything (like `pickle`, or `banana`, or anything we wanted), but `origin` is used by convention. Now, whenever we say `origin`, git knows that we really mean `https://github.com/YOUR_GITHUB_USERNAME/molecool.git`. The second command copies (or "pushes") everything which we have tracked using git to `origin`. The word `master` means we are pushing the `master` branch. 
+The first command adds a remote named `origin` and sets the URL to our repository. The word `origin` here is simply a word that is a shortcut for the location of our repository. We could have called it anything (like `pickle`, or `banana`, or anything we wanted), but `origin` is used by convention. Now, whenever we say `origin`, git knows that we really mean `https://github.com/YOUR_GITHUB_USERNAME/molecool.git`. 
+
+The second command changes our primary branch name from `master` to `main`. GitHub recently decided (as of June 2020) to switch the name of your `main` branch from `master` to `main`. However, the `git` software will still name your primary (or first) branch `master`.  After the second command, you will no longer see `master` when using the command `git branch` (instead seeing `main`). 
+
+The third command copies (or "pushes") everything which we have tracked using git to `origin`. The word `main` means we are pushing the `main` branch. 
 
 Now if you refresh the GitHub webpage you should be able to see all of the new files you added to the repository.
 
@@ -107,8 +112,8 @@ $ git status
 {: .bash}
 
 ~~~
-On branch master
-Your branch is up to date with 'origin/master'.
+On branch main
+Your branch is up to date with 'origin/main'.
 
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
@@ -130,8 +135,8 @@ $ git status
 {: .callout}
 
 ~~~
-On branch master
-Your branch is up to date with 'origin/master'.
+On branch main
+Your branch is up to date with 'origin/main'.
 
 Changes to be committed:
   (use "git reset HEAD <file>..." to unstage)
@@ -167,7 +172,7 @@ $ ls -l
 To get the newest commit into this clone, we need to pull from the GitHub repository:
 
 ~~~
-$ git pull origin master
+$ git pull origin main
 ~~~
 {: .bash}
 
@@ -178,8 +183,8 @@ remote: Compressing objects: 100% (1/1), done.
 remote: Total 3 (delta 1), reused 3 (delta 1), pack-reused 0
 Unpacking objects: 100% (3/3), done.
 From https://github.com/YOUR_GITHUB_USERNAME/molecool
- * branch            master     -> FETCH_HEAD
-   2ac4843..754da2b  master     -> origin/master
+ * branch            main     -> FETCH_HEAD
+   2ac4843..754da2b  main     -> origin/main
 Updating 2ac4843..754da2b
 Fast-forward
  testing.txt | 1 +
@@ -299,8 +304,8 @@ $ git status
 {: .bash}
 
 ~~~
-On branch master
-Your branch is up to date with 'origin/master'.
+On branch main
+Your branch is up to date with 'origin/main'.
 
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
@@ -380,8 +385,8 @@ $ git status
 {: .bash}
 
 ~~~
-On branch master
-Your branch is up to date with 'origin/master'.
+On branch main
+Your branch is up to date with 'origin/main'.
 
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
@@ -476,7 +481,7 @@ $ git push
 
 ~~~
 To https://github.com/YOUR_GITHUB_USERNAME/molecool.git
- ! [rejected]        master -> master (fetch first)
+ ! [rejected]        main -> main (fetch first)
 error: failed to push some refs to 'https://github.com/YOUR_GITHUB_USERNAME/molecool.git'
 hint: Updates were rejected because the remote contains work that you do
 hint: not have locally. This is usually caused by another repository pushing
@@ -501,7 +506,7 @@ remote: Compressing objects: 100% (4/4), done.
 remote: Total 6 (delta 3), reused 5 (delta 2), pack-reused 0
 Unpacking objects: 100% (6/6), done.
 From https://github.com/YOUR_GITHUB_USERNAME/molecool
-   754da2b..de54818  master     -> origin/master
+   754da2b..de54818  main     -> origin/main
 Auto-merging testing.txt
 CONFLICT (content): Merge conflict in testing.txt
 Automatic merge failed; fix conflicts and then commit the result.
@@ -517,8 +522,8 @@ $ git status
 {: .bash}
 
 ~~~
-On branch master
-Your branch and 'origin/master' have diverged,
+On branch main
+Your branch and 'origin/main' have diverged,
 and have 1 and 2 different commits each, respectively.
   (use "git pull" to merge the remote branch into yours)
 
