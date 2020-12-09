@@ -512,11 +512,11 @@ $ git push origin master
 
 ## More on Coding Style
 
-If you look at PEP8, you will see that it is quite long. While you should definitely read it if you spend a lot of time programming in Python, there are luckily tools which will help us make sure our code is following PEP8 convention or other styling guidelines. Popular tools include `yapf` and `Black`. 
+If you look at PEP8, you will see that it is quite long. While you should definitely read it if you spend a lot of time programming in Python, there are luckily tools which will help us make sure our code is following PEP8 convention or other styling guidelines. There are autoformattign tools such as`yapf` and `Black` and static code "linters" such as `pylint` or `flake8`.
 
-These automatic code formatters will parse over your python files and format them according to standards defined by that code formatter. It is usually a good idea to use a formatter (of your choice) when working on a python project. In particular, Black
+Automatic code formatters will parse over your python files and format them according to standards defined by that code formatter. It is usually a good idea to use a formatter (of your choice) when working on a python project. In particular, [Black](https://github.com/psf/black) has gained popularity lately. 
 
-We will use [Black] in this workshop. Black is an autoformatter which is almost entirely non customizable, ensuring all of your files will be uniform. 
+We will use [Black](https://github.com/psf/black) in this workshop. Black is an autoformatter which is almost entirely non customizable, ensuring all of your files will be uniform. 
 
 Install black using pip. In your terminal, type
 
@@ -532,7 +532,7 @@ $ black molecool/functions.py
 ~~~
 {: .language-bash}
 
-You can see the changes to the `write_xyz` function, for example. You'll notice that Black also has some rules which are in addition to PEP8 formatting. For example, strings are all normalized to use double quotes.
+You can see the changes to the `write_xyz` function, for example. You'll notice that Black also has some rules which are in addition to PEP8 formatting. For example, strings are all normalized to use double quotes. Note that `black` does not always follow PEP8. For example, PEP8 recommends that line lengths be no more than 79 characters. This is a convention which is most often not followed. Black defaults to 88 characters per line instead. When you are working on a project, the exact style you use may vary - however, it is important to define a style. This will make your code much cleaner and easier to read.
 
 Now that we've changed and formatted some functions in our project, we should commit our changes and push to GitHub.
 
@@ -542,6 +542,46 @@ $ git commit -m "run black on molecool"
 $ git push origin master
 ~~~
 {: .bash}
+
+There are other tools, such as [pylint](https://www.pylint.org/) or [flake8](https://flake8.pycqa.org/en/latest/) which are not automatic formatters, but will check your code for adherence to the PEP8 standard. Pylint, for example, will find your variables which are not `snake_case`, functions which do not have `docstrings`, simple stylistic changes, unused variables, etc. Flake8 is a little less strict in general. We will try `flake8` out here.  If you would like to try `flake8`, first install it
+
+~~~
+$ pip install flake8
+~~~
+{: .language-bash}
+
+You can run it on our `functions` module:
+
+~~~
+$ flake8 molecool/functions.py
+~~~
+{: .language-bash}
+
+To see any errors still left in the module. Let's examine one of these 
+
+~~~
+molecool/functions.py:1:1: F401 'os' imported but unused
+~~~
+{: .language-output}
+
+This tells us it is looking at the line `molecool/functions.py` on line `1` (your line number may vary). `F401` is an error code which you can look up. Here, we are importing `os`, but never using it. We should remove this from our file.
+
+You will also see a second "unused import" error:
+
+~~~
+molecool/functions.py:5:1: F401 'mpl_toolkits.mplot3d.Axes3D' imported but unused
+~~~
+{: .language-python}
+
+Althought it appears this isn't used, this import is actually necessary for our 3D plot. We can tell `flake8` to ignore this problem by adding a special comment:
+
+~~~
+from mpl_toolkits.mplot3d import Axes3D  # noqa: F401
+~~~
+{: .language-python}
+
+You can run `flake8` again to see that the import error is no longer reported. However, if your comment is not correctly formatted, you will have an additional error from that.
+
 
 [Exceptions]: https://realpython.com/python-exceptions/#the-try-and-except-block-handling-exceptions
 [PEP8]: https://www.python.org/dev/peps/pep-0008/
