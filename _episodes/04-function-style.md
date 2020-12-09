@@ -120,7 +120,7 @@ Let's try this out. In a python interpreter, try the following:
 >>> test_coords = np.array([[1,0,0],[0,0,0], [0,1,0]])
 >>> molecool.write_xyz("test.xyz", test_atoms, test_coords)
 ~~~
-{: .lanuage-python}
+{: .language-python}
 
 You will see that no error occurs. If we open the written XYZ file, the last coordinate point has been discarded.
 
@@ -154,7 +154,7 @@ As you can see, custom error messages can be quite descriptive of the problem. L
 >>> test_coords = np.array([[1,0,0],[0,0,0], [0,1,0]])
 >>> molecool.write_xyz("test.xyz", test_atoms, test_coords)
 ~~~
-{: .lanuage-python}
+{: .language-python}
 
 ~~~
 ValueError: write_xyz : the number of symbols (2) and number of coordinates (3) must be the same to write xyz file!
