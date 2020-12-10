@@ -38,10 +38,10 @@ Adding them to the repository as a collaborator will allow them to push to the r
 People you don't know very well shouldn't be listed as collaborators, but there are still ways for them to contribute improvements to your project.
 
 ### Protecting your main Branch
-If you choose to work with collaborators, there are still ways for you to protect your code. Click the "Branches" tab. You will see a heading which says "Branch protection rule". Adding the name of a branch here will make it a "protected branch" and the rules you choose in the section below will protect the branch (under the heading "protect matching branches"). For example, you may want to choose to protect the `master` branch so that pull requests and reviews are required to change the branch. This way, your collaborators will not be able to push to the master branch, and must submit a `pull request` more on this later in order for their changes to be incorporated. You can read more about branch protection [here](https://help.github.com/en/enterprise/2.18/admin/developer-workflow/configuring-protected-branches-and-required-status-checks#enabling-a-protected-branch-for-a-repository).
+If you choose to work with collaborators, there are still ways for you to protect your code. Click the "Branches" tab. You will see a heading which says "Branch protection rule". Adding the name of a branch here will make it a "protected branch" and the rules you choose in the section below will protect the branch (under the heading "protect matching branches"). For example, you may want to choose to protect the `main` branch so that pull requests and reviews are required to change the branch. This way, your collaborators will not be able to push to the main branch, and must submit a `pull request` more on this later in order for their changes to be incorporated. You can read more about branch protection [here](https://help.github.com/en/enterprise/2.18/admin/developer-workflow/configuring-protected-branches-and-required-status-checks#enabling-a-protected-branch-for-a-repository).
 
 ### Pull Requests - Branch and Pull Request (PR)
-Protecting your master branch will require contributors to submit their changes through a process called a Pull Request. As the repository owner, you can also change the code through a pull request on GitHub.
+Protecting your main branch will require contributors to submit their changes through a process called a Pull Request. As the repository owner, you can also change the code through a pull request on GitHub.
 
 Previously, we discussed that all changes should take place on branches. This is still true, however, we are now going to incorporate those changes through a pull request on GitHub rather than through a merge.
 
@@ -55,7 +55,7 @@ $ git checkout -b collab_instructions
 Add the following to your README and commit the change.
 
 ~~~
-To submit your feature to be incorporated to the master branch, you should submit a `Pull Request`. The repository maintainers will review your pull request before accepting your changes.
+To submit your feature to be incorporated to the main branch, you should submit a `Pull Request`. The repository maintainers will review your pull request before accepting your changes.
 ~~~
 
 ~~~
@@ -64,7 +64,7 @@ $ git commit -m "add collaboration instructions to readme"
 ~~~
 {: .language-bash}
 
-We want these changes incorporated into the master branch. You could do as we did before and switch to the `master` branch, `merge` then changes, and push to GitHub for the changes to be present there on the `master` branch. If you are the repository owner, this will work even if you have branch protection rules. However, if you are not, your push from master will be rejected by GitHub.
+We want these changes incorporated into the main branch. You could do as we did before and switch to the `main` branch, `merge` then changes, and push to GitHub for the changes to be present there on the `main` branch. If you are the repository owner, this will work even if you have branch protection rules. However, if you are not, your push from main will be rejected by GitHub.
 
 We will want to push to a new branch on the repo then open a pull request. 
 
@@ -194,7 +194,7 @@ $ git branch -a
 ~~~
 {: .bash}
 
-We will use remotes/upstream/master to keep track of new changes that happen upstream that we do not have in our local master.
+We will use remotes/upstream/main to keep track of new changes that happen upstream that we do not have in our local main.
 
 # Developing a new feature - creating branches
 We will implement a new element for the webpage.
@@ -229,15 +229,15 @@ After we have created a new branch and checked it out, we can imagine our git hi
 
 <center><img src = '../fig/github_workflows/git_branch.png'></center>
 
-Now, when we make a commit on the `sodium` branch, our changes will continue from this point, leaving the master branch unchanged. Note that we have not yet made a commit, but this diagram is for illustrative purposes.
+Now, when we make a commit on the `sodium` branch, our changes will continue from this point, leaving the main branch unchanged. Note that we have not yet made a commit, but this diagram is for illustrative purposes.
 
 <center><img src = "../fig/github_workflows/branch_development.png"></center>
 
 ## The importance of branching
 
-When you are doing development, particularly on a fork (but also if you are collaborating), it is very important that all development work be done on a branch. In the case of a collaborative repository where you are pushing directly, this will allow you to do pull requests from branches (more on pull requests below), and that your code is reviewed by another developer on the project before being merged to the master branch.
+When you are doing development, particularly on a fork (but also if you are collaborating), it is very important that all development work be done on a branch. In the case of a collaborative repository where you are pushing directly, this will allow you to do pull requests from branches (more on pull requests below), and that your code is reviewed by another developer on the project before being merged to the main branch.
 
-The most important reason to work on a branch is to keep your master branch clean. In the workflow you are learning today, the master branch should track upstream, and only be changed by pulling from upstream. This will ensure that you **always have a working piece of software on the master branch.** It will make it easier to correct mistakes if they arise, and keep your repository clean if you have multiple collaborators. 
+The most important reason to work on a branch is to keep your main branch clean. In the workflow you are learning today, the main branch should track upstream, and only be changed by pulling from upstream. This will ensure that you **always have a working piece of software on the main branch.** It will make it easier to correct mistakes if they arise, and keep your repository clean if you have multiple collaborators. 
 
 ## Editing our element
 
@@ -303,7 +303,7 @@ $ git push origin sodium
 ~~~
 {: .bash}
 
-Here, the last line indicates that we are pushing to `origin` (our fork) to the `sodium` branch. The branch name you type in place of sodium should match the name of the branch you are working on. If you view your repository on GitHub, you should now see that you have another branch in addition to the master branch.
+Here, the last line indicates that we are pushing to `origin` (our fork) to the `sodium` branch. The branch name you type in place of sodium should match the name of the branch you are working on. If you view your repository on GitHub, you should now see that you have another branch in addition to the main branch.
 
 <center><img src="../fig/github_workflows/push_branch.png"></center>
 
@@ -334,34 +334,34 @@ Now, the maintainers of the repository can review your material, and request cha
 
 Anyone can see Pull Requests on public repositories. Try reviewing a few pull requests on the periodic table repository. You can leave comments/reactions. Take a few minutes to review someone else's pull request.
 
-Once your changes have been accepted, upstream will have those changes on the `master` branch. This is indicated in the figure below through the change in color of the the word 'master'. 
+Once your changes have been accepted, upstream will have those changes on the `main` branch. This is indicated in the figure below through the change in color of the the word 'main'. 
 
 <center><img src="../fig/github_workflows/accepted_PR.png"></center>
 
 ## Incorporating upstream changes to local
 
-After your change has been accepted to upstream, you will want to incorporate the changes into your local master branch. First, switch to your master branch.
+After your change has been accepted to upstream, you will want to incorporate the changes into your local main branch. First, switch to your main branch.
 
 ~~~
-$ git checkout master
-~~~
-{: .bash}
-
-You can get changes to your local master by either doing a `git pull` from upstream master, or by doing a `git fetch` from upstream master, followed by a merge. For now, just do a pull.
-
-~~~
-$ git pull upstream master
+$ git checkout main
 ~~~
 {: .bash}
 
-Next, you will want to update your origin master. Push from the local master to origin.
+You can get changes to your local main by either doing a `git pull` from upstream main, or by doing a `git fetch` from upstream main, followed by a merge. For now, just do a pull.
 
 ~~~
-$ git push origin master
+$ git pull upstream main
 ~~~
 {: .bash}
 
-Now, your upstream master and origin master should be at the same point.
+Next, you will want to update your origin main. Push from the local main to origin.
+
+~~~
+$ git push origin main
+~~~
+{: .bash}
+
+Now, your upstream main and origin main should be at the same point.
 
 If you are done working with your feature branch, you can now delete it. 
 
