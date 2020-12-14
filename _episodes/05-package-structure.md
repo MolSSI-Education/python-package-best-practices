@@ -21,48 +21,52 @@ In this lesson, we will simulate a developing code by starting with a single pyt
 Lets start by reviewing the package structure provided to us by the [CMS CookieCutter]. We have a directory containing our project with a number of additional features. Under our package directory, `molecool`, we can see our current python module `functions.py`. For a more detailed explanation of the rest of the package structure, please review the [package setup] section of the lessons.
 ```
 .
+├── CODE_OF_CONDUCT.md              <- Code of Conduct for developers and users
 ├── LICENSE                         <- License file
+├── MANIFEST.in                     <- Packaging information for pip
 ├── README.md                       <- Description of project which GitHub will render
-├── appveyor.yml                    <- AppVeyor config file for Windows testing (if chosen)
-├── molecool
+├── molecool                        <- Basic Python Package import file
 │   ├── __init__.py                 <- Basic Python Package import file
-│   ├── functions.py                <- Starting package module
-│   ├── data                        <- Sample additional data (non-code) which can be packaged
+│   ├── _version.py                 <- Automatic version control with Versioneer
+│   ├── data                        <- Sample additional data (non-code) which can be packaged. Just an example, delete in production
 │   │   ├── README.md
 │   │   └── look_and_say.dat
-│   ├── tests                       <- Unit test directory with sample tests
-│   │   ├── __init__.py
-│   │   └── test_functions.py
-│   └── _version.py                 <- Automatic version control with Versioneer
+│   └── tests                       <- Unit test directory with sample tests
+│       ├── __init__.py
+│       └── test_molecool.py
 ├── devtools                        <- Deployment, packaging, and CI helpers directory
 │   ├── README.md
-│   ├── conda-envs                  <- Environments for testing
+│   ├── conda-envs                  <- Conda environments for testing
 │   │   └── test_env.yaml
-│   ├── conda-recipe                <- Conda build and deployment skeleton
-│   │   ├── bld.bat                 <- Win specific file, not present if Win CI not chosen
-│   │   ├── build.sh
-│   │   └── meta.yaml
-│   ├── scripts
-│   │   └── create_conda_env.py     <- OS agnostic Helper script to make conda environments based on simple flags
-│   └── travis-ci
-│       └── install.sh
+│   ├── legacy-miniconda-setup      <- Legacy Travis CI Helper, will likely be removed in later version
+│   │   └── before_install.sh
+│   └── scripts
+│       └── create_conda_env.py     <- OS agnostic Helper script to make conda environments based on simple flags
 ├── docs                            <- Documentation template folder with many settings already filled in
 │   ├── Makefile
 │   ├── README.md                   <- Instructions on how to build the docs
 │   ├── _static
+│   │   └── README.md
 │   ├── _templates
+│   │   └── README.md
+│   ├── api.rst
 │   ├── conf.py
+│   ├── getting_started.rst
 │   ├── index.rst
-│   └── make.bat
+│   ├── make.bat
+│   └── requirements.yaml           <- Documenation building specific requirements. Usually a smaller set than the main program
+├── readthedocs.yml
 ├── setup.cfg                       <- Near-master config file to make house INI-like settings for Coverage, Flake8, YAPF, etc.
 ├── setup.py                        <- Your package's setup file for installing with additional options that can be set
 ├── versioneer.py                   <- Automatic version control with Versioneer
-├── .github                         <- GitHub hooks for user contribution and pull request guides
-│   ├── CONTRIBUTING.md
-│   └── PULL_REQUEST_TEMPLATE.md
 ├── .codecov.yml                    <- Codecov config to help reduce its verbosity to more reasonable levels
-├── .gitignore                      <- Stock helper file telling git what file name patterns to ignore when adding
-└── .travis.yml                     <- Travis-CI config file for Linux and OSX testing
+├── .github                         <- GitHub hooks for user contribution, pull request guides and GitHub Actions CI
+│   ├── CONTRIBUTING.md
+│   ├── PULL_REQUEST_TEMPLATE.md
+│   └── workflows
+│       └── CI.yaml
+├── .gitignore                      <- Stock helper file telling git what file name patterns to ignore when adding files
+└── .lgtm.yml
 ```
 {: .output}
 

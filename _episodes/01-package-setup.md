@@ -119,15 +119,15 @@ Now we can examine the project layout the CookieCutter has set up for us. Naviga
 ├── LICENSE                         <- License file
 ├── MANIFEST.in                     <- Packaging information for pip
 ├── README.md                       <- Description of project which GitHub will render
-├── {{repo_name}}                   <- Basic Python Package import file
-s│   ├── __init__.py                 <- Basic Python Package import file
+├── molecool                        <- Basic Python Package import file
+│   ├── __init__.py                 <- Basic Python Package import file
 │   ├── _version.py                 <- Automatic version control with Versioneer
 │   ├── data                        <- Sample additional data (non-code) which can be packaged. Just an example, delete in production
 │   │   ├── README.md
 │   │   └── look_and_say.dat
 │   └── tests                       <- Unit test directory with sample tests
 │       ├── __init__.py
-│       └── test_{{repo_name}}.py
+│       └── test_molecool.py
 ├── devtools                        <- Deployment, packaging, and CI helpers directory
 │   ├── README.md
 │   ├── conda-envs                  <- Conda environments for testing

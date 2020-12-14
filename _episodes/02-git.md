@@ -75,7 +75,7 @@ If you are on Windows and using the Anaconda PowerShell Prompt:
 
 ~~~
 > ls -hidden
-~~
+~~~
 {: .bash}
 
 You should an output called `.git`, `.git` is a directory where `git` stores the repository data. This is one way that we are in a git repository.
