@@ -94,10 +94,6 @@ origin  https://github.com/YOUR_GITHUB_USERNAME/molecool.git (push)
 ~~~
 
 Create the file `testing.txt` in this new directory and make it contain the following.
-
-~~~
-$ touch testing.txt
-~~~
 {: .bash}
 
 ~~~
@@ -279,22 +275,10 @@ This tends to be annoying, since it means that any time you do "git status", all
 
 We are now going to find out how to tell Git to ignore these files, so that it doesn't keep telling us about them ever time we do "git status".
 Even if you aren't working with Emacs, someone else working on your project might, so let's do the courtesy of telling Git not to track these temporary files.
-First, lets ensure that we have a few dummy files:
+First, lets ensure that we have a few dummy files. Make empty files called `testing.txt~` and `README.md~` in your repository using your text editor of choice.
 
-~~~
-$ touch testing.txt~
-$ touch README.md~
-$ ls -l
-~~~
-{: .bash}
 
-While we're at it, also make some other files that aren't important to the project:
-
-~~~
-$ touch molecool/data/calculation.in molecool/data/calculation.out
-$ ls -l
-~~~
-{: .bash}
+While we're at it, also make some other files that aren't important to the project. Make a file called `calculation.out` in `molecool/data` using your text editor of choice.
 
 Now check what Git says about these files:
 
@@ -427,11 +411,6 @@ It is possible to override this with the "-f" option for git add.
 ## Conflict Resolution
 
 Now we will make a few new edits to testing.txt:
-
-~~~
-$ emacs testing.txt
-~~~
-{: .bash}
 
 Add a dummy header and footer the testing.txt, so that it looks like this:
 
