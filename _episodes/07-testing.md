@@ -347,12 +347,7 @@ If you expect your code to raise exceptions, you can test this behavior with pyt
 
 In our `calculate_angle` function, our inputs must be numpy arrays, or the function will error.
 
-Consider our `build_bond_list` function. We may want to raise a `ValueError` if `min_bond` is set to be less than zero:
-
-~~~
-
-~~~
-{: .language-python}
+Consider our `build_bond_list` function. We may want to raise a `ValueError` if `min_bond` is set to be less than zero.
 
 We can add a type check to the function so that a more informative message is given to the user.
 
