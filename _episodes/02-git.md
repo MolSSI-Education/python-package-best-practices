@@ -493,7 +493,7 @@ $ git branch -d zen
 >> First, create a new branch in your repository
 >>
 >> ~~~
->> $ git branch -b add-functions
+>> $ git checkout -b add-functions
 >> ~~~
 >> {: .language-bash}
 >> 
