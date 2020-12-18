@@ -190,7 +190,7 @@ Once installed, you can use the package. This example draws a benzene molecule f
 
 ## Sphinx Directives
 
-The thing that really gives Sphinx special abilities are **directives**. Directives are extensions which can be used with your restructred text to add special sections, images, warnings, etc to your documentation, and are part of a package called [docutils](https://docutils.sourceforge.io/) which Sphinx is built on top of. You can see a general list of directives [here](https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html#rst-directives), and a list of special Sphinx Directives [here]https://www.sphinx-doc.org/en/1.8/usage/restructuredtext/directives.html).
+The thing that really gives Sphinx special abilities are **directives**. Directives are extensions which can be used with your restructred text to add special sections, images, warnings, etc to your documentation, and are part of a package called [docutils](https://docutils.sourceforge.io/) which Sphinx is built on top of. You can see a general list of directives [here](https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html#rst-directives), and a list of special Sphinx Directives [here](https://www.sphinx-doc.org/en/1.8/usage/restructuredtext/directives.html).
 
 In general, the syntax for a directive is (with appropriate options and syntax)
 
