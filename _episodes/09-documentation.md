@@ -144,11 +144,12 @@ This page details how to get started with molecool.
 To changed this, we will edit the content of `getting_started.rst`
 
 > ## Exercise - Getting Started
-> Using the [reStructred Text Cheat Sheet](https://thomas-cokelaer.info/tutorials/sphinx/rest_syntax.html), add some information to your Getting Started page. Use the following guidelines:
+> Using the [reStructred Text Cheat Sheet](https://thomas-cokelaer.info/tutorials/sphinx/rest_syntax.html), add some information to your Getting Started page. Use the following guidelines
 > 
-> - Add a text description under "Getting Started".
-> - Create a subheading called "installation" which contains installation instructions.
-> - The "Installation" secion should use a list for dependencies and a code block with the installation command.
+> 1. Add a text description under "Getting Started".
+> 1. Create a subheading called "installation" which contains installation instructions.
+> 1.  The "Installation" secion should use a list for dependencies and a code block with the installation command.
+>
 >> ## Solution
 >> Following the guidelines and using the cheat sheet may lead you to a page which looks like this:
 >> ~~~
