@@ -144,12 +144,13 @@ $ conda install numpy=1.15
 For this workshop, you will need to install the following packages into your environment
 - NumPy
 - Matplotlib
-- jupyter
+- jupyter notebook
 
-You can install all of them in one line with
+You can install then using the commands
 
 ~~~
-$ conda install numpy matplotlib jupyter
+$ conda install numpy matplotlib
+$ conda install -c conda-forge notebook
 ~~~
 {: .language-bash}
 
