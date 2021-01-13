@@ -179,7 +179,7 @@ We can also add a Python code block, for example. The Sphinx RTD Theme will use 
 ~~~
 Usage
 -------
-Once installed, you can use the package. This example draws a benzene molecule from an xyz file.::
+Once installed, you can use the package. This example draws a benzene molecule from an xyz file.
 
     import molecool
 
@@ -203,8 +203,45 @@ In general, the syntax for a directive is (with appropriate options and syntax)
   parameter
 ~~~
 
+### Code Highlight Directive
+One useful directive is code highlighting. Previously, we automatically highlighted our code using `::` at the end of a line followed by a blank line, then an indented line with code. We could have alternatively used a directive and specified the language.
+
+~~~
+.. code-block:: language
+
+  *CODE GOES HERE*
+~~~
+
+For our Python example, 
+
+~~~
+.. code-block:: python
+
+    import molecool
+
+    benzene_symbols, benzene_coords = molecool.open_xyz('benzene.xyz')
+    benzene_bonds = molecool.build_bond_list(benzene_coords)
+    molecool.draw_molecule(benzene_coords, benzene_symbols, draw_bonds=benzene_bonds)
+~~~
+
+The line `.. code-block:: python` is the line which starts the directive. Directives always start with two periods (`..`), followed by a space, then the directive name (`code-block` in this case), then two colons (`::`). Next, you hit enter and add any options for the directive. What we want highlighted as code is indented below this directive line.
+
+Sphinx `code-block` directive supports many languages. For example, we could add a C++ code block.
+
+~~~
+.. code-block:: c++
+
+    #include <iostream>
+
+    int main(void)
+    {
+        std::cout << "Hello, world!";
+        return 0;
+    }
+~~~
+
 ### The Table of Contents Directive
-The first directive we will discuss is the Table of Contents directive. Look at the file `index.rst`. It contains the `toctree` directive, which generates a special section called a Table of Contents which links to other parts of your projects. The Table of Contents on your `index.rst` file is what shows up on your main menu on the left of the page. It is also on your main page.
+The next directive we will discuss is the Table of Contents directive. Look at the file `index.rst`. It contains the `toctree` directive, which generates a special section called a Table of Contents which links to other parts of your projects. The Table of Contents on your `index.rst` file is what shows up on your main menu on the left of the page. It is also on your main page.
 
 ~~~
 .. toctree::
@@ -215,7 +252,7 @@ The first directive we will discuss is the Table of Contents directive. Look at 
    api
 ~~~
 
-The line `.. toctree::` is the line which starts with directives. Directives always start with two periods (`..`), followed by a space, then the directive name (`toctree` in this case), then two colons (`::`). Next, you hit enter and add any options for the directive. We then have options for depth of the the Table of Contents (what level of headers to show), as well as the "caption". You can see other options for this directive under "Additional options" on the [documentation page](https://www.sphinx-doc.org/en/1.8/usage/restructuredtext/directives.html). 
+This directive has an example of directive options, namely `maxdepth` and `caption`. You can think of these as arguments into a function. We then have options for depth of the the Table of Contents (what level of headers to show), as well as the "caption". You can see other options for this directive under "Additional options" on the [documentation page](https://www.sphinx-doc.org/en/1.8/usage/restructuredtext/directives.html). 
 
 After the settings for the TOC tree, you list the name of the pages you want to be included in this Table of Contents. Right now, we are including the 'Getting Started' page and the API page.
 
@@ -255,7 +292,7 @@ Note that you add the __file name__ in the TOC Tree, but the title of the page (
 {: .challenge}
 
 > ## Building documentation as a PDF
-> To build a pdf version of your documentation, you use the command
+> To build a pdf version of your documentation, you use the command. Note that you must have Latex installed for this to work.
 > ~~~
 > make latexpdf
 > ~~~
@@ -263,11 +300,116 @@ Note that you add the __file name__ in the TOC Tree, but the title of the page (
 > This will create a folder called `pdf` in the `build` directory, and you should have a file in this directory called `molecool.pdf` containing all of your documentation. Each `rst` file is a chapter of the documentation, instead of a different page.
 {: .callout}
 
+## Automatically Generating Documentation using Sphinx-AutoDoc
+
+To generate your documentation with the modules documented from your docstrings, we will use [Sphinx-Autodoc](https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html). AutoDoc will pull out and render your documentation strings so that they are viewable to the user. This makes maintaining code documentation easier on you, as you will only need to maintain documentation for usage of functions in one place (the source code.)
+
+CookieCutter has already added a page which uses these tools. On your index page, click `API Documentation`, then click on the `canvas` function. You will see the docstring written for the function. If you click the green 'source' button to the right, you will be taken to a page which shows the source code for the function.
+
+Opening, the `api.rst` file, you should see the following.
+
+~~~
+API Documentation
+=================
+
+.. autosummary::
+   :toctree: autosummary
+
+   molecool.canvas
+~~~
+
+We are using a Sphinx extension called `autosummary`.  This tells Sphinx to insert a table that contains links to documented items.  Autosummary will put `docstrings` out of functions and a page for each docstring. Under that, we are starting a Table of Contents for this page. We will list any functions we would like to have documented here. This is useful if we would like to separate our API documentation into several pages.
+
+For example, we can add documentation for our `calculate_distance` function.
+
+~~~
+API Documentation
+=================
+
+.. autosummary::
+   :toctree: autosummary
+
+   molecool.canvas
+   molecool.calculate_distance
+
+~~~
+
+> ## Exercise
+> Add documentation for the `calculate_angle` function.
+>
+>> ## Answer
+>> ~~~
+>> .. autosummary::
+>>     :toctree: autosummary
+>>
+>>     molecool.canvas
+>>     molecool.calculate_distance
+>>     molecool.calculate_angle
+>> ~~~
+> {: .solution}
+{: .challenge}
+
+> ## Structuring your documentation
+> Realistically, you probably don't want just a single page for API documentation. You could separate your documentation by purpose. For example, you could have separate pages explaining visualization, calculation, and/or measurement, with an autosummary table of contents for each page that has relevant functions.
+{: .callout}
+
+## An Alternatre way - Automodule
+
+Alternatively, you could choose to break your module documentation into different pages. You may want to write documentation in addition to your docstring. Add a page called `measure.rst` with the following contents:
+
+~~~
+Measure module
+==============
+
+.. automodule:: sample_package_2021.measure
+
+    This is some additional information I want to say about the measure module.
+
+.. autofunction:: calculate_distance
+
+I can also put additional information about a function.
+
+.. autofunction:: calculate_angle
+~~~
+
+## Equation Directives
+
+Our docstring for `calculate_center_of_mass` has a section where we give the formula for the center of mass. If you re-examine that docstring, you will see that it is actually specified using a Sphinx Directive. Add `calculate_center_of_mass` to your API Documentation and view the page to see the rendered equation.
+
+## The `conf.py` file
+
+Now that we've worked with Sphinx, let's look a little closer at what's going on. The file `conf.py` in your `docs` folder gives all of the configuration setting we are using for Sphinx to build our documentation. CookieCutter has added several extensions to Sphinx to make the documentation we've built.
+
+Open your `conf.py` file and find the `extensions` section.
+
+You should see the following:
+
+~~~
+extensions = [
+    'sphinx.ext.autosummary',
+    'sphinx.ext.autodoc',
+    'sphinx.ext.mathjax',
+    'sphinx.ext.viewcode',
+    'sphinx.ext.napoleon',
+    'sphinx.ext.intersphinx',
+    'sphinx.ext.extlinks',
+]
+
+autosummary_generate = True
+napoleon_google_docstring = False
+napoleon_use_param = False
+napoleon_use_ivar = True
+~~~
+{: .language-python}
+
+CookieCutter has added a few extensions here which will allow us to pull doc strings from our Python modules (`sphinx.ext.autosummary`, `sphinx.ext.autodoc`), and another which we use because our docstrings are `NumPy` style (`sphinx.ext.napoleon`).  The `mathjax` extension allows us to render latex into equations, and the `viewcode` extensions will add links to highlighted source code.
+
+Next, we have added the line `autosummary_generate = True` to allow us to pull auto summaries from our modules and functions.
 
 ## Automatically Generating Documentation Using Sphinx-AutoAPI
 Sphinx comes bundled with some extensions which have other directives. You can also download and install many Sphinx extensions from pip or conda.
 
-One common use of Sphinx is to create API documentation (ie, pull the docstrings from your modules) The cookiecutter comes bundled with Sphinx AutoSummary and AutoDoc extensions. This tutorial will demonstrate use of another Sphinx extension called AutoAPI. AutoAPI will pull documentation for all of your functions at once, rather than you having to build them manually.
+One common use of Sphinx is to create API documentation (ie, pull the docstrings from your modules) The cookiecutter comes bundled with Sphinx AutoSummary and AutoDoc extensions. However, you may have noticed that these are a bit labor-intensive if all you want to do is pull out the docstrings. If this is the approach you would like to take, you can use a Sphinx extension called `AutoAPI`. AutoAPI will pull documentation for all of your functions at once, rather than you having to build them manually.
 
 This is [Spinx-AutoAPI](https://github.com/readthedocs/sphinx-autoapi). To install Sphinx-AutoAPI, use `pip`:
 
