@@ -20,7 +20,7 @@ We will cover the following topics. Click on a particular topic to skip to that 
 
 In this workshop, we will be moving code from a Jupyter notebook into a Python package that we can install and import into other scripts.
 
-## Download the starting workshop materials [here](./data/starting_material.zip)
+## Download the starting workshop materials: [starting_material.zip](./data/starting_material.zip)
 
 - Create a folder on your desktop called `molssi_best_practices`.
 - The file you download as starting materials will be a `zip` file. You should unzip this file into the folder you have created on your desktop. After downloading and unzipping, verify that you see the following directory structure.
@@ -38,6 +38,7 @@ In this workshop, we will be moving code from a Jupyter notebook into a Python p
             │       └── water.xyz
             └── starting_notebook.ipynb
     ~~~
+- Please ignore any `.DS_Store` files included in the directiories, they are nothing but remnants from MacOS.
 
 ## Installing Python Using Anaconda <a name="python_install"></a>
 
@@ -51,7 +52,7 @@ The installer for Anaconda can be found on [this page](https://www.anaconda.com/
 
 Throughout the rest of this set-up, we will assume that you are using the `conda` package manager.
 
-Please set up your python environment at
+Please set-up your python environment
 as far in advance as possible.  If you encounter problems with the
 installation procedure, ask your workshop organizers via e-mail for assistance so
 you are ready to go as soon as the workshop begins.
@@ -193,7 +194,8 @@ First, you should set your identity.
 One of the most important things that version control like Git does is to keep track of who changes what.
 This helps repository maintainers coordinate the efforts of all the people who contribute to the project.
 Most importantly, it makes it easier to figure out who to blame when something goes wrong.
-You can provide git your name and contact information with the following commands:
+You can provide git your name and contact information with the following commands (without the angular brackets `<>`):
+
 
 ~~~
 $ git config --global user.name "<Firstname> <Lastname>"
@@ -213,7 +215,7 @@ $ git config --global core.editor "vim"
 ~~~
 {: .bash}
 
-A more complete list of possible editors is available [here](http://swcarpentry.github.io/git-novice/02-setup/index.html).
+A more complete list of possible editors is available: [Setting Up Git](http://swcarpentry.github.io/git-novice/02-setup/index.html).
 
 To use VSCode as your core editor, do
 
@@ -230,7 +232,7 @@ $ git config --list
 {: .bash}
 
 ## Create GitHub Account <a name="github_account"></a>
-Create an account on [github.com] if you do not have one already. Remember the user name and password. If you are making a GitHub account, please remember that your username should be *recognizable* and *professional*.
+Create an account on [github.com](https://github.com/) if you do not have one already. Remember the username and password. If you are making a GitHub account, please remember that your username should be *recognizable* and *professional*.
 
 ### Conclusion
 At the end of this set-up, you should have created a Python environment (`molssi_best_practices`) which has Python 3.7, `numpy`, `matplotlib`, `jupyter`, and `cookiecutter` installed. You should also have downloaded starting material, installed and created an account on GitHub, and configured git.
