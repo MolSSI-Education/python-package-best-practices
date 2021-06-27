@@ -7,16 +7,18 @@ questions:
 objectives:
 - "Explain reasons to use GitHub."
 
-keypoints:
+key points:
 - "You can use GitHub to store your project online where you or others can access it from a central repository."
-- "You can use GitHub to store your projects so you can work on them from multiple computers."
+- "You can use GitHub to store your projects so that you can work on them from multiple computers."
 
 ---
 
-## Putting your repository on GitHub.
-Now, let's put this project on GitHub so that we can share it with others. In your browser, navigate to `github.com`. Log in to you account if you are not already logged in. On the left side of the page, click the green button that says `New` to create a new repository. Give the repository the name `molecool`.
+*TODO: Consider how to handle redundancy with lesson 2.*
 
-Note for the last question, "Initialize this repository with a README". We will leave this unchecked in our case because we have an existing repository (as described by GitHub, "This will let you immediately clone the repository to your computer. Skip this step if you’re importing an existing repository."). If you were creating the repository on GitHub, you would select this. There are also options for adding a `.gitignore` file or a license. However, since cookiecutter created these for us, we will not add them.
+## Putting your repository on GitHub.
+Now, let's put this project on GitHub so that we can share it with others. In your browser, navigate to [github.com](https://github.com/). Log in to you account if you are not already logged in. On the left side of the page, click the green button that says `New` to create a new repository. Give the repository the name `molecool`.
+
+Note for the last question, "Initialize this repository with a README". We will leave this unchecked in our case because we have an existing repository (as described by GitHub, "This will let you immediately clone the repository to your computer. Skip this step if you’re importing an existing repository."). If you were creating the repository on GitHub, you would select this. There are also options for adding a `.gitignore` file or a license. However, since `cookiecutter` created these for us, we will not add them.
 
 Click `Create repository`.
 
@@ -33,7 +35,7 @@ $ git remote -v
 You should see no output. Now, follow the instructions on GitHub under "...or push an existing repository from the command line"
 ~~~
 $ git remote add origin https://github.com/YOUR_GITHUB_USERNAME/molecool.git
-dgit branch -M main
+git branch -M main
 git push -u origin main
 ~~~
 {: .language-bash}
@@ -50,7 +52,7 @@ Now if you refresh the GitHub webpage you should be able to see all of the new f
 
 One of the most potentially frustrating problems in software development is keeping track of all the different copies of the code.
 For example, we might start a project on a local desktop computer, switch to working on a laptop during a conference, and then do performance optimization on a supercomputer.
-In ye olden days, switching between computers was typically accomplished by copying files via a USB drive, or with ssh, or by emailing things to oneself.
+In ye olden days, switching between computers was typically accomplished by copying files via a USB drive, or with `ssh`, or by emailing things to oneself.
 After copying the files, it was very easy to make an important change on one computer, forget about it, and go back to working on the original version of the code on another computer.
 Of course, when collaborating with other people these problems get dramatically worse.
 
@@ -74,6 +76,7 @@ If you do not get this message, do `cd ../` until you see it.
 
 Next, make another copy of your repository. We'll use this to simulate working on another computer.
 
+*TODO: use `git://` URL or discuss other authentication methods.*
 ~~~
 $ git clone https://github.com/YOUR_GITHUB_USERNAME/molecool.git molecool_friend
 $ cd molecool_friend
@@ -81,7 +84,7 @@ $ cd molecool_friend
 {: .bash}
 
 Check the remote on this repository. Notice that when you clone a repository from GitHub, it automatically has that repository listed as `origin`, and you do not have to add
-the remote the way we did when we did not clone the repository.
+the remote the way we did when we created the repository locally.
 
 ~~~
 $ git remote -v
