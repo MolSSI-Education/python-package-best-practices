@@ -14,9 +14,10 @@ keypoints:
 - "You can use the CMS CookieCutter to quickly create the layout for a Python package"
 ---
 
-For this workshop, we are going to create a Python package that performs analysis and creates visualizations for molecules. We will start from a Jupyter notebook which has some functions and analysis, which you should download on the [setup]. 
+*TODO: Define "package". Distinguish from "module". Consider distinguishing w.r.t distribution, archive, source, installed...*
+For this workshop, we are going to create a Python package that performs analysis and creates visualizations for molecules. We will start from a Jupyter notebook which has some functions and analysis, which you should download on the [setup]. *<- wording?*
 
-The idea is that we would like to take this Jupyter notebook and convert the functions we have created into a Python package. That way, if anyone (a labmate, for example) would like to use our functions, they can do so by installing the package and importing it into their own scripts.
+The idea is that we would like to take this Jupyter notebook and convert the functions we have created into a Python package. That way, if anyone (a lab-mate, for example) would like to use our functions, they can do so by installing the package and importing it into their own scripts.
 
 To start, we will first use a tool called [CookieCutter](https://cookiecutter.readthedocs.io/en/latest/) which will set up a Python package structure and several tools we will use during the workshop.
 
@@ -42,9 +43,9 @@ $ cookiecutter gh:molssi/cookiecutter-cms
 ~~~
 {: .language-bash}
 
-This command runs the cookiecutter software (`cookiecutter` in the command) and tells cookiecutter to look at GitHub (`gh`) n the repository under `molssi/cookiecutter-cms`. This repository contains a template which cookiecutter uses to create your project, once you have provided some starting information.
+This command runs the cookiecutter software (`cookiecutter` in the command) and tells cookiecutter to look at GitHub (`gh`) in the repository under `molssi/cookiecutter-cms`. This repository contains a template that cookiecutter uses to create your project, once you have provided some starting information.
 
-You will see an interactive prompt which asks questions about your project. Here, the prompt is given first, followed by the default value in square brackets. The first question will be on your project name. You have very cleverly decided to give it the name `molecool` (it's like molecule, but with `cool` instead, because of your cool visualizations - get it?)
+You will see an interactive prompt which asks questions about your project. Here, the prompt appears first, followed by the default value in square brackets. The first question will be on your project name. You have very cleverly decided to give it the name `molecool` (it's like molecule, but with `cool` instead, because of your cool visualizations - get it?)
 
 Answer the questions according to the following.
 If nothing is given after the colon (`:`), hit enter to use the default value.
@@ -82,10 +83,10 @@ The first two questions are for the project and repository name. The project nam
 
 The next choice is about the first module name. Modules are the `.py` files which contain python code. The default for this is the `repo_name`, but we will change this to avoid confusion (the module `molecool.py` in a folder named `molecool` in a folder named `molecool`??). For now, we'll just name our first module `functions`, and this is where we will put all of our starting functions.
 
-Another thing the CookieCutter checks for is your email address. Be sure to provide a valid email address to the cookiecutter (it must have an `@` symbol followed by a domain name, or the cookiecutter will fail.). Note that your email address is not recorded or kept by the software. Your email is asked for insertion into created files so that people using your software will have contact information for you. 
+Another thing that CookieCutter checks for is your email address. Be sure to provide a valid email address to `cookiecutter` (it must have an `@` symbol followed by a domain name, or `cookiecutter` will fail.). Note that your email address is not recorded or kept by the CookieCutter software, itself. `cookiecutter` inserts your email address into generated files so that people using your software will have contact information for you. 
 
 #### License Choice
-Choosing which license to use is often confusing for new developers. The MIT license (option 1) is a very common license and the default on GitHub. It allows for anyone to use, modify, or redistribute your work with no restrictions (and also no warranty).
+Choosing which license to use is often confusing for new developers. The MIT license (option 1) is a very common license, and the default on GitHub. It allows for anyone to use, modify, or redistribute your work with no restrictions (and also no warranty).
 
 Here, we have chosen the `BSD-3-Clause`. The `BSD-3-Clause` license is an open-source, permissive license (meaning that few requirements are placed on developers of derivative works), similar to the MIT license. However, it adds a copyright notice with your name and requires redistributors of the code to keep the notice. It also prohibits others from using the name of the project or its contributors to promote derived products without written consent.
 
@@ -95,7 +96,7 @@ You can see more detailed information on each license at [choosealicense.com](ht
 1. [LGPLv3](https://choosealicense.com/licenses/gpl-3.0/)
 1. Not Open Source - In this case, the cookiecutter will not generate a license. You can add a custom license, or choose to not add a license. If there is no license in a repository, you should assume that the project is **not** open source, and [you cannot modify or redistribute the software](https://choosealicense.com/no-permission/).
 
-For most of your projects, it is likely that the license you choose will not matter a great deal. However, remember that if you ever want to change a license, you may have to get permission of all contributors. So, if you ever start a project that becomes popular or has contributors, be sure to decide your license early!
+For most of your projects, it is likely that the license you choose won't matter a great deal. However, remember that if you ever want to change a license, you may have to get permission of all contributors. So, if you ever start a project that becomes popular or has contributors, be sure to decide your license early!
 
 > ## Types of Open-Source Licenses
 >
@@ -105,10 +106,10 @@ For most of your projects, it is likely that the license you choose will not mat
 {: .callout}
 
 #### Dependency Source
-This determines some things in set-up for what will be used to install dependencies for testing. This mostly has consequence for the section on Continuous Integration. We have chosen to install dependencies from anaconda with pip fallback. Don't worry too much about this choice for now.
+This determines some things in set-up for what will be used to install dependencies for testing. This mostly has consequence for the section on [Continuous Integration]. We have chosen to install dependencies from anaconda with pip fallback. Don't worry too much about this choice for now.
 
 #### Support for ReadTheDocs
-This option is to choose whether you would like files associated with the documentation hosting service [ReadTheDocs](https://readthedocs.org/). Choose yes for this workshop.
+This option is to choose whether you would like files associated with the documentation hosting service [ReadTheDocs](https://readthedocs.org/). Choose "yes" for this workshop.
 
 ### Reviewing directory contents
 Now we can examine the project layout the CookieCutter has set up for us. Navigate to the newly created `molecool` directory. You should see the following directory structure.
@@ -164,9 +165,9 @@ Now we can examine the project layout the CookieCutter has set up for us. Naviga
 ```
 {: .output}
 
-To visualize your project like above you will use "tree". If you do not have tree you can get using `sudo apt-get install tree` on linux, or `brew install tree` on Mac. Note - tree will not show you the helpful labels after '<-' (those were added by us).
+To visualize your project like above you will use *tree*. If you do not have *tree*, you can get it using `sudo apt-get install tree` on Linux, or `brew install tree` on Mac. Note - `tree` will not show you the helpful labels after `<-` (those were added by us).
 
-CookieCutter has created a lot of files! This can be thought of as three sections. In the top level of our project we have a folder for tools related to development (`devtools`), documentation (`docs`) and to the package itself (`molecool`). We will first be working in the `molecool` folder to build our package, and adding more things later.
+CookieCutter has created a lot of files! They can be thought of as three sections. In the top level of our project we have a folder for tools related to development (`devtools`), documentation (`docs`) and to the package itself (`molecool`). We will first be working in the `molecool` folder to build our package, and adding more things later.
 
 ~~~
 ...
@@ -183,10 +184,11 @@ CookieCutter has created a lot of files! This can be thought of as three section
 ~~~
 {: .output}
 
-This the only folder we actually have to work with to build our package. The other folders relate to "best practices", which do not technically have to be used in order for your package to be working (but you should do them, and we will talk about them later). You could build this directory structure by hand, but we have just used cookiecutter to set it up for us. This directory will contain all of our python code for our project, as well as sample data (in the `data` folder), and tests (in the `tests` folder.)
+This the only folder we actually have to work with to build our package. The other folders relate to "best practices", which do not technically have to be used in order for your package to be working (but you should do them, and we will talk about them later). You could build this directory structure by hand, but we have just used `cookiecutter` to set it up for us. This directory will contain all of our Python code for our project, as well as sample data (in the `data` folder), and tests (in the `tests` folder.)
 
 > ## Packages and modules
->
+> *TODO: Rewrite. Separate discussion of packages vs. modules from discussion of importable entities and scoping.*
+> 
 > What 'packages' or 'modules' are in Python may be confusing.
 > In general, 'module' refers to a single `.py` file containing Python definitions and statements. It may be imported for use in another module or script. The module name is determined by the file name. A function defined in a module is used (once the module is imported) using the syntax `module_name.function_name()`.
 > 'Package' refers to a collection of Python modules. The package may also have an `__init__.py` file.
@@ -205,11 +207,14 @@ $ cd molecool
 ### The `__init__.py` file
 
 The `__init__.py` file is a special file recognized by the Python interpreter which makes a directory into a package. This file can be blank in some cases, however, we will use it to define how the user interacts with the functions in our package.
+*TODO: Cite section on defining the interface, where we can also mention `__all__` and `_` prefixed names.*
 
+Contents of `molecool/molecool/__init__.py`:
 ~~~
 """
-molecool
-A Python package for analyzing and visualizing xyz files. For MolSSI Workshop.
+Analyze and visualize xyz files.
+
+For MolSSI Workshop.
 """
 
 # Add imports here
@@ -224,7 +229,7 @@ del get_versions, versions
 ~~~
 {: .language-python}
 
-The very first section of this file contains a string opened and closed with three quotations. This is a docstring, and has a short description of the file.
+The very first section of this file contains a string opened and closed with three quotations. This is a [docstring](https://www.python.org/dev/peps/pep-0257/), and has a short description of the file.
 
 The section we will be concerned with is under `# Add imports here`. This is how we define the way functions from modules are used.
 
@@ -235,43 +240,50 @@ from .functions import *
 ~~~
 {: .language}
 
-goes to the `molecool.py` file, and brings everything that is defined there into the file. When we use our function defined in `functions.py`, that means we will be able to just say `molecool.canvas()` instead of giving the full path `molecool.functions.canvas()`. If that's confusing, don't worry too much for now. We will be returning to this file in a few minutes. For now, just note that it exists and makes our directory into a package.
+goes to the `functions.py` file, and brings everything that is defined there into the file. When we use our function defined in `functions.py`, that means we will be able to just say `molecool.canvas()` instead of giving the full path `molecool.functions.canvas()`. If that's confusing, don't worry too much for now. We will be returning to `__init__.py` in a few minutes. For now, just note that it exists and makes our directory into a package.
 
 ### Our first module
-Once inside of the `molecool` folder (`molecool/molecool`), examine the files that are there. View the first module (`functions.py`) in a text editor. We see a few things about this file. The top begins with a description of this module surrounded by three quotations (`"""`). Right now, that is the file name, followed by our short description, then the sentence "Handles the primary functions". We will change this to be more descriptive later. CookieCutter has also created a placeholder function in called `canvas`.  At the start of the `canvas` function, we have a `docstring` (more about this in [documentation]), which describes the function.
+Once inside the `molecool` folder (`molecool/molecool`), examine the files that are there. View the module (`functions.py`) in a text editor. We see a few things about this file. The top begins with a description of this module surrounded by three quotations (`"""`). Right now, that is the file name, followed by our short description, then the sentence "Handles the primary functions". We will change this to be more descriptive later. CookieCutter has also created a placeholder function called `canvas`.  At the start of the `canvas` function, we have a `docstring` (more about this in [documentation]), which describes the function.
 
-We will be moving all of the functions we defined in the jupyter notebook into python modules (`.py` files) like these.
+We will be moving all of the functions we defined in the Jupyter notebook into python modules (`.py` files) like these.
 
-### Python local installs
+### Installing from local source.
 
-To develop this package, we will want to something called a developmental install so that we can try out our functions and package as we develop it. 
+You may be accustomed to `pip` automatically retrieving packages from the internet. You can also install packages from local sources that contain a `setup.py` file.
+
+To develop this package, we will want to use what is called "development mode" or an "editable install" so that we can try out our functions and package as we develop it. We access development mode using the `develop` command to `setup.py`, or the `-e` option to `pip`.
+
+*TODO: Note that "editable" install is not (yet) standard and may even go away in the future.*
 
 #### Reviewing `setup.py`
 Return to the top directory (`molecool`). One of the files CookieCutter generated is a `setup.py` file. `setup.py` is the build script for [setuptools]. It tells setuptools about your package (such as the name and version) as well as which code files to include. We'll be using this file in the next section.
 
 #### Installing your package
-A developer install will allow you to import your package and use it from anywhere on your computer. You will then be able to import your package into scripts in the same way you import `matplotlib` or `numpy`. 
+A development install will allow you to import your package and use it from anywhere on your computer. You will then be able to import your package into scripts in the same way you import `matplotlib` or `numpy`. 
 
-A local install uses the `setup.py` file to install your package by inserting a link to your new project into your Python site-packages folder. To find the location of your site packages folder, you can check your Python path. Open Python (type `python` into your terminal window), and type
+A development installation uses the `setup.py` file to install your package by inserting a link to your new project into your Python site-packages folder. To find the location of your site-packages folder, you can check your Python path. Open Python (type `python` into your terminal window), and type
 
+*TODO: update.*
 ~~~
 >>> import sys
 >>> sys.path
 ~~~
 {: .language-python}
 
-This will give a list of locations python looks for packages when you do an import. One of the locations should end with `python3.7/site_packages`. The site packages folder is where all of your installed packages for a particular environment are located.
+This will give a list of locations python looks for packages when you do an import. One of the locations should end with `python3.7/site-packages`. The site packages folder is where all of your installed packages for a particular environment are located.
 
-To do a local install, type
+To do a development mode install, type
 
 ~~~
 $ pip install -e .
 ~~~
 {: .language-bash}
 
-Here, the `-e` indicates that we are installing this project in 'editable' mode (i.e. setuptools "develop mode"), while `.` indicates to install from the local directory (you could also specify a path here). Now, if you examine the contents of your site packages folder, you should see a link to `molecool` (`molecool.egg-link`). The folder has also been added to your path (check `sys.path` again.)
+Here, the `-e` indicates that we are installing this project in *editable* mode (i.e. setuptools [*development mode*](https://setuptools.readthedocs.io/en/latest/userguide/commands.html#develop-deploy-the-project-source-in-development-mode)), while `.` indicates to install from the local directory (you could also specify a path here). Now, if you examine the contents of your site packages folder, you should see a link to `molecool` (`molecool.egg-link`). The folder has also been added to your path (check `sys.path` again.)
 
 Now, we can use our package from any directory, similar to how we can use other installed packages like `numpy`. Open Python, and type
+
+*TODO: Consider using doctest-compliant examples (with expected output).*
 
 ~~~
 >>> import molecool
@@ -294,6 +306,8 @@ This should work from anywhere on your computer.
 >> If you are in the project directory, the code will still work. However, it will not work in any other location.
 > {: .solution}
 {: .challenge}
+
+*TODO: Consider removing, move to a separate lesson, mention in the context of an existing package, or just cite Python Packaging Guide for optional components.*
 
 Optional dependencies can be installed as well with `pip install -e .[docs,tests]`
 
