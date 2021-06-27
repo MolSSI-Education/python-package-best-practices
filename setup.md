@@ -4,7 +4,7 @@ title: "Setup"
 
 This setup tutorial will walk you through installing the software you will need for this workshop.
 
-For this workshop, you will need to have Python installed. We recommend and assume you will have Python installed using Anaconda, and will be talking about package management using conda and Anaconda (see instructions below). You will also need to download workshop materials, and configure git.
+For this workshop, you will need to have Python installed. We recommend and assume you will have Python installed using Anaconda, and will be talking about package management using `conda` and Anaconda (see instructions below). You will also need to download workshop materials, and configure `git`.
 
 We will cover the following topics. Click on a particular topic to skip to that section.
 
@@ -41,7 +41,7 @@ In this workshop, we will be moving code from a Jupyter notebook into a Python p
 
 ## Installing Python Using Anaconda <a name="python_install"></a>
 
-If you already have a Python 3 verison Anaconda or MiniConda installed, you can skip this step.
+If you already have a Python 3 version of Anaconda or MiniConda installed, you can skip this step.
 
 [Python][python] is a popular language for scientific computing, and great for
 general-purpose programming as well.  We recommend using Python with the conda package manager. 
@@ -51,19 +51,19 @@ The installer for Anaconda can be found on [this page](https://www.anaconda.com/
 
 Throughout the rest of this set-up, we will assume that you are using the `conda` package manager.
 
-Please set up your python environment at
+Please set up your python environment
 as far in advance as possible.  If you encounter problems with the
-installation procedure, ask your workshop organizers via e-mail for assistance so
+installation procedure, ask your workshop organizers via e-mail for assistance, so
 you are ready to go as soon as the workshop begins.
 
 ## Choosing a text editor <a name="text_editor"></a>
-You will need an editor for Python files for this workshop. If you do not have a prefered text editor, we recommend [Visual Studio Code](https://code.visualstudio.com/). If you installed a recent version of Anaconda, you will have VSCode installed already. You should be able to open it from the Anaconda Navigator window. If you have another prefered text editor, you should use that for the workshop.
+You will need an editor for Python files for this workshop. If you do not have a preferred text editor, we recommend [Visual Studio Code](https://code.visualstudio.com/). If you installed a recent version of Anaconda, you will have VSCode installed already. You should be able to open it from the Anaconda Navigator window. If you have another preferred text editor, you should use that for the workshop.
 
 ## Using Anaconda and conda
 
 Use of [Anaconda] with its package manager, `conda`, greatly simplifies package installation and environment management.
 
-`conda` is a general package manager, meaning that it can install dependencies and packages in languages besides Python, unlike `pip` (which is Python's package manager). Both `pip` and `conda` can be used to install packages.
+`conda` is a general package manager, meaning that it can install dependencies and packages in languages besides Python (unlike `pip`, which is Python's package manager). Both `pip` and `conda` can be used to install packages in a conda environment.
 
 ### Python environments <a name="python_environment"></a>
 A `conda` environment contains a specific collection of packages you have installed. This means that packages are isolated, and installed only for a specific environment -- you can have several environments each with different installed packages, or different versions of installed packages in different environments.
@@ -88,9 +88,9 @@ $ conda activate molssi_best_practices
 ~~~
 {: .language-bash}
 
-Once you've activated an environment, the name of the environment will be in parenthesis at the front of your command line prompt.
+Once you've activated an environment, the name of the environment will be in parentheses at the front of your command line prompt.
 
-If you wanted to create an environment for testing your code in Python 3.5, for example, you could use the command (Do not execute this, it's just an example.)
+If you wanted to create an environment for testing your code in Python 3.5, for example, you could use the following command. (Do not execute this, it's just an example.)
 
 ~~~
 $ conda create --name molssi_35 python=3.5
@@ -99,7 +99,7 @@ $ conda create --name molssi_35 python=3.5
 
 When this environment is activated, Python 3.5 will be used instead of Python 3.7.
 
-To see a list of all your environments
+To see a list of all your environments,
 
 ~~~
 $ conda info --envs
@@ -141,6 +141,8 @@ Further, the desired version of NumPy can be specified:
 $ conda install numpy=1.15
 ~~~
 {: .language-bash}
+
+*TODO: mention `-c` syntax and `conda-forge` before using below.*
 
 For this workshop, you will need to install the following packages into your environment
 - NumPy
@@ -195,6 +197,7 @@ This helps repository maintainers coordinate the efforts of all the people who c
 Most importantly, it makes it easier to figure out who to blame when something goes wrong.
 You can provide git your name and contact information with the following commands:
 
+*TODO: Since angle brackets appear in the commit log wrt standard email address representation, add real example for clarity.*
 ~~~
 $ git config --global user.name "<Firstname> <Lastname>"
 $ git config --global user.email "<email address>"
