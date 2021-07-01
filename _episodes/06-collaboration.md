@@ -121,7 +121,7 @@ Create a personal fork of the repository by pressing the “Fork” button near 
 
 You can use the following diagram to visualize what you just did.
 
-<center><img src="../fig/github_workflows/github_fork.png"></center>
+<center><img src="../fig/github_workflows/github_fork.svg"></center>
 
 Then, make a clone of the fork on your personal computer. Before you make the clone, MAKE SURE YOU ARE NOT IN A GIT REPOSITORY.
 
@@ -151,7 +151,7 @@ $ cd periodic-table
 
 Now, when we visualize what our repositories look like, we have a copy of our fork on our local machine. 
 
-<center><img src="../fig/github_workflows/github_clone_fork.png"></center>
+<center><img src="../fig/github_workflows/github_clone_fork.svg"></center>
 
 In a real development situation, we would also create a new `conda` environment for developing in this repository.
 
@@ -178,7 +178,7 @@ $ git remote add upstream https://github.com/molssi-education/periodic-table.git
 
 Now, when you check the remotes (`git remote -v`), it should list both the `origin`, and `upstream` repositories. If we wanted to pull changes from the original repo, we could do `git pull upstream branch_name`
 
-<center><img src="../fig/github_workflows/github_remotes.png"></center>
+<center><img src="../fig/github_workflows/github_remotes.svg"></center>
 
 Next type
 
@@ -223,15 +223,15 @@ When creating a new feature, it is a good practice to develop each feature on a 
 
 Before branching, imagine a git commit history that looks like this. In the diagram below, each circle represents a git commit. There have been two commits, and the HEAD is currently after commit 2.
 
-<center><img src='../fig/github_workflows/git_history_0.png'></center>
+<center><img src='../fig/github_workflows/git_history_0.svg'></center>
 
 After we have created a new branch and checked it out, we can imagine our git history looking like this. The sodium branch 'branches' or starts from the point where we used the git branch command. 
 
-<center><img src = '../fig/github_workflows/git_branch.png'></center>
+<center><img src = '../fig/github_workflows/git_branch.svg'></center>
 
 Now, when we make a commit on the `sodium` branch, our changes will continue from this point, leaving the main branch unchanged. Note that we have not yet made a commit, but this diagram is for illustrative purposes.
 
-<center><img src = "../fig/github_workflows/branch_development.png"></center>
+<center><img src = "../fig/github_workflows/branch_development.svg"></center>
 
 ## The importance of branching
 
@@ -305,7 +305,7 @@ $ git push origin sodium
 
 Here, the last line indicates that we are pushing to `origin` (our fork) to the `sodium` branch. The branch name you type in place of sodium should match the name of the branch you are working on. If you view your repository on GitHub, you should now see that you have another branch in addition to the main branch.
 
-<center><img src="../fig/github_workflows/push_branch.png"></center>
+<center><img src="../fig/github_workflows/push_branch.svg"></center>
 
 As part of the output from this command, you should see the following:
 
@@ -336,7 +336,7 @@ Anyone can see Pull Requests on public repositories. Try reviewing a few pull re
 
 Once your changes have been accepted, upstream will have those changes on the `main` branch. This is indicated in the figure below through the change in color of the the word 'main'. 
 
-<center><img src="../fig/github_workflows/accepted_PR.png"></center>
+<center><img src="../fig/github_workflows/accepted_PR.svg"></center>
 
 ## Incorporating upstream changes to local
 
@@ -378,7 +378,7 @@ $ git push origin --delete sodium
 ~~~
 {: .bash}
 
-<center><img src="../fig/github_workflows/final.png"></center>
+<center><img src="../fig/github_workflows/final.svg"></center>
 
 ## More Tutorials
 If you want more `git`, see the following tutorials.
