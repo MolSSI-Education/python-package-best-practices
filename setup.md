@@ -241,11 +241,41 @@ To create a PAT:
 2. On the settings page, look on the left sidebar and click `Developer settings`.
 3. In the new left sidebar, click `Personal access tokens`.
 4. Click the `Generate new token` button to bring up the options for your token.
-You can create different authentication tokens for different actions on Github.
-For the purposes of this workshop, you should only need to select the `repo` option at the top.
+You can create different access tokens for different actions on Github.
+For the purposes of this workshop, you should only need to select the `repo` and `workflow` options, the two at the top.
+You can return to the settings page at a later time to add or remove scopes from your token.
 5. Once you have checked this box, click the `Generate token` button at the bottom of the set of options.
-Make sure to copy the authentication token as Github will not let you see it again once you have navigated from the page.
+Make sure to copy the access token as Github will not let you see it again once you have navigated from the page.
 This token will be used in place of your password when you utilize the command line to access Github repositories.
+
+By default, you will be required to enter your PAT every time you want to push to a github repository.
+This can become tedius if you are making multiple pushes over a short period.
+Git has options to cache your PAT in local memory for a specified time period, meaning you only have to re-enter your password if enough time has passed.
+If you would like to setup caching you have to take different steps depending on your operating system.
+
+For Linux and Windows WSL, you simply run
+```
+git config --global credential.helper cache
+```
+which will cache your token in memory for 15 minutes after it has been entered.
+
+For Mac OS, you need a separate tool, `osxkeychain` to cache your token.
+You can check if you have it installed already by running
+```
+git credential-osxkeychain
+```
+If you do not have it installed, you should be prompted to install it by the console.
+Then run
+```
+git config --global credential.helper osxkeychain
+```
+to setup caching with a default time of 15 minutes.
+
+If you would like to modify the length of time a token is cached, you can use the command:
+```
+git config --global credential.helper 'cache --timeout=3600'
+```
+where the value after timeout is the length of time to cache in seconds (1 hour in this example).
 
 
 ### Conclusion
