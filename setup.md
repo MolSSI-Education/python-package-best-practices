@@ -235,6 +235,7 @@ Create an account on [github.com] if you do not have one already. Remember the u
 The next step is to verify your email address through Github.
 If you do not verify your email address, you will not be able to perform many of the actions covered in this workshop.
 
+## Setting up a Personal Access Token (PAT) for Github
 To utilize github from the command line, you will need to generate a Personal Access Token (PAT).
 To create a PAT:
 1. Click the profile photo option in the upper right hand corner of any page, then click `Settings`.
@@ -259,6 +260,12 @@ git config --global credential.helper cache
 ```
 which will cache your token in memory for 15 minutes after it has been entered.
 
+If you would like to modify the length of time a token is cached, you can use the command:
+```
+git config --global credential.helper 'cache --timeout=3600'
+```
+where the value after timeout is the length of time to cache in seconds (1 hour in this example).
+
 For Mac OS, you need a separate tool, `osxkeychain` to cache your token.
 You can check if you have it installed already by running
 ```
@@ -269,14 +276,16 @@ Then run
 ```
 git config --global credential.helper osxkeychain
 ```
-to setup caching with a default time of 15 minutes.
+to setup caching for your operating system.
+Your PAT will be stored locally on your machine and encrypted by the operating system.
 
-If you would like to modify the length of time a token is cached, you can use the command:
+If you would like to store the PAT locally and have git automatically reference it on Linux/WSL, you can specify that git should store your PAT.
+This can be done through the command
 ```
-git config --global credential.helper 'cache --timeout=3600'
+git config --global credential.helper 'store --file ~/.my-credentials'
 ```
-where the value after timeout is the length of time to cache in seconds (1 hour in this example).
-
+where `~/.my-credentials` is a filepath to a file git should store your PAT in.
+Note that this is stored as plain text on your machine.
 
 ### Conclusion
 At the end of this set-up, you should have created a Python environment (`molssi_best_practices`) which has Python 3.7, `numpy`, `matplotlib`, `jupyter`, and `cookiecutter` installed. You should also have downloaded starting material, installed and created an account on GitHub, and configured git.
