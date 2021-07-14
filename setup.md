@@ -232,6 +232,22 @@ $ git config --list
 ## Create GitHub Account <a name="github_account"></a>
 Create an account on [github.com] if you do not have one already. Remember the user name and password. If you are making a GitHub account, please remember that your username should be *recognizable* and *professional*.
 
+The next step is to verify your email address through Github.
+If you do not verify your email address, you will not be able to perform many of the actions covered in this workshop.
+
+To utilize github from the command line, you will need to generate a Personal Authentication Token (PAT).
+To create a PAT:
+1. Click the profile photo option in the upper right hand corner of any page, then click `Settings`.
+2. On the settings page, look on the left sidebar and click `Developer settings`.
+3. In the new left sidebar, click `Personal access tokens`.
+4. Click the `Generate new token` button to bring up the options for your token.
+You can create different authentication tokens for different actions on Github.
+For the purposes of this workshop, you should only need to select the `repo` option at the top.
+5. Once you have checked this box, click the `Generate token` button at the bottom of the set of options.
+Make sure to copy the authentication token as Github will not let you see it again once you have navigated from the page.
+This token will be used in place of your password when you utilize the command line to access Github repositories.
+
+
 ### Conclusion
 At the end of this set-up, you should have created a Python environment (`molssi_best_practices`) which has Python 3.7, `numpy`, `matplotlib`, `jupyter`, and `cookiecutter` installed. You should also have downloaded starting material, installed and created an account on GitHub, and configured git.
 
