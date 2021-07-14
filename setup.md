@@ -235,7 +235,7 @@ Create an account on [github.com] if you do not have one already. Remember the u
 The next step is to verify your email address through Github.
 If you do not verify your email address, you will not be able to perform many of the actions covered in this workshop.
 
-To utilize github from the command line, you will need to generate a Personal Authentication Token (PAT).
+To utilize github from the command line, you will need to generate a Personal Access Token (PAT).
 To create a PAT:
 1. Click the profile photo option in the upper right hand corner of any page, then click `Settings`.
 2. On the settings page, look on the left sidebar and click `Developer settings`.
