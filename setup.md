@@ -4,7 +4,11 @@ title: "Setup"
 
 This setup tutorial will walk you through installing the software you will need for this workshop.
 
-For this workshop, you will need to have Python installed. We recommend and assume you will have Python installed using Anaconda, and will be talking about package management using conda and Anaconda (see instructions below). You will also need to download workshop materials, and configure git.
+For this workshop, you will need to have Python installed.
+We recommend and assume you will have Python installed using Anaconda,
+and will be talking about package management using `conda` and Anaconda
+(see instructions below).
+You will also need to download workshop materials, and configure `git`.
 
 We will cover the following topics. Click on a particular topic to skip to that section.
 
@@ -18,12 +22,16 @@ We will cover the following topics. Click on a particular topic to skip to that 
 
 ## Workshop materials <a name="materials_download"></a>
 
-In this workshop, we will be moving code from a Jupyter notebook into a Python package that we can install and import into other scripts.
+In this workshop,
+we will be moving code from a Jupyter notebook into a Python package that we can install
+and import into other scripts.
 
 ## Download the starting workshop materials [here](./data/starting_material.zip)
 
 - Create a folder on your desktop called `molssi_best_practices`.
-- The file you download as starting materials will be a `zip` file. You should unzip this file into the folder you have created on your desktop. After downloading and unzipping, verify that you see the following directory structure.
+- The file you download as starting materials will be a `zip` file.
+  You should unzip this file into the folder you have created on your desktop.
+  After downloading and unzipping, verify that you see the following directory structure.
     ~~~
     molssi_best_practices
     └── starting_material  
@@ -41,36 +49,61 @@ In this workshop, we will be moving code from a Jupyter notebook into a Python p
 
 ## Installing Python Using Anaconda <a name="python_install"></a>
 
-If you already have a Python 3 verison Anaconda or MiniConda installed, you can skip this step.
+If you already have a Python 3 version of Anaconda or MiniConda installed,
+you can skip this step.
 
-[Python][python] is a popular language for scientific computing, and great for
-general-purpose programming as well.  We recommend using Python with the conda package manager. 
-You can obtain Python and conda by either installing [Miniconda](https://docs.conda.io/en/latest/miniconda.html) (minimal installer) or [Anaconda](https://www.anaconda.com/products/individual). Anaconda comes bundled with many more python packages than miniconda. Anaconda is more user-friendly. If you are uncomfortable navigating the terminal, or are unsure of which you need, install Anaconda. Anaconda will also come bundled with the text editor Visual Studio Code, so you will not need to install a text editor in the next step.
+[Python][python] is a popular language for scientific computing,
+and great for general-purpose programming as well.
+We recommend using Python with the conda package manager. 
+You can obtain Python and conda by either installing
+[Miniconda](https://docs.conda.io/en/latest/miniconda.html) (minimal installer)
+or [Anaconda](https://www.anaconda.com/products/individual).
+Anaconda comes bundled with many more python packages than miniconda.
+Anaconda is more user-friendly.
+If you are uncomfortable navigating the terminal,
+or are unsure of which you need, install Anaconda.
+Anaconda will also come bundled with the text editor Visual Studio Code,
+so you will not need to install a text editor in the next step.
 
-The installer for Anaconda can be found on [this page](https://www.anaconda.com/products/individual). Choose the appropriate version for your Operating System.
+The installer for Anaconda can be found on
+[this page](https://www.anaconda.com/products/individual).
+Choose the appropriate version for your Operating System.
 
 Throughout the rest of this set-up, we will assume that you are using the `conda` package manager.
 
-Please set up your python environment at
-as far in advance as possible.  If you encounter problems with the
-installation procedure, ask your workshop organizers via e-mail for assistance so
-you are ready to go as soon as the workshop begins.
+Please set up your python environment as far in advance as possible.
+If you encounter problems with the installation procedure,
+ask your workshop organizers via e-mail for assistance,
+so you are ready to go as soon as the workshop begins.
 
 ## Choosing a text editor <a name="text_editor"></a>
-You will need an editor for Python files for this workshop. If you do not have a prefered text editor, we recommend [Visual Studio Code](https://code.visualstudio.com/). If you installed a recent version of Anaconda, you will have VSCode installed already. You should be able to open it from the Anaconda Navigator window. If you have another prefered text editor, you should use that for the workshop.
+You will need an editor for Python files for this workshop.
+If you do not have a preferred text editor,
+we recommend [Visual Studio Code](https://code.visualstudio.com/).
+If you installed a recent version of Anaconda, you will have VSCode installed already.
+You should be able to open it from the Anaconda Navigator window.
+If you have another preferred text editor, you should use that for the workshop.
 
 ## Using Anaconda and conda
 
 Use of [Anaconda] with its package manager, `conda`, greatly simplifies package installation and environment management.
 
-`conda` is a general package manager, meaning that it can install dependencies and packages in languages besides Python, unlike `pip` (which is Python's package manager). Both `pip` and `conda` can be used to install packages.
+`conda` is a general package manager,
+meaning that it can install dependencies and packages in languages besides Python
+(unlike `pip`, which is Python's package manager).
+Both `pip` and `conda` can be used to install packages in a conda environment.
 
 ### Python environments <a name="python_environment"></a>
-A `conda` environment contains a specific collection of packages you have installed. This means that packages are isolated, and installed only for a specific environment -- you can have several environments each with different installed packages, or different versions of installed packages in different environments.
+A `conda` environment contains a specific collection of packages you have installed.
+This means that packages are isolated, and installed only for a specific environment.
+You can have several environments each with different installed packages,
+or different versions of installed packages in different environments.
 
 It's considered a best practice to create a new Python environment for each project you work on.
 
-This section uses the command line interface (CLI) to create an environment using `conda`. If you are on Mac or Linux, you will type these commands into your terminal.  If you are on Windows, you should use the Anaconda Prompt. 
+This section uses the command line interface (CLI) to create an environment using `conda`.
+If you are on Mac or Linux, you will type these commands into your terminal.
+If you are on Windows, you should use the Anaconda Prompt. 
 
 To create an environment for this project using `conda`,
 
@@ -88,9 +121,11 @@ $ conda activate molssi_best_practices
 ~~~
 {: .language-bash}
 
-Once you've activated an environment, the name of the environment will be in parenthesis at the front of your command line prompt.
+Once you've activated an environment,
+the name of the environment will be in parentheses at the front of your command line prompt.
 
-If you wanted to create an environment for testing your code in Python 3.5, for example, you could use the command (Do not execute this, it's just an example.)
+If you wanted to create an environment for testing your code in Python 3.5, for example,
+you could use the following command. (Do not execute this, it's just an example.)
 
 ~~~
 $ conda create --name molssi_35 python=3.5
@@ -99,7 +134,7 @@ $ conda create --name molssi_35 python=3.5
 
 When this environment is activated, Python 3.5 will be used instead of Python 3.7.
 
-To see a list of all your environments
+To see a list of all your environments,
 
 ~~~
 $ conda info --envs
