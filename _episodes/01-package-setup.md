@@ -373,8 +373,6 @@ This should work from anywhere on your computer.
 > {: .solution}
 {: .challenge}
 
-Optional dependencies can be installed as well with `pip install -e .[docs,tests]`
-
 
 {% include links.md %}
 [Python's documentation]: https://docs.python.org/3/tutorial/modules.html
