@@ -56,6 +56,14 @@ as far in advance as possible.  If you encounter problems with the
 installation procedure, ask your workshop organizers via e-mail for assistance so
 you are ready to go as soon as the workshop begins.
 
+> ## Windows Subsytem for Linux (WSL)
+> 
+> If you plan to continue developing in the future and you utilize the Windows Operating system, you may want to consider installing the WSL.
+> The WSL will allow you to run a Linux based terminal from your Windows machine, which can aid in the development and running of code.
+> The WSL can connect to VS code for easy development.
+> You can find instructions to install the WSL on the [Windows Documentation](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
+{: .callout}
+
 ## Choosing a text editor <a name="text_editor"></a>
 You will need an editor for Python files for this workshop. If you do not have a prefered text editor, we recommend [Visual Studio Code](https://code.visualstudio.com/). If you installed a recent version of Anaconda, you will have VSCode installed already. You should be able to open it from the Anaconda Navigator window. If you have another prefered text editor, you should use that for the workshop.
 
