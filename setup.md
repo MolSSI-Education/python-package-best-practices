@@ -147,7 +147,10 @@ For this workshop, you will need to install the following packages into your env
 - Matplotlib
 - jupyter notebook
 
-You can install then using the commands
+Packages available to Conda are stored within `channels`.
+Some packages are not stored in the default Conda channel, so we need to specify where Conda can find the package with `-c` followed by a channel name in our install command.
+The `NumPy` and `Matplotlib` packages are both stored within the default Conda channel, so we do not need to include a `-c`.
+The `jupyter notebook` package is in the `conda-forge` channel, so we include the syntax `-c conda-forge` in our install command.
 
 ~~~
 $ conda install numpy matplotlib
@@ -196,8 +199,8 @@ Most importantly, it makes it easier to figure out who to blame when something g
 You can provide git your name and contact information with the following commands:
 
 ~~~
-$ git config --global user.name "<Firstname> <Lastname>"
-$ git config --global user.email "<email address>"
+$ git config --global user.name "YOUR NAME"
+$ git config --global user.email "YOUR_EMAIL"
 ~~~
 {: .bash}
 
@@ -235,7 +238,7 @@ Create an account on [github.com] if you do not have one already. Remember the u
 The next step is to verify your email address through Github.
 If you do not verify your email address, you will not be able to perform many of the actions covered in this workshop.
 
-## Setting up a Personal Access Token (PAT) for Github
+## Accessing GitHub through the Command Line
 To utilize github from the command line, you will need to
 [provide GitHub with an SSH public key](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh)
 or generate a GitHub Personal Access Token (PAT).
