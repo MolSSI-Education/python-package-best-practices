@@ -9,14 +9,24 @@ objectives:
 
 keypoints:
 - "You can use GitHub to store your project online where you or others can access it from a central repository."
-- "You can use GitHub to store your projects so you can work on them from multiple computers."
+- "You can use GitHub to store your projects so that you can work on them from multiple computers."
 
 ---
 
 ## Putting your repository on GitHub.
-Now, let's put this project on GitHub so that we can share it with others. In your browser, navigate to `github.com`. Log in to you account if you are not already logged in. On the left side of the page, click the green button that says `New` to create a new repository. Give the repository the name `molecool`.
+Now, let's put this project on GitHub so that we can share it with others.
+In your browser, navigate to [github.com](https://github.com/).
+Log in to you account if you are not already logged in.
+On the left side of the page, click the green button that says `New` to create a new repository.
+Give the repository the name `molecool`.
 
-Note for the last question, "Initialize this repository with a README". We will leave this unchecked in our case because we have an existing repository (as described by GitHub, "This will let you immediately clone the repository to your computer. Skip this step if you’re importing an existing repository."). If you were creating the repository on GitHub, you would select this. There are also options for adding a `.gitignore` file or a license. However, since cookiecutter created these for us, we will not add them.
+Note for the last question, "Initialize this repository with a README".
+We will leave this unchecked in our case because we have an existing repository.
+(As described by GitHub, "This will let you immediately clone the repository to your computer.
+Skip this step if you’re importing an existing repository.")
+If you were creating the repository on GitHub, you would select this.
+There are also options for adding a `.gitignore` file or a license.
+However, since `cookiecutter` created these for us, we will not add them.
 
 Click `Create repository`.
 
@@ -33,7 +43,7 @@ $ git remote -v
 You should see no output. Now, follow the instructions on GitHub under "...or push an existing repository from the command line"
 ~~~
 $ git remote add origin https://github.com/YOUR_GITHUB_USERNAME/molecool.git
-dgit branch -M main
+git branch -M main
 git push -u origin main
 ~~~
 {: .language-bash}
@@ -50,11 +60,14 @@ Now if you refresh the GitHub webpage you should be able to see all of the new f
 
 One of the most potentially frustrating problems in software development is keeping track of all the different copies of the code.
 For example, we might start a project on a local desktop computer, switch to working on a laptop during a conference, and then do performance optimization on a supercomputer.
-In ye olden days, switching between computers was typically accomplished by copying files via a USB drive, or with ssh, or by emailing things to oneself.
-After copying the files, it was very easy to make an important change on one computer, forget about it, and go back to working on the original version of the code on another computer.
-Of course, when collaborating with other people these problems get dramatically worse.
+In ye olden days, switching between computers was typically accomplished
+by copying files via a USB drive, or with `ssh`, or by emailing things to oneself.
+After copying files, it was very easy to make an important change on one computer,
+forget about it, then resume work with the original code version on another computer
+(having forgotten to reapply the important change).
+Of course, when collaborating with other people such problems get dramatically worse.
 
-Git greatly simplifies the process of having multiple copies of a code development project.
+Git greatly simplifies the process of maintaining multiple copies of a code development project.
 Let's see this in action by making another clone of our GitHub repository. For this next exercise **you must first navigate out of your project folder**.
 
 ~~~
@@ -80,8 +93,10 @@ $ cd molecool_friend
 ~~~
 {: .bash}
 
-Check the remote on this repository. Notice that when you clone a repository from GitHub, it automatically has that repository listed as `origin`, and you do not have to add
-the remote the way we did when we did not clone the repository.
+Check the `remote` on this repository.
+Notice that when you clone a repository,
+the source is automatically recorded as `origin`,
+and you do not have to add the remote the way we did when we created the repository locally.
 
 ~~~
 $ git remote -v
@@ -155,7 +170,7 @@ $ git push
 ~~~
 {: .bash}
 
-If you check the GitHub page, you should see the testing.txt file.
+If you check the GitHub page, you should see the `testing.txt` file.
 
 Now change directories into the original local clone, and check if `testing.txt` is there:
 
@@ -271,10 +286,13 @@ Of course, you could also replace `HEAD` here with `HEAD~1` or a specific commit
 Sometimes while you work on a project, you may end up creating some temporary files.
 For example, if your text editor is Emacs, you may end up with lots of files called `<filename>~`.
 By default, Git tracks all files, including these.
-This tends to be annoying, since it means that any time you do "git status", all of these unimportant files show up.
+This tends to be annoying, since it means that any time you do `git status`,
+all of these unimportant files show up.
 
-We are now going to find out how to tell Git to ignore these files, so that it doesn't keep telling us about them ever time we do "git status".
-Even if you aren't working with Emacs, someone else working on your project might, so let's do the courtesy of telling Git not to track these temporary files.
+We are now going to find out how to tell Git to ignore these files,
+so that it doesn't keep telling us about them ever time we do `git status`.
+Even if you aren't working with Emacs, someone else working on your project might,
+so let's do the courtesy of telling Git not to track these temporary files.
 First, lets ensure that we have a few dummy files. Make empty files called `testing.txt~` and `README.md~` in your repository using your text editor of choice.
 
 
@@ -382,7 +400,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 ~~~
 {: .output}
 
-We want these additions to .gitignore to become a permanent part of the repository, so do
+We want these additions to `.gitignore` to become a permanent part of the repository:
 
 ~~~
 $ git add .gitignore
@@ -391,7 +409,8 @@ $ git push
 ~~~
 {: .bash}
 
-One nice feature of .gitignore is that prevents us from accidentally adding a file that shouldn't be part of the repository.
+One nice feature of `.gitignore` is that prevents us from accidentally adding
+a file that shouldn't be part of the repository.
 For example:
 
 ~~~
@@ -406,13 +425,13 @@ Use -f if you really want to add them.
 ~~~
 {: .output}
 
-It is possible to override this with the "-f" option for git add.
+It is possible to override this with the `-f` option for `git add`.
 
 ## Conflict Resolution
 
-Now we will make a few new edits to testing.txt:
+Now we will make a few new edits to `testing.txt`:
 
-Add a dummy header and footer the testing.txt, so that it looks like this:
+Add a dummy header and footer the `testing.txt`, so that it looks like this:
 
 ~~~
 ***************************************
@@ -442,7 +461,7 @@ $ cd ../molecool_friend
 ~~~
 {: .bash}
 
-We are going to add another line to testing.txt, so that it looks like this
+We are going to add another line to `testing.txt`, so that it looks like this:
 
 ~~~
 I added this file from a new clone!
@@ -541,9 +560,10 @@ This is the end of testing.txt
 ~~~
 
 The conflict is shown within the `<<<<<<<` and `>>>>>>>` bits.
-The part before the `=======` is what we added in the commit in the `devops_friend` clone, while the part after it comes from the original local clone.
+The part before the `=======` is what we added in the commit in the `devops_friend` clone,
+while the part after it comes from the original local clone.
 We need to decide what to do about the conflict, tidy it up, and then make a new commit.
-Edit testing.txt so that it reads:
+Edit `testing.txt` so that it reads:
 
 ~~~
 ***************************************
@@ -580,7 +600,7 @@ $ git push
 ## More GitHub Features
 
 Navigate to the GitHub page for your project.
-Click on "testing.txt".
+Click on `testing.txt`.
 Here you can see the file and make changes to it.
 Click the edit button, which looks like a small pencil near the upper right of the file text box.
 Add a line that says "I added this line from the GitHub web interface!", so that the file looks like:
@@ -600,7 +620,8 @@ This is the end of testing.txt
 
 ~~~
 
-Scroll to the bottom of the page and write the name "Added a line to testing.txt from the web interface" for this commit.
+Scroll to the bottom of the page and write the message
+"Added a line to testing.txt from the web interface." for this commit.
 Then, click the green "Commit changes" button at the bottom left.
 You should now see that your change appears in the text box.
 
@@ -612,7 +633,8 @@ Go back to the main project page, and click the "commits" button.
 Here you can see a list of all the commits for this project.
 Clicking them reveals how they changed the code.
 
-The "Issues" tab lets you create discussions about bugs, performance limitations, feature requests, or ongoing work that are shared with everyone else who is working on the project.
+The "Issues" tab lets you create discussions about bugs, performance limitations,
+feature requests, or ongoing work that are shared with everyone else who is working on the project.
 Try filling out a quick issue now.
 Then comment and close the issue.
 
