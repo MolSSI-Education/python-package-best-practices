@@ -20,7 +20,9 @@ keypoints:
 {: .prereq}
 
 # Editing a function in our package
-Let's look at one of the functions in our package. Open your `molecool/functions.py` module in a text editor. The function `open_pdb` reads coordinates and atom symbols from a pdb file.
+Let's look at one of the functions in our package.
+Open your `molecool/functions.py` module in a text editor.
+The function `open_pdb` reads coordinates and atom symbols from a pdb file.
 
 ~~~
 def open_pdb(f_loc):
@@ -176,7 +178,9 @@ def write_xyz(file_location, symbols, coordinates):
 ~~~
 {: .language-python}
 
-As you can see, custom error messages can be quite descriptive of the problem. Let's try this out with some fake data. Using the same example as before:
+As you can see, custom error messages can be quite descriptive of the problem.
+Let's try this out with some fake data.
+Using the same example as before:
 
 ~~~
 >>> import molecool
@@ -208,7 +212,9 @@ Our functions are now smarter and will better guide users while using them.
 However, our function still might be hard to read and understand for others,
 so we might want to consider styling it better.
 
-As a developer, you spend a lot of time thinking about writing your code. However, code is read much more often than it is written. Following a style guide will help others (and perhaps you in the future!) to read your code.
+As a developer, you spend a lot of time thinking about writing your code.
+However, code is read much more often than it is written.
+Following a style guide will help others (and perhaps you in the future!) to read your code.
 
 For Python, the common convention for code style is called [PEP8].
 PEP8 is a document that gives guidelines for best practices in Python coding style.
@@ -217,12 +223,18 @@ However, you should follow this convention when possible.
 
 > ## Python PEP
 >
-> If you spend a lot of time programming in Python, you will see references to PEPs a lot. PEP stands for "Python Enhancement Proposal". These are design documents which provide information about features. PEPs come from the Python community, meaning anyone can author a PEP (however, there is a strict review process). PEPs are classified into three categories - standards, informational, or process.
+> If you spend a lot of time programming in Python, you will see references to PEPs a lot.
+> PEP stands for "Python Enhancement Proposal".
+> These are design documents which provide information about features.
+> PEPs come from the Python community, meaning anyone can author a PEP (however, there is a strict review process).
+> PEPs are classified into three categories - standards, informational, or process.
 >
-> You can read more about PEPs in [Python's documentation](https://www.python.org/dev/peps/pep-0001/). PEP1 outlines what a PEP is and how they work.
+> You can read more about PEPs in [Python's documentation](https://www.python.org/dev/peps/pep-0001/).
+> PEP1 outlines what a PEP is and how they work.
 {: .callout}
 
-PEP8 tells us several things about styling that will make our code easier to read. Let's consider some of these and how they might change our function.
+PEP8 tells us several things about styling that will make our code easier to read.
+Let's consider some of these and how they might change our function.
 
 ## Variable names
 PEP8 recommends that
@@ -235,7 +247,8 @@ Though not specifically referenced in PEP8,
 we also recommend making all variable names descriptive so that
 someone reading your code can easily understand what the variable is. 
 
-Consider a few variable we have defined in our function (`c`, `sym`, `c2`, `l`). Is it clear what these are or mean? We can change them to be more descriptive and readable.
+Consider a few variable we have defined in our function (`c`, `sym`, `c2`, `l`).
+Is it clear what these are or mean? We can change them to be more descriptive and readable.
 
 ~~~
 def open_pdb(file_location):
@@ -347,7 +360,8 @@ help(mc.canvas)
 
 **Note: Do not use `help(mc.canvas())`, this will actually execute your code (not what we want).**
 
-The code above calls Python's built-in function, `help`. For our canvas function, it displays the multi-line comment (called a `docstring`), that is written beneath the function definition.
+The code above calls Python's built-in function, `help`.
+For our canvas function, it displays the multi-line comment (called a `docstring`), that is written beneath the function definition.
 
 ~~~
 Help on function canvas in module molecool.functions:
@@ -407,7 +421,8 @@ def calculate_distance(rA, rB):
 
 
 ## Docstrings
-We've now added a multi-line comment (called a `docstring`, short for "documentation string"), to the beginning of our function. Docstrings **are the first statement after a function or module definition** and are opened and closed with three quotes.
+We've now added a multi-line comment (called a `docstring`, short for "documentation string"), to the beginning of our function.
+Docstrings **are the first statement after a function or module definition** and are opened and closed with three quotes.
 The docstring should explain what the function or module does (and not how it is done).
 
 [PEP257] provides very basic guidelines for docstrings.
@@ -419,14 +434,19 @@ which we used for the example above and for the `calculate_distance` function.
 >
 > When you add a docstring to a function or module, python automatically adds this to the `__doc__` attribute of the object.
 >
-> You can also see an object's docstring by typing `object.__doc__` into the Python interpreter. For example, to see the docstring associated with the canvas function, `molecool.canvas.__doc__` into the Python interpreter (after importing `molecool`, of course.)
+> You can also see an object's docstring by typing `object.__doc__` into the Python interpreter.
+> For example, to see the docstring associated with the canvas function, `molecool.canvas.__doc__` into the Python interpreter (after importing `molecool`, of course.)
 {: .callout}
 
 ### Sections of a Docstring
-Each docstring has a number of sections which are separated by headings. Headings should be underlined with hyphens (`-----`). There are many options for sections, we will only cover the most relevant here. If you would like to see a full list, check out the documentation for [numpy style docstrings].
+Each docstring has a number of sections which are separated by headings.
+Headings should be underlined with hyphens (`-----`).
+There are many options for sections, we will only cover the most relevant here.
+If you would like to see a full list, check out the documentation for [numpy style docstrings].
 
 #### 1. Short summary
-A one-line summary that does not use the variable name or the function name. In our `calculate_distance` function, this corresponds to the following.
+A one-line summary that does not use the variable name or the function name.
+In our `calculate_distance` function, this corresponds to the following.
 
 ~~~
 """
@@ -436,7 +456,8 @@ Calculate the distance between two points.
 {: .language-python}
 
 #### 2. Extended summary
-A few sentences giving a detailed description of the function or module. This section should be used to clarify *functionality*, not to discuss implementation.
+A few sentences giving a detailed description of the function or module.
+This section should be used to clarify *functionality*, not to discuss implementation.
 
 We do not have an extended summary in our `calculate_distance` function, since it is relatively straightforward.
 
@@ -482,7 +503,9 @@ distance : float
 {: .language-python}
 
 #### 5. Examples
-This is an optional section to show examples of functionality. This section is meant to illustrate usage. Though this section is optional, its use is strongly encouraged.
+This is an optional section to show examples of functionality.
+This section is meant to illustrate usage.
+Though this section is optional, its use is strongly encouraged.
 
 Consider the example we have in our docstring
 
@@ -520,7 +543,9 @@ $ git push origin main
 > ## Exercise
 > Let's add a docstring to our `open_pdb` function including short summary, extended summary, parameters, and returns sections.
 >
-> Start with the following docstring. You will need to add the `Parameters` and `Returns` sections and edit the one-line description. We have filled in an extended summary.
+> Start with the following docstring.
+> You will need to add the `Parameters` and `Returns` sections and edit the one-line description.
+> We have filled in an extended summary.
 > 
 > ~~~
 > def open_pdb(file_location):
