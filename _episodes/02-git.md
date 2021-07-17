@@ -35,7 +35,8 @@ team.
 
 > ## git vs. GitHub
 >
-> `git` is the software used for version control, while GitHub is a hosting service. You can use `git` locally (without using an online hosting service), or you can use it with other hosting services such as GitLab or BitBucket.
+> `git` is the software used for version control, while GitHub is a hosting service.
+> You can use `git` locally (without using an online hosting service), or you can use it with other hosting services such as GitLab or BitBucket.
 > Other examples of version control software include Subversion (`svn`) and Mercurial (`hg`).
 >
 {: .callout}
@@ -188,7 +189,10 @@ in the repository directory.
 Making a commit is like making a checkpoint for a particular version of your code.
 You can easily return to, or revert to that checkpoint.
 
-To create the checkpoint, we first have to make changes to our project. We might modify *many* files at a time in a repository. Thus, the first step in creating a checkpoint (or commit) is to tell `git` which files we want to include in the checkpoint. We do this with a command called `git add`. This adds files to what is called the *staging area*.
+To create the checkpoint, we first have to make changes to our project.
+We might modify *many* files at a time in a repository.
+Thus, the first step in creating a checkpoint (or commit) is to tell `git` which files we want to include in the checkpoint.
+We do this with a command called `git add`. This adds files to what is called the *staging area*.
 
 Let's look at our output from `git status` again.
 
@@ -301,7 +305,8 @@ $ git log
 ~~~
 {: .bash}
 
-We now have a log with three commits. This means there are three versions of the repository we are working in.
+We now have a log with three commits.
+This means there are three versions of the repository we are working in.
 
 `git log` lists all commits  made to a repository in reverse chronological order.
 The listing for each commit includes the commit's full identifier,
@@ -376,7 +381,8 @@ $ git commit -m "Initial commit after CMS Cookiecutter creation, version 1.0"
 >>{: .language-bash}
 >>  
 >>  
->>The first line initializes the `git` repository. The second line add all modified files in the current working directory, and the third line commits these files and writes the commit message.
+>>The first line initializes the `git` repository.
+>>The second line add all modified files in the current working directory, and the third line commits these files and writes the commit message.
 > {: .solution}
 {: .challenge}
 
@@ -410,7 +416,8 @@ $ git checkout -b zen
 ~~~
 {: .language-bash}
 
-Next, add a new function to your `functions.py` module. We are going to add the ability to print "The Zen of Python". You can get the Zen of Python by typing
+Next, add a new function to your `functions.py` module.
+We are going to add the ability to print "The Zen of Python". You can get the Zen of Python by typing
 
 ~~~
 import this
@@ -448,7 +455,8 @@ def zen(with_attribution=True):
 ~~~
 {: .language-python}
 
-Verify that this function works in the interactive Python prompt. Next, commit this change:
+Verify that this function works in the interactive Python prompt.
+Next, commit this change:
 
 ~~~
 $ git add .
@@ -489,7 +497,8 @@ $ git checkout -b doc_update
 ~~~
 {: .language-bash}
 
-Let's add some information about developing on branches to the README. Update your README to include this information:
+Let's add some information about developing on branches to the README.
+Update your README to include this information:
 
 ~~~
 
