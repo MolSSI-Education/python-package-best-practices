@@ -33,13 +33,16 @@ If you look at the GitHub repositories for several large Python packages such as
 Having a similar way to lay out Python packages allows people to more easily understand and contribute to your code.
 
 ## Creating a Python package using CookieCutter
-To create a skeletal structure for our project, we will use the MolSSI Computational Molecular Science (CMS) CookieCutter. The [CMS CookieCutter] is a special cookiecutter created specifically by MolSSI to use the tools and services we recommend in developing a Python project.
+To create a skeletal structure for our project, we will use the MolSSI Computational Molecular Science (CMS) CookieCutter.
+The [CMS CookieCutter] is a special cookiecutter created specifically by MolSSI to use the tools and services we recommend in developing a Python project.
 
-CookieCutter will not only create our directory layout, but will also set up many tools we will use including testing, continuous integration, documentation, and version control using git. We will discuss what all of these are later in the workshop.
+CookieCutter will not only create our directory layout, but will also set up many tools we will use including testing, continuous integration, documentation, and version control using git.
+We will discuss what all of these are later in the workshop.
 
 ### Obtaining CookieCutter
 
-You should have the general CookieCutter installed, according to the directions given in the [setup] portion of this workshop. If you do not, please navigate to [setup] and follow the instructions given there.
+You should have the general CookieCutter installed, according to the directions given in the [setup] portion of this workshop.
+If you do not, please navigate to [setup] and follow the instructions given there.
 
 ### Running CookieCutter
 To run the [CMS CookieCutter], navigate to the directory where you would like to start your project, and type:
@@ -92,9 +95,15 @@ Choose from 1, 2 (1, 2) [1]:
 
 ### About these decisions
 
-The first two questions are for the project and repository name. The project name is the name of the project, while the repo name is the name of the folder that cookiecutter will create. Usually, you will leave these two to be the same thing. The `repo_name` is the name which you will use to import the package you eventually create, and because of that has some rules. The `repo_name` must be a valid Python module name and cannot contain spaces.
+The first two questions are for the project and repository name.
+The project name is the name of the project, while the repo name is the name of the folder that cookiecutter will create. Usually, you will leave these two to be the same thing.
+The `repo_name` is the name which you will use to import the package you eventually create, and because of that has some rules.
+The `repo_name` must be a valid Python module name and cannot contain spaces.
 
-The next choice is about the first module name. Modules are the `.py` files which contain python code. The default for this is the `repo_name`, but we will change this to avoid confusion (the module `molecool.py` in a folder named `molecool` in a folder named `molecool`??). For now, we'll just name our first module `functions`, and this is where we will put all of our starting functions.
+The next choice is about the first module name.
+Modules are the `.py` files which contain python code.
+The default for this is the `repo_name`, but we will change this to avoid confusion (the module `molecool.py` in a folder named `molecool` in a folder named `molecool`??).
+For now, we'll just name our first module `functions`, and this is where we will put all of our starting functions.
 
 Another thing that CookieCutter checks for is your email address.
 Be sure to provide a valid email address to `cookiecutter`.
@@ -107,13 +116,18 @@ Choosing which license to use is often confusing for new developers.
 The MIT license (option 1) is a very common license, and the default on GitHub.
 It allows for anyone to use, modify, or redistribute your work with no restrictions (and also no warranty).
 
-Here, we have chosen the `BSD-3-Clause`. The `BSD-3-Clause` license is an open-source, permissive license (meaning that few requirements are placed on developers of derivative works), similar to the MIT license. However, it adds a copyright notice with your name and requires redistributors of the code to keep the notice. It also prohibits others from using the name of the project or its contributors to promote derived products without written consent.
+Here, we have chosen the `BSD-3-Clause`.
+The `BSD-3-Clause` license is an open-source, permissive license (meaning that few requirements are placed on developers of derivative works), similar to the MIT license.
+However, it adds a copyright notice with your name and requires redistributors of the code to keep the notice.
+It also prohibits others from using the name of the project or its contributors to promote derived products without written consent.
 
 You can see more detailed information on each license at [choosealicense.com](https://choosealicense.com) or by clicking the links below:
 1. [MIT License](https://choosealicense.com/licenses/mit/)
 1. [BSD-3-Clause](https://choosealicense.com/licenses/bsd-3-clause/)
 1. [LGPLv3](https://choosealicense.com/licenses/gpl-3.0/)
-1. Not Open Source - In this case, the cookiecutter will not generate a license. You can add a custom license, or choose to not add a license. If there is no license in a repository, you should assume that the project is **not** open source, and [you cannot modify or redistribute the software](https://choosealicense.com/no-permission/).
+1. Not Open Source - In this case, the cookiecutter will not generate a license.
+   You can add a custom license, or choose to not add a license.
+   If there is no license in a repository, you should assume that the project is **not** open source, and [you cannot modify or redistribute the software](https://choosealicense.com/no-permission/).
 
 For most of your projects, it is likely that the license you choose won't matter a great deal.
 However, remember that if you ever want to change a license, you may have to get permission of all contributors.
@@ -121,9 +135,12 @@ So, if you ever start a project that becomes popular or has contributors, be sur
 
 > ## Types of Open-Source Licenses
 >
-> Open-source licenses can either be 'permissive' or 'copy-left'. Copy-left licenses require that derivative works also be open source. Out of the choices given above, MIT and BSD-3-Clause are permissive, while LGPLv3 is a copy left license.
+> Open-source licenses can either be 'permissive' or 'copy-left'.
+> Copy-left licenses require that derivative works also be open source.
+> Out of the choices given above, MIT and BSD-3-Clause are permissive, while LGPLv3 is a copy left license.
 >
-> We recommend that you spend some time reading about licensing. One place to start is this [helpful guide] from the Chodera Lab or the website [choosealicense.com](https://choosealicense.com).  
+> We recommend that you spend some time reading about licensing.
+> One place to start is this [helpful guide] from the Chodera Lab or the website [choosealicense.com](https://choosealicense.com).  
 {: .callout}
 
 #### Dependency Source
@@ -138,7 +155,9 @@ This option is to choose whether you would like files associated with the docume
 Choose "yes" for this workshop.
 
 ### Reviewing directory contents
-Now we can examine the project layout the CookieCutter has set up for us. Navigate to the newly created `molecool` directory. You should see the following directory structure.
+Now we can examine the project layout the CookieCutter has set up for us.
+Navigate to the newly created `molecool` directory.
+You should see the following directory structure.
 
 ```
 .
@@ -228,8 +247,12 @@ as well as sample data (in the `data` folder), and tests (in the `tests` folder.
 > ## Packages and modules
 >
 > What 'packages' or 'modules' are in Python may be confusing.
-> In general, 'module' refers to a single `.py` file containing Python definitions and statements. It may be imported for use in another module or script. The module name is determined by the file name. A function defined in a module is used (once the module is imported) using the syntax `module_name.function_name()`.
-> 'Package' refers to a collection of Python modules. The package may also have an `__init__.py` file.
+> In general, 'module' refers to a single `.py` file containing Python definitions and statements.
+> It may be imported for use in another module or script.
+> The module name is determined by the file name.
+> A function defined in a module is used (once the module is imported) using the syntax `module_name.function_name()`.
+> 'Package' refers to a collection of Python modules.
+> The package may also have an `__init__.py` file.
 >
 > To read more about Python packages vs. modules, check out [Python's documentation].
 {: .callout}
@@ -244,7 +267,8 @@ $ cd molecool
 
 ### The `__init__.py` file
 
-The `__init__.py` file is a special file recognized by the Python interpreter which makes a directory into a package. This file can be blank in some cases, however, we will use it to define how the user interacts with the functions in our package.
+The `__init__.py` file is a special file recognized by the Python interpreter which makes a directory into a package.
+This file can be blank in some cases, however, we will use it to define how the user interacts with the functions in our package.
 
 Contents of `molecool/molecool/__init__.py`:
 ~~~
@@ -268,7 +292,8 @@ del get_versions, versions
 The very first section of this file contains a string opened and closed with three quotations.
 This is a [docstring](https://www.python.org/dev/peps/pep-0257/), and has a short description of the file.
 
-The section we will be concerned with is under `# Add imports here`. This is how we define the way functions from modules are used.
+The section we will be concerned with is under `# Add imports here`.
+This is how we define the way functions from modules are used.
 
 In particular, the line
 
@@ -367,7 +392,8 @@ This should print a quote.
 This should work from anywhere on your computer.
 
 > ## Exercise
-> What happens if we use `conda deactivate` and attempt to execute the code above? What if we switch directories?
+> What happens if we use `conda deactivate` and attempt to execute the code above?
+> What if we switch directories?
 >> ## Solution
 >> If you are in the project directory, the code will still work. However, it will not work in any other location.
 > {: .solution}
