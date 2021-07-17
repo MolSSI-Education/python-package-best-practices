@@ -710,5 +710,6 @@ However, if your comment is not correctly formatted, you will have an additional
 
 [Exceptions]: https://realpython.com/python-exceptions/#the-try-and-except-block-handling-exceptions
 [PEP8]: https://www.python.org/dev/peps/pep-0008/
+[PEP257]: https://www.python.org/dev/peps/pep-0257/
 [YAPF]: https://github.com/google/yapf
-[numpy style docstrings]: https://docs.scipy.org/doc/numpy/docs/howto_document.html#numpydoc-docstring-guide
+[numpy style docstrings]: https://numpydoc.readthedocs.io/en/latest/format.html

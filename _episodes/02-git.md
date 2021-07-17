@@ -114,7 +114,7 @@ You will get an output resembling the following.
 This is something called your git *commit log*.
 Whenever you make a version, or checkpoint, of your project,
 you will be able to see information about that checkpoint using the `git log` command.
-The cookie cutter has already made a commit and written a message for you,
+The CookieCutter has already made a commit and written a message for you,
 and that is what we see for this first commit in the log.
 
 ~~~
