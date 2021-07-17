@@ -32,7 +32,9 @@ Click `Create repository`.
 
 Now, GitHub very helpfully gives us directions for how to get our code on GitHub.
 
-Before we follow these directions, let's look at a few things in the repository. When you want to be able to put your code online in a repository, you have to add what git calls `remotes`. Currently, our repository has no remotes. See this by typing
+Before we follow these directions, let's look at a few things in the repository.
+When you want to be able to put your code online in a repository, you have to add what git calls `remotes`.
+Currently, our repository has no remotes. See this by typing
 
 ~~~
 $ git remote -v
@@ -40,7 +42,8 @@ $ git remote -v
 {: .language-bash}
 
 
-You should see no output. Now, follow the instructions on GitHub under "...or push an existing repository from the command line"
+You should see no output.
+Now, follow the instructions on GitHub under "...or push an existing repository from the command line"
 ~~~
 $ git remote add origin https://github.com/YOUR_GITHUB_USERNAME/molecool.git
 git branch -M main
@@ -48,11 +51,17 @@ git push -u origin main
 ~~~
 {: .language-bash}
 
-The first command adds a remote named `origin` and sets the URL to our repository. The word `origin` here is simply a word that is a shortcut for the location of our repository. We could have called it anything (like `pickle`, or `banana`, or anything we wanted), but `origin` is used by convention. Now, whenever we say `origin`, git knows that we really mean `https://github.com/YOUR_GITHUB_USERNAME/molecool.git`. 
+The first command adds a remote named `origin` and sets the URL to our repository.
+The word `origin` here is simply a word that is a shortcut for the location of our repository.
+We could have called it anything (like `pickle`, or `banana`, or anything we wanted), but `origin` is used by convention.
+Now, whenever we say `origin`, git knows that we really mean `https://github.com/YOUR_GITHUB_USERNAME/molecool.git`. 
 
-The second command changes our primary branch name from `master` to `main`. GitHub recently decided (as of June 2020) to switch the name of your `main` branch from `master` to `main`. However, the `git` software will still name your primary (or first) branch `master`.  After the second command, you will no longer see `master` when using the command `git branch` (instead seeing `main`). 
+The second command changes our primary branch name from `master` to `main`.
+GitHub recently decided (as of June 2020) to switch the name of your `main` branch from `master` to `main`. However, the `git` software will still name your primary (or first) branch `master`. 
+After the second command, you will no longer see `master` when using the command `git branch` (instead seeing `main`). 
 
-The third command copies (or "pushes") everything which we have tracked using git to `origin`. The word `main` means we are pushing the `main` branch. 
+The third command copies (or "pushes") everything which we have tracked using git to `origin`.
+The word `main` means we are pushing the `main` branch. 
 
 Now if you refresh the GitHub webpage you should be able to see all of the new files you added to the repository.
 
@@ -85,7 +94,8 @@ fatal: Not a git repository (or any of the parent directories): .git
 
 If you do not get this message, do `cd ../` until you see it.
 
-Next, make another copy of your repository. We'll use this to simulate working on another computer.
+Next, make another copy of your repository.
+We'll use this to simulate working on another computer.
 
 ~~~
 $ git clone https://github.com/YOUR_GITHUB_USERNAME/molecool.git molecool_friend
@@ -142,7 +152,8 @@ $ git status
 {: .bash}
 
 > ## git add
-> Here, we've used `git add .` instead of `git add testing.txt`. Using this command will add all untracked or changed files.
+> Here, we've used `git add .` instead of `git add testing.txt`.
+> Using this command will add all untracked or changed files.
 {: .callout}
 
 ~~~
@@ -296,7 +307,8 @@ so let's do the courtesy of telling Git not to track these temporary files.
 First, lets ensure that we have a few dummy files. Make empty files called `testing.txt~` and `README.md~` in your repository using your text editor of choice.
 
 
-While we're at it, also make some other files that aren't important to the project. Make a file called `calculation.out` in `molecool/data` using your text editor of choice.
+While we're at it, also make some other files that aren't important to the project.
+Make a file called `calculation.out` in `molecool/data` using your text editor of choice.
 
 Now check what Git says about these files:
 
@@ -323,7 +335,8 @@ nothing added to commit but untracked files present (use "git add" to track)
 
 Now we will make Git stop telling us about these files.
 
-Earlier, when we looked at the hidden files, you may have noticed a file called `.gitignore`. Cookiecutter created this for us, however, GitHub also has built in `.gitignore` files you can add when creating an empty repository.
+Earlier, when we looked at the hidden files, you may have noticed a file called `.gitignore`.
+Cookiecutter created this for us, however, GitHub also has built in `.gitignore` files you can add when creating an empty repository.
 
 This file is to tell `git` which types of files we would like to ignore (thus the name `.gitignore`)
 
