@@ -77,7 +77,8 @@ forget about it, then resume work with the original code version on another comp
 Of course, when collaborating with other people such problems get dramatically worse.
 
 Git greatly simplifies the process of maintaining multiple copies of a code development project.
-Let's see this in action by making another clone of our GitHub repository. For this next exercise **you must first navigate out of your project folder**.
+Let's see this in action by making another clone of our GitHub repository.
+For this next exercise **you must first navigate out of your project folder**.
 
 ~~~
 $ cd ../
@@ -304,7 +305,8 @@ We are now going to find out how to tell Git to ignore these files,
 so that it doesn't keep telling us about them ever time we do `git status`.
 Even if you aren't working with Emacs, someone else working on your project might,
 so let's do the courtesy of telling Git not to track these temporary files.
-First, lets ensure that we have a few dummy files. Make empty files called `testing.txt~` and `README.md~` in your repository using your text editor of choice.
+First, lets ensure that we have a few dummy files.
+Make empty files called `testing.txt~` and `README.md~` in your repository using your text editor of choice.
 
 
 While we're at it, also make some other files that aren't important to the project.
