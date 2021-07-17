@@ -1,6 +1,6 @@
 ---
 title: "Deciding Package Structure"
-teaching: 30
+teaching: 45
 exercises: 10
 questions:
 - "How should I break my code into modules?"
