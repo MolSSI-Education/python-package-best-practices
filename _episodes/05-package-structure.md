@@ -128,12 +128,17 @@ def calculate_center_of_mass(symbols, coordinates):
 ```
 {: .language-python}
 
-Right at the start we can see two dictionaries of atom data. Clearly these are related and should probably be grouped together. Looking at the functions, we see two functions that handle opening files, `open_pdb` and `open_xyz`, and a function that writes a file, `write_xyz`. It may make sense to group these three together in a module based on input and output.
+Right at the start we can see two dictionaries of atom data. Clearly these are related and should probably be grouped together.
+Looking at the functions, we see two functions that handle opening files, `open_pdb` and `open_xyz`, and a function that writes a file, `write_xyz`.
+It may make sense to group these three together in a module based on input and output.
 
 Let's start making new modules to place our related functions into.
 
 ### Atom Data
-We will take the `atomic_weights` and `atom_colors` dictionaries and move them into a separate module called `atom_data.py`. This is enclosing the constant data that our system is using in a single place. This allows all of the new modules we create to access the data from a single location, avoiding the need to copy the dictionaries to each module that needs them. If we have any other data, related to atoms, used by many of our functions, adding them to this module would be a good idea.
+We will take the `atomic_weights` and `atom_colors` dictionaries and move them into a separate module called `atom_data.py`.
+This is enclosing the constant data that our system is using in a single place.
+This allows all of the new modules we create to access the data from a single location, avoiding the need to copy the dictionaries to each module that needs them.
+If we have any other data, related to atoms, used by many of our functions, adding them to this module would be a good idea.
 ```python
 """
 Data used for the rest of the package.
@@ -164,7 +169,8 @@ atom_colors = {
 {: .language-python}
 
 > ## Exercise
-> Take approximately 10 minutes to look through the rest of the functions in the `functions` module and group them together. Create a module for each group with a reasonable name.
+> Take approximately 10 minutes to look through the rest of the functions in the `functions` module and group them together.
+> Create a module for each group with a reasonable name.
 >> ## Answer
 >> Here is how we decided to break up the functions:
 >> - `calculate_angle` and `calculate_distance` go together in a `measure` module.
@@ -456,25 +462,33 @@ from mpl_toolkits.mplot3d import Axes3D  # noqa: F401
 ```
 {: .language-python}
 
-If you use `flake8` (or if you carefully inspect), you will also see that `atom_colors` is missing. The `draw_molecule` function uses the `atom_colors` dictionary. When all of our code was in a single module, we could simply reference the dictionary by name and use it. However, we have now moved `atom_colors` and `atomic_weights` into a separate module. In order to reference the dictionaries in `visualize.py`, we need to import them using an import statement. This is an intra-package import, meaning that we are importing modules from within our packages to other imports in our package (see intra package imports [here](https://docs.python.org/3/tutorial/modules.html))
+If you use `flake8` (or if you carefully inspect), you will also see that `atom_colors` is missing.
+The `draw_molecule` function uses the `atom_colors` dictionary.
+When all of our code was in a single module, we could simply reference the dictionary by name and use it.
+However, we have now moved `atom_colors` and `atomic_weights` into a separate module.
+In order to reference the dictionaries in `visualize.py`, we need to import them using an import statement.
+This is an intra-package import, meaning that we are importing modules from within our packages to other imports in our package (see intra package imports [here](https://docs.python.org/3/tutorial/modules.html))
 
 ```
 from .atom_data import atom_colors
 ```
 {: .language-python}
 
-This import statement looks a bit different from the other import statements in our code, we have a `.` before the name. This is because it is a *relative import*. Just like when using bash, a dot (.) means to look in the current folder. 
+This import statement looks a bit different from the other import statements in our code, we have a `.` before the name.
+This is because it is a *relative import*. Just like when using bash, a dot (`.`) means to look in the current folder. 
 
-To think about this more, lets first look at the dot in a different import statement:
+To think about this more, let's first look at the dot in a different `import` statement:
 ```
 import matplotlib.pyplot as plt
 ```
 {: .language-python}
-In this case, the `.` is saying look within the package `matplotlib` and grab the subpackage (or module) `pyplot`. In our case, we are not using a name before the `.` so where is it looking? It is looking within the current package/directory, or in this case `molecool` for a module or package named `atom_data`, from which it will import the `atom_colors` dictionary.
+In this case, the `.` is saying look within the package `matplotlib` and grab the subpackage (or module) `pyplot`. In our case, we are not using a name before the `.` so where is it looking?
+It is looking within the current package/directory, or in this case `molecool` for a module or package named `atom_data`, from which it will import the `atom_colors` dictionary.
 
 
 > ## Check your understanding
-> The `molecule.py` module also utilizes functions that are no longer available in the module. Correct the missing import statements in the module.
+> The `molecule.py` module also utilizes functions that are no longer available in the module.
+> Correct the missing import statements in the module.
 >> ## Answer
 >> The `build_bond_list` functions utilizes the `calculate_distance` function, which is now in the `measure` module, so we want to create a relative import from the `measure` module.
 >> ~~~
@@ -506,7 +520,9 @@ del get_versions, versions
 ~~~
 {: .language-python}
 
-We have moved all of our functions into modules, but we haven't changed our `__init__.py` file. If you use a python interpreter in a directory which is not directly above your project, you can see the consequences of this. We can use the `dir` functions to see what is available in a particular module or object:
+We have moved all of our functions into modules, but we haven't changed our `__init__.py` file.
+If you use a python interpreter in a directory which is not directly above your project, you can see the consequences of this.
+We can use the `dir` functions to see what is available in a particular module or object:
 
 ~~~
 >>> import molecool
@@ -521,7 +537,10 @@ You should see something similar to the following
 ~~~
 {: .output}
 
-These are all of the things available to us from importhing `molecool`. You will see your `functions` module, but you will also see `np` and `plt`. This comes from using `from .functions import *` and is why using `import *` is usually considered a bad practice. You will notice that we cannot call `molecool.measure.calculate_distance`
+These are all of the things available to us from importhing `molecool`.
+You will see your `functions` module, but you will also see `np` and `plt`.
+This comes from using `from .functions import *` and is why using `import *` is usually considered a bad practice.
+You will notice that we cannot call `molecool.measure.calculate_distance`
 
 ~~~
 help(molecool.measure.calculate_distance)
@@ -543,7 +562,9 @@ help(molecool.measure.calculate_distance)
 ~~~
 {: .language-python}
 
-To change this behavior, we will need to modify our `__init__.py` file. The `__init__.py` file contains python code that is called when a module is imported. We edit it to import modules when the package loads so that functions in the `measure.py` module (for example) will be imported when the package is first imported. 
+To change this behavior, we will need to modify our `__init__.py` file.
+The `__init__.py` file contains python code that is called when a module is imported.
+We edit it to import modules when the package loads so that functions in the `measure.py` module (for example) will be imported when the package is first imported. 
 
 Modify your `__init__.py` file:
 
@@ -556,9 +577,11 @@ from .visualize import draw_molecule, bond_histogram
 ~~~
 {: .language-python}
 
-Now the behavior should be the same as before. You can also delete `functions.py` if you would like since we no longer have functions in that file (you must also delete it from your `__init__.py` file, of course.)
+Now the behavior should be the same as before.
+You can also delete `functions.py` if you would like since we no longer have functions in that file (you must also delete it from your `__init__.py` file, of course.)
 
-We haven't yet included our `io` subpackage, meaning that the user would have to import this package if they wanted to use it. For example, to use the xyz functions
+We haven't yet included our `io` subpackage, meaning that the user would have to import this package if they wanted to use it.
+For example, to use the xyz functions,
 
 ~~~
 import molecool.io.xyz
@@ -566,9 +589,11 @@ dir(molecool.io.open_xyz)
 ~~~
 {: .language-python}
 
-This will work, however, the main reason we broke up the modules within the `io` package was for development convenience. Right now this has come at the cost of slightly more complicated import statements to get access to any function.
+This will work, however, the main reason we broke up the modules within the `io` package was for development convenience.
+Right now this has come at the cost of slightly more complicated import statements to get access to any function.
 
-We can, of course, edit our `__init__.py` file to make this simpler. At this point, the way we actually do this import is going to be stylistic - how do you want people to interact with your package?
+We can, of course, edit our `__init__.py` file to make this simpler.
+At this point, the way we actually do this import is going to be stylistic - how do you want people to interact with your package?
 
 The goal we are going for is to call an IO function using
 
