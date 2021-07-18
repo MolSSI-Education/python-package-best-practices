@@ -677,7 +677,7 @@ $ flake8 molecool/functions.py
 ~~~
 {: .language-bash}
 
-shows any errors still left in the module. Let's examine one of these.
+Let's examine one of the errors shown by the flake8 command above.
 
 ~~~
 molecool/functions.py:1:1: F401 'os' imported but unused
