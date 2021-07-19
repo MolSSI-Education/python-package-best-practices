@@ -560,7 +560,8 @@ With this service, you can enable the building of your documentation every time 
 
 Go to the [Read the Docs](https://readthedocs.org/) website. 
 Log in with your GitHub username and hook the repository to ReadTheDocs. 
-Push to the repository, or trigger a build on the site. Because of the recent switch from `master` to `main`, you may get an error that your build has failed. 
+Push to the repository, or trigger a build on the site.
+Because of the recent switch from `master` to `main`, you may get an error that your build has failed. 
 In order to fix this, click "Admin" in the menu, then on the side bar click "Advanced Settings". 
 Under "Default branch" choose "main". 
 Trigger a build again after making this change.
