@@ -60,7 +60,8 @@ $ pip install sphinx sphinx_rtd_theme
 ~~~
 {: .language-bash}
 
-While we work with documentation, we will finally be looking at the third directory which CookieCutter created (remember that we've looked at the project directory, and the `devtools` directory). 
+While we work with documentation, we will finally be looking at the third directory which CookieCutter created.
+(Remember that we've looked at the project directory, and the `devtools` directory.)
 The files which CookieCutter has set up for Sphinx are in the `docs` folder. 
 Navigate to that directory.
 
