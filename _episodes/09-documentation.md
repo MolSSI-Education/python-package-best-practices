@@ -421,7 +421,8 @@ I can also put additional information about a function.
 > ## Structuring your documentation
 > Realistically, you probably don't want just a single page for API documentation. You could separate your documentation by purpose. For example, you could have separate pages explaining visualization, calculation, and/or measurement, with an autosummary table of contents for each page that has relevant functions.
 >
-> Many projects are structured this way. Now that you know how Python documentation is built, keep an eye out for documentation you like. 
+> Many projects are structured this way.
+> Now that you know how Python documentation is built, keep an eye out for documentation you like. 
 > If you find documentation you like, take a look at their files to see how they structured their project!.
 {: .callout}
 
