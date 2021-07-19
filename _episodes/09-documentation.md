@@ -31,7 +31,7 @@ The documentation typically involves several components:
 
 ## README documentation
 
-So far in our project, we have added things like installation and use instructions to our `README.md` which is displayed on our GitHub repository. 
+So far in our project, we have added things like installation and use instructions to our `README.md`, which is displayed on our GitHub repository. 
 We have also written in-code documentation in the form of comments and function doc strings. 
 These strategies work well for small projects, and may be all of the documentation you need for many of your projects. 
 However, if you are preparing a software package to be widely used, you may want to make a website for people to find information about your package.
