@@ -13,7 +13,7 @@ keypoints:
 ---
 
 This episode discusses documentation strategies. 
-In particular,  we will focus on how to build documentation using Sphinx and host that documentation online using ReadTheDocs.
+In particular,  we will focus on how to build documentation using Sphinx and host that documentation online using [ReadTheDocs](https://readthedocs.org).
 
 Documentation must be provided to allow for use, development, and maintenance of software. 
 Documentation is often overlooked by developers since it can be tedious and boring.
