@@ -95,7 +95,7 @@ When you build your documentation, the `index.rst` will be the index, or main pa
 The other `rst` files are examples of pages you might want to have (from CookieCutter). 
 Any time you want to make a new page, you can create a file with an `.rst` extension.
 
-To build your documentation as html, type
+To build your documentation as HTML, type
 
 ~~~
 $ make html
