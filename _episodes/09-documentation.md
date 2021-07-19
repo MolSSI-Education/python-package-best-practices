@@ -475,7 +475,8 @@ However, you may have noticed that these are a bit labor-intensive if all you wa
 If this is the approach you would like to take, you can use a Sphinx extension called `AutoAPI`. 
 AutoAPI will pull documentation for all of your functions at once, rather than you having to build them manually.
 
-This is [Spinx-AutoAPI](https://github.com/readthedocs/sphinx-autoapi). To install Sphinx-AutoAPI, use `pip`:
+This is [Spinx-AutoAPI](https://github.com/readthedocs/sphinx-autoapi).
+To install Sphinx-AutoAPI, use `pip`:
 
 ~~~
 pip install sphinx-autoapi
