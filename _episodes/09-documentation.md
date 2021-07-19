@@ -16,7 +16,8 @@ This episode discusses documentation strategies.
 In particular,  we will focus on how to build documentation using Sphinx and host that documentation online using ReadTheDocs.
 
 Documentation must be provided to allow for use, development, and maintenance of software. 
-Documentation is often overlooked by developers since it can be tedious and boring, however writing good documentation is an extremely good habit to develop.
+Documentation is often overlooked by developers since it can be tedious and boring.
+However, writing good documentation is an extremely good habit to develop.
 
 The documentation typically involves several components:
 
