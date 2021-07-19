@@ -555,7 +555,7 @@ compilation.
 ## Hosting your documentation
 
 ### Read The Docs
-We recommend hosing your  documentation on [Read The Docs](https://readthedocs.org/). 
+We recommend hosting your  documentation on [Read The Docs](https://readthedocs.org/). 
 With this service, you can enable the building of your documentation every time you push to your repository.
 
 Go to the [Read the Docs](https://readthedocs.org/) website. 
