@@ -103,7 +103,7 @@ $ make html
 {: .language-bash}
 
 This command tells Sphinx to generate your documentation as html pages. 
-With this command, we are building HTML files from the reStructured text files.
+With this command, we are building HTML files from the reStructuredText files.
 
 Now notice when you type `ls` a some new directories have appeared.
 
