@@ -302,7 +302,7 @@ For example, for the `Getting Started` page, the page heading is 'Getting Starte
 > Specify that this project is for a MolSSI Best Practices Workshop, and put a link to the MolSSI homepage (molssi.org). 
 > Add your new page to the Table of Contents.
 >
-> What happens if you remove the page from the table of contents and rebuild the documentation.
+> What happens if you remove the page from the table of contents and rebuild the documentation?
 >> ## Solution
 >> First, create a new file called `about.rst`. Next, create a header and write a short desciption in `about.rst`.
 >> ~~~
