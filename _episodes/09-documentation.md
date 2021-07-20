@@ -287,7 +287,7 @@ It is also on your main page.
 ~~~
 
 This directive has an example of directive options, namely `maxdepth` and `caption`. 
-You can think of these as arguments into a function. 
+You can think of these as arguments to a function. 
 We then have options for depth of the the Table of Contents (what level of headers to show), as well as the "caption". 
 You can see other options for this directive under "Additional options" on the [documentation page](https://www.sphinx-doc.org/en/1.8/usage/restructuredtext/directives.html). 
 
