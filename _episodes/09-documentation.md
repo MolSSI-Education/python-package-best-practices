@@ -295,7 +295,7 @@ After the settings for the TOC tree, you list the name of the pages you want to 
 Right now, we are including the 'Getting Started' page and the API page.
 
 Note that you add the __file name__ in the TOC Tree, but the title of the page is what shows up in the TOC.
-For example, for the `Getting Started` page, the page heading ('Getting Started') , but you list the file name without the extension is the TOC tree as `getting_started`.
+For example, for the `Getting Started` page, the page heading is 'Getting Started', but you list the file name without the extension is the TOC tree as `getting_started`.
 
 > ## Exercise
 > Create a new page with the title "About" that gives a description of the project. Specify that this project is for a MolSSI Best Practices Workshop, and put a link to the MolSSI homepage (molssi.org). 
