@@ -129,7 +129,7 @@ You can open these files in your browser to preview what your documentation will
 Now, we will have the task of actually adding information about our project to our documentation. 
 This part will require us to write! 
 
-When writing Sphinx documentation, you use `reStructured Text (RST)` syntax. 
+When writing Sphinx documentation, you use an extended `reStructuredText (RST)` [syntax](https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html). 
 This is similar to markdown, but has notable difference. See this [reStructured Text Cheat Sheet](https://thomas-cokelaer.info/tutorials/sphinx/rest_syntax.html) for info on reStructured Text.
 
 Let's start by adding a simple a description to your `index.rst` under the first heading.
