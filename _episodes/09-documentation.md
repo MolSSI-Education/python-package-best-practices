@@ -153,7 +153,7 @@ $ make html
 
 Refresh the page in your browser to see the page with the new description.
 
-CookieCutter has already added some other pages to our documentation, `getting_started.rst`, and `api.rst`. 
+CookieCutter has already added some other pages to our documentation: `getting_started.rst`, and `api.rst`. 
 Let's tell someone how to get started on the 'Getting Started' page. 
 Click the link on your HTML documentation  to see what is there already.
 
