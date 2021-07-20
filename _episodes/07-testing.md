@@ -72,7 +72,7 @@ If you don't have `pytest` installed, or it's not updated to version 3, install 
 ~~~
 $ pip install -U pytest-cov
 ~~~
-{: .bash}
+{: .language-bash}
 
 ### Running our first test
 
@@ -922,7 +922,7 @@ import pytest
 def test_foo(x, y):
     pass
 ~~~
-{: .python}
+{: .language-python}
 
 This will run the test with the arguments set to x=0/y=2, x=1/y=2, x=0/y=3, and x=1/y=3 exhausting parameters in the order of the decorators.
 
