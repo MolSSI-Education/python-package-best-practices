@@ -121,7 +121,8 @@ _build              api.rst             getting_started.rst
 
 In particular, notice the `_build` directory. 
 Sphinx put the HTML files it generated here. 
-There should now be files in your `_build/html` folder. You can open these files in your browser to preview what your documentation will look like.
+There should now be files in your `_build/html` folder.
+You can open these files in your browser to preview what your documentation will look like.
 
 ## Adding Information to our Documentation
 
