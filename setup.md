@@ -83,7 +83,7 @@ This section uses the command line interface (CLI) to create an environment usin
 To create an environment for this project using `conda`,
 
 ~~~
-$ conda create --name molssi_best_practices python=3.7
+$ conda create --name molssi_best_practices python=3.9
 ~~~
 {: .language-bash}
 
@@ -192,7 +192,7 @@ $ conda install cookiecutter
 Install git. You can install using conda
 
 ~~~
-$ conda install git
+$ conda install -c conda-forge git
 ~~~
 {: .language-bash}
 
