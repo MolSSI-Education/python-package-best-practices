@@ -291,7 +291,7 @@ Then run
 ```
 git config --global credential.helper osxkeychain
 ```
-to setup caching for your operating system.
+to set up caching for your operating system.
 Your PAT will be stored locally on your machine and encrypted by the operating system.
 
 If you would like to store the PAT locally and have git automatically reference it on Linux/WSL, you can specify that git should store your PAT.
