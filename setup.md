@@ -211,6 +211,12 @@ $ git config --global user.name "YOUR NAME"
 $ git config --global user.email "YOUR_EMAIL"
 ~~~
 {: .bash}
+You should next set the default branch name you will work on. Branches will be explained in detail later. This configuration setting makes the default branch name match the default branch name on GitHub
+
+~~~
+git config --global init.defaultBranch main
+~~~
+{: .bash}
 
 Next, you might want to change the Git text editor.
 As we will see later, certain Git commands will open text files.
