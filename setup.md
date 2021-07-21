@@ -265,7 +265,7 @@ Make sure to copy the access token as Github will not let you see it again once 
 This token will be used in place of your password when you utilize the command line to access Github repositories.
 
 By default, you will be required to enter your PAT every time you want to push to a github repository.
-This can become tedius if you are making multiple pushes over a short period.
+This can become tedious if you are making multiple pushes over a short period.
 Git has options to cache your PAT in local memory for a specified time period, meaning you only have to re-enter your password if enough time has passed.
 If you would like to setup caching you have to take different steps depending on your operating system.
 
