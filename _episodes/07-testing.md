@@ -164,7 +164,7 @@ Now we see that `pytest` displays the test name for us, as well as `PASSED` next
 
 We will now add tests to test our functions.
 After dividing our package into modules, we have four modules and one subpackage.
-It is considered good practices to also break your tests into different files depending on the module or subpackage.
+It is considered good practice to also break your tests into different files depending on the module or subpackage.
 
 Create a new file called `test_measure.py` in the `tests` directory with the following contents.
 
