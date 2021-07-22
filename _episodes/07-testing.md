@@ -311,7 +311,7 @@ def test_build_bond_list():
 
     assert len(bonds) == 4
 
-    for bonds in bonds.values():
+    for bond_length in bonds.values():
         assert bonds == 1.4
 ~~~
 {: .language-python}
