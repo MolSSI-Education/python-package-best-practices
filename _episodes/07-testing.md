@@ -648,7 +648,7 @@ You might also use the `pytest.mark.xfail` if you expect a test to fail.
 You can also define your own marks.
 Let's consider if some of our tests were slow or took a long time.
 Maybe we would not want to run these tests every time.
-We could add our own mark
+We could add our own mark:
 
 ~~~
 @pytest.mark.slow
