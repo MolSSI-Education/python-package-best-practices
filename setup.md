@@ -257,7 +257,8 @@ To utilize GitHub from the command line, you will need to
 [provide GitHub with an SSH public key](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh).
 An SSH key is a means to authenticate remote servers.
 With an SSH key, you will be able to access your GitHub repositories through the command line without the need to enter a username and password.
-The linked documentation provides information about SSH keys, how to find out if you already have an SSH key, and how to generate and add one to your GitHub account.
+The linked documentation provides information about SSH keys, how to find out if you already have an SSH key, and how to generate and add one to your GitHub account. 
+You should click the link and follow the instructions to add an SSH key to your GitHub account.
 
 
 ### Conclusion
