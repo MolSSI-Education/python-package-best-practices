@@ -253,60 +253,12 @@ The next step is to verify your email address through Github.
 If you do not verify your email address, you will not be able to perform many of the actions covered in this workshop.
 
 ## Accessing GitHub through the Command Line
-To utilize github from the command line, you will need to
-[provide GitHub with an SSH public key](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh)
-or generate a GitHub Personal Access Token (PAT).
+To utilize GitHub from the command line, you will need to
+[provide GitHub with an SSH public key](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh).
+An SSH key is a means to authenticate remote servers.
+With an SSH key, you will be able to access your GitHub repositories through the command line without the need to enter a username and password.
+The linked documentation provides information about SSH keys, how to find out if you already have an SSH key, and how to generate and add one to your GitHub account.
 
-
-To create a PAT:
-1. Click the profile photo option in the upper right hand corner of any page, then click `Settings`.
-2. On the settings page, look on the left sidebar and click `Developer settings`.
-3. In the new left sidebar, click `Personal access tokens`.
-4. Click the `Generate new token` button to bring up the options for your token.
-You can create different access tokens for different actions on Github.
-For the purposes of this workshop, you should only need to select the `repo` and `workflow` options, the two at the top.
-You can return to the settings page at a later time to add or remove scopes from your token.
-5. Once you have checked this box, click the `Generate token` button at the bottom of the set of options.
-Make sure to copy the access token as Github will not let you see it again once you have navigated from the page.
-This token will be used in place of your password when you utilize the command line to access Github repositories.
-
-By default, you will be required to enter your PAT every time you want to push to a github repository.
-This can become tedious if you are making multiple pushes over a short period.
-Git has options to cache your PAT in local memory for a specified time period, meaning you only have to re-enter your password if enough time has passed.
-If you would like to setup caching you have to take different steps depending on your operating system.
-
-For Linux and Windows WSL, you simply run
-```
-git config --global credential.helper cache
-```
-which will cache your token in memory for 15 minutes after it has been entered.
-
-If you would like to modify the length of time a token is cached, you can use the command:
-```
-git config --global credential.helper 'cache --timeout=3600'
-```
-where the value after timeout is the length of time to cache in seconds (1 hour in this example).
-
-For Mac OS, you need a separate tool, `osxkeychain` to cache your token.
-You can check if you have it installed already by running
-```
-git credential-osxkeychain
-```
-If you do not have it installed, you should be prompted to install it by the console.
-Then run
-```
-git config --global credential.helper osxkeychain
-```
-to set up caching for your operating system.
-Your PAT will be stored locally on your machine and encrypted by the operating system.
-
-If you would like to store the PAT locally and have git automatically reference it on Linux/WSL, you can specify that git should store your PAT.
-This can be done through the command
-```
-git config --global credential.helper 'store --file ~/.my-credentials'
-```
-where `~/.my-credentials` is a filepath to a file git should store your PAT in.
-Note that this is stored as plain text on your machine.
 
 ### Conclusion
 At the end of this set-up, you should have created a Python environment (`molssi_best_practices`) which has Python 3.7, `numpy`, `matplotlib`, `jupyter`, and `cookiecutter` installed. You should also have downloaded starting material, installed and created an account on GitHub, and configured git.
