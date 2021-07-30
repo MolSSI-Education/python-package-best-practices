@@ -12,6 +12,16 @@ keypoints:
 - "You can use GitHub to store your projects so you can work on them from multiple computers."
 
 ---
+## Securely accessing GitHub
+During the setup for this workshop, we generated an SSH key and added it to our GitHub account.
+The SSH key will allow us to authenticate our identity to GitHub, allowing us access to our remote repositories.
+For the purposes of this workshop, an SSH key is a good way to quickly and conveniently get set up using GitHub.
+If you continue further development using GitHub after this workshop, you may want to consider alternatives.
+
+GitHub has added a feature called Personal Access Tokens (PATs) that allow for more fine grained security control over your access.
+Instead of one key that has all the permissions on your account, you can define multiple tokens that have a different set of permissions.
+GitHub has good documentation for [generating and using a PAT](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token).
+
 
 ## Putting your repository on GitHub.
 Now, let's put this project on GitHub so that we can share it with others. In your browser, navigate to `github.com`. Log in to you account if you are not already logged in. On the left side of the page, click the green button that says `New` to create a new repository. Give the repository the name `molecool`.
