@@ -3,13 +3,13 @@
 #------------------------------------------------------------
 
 # Which carpentry is this ("swc", "dc", or "lc)?
-carpentry: "swc"
+carpentry: "molssi"
 
 # Overall title for pages.
 title: "Python Package Best Practices"
 
 # Contact email address.
-email: "mailto:education@molssi.org"
+email: "mailto:info@molssi.org"
 
 #------------------------------------------------------------
 # Constant URL addresses across lessons
@@ -39,7 +39,7 @@ post_survey: "https://www.surveymonkey.com/r/swc_post_workshop_v1?workshop_id="
 #------------------------------------------------------------
 
 # What kind of thing is this ("workshop" or "lesson")?
-kind: "lesson"
+kind: "workshop"
 
 # Magic to make URLs resolve both locally and on GitHub.
 # See https://help.github.com/articles/repository-metadata-on-github-pages/.
