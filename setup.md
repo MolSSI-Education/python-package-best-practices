@@ -16,12 +16,11 @@ We will cover the following topics. Click on a particular topic to skip to that 
 1. [Creating a GitHub Account](#github_account)
 1. [Installing and Configuring git](#git_configuration)
 
-## Workshop materials <a name="materials_download"></a>
+## Workshop Preparation
 
 In this workshop, we will be moving code from a Jupyter notebook into a Python package that we can install and import into other scripts.
 
-## Download the starting workshop materials [here](./data/starting_material.zip)
-
+- [Click here to download the starting materials for the workshop](./data/starting_material.zip)
 - Create a folder on your desktop called `molssi_best_practices`.
 - The file you download as starting materials will be a `zip` file. You should unzip this file into the folder you have created on your desktop. After downloading and unzipping, verify that you see the following directory structure.
     ~~~
