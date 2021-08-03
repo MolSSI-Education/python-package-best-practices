@@ -321,7 +321,7 @@ $ git add .
 $ git commit -m "add open_pdb function to molecool"
 $ git push origin main
 ~~~
-{: .bash}
+{: .language-bash}
 
 > ## Exercise
 > Below is the `calculate_distance` function that takes two points in 3D space
@@ -357,6 +357,7 @@ Keeping your previous Python interpreter open, type the following:
 import molecool as mc
 help(mc.canvas)
 ~~~
+{: .language-python}
 
 **Note: Do not use `help(mc.canvas())`, this will actually execute your code (not what we want).**
 
@@ -538,7 +539,7 @@ $ git add .
 $ git commit -m "edit style of calculate_distance function"
 $ git push origin main
 ~~~
-{: .bash}
+{: .language-bash}
 
 > ## Exercise
 > Let's add a docstring to our `open_pdb` function including short summary, extended summary, parameters, and returns sections.
@@ -654,7 +655,7 @@ $ git add .
 $ git commit -m "run black on molecool"
 $ git push origin master
 ~~~
-{: .bash}
+{: .language-bash}
 
 There are other tools, such as [pylint](https://www.pylint.org/) and
 [flake8](https://flake8.pycqa.org/en/latest/) that are not automatic formatters,
@@ -682,7 +683,7 @@ Let's examine one of the errors shown by the flake8 command above.
 ~~~
 molecool/functions.py:1:1: F401 'os' imported but unused
 ~~~
-{: .language-output}
+{: .output}
 
 This tells us it is looking at line 1 of `molecool/functions.py` (your line number may vary).
 `F401` is an error code which you can look up.
@@ -694,7 +695,7 @@ You will also see a second "unused import" error:
 ~~~
 molecool/functions.py:5:1: F401 'mpl_toolkits.mplot3d.Axes3D' imported but unused
 ~~~
-{: .language-python}
+{: .output}
 
 Although it appears this isn't used, this import is actually necessary for our 3D plot.
 We can tell `flake8` to ignore this problem by adding a special comment:
