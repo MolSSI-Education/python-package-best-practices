@@ -145,7 +145,7 @@ So, if you ever start a project that becomes popular or has contributors, be sur
 
 #### Dependency Source
 This determines some things in set-up for what will be used to install dependencies for testing.
-This mostly has consequence for the section on [Continuous Integration].
+This mostly has consequence for the section on [Continuous Integration](../08-CI/index.html).
 We have chosen to install dependencies from anaconda with pip fallback.
 Don't worry too much about this choice for now.
 
