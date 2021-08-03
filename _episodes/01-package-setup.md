@@ -45,7 +45,9 @@ You should have the general CookieCutter installed, according to the directions 
 If you do not, please navigate to [setup] and follow the instructions given there.
 
 ### Running CookieCutter
-To run the [CMS CookieCutter], navigate to the directory where you would like to start your project, and type:
+Navigate to the `molssi_best_practices` directory created during [setup].
+(CookieCutter will generate the new project in a subdirectory.)
+Run the [CMS CookieCutter] to start your project:
 
 ~~~
 $ cookiecutter gh:molssi/cookiecutter-cms
