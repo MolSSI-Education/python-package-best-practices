@@ -71,7 +71,7 @@ repo_name [molecool]:
 first_module_name [molecool]: functions
 author_name [Your name (or your organization/company/team)]: *YOUR_NAME_HERE*
 author_email [Your email (or your organization/company/team)]: *YOUR_EMAIL_ADDRESS_HERE*
-description [A short description of the project.]: A Python package for analyzing and visualizing xyz files. For MolSSI Workshop Python Package development workshop.
+description [A short description of the project (less than one line).]: A Python package for analyzing and visualizing xyz files.
 
 Select open_source_license:
 1 - MIT
@@ -272,10 +272,7 @@ This file can be blank in some cases, however, we will use it to define how the 
 
 Contents of `molecool/molecool/__init__.py`:
 ~~~
-"""
-molecool
-A Python package for analyzing and visualizing xyz files. For MolSSI Workshop.
-"""
+"""A Python package for analyzing and visualizing xyz files."""
 
 # Add imports here
 from .functions import *
