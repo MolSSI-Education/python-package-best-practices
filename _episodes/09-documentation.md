@@ -28,20 +28,45 @@ The documentation typically involves several components:
  - Some examples
  - Who maintains the project
 
-
-## README documentation
-
 So far in our project, we have added things like installation and use instructions to our `README.md`, which is displayed on our GitHub repository. 
 We have also written in-code documentation in the form of comments and function doc strings. 
 These strategies work well for small projects, and may be all of the documentation you need for many of your projects. 
 However, if you are preparing a software package to be widely used, you may want to make a website for people to find information about your package.
+
+## Types of Documentation
+
+There are many types of documentation which you might find associated with a software project.
+A smaller project may be fully documented in the README.
+However, larger libraries may have several documentation sets, each with a different audience.
+One example of this is the [NumPy library](https://numpy.org/doc/stable/).
+The NumPy documentation is divided by content intended for users, and documentation meant for contributors or developers.
+The NumPy documentation also has a [reference section](https://numpy.org/doc/stable/reference/) which outlines all the functions and objects in the library (also called API documentation).
+
+Not all libraries have documentation which is this extensive.
+You will have to decide what is appropriate for your project.
+However, it is good to be aware of the different types of documentation you might see associated with a project.
+
+- **README documentation** - This is the documentation which is in the `README.md` file. 
+It is displayed on the GitHub page for your project. For small projects, this documentation might be sufficient. 
+The README documentation should contain a short summary of the project, information on installation and basic usage, and should link out to more complex documentation if you have it.  
+
+- **End-user documentation** - The end user documentation should explain the goal of your project and explain how to use it.
+You might choose to include tutorials or text explanations in this documentation.
+This type of documentation could be present on your `README.md`, or on an external documentation site.
+
+- **Developer documentation** - Developer documentation should explain how your project works and how others can contribute to the project.
+
+- **API documentation** - API documentation is the documentation of the modules and functions in your library. 
+This is the type of documentation which in-code docstrings are used to generate.
 
 ## Sphinx for complex modules
 
 When you want to improve your documentation strategies for Python packages, use [Sphinx](https://www.sphinx-doc.org/en/master/). 
 Sphinx is a tool for creating documentation and was originally created for documentation of the Python programming language.
 
-With Sphinx and some extensions, you can write documentation giving instructions and examples of your software AND pull out the in-code documentation we have already written as docstrings to document your API. 
+With Sphinx and some extensions, you can write documentation giving instructions and examples of your software AND pull out the in-code documentation we have already written as docstrings to document your API. **Note** that only using Sphinx to pull out API documentation is not a best-practice and should not be considered full and complete documentation.
+When documenting your project, in general, it is ideal to have accompanying end-user documentation at least as well.
+
 The ability to pull out in-code docstrings as documentation is an advantage - you won't have to maintain documentation in more than one place. 
 Later, we will see how we can automatically generate our documentation every time we push to the repository.
 
@@ -341,9 +366,13 @@ For example, for the `Getting Started` page, the page heading is 'Getting Starte
 > This will create a folder called `pdf` in the `build` directory, and you should have a file in this directory called `molecool.pdf` containing all of your documentation. Each `rst` file is a chapter of the documentation, instead of a different page.
 {: .callout}
 
-## Automatically Generating Documentation using Sphinx-AutoDoc
+## API Documentation
 
-To generate your documentation with the modules documented from your docstrings, we will use [Sphinx-Autodoc](https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html). 
+To use Sphinx to generate API documentation, you can use either [Spinx-AutoAPI](https://github.com/readthedocs/sphinx-autoapi) 
+or [Sphinx-Autodoc](https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html). 
+The cookiecutter comes bundled with Sphinx-Autodoc, so we will focus on that tool for this tutorial. 
+See the Note at the end of this section for instructions on building API documentation on using AutoAPI.
+
 AutoDoc will pull out and render your documentation strings so that they are viewable to the user. 
 This makes maintaining code documentation easier on you, as you will only need to maintain documentation for usage of functions in one place (the source code.)
 
@@ -364,7 +393,7 @@ API Documentation
    molecool.canvas
 ~~~
 
-We are using a Sphinx extension called `autosummary`.  
+We are using a Sphinx extension called `autosummary` which is part of AutoDoc.  
 This tells Sphinx to insert a table that contains links to documented items.  
 Autosummary will put `docstrings` out of functions and a page for each docstring. 
 Under that, we are starting a Table of Contents for this page. 
@@ -400,9 +429,10 @@ API Documentation
 > {: .solution}
 {: .challenge}
 
-## An Alternate way - Automodule
+## Adding Docstrings to other pages
 
 Alternatively, you could choose to break your module documentation into different pages with additional text.
+To do this, you would use different directives in AutoDoc.
 You may want to write documentation in addition to your docstring. 
 Add a page called `measure.rst` with the following contents:
 
@@ -410,7 +440,7 @@ Add a page called `measure.rst` with the following contents:
 Measure module
 ==============
 
-.. automodule:: sample_package_2021.measure
+.. automodule:: molecool.measure
 
     This is some additional information I want to say about the measure module.
 
@@ -421,6 +451,8 @@ I can also put additional information about a function.
 .. autofunction:: calculate_angle
 ~~~
 
+Using this strategy, you can selectively add documentation for functions or classes and write additional information to go with the docstrings.
+
 > ## Structuring your documentation
 > Realistically, you probably don't want just a single page for API documentation.
 > You could separate your documentation by purpose.
@@ -429,6 +461,58 @@ I can also put additional information about a function.
 > Many projects are structured this way.
 > Now that you know how Python documentation is built, keep an eye out for documentation you like. 
 > If you find documentation you like, take a look at their files to see how they structured their project!.
+{: .callout}
+
+> ## Sphinx AutoAPI
+> Another strategy for generating API documentation is using [Sphinx-AutoAPI](https://github.com/readthedocs/sphinx-autoapi).
+> 
+> AutoAPI will pull documentation for all of your functions at once, rather than you having to build them manually.
+> 
+> To install Sphinx-AutoAPI, use `pip`:
+> 
+> ~~~
+> pip install sphinx-autoapi
+> ~~~
+> {: .language-bash}
+> 
+> Modify your `conf.py` file to look like the following:
+> 
+> ~~~
+> ...
+> 
+> extensions = [
+>     'autoapi.extension',
+>     'sphinx.ext.mathjax',
+>     'sphinx.ext.viewcode',
+>     'sphinx.ext.napoleon',
+>     'sphinx.ext.intersphinx',
+>     'sphinx.ext.extlinks',
+> ]
+>
+> autoapi_dirs = ['../molecool']
+> autoapi_ignore = ["*/tests/*",
+>                   "*_version.py"]
+>                   
+> autoapi_options = ['members', 
+> 		'undoc-members', 
+> 		#'private-members', 
+> 		#'special-members', 
+> 		'show-inheritance', 
+> 		'show-module-summary', 
+> 		'imported-members']
+>	
+> # autosummary_generate = True	# or delete this
+> napoleon_google_docstring = False
+> napoleon_use_param = False
+> napoleon_use_ivar = True
+>                   
+> ...
+> ~~~
+> {: .language-python}
+> 
+> You can then build your documentation to have your docstrings pulled out automatically.
+> While this strategy is convenient, we consider it to be only a good first pass at creating documentation.
+> Your documentation should always contain additional information on goals and usage of the project, in addition to API documentation.
 {: .callout}
 
 ## Equation Directives
@@ -469,93 +553,6 @@ CookieCutter has added a few extensions here which will allow us to pull docstri
 The `mathjax` extension allows us to render latex into equations, and the `viewcode` extensions will add links to highlighted source code.
 
 Next, we have added the line `autosummary_generate = True` to allow us to pull auto summaries from our modules and functions.
-
-## Automatically Generating Documentation Using Sphinx-AutoAPI
-Sphinx comes bundled with some extensions which have other directives. 
-You can also download and install many Sphinx extensions from pip or conda.
-
-One common use of Sphinx is to create API documentation (ie, pull the docstrings from your modules).
-The cookiecutter comes bundled with Sphinx AutoSummary and AutoDoc extensions. 
-However, you may have noticed that these are a bit labor-intensive if all you want to do is pull out the docstrings. 
-If this is the approach you would like to take, you can use a Sphinx extension called `AutoAPI`. 
-AutoAPI will pull documentation for all of your functions at once, rather than you having to build them manually.
-
-This is [Spinx-AutoAPI](https://github.com/readthedocs/sphinx-autoapi).
-To install Sphinx-AutoAPI, use `pip`:
-
-~~~
-pip install sphinx-autoapi
-~~~
-{: .language-bash}
-
-To get Sphinx-AutoAPI to work, we will need change some things about the Sphinx configuration, which is specified in the `conf.py`.
-
-There are a few modifications necessary to use Sphinx-AutoAPI.  
- - In `docs/conf.py`, remove `sphinx.ext.autodoc` and `sphinx.ext.autosummary` and add `autoapi.extension` to the
- `extensions` list variable. Then comment out or delete the line: `autosummary_generate = True`.
- - Optional: remove `* :ref:'modindex'` from `docs/index.rst`, since an API Reference tab will show up autmoatically in
- `.. toctree::` after compilation.
-
-Once this is configured, you may now choose the modules and functions you would like Sphinx-AutoAPI to include
-or ignore in its automatic generation of documentation. 
-To do this, in the `docs/conf.py` file, you may now add the following lines directly following the declaration of the `extensions` variable:
-
-~~~
-autoapi_dirs = ['../molecool']
-autoapi_ignore = ["*/tests/*",
-                  "*_version.py"]
-# for a detailed explanation of all the options below, visit the Sphinx-AutoAPI documentation. From there:
-# private-members: Include private objects (eg. _foo in Python)
-# special-members: Include special objects (eg. __foo__ in Python)
-autoapi_options = [ 'members',
-                    'undoc-members',
-                    #'private-members',
-                    #'special-members',
-                    'show-inheritance',
-                    'show-module-summary',
-                    'imported-members']
-~~~
-{: .language-python}
-
-All together, this section of the `conf.py` should look like:
-
-~~~
-...
-
-extensions = [
-    'autoapi.extension',
-    'sphinx.ext.mathjax',
-    'sphinx.ext.viewcode',
-    'sphinx.ext.napoleon',
-    'sphinx.ext.intersphinx',
-    'sphinx.ext.extlinks',
-]
-
-autoapi_dirs = ['../molecool']
-autoapi_ignore = ["*/tests/*",
-                  "*_version.py"]
-                  
-autoapi_options = ['members', 
-		'undoc-members', 
-		#'private-members', 
-		#'special-members', 
-		'show-inheritance', 
-		'show-module-summary', 
-		'imported-members']
-	
-# autosummary_generate = True	# or delete this
-napoleon_google_docstring = False
-napoleon_use_param = False
-napoleon_use_ivar = True
-                  
-...
-~~~
-{: .language-python}
-
-Once compiled, this will generate documentation for all files in the `molecool` source directory, as well as exclude
-generating documentation for the tests and versioneering files in the project. 
-The `index.rst` file will be updated to include an `API Reference` page, and the resultant `.html` files can be viewed in the `_build` directory upon 
-compilation.
 
 ## Hosting your documentation
 
