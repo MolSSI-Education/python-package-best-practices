@@ -49,7 +49,7 @@ Other hosting Services: [GitLab], [BitBucket]
 
 ## Making Commits
 
-You should have `git` installed and configured from the [setup] instructions.
+You should have `git` installed and configured from the setup instructions.
 
 In this section, we are going to  edit files in the Python package that we created earlier, and use `git` to track those changes.
 
@@ -97,12 +97,12 @@ $ git status
 {: .bash}
 
 ~~~
-On branch master
+On branch main
 nothing to commit, working tree clean
 ~~~
 {: .output}
 
-This tells us that we are on the `master` branch (more about branching later), and that no files have been changed since the last commit.
+This tells us that we are on the `main` branch (more about branching later), and that no files have been changed since the last commit.
 
 Next, type
 ~~~
@@ -118,20 +118,22 @@ The CookieCutter has already made a commit and written a message for you,
 and that is what we see for this first commit in the log.
 
 ~~~
-commit 25ab1f1a066f68e433a17454c66531e5a86c112d (HEAD -> master, tag: 0.0.0)
+commit 25ab1f1a066f68e433a17454c66531e5a86c112d (HEAD -> main, tag: 0.0.0)
 Author: Your Name <your_email@something.com>
 Date:   Mon Feb 4 10:45:26 2019 -0500
 
-    Initial commit after CMS Cookiecutter creation, version 1.0
+    Initial commit after CMS Cookiecutter creation, version X.X
 ~~~
 {: .output}
+
+Your version number for the Cookiecutter will depend on when you ran the Cookiecutter and the current released version.
 
 Each line of this log tells you something important about the commit,
 or check point, that exists for the project.
 On the first line,
 
 ~~~
-commit 25ab1f1a066f68e433a17454c66531e5a86c112d (HEAD -> master, tag: 0.0.0)
+commit 25ab1f1a066f68e433a17454c66531e5a86c112d (HEAD -> main, tag: 0.0.0)
 ~~~
 
 You have a unique identifier for the commit (25ab1...).
@@ -197,7 +199,7 @@ We do this with a command called `git add`. This adds files to what is called th
 Let's look at our output from `git status` again.
 
 ~~~
-On branch master
+On branch main
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git checkout -- <file>..." to discard changes in working directory)
@@ -223,7 +225,7 @@ $ git status
 {: .language-bash}
 
 ~~~
-On branch master
+On branch main
 Changes to be committed:
   (use "git reset HEAD <file>..." to unstage)
 
@@ -295,7 +297,7 @@ $ git status
 {: .bash}
 
 ~~~
-On branch master
+On branch main
 nothing to commit, working tree clean
 ~~~
 {: .output}
@@ -344,7 +346,7 @@ $ git log --oneline
 ~~~
 
 ~~~
-d857c74 (HEAD -> master) add information about dependencies to readme
+d857c74 (HEAD -> main) add information about dependencies to readme
 3c0e1c6 update readme to have instructions for developmental install
 116f0cf (tag: 0.0.0) Initial commit after CMS Cookiecutter creation, version 1.1
 ~~~
@@ -365,7 +367,7 @@ If you now view your `README.md`, it has reverted to the previous version of the
 To return to the most recent point,
 
 ~~~
-$ git checkout master
+$ git checkout main
 ~~~
 {: .language-bash}
 
@@ -393,10 +395,10 @@ When you are working on a project to implement new features,
 it is a good practice to isolate the changes you are making and work on one particular topic at a time.
 To do this, you can use something called a **branch** in git.
 Working on branches allows you to isolate particular changes.
-If you make sure that your code works before merging to your main or **master** branch,
-you will ensure that you always have a working version of code on your `master` branch.
+If you make sure that your code works before merging to your main or **main** branch,
+you will ensure that you always have a working version of code on your `main` branch.
 
-By default, you are typically in the `master` branch.
+If you followed the set-up instructions, you should be in the `main` branch by default.
 To create a new branch and move to it, you can use the command
 
 ~~~
@@ -464,7 +466,7 @@ $ git commit -m "add function to print Zen of Python
 ~~~
 {: .language-bash}
 
-Let's switch back to the `master` branch to see what it is like.
+Let's switch back to the `main` branch to see what it is like.
 You can see a list of branches in your repo by using the command
 
 ~~~
@@ -475,14 +477,14 @@ $ git branch
 This will list your local branches.
 The active branch, or the branch you are on will be noted with an asterisk (`*`).
 
-To switch back to the `master` branch,
+To switch back to the `main` branch,
 
 ~~~
-$ git checkout master
+$ git checkout main
 ~~~
 {: .language-bash}
 
-When you look at the `functions.py` module on the `master` branch,
+When you look at the `functions.py` module on the `main` branch,
 you should not see your most recent changes.
 
 You can verify this by using the `git log` command.
@@ -513,10 +515,10 @@ To switch to an existing branch, use
 
 Save and commit this change.
 
-To incorporate these changes in `master`, you will need to do a `git merge`.
+To incorporate these changes in `main`, you will need to do a `git merge`.
 When you do a merge, you should be on the branch you would like to merge into.
 In this case, we will first merge the changes from our `doc_update` branch,
-then our `zen` branch, so we should be on our `master` branch.
+then our `zen` branch, so we should be on our `main` branch.
 Next we will use the `git merge` command.
 
 The syntax for this command is 
@@ -528,16 +530,16 @@ $ git merge branch_name
 
 where `branch_name` is the name of the branch you would like to merge.
 
-We can merge our `doc_update` branch to get changes on our `master` branch:
+We can merge our `doc_update` branch to get changes on our `main` branch:
 
 ~~~
 $ get merge doc_update
 ~~~
 {: .language-bash}
 
-Now our changes from the branch are on `master`.
+Now our changes from the branch are on `main`.
 
-We can merge our `zen` branch to get our changes on `master`:
+We can merge our `zen` branch to get our changes on `main`:
 
 ~~~
 $ git merge zen
@@ -550,7 +552,7 @@ This time, you will see a different message, and a text editor will open for a m
 Merge made by the 'recursive' strategy.
 ~~~
 
-This is because `master` and `zen` have development histories which have diverged.
+This is because `main` and `zen` have development histories which have diverged.
 `git` had to do some work in this case to merge the branches.
 A *merge commit* was created. 
 
@@ -572,7 +574,7 @@ $ git branch -d zen
 > Add all of the functions from your Jupyter notebook to the module
 > `functions.py` in your package.
 > Verify that you can use your functions.
-> Once the functions are added and working, merge into your `master` branch.
+> Once the functions are added and working, merge into your `main` branch.
 >> ## Solution
 >>
 >> First, create a new branch in your repository
@@ -807,9 +809,9 @@ $ git branch -d zen
 >> ~~~
 >> {: .language-bash}
 >>
->> Next, switch back to your `master` branch to merge:
+>> Next, switch back to your `main` branch to merge:
 >> ~~~
->> $ git checkout master
+>> $ git checkout main
 >> $ git merge add-functions
 >> ~~~
 >> {: .language-bash}
