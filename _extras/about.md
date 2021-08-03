@@ -2,4 +2,4 @@
 title: About
 ---
 
-{% include carpentries.html %}
+{% include molssi.html %}
