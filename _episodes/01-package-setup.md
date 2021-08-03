@@ -300,7 +300,7 @@ In particular, the line
 ~~~
 from .functions import *
 ~~~
-{: .language}
+{: .language-python}
 
 goes to the `functions.py` file, and brings everything that is defined there into the file.
 When we use our function defined in `functions.py`,
