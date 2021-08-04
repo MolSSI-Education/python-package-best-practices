@@ -284,7 +284,7 @@ You should click the link and follow the instructions to add an SSH key to your 
 
 
 ### Conclusion
-At the end of this set-up, you should have created a Python environment (`molssi_best_practices`) which has Python 3.7, `numpy`, `matplotlib`, `jupyter`, and `cookiecutter` installed.
+At the end of this set-up, you should have created a Python environment (`molssi_best_practices`) which has Python 3.9, `numpy`, `matplotlib`, `jupyter`, and `cookiecutter` installed.
 You should also have downloaded starting material, installed and created an account on GitHub, and configured Git.
 
 
