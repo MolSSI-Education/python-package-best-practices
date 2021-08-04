@@ -49,7 +49,7 @@ If you already have a Python 3 version Anaconda or MiniConda installed, you can 
 
 [Python] is a popular language for scientific computing, and great for general-purpose programming as well. 
 We recommend using Python with the conda package manager. 
-You can obtain Python and conda by either installing [Miniconda] (minimal installer) or [Anaconda]
+You can obtain Python and conda by either installing [Miniconda] (minimal installer) or [Anaconda].
 Anaconda comes bundled with many more Python packages than miniconda.
 Anaconda is more user-friendly.
 If you are uncomfortable navigating the terminal, or are unsure of which you need, install Anaconda.
