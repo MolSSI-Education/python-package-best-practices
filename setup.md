@@ -53,7 +53,6 @@ You can obtain Python and conda by either installing [Miniconda] (minimal instal
 Anaconda comes bundled with many more Python packages than miniconda.
 Anaconda is more user-friendly.
 If you are uncomfortable navigating the terminal, or are unsure of which you need, install Anaconda.
-Anaconda will also come bundled with the text editor Visual Studio Code, so you will not need to install a text editor in the next step.
 
 The installer for Anaconda can be found on [this page][Anaconda].
 Choose the appropriate version for your Operating System.
