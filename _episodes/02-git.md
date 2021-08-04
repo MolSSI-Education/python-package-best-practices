@@ -68,7 +68,7 @@ We can see this by typing the following into the terminal on Linux or Mac
 ~~~
 $ ls -la
 ~~~
-{: .bash}
+{: .language-bash}
 
 Here, the `-la` says that we want to list the files in long format (`-l`), and show hidden files (`-a`). 
 
@@ -77,14 +77,14 @@ If you are on Windows and using the Anaconda Prompt:
 ~~~
 dir /a
 ~~~
-{: .cmd}
+{: .language-cmd}
 
 If you are on Windows and using the Anaconda PowerShell Prompt:
 
 ~~~
 > ls -hidden
 ~~~
-{: .bash}
+{: .language-bash}
 
 You should see `.git` in the output. `.git` is a directory where `git` stores the repository data.
 This is one way to see that we are in a git repository.
@@ -94,7 +94,7 @@ Next, type
 ~~~
 $ git status
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~
 On branch main
@@ -108,7 +108,7 @@ Next, type
 ~~~
 $ git log
 ~~~
-{: .bash}
+{: .language-bash}
 
 You will get an output resembling the following.
 This is something called your git *commit log*.
@@ -244,7 +244,7 @@ Whenever you create a commit, you should write a message about what the commit d
 ~~~
 $ git commit -m "update readme to have instructions for developmental install"
 ~~~
-{: .bash}
+{: .language-bash}
 
 
 Now when we look at our log using `git log`, we see the commit we just made along with information about the author and the date of the commit.
@@ -294,7 +294,7 @@ Now, check `git status` and `git log`. You should see the following:
 ~~~
 $ git status
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~
 On branch main
@@ -305,7 +305,7 @@ nothing to commit, working tree clean
 ~~~
 $ git log
 ~~~
-{: .bash}
+{: .language-bash}
 
 We now have a log with three commits.
 This means there are three versions of the repository we are working in.
@@ -336,6 +336,7 @@ If you need to check out a previous version,
 ~~~
 $ git checkout COMMIT_ID
 ~~~
+{: .language-bash}
 
 This will temporarily revert the repository to whatever the state was at the specified commit ID.
 
@@ -344,6 +345,7 @@ Let's checkout the version before we made the most recent edit to the README.
 ~~~
 $ git log --oneline
 ~~~
+{: .language-bash}
 
 ~~~
 d857c74 (HEAD -> main) add information about dependencies to readme
@@ -533,7 +535,8 @@ where `branch_name` is the name of the branch you would like to merge.
 We can merge our `doc_update` branch to get changes on our `main` branch:
 
 ~~~
-$ get merge doc_update
+$ git checkout main
+$ git merge doc_update
 ~~~
 {: .language-bash}
 
