@@ -13,7 +13,7 @@ keypoints:
 ---
 
 This episode discusses documentation strategies. 
-In particular,  we will focus on how to build documentation using Sphinx and host that documentation online using [ReadTheDocs](https://readthedocs.org).
+In particular, we will focus on how to build documentation using Sphinx and host that documentation online using [Read The Docs].
 
 Documentation must be provided to allow for use, development, and maintenance of software. 
 Documentation is often overlooked by developers since it can be tedious and boring.
@@ -30,7 +30,7 @@ The documentation typically involves several components:
 
 So far in our project, we have added things like installation and use instructions to our `README.md`, which is displayed on our GitHub repository. 
 We have also written in-code documentation in the form of comments and function doc strings. 
-These strategies work well for small projects, and may be all of the documentation you need for many of your projects. 
+These strategies work well for small projects, and may be all the documentation you need for many of your projects. 
 However, if you are preparing a software package to be widely used, you may want to make a website for people to find information about your package.
 
 ## Types of Documentation
@@ -61,16 +61,17 @@ This is the type of documentation which in-code docstrings are used to generate.
 
 ## Sphinx for complex modules
 
-When you want to improve your documentation strategies for Python packages, use [Sphinx](https://www.sphinx-doc.org/en/master/). 
+When you want to improve your documentation strategies for Python packages, use [Sphinx]. 
 Sphinx is a tool for creating documentation and was originally created for documentation of the Python programming language.
 
-With Sphinx and some extensions, you can write documentation giving instructions and examples of your software AND pull out the in-code documentation we have already written as docstrings to document your API. **Note** that only using Sphinx to pull out API documentation is not a best-practice and should not be considered full and complete documentation.
+With Sphinx and some extensions, you can write documentation giving instructions and examples of your software AND pull out the in-code documentation we have already written as docstrings to document your API.
+**Note** that only using Sphinx to pull out API documentation is not a best-practice and should not be considered full and complete documentation.
 When documenting your project, in general, it is ideal to have accompanying end-user documentation at least as well.
 
 The ability to pull out in-code docstrings as documentation is an advantage - you won't have to maintain documentation in more than one place. 
 Later, we will see how we can automatically generate our documentation every time we push to the repository.
 
-[Many projects you are familiar with](https://www.sphinx-doc.org/en/master/examples.html) use Sphinx for documentation - including numpy, matplotlib, and pytest. 
+[Many projects you are familiar with][sphinx example] use Sphinx for documentation - including NumPy, Matplotlib, and Pytest. 
 
 To use Sphinx, you will need to have Sphinx installed and some configuration files.
 CookieCutter has already set up files which we need to get started with Sphinx.
@@ -78,7 +79,8 @@ CookieCutter has already set up files which we need to get started with Sphinx.
 ### Using Sphinx to build documentation
 
 The command below installs the Sphinx software and a theme for your Sphinx Documentation. 
-The cookiecutter comes preconfigured to use the [Sphinx ReadTheDocs theme](https://sphinx-rtd-theme.readthedocs.io/en/stable/) (or `sphinx_rtd_theme`), but there are many themes you can choose from if you wish. There are many themes available for Sphinx, and if you view the Sphinx [examples](https://www.sphinx-doc.org/en/master/examples.html) you will see several themes you could choose from.
+The cookiecutter comes preconfigured to use the [Sphinx ReadTheDocs theme] (or `sphinx_rtd_theme`), but there are many themes you can choose from if you wish.
+There are many themes available for Sphinx, and if you view the Sphinx [examples][sphinx example] you will see several themes you could choose from.
 
 ~~~
 $ pip install sphinx sphinx_rtd_theme
@@ -93,14 +95,14 @@ Navigate to that directory.
 ~~~
 $ cd docs
 ~~~
-{: .langauge-bash}
+{: .language-bash}
 
 Next, look at the files in the directory
 
 ~~~
 $ ls
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~
 Makefile            _templates          getting_started.rst
@@ -154,9 +156,9 @@ You can open these files in your browser to preview what your documentation will
 Now, we will have the task of actually adding information about our project to our documentation. 
 This part will require us to write! 
 
-When writing Sphinx documentation, you use an extended `reStructuredText (RST)` [syntax](https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html). 
+When writing Sphinx documentation, you use an extended `reStructuredText (RST)` [syntax][rst syntax]. 
 This is similar to Markdown, but has notable differences.
-See this [reStructured Text Cheat Sheet](https://thomas-cokelaer.info/tutorials/sphinx/rest_syntax.html) for info on reStructuredText.
+See this [reStructured Text Cheat Sheet] for info on reStructuredText.
 
 Let's start by adding a simple a description to your `index.rst` under the first heading.
 
@@ -188,14 +190,14 @@ Right now, it says
 This page details how to get started with molecool.
 ~~~
 
-To changed this, we will edit the content of `getting_started.rst`
+To change this, we will edit the content of `getting_started.rst`
 
 > ## Exercise - Getting Started
-> Using the [reStructred Text Cheat Sheet](https://thomas-cokelaer.info/tutorials/sphinx/rest_syntax.html), add some information to your Getting Started page. Use the following guidelines
+> Using the [reStructured Text Cheat Sheet], add some information to your Getting Started page. Use the following guidelines
 > 
 > 1. Add a text description under "Getting Started".
-> 1. Create a subheading called "installation" which contains installation instructions.
-> 1.  The "Installation" section should use a list for dependencies and a code block with the installation command.
+> 2. Create a subheading called "installation" which contains installation instructions.
+> 3. The "Installation" section should use a list for dependencies and a code block with the installation command.
 >
 >> ## Solution
 >> Following the guidelines and using the cheat sheet may lead you to a page which looks like this:
@@ -239,8 +241,8 @@ Once installed, you can use the package. This example draws a benzene molecule f
 ## Sphinx Directives
 
 The thing that really gives Sphinx special abilities are **directives**. 
-Directives are extensions which can be used with your restructred text to add special sections, images, warnings, etc to your documentation, and are part of a package called [docutils](https://docutils.sourceforge.io/), which Sphinx is built on top of.
-You can see a general list of directives [here](https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html#rst-directives), and a list of special Sphinx Directives [here](https://www.sphinx-doc.org/en/1.8/usage/restructuredtext/directives.html).
+Directives are extensions which can be used with your restructured text to add special sections, images, warnings, etc to your documentation, and are part of a package called [docutils], which Sphinx is built on top of.
+You can see a general list of directives [here][rst directives], and a list of special Sphinx Directives [here][sphinx directives].
 
 In general, the syntax for a directive is (with appropriate options and syntax)
 
@@ -313,8 +315,8 @@ It is also on your main page.
 
 This directive has an example of directive options, namely `maxdepth` and `caption`. 
 You can think of these as arguments to a function. 
-We then have options for depth of the the Table of Contents (what level of headers to show), as well as the "caption". 
-You can see other options for this directive under "Additional options" on the [documentation page](https://www.sphinx-doc.org/en/1.8/usage/restructuredtext/directives.html). 
+We then have options for depth of the Table of Contents (what level of headers to show), as well as the "caption". 
+You can see other options for this directive under "Additional options" on the [documentation page][sphinx directives]. 
 
 After the settings for the TOC tree, you list the name of the pages you want to be included in this Table of Contents. 
 Right now, we are including the 'Getting Started' page and the API page.
@@ -368,8 +370,8 @@ For example, for the `Getting Started` page, the page heading is 'Getting Starte
 
 ## API Documentation
 
-To use Sphinx to generate API documentation, you can use either [Spinx-AutoAPI](https://github.com/readthedocs/sphinx-autoapi) 
-or [Sphinx-Autodoc](https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html). 
+To use Sphinx to generate API documentation, you can use either [Spinx-AutoAPI]
+or [Sphinx-Autodoc]. 
 The cookiecutter comes bundled with Sphinx-Autodoc, so we will focus on that tool for this tutorial. 
 See the Note at the end of this section for instructions on building API documentation on using AutoAPI.
 
@@ -464,7 +466,7 @@ Using this strategy, you can selectively add documentation for functions or clas
 {: .callout}
 
 > ## Sphinx AutoAPI
-> Another strategy for generating API documentation is using [Sphinx-AutoAPI](https://github.com/readthedocs/sphinx-autoapi).
+> Another strategy for generating API documentation is using [Spinx-AutoAPI].
 > 
 > AutoAPI will pull documentation for all of your functions at once, rather than you having to build them manually.
 > 
@@ -524,7 +526,7 @@ Add `calculate_center_of_mass` to your API Documentation and view the page to se
 ## The `conf.py` file
 
 Now that we've worked with Sphinx, let's look a little closer at what's going on. 
-The file `conf.py` in your `docs` folder gives all of the configuration setting we are using for Sphinx to build our documentation. 
+The file `conf.py` in your `docs` folder gives all the configuration setting we are using for Sphinx to build our documentation. 
 CookieCutter has added several extensions to Sphinx to make the documentation we've built.
 
 Open your `conf.py` file and find the `extensions` section.
@@ -557,21 +559,21 @@ Next, we have added the line `autosummary_generate = True` to allow us to pull a
 ## Hosting your documentation
 
 ### Read The Docs
-We recommend hosting your  documentation on [Read The Docs](https://readthedocs.org/). 
+We recommend hosting your  documentation on [Read The Docs]. 
 With this service, you can enable the building of your documentation every time you push to your repository.
 
-Go to the [Read the Docs](https://readthedocs.org/) website. 
+Go to the [Read The Docs] website. 
 Log in with your GitHub username and hook the repository to ReadTheDocs. 
 Push to the repository, or trigger a build on the site.
 Because of the recent switch from `master` to `main`, you may get an error that your build has failed. 
-In order to fix this, click "Admin" in the menu, then on the side bar click "Advanced Settings". 
+In order to fix this, click "Admin" in the menu, then on the sidebar click "Advanced Settings". 
 Under "Default branch" choose "main". 
 Trigger a build again after making this change.
 
 Unfortunately, your documentation build will fail again. 
 This is because we need our dependencies installed on RTD. 
 There is another file the CookieCutter has added which we must now modify. 
-Add your dependencies (numpy and matplotlib) to `docs/requirements.yaml`. 
+Add your dependencies (NumPy and Matplotlib) to `docs/requirements.yaml`. 
 You should also add `sphinx-autoapi` under `pip only installs`. 
 Your `requirements.yaml` will look like this:
 
@@ -593,8 +595,21 @@ dependencies:
   - pip:
     - sphinx-autoapi
 ~~~
+{: .language-yaml}
 
 Commit and push - your documentation should build successfully and you should be able to view it!
 
 
 {% include links.md %}
+
+[Sphinx]: https://www.sphinx-doc.org/en/master/
+[sphinx example]: https://www.sphinx-doc.org/en/master/examples.html
+[Sphinx ReadTheDocs theme]: https://sphinx-rtd-theme.readthedocs.io/en/stable/
+[rst syntax]: https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html
+[reStructured Text Cheat Sheet]: https://thomas-cokelaer.info/tutorials/sphinx/rest_syntax.html
+[rst directives]: https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html#rst-directives
+[sphinx directives]: https://www.sphinx-doc.org/en/1.8/usage/restructuredtext/directives.html
+[docutils]: https://docutils.sourceforge.io/
+[Sphinx-Autodoc]: https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html
+[Spinx-AutoAPI]: https://github.com/readthedocs/sphinx-autoapi
+[Read The Docs]: https://readthedocs.org/
