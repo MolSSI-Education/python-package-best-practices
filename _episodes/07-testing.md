@@ -92,6 +92,7 @@ Unit and regression test for the molecool package.
 
 # Import package, test suite, and other packages as needed
 import molecool
+import pytest
 import sys
 
 def test_molecool_imported:
@@ -131,7 +132,7 @@ molecool/tests/test_molecool.py .                    [100%]
 {: .output}
 
 Here, `pytest` has looked through our directory and its subdirectories for anything matching `test*`.
-It found the `tests` folder, and within that folder, it found the file `test_functions.py`.
+It found the `tests` folder, and within that folder, it found the file `test_molecool.py`.
 It then executed the function `test_molecool_imported` within that module.
 Since our `assertion` was `True`, our test did not result in an error and the test passed.
 
@@ -342,7 +343,7 @@ Change the expected value back to 1 so that your tests pass and make sure you ha
 {: .challenge}
 
 Let's also make a test for the `build_bond_list` function.
-We start with defining the test.
+We start with creating `test_molecule.py`, then defining the test inside that file.
 
 ~~~
 def test_build_bond_list():
@@ -389,12 +390,13 @@ For example in our `calculate_angle` function, our inputs must be numpy arrays, 
 Consider our `build_bond_list` function. We may want to raise a `ValueError` if `min_bond` is set to be less than zero.
 We can add a type check to the function so that a more informative message is given to the user.
 
-Add the following to your `build_bond_list` function.
+Add the following to your `build_bond_list` function right below the docstring.
 
 ~~~
 if min_bond < 0:
         raise ValueError("Invalid minimum bond distance entered! Minimum bond distance must be greater than zero!")
 ~~~
+{: .language-python}
 
 We can test that this `ValueError` is raised in our testing functions.
 
@@ -439,19 +441,19 @@ If you ensure that your tests first fail THEN pass, you know that you have reall
 >
 > ~~~
 > def calculate_molecular_mass(symbols):
->    """Calculate the mass of a molecule.
->    
->    Parameters
->    ----------
->    symbols : list
->        A list of elements.
->    
->    Returns
->    -------
->    mass : float
->        The mass of the molecule
->    """
->    pass
+>     """Calculate the mass of a molecule.
+>     
+>     Parameters
+>     ----------
+>     symbols : list
+>         A list of elements.
+>     
+>     Returns
+>     -------
+>     mass : float
+>         The mass of the molecule
+>     """
+>     pass
 > ~~~
 > {: .language-python}
 >
@@ -476,6 +478,9 @@ If you ensure that your tests first fail THEN pass, you know that you have reall
 >> ## Solution
 >> Here is a potential solution. 
 >> ~~~
+>> from .atom_data import atomic_weights
+>> 
+>> 
 >> def calculate_molecular_mass(symbols):
 >>     """Calculate the mass of a molecule.
 >>     
@@ -497,38 +502,65 @@ If you ensure that your tests first fail THEN pass, you know that you have reall
 >>     return mass
 >> ~~~
 >> {: .language-python}
+>> Also, don't forget to add the `calculate_molecular_mass` function to `__init__.py`
+>> ~~~
+>> # Add imports here
+>> from .measure import calculate_distance, calculate_angle
+>> from .molecule import build_bond_list, calculate_molecular_mass
+>> from .visualize import draw_molecule, bond_histogram
+>> from .io import open_pdb, open_xyz, write_xyz
+>> ~~~
+>> {: .language-python}
+>> because if you forgot to add this function you will get the following error message when running pytest
+>> ~~~
+>> >       calculated_mass = molecool.calculate_molecular_mass(symbols)
+>> E       AttributeError: module 'molecool' has no attribute 'calculate_molecular_mass'
+>> ~~~
+>> {: .error}
 > {: .solution}
 {: .challenge}
 
 > ## Exercise - (Homework Assignment #2)
-> Consider the following function definition.
+> Consider the following function definition inside the `molecule` module.
 > ~~~
+> import numpy as np
+> 
 > def calculate_center_of_mass(symbols, coordinates):
->    """Calculate the center of mass of a molecule.
->    
->    The center of mass is weighted by each atom's weight.
->    
->    Parameters
->    ----------
->    symbols : list
->        A list of elements for the molecule
->    coordinates : np.ndarray
->        The coordinates of the molecule.
->    
->    Returns
->    -------
->    center_of_mass: np.ndarray
->        The center of mass of the molecule.
->
->    Notes
->    -----
->    The center of mass is calculated with the formula
->    
->    .. math:: \\vec{R}=\\frac{1}{M} \\sum_{i=1}^{n} m_{i}\\vec{r_{}i}
->    
->    """
->
->    return np.array([])
+>     """Calculate the center of mass of a molecule.
+>     
+>     The center of mass is weighted by each atom's weight.
+>     
+>     Parameters
+>     ----------
+>     symbols : list
+>         A list of elements for the molecule
+>     coordinates : np.ndarray
+>         The coordinates of the molecule.
+>     
+>     Returns
+>     -------
+>     center_of_mass: np.ndarray
+>         The center of mass of the molecule.
+>     
+>     Notes
+>     -----
+>     The center of mass is calculated with the formula
+>     
+>     .. math:: \\vec{R}=\\frac{1}{M} \\sum_{i=1}^{n} m_{i}\\vec{r_{}i}
+>     
+>     """
+>     
+>     return np.array([])
+> ~~~
+> {: .language-python}
+> 
+> Don't forget to add the `calculate_center_of_mass` function to `__init__.py`
+> ~~~
+> # Add imports here
+> from .measure import calculate_distance, calculate_angle
+> from .molecule import build_bond_list, calculate_molecular_mass, calculate_center_of_mass
+> from .visualize import draw_molecule, bond_histogram
+> from .io import open_pdb, open_xyz, write_xyz
 > ~~~
 > {: .language-python}
 > 
@@ -574,40 +606,40 @@ If you ensure that your tests first fail THEN pass, you know that you have reall
 >> ## Function Implementation
 >> ~~~
 >> def calculate_center_of_mass(symbols, coordinates):
->>    """Calculate the center of mass of a molecule.
->>    
->>    The center of mass is weighted by each atom's weight.
->>    
->>    Parameters
->>    ----------
->>    symbols : list
->>        A list of elements for the molecule
->>    coordinates : np.ndarray
->>        The coordinates of the molecule.
->>    
->>    Returns
->>    -------
->>    center_of_mass: np.ndarray
->>        The center of mass of the molecule.
->>
->>    Notes
->>    -----
->>    The center of mass is calculated with the formula
->>    
->>    .. math:: \\vec{R}=\\frac{1}{M} \\sum_{i=1}^{n} m_{i}\\vec{r_{}i}
->>    
->>    """
->>
->>    total_mass = calculate_molecular_mass(symbols)
->>    
->>    mass_array = np.zeros([len(symbols), 1])
->>    
->>    for i in range(len(symbols)):
->>        mass_array[i] = atom_weights[symbols[i]]
->>    
->>    center_of_mass = sum(coordinates * mass_array) / total_mass
->>    
->>    return center_of_mass
+>>     """Calculate the center of mass of a molecule.
+>>     
+>>     The center of mass is weighted by each atom's weight.
+>>     
+>>     Parameters
+>>     ----------
+>>     symbols : list
+>>         A list of elements for the molecule
+>>     coordinates : np.ndarray
+>>         The coordinates of the molecule.
+>>     
+>>     Returns
+>>     -------
+>>     center_of_mass: np.ndarray
+>>         The center of mass of the molecule.
+>>     
+>>     Notes
+>>     -----
+>>     The center of mass is calculated with the formula
+>>     
+>>     .. math:: \\vec{R}=\\frac{1}{M} \\sum_{i=1}^{n} m_{i}\\vec{r_{}i}
+>>     
+>>     """
+>>     
+>>     total_mass = calculate_molecular_mass(symbols)
+>>     
+>>     mass_array = np.zeros([len(symbols), 1])
+>>     
+>>     for i in range(len(symbols)):
+>>         mass_array[i] = atomic_weights[symbols[i]]
+>>     
+>>     center_of_mass = sum(coordinates * mass_array) / total_mass
+>>     
+>>     return center_of_mass
 >> ~~~
 >> {: .language-python}
 > {: .solution}
@@ -634,7 +666,26 @@ Pytest marks allow you to mark your functions.
 There are built in marks for pytest and you can also define your own marks.
 Marks are implemented using decorators.
 One of the built-in marks in pytest is `@pytest.mark.skip`.
-Modify your `test_calculate_distance` function to use this mark.
+To use this mark we have to import pytest.
+Then modify your `test_calculate_distance` function to use this mark.
+
+~~~
+import pytest
+
+@pytest.mark.skip
+def test_calculate_distance():
+    """Test that calculate distance function calculates what we expect"""
+
+    r1 = np.array([0, 0, 0])
+    r2 = np.array([0, 1, 0])
+
+    expected_distance = 1
+
+    calculated_distance = molecool.calculate_distance(r1, r2)
+
+    assert expected_distance == calculated_distance
+~~~
+{: .language-python}
 
 When you run your tests, you will see that this test is now skipped:
 
@@ -696,7 +747,14 @@ Fixtures can be defined as methods, where the name of the method is the name of 
 @pytest.fixture
 def methane_molecule():
     symbols = np.array(['C', 'H', 'H', 'H', 'H'])
-    coordinates = np.array([[1,1,1], [2.4,1,1], [-0.4, 1, 1], [1, 1, 2.4], [1, 1, -0.4]])
+    coordinates = np.array([
+        [1, 1, 1],
+        [2.4, 1, 1],
+        [-0.4, 1, 1],
+        [1, 1, 2.4],
+        [1, 1, -0.4],
+    ])
+    
     return symbols, coordinates
 ~~~
 {: .language-python}
@@ -711,10 +769,9 @@ def test_molecular_mass(methane_molecule):
     
     calculated_mass = molecool.calculate_molecular_mass(symbols)
 
-    actual_mass = molecool.atom_data.atom_weights['C'] + molecool.atom_data.atom_weights['H'] +\
-         molecool.atom_data.atom_weights['H'] + molecool.atom_data.atom_weights['H'] + molecool.atom_data.atom_weights['H']
+    actual_mass = 16.04
 
-    assert actual_mass == calculated_mass
+    assert pytest.approx(actual_mass, abs=1e-2) == calculated_mass
 ~~~
 {: .language-python}
 
@@ -745,7 +802,14 @@ import os
 @pytest.fixture
 def methane_molecule():
     symbols = np.array(['C', 'H', 'H', 'H', 'H'])
-    coordinates = np.array([[1,1,1], [2.4,1,1], [-0.4, 1, 1], [1, 1, 2.4], [1, 1, -0.4]])
+    coordinates = np.array([
+        [1, 1, 1],
+        [2.4, 1, 1],
+        [-0.4, 1, 1],
+        [1, 1, 2.4],
+        [1, 1, -0.4],
+    ])
+    
     return symbols, coordinates
 
 def test_build_bond_list(methane_molecule):
@@ -763,16 +827,15 @@ def test_molecular_mass(methane_molecule):
     
     calculated_mass = molecool.calculate_molecular_mass(symbols)
 
-    actual_mass = molecool.atom_data.atom_weights['C'] + molecool.atom_data.atom_weights['H'] +\
-         molecool.atom_data.atom_weights['H'] + molecool.atom_data.atom_weights['H'] + molecool.atom_data.atom_weights['H']
+    actual_mass = 16.04
 
-    assert actual_mass == calculated_mass
+    assert pytest.approx(actual_mass, abs=1e-2) == calculated_mass
 
-def test_build_bond_list_failure():
-    coordinates = np.array([])
+def test_build_bond_list_failure(methane_molecule):
+    symbols, coordinates = methane_molecule
     
     with pytest.raises(ValueError):
-        molecool.build_bond_list(coordinates)
+        molecool.build_bond_list(coordinates, min_bond=-1)
 
 def test_center_of_mass(methane_molecule):
     symbols, coordinates = methane_molecule
@@ -803,7 +866,7 @@ When you run your tests, you will see that everything passes
 
 If you have an "expensive" fixture (one that takes a lot of time to generate), you may want to change this so that the fixture is created fewer times.
 You can do this by adding the `scope` argument to the fixture.
-One scope we might pick is `module`, meaning that a new fixture will be created for each testing module.
+One scope we might pick is `module`, meaning that a new fixture will be created for each testing module rather than for each testing function.
 
 ~~~
 @pytest.fixture(scope="module")
@@ -868,7 +931,7 @@ def test_name(variable_name1, variable_name2, ... variable_nameN, expected_answe
 ~~~
 {: .language-python}
 
-Where each line in the middle (in parenthesis) gives a set of values for the test.
+Where each line in the middle (in parentheses) gives a set of values for the test.
 Then, these variables are passed to the test written under the decorator.
 
 For example, for testing our `calculate_angle` function, we might test several angles at one time.
