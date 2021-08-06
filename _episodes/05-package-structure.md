@@ -575,29 +575,9 @@ It is looking within the current package/directory, or in this case `molecool` f
 > {: .solution}
 {: .challenge}
 
-### Fixing Package Imports - what is `__init__.py`?
-Currently, your `__init__.py` file should look like this:
+### Using `import *`
 
-~~~
-"""
-molecool
-A python package for visualizing and analyzing molecular files. This is a sample package for a Best Practices Workshop from MolSSI.
-"""
-
-# Add imports here
-from .functions import *
-
-# Handle versioneer
-from ._version import get_versions
-
-versions = get_versions()
-__version__ = versions["version"]
-__git_revision__ = versions["full-revisionid"]
-del get_versions, versions
-~~~
-{: .language-python}
-
-We have moved all of our functions into modules, but we haven't changed our `__init__.py` file.
+We have moved all of our functions into modules and we've updated our `__init__.py` file.
 If you use a python interpreter in a directory which is not directly above your project, you can see the consequences of this.
 We can use the `dir` functions to see what is available in a particular module or object:
 
@@ -610,52 +590,18 @@ We can use the `dir` functions to see what is available in a particular module o
 You should see something similar to the following
 
 ~~~
-['__builtins__', '__cached__', '__doc__', '__file__', '__git_revision__', '__loader__', '__name__', '__package__', '__path__', '__spec__', '__version__', '_version', 'functions', 'np', 'plt']
+['__builtins__', '__cached__', '__doc__', '__file__', '__git_revision__', '__loader__', '__name__', '__package__', '__path__', '__spec__', '__version__', '_version', 'functions', 'np', 'plt', 'calculate_distance', 'calculate_angle,
+'build_bond_list', 'draw_molecule', 'bond_histogram' ]
 ~~~
 {: .output}
 
 These are all the things available to us from importing `molecool`.
 You will see your `functions` module, but you will also see `np` and `plt`.
 This comes from using `from .functions import *` and is why using `import *` is usually considered a bad practice.
-You will notice that we cannot call `molecool.measure.calculate_distance`
 
-~~~
-help(molecool.measure.calculate_distance)
-~~~
-{: .language-python}
+Since we are no longer using any code from `functions.py`, we will remove the statement importing it from `__init__.py`.
 
-~~~
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-AttributeError: module 'molecool' has no attribute 'measure'
-~~~
-{: .error}
-
-You can, however, do the following without getting an error:
-
-~~~
-import molecool.measure
-help(molecool.measure.calculate_distance)
-~~~
-{: .language-python}
-
-To change this behavior, we will need to modify our `__init__.py` file.
-The `__init__.py` file contains python code that is called when a module is imported.
-We edit it to import modules when the package loads so that functions in the `measure.py` module (for example) will be imported when the package is first imported. 
-
-Modify your `__init__.py` file:
-
-~~~
-# Add imports here
-from .functions import *
-from .measure import calculate_distance, calculate_angle
-from .molecule import build_bond_list
-from .visualize import draw_molecule, bond_histogram
-~~~
-{: .language-python}
-
-Now the behavior should be the same as before.
-You can also delete `functions.py` if you would like since we no longer have functions in that file (you must also delete it from your `__init__.py` file, of course.)
+### IO Subpackage
 
 We haven't yet included our `io` subpackage, meaning that the user would have to import this package if they wanted to use it.
 For example, to use the xyz functions,
@@ -712,7 +658,6 @@ If we wanted the I/O functions to mimic the imports from the rest of the modules
 we could modify our top level `__init__.py` file to reflect that.
 
 ~~~
-from .functions import *
 from .measure import calculate_distance, calculate_angle
 from .molecule import build_bond_list
 from .visualize import draw_molecule, bond_histogram
