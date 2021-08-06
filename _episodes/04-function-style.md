@@ -340,10 +340,10 @@ $ git push origin main
 >> ~~~
 >> def calculate_distance(rA, rB):
 >>
->>    dist_vec = (rA - rB)
->>    distance = np.linalg.norm(dist_vec)
+>>     dist_vec = (rA - rB)
+>>     distance = np.linalg.norm(dist_vec)
 >>
->>    return distance
+>>     return distance
 >> ~~~
 >> {: .language-python}
 > {: .solution}
