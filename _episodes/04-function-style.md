@@ -305,7 +305,7 @@ def open_pdb(file_location):
         if 'ATOM' in line[0:6] or 'HETATM' in line[0:6]:
             symbols.append(line[76:79].strip())
             atom_coords = [float(x) for x in line[30:55].split()]
-            coordinates.append(coords)
+            coordinates.append(atom_coords)
 
     coords = np.array(coordinates)
     symbols = np.array(symbols)
@@ -340,10 +340,10 @@ $ git push origin main
 >> ~~~
 >> def calculate_distance(rA, rB):
 >>
->>    dist_vec = (rA - rB)
->>    distance = np.linalg.norm(dist_vec)
+>>     dist_vec = (rA - rB)
+>>     distance = np.linalg.norm(dist_vec)
 >>
->>    return distance
+>>     return distance
 >> ~~~
 >> {: .language-python}
 > {: .solution}
