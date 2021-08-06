@@ -14,18 +14,18 @@ keypoints:
 ---
 ## Securely accessing GitHub
 During the setup for this workshop, we generated an SSH key and added it to our GitHub account.
-The SSH key will allow us to authenticate our identity to GitHub, allowing us access to our remote repositories.
+The SSH key will allow us to authenticate our identity to GitHub, allowing us to access to our remote repositories.
 For the purposes of this workshop, an SSH key is a good way to quickly and conveniently get set up using GitHub.
 If you continue further development using GitHub after this workshop, you may want to consider alternatives.
 
-GitHub has added a feature called Personal Access Tokens (PATs) that allow for more fine grained security control over your access.
+GitHub has added a feature called Personal Access Tokens (PATs) that allow for more fine-grained security control over your access.
 Instead of one key that has all the permissions on your account, you can define multiple tokens that have a different set of permissions.
-GitHub has good documentation for [generating and using a PAT](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token).
+GitHub has good documentation for [generating and using a PAT][GitHub PAT documentation].
 
 
 ## Putting your repository on GitHub.
 Now, let's put this project on GitHub so that we can share it with others.
-In your browser, navigate to [github.com](https://github.com/).
+In your browser, navigate to [github.com][GitHub].
 Log in to you account if you are not already logged in.
 On the left side of the page, click the green button that says `New` to create a new repository.
 Give the repository the name `molecool`.
@@ -55,25 +55,26 @@ $ git remote -v
 You should see no output.
 Now, follow the instructions on GitHub under "...or push an existing repository from the command line"
 ~~~
-$ git remote add origin https://github.com/YOUR_GITHUB_USERNAME/molecool.git
-git branch -M main
-git push -u origin main
+$ git remote add origin git@github.com:YOUR_GITHUB_USERNAME/molecool.git
+$ git branch -M main
+$ git push -u origin main
 ~~~
 {: .language-bash}
 
 The first command adds a remote named `origin` and sets the URL to our repository.
 The word `origin` here is simply a word that is a shortcut for the location of our repository.
 We could have called it anything (like `pickle`, or `banana`, or anything we wanted), but `origin` is used by convention.
-Now, whenever we say `origin`, git knows that we really mean `https://github.com/YOUR_GITHUB_USERNAME/molecool.git`. 
+Now, whenever we say `origin`, git knows that we really mean `git@github.com:YOUR_GITHUB_USERNAME/molecool.git`. 
 
 The second command changes our primary branch name from `master` to `main`.
-GitHub recently decided (as of June 2020) to switch the name of your `main` branch from `master` to `main`. However, the `git` software will still name your primary (or first) branch `master`. 
+GitHub recently decided (as of June 2020) to switch the name of your `main` branch from `master` to `main`.
+However, the `git` software will still name your primary (or first) branch `master`. 
 After the second command, you will no longer see `master` when using the command `git branch` (instead seeing `main`). 
 
 The third command copies (or "pushes") everything which we have tracked using git to `origin`.
 The word `main` means we are pushing the `main` branch. 
 
-Now if you refresh the GitHub webpage you should be able to see all of the new files you added to the repository.
+Now if you refresh the GitHub webpage you should be able to see all the new files you added to the repository.
 
 ## Working With Multiple Repositories
 
@@ -94,7 +95,7 @@ For this next exercise **you must first navigate out of your project folder**.
 $ cd ../
 $ git status
 ~~~
-{: .bash}
+{: .language-bash}
 
 Before continuing to the next command, make sure you see the following output:
 
@@ -109,10 +110,10 @@ Next, make another copy of your repository.
 We'll use this to simulate working on another computer.
 
 ~~~
-$ git clone https://github.com/YOUR_GITHUB_USERNAME/molecool.git molecool_friend
+$ git clone git@github.com:YOUR_GITHUB_USERNAME/molecool.git molecool_friend
 $ cd molecool_friend
 ~~~
-{: .bash}
+{: .language-bash}
 
 Check the `remote` on this repository.
 Notice that when you clone a repository,
@@ -125,12 +126,12 @@ $ git remote -v
 {: .language-bash}
 
 ~~~
-origin  https://github.com/YOUR_GITHUB_USERNAME/molecool.git (fetch)
-origin  https://github.com/YOUR_GITHUB_USERNAME/molecool.git (push)
+origin  git@github.com:YOUR_GITHUB_USERNAME/molecool.git (fetch)
+origin  git@github.com:YOUR_GITHUB_USERNAME/molecool.git (push)
 ~~~
+{: .output}
 
 Create the file `testing.txt` in this new directory and make it contain the following.
-{: .bash}
 
 ~~~
 I added this file from a new clone!
@@ -141,7 +142,7 @@ Now we will commit this new file:
 ~~~
 $ git status
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~
 On branch main
@@ -160,7 +161,7 @@ nothing added to commit but untracked files present (use "git add" to track)
 $ git add .
 $ git status
 ~~~
-{: .bash}
+{: .language-bash}
 
 > ## git add
 > Here, we've used `git add .` instead of `git add testing.txt`.
@@ -183,14 +184,14 @@ Changes to be committed:
 $ git commit -m "Adds testing.txt"
 $ git log
 ~~~
-{: .bash}
+{: .language-bash}
 
 Now push the commit:
 
 ~~~
 $ git push
 ~~~
-{: .bash}
+{: .language-bash}
 
 If you check the GitHub page, you should see the `testing.txt` file.
 
@@ -200,14 +201,14 @@ Now change directories into the original local clone, and check if `testing.txt`
 $ cd ../<original clone>
 $ ls -l
 ~~~
-{: .bash}
+{: .language-bash}
 
 To get the newest commit into this clone, we need to pull from the GitHub repository:
 
 ~~~
 $ git pull origin main
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~
 remote: Enumerating objects: 4, done.
@@ -215,7 +216,7 @@ remote: Counting objects: 100% (4/4), done.
 remote: Compressing objects: 100% (1/1), done.
 remote: Total 3 (delta 1), reused 3 (delta 1), pack-reused 0
 Unpacking objects: 100% (3/3), done.
-From https://github.com/YOUR_GITHUB_USERNAME/molecool
+From github.com:YOUR_GITHUB_USERNAME/molecool
  * branch            main     -> FETCH_HEAD
    2ac4843..754da2b  main     -> origin/main
 Updating 2ac4843..754da2b
@@ -244,7 +245,7 @@ To check this, do
 ~~~
 $ git diff HEAD testing.txt
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~
 diff --git a/testing.txt b/testing.txt
@@ -264,7 +265,7 @@ To compare against the commit just before the most recent commit, add "~1" to en
 ~~~
 $ git diff HEAD~1 testing.txt
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~
 diff --git a/testing.txt b/testing.txt
@@ -285,7 +286,7 @@ If we want to compare against a specific commit, we can first do "git log" to fi
 ~~~
 $ git diff *commit_id* testing.txt
 ~~~
-{: .bash}
+{: .language-bash}
 
 Another problem that we sometimes encounter is wanting to undo all of our changes to a particular file.
 This can be done with
@@ -294,7 +295,7 @@ This can be done with
 $ git checkout HEAD testing.txt
 $ cat testing.txt
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~
 I added this file from a new clone!
@@ -327,7 +328,7 @@ Now check what Git says about these files:
 ~~~
 $ git status
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~
 On branch main
@@ -409,7 +410,7 @@ Now do "git status" again. Notice that the files we added are no longer recogniz
 ~~~
 $ git status
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~
 On branch main
@@ -432,7 +433,7 @@ $ git add .gitignore
 $ git commit -m "Ignores Emacs temporary files and data directory"
 $ git push
 ~~~
-{: .bash}
+{: .language-bash}
 
 One nice feature of `.gitignore` is that prevents us from accidentally adding
 a file that shouldn't be part of the repository.
@@ -441,7 +442,7 @@ For example:
 ~~~
 $ git add data/calculation.in
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~
 The following paths are ignored by one of your .gitignore files:
@@ -477,14 +478,14 @@ $ git add testing.txt
 $ git commit -m "Adds a new line to testing.txt"
 $ git push
 ~~~
-{: .bash}
+{: .language-bash}
 
 Now switch over to the `friend` clone.
 
 ~~~
 $ cd ../molecool_friend
 ~~~
-{: .bash}
+{: .language-bash}
 
 We are going to add another line to `testing.txt`, so that it looks like this:
 
@@ -500,12 +501,12 @@ $ git add testing.txt
 $ git commit -m "Adds another line to testing.txt"
 $ git push
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~
-To https://github.com/YOUR_GITHUB_USERNAME/molecool.git
+To github.com:YOUR_GITHUB_USERNAME/molecool.git
  ! [rejected]        main -> main (fetch first)
-error: failed to push some refs to 'https://github.com/YOUR_GITHUB_USERNAME/molecool.git'
+error: failed to push some refs to 'github.com:YOUR_GITHUB_USERNAME/molecool.git'
 hint: Updates were rejected because the remote contains work that you do
 hint: not have locally. This is usually caused by another repository pushing
 hint: to the same ref. You may want to first integrate the remote changes
@@ -520,7 +521,7 @@ We can fix this by doing a pull:
 ~~~
 $ git pull
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~
 remote: Enumerating objects: 9, done.
@@ -528,7 +529,7 @@ remote: Counting objects: 100% (9/9), done.
 remote: Compressing objects: 100% (4/4), done.
 remote: Total 6 (delta 3), reused 5 (delta 2), pack-reused 0
 Unpacking objects: 100% (6/6), done.
-From https://github.com/YOUR_GITHUB_USERNAME/molecool
+From github.com:YOUR_GITHUB_USERNAME/molecool
    754da2b..de54818  main     -> origin/main
 Auto-merging testing.txt
 CONFLICT (content): Merge conflict in testing.txt
@@ -542,7 +543,7 @@ To see which files have the conflict, we can do:
 ~~~
 $ git status
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~
 On branch main
@@ -585,7 +586,7 @@ This is the end of testing.txt
 ~~~
 
 The conflict is shown within the `<<<<<<<` and `>>>>>>>` bits.
-The part before the `=======` is what we added in the commit in the `devops_friend` clone,
+The part before the `=======` is what we added in the commit in the `molecool_friend` clone,
 while the part after it comes from the original local clone.
 We need to decide what to do about the conflict, tidy it up, and then make a new commit.
 Edit `testing.txt` so that it reads:
@@ -609,7 +610,7 @@ $ git add .
 $ git commit -m "Fixed merge conflicts in testing.txt"
 $ git push
 ~~~
-{: .bash}
+{: .language-bash}
 
 This time everything should work correctly.
 Generally speaking, your procedure when ready to commit should be:
@@ -620,7 +621,7 @@ $ git pull
 $ <fix any merge conflicts>
 $ git push
 ~~~
-{: .bash}
+{: .language-bash}
 
 ## More GitHub Features
 
@@ -674,6 +675,7 @@ If you want more `git`, see the following tutorials.
 
 
 {% include links.md %}
+[GitHub PAT documentation]: https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token
 [GitHub]: https://github.com
 [GitLab]: https://gitlab.com/
 [BitBucket]: https://bitbucket.org/
