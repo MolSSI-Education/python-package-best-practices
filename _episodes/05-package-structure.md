@@ -7,10 +7,10 @@ questions:
 - "How can I handle imports in my package?"
 objectives:
 - "Break code into modules and subpackages based on functionality."
-- "Understand how the __init__.py file affects your Python package"
+- "Understand how the `__init__.py` file affects your Python package"
 keypoints:
 - "Your package should be broken up into modules and subpackages depending on the amount of code and functionality."
-- "You can use the __init__.py file to define what packages are imported with your package, and how the user interacts with it."
+- "You can use the `__init__.py` file to define what packages are imported with your package, and how the user interacts with it."
 ---
 
 As new features are implemented in codes, it is natural for new functions and objects to be added.
@@ -28,7 +28,8 @@ We have a directory containing our project with a number of additional features.
 Under our package directory, `molecool`, we can see our current python module `functions.py`.
 For a more detailed explanation of the rest of the package structure,
 please review the [package setup] section of the lessons.
-```
+
+~~~
 .
 ├── CODE_OF_CONDUCT.md              <- Code of Conduct for developers and users
 ├── LICENSE                         <- License file
@@ -76,13 +77,14 @@ please review the [package setup] section of the lessons.
 │       └── CI.yaml
 ├── .gitignore                      <- Stock helper file telling git what file name patterns to ignore when adding files
 └── .lgtm.yml
-```
+~~~
 {: .output}
 
 The easiest way to start is to see what we currently have and try to decide which parts are related to one another.
 Looking through the `functions.py` file, we see a number of different functions,
 and for the sake of simplicity we abbreviate and rearrange them here:
-```python
+
+~~~
 atomic_weights = {
     'H': 1.00784,
     'C': 12.0107,
@@ -125,7 +127,7 @@ def build_bond_list(coordinates, max_bond=1.5, min_bond=0):
 def calculate_molecular_mass(symbols):
 
 def calculate_center_of_mass(symbols, coordinates):
-```
+~~~
 {: .language-python}
 
 Right at the start we can see two dictionaries of atom data. Clearly these are related and should probably be grouped together.
@@ -137,9 +139,10 @@ Let's start making new modules to place our related functions into.
 ### Atom Data
 We will take the `atomic_weights` and `atom_colors` dictionaries and move them into a separate module called `atom_data.py`.
 This is enclosing the constant data that our system is using in a single place.
-This allows all of the new modules we create to access the data from a single location, avoiding the need to copy the dictionaries to each module that needs them.
+This allows all the new modules we create to access the data from a single location, avoiding the need to copy the dictionaries to each module that needs them.
 If we have any other data, related to atoms, used by many of our functions, adding them to this module would be a good idea.
-```python
+
+~~~
 """
 Data used for the rest of the package.
 """
@@ -165,7 +168,7 @@ atom_colors = {
     'Cl': '#98FB98',
     'Br': '#F4A460',
 }
-```
+~~~
 {: .language-python}
 
 > ## Exercise
@@ -176,8 +179,8 @@ atom_colors = {
 >> - `calculate_angle` and `calculate_distance` go together in a `measure` module.
 >> - `draw_molecule` and `bond_histogram` go into a `visualize` module.
 >> - `build_bond_list` is placed into a `molecule` module.
->> - `open_pdb` into a `pdb` module in an `io` package.
->> - `open_xyz` and `write_xyz` are placed into an `xyz` module in an `io` package.
+>> - `open_pdb` into a `pdb` module in an `io` subpackage.
+>> - `open_xyz` and `write_xyz` are placed into an `xyz` module in an `io` subpackage.
 > {: .solution}
 {: .challenge}
 
@@ -186,13 +189,36 @@ Our `functions.py` file contains two functions that handle taking measurements:
 `calculate_distance` and `calculate_angle`.
 Similar to `atom_data`, we will simply place these in a module within the main package.
 Since both functions are taking measurements, we will call it `measure.py`.
-```
+
+~~~
 """
 This module is for functions that perform measurements.
 """
+
 def calculate_distance(rA, rB):
-    dist_vec = (rA - rB)
+    """Calculate the distance between two points.
+
+    Parameters
+    ----------
+    rA, rB : np.ndarray
+        The coordinates of each point.
+
+    Returns
+    -------
+    distance : float
+        The distance between the two points.
+
+    Examples
+    --------
+    >>> r1 = np.array([0, 0, 0])
+    >>> r2 = np.array([0, 0.1, 0])
+    >>> calculate_distance(r1, r2)
+    0.1
+    """
+
+    dist_vec = rA - rB
     distance = np.linalg.norm(dist_vec)
+
     return distance
 
 def calculate_angle(rA, rB, rC, degrees=False):
@@ -204,47 +230,46 @@ def calculate_angle(rA, rB, rC, degrees=False):
         return np.degrees(theta)
     else:
         return theta
-```
+~~~
 {: .language-python}
 
 ### Visualize
 Similarly, we have two functions that handle visualization of molecules.
 We will place them into a module called `visualize.py`.
-```
+
+~~~
 """
 Functions for visualization of molecules
 """
+
 def draw_molecule(coordinates, symbols, draw_bonds=None, save_location=None, dpi=300):
+
     # Create figure
     fig = plt.figure()
-    ax = fig.add_subplot(111, projection='3d')
-    
+    ax = fig.add_subplot(111, projection="3d")
+
     # Get colors - based on atom name
     colors = []
     for atom in symbols:
         colors.append(atom_colors[atom])
-    
-    size = np.array(plt.rcParams['lines.markersize'] ** 2)*200/(len(coordinates))
 
-    ax.scatter(coordinates[:,0], coordinates[:,1], coordinates[:,2], marker="o",
-               edgecolors='k', facecolors=colors, alpha=1, s=size)
-    
+    size = np.array(plt.rcParams["lines.markersize"] ** 2) * 200 / (len(coordinates))
+
+    ax.scatter(
+        coordinates[:, 0],
+        coordinates[:, 1],
+        coordinates[:, 2],
+        marker="o",
+        edgecolors="k",
+        facecolors=colors,
+        alpha=1,
+        s=size,
+    )
+
     # Draw bonds
     if draw_bonds:
         for atoms, bond_length in draw_bonds.items():
             atom1 = atoms[0]
-            atom2 = atoms[1]
-            
-            ax.plot(coordinates[[atom1,atom2], 0], coordinates[[atom1,atom2], 1],
-                    coordinates[[atom1,atom2], 2], color='k')
-            
-    plt.axis('square')
-    
-    # Save figure
-    if save_location:
-        plt.savefig(save_location, dpi=dpi, graph_min=0, graph_max=2)
-    
-    return ax
 
 def bond_histogram(bond_list, save_location=None, dpi=300, graph_min=0, graph_max=2):
     lengths = []
@@ -259,7 +284,6 @@ def bond_histogram(bond_list, save_location=None, dpi=300, graph_min=0, graph_ma
     plt.xlabel('Bond Length (angstrom)')
     plt.ylabel('Number of Bonds')
     
-    
     ax.hist(lengths, bins=bins)
     
     # Save figure
@@ -267,7 +291,7 @@ def bond_histogram(bond_list, save_location=None, dpi=300, graph_min=0, graph_ma
         plt.savefig(save_location, dpi=dpi)
     
     return ax
-```
+~~~
 {: .language-python}
 
 
@@ -276,7 +300,12 @@ Our last function is `build_bond_list`, which is not particularly related to any
 The name `functions.py` does not really give a lot of information about what is available in the module.
 We can rename the module to something more fitting, say `molecule.py`.
 We also add a docstring.
-```
+
+~~~
+"""
+Functions for molecule analysis
+"""
+
 def build_bond_list(coordinates, max_bond=1.5, min_bond=0):
     """
     Build a list of bonds in a set of coordinates based on a distance criteria.
@@ -309,11 +338,11 @@ def build_bond_list(coordinates, max_bond=1.5, min_bond=0):
                 bonds[(atom1, atom2)] = distance
 
     return bonds
-```
+~~~
 {: .language-python}
 
 
-### I/O Package
+### I/O Subpackage
 When looking at the three I/O functions,
 it may be easy to jump ahead and create an I/O module, as mentioned previously.
 However, what we really have is two distinct groups of functions that are related.
@@ -329,67 +358,109 @@ Create a new directory called io within the package and create two new files `pd
 
 
 `pdb.py`
-```
+~~~
 """
 Functions for manipulating pdb files.
 """
+
 def open_pdb(file_location):
+    """Calculate the distance between two points.
+
+    Parameters
+    ----------
+    rA, rB : np.ndarray
+        The coordinates of each point.
+
+    Returns
+    -------
+    distance : float
+        The distance between the two points.
+
+    Examples
+    --------
+    >>> r1 = np.array([0, 0, 0])
+    >>> r2 = np.array([0, 0.1, 0])
+    >>> calculate_distance(r1, r2)
+    0.1
+    """
+
     with open(file_location) as f:
         data = f.readlines()
-    
+
     coordinates = []
     symbols = []
-    
     for line in data:
-        if 'ATOM' in line[0:6] or 'HETATM' in line[0:6]:
+        if "ATOM" in line[0:6] or "HETATM" in line[0:6]:
             symbols.append(line[76:79].strip())
-            
-            coords = [float(x) for x in line[30:55].split()]
-            coordinates.append(coords)
-        
+            atom_coords = [float(x) for x in line[30:55].split()]
+            coordinates.append(atom_coords)
+
     coords = np.array(coordinates)
     symbols = np.array(symbols)
 
     return symbols, coords
-```
+~~~
 {: .language-python}
 
 `xyz.py`
-```
+~~~
 """
-Functions for manipulating xyz files.
+functions for manipulating xyz files.
 """
+
 def open_xyz(file_location):
+
     # Open an xyz file and return symbols and coordinates.
-    xyz_file = np.genfromtxt(fname=file_location, skip_header=2, dtype='unicode')
-    symbols = xyz_file[:,0]
-    coords = (xyz_file[:,1:])
+    xyz_file = np.genfromtxt(fname=file_location, skip_header=2, dtype="unicode")
+    symbols = xyz_file[:, 0]
+    coords = xyz_file[:, 1:]
     coords = coords.astype(np.float)
     return symbols, coords
 
+
 def write_xyz(file_location, symbols, coordinates):
+
     num_atoms = len(symbols)
-    
-    with open(file_location, 'w+') as f:
-        f.write('{}\n'.format(num_atoms))
-        f.write('XYZ file\n')
-        
+
+    if num_atoms != len(coordinates):
+        raise ValueError(
+            f"write_xyz : the number of symbols ({num_atoms}) and number of coordinates ({len(coordinates)}) must be the same to write xyz file!"
+        )
+
+    with open(file_location, "w+") as f:
+        f.write("{}\n".format(num_atoms))
+        f.write("XYZ file\n")
+
         for i in range(num_atoms):
-            f.write('{}\t{}\t{}\t{}\n'.format(symbols[i], 
-                                              coordinates[i,0], coordinates[i,1], coordinates[i,2]))
-```
+            f.write(
+                "{}\t{}\t{}\t{}\n".format(
+                    symbols[i], coordinates[i, 0], coordinates[i, 1], coordinates[i, 2]
+                )
+            )
+~~~
 {: .language-python}
-Now any module that needs to handle input and output can import the needed module from the `io` package.
+
+Now any module that needs to handle input and output can import the needed module from the `io` subpackage.
 Since these are currently small modules, it would not be a big deal to import all of them.
 But, consider a large I/O suite containing a large number of file types and functionalities.
 It will quickly create inefficiencies to leave them in one module.
+
+Now that we've organized and changed the structure in our project,
+we should commit our changes and push to GitHub.
+
+~~~
+$ git add .
+$ git commit -m "organize molecool into modules and subpackage"
+$ git push origin main
+~~~
+{: .language-bash}
 
 ## Fixing Imports
 When we first copied the functions from the Jupyter Notebook into `functions.py`,
 we were able to import `molecool` package and access the functions within `functions.py`.
 After we extracted the functions from that file, we won't be able to import those functions in the same way.
 In fact, we won't be able to access them at all.
-Every time we restructure our code or create new folders we have to be careful and modify the init accordingly.
+Every time we restructure our code or create new folders we have to be careful and modify the `__init__.py` accordingly.
 Let us then add the new functions into the `__init__.py`.
 
 ~~~
@@ -416,14 +487,15 @@ Each set of functions now exist in the context of their module "namespace".
 
 If we look at our original `functions.py` module,
 we will see that we had a number of import statements at the top of the file:
-```
+
+~~~
 import os
 import numpy as np
 import matplotlib.pyplot as plt
-```
+~~~
 {: .language-python}
 
-These are modules that are needed by some of the functions.
+These are modules that are needed by some functions.
 Now that we have moved the functions into separate modules,
 we need to add the `import` statements into each file where they are needed.
 Let's start by looking at `measure.py`.
@@ -441,9 +513,10 @@ $ flake8 measure.py
 You will see a message which says "undefined name np".
 
 In order to make these functions work again, we need to add the following `import` statement.
-```
+
+~~~
 import numpy as np
-```
+~~~
 {: .language-python}
 
 to the top of our file.
@@ -454,12 +527,13 @@ so we need to add our `numpy` import statement again.
 We also see references to `plt` which was the name given to `matplotlib.pyplot` when it was imported.
 Add imports of the external libraries to the top of the `visualize.py` module.
 Of course, don't forget our "unused import" for 3D axes.
-```
+
+~~~
 import numpy as np
 import matplotlib.pyplot as plt
 
 from mpl_toolkits.mplot3d import Axes3D  # noqa: F401
-```
+~~~
 {: .language-python}
 
 If you use `flake8` (or if you carefully inspect), you will also see that `atom_colors` is missing.
@@ -469,20 +543,23 @@ However, we have now moved `atom_colors` and `atomic_weights` into a separate mo
 In order to reference the dictionaries in `visualize.py`, we need to import them using an import statement.
 This is an intra-package import, meaning that we are importing modules from within our packages to other imports in our package (see intra package imports [here](https://docs.python.org/3/tutorial/modules.html))
 
-```
+~~~
 from .atom_data import atom_colors
-```
+~~~
 {: .language-python}
 
 This import statement looks a bit different from the other import statements in our code, we have a `.` before the name.
 This is because it is a *relative import*. Just like when using bash, a dot (`.`) means to look in the current folder. 
 
 To think about this more, let's first look at the dot in a different `import` statement:
-```
+
+~~~
 import matplotlib.pyplot as plt
-```
+~~~
 {: .language-python}
-In this case, the `.` is saying look within the package `matplotlib` and grab the subpackage (or module) `pyplot`. In our case, we are not using a name before the `.` so where is it looking?
+
+In this case, the `.` is saying look within the package `matplotlib` and grab the subpackage (or module) `pyplot`.
+In our case, we are not using a name before the `.` so where is it looking?
 It is looking within the current package/directory, or in this case `molecool` for a module or package named `atom_data`, from which it will import the `atom_colors` dictionary.
 
 
@@ -537,7 +614,7 @@ You should see something similar to the following
 ~~~
 {: .output}
 
-These are all of the things available to us from importhing `molecool`.
+These are all the things available to us from importing `molecool`.
 You will see your `functions` module, but you will also see `np` and `plt`.
 This comes from using `from .functions import *` and is why using `import *` is usually considered a bad practice.
 You will notice that we cannot call `molecool.measure.calculate_distance`
@@ -585,7 +662,7 @@ For example, to use the xyz functions,
 
 ~~~
 import molecool.io.xyz
-dir(molecool.io.open_xyz)
+dir(molecool.io.xyz.open_xyz)
 ~~~
 {: .language-python}
 
@@ -606,10 +683,11 @@ where `IO_FUNCTION` is any function relating to IO.
 
 Within the `io` directory, create a new file called `__init__.py`.
 Open that file with your desired editor and add the following two lines.
-```
+
+~~~
 from .pdb import open_pdb
 from .xyz import open_xyz, write_xyz
-```
+~~~
 {: .language-python}
 
 These lines are relative import statements to the functions within the `io` package.
@@ -618,9 +696,9 @@ When we look at the `io` package, it directs us to the location of the underlyin
 so we do not need to look within each submodule.
 This allows us to use the following `import` statement to our top level `__init__.py` to access the functions:
 
-```
+~~~
 from . import io
-```
+~~~
 {: .language-python}
 
 We can now call our I/O functions using our target syntax.
@@ -646,12 +724,23 @@ from .io import open_pdb, open_xyz, write_xyz
 We could even make these functions more accessible by removing the need for the  `io` module.
 
 This would allow us to call functions by simply typing the following.
+
 ~~~
 >>> molecool.open_pdb()
 ~~~
 {: .language-python}
 
-You can now appreciate how the `init` file plays such an important role in defining how the user imports the functions in the package. 
+You can now appreciate how the `__init__.py` file plays such an important role in defining how the user imports the functions in the package. 
+
+Now that we've made some changes to `__init__.py`,
+we should commit our changes and push to GitHub.
+
+~~~
+$ git add .
+$ git commit -m "fixing imports"
+$ git push origin main
+~~~
+{: .language-bash}
 
 [package setup]: https://molssi-education.github.io/python-package-best-practices/01-package-setup/index.html
 [PEP8]: https://www.python.org/dev/peps/pep-0008/
