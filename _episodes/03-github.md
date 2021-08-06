@@ -55,7 +55,7 @@ $ git remote -v
 You should see no output.
 Now, follow the instructions on GitHub under "...or push an existing repository from the command line"
 ~~~
-$ git remote add origin https://github.com/YOUR_GITHUB_USERNAME/molecool.git
+$ git remote add origin git@github.com:YOUR_GITHUB_USERNAME/molecool.git
 git branch -M main
 git push -u origin main
 ~~~
@@ -64,7 +64,7 @@ git push -u origin main
 The first command adds a remote named `origin` and sets the URL to our repository.
 The word `origin` here is simply a word that is a shortcut for the location of our repository.
 We could have called it anything (like `pickle`, or `banana`, or anything we wanted), but `origin` is used by convention.
-Now, whenever we say `origin`, git knows that we really mean `https://github.com/YOUR_GITHUB_USERNAME/molecool.git`. 
+Now, whenever we say `origin`, git knows that we really mean `github.com:YOUR_GITHUB_USERNAME/molecool.git`. 
 
 The second command changes our primary branch name from `master` to `main`.
 GitHub recently decided (as of June 2020) to switch the name of your `main` branch from `master` to `main`. However, the `git` software will still name your primary (or first) branch `master`. 
@@ -109,7 +109,7 @@ Next, make another copy of your repository.
 We'll use this to simulate working on another computer.
 
 ~~~
-$ git clone https://github.com/YOUR_GITHUB_USERNAME/molecool.git molecool_friend
+$ git clone git@github.com:YOUR_GITHUB_USERNAME/molecool.git molecool_friend
 $ cd molecool_friend
 ~~~
 {: .bash}
@@ -125,8 +125,8 @@ $ git remote -v
 {: .language-bash}
 
 ~~~
-origin  https://github.com/YOUR_GITHUB_USERNAME/molecool.git (fetch)
-origin  https://github.com/YOUR_GITHUB_USERNAME/molecool.git (push)
+origin  git@github.com:YOUR_GITHUB_USERNAME/molecool.git (fetch)
+origin  git@github.com:YOUR_GITHUB_USERNAME/molecool.git (push)
 ~~~
 
 Create the file `testing.txt` in this new directory and make it contain the following.
@@ -215,7 +215,7 @@ remote: Counting objects: 100% (4/4), done.
 remote: Compressing objects: 100% (1/1), done.
 remote: Total 3 (delta 1), reused 3 (delta 1), pack-reused 0
 Unpacking objects: 100% (3/3), done.
-From https://github.com/YOUR_GITHUB_USERNAME/molecool
+From github.com:YOUR_GITHUB_USERNAME/molecool
  * branch            main     -> FETCH_HEAD
    2ac4843..754da2b  main     -> origin/main
 Updating 2ac4843..754da2b
@@ -503,9 +503,9 @@ $ git push
 {: .bash}
 
 ~~~
-To https://github.com/YOUR_GITHUB_USERNAME/molecool.git
+To github.com:YOUR_GITHUB_USERNAME/molecool
  ! [rejected]        main -> main (fetch first)
-error: failed to push some refs to 'https://github.com/YOUR_GITHUB_USERNAME/molecool.git'
+error: failed to push some refs to 'github.com:YOUR_GITHUB_USERNAME/molecool'
 hint: Updates were rejected because the remote contains work that you do
 hint: not have locally. This is usually caused by another repository pushing
 hint: to the same ref. You may want to first integrate the remote changes
@@ -528,7 +528,7 @@ remote: Counting objects: 100% (9/9), done.
 remote: Compressing objects: 100% (4/4), done.
 remote: Total 6 (delta 3), reused 5 (delta 2), pack-reused 0
 Unpacking objects: 100% (6/6), done.
-From https://github.com/YOUR_GITHUB_USERNAME/molecool
+From github.com:YOUR_GITHUB_USERNAME/molecool
    754da2b..de54818  main     -> origin/main
 Auto-merging testing.txt
 CONFLICT (content): Merge conflict in testing.txt
