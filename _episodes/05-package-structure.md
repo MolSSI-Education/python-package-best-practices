@@ -364,24 +364,23 @@ Functions for manipulating pdb files.
 """
 
 def open_pdb(file_location):
-    """Calculate the distance between two points.
+    """Open and read coordinates and atom symbols from a pdb file.
+
+    The pdb file must specify the atom elements in the last column, and follow
+    the conventions outlined in the PDB format specification.
 
     Parameters
     ----------
-    rA, rB : np.ndarray
-        The coordinates of each point.
+    file_location : str
+        The location of the pdb file to read in.
 
     Returns
     -------
-    distance : float
-        The distance between the two points.
+    coords : np.ndarray
+        The coordinates of the pdb file.
+    symbols : list
+        The atomic symbols of the pdb file.
 
-    Examples
-    --------
-    >>> r1 = np.array([0, 0, 0])
-    >>> r2 = np.array([0, 0.1, 0])
-    >>> calculate_distance(r1, r2)
-    0.1
     """
 
     with open(file_location) as f:
