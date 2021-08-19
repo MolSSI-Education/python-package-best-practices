@@ -1,5 +1,5 @@
-Python Package Development
-==========================
+Python Package Best Practices
+=============================
 
 This repository contains lessons for the MolSSI Workshop "Best Practices in Python Package Development". To complete the lessons, navigate to the [lesson pages]. Make sure to visit [setup] first to obtain lesson materials and install required software.
 
