@@ -105,7 +105,7 @@ $ ls
 {: .language-bash}
 
 ~~~
-Makefile            _templates          getting_started.rst
+Makefile            _templates          getting_started.rst requirements.yaml
 README.md           api.rst             index.rst
 _static             conf.py             make.bat
 ~~~
@@ -142,7 +142,7 @@ ls
 ~~~
 Makefile            _static             autosummary         index.rst
 README.md           _templates          conf.py             make.bat
-_build              api.rst             getting_started.rst
+_build              api.rst             getting_started.rst requirements.yaml
 ~~~
 {: .output}
 
@@ -215,7 +215,8 @@ To change this, we will edit the content of `getting_started.rst`
 >> * NumPy
 >> * Matplotlib
 >>
->> Once you have these packages installed, you can install molecool in the same environment using::
+>> Once you have these packages installed, you can install molecool in the same environment using
+>> ::
 >>
 >>     pip install -e .
 >> ~~~
@@ -230,6 +231,7 @@ The Sphinx RTD Theme will use syntax highlighting for Python code.
 Usage
 -------
 Once installed, you can use the package. This example draws a benzene molecule from an xyz file.
+::
 
     import molecool
 
@@ -334,7 +336,7 @@ For example, for the `Getting Started` page, the page heading is 'Getting Starte
 >> First, create a new file called `about.rst`. Next, create a header and write a short desciption in `about.rst`.
 >> ~~~
 >> About this package
->> ----------------
+>> ------------------
 >> This package and documentation are a sample created for the Best Practices Workshop held by `The Molecular Sciences Software Institute <https://molssi.org>`_.
 >>
 >> ~~~
@@ -395,11 +397,11 @@ API Documentation
    molecool.canvas
 ~~~
 
-We are using a Sphinx extension called `autosummary` which is part of AutoDoc.  
-This tells Sphinx to insert a table that contains links to documented items.  
-Autosummary will put `docstrings` out of functions and a page for each docstring. 
-Under that, we are starting a Table of Contents for this page. 
-We will list any functions we would like to have documented here. 
+We are using a Sphinx extension called `autosummary` which is part of AutoDoc.
+This tells Sphinx to insert a table that contains links to documented items.
+Autosummary will put `docstrings` out of functions and a page for each docstring.
+Under that, we are starting a Table of Contents for this page.
+We will list any functions we would like to have documented here.
 This is useful if we would like to separate our API documentation into several pages.
 
 For example, we can add documentation for our `calculate_distance` function.
@@ -484,6 +486,8 @@ Using this strategy, you can selectively add documentation for functions or clas
 > 
 > extensions = [
 >     'autoapi.extension',
+>     #'sphinx.ext.autosummary',
+>     #'sphinx.ext.autodoc',
 >     'sphinx.ext.mathjax',
 >     'sphinx.ext.viewcode',
 >     'sphinx.ext.napoleon',
@@ -534,8 +538,11 @@ Open your `conf.py` file and find the `extensions` section.
 You should see the following:
 
 ~~~
+...
+
 extensions = [
-    'sphinx.ext.autosummary',
+    'autoapi.extension',
+    # 'sphinx.ext.autosummary',
     'sphinx.ext.autodoc',
     'sphinx.ext.mathjax',
     'sphinx.ext.viewcode',
@@ -544,37 +551,44 @@ extensions = [
     'sphinx.ext.extlinks',
 ]
 
-autosummary_generate = True
+...
+
+# autosummary_generate = True # or delete this
 napoleon_google_docstring = False
 napoleon_use_param = False
 napoleon_use_ivar = True
+
+...
 ~~~
 {: .language-python}
 
-CookieCutter has added a few extensions here which will allow us to pull docstrings from our Python modules (`sphinx.ext.autosummary`, `sphinx.ext.autodoc`), and another which we use because our docstrings are `NumPy` style (`sphinx.ext.napoleon`).  
+CookieCutter has added a few extensions here which will allow us to pull docstrings from our Python modules (`sphinx.ext.autosummary`, `sphinx.ext.autodoc`), and another which we use because our docstrings are `NumPy` style (`sphinx.ext.napoleon`).
 The `mathjax` extension allows us to render latex into equations, and the `viewcode` extensions will add links to highlighted source code.
 
-Next, we have added the line `autosummary_generate = True` to allow us to pull auto summaries from our modules and functions.
+Previously, we have used the line `autosummary_generate = True` to allow us to pull auto summaries from our modules and functions.
 
 ## Hosting your documentation
 
 ### Read The Docs
-We recommend hosting your  documentation on [Read The Docs]. 
+We recommend hosting your  documentation on [Read The Docs].
 With this service, you can enable the building of your documentation every time you push to your repository.
 
-Go to the [Read The Docs] website. 
-Log in with your GitHub username and hook the repository to ReadTheDocs. 
-Push to the repository, or trigger a build on the site.
-Because of the recent switch from `master` to `main`, you may get an error that your build has failed. 
-In order to fix this, click "Admin" in the menu, then on the sidebar click "Advanced Settings". 
-Under "Default branch" choose "main". 
-Trigger a build again after making this change.
+Go to the [Read The Docs] website.
+Log in with your GitHub username and hook the repository to ReadTheDocs.
+This is done by clicking `Import a Project` button on your dashboard.
+Then on `Import a Repository` page click the `Import Manually` button and fill the form as following:
+1. Use `molecool-YOUR_GITHUB_USERNAME` in the `Name` field rather than just `molecool` to create unique URL for your Read The Docs documentation,
+2. Fill the `Repository URL` with your molecool repository URL,
+3. Choose Git as your `Repository type`, and
+4. Type `main` as your `Default branch`.
 
-Unfortunately, your documentation build will fail again. 
-This is because we need our dependencies installed on RTD. 
-There is another file the CookieCutter has added which we must now modify. 
-Add your dependencies (NumPy and Matplotlib) to `docs/requirements.yaml`. 
-You should also add `sphinx-autoapi` under `pip only installs`. 
+Next, trigger build by clicking the `Build version` on your Read The Docs project page.
+
+Unfortunately, your documentation build will fail.
+This is because we need our dependencies installed on RTD.
+There is another file the CookieCutter has added which we must now modify.
+Add your dependencies (NumPy and Matplotlib) to `docs/requirements.yaml`.
+You should also add `sphinx-autoapi` under `pip only installs`.
 Your `requirements.yaml` will look like this:
 
 ~~~
