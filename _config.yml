@@ -3,13 +3,13 @@
 #------------------------------------------------------------
 
 # Which carpentry is this ("swc", "dc", or "lc)?
-carpentry: "swc"
+carpentry: "molssi"
 
 # Overall title for pages.
 title: "Python Package Best Practices"
 
 # Contact email address.
-email: "mailto:education@molssi.org"
+email: "mailto:info@molssi.org"
 
 #------------------------------------------------------------
 # Constant URL addresses across lessons
