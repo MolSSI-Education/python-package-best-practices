@@ -1,0 +1,66 @@
+# YAML 1.2
+---
+abstract: |
+    "Best Practices in Python Package Development (Version 2021.08.0)
+    
+    This lesson by the Molecular Sciences Software Institute (MolSSI) teaches users MolSSI’s best practices in Python package setup. To see the full MolSSI’s education mission statement, please click here.
+    
+    MolSSI best practices provides a starting point to get into software development operations to ensure that your code is reliable and reproducible while decreasing long-term maintenance requirements, increasing long-term viability, and allow others to work on your code base to assist your own efforts. Before starting into MolSSI best practice one must first think about the user base of a given project whether this is a project only used by yourself, within a small group, or a large community project. If your project is small and personal you may want to consider each topic in detail before implementing while for large community projects each topic is quite crucial."
+authors: 
+  -
+    affiliation: "The Molecular Sciences Software Institute"
+    family-names: Nash
+    given-names: "Jessica A."
+    orcid: "https://orcid.org/0000-0003-1967-5094"
+  -
+    affiliation: "The Molecular Sciences Software Institute"
+    family-names: Altarawy
+    given-names: Doaa
+    orcid: "https://orcid.org/0000-0002-7795-4422"
+  -
+    affiliation: "The Molecular Sciences Software Institute"
+    family-names: Barnes
+    given-names: "Taylor A."
+    orcid: "https://orcid.org/0000-0001-9396-1094"
+  -
+    affiliation: "The Molecular Sciences Software Institute"
+    family-names: Ellis
+    given-names: "Samuel J."
+  -
+    affiliation: "University of Virginia"
+    family-names: Irrgang
+    given-names: "M. Eric"
+    orcid: "https://orcid.org/0000-0002-1272-3551"
+  -
+    affiliation: "The Molecular Sciences Software Institute"
+    family-names: "Marin-Rimoldi"
+    given-names: Eliseo
+  -
+    affiliation: "The Molecular Sciences Software Institute"
+    family-names: Pritchard
+    given-names: Benjamin
+    orcid: "https://orcid.org/0000-0003-2136-0606"
+  -
+    affiliation: "Postdoctoral Institute for Computational Studies"
+    family-names: Radifar
+    given-names: Muhammad
+    orcid: "https://orcid.org/0000-0001-9156-9478"
+  -
+    affiliation: "The Molecular Sciences Software Institute"
+    family-names: Smith
+    given-names: "Daniel G.A."
+    orcid: "https://orcid.org/0000-0001-8626-0900"
+cff-version: "1.1.0"
+date-released: 2021-08-20
+doi: "10.34974/2H9M-0E15"
+keywords: 
+  - "Python package"
+  - "Best practices"
+  - "Computational chemistry"
+  - MolSSI
+  - "Package development"
+message: "If you use this software, please cite it using these metadata."
+repository-code: "https://github.com/MolSSI-Education/python-package-best-practices/releases/tag/2021.08.0"
+title: "Best Practices in Python Package Development (Version 2021.08.0)"
+version: "2021.08.0"
+...
