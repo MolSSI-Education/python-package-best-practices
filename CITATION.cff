@@ -1,7 +1,7 @@
 # YAML 1.2
 ---
 abstract: |
-    "Best Practices in Python Package Development (Version 2021.07.0)
+    "Best Practices in Python Package Development (Version 2021.08.0)
     
     This lesson by the Molecular Sciences Software Institute (MolSSI) teaches users MolSSI’s best practices in Python package setup. To see the full MolSSI’s education mission statement, please click here.
     
@@ -27,6 +27,11 @@ authors:
     family-names: Ellis
     given-names: "Samuel J."
   -
+    affiliation: "University of Virginia"
+    family-names: Irrgang
+    given-names: "M. Eric"
+    orcid: "https://orcid.org/0000-0002-1272-3551"
+  -
     affiliation: "The Molecular Sciences Software Institute"
     family-names: "Marin-Rimoldi"
     given-names: Eliseo
@@ -36,20 +41,15 @@ authors:
     given-names: Benjamin
     orcid: "https://orcid.org/0000-0003-2136-0606"
   -
-    affiliation: "The Molecular Sciences Software Institute"
-    family-names: Smith
-    given-names: "Daniel G.A."
-    orcid: "https://orcid.org/0000-0001-8626-0900"
-  -
-    affiliation: "University of Virginia"
-    family-names: Irrgang
-    given-names: "M. Eric"
-    orcid: "https://orcid.org/0000-0002-1272-3551"
-  -
     affiliation: "Postdoctoral Institute for Computational Studies"
     family-names: Radifar
     given-names: Muhammad
     orcid: "https://orcid.org/0000-0001-9156-9478"
+  -
+    affiliation: "The Molecular Sciences Software Institute"
+    family-names: Smith
+    given-names: "Daniel G.A."
+    orcid: "https://orcid.org/0000-0001-8626-0900"
 cff-version: "1.1.0"
 date-released: 2021-08-20
 doi: "10.34974/2H9M-0E15"
@@ -57,10 +57,10 @@ keywords:
   - "Python package"
   - "Best practices"
   - "Computational chemistry"
-  - MOLSSI
+  - MolSSI
   - "Package development"
 message: "If you use this software, please cite it using these metadata."
-repository-code: "https://github.com/MolSSI-Education/python-package-best-practices/releases/tag/2021.07.0"
-title: "Best Practices in Python Package Development (Version 2021.07.0)"
-version: "2021.07.0"
+repository-code: "https://github.com/MolSSI-Education/python-package-best-practices/releases/tag/2021.08.0"
+title: "Best Practices in Python Package Development (Version 2021.08.0)"
+version: "2021.08.0"
 ...
