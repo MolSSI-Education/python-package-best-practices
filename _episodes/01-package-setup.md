@@ -170,6 +170,7 @@ You should see the following directory structure.
 ├── molecool                        <- Basic Python Package import file
 │   ├── __init__.py                 <- Basic Python Package import file
 │   ├── _version.py                 <- Automatic version control with Versioneer
+│   ├── functions.py                <- Starting package module
 │   ├── data                        <- Sample additional data (non-code) which can be packaged. Just an example, delete in production
 │   │   ├── README.md
 │   │   └── look_and_say.dat
