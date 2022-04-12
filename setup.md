@@ -73,8 +73,8 @@ If you encounter problems with the installation procedure, ask your workshop org
 ## Choosing a text editor <a name="text_editor"></a>
 You will need an editor for Python files for this workshop.
 If you do not have a preferred text editor, we recommend [Visual Studio Code].
-If you installed a recent version of Anaconda, you will have VSCode installed already.
-You should be able to open it from the Anaconda Navigator window.
+You can enable use Visual Studio Code from WSL by installing the [Remote Development Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack).
+If you are on Mac, you may also [configure VS Code to open from the command line](https://code.visualstudio.com/docs/setup/mac). 
 If you have another preferred text editor, you should use that for the workshop.
 
 ## Using Anaconda and conda
