@@ -110,24 +110,34 @@ atom_colors = {
 }
 
 def open_pdb(file_location):
+    ...
    
 def open_xyz(file_location):
+    ...
 
 def write_xyz(file_location, symbols, coordinates):
+    ...
     
 def calculate_distance(rA, rB):
+    ...
 
 def calculate_angle(rA, rB, rC, degrees=False):
+    ...
 
 def draw_molecule(coordinates, symbols, draw_bonds=None, save_location=None, dpi=300):
+    ...
 
 def bond_histogram(bond_list, save_location=None, dpi=300, graph_min=0, graph_max=2):
+    ...
 
 def build_bond_list(coordinates, max_bond=1.5, min_bond=0):
+    ...
     
 def calculate_molecular_mass(symbols):
+    ...
 
 def calculate_center_of_mass(symbols, coordinates):
+    ...
 ~~~
 {: .language-python}
 
