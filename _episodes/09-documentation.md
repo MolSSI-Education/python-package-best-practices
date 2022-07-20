@@ -3,7 +3,7 @@ title: "Documentation"
 teaching: 40
 exercises: 20
 questions:
-- "How can we document out module?"
+- "How can we document our module?"
 objectives:
 - "Run the lesson checking script and interpret its output correctly."
 - "Explain in-code documentation"
