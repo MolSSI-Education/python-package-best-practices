@@ -76,7 +76,7 @@ systems.
 > In an ongoing effort at generalization, the Python community is now
 encouraging package authors to use a `pyproject.toml` file to direct the build
 system. `distutils` is scheduled for retirement with Python 3.12.
-In preparation, `setuptools` no long requires `distutils` or `setup.py`,
+In preparation, `setuptools` no longer requires `distutils` or `setup.py`,
 and can be configured entirely with `setup.cfg` and `pyproject.toml`.
 {: .callout}
 
