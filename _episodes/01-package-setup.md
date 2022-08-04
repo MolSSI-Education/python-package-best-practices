@@ -169,7 +169,6 @@ You should see the following directory structure.
 ├── README.md                       <- Description of project which GitHub will render
 ├── molecool                        <- Basic Python Package import file
 │   ├── __init__.py                 <- Basic Python Package import file
-│   ├── _version.py                 <- Automatic version control with Versioneer
 │   ├── functions.py                <- Starting package module
 │   ├── data                        <- Sample additional data (non-code) which can be packaged. Just an example, delete in production
 │   │   ├── README.md
@@ -198,10 +197,10 @@ You should see the following directory structure.
 │   ├── index.rst
 │   ├── make.bat
 │   └── requirements.yaml           <- Documenation building specific requirements. Usually a smaller set than the main program
+├── pyproject.toml                  <- Generic Python build system configuration (PEP-517).
 ├── readthedocs.yml
 ├── setup.cfg                       <- Near-master config file to make house INI-like settings for Coverage, Flake8, YAPF, etc.
 ├── setup.py                        <- Your package's setup file for installing with additional options that can be set
-├── versioneer.py                   <- Automatic version control with Versioneer
 ├── .codecov.yml                    <- Codecov config to help reduce its verbosity to more reasonable levels
 ├── .github                         <- GitHub hooks for user contribution, pull request guides and GitHub Actions CI
 │   ├── CONTRIBUTING.md
@@ -235,7 +234,6 @@ We will first be working in the `molecool` folder to build our package, and addi
 │   ├── tests                       <- Unit test directory with sample tests
 │   │   ├── __init__.py
 │   │   └── test_functions.py
-│   └── _version.py                 <- Automatic version control with Versioneer
 ~~~
 {: .output}
 
@@ -280,12 +278,7 @@ Contents of `molecool/molecool/__init__.py`:
 # Add imports here
 from .functions import *
 
-# Handle versioneer
-from ._version import get_versions
-versions = get_versions()
-__version__ = versions['version']
-__git_revision__ = versions['full-revisionid']
-del get_versions, versions
+from ._version import __version__
 ~~~
 {: .language-python}
 
