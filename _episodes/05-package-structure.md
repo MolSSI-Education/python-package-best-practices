@@ -37,7 +37,6 @@ please review the [package setup] section of the lessons.
 ├── README.md                       <- Description of project which GitHub will render
 ├── molecool                        <- Basic Python Package import file
 │   ├── __init__.py                 <- Basic Python Package import file
-│   ├── _version.py                 <- Automatic version control with Versioneer
 │   ├── functions.py                <- Starting package module
 │   ├── data                        <- Sample additional data (non-code) which can be packaged. Just an example, delete in production
 │   │   ├── README.md
@@ -67,9 +66,9 @@ please review the [package setup] section of the lessons.
 │   ├── make.bat
 │   └── requirements.yaml           <- Documenation building specific requirements. Usually a smaller set than the main program
 ├── readthedocs.yml
+├── pyproject.toml                  <- Generic Python build system configuration (PEP-517).
 ├── setup.cfg                       <- Near-master config file to make house INI-like settings for Coverage, Flake8, YAPF, etc.
 ├── setup.py                        <- Your package's setup file for installing with additional options that can be set
-├── versioneer.py                   <- Automatic version control with Versioneer
 ├── .codecov.yml                    <- Codecov config to help reduce its verbosity to more reasonable levels
 ├── .github                         <- GitHub hooks for user contribution, pull request guides and GitHub Actions CI
 │   ├── CONTRIBUTING.md
