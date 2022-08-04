@@ -198,6 +198,7 @@ You should see the following directory structure.
 │   ├── index.rst
 │   ├── make.bat
 │   └── requirements.yaml           <- Documenation building specific requirements. Usually a smaller set than the main program
+├── pyproject.toml                  <- Generic Python build system configuration (PEP-517).
 ├── readthedocs.yml
 ├── setup.cfg                       <- Near-master config file to make house INI-like settings for Coverage, Flake8, YAPF, etc.
 ├── setup.py                        <- Your package's setup file for installing with additional options that can be set
@@ -323,28 +324,38 @@ which describes the function.
 
 We will be moving all of the functions we defined in the Jupyter notebook into python modules (`.py` files) like these.
 
+> Before proceeding, make sure your `pip` and `setuptools` packages are up-to-date.
+{: .callout}
+
 ### Installing from local source.
 
 You may be accustomed to `pip` automatically retrieving packages from the internet.
-You can also install packages from local sources that contain a `setup.py` file.
 
 To develop this package, we will want to use what is called "development mode", or an "editable install",
 so that we can try out our functions and package as we develop it.
-We access development mode using the `develop` command to `setup.py`, or the `-e` option to `pip`.
+We access development mode using the `-e` option to `pip`.
 
-#### Reviewing `setup.py`
+#### Reviewing `setup.cfg`
 Return to the top directory (`molecool`).
-One of the files CookieCutter generated is a `setup.py` file.
-`setup.py` is the build script for [setuptools].
+One of the files CookieCutter generated is a `setup.cfg` file.
+`setup.cfg` is the build script for [setuptools].
 It tells setuptools about your package (such as the name and version) as well as which code files to include.
 We'll be using this file in the next section.
+
+Note `pip` does not actually look at `setup.cfg` directly.
+When we tell `pip` to `install` our package, it will first have to "build"
+a *distribution*.
+For our project, `pip` will discover the `pyproject.toml` file, which describes
+the build system to use.
+We will discuss packaging more in a later section.
 
 #### Installing your package
 A development install will allow you to import your package and use it from anywhere on your computer.
 You will then be able to import your package into scripts in the same way you import `matplotlib` or `numpy`. 
 
-A development installation uses the `setup.py` file to install your package
-by inserting a link to your new project into your Python site-packages folder.
+A development installation inserts a link to your project into your Python
+`site-packages` folder so that updates are immediately available the next time
+you launch Python, without reinstalling.
 To find the location of your site-packages folder, you can check your Python path.
 Open Python (type `python` into your terminal window), and type
 
