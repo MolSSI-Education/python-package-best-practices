@@ -316,7 +316,17 @@ which describes the function.
 
 We will be moving all of the functions we defined in the Jupyter notebook into python modules (`.py` files) like these.
 
-> Before proceeding, make sure your `pip` and `setuptools` packages are up-to-date.
+> ### Before proceeding, make sure your `pip` and `setuptools` packages are up-to-date.
+> 
+> ~~~
+> conda update pip setuptools
+> ~~~
+> {: .language-bash}
+> or
+> ~~~
+> pip install --upgrade pip setuptools
+> ~~~
+> {: .language-bash}
 {: .callout}
 
 ### Installing from local source.

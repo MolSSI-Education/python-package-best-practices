@@ -18,14 +18,17 @@ Create an access token, and *don't lose it!*
 (I keep a copy of the text for my token in my password manager.)
 
 Create `$HOME/.pypirc`. It should look something like the following.
-```
+
+~~~
 [testpypi]
   username = __token__
   password = pypi-Abunchofbase64encodedbinarydataAbunchofbase64encodedbinarydataAbunchofbase64encodedbinarydataAbunchofbase64encodedbinarydata
-
-```
+~~~
+{: .output}
 
 # Distributing packages for `pip install`
+
+## Building the distribution
 
 We previously mentioned that `pip install .` invokes `setuptools` to build the
 distribution archive for our package before installing the package in our
@@ -42,10 +45,12 @@ and `pip` does not actually look at `setup.cfg` directly.
 buildable packages).
 Note that, if we _only_ want to prepare a distribution for sharing,
 we can just use the `build` module.
-```bash
+
+~~~
 pip install build
 python -m build .
-```
+~~~
+{: .language-bash}
 
 Note that `versioningit` also participated in the build process.
 `versioningit` generated a `_version.py` file with a version string derived
@@ -59,18 +64,23 @@ It also makes sure that various package metadata is assembled so that a
 package installer like `pip` can evaluate software dependencies, and so that
 your package looks good when it is shared on pypi.org.
 
-Note: Historically packages built with `setuptools` used a `setup.py` script
+> ## Goodbye to setup.py?
+>
+> Historically packages built with `setuptools` used a `setup.py` script
 as the entry point to the `setuptools` build system. `setup.py` is specific
 to `setuptools` and the `distutils` package it is built on.
 Many tools for helping to build and test packages came to
 rely on `setup.py`, which made them incompatible with non-setuptools build
 systems.
-
-In an ongoing effort at generalization, the Python community is now
+> 
+> In an ongoing effort at generalization, the Python community is now
 encouraging package authors to use a `pyproject.toml` file to direct the build
 system. `distutils` is scheduled for retirement with Python 3.12.
 In preparation, `setuptools` no long requires `distutils` or `setup.py`,
 and can be configured entirely with `setup.cfg` and `pyproject.toml`.
+{: .callout}
+
+## Building and uploading to PyPI
 
 Refer to https://packaging.python.org/en/latest/tutorials/packaging-projects/
 for build-system-agnostic tutorial on
@@ -122,17 +132,27 @@ Python has a strict syntax for version strings.
 
 ## Prepare a release
 
-`git status`. Make sure that your changes are checked in and that you don't have
+~~~
+git status
+~~~
+{: .language-bash}
+
+Make sure that your changes are checked in and that you don't have
 extra files sitting around.
 
 Tag the latest commit with a version identifier.
 Let's get ready to publish `molecool` 1.0.0a1, the first alpha release of our package.
-
-`git tag 1.0.0a1`
+~~~
+git tag 1.0.0a1
+~~~
+{: .language-bash}
 
 Build a source distribution and a wheel.
 
-`python -m build .`
+~~~
+python -m build .
+~~~
+{: .language-bash}
 
 Note the version string embedded in the distribution archive name.
 
