@@ -504,7 +504,25 @@ $ git checkout -b zen
 ~~~
 {: .language-bash}
 
-Next, add a new function to your `functions.py` module.
+We can visualize what branching looks like with some simple figures.
+Before branching, imagine a git commit history that looks like this.
+In the diagram below, each circle represents a git commit.
+There have been two commits, and the HEAD is currently after commit 2.
+
+<center><img src='../fig/github_workflows/git_history_0.svg'></center>
+
+After we have created a new branch and checked it out, we can imagine our git history looking like this.
+The `zen` branch 'branches' or starts from the point where we used the git branch command. 
+
+<center><img src = '../fig/github_workflows/git_branch.svg'></center>
+
+Now, when we make a commit on the `zen` branch, our changes will continue from this point, leaving the main branch unchanged.
+Note that we have not yet made a commit, but this diagram is for illustrative purposes.
+
+<center><img src = "../fig/github_workflows/branch_development.svg"></center>
+
+Now that we have a better understanding of what branching looks like, lets make some changes to the `zen` branch.
+Add a new function to your `functions.py` module.
 We are going to add the ability to print "The Zen of Python". You can get the Zen of Python by typing
 
 ~~~
@@ -1032,7 +1050,6 @@ We want these additions to `.gitignore` to become a permanent part of the reposi
 ~~~
 $ git add .gitignore
 $ git commit -m "Ignores Emacs temporary files and data directory"
-$ git push
 ~~~
 {: .language-bash}
 
