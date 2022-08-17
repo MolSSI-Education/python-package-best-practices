@@ -197,7 +197,7 @@ Now, when we visualize what our repositories look like, we have a copy of our fo
 
 In a real development situation, we would also create a new `conda` environment for developing in this repository.
 
-## Adding an upstream to our forks
+## Upstream - Tracking the original repository
 In your terminal window, type
 ~~~
 $ git remote -v
@@ -271,7 +271,7 @@ Switched to a new branch 'sodium'
 
 We have now created a new branch called `sodium` and checked it out.
 
-## The importance of branching
+## Importance of Branching
 
 When you are doing development, particularly on a fork (but also if you are collaborating), it is very important that all development work be done on a branch.
 In the case of a collaborative repository where you are pushing directly, this will allow you to do pull requests from branches (more on pull requests below), and that your code is reviewed by another developer on the project before being merged to the main branch.
@@ -376,7 +376,7 @@ remote:
 `git` is correct.
 What we will want to do next is creating a pull request on the original repository to get our changes incorporated.
 
-## Pull requests
+## Opening a Pull Request
 
 It is now time to incorporate the edits you have made in your fork into the original repository.
 To do this, we must create a `Pull Request`.
