@@ -329,7 +329,7 @@ We are asking git to show us the difference between the current files and the se
 Lines that have been added are indicated in green with a plus sign next to them (`+`),
 while lines that have been deleted are indicated in red with a minus sign next to them (`-`)
 
-## Viewing our previous versions
+## Viewing previous versions
 
 If you need to check out a previous version,
 
@@ -390,7 +390,7 @@ $ git commit -m "Initial commit after CMS Cookiecutter creation, version 1.0"
 > {: .solution}
 {: .challenge}
 
-## Exploring History
+## Exploring git history
 
 When working on a project, it is easy to forget exactly what changes we have made to a file.
 To check this, do
@@ -923,7 +923,7 @@ $ git branch -d zen
 > {: .solution}
  {: .challenge}
 
-## Ignoring Files
+## Ignoring files - .gitignore
 
 Sometimes while you work on a project, you may end up creating some temporary files.
 For example, if your text editor is Emacs, you may end up with lots of files called `<filename>~`.
