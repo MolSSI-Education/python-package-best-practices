@@ -56,8 +56,7 @@ You should see no output.
 Now, follow the instructions on GitHub under "...or push an existing repository from the command line"
 ~~~
 $ git remote add origin git@github.com:YOUR_GITHUB_USERNAME/molecool.git
-$ git branch -M main
-$ git push -u origin main
+$ git branch
 ~~~
 {: .language-bash}
 
@@ -66,12 +65,30 @@ The word `origin` here is simply a word that is a shortcut for the location of o
 We could have called it anything (like `pickle`, or `banana`, or anything we wanted), but `origin` is used by convention.
 Now, whenever we say `origin`, git knows that we really mean `git@github.com:YOUR_GITHUB_USERNAME/molecool.git`. 
 
-The second command changes our primary branch name from `master` to `main`.
-GitHub recently decided (as of June 2020) to switch the name of your `main` branch from `master` to `main`.
-However, the `git` software will still name your primary (or first) branch `master`. 
-After the second command, you will no longer see `master` when using the command `git branch` (instead seeing `main`). 
+The second command lists all the `git` branches in this repository. Since we just created it, it should only 
+have one with an asterisk (*) next to it named `main` or `master`. GitHub decided (as of June 2020) to switch 
+the name of your default/starting branch from `master` to `main`. However, the `git` software will still name your 
+primary (or first) branch `master` unless the `--initial-branch` flag is set. The Cookiecutter is configured as of v1.9 
+to set `main` as the default branch.
 
-The third command copies (or "pushes") everything which we have tracked using git to `origin`.
+
+> ## Switching default branch from master to main
+> If your output from `git branch` shows `master`, run this command, otherwise, skip this command.
+> ~~~
+> $ git branch -M main
+> ~~~
+> {: .language-bash}
+> The command changes our primary branch name from `master` to `main`.
+> After, you will no longer see `master` when using the command `git branch` (instead seeing `main`). 
+{: .callout .warning}
+
+Finally, we want to upload our changes to git
+
+~~~
+$ git push -u origin main 
+~~~
+
+This command copies (or "pushes") everything which we have tracked using git to `origin`.
 The word `main` means we are pushing the `main` branch. 
 
 Now if you refresh the GitHub webpage you should be able to see all the new files you added to the repository.
