@@ -329,7 +329,7 @@ We are asking git to show us the difference between the current files and the se
 Lines that have been added are indicated in green with a plus sign next to them (`+`),
 while lines that have been deleted are indicated in red with a minus sign next to them (`-`)
 
-## Viewing our previous versions
+## Viewing previous versions
 
 If you need to check out a previous version,
 
@@ -390,6 +390,90 @@ $ git commit -m "Initial commit after CMS Cookiecutter creation, version 1.0"
 > {: .solution}
 {: .challenge}
 
+## Exploring git history
+
+When working on a project, it is easy to forget exactly what changes we have made to a file.
+To check this, do
+
+~~~
+$ git diff HEAD README.md
+~~~
+{: .language-bash}
+
+We should get a blank result.
+"HEAD" is referencing the most recent commit.
+Since we committed our changes `to README.md`, there is no difference to show.
+
+Open your `README.md` and add the following line to the end of it.
+
+~~~
+This line doesn't add any value.
+~~~
+Save that file and run the same command.
+~~~
+$ git diff HEAD README.md
+~~~
+{: .language-bash}
+
+~~~
+diff --git a/README.md b/README.md
+index 94e0b50..a68f349 100644
+--- a/README.md
++++ b/README.md
+@@ -17,6 +17,8 @@ This package requires the following:
+   - numpy
+   - matplotlib
+
++This line doesn't add any value.
++
+ ### Copyright
+~~~
+{: .output}
+
+To compare against the commit just before the most recent commit, add "~1" to end of "HEAD":
+
+~~~
+$ git diff HEAD~1 README.md
+~~~
+{: .language-bash}
+
+~~~
+diff --git a/README.md b/README.md
+index e778cd4..94e0b50 100644
+--- a/README.md
++++ b/README.md
+@@ -13,6 +13,10 @@ This repository is currently under development. To do a development install, dow
+
+ in the repository directory.
+
++This package requires the following:
++  - numpy
++  - matplotlib
++
+ ### Copyright
+~~~
+{: .output}
+
+
+If we want to compare against a specific commit, we can first do "git log" to find the commit's ID, and then do:
+
+~~~
+$ git diff *commit_id* README.md
+~~~
+{: .language-bash}
+
+Another problem that we sometimes encounter is wanting to undo all of our changes to a particular file.
+This can be done with
+
+~~~
+$ git checkout HEAD README.md
+~~~
+{: .language-bash}
+
+If you open `README.md` you will see that it has reverted to the content from the most recent commit.
+
+Of course, you could also replace `HEAD` here with `HEAD~1` or a specific commit ID.
+
 
 ## Creating new features - using branches
 
@@ -420,7 +504,25 @@ $ git checkout -b zen
 ~~~
 {: .language-bash}
 
-Next, add a new function to your `functions.py` module.
+We can visualize what branching looks like with some simple figures.
+Before branching, imagine a git commit history that looks like this.
+In the diagram below, each circle represents a git commit.
+There have been two commits, and the HEAD is currently after commit 2.
+
+<center><img src='../fig/github_workflows/git_history_0.svg'></center>
+
+After we have created a new branch and checked it out, we can imagine our git history looking like this.
+The `zen` branch 'branches' or starts from the point where we used the git branch command. 
+
+<center><img src = '../fig/github_workflows/git_branch.svg'></center>
+
+Now, when we make a commit on the `zen` branch, our changes will continue from this point, leaving the main branch unchanged.
+Note that we have not yet made a commit, but this diagram is for illustrative purposes.
+
+<center><img src = "../fig/github_workflows/branch_development.svg"></center>
+
+Now that we have a better understanding of what branching looks like, lets make some changes to the `zen` branch.
+Add a new function to your `functions.py` module.
 We are going to add the ability to print "The Zen of Python". You can get the Zen of Python by typing
 
 ~~~
@@ -821,6 +923,153 @@ $ git branch -d zen
 > {: .solution}
  {: .challenge}
 
+## Ignoring files - .gitignore
+
+Sometimes while you work on a project, you may end up creating some temporary files.
+For example, if your text editor is Emacs, you may end up with lots of files called `<filename>~`.
+By default, Git tracks all files, including these.
+This tends to be annoying, since it means that any time you do `git status`,
+all of these unimportant files show up.
+
+We are now going to find out how to tell Git to ignore these files,
+so that it doesn't keep telling us about them ever time we do `git status`.
+Even if you aren't working with Emacs, someone else working on your project might,
+so let's do the courtesy of telling Git not to track these temporary files.
+First, lets ensure that we have a few dummy files.
+Make empty files called `testing.txt~` and `README.md~` in your repository using your text editor of choice.
+
+
+While we're at it, also make some other files that aren't important to the project.
+Make a file called `calculation.out` in `molecool/data` using your text editor of choice.
+
+Now check what Git says about these files:
+
+~~~
+$ git status
+~~~
+{: .language-bash}
+
+~~~
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	README.md~
+	molecool/data/calculation.in
+	molecool/data/calculation.out
+	testing.txt~
+
+nothing added to commit but untracked files present (use "git add" to track)
+~~~
+{: .output}
+
+Now we will make Git stop telling us about these files.
+
+Earlier, when we looked at the hidden files, you may have noticed a file called `.gitignore`.
+Cookiecutter created this for us, however, GitHub also has built in `.gitignore` files you can add when creating an empty repository.
+
+This file is to tell `git` which types of files we would like to ignore (thus the name `.gitignore`)
+
+Look at the contents of `.gitignore`
+
+~~~
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+...
+~~~
+
+Git looks at `.gitignore` and ignores any files or directories that match one of the lines.
+Add the following to the end of `.gitignore`:
+
+~~~
+# emacs
+*~
+
+# temporary data files
+*.in
+*.out
+
+~~~
+
+Now do "git status" again. Notice that the files we added are no longer recognized by git.
+
+~~~
+$ git status
+~~~
+{: .language-bash}
+
+~~~
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   .gitignore
+
+no changes added to commit (use "git add" and/or "git commit -a")
+~~~
+{: .output}
+
+We want these additions to `.gitignore` to become a permanent part of the repository:
+
+~~~
+$ git add .gitignore
+$ git commit -m "Ignores Emacs temporary files and data directory"
+~~~
+{: .language-bash}
+
+One nice feature of `.gitignore` is that prevents us from accidentally adding
+a file that shouldn't be part of the repository.
+For example:
+
+~~~
+$ git add data/calculation.in
+~~~
+{: .language-bash}
+
+~~~
+The following paths are ignored by one of your .gitignore files:
+data/calculation.in
+Use -f if you really want to add them.
+~~~
+{: .output}
+
+It is possible to override this with the `-f` option for `git add`.
 
 ## More Tutorials
 If you want more `git`, see the following tutorials.
