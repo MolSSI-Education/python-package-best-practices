@@ -307,9 +307,19 @@ If you are using Mac, follow [these instructions](https://code.visualstudio.com/
 In this workshop, we will be moving code from a Jupyter notebook into a Python package that we can install and import into other scripts.
 
 - [Click here to download the starting materials for the workshop](./data/starting_material.zip)
-- Create a folder on your desktop called `molssi_best_practices`.
+
+> ## Downloading Materials from the command line
+> If you are on WSL, or would like to use the command line, you can download the workshop materials using `curl` (similar to how you downloaded the miniconda installer)
+>
+> ~~~
+> curl -O https://education.molssi.org/python-package-best-practices/data/starting_material.zip
+> ~~~
+> {: .language-bash}
+{: .callout}
+
+- Create a folder called `molssi_best_practices` and add the file you downloaded from the step above.
 - The file you download as starting materials will be a `zip` file.
-  You should unzip this file into the folder you have created on your desktop.
+  You should unzip this file into the folder you have created. (On the command line, you can type `unzip data.zip`)
   After downloading and unzipping, verify that you see the following directory structure.
     ~~~
     molssi_best_practices
@@ -325,7 +335,6 @@ In this workshop, we will be moving code from a Jupyter notebook into a Python p
             │       └── water.xyz
             └── starting_notebook.ipynb
     ~~~
-
 
 ### Conclusion
 At the end of this set-up, you should have created a Python environment (`molssi_best_practices`) which has Python 3.10, `numpy`, `matplotlib`, `jupyter`, and `cookiecutter` installed.
