@@ -7,7 +7,7 @@ Participation in the MolSSI Best Practices Workshop will require use of your own
 > ## Windows users take note
 >
 > If you are working on a Windows computer, 
-> participation in the course will require you to install the Windows Subsystem for Linux (WSL).
+> participation in this workshop will require you to install the Windows Subsystem for Linux (WSL).
 > You should install WSL 2, you will need to have the Windows 10 or Windows 11 OS with the following version requirements:
 > 
 > * For x64 systems: Version 1903 or higher, with Build 18362 or higher.
@@ -53,7 +53,8 @@ If your computer uses the Windows operating system, we require installing Window
 Follow the installation instructions at [this link](https://docs.microsoft.com/en-us/windows/wsl/install). 
 If you don’t have a preference on Linux distribution, we recommend installing Ubuntu 20.04. 
 
-Once WSL is installed, open your ‘Start’ menu and choose ‘Ubuntu’. This will open a terminal window. 
+Once WSL is installed, open your ‘Start’ menu and choose ‘Ubuntu’. 
+This will open a terminal window. 
 A terminal is an interface you can use to interact with your computer using text.
 The first time you have opened Ubuntu, you may see a message which says “Installing, this may take a few minutes…”. 
 After the installation is done, you will have to create a username and password. 
@@ -151,7 +152,7 @@ $ conda deactivate
 {: .language-bash}
 
 You can use `conda` to create environments with different Python versions. 
-ou might be able to see how this could be useful for running old code 
+You might be able to see how this could be useful for running old code 
 (you can change `3.10` in the command above to any version you want), 
 or testing your code in different Python versions.
 
@@ -283,7 +284,6 @@ git config --global user.email "YOUR_EMAIL_ADDRESS"
 {: .bash}
 
 Next, you will need to set the name of the default branch git uses.
-We will discuss in more detail during the bootcamp.
 The following command will set your default branch name to be "main"
 
 ~~~
