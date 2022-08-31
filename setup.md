@@ -6,13 +6,15 @@ Participation in the MolSSI Best Practices Workshop will require use of your own
 
 > ## Windows users take note
 >
-> If you are working on a Windows computer, participation in the course will require you to install the Windows Subsystem for Linux (WSL).
+> If you are working on a Windows computer, 
+> participation in the course will require you to install the Windows Subsystem for Linux (WSL).
 > You should install WSL 2, you will need to have the Windows 10 or Windows 11 OS with the following version requirements:
 > 
 > * For x64 systems: Version 1903 or higher, with Build 18362 or higher.
 > * For ARM64 systems: Version 2004 or higher, with Build 19041 or higher.  
 > 
-> If you haven't updated your computer in a while, these updates could take a considerable amount of time. 
+> If you haven't updated your computer in a while, 
+> these updates could take a considerable amount of time. 
 > Plan accordingly!
 > 
 > If you are on Windows 11, you can also [set up WSL to be able to use graphical interfaces](https://docs.microsoft.com/en-us/windows/wsl/tutorials/gui-apps).
@@ -20,7 +22,10 @@ Participation in the MolSSI Best Practices Workshop will require use of your own
 
 Please follow the instructions given here to make sure you have the necessary software installed. 
 We will be using Python and the conda package manager. 
-If you are on MacOS, Linux, or WSL and you already have Anaconda (or miniconda) installed, skip to the environment creation portion of these set-up instructions. If you do not have Anaconda or miniconda installed please see the appropriate section below. **Note** If you are on Windows miniconda has to be installed on WSL (not Windows). 
+If you are on MacOS, Linux, or WSL and you already have Anaconda (or miniconda) installed,
+skip to the environment creation portion of these set-up instructions. 
+If you do not have Anaconda or miniconda installed please see the appropriate section below. 
+**Note** If you are on Windows miniconda has to be installed on WSL (not Windows). 
 This might be a separate installation.
 
 > ## Anaconda vs. Miniconda
@@ -44,23 +49,41 @@ This set up will walk you through creating a development environment on your com
 1. [Downloading workshop materials](#materials-download)
 
 ## Installing WSL (Windows users only)<a name="WSL-install"></a>
-If your computer uses the Windows operating system, we require installing Windows Subsystem for Linux (WSL). Follow the installation instructions at [this link](https://docs.microsoft.com/en-us/windows/wsl/install). If you don’t have a preference on Linux distribution, we recommend installing Ubuntu 20.04. 
+If your computer uses the Windows operating system, we require installing Windows Subsystem for Linux (WSL). 
+Follow the installation instructions at [this link](https://docs.microsoft.com/en-us/windows/wsl/install). 
+If you don’t have a preference on Linux distribution, we recommend installing Ubuntu 20.04. 
 
 Once WSL is installed, open your ‘Start’ menu and choose ‘Ubuntu’. This will open a terminal window. 
 A terminal is an interface you can use to interact with your computer using text.
 The first time you have opened Ubuntu, you may see a message which says “Installing, this may take a few minutes…”. 
-After the installation is done, you will have to create a username and password. After these are created, you should be able to use the terminal.
+After the installation is done, you will have to create a username and password. 
+After these are created, you should be able to use the terminal.
 
-The Windows Subsystem for Linux is like running another computer inside your computer. It is a different operating system and has different software installed than your Windows computer. For the WSL, you have to install miniconda from the terminal in your Linux operating system. Note that if you if you are using the WSL, your Linux OS is completely separated from your Windows operating system. This means that software installed on one operating system is not available in the other. If you are running the Windows 11 operating system, you can [set up WSL to use graphical interfaces on your computer]((https://docs.microsoft.com/en-us/windows/wsl/tutorials/gui-apps)). Otherwise, you will only be able to interact with WSL through the terminal (and the text editor VSCode, see later in the set-up for information on how to use VS Code in WSL)
+The Windows Subsystem for Linux is like running another computer inside your computer. 
+It is a different operating system and has different software installed than your Windows computer. 
+For the WSL, you have to install miniconda from the terminal in your Linux operating system. 
+Note that if you if you are using the WSL, 
+your Linux OS is completely separated from your Windows operating system. 
+This means that software installed on one operating system is not available in the other. 
+If you are running the Windows 11 operating system, 
+you can [set up WSL to use graphical interfaces on your computer]((https://docs.microsoft.com/en-us/windows/wsl/tutorials/gui-apps)). 
+Otherwise, you will only be able to interact with WSL through the terminal (and the text editor VSCode, 
+see later in the set-up for information on how to use VS Code in WSL)
 
 ## Miniconda Installation
-You can install miniconda through a graphical interface or using your terminal. Pick either "Graphical Installation" or "Text-based (terminal) Installation". **If you are using WSL, it may be easiest to complete this using the terminal installation.**
+You can install miniconda through a graphical interface or using your terminal. 
+Pick either "Graphical Installation" or "Text-based (terminal) Installation". 
+**If you are using WSL, it may be easiest to complete this using the terminal installation.**
 
 ### Graphical Installation
-Obtain the latest version of miniconda for your OS at this [link](https://docs.conda.io/en/latest/miniconda.html). This will download an installer you can run to install miniconda on your system. Note that if you are using WSL, you will need the **Linux** installer, and you will have to move this file to WSL before running. 
+Obtain the latest version of miniconda for your OS at this [link](https://docs.conda.io/en/latest/miniconda.html). 
+This will download an installer you can run to install miniconda on your system. 
+Note that if you are using WSL, you will need the **Linux** installer, 
+and you will have to move this file to WSL before running. 
 
 ### Text-based (terminal) Installation
-You can also use the terminal to download and install the miniconda compilers using the terminal. If you are using Linux or WSL, type the following into your terminal.
+You can also use the terminal to download and install the miniconda compilers using the terminal. 
+If you are using Linux or WSL, type the following into your terminal.
 
 ~~~
 curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
@@ -73,7 +96,9 @@ If you are using Mac, you should pick the appropriate link for your architecture
 M1: https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh
 x86: https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
 
-After installation, close and reopen your terminal window. If you do not see `(base)` before your username on the command line, type
+After installation, 
+close and reopen your terminal window. 
+If you do not see `(base)` before your username on the command line, type
 
 ~~~
 conda init
@@ -125,7 +150,10 @@ $ conda deactivate
 ~~~
 {: .language-bash}
 
-You can use `conda` to create environments with different Python versions. You might be able to see how this could be useful for running old code (you can change `3.10` in the command above to any version you want), or testing your code in different Python versions.
+You can use `conda` to create environments with different Python versions. 
+ou might be able to see how this could be useful for running old code 
+(you can change `3.10` in the command above to any version you want), 
+or testing your code in different Python versions.
 
 ### Package installation using conda
 Using `conda`, we can install packages to our environments.
@@ -161,7 +189,8 @@ For this workshop, you will need to install the following packages into your env
 
 Packages available to Conda are stored within `channels`.
 Some packages are not stored in the default Conda channel, so we need to specify where Conda can find the package with `-c` followed by a channel name in our installation command.
-We will install all of our packages from the `conda-forge` channel, so we include the syntax `-c conda-forge` in our installation command.
+We will install all of our packages from the `conda-forge` channel, 
+so we include the syntax `-c conda-forge` in our installation command.
 
 You can install multiple libraries at the same time by listing them one after another.
 
@@ -194,7 +223,8 @@ $ conda install -c conda-forge cookiecutter
 ## Installing and configuring git
 
 ### Installation
-We will be using the `git` software for version control during this course. This portion walks you through installing and configuring `git`.
+We will be using the `git` software for version control during this workshop. 
+This portion walks you through installing and configuring `git`.
 
 If you do not have the environment activated, activate it first:
 
@@ -212,7 +242,8 @@ git --version
 ~~~
 {: .bash}
 
-Make sure that this outputs at least version 2.28. If you do not have git installed, or if it is an older version of git, 
+Make sure that this outputs at least version 2.28. 
+If you do not have git installed, or if it is an older version of git, 
 you can install git using conda:
 
 ~~~
@@ -223,7 +254,8 @@ conda install -c conda-forge git
 Note that because of the solver that conda uses to decide which version of a package to install you may end up with a version that is < 2.28. 
 you can use the same command from above `git --version` to see what version has been installed.
 
-If the output of that command is < 2.28 you will want to use the following command to specify the version to install. Any version >=2.28 is acceptable.
+If the output of that command is < 2.28 you will want to use the following command to specify the version to install. 
+Any version >=2.28 is acceptable.
 
 ~~~
 conda install -c conda-forge git"=>2.28"
@@ -309,7 +341,8 @@ In this workshop, we will be moving code from a Jupyter notebook into a Python p
 - [Click here to download the starting materials for the workshop](./data/starting_material.zip)
 
 > ## Downloading Materials from the command line
-> If you are on WSL, or would like to use the command line, you can download the workshop materials using `curl` (similar to how you downloaded the miniconda installer)
+> If you are on WSL, or would like to use the command line, you can download the workshop materials using `curl` 
+> (similar to how you downloaded the miniconda installer)
 >
 > ~~~
 > curl -O https://education.molssi.org/python-package-best-practices/data/starting_material.zip
