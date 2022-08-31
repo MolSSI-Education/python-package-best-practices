@@ -79,7 +79,7 @@ Now if you refresh the GitHub webpage you should be able to see all the new file
 This is now an effective entry point for people discovering your project,
 but you should document the URL within your repository contents, in case people
 acquire your package some other way.
-For now, at least, update your `setup.cfg`, and put this GitHub repository URL
+For now, at least, update your `pyproject.toml`, and put this GitHub repository URL
 for the Source URL for your package's metadata.
 
 ## Working With Multiple Repositories
