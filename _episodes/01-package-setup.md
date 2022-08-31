@@ -337,19 +337,12 @@ To develop this package, we will want to use what is called "development mode", 
 so that we can try out our functions and package as we develop it.
 We access development mode using the `-e` option to `pip`.
 
-#### Reviewing `setup.cfg`
+#### Reviewing the generated config files
 Return to the top directory (`molecool`).
-One of the files CookieCutter generated is a `setup.cfg` file.
-`setup.cfg` is the build script for [setuptools].
-It tells setuptools about your package (such as the name and version) as well as which code files to include.
+Two of the files CookieCutter generated are `pyproject.toml` and `setup.cfg`.
+These are the configuration files for our packaging and testing tools.
+`pyproject.toml` tells [setuptools] about your package (such as the name and version) as well as which code files to include.
 We'll be using this file in the next section.
-
-Note `pip` does not actually look at `setup.cfg` directly.
-When we tell `pip` to `install` our package, it will first have to "build"
-a *distribution*.
-For our project, `pip` will discover the `pyproject.toml` file, which describes
-the build system to use.
-We will discuss packaging more in a later section.
 
 #### Installing your package
 A development install will allow you to import your package and use it from anywhere on your computer.
