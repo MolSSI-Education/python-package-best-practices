@@ -100,7 +100,7 @@ $ conda create --name molssi_best_practices "python=3.10"
 
 For other projects, you should replace `molssi_best_practices` with a descriptive name for your project.
 `conda` also allows you to specify the Python version to use with the environment.
-Here, `python=3.9` specifies that we want to use Python 3.9 in this environment.
+Here, `python=3.10` specifies that we want to use Python 3.10 in this environment.
 Executing this command will list the environment location and a list of Python packages to be installed.
 Choose `y(es)` when prompted.
 
