@@ -116,7 +116,8 @@ $ conda activate molssi_best_practices
 
 Once you've activated an environment, the name of the environment will be in parentheses at the front of your command line prompt.
 
-If you wanted to create an environment for testing your code in Python 3.6, for example, you could use the command (Do not execute this, it's just an example.)
+If you wanted to create an environment for testing your code in Python 3.6, for example,
+you could use the following command. (Do not execute this, it's just an example.)
 
 ~~~
 $ conda create --name molssi_36 python=3.6
@@ -125,7 +126,7 @@ $ conda create --name molssi_36 python=3.6
 
 When this environment is activated, Python 3.6 will be used instead of Python 3.9.
 
-To see a list of all your environments
+To see a list of all your environments,
 
 ~~~
 $ conda info --envs
