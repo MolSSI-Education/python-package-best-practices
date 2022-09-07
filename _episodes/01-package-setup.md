@@ -14,7 +14,7 @@ keypoints:
 - "You can use the CMS CookieCutter to quickly create the layout for a Python package"
 ---
 
-For this workshop,
+For this workshop,,
 we are going to create a Python package that performs analysis and creates visualizations for molecules.
 We will start from a Jupyter notebook that has some functions and analysis.
 (You should have downloaded the Jupyter notebook during [setup].)
