@@ -334,6 +334,12 @@ If you do not have a preference for text editors, we recommend [Visual Studio Co
 If you are using WSL, see [these instructions](https://code.visualstudio.com/docs/remote/wsl) for installing Visual Studio Code for use with WSL.
 If you are using Mac, follow [these instructions](https://code.visualstudio.com/docs/setup/mac#:~:text=Launching%20from%20the%20command%20line,code'%20command%20in%20PATH%20command.) to set-up VS Code so that you can use it from the command line.
 
+You should also install the [Microsoft Python Extension Plugin](https://marketplace.visualstudio.com/items?itemName=ms-python.python) for VSCode.
+When enabled, the Python extension will allow you to set the Python environment that VS Code will use to run static checks of your code. 
+You can set the Python environment when you have a Python project open by clicking the Python version (will likely be 3.something) on
+in the blue ribbon at the botton of the editor on the right. 
+Select the `molssi-best-practices` environment.
+
 ## Downloading Workshop Materials<a name="materials_download"></a>
 
 In this workshop, we will be moving code from a Jupyter notebook into a Python package that we can install and import into other scripts.
