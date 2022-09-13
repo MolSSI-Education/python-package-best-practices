@@ -63,7 +63,7 @@ After these are created, you should be able to use the terminal.
 The Windows Subsystem for Linux is like running another computer inside your computer. 
 It is a different operating system and has different software installed than your Windows computer. 
 For the WSL, you have to install miniconda from the terminal in your Linux operating system. 
-Note that if you if you are using the WSL, 
+Note that if you are using the WSL, 
 your Linux OS is completely separated from your Windows operating system. 
 This means that software installed on one operating system is not available in the other. 
 If you are running the Windows 11 operating system, 
@@ -92,7 +92,7 @@ bash Miniconda3-latest-Linux-x86_64.sh
 ~~~
 {: .bash}
 
-If you are using Mac, you should pick the appropriate link for your architecture from miniconda installer page.
+If you are using Mac, you should pick the appropriate link for your architecture from the miniconda installer page.
 
 M1: https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh
 x86: https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
@@ -259,7 +259,7 @@ If the output of that command is < 2.28 you will want to use the following comma
 Any version >=2.28 is acceptable.
 
 ~~~
-conda install -c conda-forge git"=>2.28"
+conda install -c conda-forge git">=2.28"
 ~~~
 {: .language-bash}
 
