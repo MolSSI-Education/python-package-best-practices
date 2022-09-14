@@ -189,10 +189,10 @@ atom_colors = {
 >> - `calculate_angle` and `calculate_distance` go together in a `measure` module.
 >> - `draw_molecule` and `bond_histogram` go into a `visualize` module.
 >> - `build_bond_list` is placed into a `molecule` module.
->> - `open_pdb` is placed into a `pdb` module in an `io` subpackage.
+>> - `open_pdb` go into a `pdb` module in an `io` subpackage.
 >> - `open_xyz` and `write_xyz` are placed into an `xyz` module in an `io` subpackage.
 > {: .solution}
-{: .challenge}
+{: .challenge} 
 
 ### Measure
 Our `functions.py` file contains two functions that handle taking measurements:
