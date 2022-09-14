@@ -80,7 +80,7 @@ Now if you refresh the GitHub webpage you should be able to see all the new file
 
 One of the most potentially frustrating problems in software development is keeping track of all the different copies of the code.
 For example, we might start a project on a local desktop computer, switch to working on a laptop during a conference, and then do performance optimization on a supercomputer.
-In ye olden days, switching between computers was typically accomplished
+In the olden days, switching between computers was typically accomplished
 by copying files via a USB drive, or with `ssh`, or by emailing things to oneself.
 After copying files, it was very easy to make an important change on one computer,
 forget about it, then resume work with the original code version on another computer
