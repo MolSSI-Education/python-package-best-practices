@@ -17,12 +17,15 @@ Register a test account on test.pypi.org.
 Create an access token, and *don't lose it!*
 (I keep a copy of the text for my token in my password manager.)
 
-Create `$HOME/.pypirc`. It should look something like the following.
+The access token will be a string that begins with `pypi-` followed by a sequence of base64 encoded bytes
+that we will refer to as "YOURTOKEN" below.
+
+Create `$HOME/.pypirc`. It should look something like the following, substituting your access token in the password field.
 
 ~~~
 [testpypi]
   username = __token__
-  password = pypi-Abunchofbase64encodedbinarydataAbunchofbase64encodedbinarydataAbunchofbase64encodedbinarydataAbunchofbase64encodedbinarydata
+  password = YOURTOKEN
 ~~~
 {: .output}
 
@@ -43,9 +46,9 @@ Make sure your README file and documentation are up to date.
 Check the project description in your project's metadata, too.
 
 Consider whether there is some announcement text that you would
-want to include in a text file or in a blurb in your GitHub Releases tab.
-
-*TODO: Do we care about GitHub's Release and Tags tabs?*
+want to include in a text file or in a blurb in your GitHub
+[Releases tab](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases).
+This can be a good place to publish [release notes](https://docs.github.com/en/repositories/releasing-projects-on-github/automatically-generated-release-notes).
 
 
 ## Tagging the release
@@ -67,6 +70,26 @@ git tag 1.0.0a1
 
 Build the distribution archive(s) for the packaging system you are using (see below): `PyPI` or `Conda`.
 
+~~~
+Tags created in your local repository are not automatically shared when you `git push` a branch.
+You can push tags the same way you push branches, or you can create the tag directly on GitHub.
+With the GitHub interface, you can associate tags with
+[Releases](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases)
+to provide a place to publish release notes and automatically generate links to archive files of
+your repository at the tagged commits.
+
+Tags created through the GitHub interface (or pushed from a different location) will be available
+locally the next time you `git fetch`.
+
+Keep in mind that the GitHub repository page is one of the main entry points for new users of your package.
+Your project looks healthier and better maintained with a nice, well documented history of
+[releases](https://docs.github.com/en/repositories/releasing-projects-on-github/viewing-your-repositorys-releases-and-tags).
+~~~
+{: .callout}
+
+Tags and GitHub releases do not automatically make your package easier to find or install,
+but they can be helpful in preparing the source of version information or the source archive
+as you prepare the *distribution* of your package.
 
 # Packages and distributions
 
@@ -149,17 +172,19 @@ and can be configured entirely with `pyproject.toml`.
 
 ### Building and uploading to PyPI
 
-Refer to https://packaging.python.org/en/latest/tutorials/packaging-projects/
-for build-system-agnostic tutorial on
+Read through https://packaging.python.org/en/latest/tutorials/packaging-projects/
+for a build-system-agnostic tutorial on
 * packaging Python projects for distribution
 * publishing packages to pypi.org for automatic download with `pip install`
 
-You will note that most of the configuration described in the packaging tutorial
-has already been pre-configured by the cookiecutter.
+By the end of the [tutorial](https://packaging.python.org/en/latest/tutorials/packaging-projects/),
+you will understand how to get an account on `pypi.org`,
+build a distribution archive with `python -m build`,
+and use twine to upload your package.
 
-Essentially, once you have an account on `pypi.org` and you have built
-a distribution archive with `python -m build`, you can `pip install twine` and
-use twine to upload your package, per the above linked tutorial.
+The [tutorial](https://packaging.python.org/en/latest/tutorials/packaging-projects/) should go quickly because,
+as you will note, most of the configuration it describes
+has already been pre-configured by the cookiecutter.
 Caution: *strongly* consider creating an account on `test.pypi.org` and uploading
 an initial "alpha" or "beta" release of your package to see how it looks and to
 do test installations.
@@ -183,11 +208,11 @@ see https://packaging.python.org/en/latest/guides/distributing-packages-using-se
 `conda` has a completely different approach to building and distributing
 packages, and is not yet PEP-517 compliant.
 (It does not use `pyproject.toml`.)
-For information about using `conda build`,
-preparing your build details and metadata with `meta.yml`,
-and publishing packages through a conda channel like `conda-forge`,
-
-*new content...*
+For fundamental information about using `conda build`
+(such as preparing your build details and metadata with `meta.yml`),
+see [conda-build docs](https://docs.conda.io/projects/conda-build/en/latest/).
+For documentation on publishing packages through the `conda-forge` channel,
+refer to the channel's [contribution docs](https://conda-forge.org/docs/maintainer/adding_pkgs.html).
 
 # Preparing for future releases
  
