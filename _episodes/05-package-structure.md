@@ -189,7 +189,7 @@ atom_colors = {
 >> - `calculate_angle` and `calculate_distance` go together in a `measure` module.
 >> - `draw_molecule` and `bond_histogram` go into a `visualize` module.
 >> - `build_bond_list` is placed into a `molecule` module.
->> - `open_pdb` into a `pdb` module in an `io` subpackage.
+>> - `open_pdb` is placed into a `pdb` module in an `io` subpackage.
 >> - `open_xyz` and `write_xyz` are placed into an `xyz` module in an `io` subpackage.
 > {: .solution}
 {: .challenge}
@@ -364,7 +364,7 @@ but are still somewhat unrelated because of their file type.
 Instead of making a single module,
 we are going to create a subpackage to handle i/o and place a module for each group within it.
 
-Create a new directory called io within the package and create two new files `pdb.py` and `xyz.py`:
+Create a new directory called io within the package (using the command 'mkdir directory_name') and create two new files `pdb.py` and `xyz.py` (using the command 'touch file_name'):
 
 
 `pdb.py`
