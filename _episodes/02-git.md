@@ -53,7 +53,7 @@ You should have `git` installed and configured from the setup instructions.
 
 In this section, we are going to  edit files in the Python package that we created earlier, and use `git` to track those changes.
 
-First, use a terminal to `cd` into the top directory of the local repository.
+First, use a terminal to `cd` into the top directory of the local repository (the outer molecool directory).
 
 In order for `git` to keep track of your project, or any changes in your project,
 you must first tell it that you want it to do this.

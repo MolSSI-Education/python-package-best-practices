@@ -52,7 +52,7 @@ Where you test your system as a whole to check if it meets all the requirements.
 
 Another important type of testing is **Regression tests**.
 In Regression tests, given a known input, does the software correctly and consistently return the correct values.
-This kind of testing can catch problems in previously working code that may has been broken by new changes or new features.
+This kind of testing can catch problems in previously working code that may have been broken by new changes or new features.
 
 It is highly encouraged to have Unit tests that *cover* most of your code.
 It is also helpful to have some Integration and System tests.

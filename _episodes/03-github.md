@@ -76,11 +76,17 @@ The word `main` means we are pushing the `main` branch.
 
 Now if you refresh the GitHub webpage you should be able to see all the new files you added to the repository.
 
+This is now an effective entry point for people discovering your project,
+but you should document the URL within your repository contents, in case people
+acquire your package some other way.
+For now, at least, update your `pyproject.toml`, and put this GitHub repository URL
+for the Source URL for your package's metadata.
+
 ## Working With Multiple Repositories
 
 One of the most potentially frustrating problems in software development is keeping track of all the different copies of the code.
 For example, we might start a project on a local desktop computer, switch to working on a laptop during a conference, and then do performance optimization on a supercomputer.
-In ye olden days, switching between computers was typically accomplished
+In the olden days, switching between computers was typically accomplished
 by copying files via a USB drive, or with `ssh`, or by emailing things to oneself.
 After copying files, it was very easy to make an important change on one computer,
 forget about it, then resume work with the original code version on another computer
