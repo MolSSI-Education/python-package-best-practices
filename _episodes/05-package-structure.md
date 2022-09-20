@@ -364,7 +364,7 @@ but are still somewhat unrelated because of their file type.
 Instead of making a single module,
 we are going to create a subpackage to handle i/o and place a module for each group within it.
 
-Create a new directory called io within the package (using the command 'mkdir directory_name') and create two new files `pdb.py` and `xyz.py` (using the command 'touch file_name'):
+Create a new directory called "io" within the package (using the command 'mkdir directory_name') and create two new files `pdb.py` and `xyz.py` (using the command `touch file_name`):
 
 
 `pdb.py`

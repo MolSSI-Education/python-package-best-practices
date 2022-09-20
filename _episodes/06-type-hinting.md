@@ -16,7 +16,7 @@ keypoints:
 ## Python Typing
 
 
-Python does not inherently require or enforce the types of variables in code.
+Python does not inherently require or enforce the *types* of variables in code.
 Python instead works under a principle called `Duck Typing`.
 Duck Typing is derived from the phrase, "If it looks like a duck, swims like a duck, and quacks like a duck, then it probably is a duck."
 Similarily, if the value assigned to a variable can be used when an integer is called for, the code largely is unconcerned if the variable is an integer or another type.
@@ -86,7 +86,7 @@ we should do more to help make sure the code is used and behaves as expected.
 ## Type Hinting
 Type hinting a function, and in fact any variable, can improve how easy it is to understand the needs and behaviors of a function.
 It is important to note that type hints will not be enforced by Python.
-The benefits of type hinting are to support development in Python by ensuring code will not have `TypeErrors`.
+The benefits of type hinting are to support error checking at development time to help avoid errors at run time.
 Python makes it easy to specify a type hint for any variable.
 We can specify a type with or without providing a default value.
 
@@ -121,7 +121,8 @@ def my_function(var1: int, var2: float):
     ...
 ```
 
-Each variable can be assigned their own type.
+Each variable can be assigned its own type.
+
 `my_function` expects two variables, `var1` and `var2`, which should be an `int` and a `float` respectively.
 
 The syntax for type hinting a function output is a bit different.
@@ -171,7 +172,8 @@ Lets apply type hinting to the `calculate_distance` function.
 After adding the type hint annotations, you may already notice that your IDE
 warns you if you try to write `calculate_distance([0, 0, 0], [0, 0.1, 0])`
 (with lists instead of numpy arrays) before you even try to run the command.
-If you are using Visual Studio Code and you do not have type hinting warnings, see the "Type Checking in VS Code" section below.
+If you are using Visual Studio Code and you do not have type hinting warnings,
+see the "Type Checking in VS Code" section below.
 
 You and your users can avoid a lot of bugs during development by enabling static
 type checking in your editor or with a standalone tool.

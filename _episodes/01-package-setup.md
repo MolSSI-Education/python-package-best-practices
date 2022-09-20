@@ -350,7 +350,7 @@ You will then be able to import your package into scripts in the same way you im
 
 A development installation inserts a link to your project into your Python
 `site-packages` folder so that updates are immediately available the next time
-you launch Python, without reinstalling.
+you launch Python, without having to reinstall your package.
 To find the location of your site-packages folder, you can check your Python path.
 Open Python (type `python` into your terminal window), and type
 

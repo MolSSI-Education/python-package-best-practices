@@ -455,7 +455,7 @@ index e778cd4..94e0b50 100644
 {: .output}
 
 
-If we want to compare against a specific commit, we can first do "git log" to find the commit's ID, and then do:
+If we want to compare against a specific commit, we can first do `git log` to find the commit's ID, and then do:
 
 ~~~
 $ git diff *commit_id* README.md
