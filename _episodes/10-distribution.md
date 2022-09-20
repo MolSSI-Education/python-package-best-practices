@@ -1,13 +1,15 @@
 ---
 title: "Distributing Packages"
 teaching: 30
-exercises: 60
+exercises: 5
 questions:
 - "How can you get your project out there?"
 objectives:
 - "Discuss community strategies"
 keypoints:
-- ""
+- "Add package metadata and build a distribution to share a package through community platforms."
+- "Adopt common conventions and establish clear expectations for compatibility versus breaking changes so that prospective users of your package have confidence in its stability and maturity."
+- "Multiple packaging systems exist, and require separate preparation."
 ---
 
 # Preliminary
@@ -70,21 +72,21 @@ git tag 1.0.0a1
 
 Build the distribution archive(s) for the packaging system you are using (see below): `PyPI` or `Conda`.
 
-~~~
-Tags created in your local repository are not automatically shared when you `git push` a branch.
+> ## Synchronizing tags
+> 
+> Tags created in your local repository are not automatically shared when you `git push` a branch.
 You can push tags the same way you push branches, or you can create the tag directly on GitHub.
 With the GitHub interface, you can associate tags with
 [Releases](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases)
 to provide a place to publish release notes and automatically generate links to archive files of
 your repository at the tagged commits.
-
-Tags created through the GitHub interface (or pushed from a different location) will be available
+>
+> Tags created through the GitHub interface (or pushed from a different location) will be available
 locally the next time you `git fetch`.
-
-Keep in mind that the GitHub repository page is one of the main entry points for new users of your package.
+>
+> Keep in mind that the GitHub repository page is one of the main entry points for new users of your package.
 Your project looks healthier and better maintained with a nice, well documented history of
-[releases](https://docs.github.com/en/repositories/releasing-projects-on-github/viewing-your-repositorys-releases-and-tags).
-~~~
+> [releases](https://docs.github.com/en/repositories/releasing-projects-on-github/viewing-your-repositorys-releases-and-tags).
 {: .callout}
 
 Tags and GitHub releases do not automatically make your package easier to find or install,
