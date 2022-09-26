@@ -3,7 +3,7 @@ title: "Distributing Packages"
 teaching: 30
 exercises: 5
 questions:
-- "How can you get your project out there?"
+- "How can I get my project out there?"
 objectives:
 - "Discuss community strategies"
 keypoints:
@@ -11,6 +11,14 @@ keypoints:
 - "Adopt common conventions and establish clear expectations for compatibility versus breaking changes so that prospective users of your package have confidence in its stability and maturity."
 - "Multiple packaging systems exist, and require separate preparation."
 ---
+
+> ## This lesson is under development
+> This lesson is in a preliminary stage, and is not as polished as the rests of the lessons. 
+>  We expect to add more content to and update this lesson in the future!
+> 
+{: .discussion}
+
+This lesson will discuss how to distribute packages through the Python Package Index (PyPI) and conda. 
 
 # Preliminary
 
