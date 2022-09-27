@@ -24,7 +24,7 @@ This lesson will discuss how to distribute packages through the Python Package I
 
 Register a test account on test.pypi.org.
 
-Create an access token, and *don't lose it!*
+[Create](https://test.pypi.org/manage/account/#api-tokens) an [access token](https://test.pypi.org/help/#apitoken), and *don't lose it!*
 (I keep a copy of the text for my token in my password manager.)
 
 The access token will be a string that begins with `pypi-` followed by a sequence of base64 encoded bytes
