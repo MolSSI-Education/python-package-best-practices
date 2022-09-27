@@ -39,7 +39,7 @@ Create `$HOME/.pypirc`. It should look something like the following, substitutin
 ~~~
 {: .output}
 
-You will also eventually need to get an account on the main pypi.org,
+You will also eventually need to [get an account](https://pypi.org/account/register/) on the main pypi.org,
 but you can do that later.
 
 Install some additional packages to help build and upload your distribution.
