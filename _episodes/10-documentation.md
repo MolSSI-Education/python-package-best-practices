@@ -3,7 +3,7 @@ title: "Documentation"
 teaching: 40
 exercises: 20
 questions:
-- "How can we document out module?"
+- "How can we document our module?"
 objectives:
 - "Run the lesson checking script and interpret its output correctly."
 - "Explain in-code documentation"
@@ -132,7 +132,7 @@ $ make html
 This command tells Sphinx to generate your documentation as html pages. 
 With this command, we are building HTML files from the reStructuredText files.
 
-Now notice when you type `ls` a some new directories have appeared.
+Now notice when you type `ls` some new directories have appeared.
 
 ~~~
 ls
@@ -613,6 +613,8 @@ dependencies:
 
 Commit and push - your documentation should build successfully and you should be able to view it!
 
+Later, when you share distributions of your package, you will want people to be able to find this documentation easily.
+Update your `README.md` and `setup.cfg` files with your new ReadTheDocs URL.
 
 {% include links.md %}
 

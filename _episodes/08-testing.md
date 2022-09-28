@@ -32,7 +32,7 @@ Thorough testing is typically an afterthought, but for larger projects, it is es
 **Software testing is checking the behavior of part of the code (such as a method, class, or a module) by comparing its expected output or behavior with the observed one.**
 We will explain this in more detail shortly.
 
-## Unit vs Regression vs Integration testing
+## Levels of Testing
 
 There are three main levels of testing:
 
@@ -52,7 +52,7 @@ Where you test your system as a whole to check if it meets all the requirements.
 
 Another important type of testing is **Regression tests**.
 In Regression tests, given a known input, does the software correctly and consistently return the correct values.
-This kind of testing can catch problems in previously working code that may has been broken by new changes or new features.
+This kind of testing can catch problems in previously working code that may have been broken by new changes or new features.
 
 It is highly encouraged to have Unit tests that *cover* most of your code.
 It is also helpful to have some Integration and System tests.
@@ -74,7 +74,7 @@ $ pip install -U pytest-cov
 ~~~
 {: .language-bash}
 
-### Running our first test
+## Running our first test
 
 When we run `pytest`, it will look for directories and files which start with `test` or `test_`.
 It then looks inside those files and executes any functions that begin with the word `test_`.
@@ -161,7 +161,7 @@ molecool/tests/test_molecool.py::test_molecool_imported PASSED [100%]
 
 Now we see that `pytest` displays the test name for us, as well as `PASSED` next to the test name.
 
-## Testing our functions
+## Adding tests to our package
 
 We will now add tests to test our functions.
 After dividing our package into modules, we have four modules and one subpackage.
@@ -221,7 +221,7 @@ molecool/tests/test_measure.py::test_calculate_distance PASSED           [100%]
 We now see that we have two tests which have been run, and they both passed.
 This means that our calculated distance was equal to what we set as the expected distance, and the assertion did not fail.
 
-### Failing tests
+## Failing tests
 Let's see what happens when one of the test fails.
 
 In case of test failure, Pytest will show detailed output from doing its own analysis to discover the error by inspecting your objects at runtime.
@@ -382,7 +382,7 @@ def test_build_bond_list():
 
 Here, we are asserting that the correct number of bonds were found, and next we are iterating through the dictionary to ensure that a distance of 1.4 angstrom was calculated for each bond.
 
-### Testing Expected Exceptions
+## Testing Expected Exceptions
 
 If you expect your code to raise exceptions, you can test this behavior with pytest.
 For example in our `calculate_angle` function, our inputs must be numpy arrays, or the function will error.
@@ -1083,7 +1083,7 @@ Got:
 ~~~
 {: .output}
 
-### Code Coverage Part I
+## Code Coverage Part I
 
 Now that we have a set of modules and associated tests, we want to see how much of our package is "covered" by our tests.
 We'll measure this by counting the lines of our packages that are touched, i.e. used, during our tests.

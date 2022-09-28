@@ -37,7 +37,6 @@ please review the [package setup] section of the lessons.
 ├── README.md                       <- Description of project which GitHub will render
 ├── molecool                        <- Basic Python Package import file
 │   ├── __init__.py                 <- Basic Python Package import file
-│   ├── _version.py                 <- Automatic version control with Versioneer
 │   ├── functions.py                <- Starting package module
 │   ├── data                        <- Sample additional data (non-code) which can be packaged. Just an example, delete in production
 │   │   ├── README.md
@@ -67,9 +66,9 @@ please review the [package setup] section of the lessons.
 │   ├── make.bat
 │   └── requirements.yaml           <- Documenation building specific requirements. Usually a smaller set than the main program
 ├── readthedocs.yml
+├── pyproject.toml                  <- Generic Python build system configuration (PEP-517).
 ├── setup.cfg                       <- Near-master config file to make house INI-like settings for Coverage, Flake8, YAPF, etc.
 ├── setup.py                        <- Your package's setup file for installing with additional options that can be set
-├── versioneer.py                   <- Automatic version control with Versioneer
 ├── .codecov.yml                    <- Codecov config to help reduce its verbosity to more reasonable levels
 ├── .github                         <- GitHub hooks for user contribution, pull request guides and GitHub Actions CI
 │   ├── CONTRIBUTING.md
@@ -110,24 +109,34 @@ atom_colors = {
 }
 
 def open_pdb(file_location):
+    ...
    
 def open_xyz(file_location):
+    ...
 
 def write_xyz(file_location, symbols, coordinates):
+    ...
     
 def calculate_distance(rA, rB):
+    ...
 
 def calculate_angle(rA, rB, rC, degrees=False):
+    ...
 
 def draw_molecule(coordinates, symbols, draw_bonds=None, save_location=None, dpi=300):
+    ...
 
 def bond_histogram(bond_list, save_location=None, dpi=300, graph_min=0, graph_max=2):
+    ...
 
 def build_bond_list(coordinates, max_bond=1.5, min_bond=0):
+    ...
     
 def calculate_molecular_mass(symbols):
+    ...
 
 def calculate_center_of_mass(symbols, coordinates):
+    ...
 ~~~
 {: .language-python}
 
@@ -180,10 +189,10 @@ atom_colors = {
 >> - `calculate_angle` and `calculate_distance` go together in a `measure` module.
 >> - `draw_molecule` and `bond_histogram` go into a `visualize` module.
 >> - `build_bond_list` is placed into a `molecule` module.
->> - `open_pdb` into a `pdb` module in an `io` subpackage.
+>> - `open_pdb` go into a `pdb` module in an `io` subpackage.
 >> - `open_xyz` and `write_xyz` are placed into an `xyz` module in an `io` subpackage.
 > {: .solution}
-{: .challenge}
+{: .challenge} 
 
 ### Measure
 Our `functions.py` file contains two functions that handle taking measurements:
@@ -355,7 +364,7 @@ but are still somewhat unrelated because of their file type.
 Instead of making a single module,
 we are going to create a subpackage to handle i/o and place a module for each group within it.
 
-Create a new directory called io within the package and create two new files `pdb.py` and `xyz.py`:
+Create a new directory called "io" within the package (using the command 'mkdir directory_name') and create two new files `pdb.py` and `xyz.py` (using the command `touch file_name`):
 
 
 `pdb.py`

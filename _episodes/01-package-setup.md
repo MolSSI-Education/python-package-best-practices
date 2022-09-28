@@ -169,7 +169,6 @@ You should see the following directory structure.
 ├── README.md                       <- Description of project which GitHub will render
 ├── molecool                        <- Basic Python Package import file
 │   ├── __init__.py                 <- Basic Python Package import file
-│   ├── _version.py                 <- Automatic version control with Versioneer
 │   ├── functions.py                <- Starting package module
 │   ├── data                        <- Sample additional data (non-code) which can be packaged. Just an example, delete in production
 │   │   ├── README.md
@@ -198,10 +197,10 @@ You should see the following directory structure.
 │   ├── index.rst
 │   ├── make.bat
 │   └── requirements.yaml           <- Documenation building specific requirements. Usually a smaller set than the main program
+├── pyproject.toml                  <- Generic Python build system configuration (PEP-517).
 ├── readthedocs.yml
 ├── setup.cfg                       <- Near-master config file to make house INI-like settings for Coverage, Flake8, YAPF, etc.
 ├── setup.py                        <- Your package's setup file for installing with additional options that can be set
-├── versioneer.py                   <- Automatic version control with Versioneer
 ├── .codecov.yml                    <- Codecov config to help reduce its verbosity to more reasonable levels
 ├── .github                         <- GitHub hooks for user contribution, pull request guides and GitHub Actions CI
 │   ├── CONTRIBUTING.md
@@ -235,7 +234,6 @@ We will first be working in the `molecool` folder to build our package, and addi
 │   ├── tests                       <- Unit test directory with sample tests
 │   │   ├── __init__.py
 │   │   └── test_functions.py
-│   └── _version.py                 <- Automatic version control with Versioneer
 ~~~
 {: .output}
 
@@ -280,12 +278,7 @@ Contents of `molecool/molecool/__init__.py`:
 # Add imports here
 from .functions import *
 
-# Handle versioneer
-from ._version import get_versions
-versions = get_versions()
-__version__ = versions['version']
-__git_revision__ = versions['full-revisionid']
-del get_versions, versions
+from ._version import __version__
 ~~~
 {: .language-python}
 
@@ -323,28 +316,41 @@ which describes the function.
 
 We will be moving all of the functions we defined in the Jupyter notebook into python modules (`.py` files) like these.
 
+> ### Before proceeding, make sure your `pip` and `setuptools` packages are up-to-date.
+> 
+> ~~~
+> conda update pip setuptools
+> ~~~
+> {: .language-bash}
+> or
+> ~~~
+> pip install --upgrade pip setuptools
+> ~~~
+> {: .language-bash}
+{: .callout}
+
 ### Installing from local source.
 
 You may be accustomed to `pip` automatically retrieving packages from the internet.
-You can also install packages from local sources that contain a `setup.py` file.
 
 To develop this package, we will want to use what is called "development mode", or an "editable install",
 so that we can try out our functions and package as we develop it.
-We access development mode using the `develop` command to `setup.py`, or the `-e` option to `pip`.
+We access development mode using the `-e` option to `pip`.
 
-#### Reviewing `setup.py`
+#### Reviewing the generated config files
 Return to the top directory (`molecool`).
-One of the files CookieCutter generated is a `setup.py` file.
-`setup.py` is the build script for [setuptools].
-It tells setuptools about your package (such as the name and version) as well as which code files to include.
+Two of the files CookieCutter generated are `pyproject.toml` and `setup.cfg`.
+These are the configuration files for our packaging and testing tools.
+`pyproject.toml` tells [setuptools] about your package (such as the name and version) as well as which code files to include.
 We'll be using this file in the next section.
 
 #### Installing your package
 A development install will allow you to import your package and use it from anywhere on your computer.
 You will then be able to import your package into scripts in the same way you import `matplotlib` or `numpy`. 
 
-A development installation uses the `setup.py` file to install your package
-by inserting a link to your new project into your Python site-packages folder.
+A development installation inserts a link to your project into your Python
+`site-packages` folder so that updates are immediately available the next time
+you launch Python, without having to reinstall your package.
 To find the location of your site-packages folder, you can check your Python path.
 Open Python (type `python` into your terminal window), and type
 

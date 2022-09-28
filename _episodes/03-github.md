@@ -76,11 +76,17 @@ The word `main` means we are pushing the `main` branch.
 
 Now if you refresh the GitHub webpage you should be able to see all the new files you added to the repository.
 
+This is now an effective entry point for people discovering your project,
+but you should document the URL within your repository contents, in case people
+acquire your package some other way.
+For now, at least, update your `pyproject.toml`, and put this GitHub repository URL
+for the Source URL for your package's metadata.
+
 ## Working With Multiple Repositories
 
 One of the most potentially frustrating problems in software development is keeping track of all the different copies of the code.
 For example, we might start a project on a local desktop computer, switch to working on a laptop during a conference, and then do performance optimization on a supercomputer.
-In ye olden days, switching between computers was typically accomplished
+In the olden days, switching between computers was typically accomplished
 by copying files via a USB drive, or with `ssh`, or by emailing things to oneself.
 After copying files, it was very easy to make an important change on one computer,
 forget about it, then resume work with the original code version on another computer
@@ -229,229 +235,6 @@ Fast-forward
 
 Now we can actually see `testing.txt` in our original repository.
 
-## Exploring History
-
-In your original repository, open the `testing.txt` file and add the following line to the end of the file.
-
-~~~
-I added this file from a new clone!
-This line doesn't add any value.
-
-~~~
-
-When working on a project, it is easy to forget exactly what changes we have made to a file.
-To check this, do
-
-~~~
-$ git diff HEAD testing.txt
-~~~
-{: .language-bash}
-
-~~~
-diff --git a/testing.txt b/testing.txt
-index 166776a..a634bfb 100644
---- a/testing.txt
-+++ b/testing.txt
-@@ -1 +1,3 @@
- I added this file from a new clone!
-+This line doesn't add any value.
-+
-~~~
-{: .output}
-
-"HEAD" just means the most recent commit.
-To compare against the commit just before the most recent commit, add "~1" to end of "HEAD":
-
-~~~
-$ git diff HEAD~1 testing.txt
-~~~
-{: .language-bash}
-
-~~~
-diff --git a/testing.txt b/testing.txt
-new file mode 100644
-index 0000000..a634bfb
---- /dev/null
-+++ b/testing.txt
-@@ -0,0 +1,3 @@
-+I added this file from a new clone!
-+This line doesn't add any value.
-+
-~~~
-{: .output}
-
-
-If we want to compare against a specific commit, we can first do "git log" to find the commit's ID, and then do:
-
-~~~
-$ git diff *commit_id* testing.txt
-~~~
-{: .language-bash}
-
-Another problem that we sometimes encounter is wanting to undo all of our changes to a particular file.
-This can be done with
-
-~~~
-$ git checkout HEAD testing.txt
-$ cat testing.txt
-~~~
-{: .language-bash}
-
-~~~
-I added this file from a new clone!
-~~~
-{: .output}
-
-Of course, you could also replace `HEAD` here with `HEAD~1` or a specific commit ID.
-
-## Ignoring Files
-
-Sometimes while you work on a project, you may end up creating some temporary files.
-For example, if your text editor is Emacs, you may end up with lots of files called `<filename>~`.
-By default, Git tracks all files, including these.
-This tends to be annoying, since it means that any time you do `git status`,
-all of these unimportant files show up.
-
-We are now going to find out how to tell Git to ignore these files,
-so that it doesn't keep telling us about them ever time we do `git status`.
-Even if you aren't working with Emacs, someone else working on your project might,
-so let's do the courtesy of telling Git not to track these temporary files.
-First, lets ensure that we have a few dummy files.
-Make empty files called `testing.txt~` and `README.md~` in your repository using your text editor of choice.
-
-
-While we're at it, also make some other files that aren't important to the project.
-Make a file called `calculation.out` in `molecool/data` using your text editor of choice.
-
-Now check what Git says about these files:
-
-~~~
-$ git status
-~~~
-{: .language-bash}
-
-~~~
-On branch main
-Your branch is up to date with 'origin/main'.
-
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-
-	README.md~
-	molecool/data/calculation.in
-	molecool/data/calculation.out
-	testing.txt~
-
-nothing added to commit but untracked files present (use "git add" to track)
-~~~
-{: .output}
-
-Now we will make Git stop telling us about these files.
-
-Earlier, when we looked at the hidden files, you may have noticed a file called `.gitignore`.
-Cookiecutter created this for us, however, GitHub also has built in `.gitignore` files you can add when creating an empty repository.
-
-This file is to tell `git` which types of files we would like to ignore (thus the name `.gitignore`)
-
-Look at the contents of `.gitignore`
-
-~~~
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
-
-# C extensions
-*.so
-
-# Distribution / packaging
-.Python
-env/
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
-
-...
-~~~
-
-Git looks at `.gitignore` and ignores any files or directories that match one of the lines.
-Add the following to the end of `.gitignore`:
-
-~~~
-# emacs
-*~
-
-# temporary data files
-*.in
-*.out
-
-~~~
-
-Now do "git status" again. Notice that the files we added are no longer recognized by git.
-
-~~~
-$ git status
-~~~
-{: .language-bash}
-
-~~~
-On branch main
-Your branch is up to date with 'origin/main'.
-
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
-
-	modified:   .gitignore
-
-no changes added to commit (use "git add" and/or "git commit -a")
-~~~
-{: .output}
-
-We want these additions to `.gitignore` to become a permanent part of the repository:
-
-~~~
-$ git add .gitignore
-$ git commit -m "Ignores Emacs temporary files and data directory"
-$ git push
-~~~
-{: .language-bash}
-
-One nice feature of `.gitignore` is that prevents us from accidentally adding
-a file that shouldn't be part of the repository.
-For example:
-
-~~~
-$ git add data/calculation.in
-~~~
-{: .language-bash}
-
-~~~
-The following paths are ignored by one of your .gitignore files:
-data/calculation.in
-Use -f if you really want to add them.
-~~~
-{: .output}
-
-It is possible to override this with the `-f` option for `git add`.
 
 ## Conflict Resolution
 
