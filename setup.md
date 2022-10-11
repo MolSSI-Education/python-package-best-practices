@@ -230,7 +230,7 @@ This portion walks you through installing and configuring `git`.
 If you do not have the environment activated, activate it first:
 
 ~~~
-conda activate msse-python
+conda activate molssi_best_practices
 ~~~
 {: .language-bash}
 
