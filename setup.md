@@ -94,7 +94,7 @@ bash Miniconda3-latest-Linux-x86_64.sh
 
 If you are using Mac, you should pick the appropriate link for your architecture from the miniconda installer page.
 
-M1: https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh
+M1: https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh  
 x86: https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
 
 After installation, 
