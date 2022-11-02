@@ -27,8 +27,8 @@ Register a test account on test.pypi.org.
 [Create](https://test.pypi.org/manage/account/#api-tokens) an [access token](https://test.pypi.org/help/#apitoken), and *don't lose it!*
 (I keep a copy of the text for my token in my password manager.)
 
-The access token will be a string that begins with `pypi-` followed by a sequence of base64 encoded bytes
-that we will refer to as "YOURTOKEN" below.
+The access token will be a string that begins with `pypi-` followed by a sequence of base64 encoded bytes.
+We will refer to the full string as "YOURTOKEN" below.
 
 Create `$HOME/.pypirc`. It should look something like the following, substituting your access token in the password field.
 
