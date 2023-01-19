@@ -421,7 +421,7 @@ def test_build_bond_failure():
 ~~~
 {: .language-python}
 
-The test will pass if the `build_bond_list` method raises a `TypeError`, otherwise, the test will fail.
+The test will pass if the `build_bond_list` method raises a `ValueError`, otherwise, the test will fail.
 
 ## Test Driven Development - TDD - Homework Assignment
 
