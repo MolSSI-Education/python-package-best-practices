@@ -1,0 +1,87 @@
+#------------------------------------------------------------
+# Values for this lesson.
+#------------------------------------------------------------
+
+# Which carpentry is this ("swc", "dc", or "lc)?
+carpentry: "swc"
+
+# Overall title for pages.
+title: "Lesson Example"
+
+# Contact email address.
+email: "mailto:lessons@software-carpentry.org"
+
+#------------------------------------------------------------
+# Constant URL addresses across lessons
+#------------------------------------------------------------
+#
+# Sites.
+amy_site: "https://amy.software-carpentry.org/workshops"
+dc_site: "http://datacarpentry.org"
+swc_github: "https://github.com/swcarpentry"
+swc_site: "https://software-carpentry.org"
+swc_pages: "https://swcarpentry.github.io"
+lc_site: "http://librarycarpentry.github.io/"
+template_repo: "https://github.com/carpentries/styles"
+example_repo: "https://github.com/carpentries/lesson-example"
+example_site: "https://carpentries.github.com/lesson-example"
+workshop_repo: "https://github.com/carpentries/workshop-template"
+workshop_site: "https://carpentries.github.io/workshop-template"
+training_site: "https://carpentries.github.io/instructor-training"
+
+# Surveys.
+pre_survey: "https://www.surveymonkey.com/r/swc_pre_workshop_v1?workshop_id="
+post_survey: "https://www.surveymonkey.com/r/swc_post_workshop_v1?workshop_id="
+
+#------------------------------------------------------------
+# Lesson Generic settings (should not need to change).
+#------------------------------------------------------------
+
+# What kind of thing is this ("workshop" or "lesson")?
+kind: "lesson"
+
+# Magic to make URLs resolve both locally and on GitHub.
+# See https://help.github.com/articles/repository-metadata-on-github-pages/.
+repository: <USERNAME>/<PROJECT>
+
+# Start time in minutes (0 to be clock-independent, 540 to show a start at 09:00 am)
+start_time: 0
+
+# Specify that things in the episodes collection should be output.
+collections:
+  episodes:
+    output: true
+    permalink: /:path/index.html
+  extras:
+    output: true
+    permalink: /:path/index.html
+
+# Set the default layout for things in the episodes collection.
+defaults:
+  - values:
+      root: .
+      layout: page
+  - scope:
+      path: ""
+      type: episodes
+    values:
+      layout: episode
+      root: ..
+  - scope:
+      path: ""
+      type: extras
+    values:
+      root: ..
+      layout: page
+
+#------------------------------------------------------------
+# Jekyll Generic settings (should not need to change).
+#------------------------------------------------------------
+
+# Files and directories that are not to be copied.
+exclude:
+  - Makefile
+  - bin
+
+# Turn on built-in syntax highlighting.
+highlighter: rouge
