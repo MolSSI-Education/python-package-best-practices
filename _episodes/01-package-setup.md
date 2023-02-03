@@ -1,23 +1,26 @@
----
-title: "Python Package Set-up"
-teaching: 40
-exercises: 5
-questions:
-- "What is the layout of a Python package?"
-- "How can I quickly create the structure of a Python package?"
-- "What license should I choose for my project?"
-objectives:
-- "Explain Python package structure."
-- "Use the CMS CookieCutter to build a Python package."
-keypoints:
-- "There is a common way to structure Python packages"
-- "You can use the CMS CookieCutter to quickly create the layout for a Python package"
----
+# Python Package Set-Up
+
+
+```{admonition} Overview
+:class: overview
+
+Questions:
+
+* What is the layout of a Python package?
+* How can I quickly create the structure of a Python package?
+* What license should I choose for my project?
+
+Objectives:
+
+- Explain Python package structure.
+- Use the CMS CookieCutter to build a Python package.
+
+```
 
 For this workshop,
 we are going to create a Python package that performs analysis and creates visualizations for molecules.
 We will start from a Jupyter notebook that has some functions and analysis.
-(You should have downloaded the Jupyter notebook during [setup].)
+(You should have downloaded the Jupyter notebook during setup(setup).
 
 The idea is that we would like to take this Jupyter notebook
 and convert the functions we have created into a Python package.
@@ -28,31 +31,34 @@ To start, we will first use a tool called [CookieCutter](https://cookiecutter.re
 which will set up a Python package structure and several tools we will use during the workshop.
 
 ## Examples of Python package structure
-If you look at the GitHub repositories for several large Python packages such as [numpy], [scipy], or [scikit-learn], you will notice a lot of similarities between the directory layouts of these projects.
+If you look at the GitHub repositories for several large Python packages such as [numpy](https://github.com/numpy/numpy), [scipy]( https://github.com/scipy/scipy), or [scikit-learn](https://github.com/scikit-learn/scikit-learn), you will notice a lot of similarities between the directory layouts of these projects.
 
 Having a similar way to lay out Python packages allows people to more easily understand and contribute to your code.
 
 ## Creating a Python package using CookieCutter
 To create a skeletal structure for our project, we will use the MolSSI Computational Molecular Science (CMS) CookieCutter.
-The [CMS CookieCutter] is a special cookiecutter created specifically by MolSSI to use the tools and services we recommend in developing a Python project.
+The [CMS CookieCutter](https://github.com/MolSSI/cookiecutter-cms) is a special cookiecutter created specifically by MolSSI to use the tools and services we recommend in developing a Python project.
 
 CookieCutter will not only create our directory layout, but will also set up many tools we will use including testing, continuous integration, documentation, and version control using git.
 We will discuss what all of these are later in the workshop.
 
 ### Obtaining CookieCutter
 
-You should have the general CookieCutter installed, according to the directions given in the [setup] portion of this workshop.
-If you do not, please navigate to [setup] and follow the instructions given there.
+You should have the general CookieCutter installed, according to the directions given in the setup(setup) portion of this workshop.
+If you do not, please navigate to setup(setup) and follow the instructions given there.
 
 ### Running CookieCutter
-Navigate to the `molssi_best_practices` directory created during [setup].
+Navigate to the `molssi_best_practices` directory created during setup(setup).
 (CookieCutter will generate the new project in a subdirectory.)
-Run the [CMS CookieCutter] to start your project:
+Run the [CMS CookieCutter](https://github.com/MolSSI/cookiecutter-cms) to start your project:
 
-~~~
-$ cookiecutter gh:molssi/cookiecutter-cms
-~~~
-{: .language-bash}
+````{tab-set-code} 
+
+```{code-block} shell
+ cookiecutter gh:molssi/cookiecutter-cms
+```
+````
+
 
 This command runs the cookiecutter software (`cookiecutter` in the command)
 and tells cookiecutter to look at GitHub (`gh`) in the repository under `molssi/cookiecutter-cms`.
@@ -67,7 +73,10 @@ You have very cleverly decided to give it the name `molecool`
 
 Answer the questions according to the following.
 If nothing is given after the colon (`:`), hit enter to use the default value.
-~~~
+
+````{tab-set-code} 
+
+```{code-block} shell
 project_name [ProjectName]: molecool
 repo_name [molecool]:
 first_module_name [molecool]: functions
@@ -93,7 +102,9 @@ Select include_ReadTheDocs:
 1 - y
 2 - n
 Choose from 1, 2 (1, 2) [1]:
-~~~
+```
+
+````
 
 ### About these decisions
 
@@ -135,15 +146,16 @@ For most of your projects, it is likely that the license you choose won't matter
 However, remember that if you ever want to change a license, you may have to get permission of all contributors.
 So, if you ever start a project that becomes popular or has contributors, be sure to decide your license early!
 
-> ## Types of Open-Source Licenses
->
-> Open-source licenses can either be 'permissive' or 'copy-left'.
-> Copy-left licenses require that derivative works also be open source.
-> Out of the choices given above, MIT and BSD-3-Clause are permissive, while LGPLv3 is a copy left license.
->
-> We recommend that you spend some time reading about licensing.
-> One place to start is this [helpful guide] from the Chodera Lab or the website [choosealicense.com](https://choosealicense.com).  
-{: .callout}
+```{admonition} Types of Open-Source Licenses
+class: info
+
+ Open-source licenses can either be 'permissive' or 'copy-left'.
+ Copy-left licenses require that derivative works also be open source.
+ Out of the choices given above, MIT and BSD-3-Clause are permissive, while LGPLv3 is a copy left license.
+
+ We recommend that you spend some time reading about licensing.
+ One place to start is this [helpful guide]( https://github.com/choderalab/software-development/blob/master/LICENSING_GUIDELINES.md) from the Chodera Lab or the website [choosealicense.com](https://choosealicense.com).  
+```
 
 #### Dependency Source
 This determines some things in set-up for what will be used to install dependencies for testing.
@@ -210,7 +222,6 @@ You should see the following directory structure.
 ├── .gitignore                      <- Stock helper file telling git what file name patterns to ignore when adding files
 └── .lgtm.yml
 ```
-{: .output}
 
 To visualize your project like above you will use `tree`.
 If you do not have `tree`, you can get it using `sudo apt-get install tree` on Linux,
@@ -223,7 +234,7 @@ In the top level of our project we have a folder for tools related to developmen
 documentation (`docs`) and to the package itself (`molecool`).
 We will first be working in the `molecool` folder to build our package, and adding more things later.
 
-~~~
+```
 ...
 ├── molecool
 │   ├── __init__.py                 <- Basic Python Package import file
@@ -234,8 +245,7 @@ We will first be working in the `molecool` folder to build our package, and addi
 │   ├── tests                       <- Unit test directory with sample tests
 │   │   ├── __init__.py
 │   │   └── test_functions.py
-~~~
-{: .output}
+```
 
 This the only folder we actually have to work with to build our package.
 The other folders relate to "best practices",
@@ -245,26 +255,31 @@ You could build this directory structure by hand, but we have just used `cookiec
 This directory will contain all of our Python code for our project,
 as well as sample data (in the `data` folder), and tests (in the `tests` folder.)
 
-> ## Packages and modules
->
-> What 'packages' or 'modules' are in Python may be confusing.
-> In general, 'module' refers to a single `.py` file containing Python definitions and statements.
-> It may be imported for use in another module or script.
-> The module name is determined by the file name.
-> A function defined in a module is used (once the module is imported) using the syntax `module_name.function_name()`.
-> 'Package' refers to a collection of Python modules.
-> The package may also have an `__init__.py` file.
->
-> To read more about Python packages vs. modules, check out [Python's documentation].
-{: .callout}
+```{admonition} Packages and modules
+:class: info
+
+What 'packages' or 'modules' are in Python may be confusing.
+In general, 'module' refers to a single `.py` file containing Python definitions and statements.
+It may be imported for use in another module or script.
+The module name is determined by the file name.
+A function defined in a module is used (once the module is imported) using the syntax `module_name.function_name()`.
+
+'Package' refers to a collection of Python modules.
+The package may also have an `__init__.py` file.
+To read more about Python packages vs. modules, check out [Python's documentation](https://docs.python.org/3/tutorial/modules.html).
+
+```
 
 ## The `molecool` directory
 Navigate inside our package directory. From the directory where you ran CookieCutter,
 
-~~~
-$ cd molecool
-~~~
-{: .language-bash}
+````{tab-set-code} 
+
+```{code-block} shell
+ cd molecool
+```
+````
+
 
 ### The `__init__.py` file
 
@@ -272,15 +287,18 @@ The `__init__.py` file is a special file recognized by the Python interpreter wh
 This file can be blank in some cases, however, we will use it to define how the user interacts with the functions in our package.
 
 Contents of `molecool/molecool/__init__.py`:
-~~~
+````{tab-set-code} 
+
+```{code-block} python
 """A Python package for analyzing and visualizing xyz files."""
 
 # Add imports here
 from .functions import *
 
 from ._version import __version__
-~~~
-{: .language-python}
+```
+````
+
 
 The very first section of this file contains a string opened and closed with three quotations.
 This is a [docstring](https://www.python.org/dev/peps/pep-0257/), and has a short description of the file.
@@ -290,10 +308,13 @@ This is how we define the way functions from modules are used.
 
 In particular, the line
 
-~~~
+````{tab-set-code} 
+
+```{code-block} python
 from .functions import *
-~~~
-{: .language-python}
+```
+````
+
 
 goes to the `functions.py` file, and brings everything that is defined there into the file.
 When we use our function defined in `functions.py`,
@@ -316,18 +337,14 @@ which describes the function.
 
 We will be moving all of the functions we defined in the Jupyter notebook into python modules (`.py` files) like these.
 
-> ### Before proceeding, make sure your `pip` and `setuptools` packages are up-to-date.
-> 
-> ~~~
-> conda update pip setuptools
-> ~~~
-> {: .language-bash}
-> or
-> ~~~
-> pip install --upgrade pip setuptools
-> ~~~
-> {: .language-bash}
-{: .callout}
+````{admonition} Before proceeding, make sure your pip and setuptools packages are up-to-date
+:class: alert
+
+```
+conda update pip setuptools
+```
+
+````
 
 ### Installing from local source.
 
@@ -341,7 +358,7 @@ We access development mode using the `-e` option to `pip`.
 Return to the top directory (`molecool`).
 Two of the files CookieCutter generated are `pyproject.toml` and `setup.cfg`.
 These are the configuration files for our packaging and testing tools.
-`pyproject.toml` tells [setuptools] about your package (such as the name and version) as well as which code files to include.
+`pyproject.toml` tells [setuptools](https://packaging.python.org/key_projects/#setuptools) about your package (such as the name and version) as well as which code files to include.
 We'll be using this file in the next section.
 
 #### Installing your package
@@ -354,11 +371,15 @@ you launch Python, without having to reinstall your package.
 To find the location of your site-packages folder, you can check your Python path.
 Open Python (type `python` into your terminal window), and type
 
-~~~
+
+````{tab-set-code} 
+
+```{code-block} python
 >>> import sys
 >>> sys.path
-~~~
-{: .language-python}
+```
+````
+
 
 This will give a list of locations python looks for packages when you do an import.
 One of the locations should end with `python3.7/site-packages`.
@@ -366,10 +387,13 @@ The site packages folder is where all of your installed packages for a particula
 
 To do a development mode install, type
 
-~~~
-$ pip install -e .
-~~~
-{: .language-bash}
+````{tab-set-code} 
+
+```{code-block} shell
+pip install -e .
+```
+````
+
 
 Here, the `-e` indicates that we are installing this project in *editable* mode
 (i.e. setuptools
@@ -382,37 +406,46 @@ The folder has also been added to your path (check `sys.path` again.)
 Now, we can use our package from any directory, similar to how we can use other installed packages like `numpy`.
 Open Python, and type
 
-~~~
+````{tab-set-code} 
+
+```{code-block} python
 >>> import molecool
 >>> molecool.canvas()
-~~~
-{: .language-python}
+```
+````
+
 
 This should print a quote.
 
-~~~
+````{tab-set-code} 
+
+```{code-block} output
 'The code is but a canvas to our imagination.\n\t- Adapted from Henry David Thoreau'
-~~~
-{: .output}
+```
+````
+
 
 This should work from anywhere on your computer.
 
-> ## Exercise
-> What happens if we use `conda deactivate` and attempt to execute the code above?
-> What if we switch directories?
->> ## Solution
->> If you are in the project directory, the code will still work. However, it will not work in any other location.
-> {: .solution}
-{: .challenge}
 
+````{admonition} Check Your Understanding
+:class: exercise
 
-{% include links.md %}
-[Python's documentation]: https://docs.python.org/3/tutorial/modules.html
-[setup]: https://molssi-education.github.io/python-package-best-practices/setup.html
-[numpy]: https://github.com/numpy/numpy
-[scipy]: https://github.com/scipy/scipy
-[scikit-learn]: https://github.com/scikit-learn/scikit-learn
-[CMS CookieCutter]: https://github.com/MolSSI/cookiecutter-cms
-[Install cookiecutter]: https://cookiecutter.readthedocs.io/en/latest/installation.html
-[setuptools]: https://packaging.python.org/key_projects/#setuptools
-[helpful guide]: https://github.com/choderalab/software-development/blob/master/LICENSING_GUIDELINES.md
+What happens if we use `conda deactivate` and attempt to execute the code above?
+
+What if we switch directories?
+
+```{admonition} Solution
+:class: dropdown solution
+
+If you are in the project directory, the code will still work. However, it will not work in any other location.
+```
+
+````
+
+```{admonition} Key Points
+:class: key
+
+* There is a common way to structure Python packages.
+* You can use the CMS CookieCutter to quickly create the layout for a Python package.
+```
