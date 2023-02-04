@@ -3,7 +3,7 @@
 Participation in the MolSSI Best Practices Workshop will require use of your own personal computer or laptop and installation of some software.
 
 ```{admonition} Windows users take note
-:class: info
+:class: attention
 
 If you are working on a Windows computer, 
 participation in this workshop will require you to install the Windows Subsystem for Linux (WSL).
@@ -28,7 +28,7 @@ If you do not have Anaconda or miniconda installed please see the appropriate se
 This might be a separate installation.
 
 ```{admonition} Anaconda vs. Minconda
-:class: attention
+:class: info
 
 Anaconda is a distribution of Python, the conda package manager, and several third-party libraries which are commonly used in data science.
 Miniconda contains only Python and the conda package manager. You will be able to install any package you would like later using miniconda. 
@@ -306,9 +306,11 @@ This helps repository maintainers coordinate the efforts of all the people who c
 Most importantly, it makes it easier to figure out who to blame when something goes wrong.
 You can provide git your name and contact information with the following commands:
 
-> ## Configuring git
-> In the command below, you do not need to put your name or your email address in all caps.
-{: .callout}
+``` {admonition} Configuring git
+:class: info 
+
+In the command below, you do not need to put your name or your email address in all caps.
+```
 
 ````{tab-set-code} 
 
