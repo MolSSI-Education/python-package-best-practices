@@ -1,19 +1,20 @@
+---
+title: "Code Collaboration using GitHub"
+teaching: 30
+exercises: 5
+questions:
+- "How can others contribute to my project on GitHub?"
+- "How can I contribute to the projects of others?"
+objectives:
+- "Learn what a fork is on GitHub"
+- "Understand how to open a pull request."
+keypoints:
+- "To contribute to someone else's project, you should fork their repository."
+- "All development work should be done on a new branch. Each branch should implement one feature."
+- "Once you've implemented a new feature, push to your repository and create a pull request on the original repo."
+---
+
 # Code Collaboration
-
-````{admonition} Overview
-:class: overview
-
-Questions:
-
-* How can others contribute to my project on GitHub?
-* How can I contribute to the projects of others?
-
-Objectives:
-
-* Learn about collaboration models.
-* Learn what a fork is on GitHub
-* Learn how to open a pull request
-````
 
 ## Repository collaborators
 
@@ -48,7 +49,7 @@ Click the "Branches" tab. You will see a heading which says "Branch protection r
 Adding the name of a branch here will make it a "protected branch" and the rules you choose in the section below will protect the branch (under the heading "protect matching branches").
 For example, you may want to choose to protect the `main` branch so that pull requests and reviews are required to change the branch.
 This way, your collaborators will not be able to push to the main branch, and must submit a `pull request` more on this later in order for their changes to be incorporated.
-You can read more about [branch protection](https://help.github.com/en/enterprise/2.18/admin/developer-workflow/).
+You can read more about branch protection [here][branch protection].
 
 ### Pull Requests - Branch and Pull Request (PR)
 Protecting your main branch will require contributors to submit their changes through a process called a Pull Request.
@@ -62,7 +63,7 @@ Create a new branch in your repository to make a small change.
 ````{tab-set-code} 
 
 ```{code-block} shell
-git checkout -b collab_instructions
+$ git checkout -b collab_instructions
 ```
 ````
 
@@ -71,18 +72,13 @@ Add the following to your README and commit the change.
 
 ````{tab-set-code} 
 
-```{code-block} README.md
-To submit your feature to be incorporated to the main branch, 
-you should submit a `Pull Request`. 
-The repository maintainers will review your pull request before accepting your changes.
-```
-````
-
-````{tab-set-code}
-
 ```{code-block} shell
-git add README.md
-git commit -m "add collaboration instructions to readme"
+To submit your feature to be incorporated to the main branch, you should submit a `Pull Request`. The repository maintainers will review your pull request before accepting your changes.
+~~~
+
+~~~
+$ git add README.md
+$ git commit -m "add collaboration instructions to readme"
 ```
 ````
 
@@ -97,7 +93,7 @@ We will want to push to a new branch on the repo then open a pull request.
 ````{tab-set-code} 
 
 ```{code-block} shell
-git push origin collab_instructions
+$ git push origin collab_instructions
 ```
 ````
 
@@ -139,7 +135,7 @@ This kind of workflow is fine if you and everyone contributing has write access 
 However, this will sometimes not be the case and you will want to contribute to repos where you do not have write access.
 In the next couple of sections, we will explore how this works in detail.
 
-## Contributing to someone else's project: Using forks
+## Forks
 
 We have seen how it is possible to allow other people to contribute to a project by listing them as collaborators.
 This works fine for a project that only a handful of people work on, but what about large open-source projects that might have hundreds of people who are interested in adding their own features?
@@ -166,22 +162,20 @@ We will leave the package we are developing for this section.
 Navigate to the URL [https://github.com/molssi-education/periodic-table][periodic-table-repo] in your web browser.
 You should see a GitHub repo.
 This repository contains code to make a website which has the periodic table.
-[View the website](https://molssi-education.github.io/periodic-table).
+View the website [https://molssi-education.github.io/periodic-table][periodic-table-web].
 On the website page, elements which appear with a red background have a page and information filled in.
 You can read more about each element by clicking on it.
 Elements with a white background do not yet have a page.
 Take a minute or two to click around. 
 
-Create a personal fork of the repository by pressing the “Fork” button near the top right on the [GitHub repository](https://github.com/molssi-education/periodic-table).
+Create a personal fork of the repository by pressing the “Fork” button near the top right of the web interface.
 GitHub will copy the repository to your profile. It should automatically redirect when it's done.
 You should notice at the top of the page, the name of the repository has a 'fork' symbol by it.
 It should say `YOUR_USERNAME/periodic-table`, and under that say `forked from molssi-education/periodic-table.`
 
 You can use the following diagram to visualize what you just did.
 
-```{image} ../fig/github_workflows/github_fork.svg
-:align: center
-```
+<center><img src="../fig/github_workflows/github_fork.svg"></center>
 
 Then, make a clone of the fork on your personal computer.
 Before you make the clone, __MAKE SURE YOU ARE NOT IN A GIT REPOSITORY__.
@@ -191,7 +185,7 @@ Type
 ````{tab-set-code} 
 
 ```{code-block} shell
-git status
+$ git status
 ```
 ````
 
@@ -214,16 +208,15 @@ Use the green button (Clone or download) on your fork and __make sure you choose
 ````{tab-set-code} 
 
 ```{code-block} shell
-git clone <fork URL>
-cd periodic-table
+$ git clone <fork URL>
+$ cd periodic-table
 ```
 ````
 
+
 Now, when we visualize what our repositories look like, we have a copy of our fork on our local machine. 
 
-```{image} ../fig/github_workflows/github_clone_fork.svg
-:align: center
-```
+<center><img src="../fig/github_workflows/github_clone_fork.svg"></center>
 
 In a real development situation, we would also create a new `conda` environment for developing in this repository.
 
@@ -232,7 +225,7 @@ In your terminal window, type
 ````{tab-set-code} 
 
 ```{code-block} shell
-git remote -v
+$ git remote -v
 ```
 ````
 
@@ -241,7 +234,7 @@ You should see output similar to the following
 
 ````{tab-set-code} 
 
-```{code-block} output
+```{code-block} shell
 origin git@github.com:YOUR_GITHUB_USERNAME/periodic-table.git (fetch)
 origin git@github.com:YOUR_GITHUB_USERNAME/periodic-table.git (push)
 ```
@@ -256,7 +249,7 @@ Add an upstream using the following command
 ````{tab-set-code} 
 
 ```{code-block} shell
-git remote add upstream git@github.com:molssi-education/periodic-table.git
+$ git remote add upstream git@github.com:molssi-education/periodic-table.git
 ```
 ````
 
@@ -264,16 +257,14 @@ git remote add upstream git@github.com:molssi-education/periodic-table.git
 Now, when you check the remotes (`git remote -v`), it should list both the `origin`, and `upstream` repositories.
 If we wanted to pull changes from the original repo, we could do `git pull upstream branch_name`
 
-```{image} ../fig/github_workflows/github_remotes.svg
-:align: center
-```
+<center><img src="../fig/github_workflows/github_remotes.svg"></center>
 
 Next type
 
 ````{tab-set-code} 
 
 ```{code-block} shell
-git fetch upstream
+$ git fetch upstream
 ```
 ````
 
@@ -285,7 +276,7 @@ You should be able to see both the origin and upstream hidden branches by typing
 ````{tab-set-code} 
 
 ```{code-block} shell
-git branch -a
+$ git branch -a
 ```
 ````
 
@@ -303,7 +294,7 @@ This can either be an element that exists (red background), or an element that d
 ````{tab-set-code} 
 
 ```{code-block} shell
-git checkout -b sodium
+$ git checkout -b sodium
 ```
 ````
 
@@ -345,7 +336,7 @@ For example, to create the sodium file,
 ````{tab-set-code} 
 
 ```{code-block} shell
-touch sodium.md
+$ touch sodium.md
 ```
 ````
 
@@ -355,20 +346,18 @@ It is important that every element have the following at the top of the page (no
 
 ````{tab-set-code} 
 
-```{code-block} element.md
+```{code-block} shell
 ---
 layout: page
 title: ELEMENT_NAME
 ---
-``
+~~~
 
 If you are creating a new page, fill in the appropriate element name.
 Add some text about the element below the heading.
 For example, our sodium page might look like the following.
 
-````{tab-set-code} 
-
-```{code-block} sodium.md
+~~~
 ---
 layout: page
 title: Sodium
@@ -376,8 +365,7 @@ title: Sodium
 
 Symbol : Na  
 Atomic Number : 11  
-```
-````
+~~~
 
 Save your file after you edit it.
 
@@ -389,10 +377,8 @@ If you do not have Jekyll installed, or do not wish to install Jekyll skip this 
 
 Execute the command
 
-````{tab-set-code}
-
-```{code-block} shell
-bundle exec jekyll serve
+~~~
+$ bundle exec jekyll serve
 ```
 ````
 
@@ -407,8 +393,8 @@ Let's add and commit these changes.
 ````{tab-set-code} 
 
 ```{code-block} shell
-git add elements/YOUR_ELEMENT.md
-git commit -m "update YOUR_ELEMENT page"
+$ git add elements/YOUR_ELEMENT.md
+$ git commit -m "update YOUR_ELEMENT page"
 ```
 ````
 
@@ -422,7 +408,7 @@ We are literally requesting them to pull from our repository.
 ````{tab-set-code} 
 
 ```{code-block} shell
-git push origin sodium
+$ git push origin sodium
 ```
 ````
 
@@ -431,9 +417,7 @@ Here, the last line indicates that we are pushing to `origin` (our fork) to the 
 The branch name you type in place of sodium should match the name of the branch you are working on.
 If you view your repository on GitHub, you should now see that you have another branch in addition to the main branch.
 
-```{image} ../fig/github_workflows/push_branch.svg
-:align: center
-```
+<center><img src="../fig/github_workflows/push_branch.svg"></center>
 
 As part of the output from this command, you should see the following:
 
@@ -474,9 +458,7 @@ Take a few minutes to review someone else's pull request.
 Once your changes have been accepted, upstream will have those changes on the `main` branch.
 This is indicated in the figure below through the change in color of the word 'main'. 
 
-```{image} ../fig/github_workflows/accepted_PR.svg
-:align: center
-```
+<center><img src="../fig/github_workflows/accepted_PR.svg"></center>
 
 ## Incorporating upstream changes to local
 
@@ -486,7 +468,7 @@ First, switch to your main branch.
 ````{tab-set-code} 
 
 ```{code-block} shell
-git checkout main
+$ git checkout main
 ```
 ````
 
@@ -497,7 +479,7 @@ For now, just do a pull.
 ````{tab-set-code} 
 
 ```{code-block} shell
-git pull upstream main
+$ git pull upstream main
 ```
 ````
 
@@ -508,7 +490,7 @@ Push from the local main to origin.
 ````{tab-set-code} 
 
 ```{code-block} shell
-git push origin main
+$ git push origin main
 ```
 ````
 
@@ -520,7 +502,7 @@ If you are done working with your feature branch, you can now delete it.
 ````{tab-set-code} 
 
 ```{code-block} shell
-git branch -d sodium
+$ git branch -d sodium
 ```
 ````
 
@@ -532,13 +514,12 @@ To delete the branch on your origin repository on GitHub, you can use the comman
 ````{tab-set-code} 
 
 ```{code-block} shell
-git push origin --delete sodium
+$ git push origin --delete sodium
 ```
 ````
 
-```{image} ../fig/github_workflows/final.svg
-:align: center
-```
+
+<center><img src="../fig/github_workflows/final.svg"></center>
 
 ## More Tutorials
 If you want more `git`, see the following tutorials.
@@ -551,15 +532,7 @@ If you want more `git`, see the following tutorials.
 
 [Git Rebasing Tutorial](https://git-scm.com/book/en/v2/Git-Branching-Rebasing)
 
-````{admonition} Key Points
-:class: key
 
-- "To contribute to someone else's project, you should fork their repository."
-- "All development work should be done on a new branch. Each branch should implement one feature."
-- "Once you've implemented a new feature, push to your repository and create a pull request on the original repo."
-````
-
-
-[branch protection]: configuring-protected-branches-and-required-status-checks#enabling-a-protected-branch-for-a-repository
+[branch protection]: https://help.github.com/en/enterprise/2.18/admin/developer-workflow/configuring-protected-branches-and-required-status-checks#enabling-a-protected-branch-for-a-repository
 [periodic-table-repo]: https://github.com/molssi-education/periodic-table
 [periodic-table-web]: https://molssi-education.github.io/periodic-table

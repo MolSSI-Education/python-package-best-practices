@@ -27,6 +27,31 @@ If you see a subject you would like to contribute to, submit a pull request!
 
    You can see a tutorial on using the shell from `Software Carpentry <https://swcarpentry.github.io/shell-novice/>`_.
 
+Workshop Lessons
+================
+
+.. list-table:: 
+    :widths: 10 10 50 50
+    :header-rows: 1
+    :stub-columns: 1
+
+    * - 
+      - Lesson Title
+      - Questions
+      - Key Points
+    * - 1
+      - Row 1
+      - Column 2
+      - Column 3 long. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sit amet mauris arcu.
+    * - Stub Row 2
+      - Row 2
+      - Column 2
+      - Column 3 long. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sit amet mauris arcu.
+    * - Stub Row 3
+      - Row 3
+      - Column 2
+      - Column 3 long. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sit amet mauris arcu.
+
 
 .. toctree::
    :maxdepth: 2
@@ -34,4 +59,7 @@ If you see a subject you would like to contribute to, submit a pull request!
    :titlesonly:
 
    setup
+   00-package-creation
+   00-git-and-github
+   00-code-organization-documentation
    

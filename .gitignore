@@ -8,3 +8,5 @@ __pycache__
 _site
 .Rproj.user
 .jekyll-cache/
+
+_build/

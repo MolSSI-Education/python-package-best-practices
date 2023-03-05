@@ -1,18 +1,19 @@
+---
+title: "Using GitHub"
+teaching: 30
+exercises: 5
+questions:
+- "How do I use git and GitHub?"
+objectives:
+- "Explain reasons to use GitHub."
+
+keypoints:
+- "You can use GitHub to store your project online where you or others can access it from a central repository."
+- "You can use GitHub to store your projects so that you can work on them from multiple computers."
+
+---
+
 # GitHub
-
-````{admonition} Overview
-:class: overview
-
-Questions:
-
-* How do I use GitHub to host my projects?
-* How do I use git and GitHub togehter?
-
-Objectives:
-
-* Explain reasons to use GitHub.
-
-````
 
 ## Securely accessing GitHub
 During the setup for this workshop, we generated an SSH key and added it to our GitHub account.
@@ -24,7 +25,7 @@ If you continue further development using GitHub after this workshop, you may wa
 
 GitHub has added a feature called Personal Access Tokens (PATs) that allow for more fine-grained security control over your access.
 Instead of one key that has all the permissions on your account, you can define multiple tokens that have a different set of permissions.
-GitHub has good documentation for [generating and using a PAT](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token).
+GitHub has good documentation for [generating and using a PAT][GitHub PAT documentation].
 
 
 ## Putting your repository on GitHub.
@@ -46,8 +47,6 @@ Click `Create repository`.
 
 Now, GitHub very helpfully gives us directions for how to get our code on GitHub.
 
-### Repository Remotes
-
 Before we follow these directions, let's look at a few things in the repository.
 When you want to be able to put your code online in a repository, you have to add what git calls `remotes`.
 Currently, our repository has no remotes. See this by typing
@@ -55,7 +54,7 @@ Currently, our repository has no remotes. See this by typing
 ````{tab-set-code} 
 
 ```{code-block} shell
-git remote -v
+$ git remote -v
 ```
 ````
 
@@ -66,9 +65,9 @@ Now, follow the instructions on GitHub under "...or push an existing repository 
 ````{tab-set-code} 
 
 ```{code-block} shell
-git remote add origin git@github.com:YOUR_GITHUB_USERNAME/molecool.git
-git branch -M main
-git push -u origin main
+$ git remote add origin git@github.com:YOUR_GITHUB_USERNAME/molecool.git
+$ git branch -M main
+$ git push -u origin main
 ```
 ````
 
@@ -112,8 +111,8 @@ For this next exercise **you must first navigate out of your project folder**.
 ````{tab-set-code} 
 
 ```{code-block} shell
-cd ../
-git status
+$ cd ../
+$ git status
 ```
 ````
 
@@ -136,8 +135,8 @@ We'll use this to simulate working on another computer.
 ````{tab-set-code} 
 
 ```{code-block} shell
-git clone git@github.com:YOUR_GITHUB_USERNAME/molecool.git molecool_friend
-cd molecool_friend
+$ git clone git@github.com:YOUR_GITHUB_USERNAME/molecool.git molecool_friend
+$ cd molecool_friend
 ```
 ````
 
@@ -150,7 +149,7 @@ and you do not have to add the remote the way we did when we created the reposit
 ````{tab-set-code} 
 
 ```{code-block} shell
-git remote -v
+$ git remote -v
 ```
 ````
 
@@ -168,16 +167,14 @@ Create the file `testing.txt` in this new directory and make it contain the foll
 
 ````{tab-set-code} 
 
-```{code-block} testing.txt
+```{code-block} shell
 I added this file from a new clone!
-```
-````
+~~~
 
 Now we will commit this new file:
 
-````{tab-set-code}
-``` shell
-git status
+~~~
+$ git status
 ```
 ````
 
@@ -201,18 +198,16 @@ nothing added to commit but untracked files present (use "git add" to track)
 ````{tab-set-code} 
 
 ```{code-block} shell
-git add .
-git status
+$ git add .
+$ git status
 ```
 ````
 
-```{admonition} git add .
-:class: tip 
 
- Here, we've used `git add .` instead of `git add testing.txt`.
-
-Using this command will add all untracked or changed files.
-```
+> ## git add
+> Here, we've used `git add .` instead of `git add testing.txt`.
+> Using this command will add all untracked or changed files.
+{: .callout}
 
 ````{tab-set-code} 
 
@@ -232,8 +227,8 @@ Changes to be committed:
 ````{tab-set-code} 
 
 ```{code-block} shell
-git commit -m "Adds testing.txt"
-git log
+$ git commit -m "Adds testing.txt"
+$ git log
 ```
 ````
 
@@ -243,7 +238,7 @@ Now push the commit:
 ````{tab-set-code} 
 
 ```{code-block} shell
-git push
+$ git push
 ```
 ````
 
@@ -255,8 +250,8 @@ Now change directories into the original local clone, and check if `testing.txt`
 ````{tab-set-code} 
 
 ```{code-block} shell
-cd ../<original clone>
-ls -l
+$ cd ../<original clone>
+$ ls -l
 ```
 ````
 
@@ -266,7 +261,7 @@ To get the newest commit into this clone, we need to pull from the GitHub reposi
 ````{tab-set-code} 
 
 ```{code-block} shell
-git pull origin main
+$ git pull origin main
 ```
 ````
 
@@ -302,7 +297,7 @@ Add a dummy header and footer the `testing.txt`, so that it looks like this:
 
 ````{tab-set-code} 
 
-```{code-block} testing.txt
+```{code-block} shell
 ***************************************
 This is	the start of testing.txt
 ***************************************
@@ -312,17 +307,14 @@ I added this file from a new clone!
 ***************************************
 This is	the end	of testing.txt
 ***************************************
-```
-````
+~~~
 
 Now commit and push this edit.
 
-````{tab-set-code}
-
-```{code-block}
-git add testing.txt
-git commit -m "Adds a new line to testing.txt"
-git push
+~~~
+$ git add testing.txt
+$ git commit -m "Adds a new line to testing.txt"
+$ git push
 ```
 ````
 
@@ -332,7 +324,7 @@ Now switch over to the `friend` clone.
 ````{tab-set-code} 
 
 ```{code-block} shell
-cd ../molecool_friend
+$ cd ../molecool_friend
 ```
 ````
 
@@ -341,20 +333,17 @@ We are going to add another line to `testing.txt`, so that it looks like this:
 
 ````{tab-set-code} 
 
-```{code-block} testing.txt
+```{code-block} shell
 I added this file from a new clone!
 Now I added a new line!
-```
-````
+~~~
 
 Now try committing and pushing the change:
 
-````{tab-set-code} 
-
-```{code-block} shell
-git add testing.txt
-git commit -m "Adds another line to testing.txt"
-git push
+~~~
+$ git add testing.txt
+$ git commit -m "Adds another line to testing.txt"
+$ git push
 ```
 ````
 
@@ -380,7 +369,7 @@ We can fix this by doing a pull:
 ````{tab-set-code} 
 
 ```{code-block} shell
-git pull
+$ git pull
 ```
 ````
 
@@ -408,7 +397,7 @@ To see which files have the conflict, we can do:
 ````{tab-set-code} 
 
 ```{code-block} shell
-git status
+$ git status
 ```
 ````
 
@@ -442,7 +431,7 @@ The conflict is in testing.txt, so let's open it up:
 
 ````{tab-set-code} 
 
-```{code-block} testing.txt
+```{code-block} shell
 ***************************************
 This is the start of testing.txt
 ***************************************
@@ -456,8 +445,7 @@ Now I added a new line!
 This is the end of testing.txt
 ***************************************
 >>>>>>> 12651a37de10d61d9e9eea31c260c15b7ef3b5d4
-```
-````
+~~~
 
 The conflict is shown within the `<<<<<<<` and `>>>>>>>` bits.
 The part before the `=======` is what we added in the commit in the `molecool_friend` clone,
@@ -465,8 +453,7 @@ while the part after it comes from the original local clone.
 We need to decide what to do about the conflict, tidy it up, and then make a new commit.
 Edit `testing.txt` so that it reads:
 
-````{tab-set-code}
-```{code-block} testing.txt
+~~~
 ***************************************
 This is the start of testing.txt
 ***************************************
@@ -478,15 +465,12 @@ Now I added a new line!
 This is the end of testing.txt
 ***************************************
 
-```
-````
+~~~
 
-````{tab-set-code}
-
-```{code-block} shell
-git add .
-git commit -m "Fixed merge conflicts in testing.txt"
-git push
+~~~
+$ git add .
+$ git commit -m "Fixed merge conflicts in testing.txt"
+$ git push
 ```
 ````
 
@@ -497,12 +481,13 @@ Generally speaking, your procedure when ready to commit should be:
 ````{tab-set-code} 
 
 ```{code-block} shell
-git commit -m "Commit message"
-git pull
-<fix any merge conflicts>
-git push
+$ git commit -m "Commit message"
+$ git pull
+$ <fix any merge conflicts>
+$ git push
 ```
 ````
+
 
 ## More GitHub Features
 
@@ -512,8 +497,7 @@ Here you can see the file and make changes to it.
 Click the edit button, which looks like a small pencil near the upper right of the file text box.
 Add a line that says "I added this line from the GitHub web interface!", so that the file looks like:
 
-````{tab-set-code}
-```{code-block} testing.txt
+~~~
 ***************************************
 This is the start of testing.txt
 ***************************************
@@ -526,7 +510,7 @@ I added this line from the GitHub web interface!
 This is the end of testing.txt
 ***************************************
 
-```
+~~~
 
 Scroll to the bottom of the page and write the message
 "Added a line to testing.txt from the web interface." for this commit.
@@ -555,12 +539,9 @@ If you want more `git`, see the following tutorials.
  - [GitHub 15 Minutes to Learn Git](https://try.github.io/)
  - [Git Commit Best Practices](https://github.com/trein/dev-best-practices/wiki/Git-Commit-Best-Practices)
 
-## Key Points
 
-```{admonition} Key Points
-:class: key
-
-- "You can use GitHub to store your project online where you or others can access it from a central repository."
-- "You can use GitHub to store your projects so that you can work on them from multiple computers."
-
-```
+{% include links.md %}
+[GitHub PAT documentation]: https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token
+[GitHub]: https://github.com
+[GitLab]: https://gitlab.com/
+[BitBucket]: https://bitbucket.org/

@@ -106,7 +106,7 @@ Choose from 1, 2 (1, 2) [1]:
 
 ````
 
-### About these decisions
+### Explanation of CookieCutter Questions
 
 The first two questions are for the project and repository name.
 The project name is the name of the project, while the repo name is the name of the folder that cookiecutter will create. Usually, you will leave these two to be the same thing.
@@ -147,7 +147,7 @@ However, remember that if you ever want to change a license, you may have to get
 So, if you ever start a project that becomes popular or has contributors, be sure to decide your license early!
 
 ```{admonition} Types of Open-Source Licenses
-class: info
+:class: info
 
  Open-source licenses can either be 'permissive' or 'copy-left'.
  Copy-left licenses require that derivative works also be open source.
@@ -340,7 +340,8 @@ We will be moving all of the functions we defined in the Jupyter notebook into p
 ````{admonition} Before proceeding, make sure your pip and setuptools packages are up-to-date
 :class: alert
 
-```
+````{tab-set-code}
+```{code-block} shell
 conda update pip setuptools
 ```
 
@@ -442,6 +443,8 @@ If you are in the project directory, the code will still work. However, it will 
 ```
 
 ````
+
+## Key Points
 
 ```{admonition} Key Points
 :class: key

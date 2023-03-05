@@ -1,17 +1,22 @@
----
-title: "Deciding Package Structure"
-teaching: 45
-exercises: 10
-questions:
-- "How should I break my code into modules?"
-- "How can I handle imports in my package?"
-objectives:
-- "Break code into modules and subpackages based on functionality."
-- "Understand how the `__init__.py` file affects your Python package"
-keypoints:
-- "Your package should be broken up into modules and subpackages depending on the amount of code and functionality."
-- "You can use the `__init__.py` file to define what packages are imported with your package, and how the user interacts with it."
----
+
+# Deciding Package Structure
+
+```{admonition} Overview
+:class: overview
+
+Questions:
+
+* How should I organize my code?
+
+* How can I handle imports in my package?
+
+Objectives:
+
+* Break code into modules and subpackages based on functionality.
+
+* Understand how the `__init__.py` file affects your Python package.
+
+```
 
 As new features are implemented in codes, it is natural for new functions and objects to be added.
 In many projects, this often leads to a large number of functionalities defined within a single module.
@@ -29,7 +34,7 @@ Under our package directory, `molecool`, we can see our current python module `f
 For a more detailed explanation of the rest of the package structure,
 please review the [package setup] section of the lessons.
 
-~~~
+```{code-block}
 .
 ├── CODE_OF_CONDUCT.md              <- Code of Conduct for developers and users
 ├── LICENSE                         <- License file
@@ -77,14 +82,15 @@ please review the [package setup] section of the lessons.
 │       └── CI.yaml
 ├── .gitignore                      <- Stock helper file telling git what file name patterns to ignore when adding files
 └── .lgtm.yml
-~~~
-{: .output}
+```
 
 The easiest way to start is to see what we currently have and try to decide which parts are related to one another.
 Looking through the `functions.py` file, we see a number of different functions,
 and for the sake of simplicity we abbreviate and rearrange them here:
 
-~~~
+````{tab-set-code} 
+
+```{code-block} functions.py
 atomic_weights = {
     'H': 1.00784,
     'C': 12.0107,
@@ -137,8 +143,9 @@ def calculate_molecular_mass(symbols):
 
 def calculate_center_of_mass(symbols, coordinates):
     ...
-~~~
-{: .language-python}
+```
+````
+
 
 Right at the start we can see two dictionaries of atom data. Clearly these are related and should probably be grouped together.
 Looking at the functions, we see two functions that handle opening files, `open_pdb` and `open_xyz`, and a function that writes a file, `write_xyz`.
@@ -152,7 +159,9 @@ This is enclosing the constant data that our system is using in a single place.
 This allows all the new modules we create to access the data from a single location, avoiding the need to copy the dictionaries to each module that needs them.
 If we have any other data, related to atoms, used by many of our functions, adding them to this module would be a good idea.
 
-~~~
+````{tab-set-code} 
+
+```{code-block} atom_data.py
 """
 Data used for the rest of the package.
 """
@@ -178,29 +187,40 @@ atom_colors = {
     'Cl': '#98FB98',
     'Br': '#F4A460',
 }
-~~~
-{: .language-python}
+```
+````
 
-> ## Exercise
-> Take approximately 10 minutes to look through the rest of the functions in the `functions` module and group them together.
-> Create a module for each group with a reasonable name.
->> ## Answer
->> Here is how we decided to break up the functions:
->> - `calculate_angle` and `calculate_distance` go together in a `measure` module.
->> - `draw_molecule` and `bond_histogram` go into a `visualize` module.
->> - `build_bond_list` is placed into a `molecule` module.
->> - `open_pdb` go into a `pdb` module in an `io` subpackage.
->> - `open_xyz` and `write_xyz` are placed into an `xyz` module in an `io` subpackage.
-> {: .solution}
-{: .challenge} 
 
-### Measure
+## Exercise - Grouping into Modules
+
+``````{admonition} Exercise - Grouping into Modules
+:class: exercise
+
+Take approximately 10 minutes to look through the rest of the functions in the `functions` module and group them together.
+Create a module for each group with a reasonable name.
+
+`````{admonition} Solution
+:class: solution dropdown
+
+Here is how we decided to break up the functions:
+- `calculate_angle` and `calculate_distance` go together in a `measure` module.
+- `draw_molecule` and `bond_histogram` go into a `visualize` module.
+- `build_bond_list` is placed into a `molecule` module.
+- `open_pdb` go into a `pdb` module in an `io` subpackage.
+- `open_xyz` and `write_xyz` are placed into an `xyz` module in an `io` subpackage.
+`````
+``````
+
+### Measure Module
 Our `functions.py` file contains two functions that handle taking measurements:
 `calculate_distance` and `calculate_angle`.
 Similar to `atom_data`, we will simply place these in a module within the main package.
 Since both functions are taking measurements, we will call it `measure.py`.
 
-~~~
+````{tab-set-code} 
+
+```{code-block} measure.py
+
 """
 This module is for functions that perform measurements.
 """
@@ -240,14 +260,17 @@ def calculate_angle(rA, rB, rC, degrees=False):
         return np.degrees(theta)
     else:
         return theta
-~~~
-{: .language-python}
+```
+````
 
-### Visualize
+
+### Visualize Module
 Similarly, we have two functions that handle visualization of molecules.
 We will place them into a module called `visualize.py`.
 
-~~~
+````{tab-set-code} 
+
+```{code-block} visualize.py
 """
 Functions for visualization of molecules
 """
@@ -301,17 +324,20 @@ def bond_histogram(bond_list, save_location=None, dpi=300, graph_min=0, graph_ma
         plt.savefig(save_location, dpi=dpi)
     
     return ax
-~~~
-{: .language-python}
+```
+````
 
 
-### Molecule
+
+### Molecule Module
 Our last function is `build_bond_list`, which is not particularly related to any of our other functions.
 The name `functions.py` does not really give a lot of information about what is available in the module.
 We can rename the module to something more fitting, say `molecule.py`.
 We also add a docstring.
 
-~~~
+````{tab-set-code} 
+
+```{code-block} molecule.py
 """
 Functions for molecule analysis
 """
@@ -348,8 +374,9 @@ def build_bond_list(coordinates, max_bond=1.5, min_bond=0):
                 bonds[(atom1, atom2)] = distance
 
     return bonds
-~~~
-{: .language-python}
+```
+````
+
 
 
 ### I/O Subpackage
@@ -367,8 +394,9 @@ we are going to create a subpackage to handle i/o and place a module for each gr
 Create a new directory called "io" within the package (using the command 'mkdir directory_name') and create two new files `pdb.py` and `xyz.py` (using the command `touch file_name`):
 
 
-`pdb.py`
-~~~
+````{tab-set-code} 
+
+```{code-block} io/pdb.py
 """
 Functions for manipulating pdb files.
 """
@@ -408,11 +436,12 @@ def open_pdb(file_location):
     symbols = np.array(symbols)
 
     return symbols, coords
-~~~
-{: .language-python}
+```
+````
 
-`xyz.py`
-~~~
+````{tab-set-code} 
+
+```{code-block} io/xyz.py
 """
 functions for manipulating xyz files.
 """
@@ -446,8 +475,9 @@ def write_xyz(file_location, symbols, coordinates):
                     symbols[i], coordinates[i, 0], coordinates[i, 1], coordinates[i, 2]
                 )
             )
-~~~
-{: .language-python}
+```
+````
+
 
 Now any module that needs to handle input and output can import the needed module from the `io` subpackage.
 Since these are currently small modules, it would not be a big deal to import all of them.
@@ -457,12 +487,14 @@ It will quickly create inefficiencies to leave them in one module.
 Now that we've organized and changed the structure in our project,
 we should commit our changes and push to GitHub.
 
-~~~
-$ git add .
-$ git commit -m "organize molecool into modules and subpackage"
-$ git push origin main
-~~~
-{: .language-bash}
+````{tab-set-code} 
+
+```{code-block} shell
+git add .
+git commit -m "organize molecool into modules and subpackage"
+git push origin main
+```
+````
 
 ## Fixing Imports
 When we first copied the functions from the Jupyter Notebook into `functions.py`,
@@ -472,22 +504,28 @@ In fact, we won't be able to access them at all.
 Every time we restructure our code or create new folders we have to be careful and modify the `__init__.py` accordingly.
 Let us then add the new functions into the `__init__.py`.
 
-~~~
+````{tab-set-code} 
+
+```{code-block} __init__.py
 # Add imports here
 from .functions import *
 from .measure import calculate_distance, calculate_angle
 from .molecule import build_bond_list
 from .visualize import draw_molecule, bond_histogram
-~~~
-{: .language-python}
+```
+````
+
 
 In this way, we should be able to call each of the functions after importing our module.
 
-~~~
+````{tab-set-code} 
+
+```{code-block} python
 >>> import molecool
 >>> molecool.build_bond_list()
-~~~
-{: .language-python}
+```
+````
+
 
 Even with the imports fixed, if you try to run some of these functions,
 you may find yourself with an `ImportError`.
@@ -497,12 +535,15 @@ Each set of functions now exist in the context of their module "namespace".
 If we look at our original `functions.py` module,
 we will see that we had a number of import statements at the top of the file:
 
-~~~
+````{tab-set-code} 
+
+```{code-block} original_functions.py
 import os
 import numpy as np
 import matplotlib.pyplot as plt
-~~~
-{: .language-python}
+```
+````
+
 
 These are modules that are needed by some functions.
 Now that we have moved the functions into separate modules,
@@ -514,19 +555,25 @@ which is what we imported `numpy` as in `functions.py`.
 Aside from visual inspection,
 you could have also seen these missing imports by using `flake8` on the modules.
 
-~~~
-$ flake8 measure.py
-~~~
-{: .language-bash}
+````{tab-set-code} 
+
+```{code-block} shell
+flake8 measure.py
+```
+````
+
 
 You will see a message which says "undefined name np".
 
 In order to make these functions work again, we need to add the following `import` statement.
 
-~~~
+````{tab-set-code} 
+
+```{code-block} python
 import numpy as np
-~~~
-{: .language-python}
+```
+````
+
 
 to the top of our file.
 
@@ -537,13 +584,16 @@ We also see references to `plt` which was the name given to `matplotlib.pyplot` 
 Add imports of the external libraries to the top of the `visualize.py` module.
 Of course, don't forget our "unused import" for 3D axes.
 
-~~~
+````{tab-set-code} 
+
+```{code-block} visualize.py
 import numpy as np
 import matplotlib.pyplot as plt
 
 from mpl_toolkits.mplot3d import Axes3D  # noqa: F401
-~~~
-{: .language-python}
+```
+````
+
 
 If you use `flake8` (or if you carefully inspect), you will also see that `atom_colors` is missing.
 The `draw_molecule` function uses the `atom_colors` dictionary.
@@ -552,57 +602,75 @@ However, we have now moved `atom_colors` and `atomic_weights` into a separate mo
 In order to reference the dictionaries in `visualize.py`, we need to import them using an import statement.
 This is an intra-package import, meaning that we are importing modules from within our packages to other imports in our package (see intra package imports [here](https://docs.python.org/3/tutorial/modules.html))
 
-~~~
+````{tab-set-code} 
+
+```{code-block} visualize.py
 from .atom_data import atom_colors
-~~~
-{: .language-python}
+```
+````
+
 
 This import statement looks a bit different from the other import statements in our code, we have a `.` before the name.
 This is because it is a *relative import*. Just like when using bash, a dot (`.`) means to look in the current folder. 
 
 To think about this more, let's first look at the dot in a different `import` statement:
 
-~~~
+````{tab-set-code} 
+
+```{code-block} python
 import matplotlib.pyplot as plt
-~~~
-{: .language-python}
+```
+````
+
 
 In this case, the `.` is saying look within the package `matplotlib` and grab the subpackage (or module) `pyplot`.
 In our case, we are not using a name before the `.` so where is it looking?
 It is looking within the current package/directory, or in this case `molecool` for a module or package named `atom_data`, from which it will import the `atom_colors` dictionary.
 
+### Check your Understanding - Relative Imports
 
-> ## Check your understanding
-> The `molecule.py` module also utilizes functions that are no longer available in the module.
-> Correct the missing import statements in the module.
->> ## Answer
->> The `build_bond_list` functions utilizes the `calculate_distance` function, which is now in the `measure` module, so we want to create a relative import from the `measure` module.
->> ~~~
->> from .measure import calculate_distance
->> ~~~
->> {: .language-python}
-> {: .solution}
-{: .challenge}
+``````{admonition} Check your Understanding
+:class: exercise
+
+The `molecule.py` module also utilizes functions that are no longer available in the module.
+Correct the missing import statements in the module.
+
+`````{admonition} Solution
+:class: solution dropdown
+
+The `build_bond_list` functions utilizes the `calculate_distance` function, which is now in the `measure` module, so we want to create a relative import from the `measure` module.
+````{tab-set-code} 
+
+```{code-block} molecule.py
+
+from .measure import calculate_distance
+```
+````
+`````
+``````
 
 ### Using `import *`
 
 We have moved all of our functions into modules and we've updated our `__init__.py` file.
-If you use a python interpreter in a directory which is not directly above your project, you can see the consequences of this.
+If you use a Python interpreter in a directory which is not directly above your project, you can see the consequences of this.
 We can use the `dir` functions to see what is available in a particular module or object:
 
-~~~
+````{tab-set-code}
+```{code-block} python
 >>> import molecool
 >>> dir(molecool)
-~~~
-{: .language-python}
+```
+````
 
 You should see something similar to the following
 
-~~~
+````{tab-set-code} 
+
+```{code-block} output
 ['__builtins__', '__cached__', '__doc__', '__file__', '__git_revision__', '__loader__', '__name__', '__package__', '__path__', '__spec__', '__version__', '_version', 'functions', 'np', 'plt', 'calculate_distance', 'calculate_angle,
 'build_bond_list', 'draw_molecule', 'bond_histogram' ]
-~~~
-{: .output}
+```
+````
 
 These are all the things available to us from importing `molecool`.
 You will see your `functions` module, but you will also see `np` and `plt`.
@@ -615,11 +683,14 @@ Since we are no longer using any code from `functions.py`, we will remove the st
 We haven't yet included our `io` subpackage, meaning that the user would have to import this package if they wanted to use it.
 For example, to use the xyz functions,
 
-~~~
-import molecool.io.xyz
-dir(molecool.io.xyz.open_xyz)
-~~~
-{: .language-python}
+````{tab-set-code} 
+
+```{code-block} python
+>>> import molecool.io.xyz
+>>> dir(molecool.io.xyz.open_xyz)
+```
+````
+
 
 This will work, however, the main reason we broke up the modules within the `io` package was for development convenience.
 Right now this has come at the cost of slightly more complicated import statements to get access to any function.
@@ -629,21 +700,26 @@ At this point, the way we actually do this import is going to be stylistic - how
 
 The goal we are going for is to call an IO function using
 
-~~~
+````{tab-set-code} 
+
+```{code-block} python
 molecool.io.IO_FUNCTION
-~~~
-{: .language-python}
+```
+````
+
 
 where `IO_FUNCTION` is any function relating to IO.
 
 Within the `io` directory, create a new file called `__init__.py`.
 Open that file with your desired editor and add the following two lines.
 
-~~~
+````{tab-set-code} 
+
+```{code-block} __init__.py
 from .pdb import open_pdb
 from .xyz import open_xyz, write_xyz
-~~~
-{: .language-python}
+```
+````
 
 These lines are relative import statements to the functions within the `io` package.
 Think of them as pointers to the functions.
@@ -651,50 +727,71 @@ When we look at the `io` package, it directs us to the location of the underlyin
 so we do not need to look within each submodule.
 This allows us to use the following `import` statement to our top level `__init__.py` to access the functions:
 
-~~~
+````{tab-set-code} 
+
+```{code-block} __init__.py
 from . import io
-~~~
-{: .language-python}
+```
+````
+
 
 We can now call our I/O functions using our target syntax.
 
-~~~
+````{tab-set-code} 
+
+```{code-block} python
 >>> molecool.io.open_pdb()
-~~~
-{: .language-python}
+```
+````
+
 
 If we wanted the I/O functions to mimic the imports from the rest of the modules,
 we could modify our top level `__init__.py` file to reflect that.
 
-~~~
+````{tab-set-code} 
+
+```{code-block} __init__.py
 from .measure import calculate_distance, calculate_angle
 from .molecule import build_bond_list
 from .visualize import draw_molecule, bond_histogram
 from .io import open_pdb, open_xyz, write_xyz
-~~~
-{: .language-python}
+```
+````
+
 
 
 We could even make these functions more accessible by removing the need for the  `io` module.
 
 This would allow us to call functions by simply typing the following.
 
-~~~
+````{tab-set-code} 
+
+```{code-block} python
 >>> molecool.open_pdb()
-~~~
-{: .language-python}
+```
+````
+
 
 You can now appreciate how the `__init__.py` file plays such an important role in defining how the user imports the functions in the package. 
 
 Now that we've made some changes to `__init__.py`,
 we should commit our changes and push to GitHub.
 
-~~~
-$ git add .
-$ git commit -m "fixing imports"
-$ git push origin main
-~~~
-{: .language-bash}
+````{tab-set-code} 
+
+```{code-block} shell
+git add .
+git commit -m "fixing imports"
+git push origin main
+```
+````
+
+```{admonition} Key Points
+:class: key
+
+- Your package should be broken up into modules and subpackages depending on the amount of code and functionality.
+- You can use the `__init__.py` file to define what packages are imported with your package, and how the user interacts with it.
+```
 
 [package setup]: https://molssi-education.github.io/python-package-best-practices/01-package-setup/index.html
 [PEP8]: https://www.python.org/dev/peps/pep-0008/

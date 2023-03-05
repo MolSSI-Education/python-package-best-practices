@@ -8,6 +8,15 @@
 
 # -- Path setup --------------------------------------------------------------
 
+import sys
+import os
+
+# Get the absolute path of the current directory
+dir_path = os.path.abspath(os.path.dirname(__file__))
+
+# Append the directory path to sys.path
+sys.path.append(dir_path)
+
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
@@ -25,6 +34,12 @@ version = ''
 # The full version, including alpha/beta/rc tags
 release = ''
 
+import lexerpatch
+from sphinx.highlighting import lexers
+from pygments.lexers.python import PythonLexer
+
+# Associate *.py files with the Python lexer
+lexers.setdefault('py', PythonLexer)
 
 # -- General configuration ---------------------------------------------------
 
@@ -103,7 +118,7 @@ html_theme_options = {
 	"logo": {
       "image_light": "molssi_main_logo.png",
       "image_dark": "molssi_main_logo_inverted_white.png",
-      "text": "Python Best Practices",
+      "text": "MolSSI Best Practices",
       "molssi_light": "molssi_main_logo.png",
       "molssi_dark": "molssi_main_logo_inverted_white.png",
     },
@@ -115,6 +130,7 @@ html_theme_options = {
 
 	"secondary_sidebar_items": ["page-toc", "sourcelink"],
     "footer_items": [ "molssi_footer" ],
+    "icon_links":[],
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,

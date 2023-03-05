@@ -1,5 +1,10 @@
 @import "../basic.css";
 
+img {
+    display: block
+}
+
+
 html[data-theme="light"] {
     --pst-color-primary: #ed1c24;
 	--pst-color-warning: #ed1c24;
