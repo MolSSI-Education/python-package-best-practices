@@ -116,8 +116,8 @@ html_theme_options = {
 	"twitter_url": "https://twitter.com/MolSSI_NSF",
 
 	"logo": {
-      "image_light": "molssi_main_logo.png",
-      "image_dark": "molssi_main_logo_inverted_white.png",
+      "image_light": "_static/molssi_main_logo.png",
+      "image_dark": "_static/molssi_main_logo_inverted_white.png",
       "text": "MolSSI Best Practices",
       "molssi_light": "molssi_main_logo.png",
       "molssi_dark": "molssi_main_logo_inverted_white.png",
