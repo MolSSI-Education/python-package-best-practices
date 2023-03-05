@@ -1,21 +1,19 @@
----
-title: "Type Hinting in Python"
-teaching: 15
-exercises: 5
-questions:
-- "What is type hinting?"
-- "What does type hinting do for my software?"
-objectives:
-- "Learn about type hinting in Python."
-- "Learn the syntax to utilize type hinting in Python."
-keypoints:
-- "Type hinting improves the readability of your code by annotating the data types of variables."
-- "Type hinting is used by IDEs to help discover problems before runtime."
----
+# Type Hinting in Python
 
-## Python Typing
+````{admonition} Overview
+:class: overview
 
+Questions:
 
+- What is type hinting?
+- What does type hinting do for my software?
+
+Objectives:
+
+- Learn about type hinting in Python.
+- Learn the syntax to utilize type hinting in Python.
+
+````
 Python does not inherently require or enforce the *types* of variables in code.
 Python instead works under a principle called `Duck Typing`.
 Duck Typing is derived from the phrase, "If it looks like a duck, swims like a duck, and quacks like a duck, then it probably is a duck."
@@ -23,8 +21,11 @@ Similarily, if the value assigned to a variable can be used when an integer is c
 
 Though Duck Typing allows for flexibility in the use of variables, and similarily functions which take and return values of arbitrary type, a number of issues can arise.
 
-Consider the `calculate_distance` function from functions.py:
-```python
+Consider the `calculate_distance` function from `measure.py`:
+
+````{tab-set-code}
+
+```{code-block} measure.py
     def calculate_distance(rA, rB):
         """Calculate the distance between two points.
         
@@ -51,6 +52,7 @@ Consider the `calculate_distance` function from functions.py:
 
         return distance
 ```
+````
 
 What are the types of the inputs for this function?
 The docstring currently specifies that the parameters `rA` and `rB` are both `np.ndarray`.
@@ -60,15 +62,19 @@ First, `rB` is subtracted from `rA`.
 Any types that do not support the `-` operation will cause an error.
 As an example, try running the function with two lists.
 
-```python
-calculate_distance([1,2,3], [2,3,4])
+````{tab-set-code}
+```{code-block-python}
+>>> calculate_distance([1,2,3], [2,3,4])
 ```
+````
 
 Python will throw an exception.
 
-```output
+````{tab-set-code}
+```{code-block} output
     TypeError: unsupported operand type(s) for -: 'list' and 'list'
 ```
+````
 
 This `TypeError` seems like an appropriate exception, but it would be nice if we could do more to anticipate this error and catch it before run time.
 
@@ -90,13 +96,15 @@ The benefits of type hinting are to support error checking at development time t
 Python makes it easy to specify a type hint for any variable.
 We can specify a type with or without providing a default value.
 
-```python
+````{tab-set-code}
+```{code-block-python}
 my_integer: int
 
 my_float: float = 0.3
 
 list_of_ints: list[int]
 ```
+````
 
 Type hints can include any type available where the code is written, including
  * Simple types available in all Python code: int, float, str, bool, list
@@ -116,10 +124,12 @@ At run time, `list[int]` is identically the same type as `list`.
 The same syntax can be used to specify function inputs.
 We can add type hints to a function to specify what types the function works on.
 
-```python
+````{tab-set-code}
+```{code-block-python}
 def my_function(var1: int, var2: float):
     ...
 ```
+````
 
 Each variable can be assigned its own type.
 
@@ -127,45 +137,53 @@ Each variable can be assigned its own type.
 
 The syntax for type hinting a function output is a bit different.
 We follow the function declaration with an `->` and then the type before the `:`.
-```python
+
+````{tab-set-code}
+```{code-block} python
 def my_function(var1: int, var2: float) -> float:
     ...
 ```
+````
 Lets apply type hinting to the `calculate_distance` function.
 
-> ## Exercise
-> Add type hints to the `calculate_distance` function.
-> Hint: our docstring specifies what types we should be using for the parameters and the output of the function.
->> ## Answer
->> ```python
->>    def calculate_distance(rA: np.ndarray, rB: np.ndarray) -> float:
->>        """Calculate the distance between two points.
->>        
->>        Parameters
->>        ----------
->>        rA, rB : np.ndarray
->>            The coordinates of each point.
->>
->>        Returns
->>        -------
->>        distance : float
->>            The distance between the two points.
->>
->>        Examples
->>        --------
->>        >>> r1 = np.array([0, 0, 0])
->>        >>> r2 = np.array([0, 0.1, 0])
->>        >>> calculate_distance(r1, r2)
->>        0.1
->>        """
->>        dist_vec = rA - rB
->>        distance = np.linalg.norm(dist_vec)
->>
->>        return distance
->>```
->> 
-> {: .solution}
-{: .challenge}
+## Exercise - Adding type annotations to `calculate_distance`
+
+``````{admonition} Exercise
+:class: exercise 
+
+Add type hints to the `calculate_distance` function.
+Hint: our docstring specifies what types we should be using for the parameters and the output of the function.
+
+`````{admonition} Solution
+:class: solution dropdown
+
+````{tab-set-code}
+```{code-block} python
+def calculate_distance(rA: np.ndarray, rB: np.ndarray) -> float:
+    """Calculate the distance between two points.
+    
+    Parameters
+    ----------
+    rA, rB : np.ndarray
+        The coordinates of each point.
+    Returns
+    -------
+    distance : float
+        The distance between the two points.
+    Examples
+    --------
+    >>> r1 = np.array([0, 0, 0])
+    >>> r2 = np.array([0, 0.1, 0])
+    >>> calculate_distance(r1, r2)
+    0.1
+    """
+    dist_vec = rA - rB
+    distance = np.linalg.norm(dist_vec)
+    return distance
+```
+````
+`````
+``````
 
 ## Static Type Checking
 
@@ -206,3 +224,11 @@ The [typing](https://docs.python.org/3/library/typing.html) library includes a n
    can be used in a function argument annotated `arg: Iterable[SupportsFloat]`
 
 More information on Python's typing package can be found in the [Python documentation](https://docs.python.org/3/library/typing.html).
+
+```{admonition} Key Points
+:class: key
+
+- Type hinting improves the readability of your code by annotating the data types of variables.
+- Type hinting is used by IDEs to help discover problems before runtime.
+
+```
