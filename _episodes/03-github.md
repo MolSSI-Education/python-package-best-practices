@@ -527,6 +527,7 @@ This is the end of testing.txt
 ***************************************
 
 ```
+````
 
 Scroll to the bottom of the page and write the message
 "Added a line to testing.txt from the web interface." for this commit.
@@ -560,7 +561,7 @@ If you want more `git`, see the following tutorials.
 ```{admonition} Key Points
 :class: key
 
-- "You can use GitHub to store your project online where you or others can access it from a central repository."
-- "You can use GitHub to store your projects so that you can work on them from multiple computers."
+- You can use GitHub to store your project online where you or others can access it from a central repository.
+- You can use GitHub to store your projects so that you can work on them from multiple computers.
 
 ```
