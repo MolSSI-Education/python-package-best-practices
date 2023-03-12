@@ -818,14 +818,6 @@ from mpl_toolkits.mplot3d import Axes3D  ## noqa: F401
 
 You can run `flake8` again to see that the import error is no longer reported.
 
-```{admonition}
-:class: key
-
-- Your code should adhere to standards outlined in PEP8 so that it easily readable by others.
-- All functions and modules should be documented with docstrings.
-
-```
-
 ## Key Points
 
 ```{admonition} Key Points

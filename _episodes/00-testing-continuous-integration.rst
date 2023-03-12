@@ -1,4 +1,4 @@
-Testing, Continuous Integration, and Deployment
+Testing, Continuous Integration, and Distribution
 -----------------------------------------------
 
 .. toctree::

@@ -1,0 +1,18 @@
+Lesson Title,Questions,Objectives
+`Introduction to Version Control using git <02-git.html>`_,* How do I use git to keep a record of my project?,"* Explain the purpose of version control.
+
+* Introduce common git commands.
+
+* Understand how to create a commit.
+
+* Understand how to view diffs and see previous versions of files."
+`GitHub <03-github.html>`_,"* How do I use GitHub to host my projects?
+
+* How do I use git and GitHub togehter?",* Explain reasons to use GitHub.
+`Code Collaboration <07-collaboration.html>`_,"* How can others contribute to my project on GitHub?
+
+* How can I contribute to the projects of others?","* Learn about collaboration models.
+
+* Learn what a fork is on GitHub
+
+* Learn how to open a pull request"

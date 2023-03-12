@@ -190,7 +190,7 @@ This repository is currently under development. To do a development install, dow
 in the repository directory.
 ```
 
-#### git add, git status, git commit
+### git add, git status, git commit
 
 Making a commit is like making a checkpoint for a particular version of your code.
 You can easily return to, or revert to that checkpoint.

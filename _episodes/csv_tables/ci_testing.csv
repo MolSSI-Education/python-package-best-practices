@@ -1,0 +1,17 @@
+Lesson Title,Questions,Objectives
+`Python Testing using pytest <08-testing.html>`_,* How is a Python module tested?,"* Explain the overall structure of testing.
+
+* Explain the reasons why testing is important.
+
+* Understand how to write tests using the pytest framework."
+`Continuous Integration using GitHub Actions <09-CI.html>`_,"* How can we automate testing?
+
+* How do we link a repository on GitHub to continuous integration services?","* Explain the concept and benefits of continuous integration.
+
+* Introduce the GitHub Marketplace as a one-stop shop for continuous integration services.
+
+* Demonstrate how to setup continuous integration using GitHub Actions.
+
+* Familiarize learners with YAML configuration files."
+`Distributing Packages <10-distribution.html>`_,* How can I get my project out there?,* Discuss community strategies.
+,,

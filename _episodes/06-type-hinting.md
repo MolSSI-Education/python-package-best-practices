@@ -63,7 +63,7 @@ Any types that do not support the `-` operation will cause an error.
 As an example, try running the function with two lists.
 
 ````{tab-set-code}
-```{code-block-python}
+```{code-block} python
 >>> calculate_distance([1,2,3], [2,3,4])
 ```
 ````
@@ -97,7 +97,7 @@ Python makes it easy to specify a type hint for any variable.
 We can specify a type with or without providing a default value.
 
 ````{tab-set-code}
-```{code-block-python}
+```{code-block} python
 my_integer: int
 
 my_float: float = 0.3
@@ -125,7 +125,7 @@ The same syntax can be used to specify function inputs.
 We can add type hints to a function to specify what types the function works on.
 
 ````{tab-set-code}
-```{code-block-python}
+```{code-block} python
 def my_function(var1: int, var2: float):
     ...
 ```

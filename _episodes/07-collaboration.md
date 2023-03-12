@@ -356,11 +356,14 @@ It is important that every element have the following at the top of the page (no
 ````{tab-set-code} 
 
 ```{code-block} element.md
+
 ---
 layout: page
 title: ELEMENT_NAME
 ---
-``
+
+```
+````
 
 If you are creating a new page, fill in the appropriate element name.
 Add some text about the element below the heading.
@@ -369,6 +372,7 @@ For example, our sodium page might look like the following.
 ````{tab-set-code} 
 
 ```{code-block} sodium.md
+
 ---
 layout: page
 title: Sodium
@@ -556,9 +560,9 @@ If you want more `git`, see the following tutorials.
 ````{admonition} Key Points
 :class: key
 
-- "To contribute to someone else's project, you should fork their repository."
-- "All development work should be done on a new branch. Each branch should implement one feature."
-- "Once you've implemented a new feature, push to your repository and create a pull request on the original repo."
+- To contribute to someone else's project, you should fork their repository.
+- All development work should be done on a new branch. Each branch should implement one feature.
+- Once you've implemented a new feature, push to your repository and create a pull request on the original repo.
 ````
 
 

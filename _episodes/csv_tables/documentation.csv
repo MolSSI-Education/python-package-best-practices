@@ -1,0 +1,23 @@
+Lesson Title,Questions,Objectives
+`Python Coding Style <04-function-style.html>`_,* How can I write Python code that is readable?,"* Learn how to raise exceptions.
+
+* Understand how to follow PEP8 style for Python.
+
+* Understand what docstrings are and why they are important.
+
+* Learn to write docstrings in numpy style."
+`Deciding Package Structure <05-package-structure.html>`_,"* How should I organize my code?
+
+* How can I handle imports in my package?","* Break code into modules and subpackages based on functionality.
+
+* Understand how the `__init__.py` file affects your Python package."
+`Type Hinting in Python <06-type-hinting.html>`_,"* What is type hinting?
+
+* What does type hinting do for my software?","* Learn about type hinting in Python.
+
+* Learn the syntax to utilize type hinting in Python."
+`Package Documentation <10-documentation.html>`_,* How can we document our package?,"* Run the lesson checking script and interpret its output correctly.
+
+* Explain in-code documentation
+
+* Explain documentation tools like Read The Docs"

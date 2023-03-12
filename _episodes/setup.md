@@ -56,7 +56,7 @@ Note that if you are using the WSL,
 your Linux OS is completely separated from your Windows operating system. 
 This means that software installed on one operating system is not available in the other. 
 If you are running the Windows 11 operating system, 
-you can [set up WSL to use graphical interfaces on your computer]((https://docs.microsoft.com/en-us/windows/wsl/tutorials/gui-apps)). 
+you can [set up WSL to use graphical interfaces on your computer](https://docs.microsoft.com/en-us/windows/wsl/tutorials/gui-apps). 
 Otherwise, you will only be able to interact with WSL through the terminal (and the text editor VSCode, 
 see later in the set-up for information on how to use VS Code in WSL)
 
@@ -338,7 +338,7 @@ When this happens, Git will use your environment's default text editor, which mi
 Using configuration commands, you can tell Git to use your favorite editor.
 
 We recommend installing [Visual Studio Code](https://code.visualstudio.com/) as your text editor in the last portion of this set-up.
-Note that using VS Code on Windows or Mac requires additional set-up, which is outlined in the section [Installing a text editor](#text-editor).
+Note that using VS Code on Windows or Mac requires additional set-up, which is outlined in the section ``Installing a text editor``.
 To make VS Code your default editor for git, do
 
 ````{tab-set-code} 
@@ -391,17 +391,21 @@ Select the `molssi-best-practices` environment.
 
 In this workshop, we will be moving code from a Jupyter notebook into a Python package that we can install and import into other scripts.
 
-- [Click here to download the starting materials for the workshop](./data/starting_material.zip)
+- {download}`Starting materials for lesson <../data/starting_material.zip>`.
 
-> ## Downloading Materials from the command line
-> If you are on WSL, or would like to use the command line, you can download the workshop materials using `curl` 
-> (similar to how you downloaded the miniconda installer)
->
-> ~~~
-> curl -O https://education.molssi.org/python-package-best-practices/data/starting_material.zip
-> ~~~
-> {: .language-bash}
-{: .callout}
+``````{admonition} Downloading materials from the command line
+:class: tip
+
+If you are on WSL, or would like to use the command line, you can download the workshop materials using `curl` 
+(similar to how you downloaded the miniconda installer)
+
+````{tab-set-code}
+```{code-block} shell
+curl -O https://education.molssi.org/python-package-best-practices/data/starting_material.zip
+```
+````
+
+``````
 
 - Create a folder called `molssi_best_practices` and add the file you downloaded from the step above.
 - The file you download as starting materials will be a `zip` file.

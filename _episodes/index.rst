@@ -30,28 +30,29 @@ If you see a subject you would like to contribute to, submit a pull request!
 Workshop Lessons
 ================
 
-.. list-table:: 
-    :widths: 10 10 50 50
-    :header-rows: 1
-    :stub-columns: 1
+Set-Up
+#######
+.. csv-table:: 
+  :file: csv_tables/setup.csv
+  :header-rows: 1
 
-    * - 
-      - Lesson Title
-      - Questions
-      - Key Points
-    * - 1
-      - Row 1
-      - Column 2
-      - Column 3 long. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sit amet mauris arcu.
-    * - Stub Row 2
-      - Row 2
-      - Column 2
-      - Column 3 long. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sit amet mauris arcu.
-    * - Stub Row 3
-      - Row 3
-      - Column 2
-      - Column 3 long. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sit amet mauris arcu.
+git and GitHub
+##############
+.. csv-table:: 
+  :file: csv_tables/git_and_github.csv
+  :header-rows: 1
 
+Code Style and documentation
+############################
+.. csv-table:: 
+  :file: csv_tables/documentation.csv
+  :header-rows: 1
+
+Continuous Integration, Testing, Distribution
+#############################################
+.. csv-table:: 
+  :file: csv_tables/ci_testing.csv
+  :header-rows: 1
 
 .. toctree::
    :maxdepth: 2
@@ -59,7 +60,7 @@ Workshop Lessons
    :titlesonly:
 
    setup
-   00-package-creation
+   01-package-setup
    00-git-and-github
    00-code-organization-documentation
    00-testing-continuous-integration
