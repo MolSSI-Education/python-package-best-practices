@@ -1,26 +1,26 @@
----
-title: "Distributing Packages"
-teaching: 30
-exercises: 5
-questions:
-- "How can I get my project out there?"
-objectives:
-- "Discuss community strategies"
-keypoints:
-- "Add package metadata and build a distribution to share a package through community platforms."
-- "Adopt common conventions and establish clear expectations for compatibility versus breaking changes so that prospective users of your package have confidence in its stability and maturity."
-- "Multiple packaging systems exist, and require separate preparation."
----
+# Distributing Packages
 
-> ## This lesson is under development
-> This lesson is in a preliminary stage, and is not as polished as the rests of the lessons. 
->  We expect to add more content to and update this lesson in the future!
-> 
-{: .discussion}
+````{admonition} Overview
+:class: overview
+
+Questions:
+- How can I get my project out there?
+
+Objectives:
+- Discuss community strategies
+````
+
+````{admonition} This lesson is under development
+:class: attention
+
+This lesson is in a preliminary stage, and is not as polished as the rests of the lessons. 
+We expect to add more content to and update this lesson in the future!
+ 
+````
 
 This lesson will discuss how to distribute packages through the Python Package Index (PyPI) and conda. 
 
-# Preliminary
+``````{admonition} Prerequisites
 
 Register a test account on test.pypi.org.
 
@@ -32,25 +32,31 @@ that we will refer to as "YOURTOKEN" below.
 
 Create `$HOME/.pypirc`. It should look something like the following, substituting your access token in the password field.
 
-~~~
+````{tab-set-code} 
+
+```{code-block} output
 [testpypi]
   username = __token__
   password = YOURTOKEN
-~~~
-{: .output}
+```
+````
+``````
 
 You will also eventually need to [get an account](https://pypi.org/account/register/) on the main pypi.org,
 but you can do that later.
 
 Install some additional packages to help build and upload your distribution.
-~~~
+
+````{tab-set-code} 
+
+```{code-block} shell
 pip install build twine
-~~~
-{: .language-bash}
+```
+````
 
-# Preparing a release
+## Preparing a release
 
-## Release notes
+### Release notes
 
 Make sure your README file and documentation are up to date.
 Check the project description in your project's metadata, too.
@@ -61,41 +67,50 @@ want to include in a text file or in a blurb in your GitHub
 This can be a good place to publish [release notes](https://docs.github.com/en/repositories/releasing-projects-on-github/automatically-generated-release-notes).
 
 
-## Tagging the release
+### Tagging the release
 
-~~~
+````{tab-set-code} 
+
+```{code-block} shell
 git status
-~~~
-{: .language-bash}
+```
+````
+
 
 Make sure that your changes are checked in and that you don't have
 extra files sitting around.
 
 Tag the latest commit with a version identifier.
 Let's get ready to publish `molecool` 1.0.0a1, the first alpha release of our package.
-~~~
+
+````{tab-set-code} 
+
+```{code-block} shell
 git tag 1.0.0a1
-~~~
-{: .language-bash}
+```
+````
+
 
 Build the distribution archive(s) for the packaging system you are using (see below): `PyPI` or `Conda`.
 
-> ## Synchronizing tags
-> 
-> Tags created in your local repository are not automatically shared when you `git push` a branch.
+```{admonition} Synchonizing Tags
+:class: tip
+
+Tags created in your local repository are not automatically shared when you `git push` a branch.
 You can push tags the same way you push branches, or you can create the tag directly on GitHub.
 With the GitHub interface, you can associate tags with
 [Releases](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases)
 to provide a place to publish release notes and automatically generate links to archive files of
 your repository at the tagged commits.
->
-> Tags created through the GitHub interface (or pushed from a different location) will be available
+
+Tags created through the GitHub interface (or pushed from a different location) will be available
 locally the next time you `git fetch`.
->
-> Keep in mind that the GitHub repository page is one of the main entry points for new users of your package.
+
+Keep in mind that the GitHub repository page is one of the main entry points for new users of your package.
 Your project looks healthier and better maintained with a nice, well documented history of
-> [releases](https://docs.github.com/en/repositories/releasing-projects-on-github/viewing-your-repositorys-releases-and-tags).
-{: .callout}
+[releases](https://docs.github.com/en/repositories/releasing-projects-on-github/viewing-your-repositorys-releases-and-tags).
+
+```
 
 Tags and GitHub releases do not automatically make your package easier to find or install,
 but they can be helpful in preparing the source of version information or the source archive
@@ -143,11 +158,14 @@ launches the configured build system, and then installs the resulting "wheel" (d
 Note that, if we _only_ want to prepare a distribution for sharing,
 we can just use the `build` module.
 
-~~~
+````{tab-set-code} 
+
+```{code-block} shell
 pip install build
 python -m build .
-~~~
-{: .language-bash}
+```
+````
+
 
 
 Note the version string embedded in the distribution archive name.
@@ -164,21 +182,22 @@ This is probably a good thing; it will help keep us from accidentally publishing
 releases before they are ready, or messing up our versioning scheme by forgetting
 a semantic versioning tag.
 
-> ## Goodbye to setup.py?
->
-> Historically packages built with `setuptools` used a `setup.py` script
+```{admonition} Goodbye to setup.py?
+:class: note
+
+Historically packages built with `setuptools` used a `setup.py` script
 as the entry point to the `setuptools` build system. `setup.py` is specific
 to `setuptools` and the `distutils` package it is built on.
 Many tools for helping to build and test packages came to
 rely on `setup.py`, which made them incompatible with non-setuptools build
 systems.
-> 
-> In an ongoing effort at generalization, the Python community is now
+
+In an ongoing effort at generalization, the Python community is now
 encouraging package authors to use a `pyproject.toml` file to direct the build
 system. `distutils` is scheduled for retirement with Python 3.12.
 In preparation, `setuptools` no longer requires `distutils` or `setup.py`,
 and can be configured entirely with `pyproject.toml`.
-{: .callout}
+```
 
 ### Building and uploading to PyPI
 
@@ -251,30 +270,65 @@ Making these considerations may lead you to moderate the changes you make.
 For instance, instead of completely changing an interface,
 consider introducing a new function or module with a different name.
 Or provide backwards compatible support for the old interfaces.
-> ## Consider
-> Is this a completely incompatible change to the interface?
->> ## Versioning strategy
->> Probably a major version increment.
-> {: .solution}
- {: .challenge}
-> ## Consider
-> Is this a backwards compatible update, or a new feature that does not conflict with existing features?
->> ## Strategy
->> Probably a minor version increment.
-> {: .solution}
- {: .challenge}
-> ## Consider
->Is this an internal change or bug fix that you don't expect users to notice (but who knows? there could be a bug...)?
->> ## Strategy
->> Use a patch release version increment.
-> {: .solution}
- {: .challenge}
-> ## Consider
-> Is this a change to documentation or something that does not affect the code at all, with no implications for compatibility, but you just need some sort of version bump so that people get your edit the next time the package is downloaded?
->> ## Strategy
->> Use a "tweak" version or post-release version. Check [PEP 440](https://peps.python.org/pep-0440/) for
->> appropriate syntax.
-> {: .solution}
- {: .challenge}
 
-{% include links.md %}
+### Exercises - Versioning semantics
+
+Answer the following questions about how you should change your package
+version in the following scenarios.
+
+````{admonition} Case 1
+:class: exercise
+
+This is a completely incompatible change to the interface of the package.
+
+```{admonition} Solution
+:class: solution dropdown
+
+Probably a major version increment.
+```
+````
+
+````{admonition} Case 2
+:class: exercise
+
+A backwards compatible update, or a new feature that does not conflict with existing features.
+
+```{admonition} Solution
+:class: solution dropdown
+
+Probably a minor version increment.
+```
+````
+
+````{admonition} Case 3
+:class: exercise
+
+An internal change or bug fix that you don't expect users to notice (but who knows? there could be a bug...)?
+
+```{admonition} Solution
+:class: solution dropdown
+
+A patch release version increment.
+```
+````
+
+
+````{admonition} Case 4
+:class: exercise
+
+Is this a change to documentation or something that does not affect the code at all, with no implications for compatibility, but you just need some sort of version bump so that people get your edit the next time the package is downloaded?
+
+```{admonition} Solution
+:class: solution dropdown
+
+Use a "tweak" version or post-release version. Check [PEP 440](https://peps.python.org/pep-0440/) for
+```
+````
+
+````{admonition} Key Points
+:class: key
+
+- Add package metadata and build a distribution to share a package through community platforms.
+- Adopt common conventions and establish clear expectations for compatibility versus breaking changes so that prospective users of your package have confidence in its stability and maturity.
+- Multiple packaging systems exist, and require separate preparation.
+````
