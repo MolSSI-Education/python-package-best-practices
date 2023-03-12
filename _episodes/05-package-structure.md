@@ -786,6 +786,8 @@ git push origin main
 ```
 ````
 
+## Key Points
+
 ```{admonition} Key Points
 :class: key
 

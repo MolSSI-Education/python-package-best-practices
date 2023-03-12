@@ -711,6 +711,9 @@ Update your `README.md` and `setup.cfg` files with your new ReadTheDocs URL.
 [Sphinx-Autodoc]: https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html
 [Spinx-AutoAPI]: https://github.com/readthedocs/sphinx-autoapi
 [Read The Docs]: https://readthedocs.org/
+
+## Key Points
+
 ````{admonition} Key Points
 :class: key
 

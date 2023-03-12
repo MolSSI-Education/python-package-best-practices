@@ -551,6 +551,8 @@ If you want more `git`, see the following tutorials.
 
 [Git Rebasing Tutorial](https://git-scm.com/book/en/v2/Git-Branching-Rebasing)
 
+## Key Points
+
 ````{admonition} Key Points
 :class: key
 

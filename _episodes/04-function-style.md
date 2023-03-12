@@ -826,6 +826,8 @@ You can run `flake8` again to see that the import error is no longer reported.
 
 ```
 
+## Key Points
+
 ```{admonition} Key Points
 :class: key
 

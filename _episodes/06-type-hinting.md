@@ -225,6 +225,8 @@ The [typing](https://docs.python.org/3/library/typing.html) library includes a n
 
 More information on Python's typing package can be found in the [Python documentation](https://docs.python.org/3/library/typing.html).
 
+## Key Points
+
 ```{admonition} Key Points
 :class: key
 

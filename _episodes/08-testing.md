@@ -1242,7 +1242,7 @@ Short answer: __no__.
 Code coverage is a useful tool to assess how comprehensive our set of tests are and in general the higher our code coverage the better.
 __However__, trying to achieve 100% coverage on packages any larger than this sample package is a bit unrealistic and would require more time than that last bit of coverage is worth.
 ```
-
+## Key Points
 ````{admonition} Key Points
 :class: key
 
