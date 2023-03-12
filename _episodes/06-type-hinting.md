@@ -26,31 +26,31 @@ Consider the `calculate_distance` function from `measure.py`:
 ````{tab-set-code}
 
 ```{code-block} measure.py
-    def calculate_distance(rA, rB):
-        """Calculate the distance between two points.
-        
-        Parameters
-        ----------
-        rA, rB : np.ndarray
-            The coordinates of each point.
+def calculate_distance(rA, rB):
+    """Calculate the distance between two points.
+    
+    Parameters
+    ----------
+    rA, rB : np.ndarray
+        The coordinates of each point.
 
-        Returns   
-        -------
-        distance : float
-            The distance between the two points.
+    Returns   
+    -------
+    distance : float
+        The distance between the two points.
 
-        Examples
-        --------
-        >>> r1 = np.array([0, 0, 0])
-        >>> r2 = np.array([0, 0.1, 0])
-        >>> calculate_distance(r1, r2)
-        0.1
-        """
+    Examples
+    --------
+    >>> r1 = np.array([0, 0, 0])
+    >>> r2 = np.array([0, 0.1, 0])
+    >>> calculate_distance(r1, r2)
+    0.1
+    """
 
-        dist_vec = rA - rB
-        distance = np.linalg.norm(dist_vec)
+    dist_vec = rA - rB
+    distance = np.linalg.norm(dist_vec)
 
-        return distance
+    return distance
 ```
 ````
 
@@ -72,7 +72,7 @@ Python will throw an exception.
 
 ````{tab-set-code}
 ```{code-block} output
-    TypeError: unsupported operand type(s) for -: 'list' and 'list'
+TypeError: unsupported operand type(s) for -: 'list' and 'list'
 ```
 ````
 
