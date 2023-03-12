@@ -1,16 +1,17 @@
----
-title: "Documentation"
-teaching: 40
-exercises: 20
-questions:
-- "How can we document our module?"
-objectives:
-- "Run the lesson checking script and interpret its output correctly."
-- "Explain in-code documentation"
-- "Explain documentation tools like Read The Docs"
-keypoints:
-- "Some documentation is better than no documentation"
----
+# Package Documentation
+
+````{admonition} Overview
+:class: overview
+
+Questions:
+- How can we document our package?
+
+Objectives:
+- Run the lesson checking script and interpret its output correctly.
+- Explain in-code documentation
+- Explain documentation tools like Read The Docs
+````
+
 
 This episode discusses documentation strategies. 
 In particular, we will focus on how to build documentation using Sphinx and host that documentation online using [Read The Docs].
@@ -82,34 +83,46 @@ The command below installs the Sphinx software and a theme for your Sphinx Docum
 The cookiecutter comes preconfigured to use the [Sphinx ReadTheDocs theme] (or `sphinx_rtd_theme`), but there are many themes you can choose from if you wish.
 There are many themes available for Sphinx, and if you view the Sphinx [examples][sphinx example] you will see several themes you could choose from.
 
-~~~
-$ pip install sphinx sphinx_rtd_theme
-~~~
-{: .language-bash}
+````{tab-set-code} 
+
+```{code-block} shell
+pip install sphinx sphinx_rtd_theme
+```
+````
+
 
 While we work with documentation, we will finally be looking at the third directory which CookieCutter created.
 (Remember that we've looked at the project directory, and the `devtools` directory.)
 The files which CookieCutter has set up for Sphinx are in the `docs` folder. 
 Navigate to that directory.
 
-~~~
-$ cd docs
-~~~
-{: .language-bash}
+````{tab-set-code} 
+
+```{code-block} shell
+cd docs
+```
+````
+
 
 Next, look at the files in the directory
 
-~~~
-$ ls
-~~~
-{: .language-bash}
+````{tab-set-code} 
 
-~~~
+```{code-block} shell
+ls
+```
+````
+
+
+````{tab-set-code} 
+
+```{code-block} output
 Makefile            _templates          getting_started.rst requirements.yaml
 README.md           api.rst             index.rst
 _static             conf.py             make.bat
-~~~
-{: .output}
+```
+````
+
 
 These are the files we will use to build our documentation.
 
@@ -124,27 +137,36 @@ Any time you want to make a new page, you can create a file with an `.rst` exten
 
 To build your documentation as HTML, type
 
-~~~
-$ make html
-~~~
-{: .language-bash}
+````{tab-set-code} 
+
+```{code-block} shell
+make html
+```
+````
+
 
 This command tells Sphinx to generate your documentation as html pages. 
 With this command, we are building HTML files from the reStructuredText files.
 
 Now notice when you type `ls` some new directories have appeared.
 
-~~~
-ls
-~~~
-{: .language-bash}
+````{tab-set-code} 
 
-~~~
+```{code-block} shell
+ls
+```
+````
+
+
+````{tab-set-code} 
+
+```{code-block} output
 Makefile            _static             autosummary         index.rst
 README.md           _templates          conf.py             make.bat
 _build              api.rst             getting_started.rst requirements.yaml
-~~~
-{: .output}
+```
+````
+
 
 In particular, notice the `_build` directory. 
 Sphinx put the HTML files it generated here. 
@@ -162,21 +184,27 @@ See this [reStructured Text Cheat Sheet] for info on reStructuredText.
 
 Let's start by adding a simple a description to your `index.rst` under the first heading.
 
-~~~
+````{tab-set-code} 
+
+```{code-block} index.rst
 Welcome to molecool's documentation!
 =========================================================
 molecool is a Python package designed to read in, perform analysis,
 and visualize molecular coordinates. The file formats `xyz` and `pdb` are
 currently supported.
-~~~
+```
+````
 
 Next, clean your previous build and rebuild your pages.
 
-~~~
-$ make clean
-$ make html
-~~~
-{: .language-bash}
+````{tab-set-code} 
+
+```{code-block} shell
+make clean
+make html
+```
+````
+
 
 Refresh the page in your browser to see the page with the new description.
 
@@ -186,48 +214,61 @@ Click the link on your HTML documentation  to see what is there already.
 
 Right now, it says
 
-~~~
+````{tab-set-code} 
+
+```{code-block} getting_started
 This page details how to get started with molecool.
-~~~
+```
+````
 
 To change this, we will edit the content of `getting_started.rst`
 
-> ## Exercise - Getting Started
-> Using the [reStructured Text Cheat Sheet], add some information to your Getting Started page. Use the following guidelines
-> 
-> 1. Add a text description under "Getting Started".
-> 2. Create a subheading called "installation" which contains installation instructions.
-> 3. The "Installation" section should use a list for dependencies and a code block with the installation command.
->
->> ## Solution
->> Following the guidelines and using the cheat sheet may lead you to a page which looks like this:
->> ~~~
->> Getting Started
->> ===============
->>
->> This page details how to get started with molecool. Molecool is a package which was developed for the MolSSI Best Practices workshop.
->>
->> Installation
->> ------------
->> To install molecool, you will need an environment with the following packages:
->>
->> * Python 3.7
->> * NumPy
->> * Matplotlib
->>
->> Once you have these packages installed, you can install molecool in the same environment using
->> ::
->>
->>     pip install -e .
->> ~~~
->> 
->> Here, we have used asterisks (`*`) to create a non-numbered list, and `::` followed by an indented block to indicate a code block.
-> {: .solution}
-{: .challenge}
+### Exercise - Getting Started
+
+``````{admonition} Exercise
+:class: exercise
+
+Using the [reStructured Text Cheat Sheet], add some information to your Getting Started page. Use the following guidelines
+
+1. Add a text description under "Getting Started".
+2. Create a subheading called "installation" which contains installation instructions.
+3. The "Installation" section should use a list for dependencies and a code block with the installation command.
+
+`````{admonition} Solution
+:class: solution dropdown
+
+ Following the guidelines and using the cheat sheet may lead you to a page which looks like this:
+
+ ````{tab-set-code} 
+ ```{code-block} getting_started.rst
+
+Getting Started
+===============
+
+This page details how to get started with molecool. Molecool is a package which was developed for the MolSSI Best Practices workshop.
+
+Installation
+------------
+To install molecool, you will need an environment with the following packages:
+
+* Python 3.11
+* NumPy
+* Matplotlib
+
+Once you have these packages installed, you can install molecool in the same environment using
+::
+
+     pip install -e .
+```
+````
+`````
+``````
 
 We can also add a Python code block, for example. 
 The Sphinx RTD Theme will use syntax highlighting for Python code.
-~~~
+
+````{tab-set-code}
+```{code-block} getting_started.rst
 Usage
 -------
 Once installed, you can use the package. This example draws a benzene molecule from an xyz file.
@@ -238,7 +279,8 @@ Once installed, you can use the package. This example draws a benzene molecule f
     benzene_symbols, benzene_coords = molecool.open_xyz('benzene.xyz')
     benzene_bonds = molecool.build_bond_list(benzene_coords)
     molecool.draw_molecule(benzene_coords, benzene_symbols, draw_bonds=benzene_bonds)
-~~~
+```
+````
 
 ## Sphinx Directives
 
@@ -248,29 +290,29 @@ You can see a general list of directives [here][rst directives], and a list of s
 
 In general, the syntax for a directive is (with appropriate options and syntax)
 
-~~~
+```
 .. directive_name::
   :option:
   :option:
 
   parameter
   parameter
-~~~
+```
 
 ### Code Highlight Directive
 One useful directive is code highlighting. 
 Previously, we automatically highlighted our code using `::` at the end of a line followed by a blank line, then an indented line with code. 
 We could have alternatively used a directive and specified the language.
 
-~~~
+```
 .. code-block:: language
 
   *CODE GOES HERE*
-~~~
+```
 
 For our Python example, 
 
-~~~
+```rst
 .. code-block:: python
 
     import molecool
@@ -278,7 +320,7 @@ For our Python example,
     benzene_symbols, benzene_coords = molecool.open_xyz('benzene.xyz')
     benzene_bonds = molecool.build_bond_list(benzene_coords)
     molecool.draw_molecule(benzene_coords, benzene_symbols, draw_bonds=benzene_bonds)
-~~~
+```
 
 The line `.. code-block:: python` is the line which starts the directive. 
 Directives always start with two periods (`..`), followed by a space, then the directive name (`code-block` in this case), then two colons (`::`). 
@@ -288,7 +330,7 @@ What we want highlighted as code is indented below this directive line.
 Sphinx `code-block` directive supports many languages. 
 For example, we could add a C++ code block.
 
-~~~
+```rst
 .. code-block:: c++
 
     #include <iostream>
@@ -298,7 +340,7 @@ For example, we could add a C++ code block.
         std::cout << "Hello, world!";
         return 0;
     }
-~~~
+```
 
 ### The Table of Contents Directive
 The next directive we will discuss is the Table of Contents directive. 
@@ -306,14 +348,16 @@ Look at the file `index.rst`. It contains the `toctree` directive, which generat
 The Table of Contents on your `index.rst` file is what shows up on your main menu on the left of the page. 
 It is also on your main page.
 
-~~~
+````{tab-set-code} 
+```{code-block} index.rst
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
    getting_started
    api
-~~~
+```
+````
 
 This directive has an example of directive options, namely `maxdepth` and `caption`. 
 You can think of these as arguments to a function. 
@@ -326,49 +370,95 @@ Right now, we are including the 'Getting Started' page and the API page.
 Note that you add the __file name__ in the TOC Tree, but the title of the page is what shows up in the TOC.
 For example, for the `Getting Started` page, the page heading is 'Getting Started', but you list the file name without the extension is the TOC tree as `getting_started`.
 
-> ## Exercise
-> Create a new page with the title "About" that gives a description of the project.
-> Specify that this project is for a MolSSI Best Practices Workshop, and put a link to the MolSSI homepage (molssi.org). 
-> Add your new page to the Table of Contents.
->
-> What happens if you remove the page from the table of contents and rebuild the documentation?
->> ## Solution
->> First, create a new file called `about.rst`. Next, create a header and write a short desciption in `about.rst`.
->> ~~~
->> About this package
->> ------------------
->> This package and documentation are a sample created for the Best Practices Workshop held by `The Molecular Sciences Software Institute <https://molssi.org>`_.
->>
->> ~~~
->> Then, in `index.rst` add the name of the file at the top of your table of contents.
->> ~~~
->> .. toctree::
->>    :maxdepth: 2
->>    :caption: Contents:
->>
->>    getting_started
->>    api
->>    about
->> ~~~
->>
->> If you remove `about` from the TOC tree and rebuild, you will see the following error
->> ~~~
->>  ...PATH_TO_DIRECTORY/molecool/docs/about.rst: WARNING: document isn't included in any toctree
->> ~~~
->> {: .error}
->> Sphinx will warn you if you've created a page and not linked to it.
->>
->{: .solution}
-{: .challenge}
+### Exercise - Adding to the Table of Contents
 
-> ## Building documentation as a PDF
-> To build a pdf version of your documentation, you use the command. Note that you must have Latex installed for this to work.
-> ~~~
-> make latexpdf
-> ~~~
-> {: .language-bash}
-> This will create a folder called `pdf` in the `build` directory, and you should have a file in this directory called `molecool.pdf` containing all of your documentation. Each `rst` file is a chapter of the documentation, instead of a different page.
-{: .callout}
+``````{admonition} Exercise
+:class: exercise
+
+Create a new page with the title "About" that gives a description of the project.
+Specify that this project is for a MolSSI Best Practices Workshop, and put a link to the MolSSI homepage (molssi.org). 
+Add your new page to the Table of Contents.
+What happens if you remove the page from the table of contents and rebuild the documentation?
+
+`````{admonition} Solution
+:class: solution dropdown
+
+First, create a new file called `about.rst`. Next, create a header and
+write a short desciption in `about.rst`.
+````{tab-set-code}
+
+```{code-block} about.rst
+About this package
+------------------
+This package and documentation are a sample created for the Best Practices Workshop held by `The Molecular Sciences Software Institute <https://molssi.org>`_.
+```
+````
+
+Then, in `index.rst` add the name of the file at the top of your table of contents.
+
+
+````{tab-set-code}
+```{code-block} index.rst
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+   getting_started
+   api
+   about
+   ```
+````
+If you remove `about` from the TOC tree and rebuild, you will see the following error
+
+```
+...PATH_TO_DIRECTORY/molecool/docs/about.rst: WARNING: document isn't included in any toctree
+```
+Sphinx will warn you if you've created a page and not linked to it.
+`````
+``````
+
+````{admonition} PDF Documentation
+:class: tip
+
+You can build a PDF version of your documentation using latex. Note that you must have Latex installed for this to work.
+```
+make latexpdf
+```
+
+This will create a folder called `pdf` in the `build` directory, and you should have a file in this directory called `molecool.pdf` containing all of your documentation. Each `rst` file is a chapter of the documentation, instead of a different page.
+````
+
+### Math on pages - Equation Directives
+
+Consider a docstring a function called `calculate_center_of_mass` (you will write the code for this function in the testing lesson). It has a section where we give the formula for the center of mass. 
+If you examine this docstring, you will see that it is specified using a Sphinx Directive. 
+
+```python
+def calculate_center_of_mass(symbols, coordinates):
+    """Calculate the center of mass of a molecule.
+    
+    The center of mass is weighted by each atom's weight.
+    
+    Parameters
+    ----------
+    symbols : list
+        A list of elements for the molecule
+    coordinates : np.ndarray
+        The coordinates of the molecule.
+    
+    Returns
+    -------
+    center_of_mass: np.ndarray
+        The center of mass of the molecule.
+    
+    Notes
+    -----
+    The center of mass is calculated with the formula
+    
+    .. math:: \\vec{R}=\\frac{1}{M} \\sum_{i=1}^{n} m_{i}\\vec{r_{}i}
+    
+    """
+```
+If you add the `Notes` section of this docstring to your Sphinx documentation, the `.. math::` directive will be rendered as an equation.
 
 ## API Documentation
 
@@ -387,7 +477,8 @@ If you click the green 'source' button to the right, you will be taken to a page
 
 Opening, the `api.rst` file, you should see the following.
 
-~~~
+````{tab-set-code}
+```{code-block} api.rst
 API Documentation
 =================
 
@@ -395,7 +486,8 @@ API Documentation
    :toctree: autosummary
 
    molecool.canvas
-~~~
+```
+````
 
 We are using a Sphinx extension called `autosummary` which is part of AutoDoc.
 This tells Sphinx to insert a table that contains links to documented items.
@@ -406,7 +498,9 @@ This is useful if we would like to separate our API documentation into several p
 
 For example, we can add documentation for our `calculate_distance` function.
 
-~~~
+
+````{tab-set-code}
+```{code-block} api.rst
 API Documentation
 =================
 
@@ -415,23 +509,8 @@ API Documentation
 
    molecool.canvas
    molecool.calculate_distance
-
-~~~
-
-> ## Exercise
-> Add documentation for the `calculate_angle` function.
->
->> ## Answer
->> ~~~
->> .. autosummary::
->>     :toctree: autosummary
->>
->>     molecool.canvas
->>     molecool.calculate_distance
->>     molecool.calculate_angle
->> ~~~
-> {: .solution}
-{: .challenge}
+```
+````
 
 ## Adding Docstrings to other pages
 
@@ -440,7 +519,8 @@ To do this, you would use different directives in AutoDoc.
 You may want to write documentation in addition to your docstring. 
 Add a page called `measure.rst` with the following contents:
 
-~~~
+````{tab-set-code}
+```{code-block} measure.rst
 Measure module
 ==============
 
@@ -453,79 +533,78 @@ Measure module
 I can also put additional information about a function.
 
 .. autofunction:: calculate_angle
-~~~
+```
+````
 
 Using this strategy, you can selectively add documentation for functions or classes and write additional information to go with the docstrings.
 
-> ## Structuring your documentation
-> Realistically, you probably don't want just a single page for API documentation.
-> You could separate your documentation by purpose.
-> For example, you could have separate pages explaining visualization, calculation, and/or measurement, with an autosummary table of contents for each page that has relevant functions.
->
-> Many projects are structured this way.
-> Now that you know how Python documentation is built, keep an eye out for documentation you like. 
-> If you find documentation you like, take a look at their files to see how they structured their project!.
-{: .callout}
 
-> ## Sphinx AutoAPI
-> Another strategy for generating API documentation is using [Spinx-AutoAPI].
-> 
-> AutoAPI will pull documentation for all of your functions at once, rather than you having to build them manually.
-> 
-> To install Sphinx-AutoAPI, use `pip`:
-> 
-> ~~~
-> pip install sphinx-autoapi
-> ~~~
-> {: .language-bash}
-> 
-> Modify your `conf.py` file to look like the following:
-> 
-> ~~~
-> ...
-> 
-> extensions = [
->     'autoapi.extension',
->     #'sphinx.ext.autosummary',
->     #'sphinx.ext.autodoc',
->     'sphinx.ext.mathjax',
->     'sphinx.ext.viewcode',
->     'sphinx.ext.napoleon',
->     'sphinx.ext.intersphinx',
->     'sphinx.ext.extlinks',
-> ]
->
-> autoapi_dirs = ['../molecool']
-> autoapi_ignore = ["*/tests/*",
->                   "*_version.py"]
->                   
-> autoapi_options = ['members', 
-> 		'undoc-members', 
-> 		#'private-members', 
-> 		#'special-members', 
-> 		'show-inheritance', 
-> 		'show-module-summary', 
-> 		'imported-members']
->	
-> # autosummary_generate = True	# or delete this
-> napoleon_google_docstring = False
-> napoleon_use_param = False
-> napoleon_use_ivar = True
->                   
-> ...
-> ~~~
-> {: .language-python}
-> 
-> You can then build your documentation to have your docstrings pulled out automatically.
-> While this strategy is convenient, we consider it to be only a good first pass at creating documentation.
-> Your documentation should always contain additional information on goals and usage of the project, in addition to API documentation.
-{: .callout}
+## Sphinx AutoAPI
+Another strategy for generating API documentation is using [Spinx-AutoAPI].
 
-## Equation Directives
+AutoAPI will pull documentation for all of your functions at once, rather than you having to build them manually.
 
-Our docstring for `calculate_center_of_mass` has a section where we give the formula for the center of mass. 
-If you re-examine that docstring, you will see that it is actually specified using a Sphinx Directive. 
-Add `calculate_center_of_mass` to your API Documentation and view the page to see the rendered equation.
+To install Sphinx-AutoAPI, use `pip`:
+
+````{tab-set-code}
+```{code-block} bash
+pip install sphinx-autoapi
+```
+````
+
+Modify your `conf.py` file to look like the following:
+
+````{tab-set-code}
+```{code-block} conf.py
+...
+
+extensions = [
+    'autoapi.extension',
+    #'sphinx.ext.autosummary',
+    #'sphinx.ext.autodoc',
+    'sphinx.ext.mathjax',
+    'sphinx.ext.viewcode',
+    'sphinx.ext.napoleon',
+    'sphinx.ext.intersphinx',
+    'sphinx.ext.extlinks',
+]
+autoapi_dirs = ['../molecool']
+autoapi_ignore = ["*/tests/*",
+                  "*_version.py"]
+                  
+autoapi_options = ['members', 
+		'undoc-members', 
+		#'private-members', 
+		#'special-members', 
+		'show-inheritance', 
+		'show-module-summary', 
+		'imported-members']
+
+# autosummary_generate = True	# or delete this
+napoleon_google_docstring = False
+napoleon_use_param = False
+napoleon_use_ivar = True
+                  
+...
+```
+````
+
+You can then build your documentation to have your docstrings pulled out automatically.
+While this strategy is convenient, we consider it to be only a good first pass at creating documentation.
+Your documentation should always contain additional information on goals and usage of the project, in addition to API documentation.
+
+
+
+```{admonition} Structuring Your Documentation
+:class: note
+
+Realistically, you probably don't want just a single page for API documentation.
+You could separate your documentation by purpose.
+For example, you could have separate pages explaining visualization, calculation, and/or measurement, with an autosummary table of contents for each page that has relevant functions.
+Many projects are structured this way.
+Now that you know how Python documentation is built, keep an eye out for documentation you like. 
+If you find documentation you like, take a look at their files to see how they structured their project!.
+```
 
 ## The `conf.py` file
 
@@ -537,7 +616,8 @@ Open your `conf.py` file and find the `extensions` section.
 
 You should see the following:
 
-~~~
+````{tab-set-code}
+```{code-block} conf.py
 ...
 
 extensions = [
@@ -559,8 +639,9 @@ napoleon_use_param = False
 napoleon_use_ivar = True
 
 ...
-~~~
-{: .language-python}
+```
+````
+
 
 CookieCutter has added a few extensions here which will allow us to pull docstrings from our Python modules (`sphinx.ext.autosummary`, `sphinx.ext.autodoc`), and another which we use because our docstrings are `NumPy` style (`sphinx.ext.napoleon`).
 The `mathjax` extension allows us to render latex into equations, and the `viewcode` extensions will add links to highlighted source code.
@@ -591,7 +672,9 @@ Add your dependencies (NumPy and Matplotlib) to `docs/requirements.yaml`.
 You should also add `sphinx-autoapi` under `pip only installs`.
 Your `requirements.yaml` will look like this:
 
-~~~
+````{tab-set-code} 
+
+```{code-block} yaml
 name: docs
 channels:
 dependencies:
@@ -608,15 +691,14 @@ dependencies:
     # Pip-only installs
   - pip:
     - sphinx-autoapi
-~~~
-{: .language-yaml}
+```
+````
+
 
 Commit and push - your documentation should build successfully and you should be able to view it!
 
 Later, when you share distributions of your package, you will want people to be able to find this documentation easily.
 Update your `README.md` and `setup.cfg` files with your new ReadTheDocs URL.
-
-{% include links.md %}
 
 [Sphinx]: https://www.sphinx-doc.org/en/master/
 [sphinx example]: https://www.sphinx-doc.org/en/master/examples.html
@@ -629,3 +711,13 @@ Update your `README.md` and `setup.cfg` files with your new ReadTheDocs URL.
 [Sphinx-Autodoc]: https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html
 [Spinx-AutoAPI]: https://github.com/readthedocs/sphinx-autoapi
 [Read The Docs]: https://readthedocs.org/
+````{admonition} Key Points
+:class: key
+
+- Some documentation is better than no documentation
+- Python packages are often documented using the Sphinx software. 
+- Sphinx lets you write documentation in restructured text and can convert
+you documentation to PDF or HTML.
+- Sphinx directives are used to add to documentation.
+- You can deploy your Sphinx documentation online using ReadTheDocs.
+````

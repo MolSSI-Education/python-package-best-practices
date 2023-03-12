@@ -62,4 +62,5 @@ Workshop Lessons
    00-package-creation
    00-git-and-github
    00-code-organization-documentation
+   00-testing-continuous-integration
    
