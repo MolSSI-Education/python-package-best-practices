@@ -3,7 +3,7 @@ Lesson Title,Questions,Objectives
 * How do I set up git and GitHub?
 * What text editor should I use?","* Use conda to create an environment and install packages.
 * Set up credentials for GitHub."
-`Python Package Set-Up <01-packae-setup.html>`_,"* What is the layout of a Python package?
+`Python Package Set-Up <01-package-setup.html>`_,"* What is the layout of a Python package?
 * How can I quickly create the structure of a Python package?
 * What license should I choose for my project?","* Explain Python package structure.
 * Use the CMS CookieCutter to build a Python package."
