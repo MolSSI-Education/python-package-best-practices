@@ -1,0 +1,1831 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Python Testing &#8212; molssi_best_practices  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '08-testing';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Continuous Integration using GitHub Actions" href="09-CI.html" />
+    <link rel="prev" title="Testing, Continuous Integration, and Distribution" href="00-testing-continuous-integration.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  <div class="navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/molssi_main_logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/molssi_main_logo_inverted_white.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+    <p class="title logo__title">MolSSI Best Practices</p>
+  
+</a></div>
+    
+  </div>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="setup.html">
+                        Set Up
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="01-package-setup.html">
+                        Python Package Set-Up
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="00-git-and-github.html">
+                        git and GitHub
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="00-code-organization-documentation.html">
+                        Code Style and Documentation
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="00-testing-continuous-integration.html">
+                        Testing, Continuous Integration, and Distribution
+                      </a>
+                    </li>
+                
+
+                <li class="nav-item">
+                  <a class="nav-link nav-external" href="https://molssi.org">
+                    MolSSI
+                  </a>
+                </li>
+                
+                </div>
+            </div>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/jchen0506/molssi_doc_theme" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="setup.html">
+                        Set Up
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="01-package-setup.html">
+                        Python Package Set-Up
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="00-git-and-github.html">
+                        git and GitHub
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="00-code-organization-documentation.html">
+                        Code Style and Documentation
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="00-testing-continuous-integration.html">
+                        Testing, Continuous Integration, and Distribution
+                      </a>
+                    </li>
+                
+
+                <li class="nav-item">
+                  <a class="nav-link nav-external" href="https://molssi.org">
+                    MolSSI
+                  </a>
+                </li>
+                
+                </div>
+            </div>
+            
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/jchen0506/molssi_doc_theme" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Python Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09-CI.html">Continuous Integration using GitHub Actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10-distribution.html">Distributing Packages</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumbs">
+  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="00-testing-continuous-integration.html" class="nav-link">Testing, Continuous Integration, and Distribution</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Python Testing</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="python-testing">
+<h1>Python Testing<a class="headerlink" href="#python-testing" title="Permalink to this heading">#</a></h1>
+<div class="overview admonition">
+<p class="admonition-title">Overview</p>
+<p>Questions:</p>
+<ul class="simple">
+<li><p>How is a Python module tested?</p></li>
+</ul>
+<p>Objectives:</p>
+<ul class="simple">
+<li><p>Explain the overall structure of testing.</p></li>
+<li><p>Explain the reasons why testing is important.</p></li>
+<li><p>Understand how to write tests using the pytest framework.</p></li>
+</ul>
+</div>
+<p>Until now, we have been writing functions and checking their behavior using an interactive Python interpreter and manually inspecting the output.
+While this seems to work, it can be tedious, and prone to error.
+In this lesson, we’ll discuss how to write tests and run them using the <code class="docutils literal notranslate"><span class="pre">pytest</span></code> testing framework.</p>
+<p>Using a testing framework will allow us to easily define tests for all of our functions and modules, and to test these each time we make a change.
+This will ensure that our code is behaving the way we expect, and that we do not break any features existing in the code by making new changes.</p>
+<p>This episode explains the importance of code testing and demonstrates the possible capabilities.</p>
+<section id="why-testing">
+<h2>Why testing<a class="headerlink" href="#why-testing" title="Permalink to this heading">#</a></h2>
+<p>Software should be tested regularly throughout the development cycle to ensure correct operation.
+Thorough testing is typically an afterthought, but for larger projects, it is essential for ensuring changes in some parts of the code do not negatively affect other parts.</p>
+<p><strong>Software testing is checking the behavior of part of the code (such as a method, class, or a module) by comparing its expected output or behavior with the observed one.</strong>
+We will explain this in more detail shortly.</p>
+</section>
+<section id="levels-of-testing">
+<h2>Levels of Testing<a class="headerlink" href="#levels-of-testing" title="Permalink to this heading">#</a></h2>
+<p>There are three main levels of testing:</p>
+<ul class="simple">
+<li><p><strong>Unit tests</strong>:
+The purpose is to verify that each part of the code is functioning as expected.
+Unit testing is done on smaller units (such as single functions or classes) as you work on your code.
+This is helpful for catching errors in uncommonly-used parts of the code.
+Unit tests should be added as new features are added, resulting in better code coverage.
+In unit tests, you are testing a part of your code independent of any other factors;
+therefore, you should avoid using the file system, databases, network, or any other resources unless you are testing a function directly related to that resource.</p></li>
+<li><p><strong>Integration tests</strong>:
+This is a more holistic approach where you test the interface between modules, and how they combine and integrate together.</p></li>
+<li><p><strong>System tests</strong>:
+Where you test your system as a whole to check if it meets all the requirements.</p></li>
+</ul>
+<p>Another important type of testing is <strong>Regression tests</strong>.
+In Regression tests, given a known input, does the software correctly and consistently return the correct values.
+This kind of testing can catch problems in previously working code that may have been broken by new changes or new features.</p>
+<p>It is highly encouraged to have Unit tests that <em>cover</em> most of your code.
+It is also helpful to have some Integration and System tests.</p>
+<p>In this lesson, we are focusing on unit testing.
+Same concepts here can be applied to perform Integration tests across modules.</p>
+</section>
+<section id="the-pytest-testing-framework">
+<h2>The pytest testing framework<a class="headerlink" href="#the-pytest-testing-framework" title="Permalink to this heading">#</a></h2>
+<p>MolSSI recommends using the <a class="reference external" href="https://pytest.org">pytest</a> testing framework.
+Other testing frameworks are available (such as unittest and nose tests);
+however, the combination of easy implementation, <a class="reference external" href="https://docs.pytest.org/en/latest/parametrize.html">parametrization of tests</a>,
+<a class="reference external" href="https://docs.pytest.org/en/latest/fixture.html">fixtures</a>, and <a class="reference external" href="https://docs.pytest.org/en/latest/example/markers.html">test marking</a>
+make <code class="docutils literal notranslate"><span class="pre">pytest</span></code> an ideal testing framework.</p>
+<p>If you don’t have <code class="docutils literal notranslate"><span class="pre">pytest</span></code> installed, or it’s not updated to version 3, install it using:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-0">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>pytest-cov
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="running-our-first-test">
+<h2>Running our first test<a class="headerlink" href="#running-our-first-test" title="Permalink to this heading">#</a></h2>
+<p>When we run <code class="docutils literal notranslate"><span class="pre">pytest</span></code>, it will look for directories and files which start with <code class="docutils literal notranslate"><span class="pre">test</span></code> or <code class="docutils literal notranslate"><span class="pre">test_</span></code>.
+It then looks inside those files and executes any functions that begin with the word <code class="docutils literal notranslate"><span class="pre">test_</span></code>.
+This syntax lets pytest know that these functions are tests.
+If these functions do not result in an error, <code class="docutils literal notranslate"><span class="pre">pytest</span></code> counts the function as passing.
+If an error occurs, the test fails.</p>
+<p>CookieCutter has already created a test for us. Let’s examine this file.
+In a text editor, open <code class="docutils literal notranslate"><span class="pre">molecool/tests/test_molecool.py</span></code>.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-1" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-1">
+PYTHON</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Unit and regression test for the molecool package.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Import package, test suite, and other packages as needed</span>
+<span class="kn">import</span> <span class="nn">molecool</span>
+<span class="kn">import</span> <span class="nn">pytest</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="k">def</span> <span class="nf">test_molecool_imported</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Sample test, will always pass so long as import statement worked&quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="s2">&quot;molecool&quot;</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This file begins with <code class="docutils literal notranslate"><span class="pre">test_</span></code>, and contains a single function <code class="docutils literal notranslate"><span class="pre">test_molecool</span></code>.
+This module will import our package, then checks to see if it has been imported correctly by checking if the package name is in the list of imported modules.</p>
+<p>The last line, containing the python keyword <code class="docutils literal notranslate"><span class="pre">assert</span></code>, is called an assertion.
+Assertions are used to check the behavior of the code during runtime.
+The <code class="docutils literal notranslate"><span class="pre">assert</span></code> keyword halts code execution instantly if the comparison is <code class="docutils literal notranslate"><span class="pre">False</span></code>, and does nothing if the comparison is <code class="docutils literal notranslate"><span class="pre">True</span></code>.
+Remember that pytest counts a test as passing if no error occurs while it is being run.</p>
+<p>We can see if this function works by running <code class="docutils literal notranslate"><span class="pre">pytest</span></code> in our terminal.
+In the top level of your package, run the following command.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-2">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pytest
+</pre></div>
+</div>
+</div>
+</div>
+<p>You should see an output similar to the following.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-3" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-3">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">============================= test session starts ==============================</span>
+<span class="go">platform darwin -- Python 3.6.8, pytest-3.6.4, py-1.5.4, pluggy-0.6.0</span>
+<span class="go">rootdir: /Users/jessica/dev/molecool, inifile:</span>
+<span class="go">collected 1 item</span>
+
+<span class="go">molecool/tests/test_molecool.py .                    [100%]</span>
+
+<span class="go">=========================== 1 passed in 0.06 seconds ===========================</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here, <code class="docutils literal notranslate"><span class="pre">pytest</span></code> has looked through our directory and its subdirectories for anything matching <code class="docutils literal notranslate"><span class="pre">test*</span></code>.
+It found the <code class="docutils literal notranslate"><span class="pre">tests</span></code> folder, and within that folder, it found the file <code class="docutils literal notranslate"><span class="pre">test_molecool.py</span></code>.
+It then executed the function <code class="docutils literal notranslate"><span class="pre">test_molecool_imported</span></code> within that module.
+Since our <code class="docutils literal notranslate"><span class="pre">assertion</span></code> was <code class="docutils literal notranslate"><span class="pre">True</span></code>, our test did not result in an error and the test passed.</p>
+<p>We can see the names of the tests <code class="docutils literal notranslate"><span class="pre">pytest</span></code> ran by adding a <code class="docutils literal notranslate"><span class="pre">-v</span></code> tag to the pytest command.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-4" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-4">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pytest<span class="w"> </span>-v
+</pre></div>
+</div>
+</div>
+</div>
+<p>Using the command argument <code class="docutils literal notranslate"><span class="pre">-v</span></code> will result in pytest listing which tests are executed and whether they pass or not.
+There are a number of additional command line arguments to <a class="reference external" href="https://docs.pytest.org/en/latest/usage.html">explore</a>.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-5" name="sd-tab-set-5" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-5">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">============================= test session starts ==============================</span>
+<span class="go">platform darwin -- Python 3.6.8, pytest-3.6.4, py-1.5.4, pluggy-0.6.0 -- /Users/jessica/miniconda3/bin/python</span>
+<span class="go">cachedir: .pytest_cache</span>
+<span class="go">rootdir: /Users/jessica/dev/molecool, inifile:</span>
+<span class="go">collected 1 item</span>
+
+<span class="go">molecool/tests/test_molecool.py::test_molecool_imported PASSED [100%]</span>
+
+<span class="go">=========================== 1 passed in 0.06 seconds ===========================</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we see that <code class="docutils literal notranslate"><span class="pre">pytest</span></code> displays the test name for us, as well as <code class="docutils literal notranslate"><span class="pre">PASSED</span></code> next to the test name.</p>
+<section id="adding-tests-to-our-package">
+<h3>Adding tests to our package<a class="headerlink" href="#adding-tests-to-our-package" title="Permalink to this heading">#</a></h3>
+<p>We will now add tests to test our functions.
+After dividing our package into modules, we have four modules and one subpackage.
+It is considered good practice to also break your tests into different files depending on the module or subpackage.</p>
+<p>Create a new file called <code class="docutils literal notranslate"><span class="pre">test_measure.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">tests</span></code> directory with the following contents.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-6" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-6">
+PYTHON</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Unit and regression test for the measure module.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Import package, test suite, and other packages as needed</span>
+<span class="kn">import</span> <span class="nn">molecool</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">test_calculate_distance</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Test that calculate_distance function calculates what we expect.&quot;&quot;&quot;</span>
+    
+    <span class="n">r1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="n">r2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+
+    <span class="n">expected_distance</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="n">calculated_distance</span> <span class="o">=</span> <span class="n">molecool</span><span class="o">.</span><span class="n">calculate_distance</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">expected_distance</span> <span class="o">==</span> <span class="n">calculated_distance</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We have written one test in this file.
+In our test function <code class="docutils literal notranslate"><span class="pre">test_calculate_distance</span></code>, we defined two points.
+We know that these points should be a distance of 1 from one another.</p>
+<p>Run this test using <code class="docutils literal notranslate"><span class="pre">pytest</span></code>. In the terminal window, type</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-7" name="sd-tab-set-7" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-7">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pytest<span class="w"> </span>-v
+</pre></div>
+</div>
+</div>
+</div>
+<p>You should now see an output similar to the following</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-8" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-8">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">============================================================ test session starts ============================================================</span>
+<span class="go">platform darwin -- Python 3.7.3, pytest-5.2.1, py-1.8.0, pluggy-0.13.0</span>
+<span class="go">rootdir: /Users/jessica/lessons/molecool</span>
+<span class="go">collected 2 items</span>
+
+<span class="go">molecool/tests/test_molecool.py::test_molecool_imported PASSED [ 50%]</span>
+<span class="go">molecool/tests/test_measure.py::test_calculate_distance PASSED           [100%]</span>
+
+<span class="go">=========================== 2 passed in 0.07 seconds ===========================</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We now see that we have two tests which have been run, and they both passed.
+This means that our calculated distance was equal to what we set as the expected distance, and the assertion did not fail.</p>
+</section>
+<section id="failing-tests">
+<h3>Failing tests<a class="headerlink" href="#failing-tests" title="Permalink to this heading">#</a></h3>
+<p>Let’s see what happens when one of the test fails.</p>
+<p>In case of test failure, Pytest will show detailed output from doing its own analysis to discover the error by inspecting your objects at runtime.
+Change the value of the <code class="docutils literal notranslate"><span class="pre">expected</span></code> variable in your test function to <code class="docutils literal notranslate"><span class="pre">2</span></code> and rerun the test.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-9" name="sd-tab-set-9" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-9">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pytest<span class="w"> </span>-v
+</pre></div>
+</div>
+</div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-10" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-10">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">============================================================ test session starts ============================================================</span>
+<span class="go">platform darwin -- Python 3.7.3, pytest-5.2.1, py-1.8.0, pluggy-0.13.0</span>
+<span class="go">rootdir: /Users/jessica/lessons/molecool</span>
+<span class="go">collected 2 items</span>
+
+<span class="go">molecool/tests/test_molecool.py::test_molecool_imported PASSED [ 50%]</span>
+<span class="go">molecool/tests/test_measure.py::test_calculate_distance FAILED           [100%]</span>
+
+<span class="go">=========================== 2 passed in 0.07 seconds ===========================</span>
+
+<span class="go">================================================================== FAILURES ===================================================================</span>
+<span class="go">___________________________________________________________ test_calculate_distance ___________________________________________________________</span>
+
+<span class="go">    def test_calculate_distance():</span>
+<span class="go">        &quot;&quot;&quot;Test the calculate_distance function&quot;&quot;&quot;</span>
+<span class="go">    </span>
+<span class="go">        r1 = np.array([0, 0, 0])</span>
+<span class="go">        r2 = np.array([0, 1, 0])</span>
+<span class="go">    </span>
+<span class="go">        expected_distance = 2</span>
+<span class="go">    </span>
+<span class="go">        calculated_distance = molecool.calculate_distance(r1, r2)</span>
+<span class="go">    </span>
+<span class="go">&gt;       assert expected_distance == calculated_distance</span>
+<span class="go">E       assert 2 == 1.0</span>
+
+<span class="go">molecool/tests/test_measure.py:26: AssertionError</span>
+<span class="go">======================================================== 1 failed, 1 passed in 0.56s =========================================================</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Pytest shows a detailed failure report, including the source code around the failing line.
+The line that failed is marked with <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>.
+Next, it shows the values used in the assert comparison at runtime, that is <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">==</span> <span class="pre">1.0</span></code>.
+This runtime analysis is one of the advantages of pytest that help you debug your code.</p>
+<div class="exercise admonition">
+<p class="admonition-title">Check Your Understanding</p>
+<p>What happens if you leave your <code class="docutils literal notranslate"><span class="pre">expected_value</span></code> equal to 2, but remove the assertion?</p>
+<div class="solution dropdown admonition">
+<p class="admonition-title">Solution</p>
+<p>If you remove the word <code class="docutils literal notranslate"><span class="pre">assert</span></code>, you should notice that your test still passes.
+This is because the expression evaluated to <code class="docutils literal notranslate"><span class="pre">False</span></code>, but since there was no Assertion, there was no error.</p>
+<p>Since there was no error, pytest counted it as a passing test.
+The <code class="docutils literal notranslate"><span class="pre">assert</span></code> statement causes an error when it evaluates to False.
+It’s very important to remember that <code class="docutils literal notranslate"><span class="pre">pytest</span></code> counts a test as failing when some type of exception occurs.
+You could also do something like the following to make your test fail:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_calculate_distance</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Test that calculate distance function calculates what we expect&quot;&quot;&quot;</span>
+
+    <span class="n">r1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="n">r2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+
+    <span class="n">expected_distance</span> <span class="o">=</span> <span class="mi">2</span>
+
+    <span class="n">calculated_distance</span> <span class="o">=</span> <span class="n">molecool</span><span class="o">.</span><span class="n">calculate_distance</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">expected_distance</span> <span class="o">!=</span> <span class="n">calculated_distance</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;My test will fail!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can see that an <code class="docutils literal notranslate"><span class="pre">AssertionError</span></code> is easier than something like this :)</p>
+</div>
+</div>
+<p>Change the expected value back to 1 so that your tests pass and make sure you have the <code class="docutils literal notranslate"><span class="pre">assert</span></code> statement.</p>
+</section>
+<section id="exercise-calculate-angle-test">
+<h3>Exercise - <code class="docutils literal notranslate"><span class="pre">calculate_angle</span></code> test<a class="headerlink" href="#exercise-calculate-angle-test" title="Permalink to this heading">#</a></h3>
+<div class="exercise admonition">
+<p class="admonition-title">Exericse</p>
+<p>Create a test for the <code class="docutils literal notranslate"><span class="pre">calculate_angle</span> </code> function. Use the three points</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">r1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">r2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">r3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>These three points correspond to an angle of 90 degrees.</p>
+<p>Verify that your test is working by running pytest.
+You should now see three passing tests.</p>
+<div class="solution dropdown admonition">
+<p class="admonition-title">Solution</p>
+<p>Since <code class="docutils literal notranslate"><span class="pre">calculate_angle</span></code> is in the <code class="docutils literal notranslate"><span class="pre">measure</span></code> module, the tests for this function should go in the same file as <code class="docutils literal notranslate"><span class="pre">calculate_distance</span></code>.
+You should define a new function in <code class="docutils literal notranslate"><span class="pre">test_measure</span></code> called <code class="docutils literal notranslate"><span class="pre">test_calculate_angle</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_calculate_angle</span><span class="p">():</span>
+<span class="w">   </span><span class="sd">&quot;&quot;&quot;Test the calculate_angle function&quot;&quot;&quot;</span>
+
+   <span class="n">r1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+   <span class="n">r2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+   <span class="n">r3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+
+   <span class="n">expected_value</span> <span class="o">=</span> <span class="mi">90</span>
+
+   <span class="n">calculated_value</span> <span class="o">=</span> <span class="n">molecool</span><span class="o">.</span><span class="n">calculate_angle</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">,</span> <span class="n">r3</span><span class="p">,</span> <span class="n">degrees</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+   <span class="k">assert</span> <span class="n">expected_value</span> <span class="o">==</span> <span class="n">calculated_value</span>
+
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s also make a test for the <code class="docutils literal notranslate"><span class="pre">build_bond_list</span></code> function.
+We start with creating <code class="docutils literal notranslate"><span class="pre">test_molecule.py</span></code>, then defining the test inside that file.</p>
+<p>We must have some coordinates to test.
+In our Jupyter Notebook, we were reading this data from an xyz file.
+However, remember that for unit tests, we do not want to make our test dependent on any other functions.
+Therefore, we will just make up some coordinates in our test.</p>
+<p>Next, there are several things we might test about this function.
+We could check that we find the correct number of bonds, and that those bonds are the correct length.
+You should write at least one test per function, but you may have multiple assertions in the same test.
+For example, we could write the following test for <code class="docutils literal notranslate"><span class="pre">build_bond_list</span></code>.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-11" name="sd-tab-set-11" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-11">
+PYTHON</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_build_bond_list</span><span class="p">():</span>
+
+    <span class="n">coordinates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">2.4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="p">[</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">2.4</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4</span><span class="p">],</span>
+    <span class="p">])</span>
+
+    <span class="n">bonds</span> <span class="o">=</span> <span class="n">molecool</span><span class="o">.</span><span class="n">build_bond_list</span><span class="p">(</span><span class="n">coordinates</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">bonds</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span>
+
+    <span class="k">for</span> <span class="n">bond_length</span> <span class="ow">in</span> <span class="n">bonds</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="k">assert</span> <span class="n">bond_length</span> <span class="o">==</span> <span class="mf">1.4</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here, we are asserting that the correct number of bonds were found, and next we are iterating through the dictionary to ensure that a distance of 1.4 angstrom was calculated for each bond.</p>
+</section>
+</section>
+<section id="testing-expected-exceptions">
+<h2>Testing Expected Exceptions<a class="headerlink" href="#testing-expected-exceptions" title="Permalink to this heading">#</a></h2>
+<p>If you expect your code to raise exceptions, you can test this behavior with pytest.
+For example in our <code class="docutils literal notranslate"><span class="pre">calculate_angle</span></code> function, our inputs must be numpy arrays, or the function will error.</p>
+<p>Consider our <code class="docutils literal notranslate"><span class="pre">build_bond_list</span></code> function. We may want to raise a <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> if <code class="docutils literal notranslate"><span class="pre">min_bond</span></code> is set to be less than zero.
+We can add a type check to the function so that a more informative message is given to the user.</p>
+<p>Add the following to your <code class="docutils literal notranslate"><span class="pre">build_bond_list</span></code> function right below the docstring.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-12" name="sd-tab-set-12" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-12">
+PYTHON</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">min_bond</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid minimum bond distance entered! Minimum bond distance must be greater than zero!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can test that this <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> is raised in our testing functions.</p>
+<p>In the <code class="docutils literal notranslate"><span class="pre">test_molecule.py</span></code> file, copy and modify your first test to check for this.
+Note that you must alter your imports to also <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">pytest</span></code>.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-13" name="sd-tab-set-13" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-test_molecule.py" for="sd-tab-item-13">
+TEST_MOLECULE.PY</label><div class="sd-tab-content docutils">
+<div class="highlight-test_molecule.py notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pytest</span>
+
+<span class="k">def</span> <span class="nf">test_build_bond_failure</span><span class="p">():</span>
+
+    <span class="n">coordinates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">2.4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="p">[</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">2.4</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4</span><span class="p">],</span>
+    <span class="p">])</span>
+
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
+        <span class="n">bonds</span> <span class="o">=</span> <span class="n">molecool</span><span class="o">.</span><span class="n">build_bond_list</span><span class="p">(</span><span class="n">coordinates</span><span class="p">,</span> <span class="n">min_bond</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The test will pass if the <code class="docutils literal notranslate"><span class="pre">build_bond_list</span></code> method raises a <code class="docutils literal notranslate"><span class="pre">ValueError</span></code>, otherwise, the test will fail.</p>
+</section>
+<section id="exercise-test-driven-development">
+<h2>Exercise - Test Driven Development<a class="headerlink" href="#exercise-test-driven-development" title="Permalink to this heading">#</a></h2>
+<p>Sometimes, tests are written before code is actually written.
+This is called “Test Driven Development” or TDD.
+In this case, you would write tests which define the behavior of your code, run the tests to see they pass, then write code to pass each test.
+TDD is common when developing a library with well-defined interfaces and features.</p>
+<p>TDD has another benefit of never having false positives.
+If you ensure that your tests first fail THEN pass, you know that you have really written a function that works and that your test is not just passing by default.</p>
+<div class="exercise admonition">
+<p class="admonition-title">Exercise 1</p>
+<p>For this homework assignment, you are given a function specification and a test.
+You should write a function to make the test pass.</p>
+<p>Add the following function definition and docstring to <code class="docutils literal notranslate"><span class="pre">molecule.py</span></code>.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-14" name="sd-tab-set-14" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-14">
+PYTHON</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_molecular_mass</span><span class="p">(</span><span class="n">symbols</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate the mass of a molecule.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    symbols : list</span>
+<span class="sd">        A list of elements.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    mass : float</span>
+<span class="sd">        The mass of the molecule</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This defines a function, inputs, and what the function should return.
+Next, add  the following test into <code class="docutils literal notranslate"><span class="pre">test_molecule.py</span></code>.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-15" name="sd-tab-set-15" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-test_molecule.py" for="sd-tab-item-15">
+TEST_MOLECULE.PY</label><div class="sd-tab-content docutils">
+<div class="highlight-test_molecule.py notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_molecular_mass</span><span class="p">():</span>
+    <span class="n">symbols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">]</span>
+    <span class="n">calculated_mass</span> <span class="o">=</span> <span class="n">molecool</span><span class="o">.</span><span class="n">calculate_molecular_mass</span><span class="p">(</span><span class="n">symbols</span><span class="p">)</span>
+
+    <span class="n">actual_mass</span> <span class="o">=</span> <span class="mf">16.04</span>
+
+    <span class="k">assert</span> <span class="n">pytest</span><span class="o">.</span><span class="n">approx</span><span class="p">(</span><span class="n">actual_mass</span><span class="p">,</span> <span class="nb">abs</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">)</span> <span class="o">==</span> <span class="n">calculated_mass</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you run <code class="docutils literal notranslate"><span class="pre">pytest</span></code>, this test should fail.
+Your assignment is to write the function to make the tests pass.
+You should use the <code class="docutils literal notranslate"><span class="pre">atomic_weights</span></code> data in the <code class="docutils literal notranslate"><span class="pre">atom_data</span></code> module.</p>
+<div class="solution dropdown admonition">
+<p class="admonition-title">Solution</p>
+<p>Here is a potential solution.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">.atom_data</span> <span class="kn">import</span> <span class="n">atomic_weights</span>
+
+
+<span class="k">def</span> <span class="nf">calculate_molecular_mass</span><span class="p">(</span><span class="n">symbols</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate the mass of a molecule.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    symbols : list</span>
+<span class="sd">        A list of elements.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    mass : float</span>
+<span class="sd">        The mass of the molecule</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">mass</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="n">symbols</span><span class="p">:</span>
+        <span class="n">mass</span> <span class="o">+=</span> <span class="n">atomic_weights</span><span class="p">[</span><span class="n">atom</span><span class="p">]</span>
+    
+    <span class="k">return</span> <span class="n">mass</span>
+</pre></div>
+</div>
+<p>Also, don’t forget to add the <code class="docutils literal notranslate"><span class="pre">calculate_molecular_mass</span></code> function to <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code></p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-16" name="sd-tab-set-16" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-__init__.py" for="sd-tab-item-16">
+__INIT__.PY</label><div class="sd-tab-content docutils">
+<div class="highlight-__init__.py notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add imports here</span>
+<span class="kn">from</span> <span class="nn">.measure</span> <span class="kn">import</span> <span class="n">calculate_distance</span><span class="p">,</span> <span class="n">calculate_angle</span>
+<span class="kn">from</span> <span class="nn">.molecule</span> <span class="kn">import</span> <span class="n">build_bond_list</span><span class="p">,</span> <span class="n">calculate_molecular_mass</span>
+<span class="kn">from</span> <span class="nn">.visualize</span> <span class="kn">import</span> <span class="n">draw_molecule</span><span class="p">,</span> <span class="n">bond_histogram</span>
+<span class="kn">from</span> <span class="nn">.io</span> <span class="kn">import</span> <span class="n">open_pdb</span><span class="p">,</span> <span class="n">open_xyz</span><span class="p">,</span> <span class="n">write_xyz</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="exercise admonition">
+<p class="admonition-title">Exercise 2</p>
+<p>Consider the following function definition inside the <code class="docutils literal notranslate"><span class="pre">molecule</span></code> module.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-17" name="sd-tab-set-17" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-molecule.py" for="sd-tab-item-17">
+MOLECULE.PY</label><div class="sd-tab-content docutils">
+<div class="highlight-molecule.py notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">calculate_center_of_mass</span><span class="p">(</span><span class="n">symbols</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate the center of mass of a molecule.</span>
+<span class="sd">    </span>
+<span class="sd">    The center of mass is weighted by each atom&#39;s weight.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    symbols : list</span>
+<span class="sd">        A list of elements for the molecule</span>
+<span class="sd">    coordinates : np.ndarray</span>
+<span class="sd">        The coordinates of the molecule.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    center_of_mass: np.ndarray</span>
+<span class="sd">        The center of mass of the molecule.</span>
+<span class="sd">    </span>
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    The center of mass is calculated with the formula</span>
+<span class="sd">    </span>
+<span class="sd">    .. math:: \\vec{R}=\\frac{1}{M} \\sum_{i=1}^{n} m_{i}\\vec{r_{}i}</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Don’t forget to add the <code class="docutils literal notranslate"><span class="pre">calculate_center_of_mass</span></code> function to <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code></p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-18" name="sd-tab-set-18" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-__init__.py" for="sd-tab-item-18">
+__INIT__.PY</label><div class="sd-tab-content docutils">
+<div class="highlight-__init__.py notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add imports here</span>
+<span class="kn">from</span> <span class="nn">.measure</span> <span class="kn">import</span> <span class="n">calculate_distance</span><span class="p">,</span> <span class="n">calculate_angle</span>
+<span class="kn">from</span> <span class="nn">.molecule</span> <span class="kn">import</span> <span class="n">build_bond_list</span><span class="p">,</span> <span class="n">calculate_molecular_mass</span><span class="p">,</span> <span class="n">calculate_center_of_mass</span>
+<span class="kn">from</span> <span class="nn">.visualize</span> <span class="kn">import</span> <span class="n">draw_molecule</span><span class="p">,</span> <span class="n">bond_histogram</span>
+<span class="kn">from</span> <span class="nn">.io</span> <span class="kn">import</span> <span class="n">open_pdb</span><span class="p">,</span> <span class="n">open_xyz</span><span class="p">,</span> <span class="n">write_xyz</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And the test for the function above.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-19" name="sd-tab-set-19" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-test_molecule.py" for="sd-tab-item-19">
+TEST_MOLECULE.PY</label><div class="sd-tab-content docutils">
+<div class="highlight-test_molecule.py notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_center_of_mass</span><span class="p">():</span>
+    <span class="n">symbols</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">])</span>
+    <span class="n">coordinates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mf">2.4</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">2.4</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4</span><span class="p">]])</span>
+
+    <span class="n">center_of_mass</span> <span class="o">=</span> <span class="n">molecool</span><span class="o">.</span><span class="n">calculate_center_of_mass</span><span class="p">(</span><span class="n">symbols</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">)</span>
+
+    <span class="n">expected_center</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">assert</span> <span class="n">center_of_mass</span><span class="o">.</span><span class="n">all</span><span class="p">()</span> <span class="o">==</span> <span class="n">expected_center</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that this test always passes.
+Even if we were to write our function, we would not know it was right.</p>
+<p>Fix this test so that it fails.
+<strong>Hint</strong> - You will have to compare two arrays (look into numpy functions which compare two arrays.)</p>
+<div class="solution dropdown admonition">
+<p class="admonition-title">Solution</p>
+<p>The problem with <code class="docutils literal notranslate"><span class="pre">.all()</span></code> is that it does not compare arrays element-wise, it simply evaluates as True if all values in the array are True, or False if not.
+The numpy function <code class="docutils literal notranslate"><span class="pre">array_equal</span></code> returns True if two arrays have the same shape and elements.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_center_of_mass</span><span class="p">():</span>
+    <span class="n">symbols</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">])</span>
+    <span class="n">coordinates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mf">2.4</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">2.4</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4</span><span class="p">]])</span>
+
+    <span class="n">center_of_mass</span> <span class="o">=</span> <span class="n">molecool</span><span class="o">.</span><span class="n">calculate_center_of_mass</span><span class="p">(</span><span class="n">symbols</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">)</span>
+
+    <span class="n">expected_center</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">center_of_mass</span><span class="p">,</span> <span class="n">expected_center</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Below is an implementation of the function which meets the specification outlined by the test.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_center_of_mass</span><span class="p">(</span><span class="n">symbols</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate the center of mass of a molecule.</span>
+<span class="sd">    </span>
+<span class="sd">    The center of mass is weighted by each atom&#39;s weight.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    symbols : list</span>
+<span class="sd">        A list of elements for the molecule</span>
+<span class="sd">    coordinates : np.ndarray</span>
+<span class="sd">        The coordinates of the molecule.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    center_of_mass: np.ndarray</span>
+<span class="sd">        The center of mass of the molecule.</span>
+<span class="sd">    </span>
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    The center of mass is calculated with the formula</span>
+<span class="sd">    </span>
+<span class="sd">    .. math:: \\vec{R}=\\frac{1}{M} \\sum_{i=1}^{n} m_{i}\\vec{r_{}i}</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">total_mass</span> <span class="o">=</span> <span class="n">calculate_molecular_mass</span><span class="p">(</span><span class="n">symbols</span><span class="p">)</span>
+    
+    <span class="n">mass_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">symbols</span><span class="p">),</span> <span class="mi">1</span><span class="p">])</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">symbols</span><span class="p">)):</span>
+        <span class="n">mass_array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">atomic_weights</span><span class="p">[</span><span class="n">symbols</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+    
+    <span class="n">center_of_mass</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">coordinates</span> <span class="o">*</span> <span class="n">mass_array</span><span class="p">)</span> <span class="o">/</span> <span class="n">total_mass</span>
+    
+    <span class="k">return</span> <span class="n">center_of_mass</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="advanced-features-of-pytest">
+<h2>Advanced features of pytest<a class="headerlink" href="#advanced-features-of-pytest" title="Permalink to this heading">#</a></h2>
+<div class="note admonition">
+<p class="admonition-title">Python Decorators</p>
+<p>Some of pytest’s advanced features make use of decorators.
+Decorators are a very powerful tool in programming, which we will not explore in depth here.
+You can think of them as functions that act on other functions.
+To decorate a particular function, you write the name of the decorator, preceeded by <code class="docutils literal notranslate"><span class="pre">&#64;</span></code>, in the line above the <code class="docutils literal notranslate"><span class="pre">def</span></code> statement:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@decorator</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+<section id="pytest-marks">
+<h3>Pytest Marks<a class="headerlink" href="#pytest-marks" title="Permalink to this heading">#</a></h3>
+<p>Pytest marks allow you to mark your functions.
+There are built in marks for pytest and you can also define your own marks.
+Marks are implemented using decorators.
+One of the built-in marks in pytest is <code class="docutils literal notranslate"><span class="pre">&#64;pytest.mark.skip</span></code>.
+To use this mark we have to import pytest.
+Then modify your <code class="docutils literal notranslate"><span class="pre">test_calculate_distance</span></code> function to use this mark.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-20" name="sd-tab-set-20" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-test_measure.py" for="sd-tab-item-20">
+TEST_MEASURE.PY</label><div class="sd-tab-content docutils">
+<div class="highlight-test_measure.py notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pytest</span>
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">skip</span>
+<span class="k">def</span> <span class="nf">test_calculate_distance</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Test that calculate distance function calculates what we expect&quot;&quot;&quot;</span>
+
+    <span class="n">r1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="n">r2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+
+    <span class="n">expected_distance</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="n">calculated_distance</span> <span class="o">=</span> <span class="n">molecool</span><span class="o">.</span><span class="n">calculate_distance</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">expected_distance</span> <span class="o">==</span> <span class="n">calculated_distance</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>When you run your tests, you will see that this test is now skipped:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-21" name="sd-tab-set-21" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-21">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">molecool/tests/test_measure.py::test_calculate_distance SKIPPED</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You might also use the <code class="docutils literal notranslate"><span class="pre">pytest.mark.xfail</span></code> if you expect a test to fail.</p>
+<p>You can also define your own marks.
+Let’s consider if some of our tests were slow or took a long time.
+Maybe we would not want to run these tests every time.
+We could add our own mark:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-22" name="sd-tab-set-22" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-test_measure.py" for="sd-tab-item-22">
+TEST_MEASURE.PY</label><div class="sd-tab-content docutils">
+<div class="highlight-test_measure.py notranslate"><div class="highlight"><pre><span></span><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">slow</span>
+<span class="k">def</span> <span class="nf">test_calculate_distance</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Test that calculate distance function calculates what we expect&quot;&quot;&quot;</span>
+
+    <span class="n">r1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="n">r2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+
+    <span class="n">expected_distance</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="n">calculated_distance</span> <span class="o">=</span> <span class="n">molecool</span><span class="o">.</span><span class="n">calculate_distance</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">expected_distance</span> <span class="o">==</span> <span class="n">calculated_distance</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We could then run the slow tests only using the <code class="docutils literal notranslate"><span class="pre">-m</span></code> argument on the command line:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-23" name="sd-tab-set-23" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-23">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pytest<span class="w"> </span>-v<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;slow&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Or, you could choose to skip the slow tests:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-24" name="sd-tab-set-24" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-24">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pytest<span class="w"> </span>-v<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;not slow&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="pytest-fixtures">
+<h3>Pytest Fixtures<a class="headerlink" href="#pytest-fixtures" title="Permalink to this heading">#</a></h3>
+<p>In your <code class="docutils literal notranslate"><span class="pre">test_molecule</span></code> module, you may have noticed that you kept having to create coordinates and symbols over and over again in each test.
+For this particular case, you could use a global variable, but a better approach is to create something called a <code class="docutils literal notranslate"><span class="pre">pytest</span> <span class="pre">fixture</span></code>.</p>
+<p>Fixtures are resources that tests can repeatedly request to use.
+Fixtures can be used for dependency injection (a way of passing or supplying resources from one object to another) which help decouple the code and make it cleaner.</p>
+<p>To use fixtures, we need to import <code class="docutils literal notranslate"><span class="pre">pytest</span></code> and use the <code class="docutils literal notranslate"><span class="pre">&#64;pytest.fixture</span></code> decorator.
+Fixtures can be defined as methods, where the name of the method is the name of this resource, and the returned data is its value.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-25" name="sd-tab-set-25" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-test_molecule.py" for="sd-tab-item-25">
+TEST_MOLECULE.PY</label><div class="sd-tab-content docutils">
+<div class="highlight-test_molecule.py notranslate"><div class="highlight"><pre><span></span><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">def</span> <span class="nf">methane_molecule</span><span class="p">():</span>
+    <span class="n">symbols</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">])</span>
+    <span class="n">coordinates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">2.4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="p">[</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">2.4</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4</span><span class="p">],</span>
+    <span class="p">])</span>
+    
+    <span class="k">return</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">coordinates</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>we defined a fixture named <code class="docutils literal notranslate"><span class="pre">methane_molecule</span></code> which has symbols and coordinates.
+Now, any test method can request this fixture by adding its name to its input argument.
+For example, our <code class="docutils literal notranslate"><span class="pre">test_molecular_mass</span></code> function becomes.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-26" name="sd-tab-set-26" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-test_molecule.py" for="sd-tab-item-26">
+TEST_MOLECULE.PY</label><div class="sd-tab-content docutils">
+<div class="highlight-test_molecule.py notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_molecular_mass</span><span class="p">(</span><span class="n">methane_molecule</span><span class="p">):</span>
+    <span class="n">symbols</span><span class="p">,</span> <span class="n">coordinates</span> <span class="o">=</span> <span class="n">methane_molecule</span>
+    
+    <span class="n">calculated_mass</span> <span class="o">=</span> <span class="n">molecool</span><span class="o">.</span><span class="n">calculate_molecular_mass</span><span class="p">(</span><span class="n">symbols</span><span class="p">)</span>
+
+    <span class="n">actual_mass</span> <span class="o">=</span> <span class="mf">16.04</span>
+
+    <span class="k">assert</span> <span class="n">pytest</span><span class="o">.</span><span class="n">approx</span><span class="p">(</span><span class="n">actual_mass</span><span class="p">,</span> <span class="nb">abs</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">)</span> <span class="o">==</span> <span class="n">calculated_mass</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>After filling in your fixture to other tests, your <code class="docutils literal notranslate"><span class="pre">test_molecule.py</span></code> file should look something like this.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-27" name="sd-tab-set-27" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-test_molecule.py" for="sd-tab-item-27">
+TEST_MOLECULE.PY</label><div class="sd-tab-content docutils">
+<div class="highlight-test_molecule.py notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Testing for molecule module</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">molecool</span>
+<span class="kn">import</span> <span class="nn">pytest</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">def</span> <span class="nf">methane_molecule</span><span class="p">():</span>
+    <span class="n">symbols</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">])</span>
+    <span class="n">coordinates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">2.4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="p">[</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">2.4</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4</span><span class="p">],</span>
+    <span class="p">])</span>
+    
+    <span class="k">return</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">coordinates</span>
+
+<span class="k">def</span> <span class="nf">test_build_bond_list</span><span class="p">(</span><span class="n">methane_molecule</span><span class="p">):</span>
+    <span class="n">symbols</span><span class="p">,</span> <span class="n">coordinates</span> <span class="o">=</span> <span class="n">methane_molecule</span>
+
+    <span class="n">bonds</span> <span class="o">=</span> <span class="n">molecool</span><span class="o">.</span><span class="n">build_bond_list</span><span class="p">(</span><span class="n">coordinates</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">bonds</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span>
+
+    <span class="k">for</span> <span class="n">atoms</span><span class="p">,</span> <span class="n">bonds</span> <span class="ow">in</span> <span class="n">bonds</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">assert</span> <span class="n">bonds</span> <span class="o">==</span> <span class="mf">1.4</span>
+
+<span class="k">def</span> <span class="nf">test_molecular_mass</span><span class="p">(</span><span class="n">methane_molecule</span><span class="p">):</span>
+    <span class="n">symbols</span><span class="p">,</span> <span class="n">coordinates</span> <span class="o">=</span> <span class="n">methane_molecule</span>
+    
+    <span class="n">calculated_mass</span> <span class="o">=</span> <span class="n">molecool</span><span class="o">.</span><span class="n">calculate_molecular_mass</span><span class="p">(</span><span class="n">symbols</span><span class="p">)</span>
+
+    <span class="n">actual_mass</span> <span class="o">=</span> <span class="mf">16.04</span>
+
+    <span class="k">assert</span> <span class="n">pytest</span><span class="o">.</span><span class="n">approx</span><span class="p">(</span><span class="n">actual_mass</span><span class="p">,</span> <span class="nb">abs</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">)</span> <span class="o">==</span> <span class="n">calculated_mass</span>
+
+<span class="k">def</span> <span class="nf">test_build_bond_list_failure</span><span class="p">(</span><span class="n">methane_molecule</span><span class="p">):</span>
+    <span class="n">symbols</span><span class="p">,</span> <span class="n">coordinates</span> <span class="o">=</span> <span class="n">methane_molecule</span>
+    
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
+        <span class="n">molecool</span><span class="o">.</span><span class="n">build_bond_list</span><span class="p">(</span><span class="n">coordinates</span><span class="p">,</span> <span class="n">min_bond</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">test_center_of_mass</span><span class="p">(</span><span class="n">methane_molecule</span><span class="p">):</span>
+    <span class="n">symbols</span><span class="p">,</span> <span class="n">coordinates</span> <span class="o">=</span> <span class="n">methane_molecule</span>
+
+    <span class="n">center_of_mass</span> <span class="o">=</span> <span class="n">molecool</span><span class="o">.</span><span class="n">calculate_center_of_mass</span><span class="p">(</span><span class="n">symbols</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">)</span>
+
+    <span class="n">expected_center</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+    
+    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">center_of_mass</span><span class="p">,</span> <span class="n">expected_center</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="fixture-scope">
+<h4>Fixture Scope<a class="headerlink" href="#fixture-scope" title="Permalink to this heading">#</a></h4>
+<p>By default, the fixture has the scope of “function”.
+This means a new object is created for each test function.
+For example, consider adding the following test which moves the carbon atom in our methane molecule.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-28" name="sd-tab-set-28" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-test_molecule.py" for="sd-tab-item-28">
+TEST_MOLECULE.PY</label><div class="sd-tab-content docutils">
+<div class="highlight-test_molecule.py notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_move_methane</span><span class="p">(</span><span class="n">methane_molecule</span><span class="p">):</span>
+    <span class="n">symbols</span><span class="p">,</span> <span class="n">coordinates</span> <span class="o">=</span> <span class="n">methane_molecule</span>
+
+    <span class="n">coordinates</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">5</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>When you run your tests, you will see that everything passes</p>
+<p>If you have an “expensive” fixture (one that takes a lot of time to generate), you may want to change this so that the fixture is created fewer times.
+You can do this by adding the <code class="docutils literal notranslate"><span class="pre">scope</span></code> argument to the fixture.
+One scope we might pick is <code class="docutils literal notranslate"><span class="pre">module</span></code>, meaning that a new fixture will be created for each testing module rather than for each testing function.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-29" name="sd-tab-set-29" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-test_molecule.py" for="sd-tab-item-29">
+TEST_MOLECULE.PY</label><div class="sd-tab-content docutils">
+<div class="highlight-test_molecule.py notranslate"><div class="highlight"><pre><span></span><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&quot;module&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">methane_molecule</span><span class="p">():</span>
+    <span class="n">symbols</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">])</span>
+    <span class="n">coordinates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">2.4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="p">[</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">2.4</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4</span><span class="p">],</span>
+    <span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">coordinates</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that now when you run your tests, the <code class="docutils literal notranslate"><span class="pre">test_build_bond_list</span></code> will fail.
+This is because the <code class="docutils literal notranslate"><span class="pre">test_move_methane</span></code> moved the carbon atom and since the scope was module, it remained moved for the following tests.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">scope</span></code> keyword can be helpful for saving time, however, be aware if you are changing properties of the fixture in other tests!</p>
+<div class="tip admonition">
+<p class="admonition-title">Using fixtures across different test files</p>
+<p>If during implementing your tests you realize that you want to use a fixture function from multiple test files you can move it to a conftest.py file.
+You don’t need to import the fixture you want to use in a test, it automatically gets discovered by pytest.
+Read more about this <a class="reference external" href="https://www.tutorialspoint.com/pytest/pytest_conftest_py.htm">here</a>.</p>
+</div>
+</section>
+</section>
+<section id="pytest-parametrize">
+<h3>Pytest Parametrize<a class="headerlink" href="#pytest-parametrize" title="Permalink to this heading">#</a></h3>
+<p>For some of our functions like <code class="docutils literal notranslate"><span class="pre">calculate_distance</span></code> or <code class="docutils literal notranslate"><span class="pre">calculate_angle</span></code>, we have only tested one measurement so far.
+This is not very complete, and we may be missing testing edge cases.
+You may think of writing another test where you change the values which you input into the calculation.
+This is definitely something you can do, and <code class="docutils literal notranslate"><span class="pre">pytest</span></code> has a feature which makes it easy to run a test with multiple inputs/values - the <code class="docutils literal notranslate"><span class="pre">parametrize</span></code> mark.</p>
+<div class="note admonition">
+<p class="admonition-title">Edge and Corner Cases</p>
+<h3 class="rubric" id="edge-cases">Edge cases</h3>
+<p>The situation where the test examines either the beginning or the end of a range, but not the middle, is called an edge case.
+In a simple, one-dimensional problem, the two edge cases should always be tested along with at least one internal point.
+This ensures that you have good coverage over the range of values.</p>
+<p>Anecdotally, it is important to test edges cases because this is where errors tend to arise.
+Qualitatively different behavior happens at boundaries.
+As such, they tend to have special code dedicated to them in the implementation.</p>
+<h3 class="rubric" id="corner-cases">Corner cases</h3>
+<p>When two or more edge cases are combined, it is called a corner case.
+If a function is parametrized by two linear and independent variables, a test that is at the extreme of both variables is in a corner.</p>
+</div>
+<p>The syntax for the <code class="docutils literal notranslate"><span class="pre">pytest.mark.parametrize</span></code> decorator is:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-30" name="sd-tab-set-30" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-30">
+PYTHON</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;variable_name1, variable_name2, ...variable_nameN, expected_answer&quot;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="p">(</span><span class="n">variable_value1</span><span class="p">,</span> <span class="n">variable_value2</span><span class="p">,</span> <span class="o">...</span><span class="n">variable_valueN</span><span class="p">,</span> <span class="n">expected_answer_value</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">variable_value1</span><span class="p">,</span> <span class="n">variable_value2</span><span class="p">,</span> <span class="o">...</span><span class="n">variable_valueN</span><span class="p">,</span> <span class="n">expected_answer_value</span><span class="p">),</span> <span class="o">...</span>
+<span class="p">])</span>
+<span class="k">def</span> <span class="nf">test_name</span><span class="p">(</span><span class="n">variable_name1</span><span class="p">,</span> <span class="n">variable_name2</span><span class="p">,</span> <span class="o">...</span> <span class="n">variable_nameN</span><span class="p">,</span> <span class="n">expected_answer</span><span class="p">):</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Where each line in the middle (in parentheses) gives a set of values for the test.
+Then, these variables are passed to the test written under the decorator.</p>
+<p>For example, for testing our <code class="docutils literal notranslate"><span class="pre">calculate_angle</span></code> function, we might test several angles at one time.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-31" name="sd-tab-set-31" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-test_measure.py" for="sd-tab-item-31">
+TEST_MEASURE.PY</label><div class="sd-tab-content docutils">
+<div class="highlight-test_measure.py notranslate"><div class="highlight"><pre><span></span><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;p1, p2, p3, expected_angle&quot;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span> <span class="mi">45</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span> <span class="mi">60</span>  <span class="p">),</span>
+    <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span> <span class="mi">0</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span> <span class="mi">30</span><span class="p">),</span>
+<span class="p">])</span>
+<span class="k">def</span> <span class="nf">test_calculate_angle_many</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">p3</span><span class="p">,</span> <span class="n">expected_angle</span><span class="p">):</span>
+
+    <span class="n">calculated_angle</span> <span class="o">=</span> <span class="n">molecool</span><span class="o">.</span><span class="n">calculate_angle</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">p3</span><span class="p">,</span> <span class="n">degrees</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">expected_angle</span> <span class="o">==</span> <span class="n">pytest</span><span class="o">.</span><span class="n">approx</span><span class="p">(</span><span class="n">calculated_angle</span><span class="p">),</span> <span class="sa">F</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">calculated_angle</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">expected_angle</span><span class="si">}</span><span class="s1">&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Run these tests, but this time add another special option to pytest <code class="docutils literal notranslate"><span class="pre">-k</span></code> which allows you to specify the name of the test you want to run.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-32" name="sd-tab-set-32" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-32">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pytest<span class="w"> </span>-v<span class="w"> </span>-k<span class="w"> </span><span class="s2">&quot;test_calculate_angle_many&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-33" name="sd-tab-set-33" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-33">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">============================================================= test session starts =============================================================</span>
+<span class="go">platform darwin -- Python 3.7.3, pytest-5.2.1, py-1.8.0, pluggy-0.13.0 -- /Users/jessica/miniconda3/envs/molecool/bin/python</span>
+<span class="go">cachedir: .pytest_cache</span>
+<span class="go">rootdir: /Users/jessica/lessons/molecool</span>
+<span class="go">collected 14 items / 11 deselected / 3 selected                                                                                               </span>
+
+<span class="go">molecool/tests/test_measure.py::test_calculate_angle_many[p10-p20-p30-45] PASSED                                                        [ 33%]</span>
+<span class="go">molecool/tests/test_measure.py::test_calculate_angle_many[p11-p21-p31-60] PASSED                                                        [ 66%]</span>
+<span class="go">molecool/tests/test_measure.py::test_calculate_angle_many[p12-p22-p32-30] PASSED                                                        [100%]</span>
+
+<span class="go">====================================================== 3 passed, 7 deselected in 0.44s =======================================================</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Running this test resulted in three different tests with three different values.</p>
+<section id="combining-multiple-parameters">
+<h4>Combining multiple parameters<a class="headerlink" href="#combining-multiple-parameters" title="Permalink to this heading">#</a></h4>
+<p>To get all combinations of multiple parametrized arguments you can stack parametrize decorators:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-34" name="sd-tab-set-34" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-34">
+PYTHON</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pytest</span>
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">test_foo</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This will run the test with the arguments set to x=0/y=2, x=1/y=2, x=0/y=3, and x=1/y=3 exhausting parameters in the order of the decorators.</p>
+</section>
+</section>
+<section id="testing-documentation-examples">
+<h3>Testing Documentation Examples<a class="headerlink" href="#testing-documentation-examples" title="Permalink to this heading">#</a></h3>
+<p>As our package changes over time, we want to make sure that the examples in our docstrings still behave as originally written, but checking these by hand can be a real pain.
+Luckily, <code class="docutils literal notranslate"><span class="pre">pytest</span></code> has a feature that will look for examples in docstrings and run them as tests.</p>
+<p><code class="docutils literal notranslate"><span class="pre">pytest</span></code> searches the docstrings for the Python shell code, which it executes and compares to the outputs in the docstring.
+For example, in the docstring of our function <code class="docutils literal notranslate"><span class="pre">calculate_distance</span></code> we have:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-35" name="sd-tab-set-35" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-35">
+PYTHON</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">r1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">calculate_distance</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">)</span>
+<span class="go">0.1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">pytest</span></code> will find and execute this code (indicated by <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code>).
+If the output is not <code class="docutils literal notranslate"><span class="pre">0.1</span></code>, <code class="docutils literal notranslate"><span class="pre">pytest</span></code> will treat the example test as a failure.</p>
+<p>We can test docstrings by adding the option <code class="docutils literal notranslate"><span class="pre">--doctest-modules</span></code>.
+If you are in the top level of your project, you will have to also give the name of the project folder (which is <code class="docutils literal notranslate"><span class="pre">molecool</span></code>) after the option.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-36" name="sd-tab-set-36" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-36">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pytest<span class="w"> </span>-v<span class="w"> </span>--doctest-modules<span class="w"> </span>molecool
+</pre></div>
+</div>
+</div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-37" name="sd-tab-set-37" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-37">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">=========================================================================== test session starts ===========================================================================</span>
+<span class="go">platform darwin -- Python 3.7.3, pytest-5.2.1, py-1.8.0, pluggy-0.13.0 -- /Users/jessica/miniconda3/envs/molecool/bin/python</span>
+<span class="go">cachedir: .pytest_cache</span>
+<span class="go">rootdir: /Users/jessica/lessons/molecool</span>
+<span class="go">collected 11 items                                                                                                                                                        </span>
+
+<span class="go">molecool/measure.py::molecool.measure.calculate_distance PASSED                                                                                                     [  9%]</span>
+<span class="go">molecool/tests/test_measure.py::test_molecool_imported PASSED                                                                                                       [ 18%]</span>
+<span class="go">molecool/tests/test_measure.py::test_calculate_distance PASSED                                                                                                      [ 27%]</span>
+<span class="go">molecool/tests/test_measure.py::test_calculate_angle_90 PASSED                                                                                                      [ 36%]</span>
+<span class="go">molecool/tests/test_measure.py::test_calculate_angle_many[p10-p20-p30-45] PASSED                                                                                    [ 45%]</span>
+<span class="go">molecool/tests/test_measure.py::test_calculate_angle_many[p11-p21-p31-60] PASSED                                                                                    [ 54%]</span>
+<span class="go">molecool/tests/test_measure.py::test_calculate_angle_many[p12-p22-p32-30] PASSED                                                                                    [ 63%]</span>
+<span class="go">molecool/tests/test_molecule.py::test_build_bond_list_default PASSED                                                                                                [ 72%]</span>
+<span class="go">molecool/tests/test_molecule.py::test_molecular_mass PASSED                                                                                                         [ 81%]</span>
+<span class="go">molecool/tests/test_molecule.py::test_build_bond_list_failure PASSED                                                                                                [ 90%]</span>
+<span class="go">molecool/tests/test_molecule.py::test_center_of_mass PASSED                                                                                                         [100%]</span>
+
+<span class="go">=========================================================================== 11 passed in 0.42s ============================================================================</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The first test run is now a test of the docstring for the <code class="docutils literal notranslate"><span class="pre">calculate_distance</span></code> function.</p>
+<p>Change the expected answer to 0.2 in the docstring and re-run the test to get the following error:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-38" name="sd-tab-set-38" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-38">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">=========================================================================== test session starts ===========================================================================</span>
+<span class="go">platform darwin -- Python 3.7.3, pytest-5.2.1, py-1.8.0, pluggy-0.13.0 -- /Users/jessica/miniconda3/envs/molecool/bin/python</span>
+<span class="go">cachedir: .pytest_cache</span>
+<span class="go">rootdir: /Users/jessica/lessons/molecool</span>
+<span class="go">collected 11 items                                                                                                                                                        </span>
+
+<span class="go">molecool/measure.py::molecool.measure.calculate_distance FAILED                                                                                                     [  9%]</span>
+<span class="go">molecool/tests/test_measure.py::test_molecool_imported PASSED                                                                                                       [ 18%]</span>
+<span class="go">molecool/tests/test_measure.py::test_calculate_distance PASSED                                                                                                      [ 27%]</span>
+<span class="go">molecool/tests/test_measure.py::test_calculate_angle_90 PASSED                                                                                                      [ 36%]</span>
+<span class="go">molecool/tests/test_measure.py::test_calculate_angle_many[p10-p20-p30-45] PASSED                                                                                    [ 45%]</span>
+<span class="go">molecool/tests/test_measure.py::test_calculate_angle_many[p11-p21-p31-60] PASSED                                                                                    [ 54%]</span>
+<span class="go">molecool/tests/test_measure.py::test_calculate_angle_many[p12-p22-p32-30] PASSED                                                                                    [ 63%]</span>
+<span class="go">molecool/tests/test_molecule.py::test_build_bond_list_default PASSED                                                                                                [ 72%]</span>
+<span class="go">molecool/tests/test_molecule.py::test_molecular_mass PASSED                                                                                                         [ 81%]</span>
+<span class="go">molecool/tests/test_molecule.py::test_build_bond_list_failure PASSED                                                                                                [ 90%]</span>
+<span class="go">molecool/tests/test_molecule.py::test_center_of_mass PASSED                                                                                                         [100%]</span>
+
+<span class="go">================================================================================ FAILURES =================================================================================</span>
+<span class="go">______________________________________________________________ [doctest] molecool.measure.calculate_distance ______________________________________________________________</span>
+<span class="go">015     Returns</span>
+<span class="go">016     -------</span>
+<span class="go">017     distance : float</span>
+<span class="go">018         The distance between the two points.</span>
+<span class="go">019     </span>
+<span class="go">020     Examples</span>
+<span class="go">021     --------</span>
+<span class="go">022     &gt;&gt;&gt; r1 = np.array([0, 0, 0])</span>
+<span class="go">023     &gt;&gt;&gt; r2 = np.array([0, 0.1, 0])</span>
+<span class="go">024     &gt;&gt;&gt; calculate_distance(r1, r2)</span>
+<span class="go">Expected:</span>
+<span class="go">    0.2</span>
+<span class="go">Got:</span>
+<span class="go">    0.1</span>
+
+<span class="go">/Users/jessica/lessons/molecool/molecool/measure.py:24: DocTestFailure</span>
+<span class="go">====================================================================== 1 failed, 10 passed in 0.41s =======================================================================</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="code-coverage-part-i">
+<h2>Code Coverage Part I<a class="headerlink" href="#code-coverage-part-i" title="Permalink to this heading">#</a></h2>
+<p>Now that we have a set of modules and associated tests, we want to see how much of our package is “covered” by our tests.
+We’ll measure this by counting the lines of our packages that are touched, i.e. used, during our tests.</p>
+<p>We already have everything we need for this since we installed <code class="docutils literal notranslate"><span class="pre">pytest-cov</span></code> earlier which includes the coverage tools on top of the <code class="docutils literal notranslate"><span class="pre">pytest</span></code> package.</p>
+<p>We can assess our code coverage as follows:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-39" name="sd-tab-set-39" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-39">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pytest<span class="w"> </span>--cov<span class="o">=</span>molecool
+</pre></div>
+</div>
+</div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-40" name="sd-tab-set-40" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-40">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">=========================================================================== test session starts ===========================================================================</span>
+<span class="go">platform darwin -- Python 3.7.3, pytest-5.2.1, py-1.8.0, pluggy-0.13.0</span>
+<span class="go">rootdir: /Users/jessica/lessons/molecool</span>
+<span class="go">plugins: cov-2.8.1</span>
+<span class="go">collected 10 items                                                                                                                                                        </span>
+
+<span class="go">molecool/tests/test_measure.py ......                                                                                                                               [ 60%]</span>
+<span class="go">molecool/tests/test_molecule.py ....                                                                                                                                [100%]</span>
+
+<span class="go">---------- coverage: platform darwin, python 3.7.3-final-0 -----------</span>
+<span class="go">Name                      Stmts   Miss  Cover</span>
+<span class="go">---------------------------------------------</span>
+<span class="go">molecool/__init__.py          9      0   100%</span>
+<span class="go">molecool/atom_data.py         2      0   100%</span>
+<span class="go">molecool/io/__init__.py       2      0   100%</span>
+<span class="go">molecool/io/pdb.py           14     12    14%</span>
+<span class="go">molecool/io/xyz.py           14     11    21%</span>
+<span class="go">molecool/measure.py          12      1    92%</span>
+<span class="go">molecool/molecule.py         28      1    96%</span>
+<span class="go">molecool/visualize.py        33     28    15%</span>
+<span class="go">---------------------------------------------</span>
+<span class="go">TOTAL                       114     53    54%</span>
+
+
+<span class="go">=========================================================================== 10 passed in 0.70s ============================================================================</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The output shows how many statements (i.e. not comments) are in a file, how many weren’t executed during testing, and the percentage of statements that were.</p>
+<p>To improve our coverage, we also want to see exactly which lines we missed and we can determine this using the <code class="docutils literal notranslate"><span class="pre">.coverage</span></code> file produced by <code class="docutils literal notranslate"><span class="pre">pytest</span></code>.
+Unfortunately, this strategy becomes impractical when we are working with anything larger than our test package because the <code class="docutils literal notranslate"><span class="pre">.coverage</span></code> file becomes too convoluted to read.
+We will need more tools to help us determine how to improve out tests and that will be the subject of Code Coverage part II, which we will cover later in the workshop.</p>
+<div class="attention admonition">
+<p class="admonition-title">Do we need to get 100% coverage?</p>
+<p>Short answer: <strong>no</strong>.
+Code coverage is a useful tool to assess how comprehensive our set of tests are and in general the higher our code coverage the better.
+<strong>However</strong>, trying to achieve 100% coverage on packages any larger than this sample package is a bit unrealistic and would require more time than that last bit of coverage is worth.</p>
+</div>
+</section>
+<section id="key-points">
+<h2>Key Points<a class="headerlink" href="#key-points" title="Permalink to this heading">#</a></h2>
+<div class="key admonition">
+<p class="admonition-title">Key Points</p>
+<ul class="simple">
+<li><p>A good set of tests covers individual functions/features <strong>and</strong> behavior of the software as a whole.</p></li>
+<li><p>It’s better to write tests during development so you can check your progress along the way.</p></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="00-testing-continuous-integration.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Testing, Continuous Integration, and Distribution</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="09-CI.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Continuous Integration using GitHub Actions</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-testing">Why testing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#levels-of-testing">Levels of Testing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pytest-testing-framework">The pytest testing framework</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-our-first-test">Running our first test</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-tests-to-our-package">Adding tests to our package</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#failing-tests">Failing tests</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-calculate-angle-test">Exercise - <code class="docutils literal notranslate"><span class="pre">calculate_angle</span></code> test</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-expected-exceptions">Testing Expected Exceptions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-test-driven-development">Exercise - Test Driven Development</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-features-of-pytest">Advanced features of pytest</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pytest-marks">Pytest Marks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pytest-fixtures">Pytest Fixtures</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fixture-scope">Fixture Scope</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pytest-parametrize">Pytest Parametrize</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#combining-multiple-parameters">Combining multiple parameters</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-documentation-examples">Testing Documentation Examples</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-coverage-part-i">Code Coverage Part I</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-points">Key Points</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div class="tocsection sourcelink">
+    <a href="_sources/08-testing.md.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner"></div>
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  
+
+
+
+  
+  
+  
+  
+  
+  
+  
+
+
+<div class="row h-10">
+    <div class="col-2">
+        <a href="https://molssi.org/" target="_blank" title="Go to MolSSI in a new tab">
+            <img src="_static/molssi_main_logo.png" class="logo__image only-light footer_logo" alt="Logo image">
+            <img src="_static/molssi_main_logo_inverted_white.png" class="logo__image only-dark footer_logo" alt="Logo image">
+        </a>
+    </div>
+    <div class="col-8">
+        <p> &copy; Copyright 2019-2023 <a href="https://molssi.org/">The Molecular Sciences Software Institute</a></p>
+        <p>Funded by the National Science Foundation 
+          <a href="https://nsf.gov/awardsearch/showAward?AWD_ID=1547580">OAC-1547580</a> and 
+          <a href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=2136142">CHE-2136142.</a></p>
+ 
+        
+        <p class="sphinx-version">
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br>
+        </p>
+        
+
+        <p class="theme-version">
+        Built with a customized <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.1.
+        </p>
+
+    </div>
+    <div class="col-2">
+        <a href="https://nsf.gov/" target="_blank" title="Go to the NSF in a new tab">
+            <img src="_static/nsf.png" class="footer_logo" alt="The NSF">
+          </a>
+    </div>
+</div></div>
+      
+    </div>
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

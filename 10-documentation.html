@@ -1,0 +1,1315 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Package Documentation &#8212; molssi_best_practices  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '10-documentation';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Testing, Continuous Integration, and Distribution" href="00-testing-continuous-integration.html" />
+    <link rel="prev" title="Type Hinting in Python" href="06-type-hinting.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  <div class="navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/molssi_main_logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/molssi_main_logo_inverted_white.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+    <p class="title logo__title">MolSSI Best Practices</p>
+  
+</a></div>
+    
+  </div>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="setup.html">
+                        Set Up
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="01-package-setup.html">
+                        Python Package Set-Up
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="00-git-and-github.html">
+                        git and GitHub
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="00-code-organization-documentation.html">
+                        Code Style and Documentation
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="00-testing-continuous-integration.html">
+                        Testing, Continuous Integration, and Distribution
+                      </a>
+                    </li>
+                
+
+                <li class="nav-item">
+                  <a class="nav-link nav-external" href="https://molssi.org">
+                    MolSSI
+                  </a>
+                </li>
+                
+                </div>
+            </div>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/jchen0506/molssi_doc_theme" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="setup.html">
+                        Set Up
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="01-package-setup.html">
+                        Python Package Set-Up
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="00-git-and-github.html">
+                        git and GitHub
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="00-code-organization-documentation.html">
+                        Code Style and Documentation
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="00-testing-continuous-integration.html">
+                        Testing, Continuous Integration, and Distribution
+                      </a>
+                    </li>
+                
+
+                <li class="nav-item">
+                  <a class="nav-link nav-external" href="https://molssi.org">
+                    MolSSI
+                  </a>
+                </li>
+                
+                </div>
+            </div>
+            
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/jchen0506/molssi_doc_theme" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="04-function-style.html">Python Coding Style</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-package-structure.html">Deciding Package Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-type-hinting.html">Type Hinting in Python</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Package Documentation</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumbs">
+  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="00-code-organization-documentation.html" class="nav-link">Code Style and Documentation</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Package Documentation</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="package-documentation">
+<h1>Package Documentation<a class="headerlink" href="#package-documentation" title="Permalink to this heading">#</a></h1>
+<div class="overview admonition">
+<p class="admonition-title">Overview</p>
+<p>Questions:</p>
+<ul class="simple">
+<li><p>How can we document our package?</p></li>
+</ul>
+<p>Objectives:</p>
+<ul class="simple">
+<li><p>Run the lesson checking script and interpret its output correctly.</p></li>
+<li><p>Explain in-code documentation</p></li>
+<li><p>Explain documentation tools like Read The Docs</p></li>
+</ul>
+</div>
+<p>This episode discusses documentation strategies.
+In particular, we will focus on how to build documentation using Sphinx and host that documentation online using <a class="reference external" href="https://readthedocs.org/">Read The Docs</a>.</p>
+<p>Documentation must be provided to allow for use, development, and maintenance of software.
+Documentation is often overlooked by developers since it can be tedious and boring.
+However, writing good documentation is an extremely good habit to develop.</p>
+<p>The documentation typically involves several components:</p>
+<ul class="simple">
+<li><p>What your project does and why it is useful</p></li>
+<li><p>Build requirements and dependencies (if applicable)</p></li>
+<li><p>How to compile/build/test/install</p></li>
+<li><p>How to use the software (through the API or through inputs)</p></li>
+<li><p>Some examples</p></li>
+<li><p>Who maintains the project</p></li>
+</ul>
+<p>So far in our project, we have added things like installation and use instructions to our <code class="docutils literal notranslate"><span class="pre">README.md</span></code>, which is displayed on our GitHub repository.
+We have also written in-code documentation in the form of comments and function doc strings.
+These strategies work well for small projects, and may be all the documentation you need for many of your projects.
+However, if you are preparing a software package to be widely used, you may want to make a website for people to find information about your package.</p>
+<section id="types-of-documentation">
+<h2>Types of Documentation<a class="headerlink" href="#types-of-documentation" title="Permalink to this heading">#</a></h2>
+<p>There are many types of documentation which you might find associated with a software project.
+A smaller project may be fully documented in the README.
+However, larger libraries may have several documentation sets, each with a different audience.
+One example of this is the <a class="reference external" href="https://numpy.org/doc/stable/">NumPy library</a>.
+The NumPy documentation is divided by content intended for users, and documentation meant for contributors or developers.
+The NumPy documentation also has a <a class="reference external" href="https://numpy.org/doc/stable/reference/">reference section</a> which outlines all the functions and objects in the library (also called API documentation).</p>
+<p>Not all libraries have documentation which is this extensive.
+You will have to decide what is appropriate for your project.
+However, it is good to be aware of the different types of documentation you might see associated with a project.</p>
+<ul class="simple">
+<li><p><strong>README documentation</strong> - This is the documentation which is in the <code class="docutils literal notranslate"><span class="pre">README.md</span></code> file.
+It is displayed on the GitHub page for your project. For small projects, this documentation might be sufficient.
+The README documentation should contain a short summary of the project, information on installation and basic usage, and should link out to more complex documentation if you have it.</p></li>
+<li><p><strong>End-user documentation</strong> - The end user documentation should explain the goal of your project and explain how to use it.
+You might choose to include tutorials or text explanations in this documentation.
+This type of documentation could be present on your <code class="docutils literal notranslate"><span class="pre">README.md</span></code>, or on an external documentation site.</p></li>
+<li><p><strong>Developer documentation</strong> - Developer documentation should explain how your project works and how others can contribute to the project.</p></li>
+<li><p><strong>API documentation</strong> - API documentation is the documentation of the modules and functions in your library.
+This is the type of documentation which in-code docstrings are used to generate.</p></li>
+</ul>
+</section>
+<section id="sphinx-for-complex-modules">
+<h2>Sphinx for complex modules<a class="headerlink" href="#sphinx-for-complex-modules" title="Permalink to this heading">#</a></h2>
+<p>When you want to improve your documentation strategies for Python packages, use <a class="reference external" href="https://www.sphinx-doc.org/en/master/">Sphinx</a>.
+Sphinx is a tool for creating documentation and was originally created for documentation of the Python programming language.</p>
+<p>With Sphinx and some extensions, you can write documentation giving instructions and examples of your software AND pull out the in-code documentation we have already written as docstrings to document your API.
+<strong>Note</strong> that only using Sphinx to pull out API documentation is not a best-practice and should not be considered full and complete documentation.
+When documenting your project, in general, it is ideal to have accompanying end-user documentation at least as well.</p>
+<p>The ability to pull out in-code docstrings as documentation is an advantage - you won’t have to maintain documentation in more than one place.
+Later, we will see how we can automatically generate our documentation every time we push to the repository.</p>
+<p><a class="reference external" href="https://www.sphinx-doc.org/en/master/examples.html">Many projects you are familiar with</a> use Sphinx for documentation - including NumPy, Matplotlib, and Pytest.</p>
+<p>To use Sphinx, you will need to have Sphinx installed and some configuration files.
+CookieCutter has already set up files which we need to get started with Sphinx.</p>
+<section id="using-sphinx-to-build-documentation">
+<h3>Using Sphinx to build documentation<a class="headerlink" href="#using-sphinx-to-build-documentation" title="Permalink to this heading">#</a></h3>
+<p>The command below installs the Sphinx software and a theme for your Sphinx Documentation.
+The cookiecutter comes preconfigured to use the <a class="reference external" href="https://sphinx-rtd-theme.readthedocs.io/en/stable/">Sphinx ReadTheDocs theme</a> (or <code class="docutils literal notranslate"><span class="pre">sphinx_rtd_theme</span></code>), but there are many themes you can choose from if you wish.
+There are many themes available for Sphinx, and if you view the Sphinx <a class="reference external" href="https://www.sphinx-doc.org/en/master/examples.html">examples</a> you will see several themes you could choose from.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-0">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>sphinx<span class="w"> </span>sphinx_rtd_theme
+</pre></div>
+</div>
+</div>
+</div>
+<p>While we work with documentation, we will finally be looking at the third directory which CookieCutter created.
+(Remember that we’ve looked at the project directory, and the <code class="docutils literal notranslate"><span class="pre">devtools</span></code> directory.)
+The files which CookieCutter has set up for Sphinx are in the <code class="docutils literal notranslate"><span class="pre">docs</span></code> folder.
+Navigate to that directory.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-1" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-1">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>docs
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, look at the files in the directory</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-2">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ls
+</pre></div>
+</div>
+</div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-3" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-3">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">Makefile            _templates          getting_started.rst requirements.yaml</span>
+<span class="go">README.md           api.rst             index.rst</span>
+<span class="go">_static             conf.py             make.bat</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>These are the files we will use to build our documentation.</p>
+<p>The important files for you to edit in this directory end with the extension <code class="docutils literal notranslate"><span class="pre">.rst</span></code>.
+These are <code class="docutils literal notranslate"><span class="pre">reStructuredText</span></code> files, and they are what Sphinx will use to build each page or section of your documentation.
+We have three restructured text files here to begin (<code class="docutils literal notranslate"><span class="pre">index.rst</span></code>, <code class="docutils literal notranslate"><span class="pre">getting_started.rst</span></code>, <code class="docutils literal notranslate"><span class="pre">api.rst</span></code>).
+The included <code class="docutils literal notranslate"><span class="pre">rst</span></code> pages were generated by the CookieCutter as a starting point for you.</p>
+<p>When you build your documentation, the <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> will be the index, or main page of your documentation.
+The other <code class="docutils literal notranslate"><span class="pre">rst</span></code> files are examples of pages you might want to have (from CookieCutter).
+Any time you want to make a new page, you can create a file with an <code class="docutils literal notranslate"><span class="pre">.rst</span></code> extension.</p>
+<p>To build your documentation as HTML, type</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-4" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-4">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>html
+</pre></div>
+</div>
+</div>
+</div>
+<p>This command tells Sphinx to generate your documentation as html pages.
+With this command, we are building HTML files from the reStructuredText files.</p>
+<p>Now notice when you type <code class="docutils literal notranslate"><span class="pre">ls</span></code> some new directories have appeared.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-5" name="sd-tab-set-5" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-5">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ls
+</pre></div>
+</div>
+</div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-6" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-6">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">Makefile            _static             autosummary         index.rst</span>
+<span class="go">README.md           _templates          conf.py             make.bat</span>
+<span class="go">_build              api.rst             getting_started.rst requirements.yaml</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In particular, notice the <code class="docutils literal notranslate"><span class="pre">_build</span></code> directory.
+Sphinx put the HTML files it generated here.
+There should now be files in your <code class="docutils literal notranslate"><span class="pre">_build/html</span></code> folder.
+You can open these files in your browser to preview what your documentation will look like.</p>
+</section>
+</section>
+<section id="adding-information-to-our-documentation">
+<h2>Adding Information to our Documentation<a class="headerlink" href="#adding-information-to-our-documentation" title="Permalink to this heading">#</a></h2>
+<p>Now, we will have the task of actually adding information about our project to our documentation.
+This part will require us to write!</p>
+<p>When writing Sphinx documentation, you use an extended <code class="docutils literal notranslate"><span class="pre">reStructuredText</span> <span class="pre">(RST)</span></code> <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html">syntax</a>.
+This is similar to Markdown, but has notable differences.
+See this <a class="reference external" href="https://thomas-cokelaer.info/tutorials/sphinx/rest_syntax.html">reStructured Text Cheat Sheet</a> for info on reStructuredText.</p>
+<p>Let’s start by adding a simple a description to your <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> under the first heading.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-7" name="sd-tab-set-7" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-index.rst" for="sd-tab-item-7">
+INDEX.RST</label><div class="sd-tab-content docutils">
+<div class="highlight-index.rst notranslate"><div class="highlight"><pre><span></span><span class="gh">Welcome to molecool&#39;s documentation!</span>
+<span class="gh">=========================================================</span>
+molecool is a Python package designed to read in, perform analysis,
+and visualize molecular coordinates. The file formats <span class="nv">`xyz`</span> and <span class="nv">`pdb`</span> are
+currently supported.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, clean your previous build and rebuild your pages.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-8" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-8">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>clean
+make<span class="w"> </span>html
+</pre></div>
+</div>
+</div>
+</div>
+<p>Refresh the page in your browser to see the page with the new description.</p>
+<p>CookieCutter has already added some other pages to our documentation: <code class="docutils literal notranslate"><span class="pre">getting_started.rst</span></code>, and <code class="docutils literal notranslate"><span class="pre">api.rst</span></code>.
+Let’s tell someone how to get started on the ‘Getting Started’ page.
+Click the link on your HTML documentation  to see what is there already.</p>
+<p>Right now, it says</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-9" name="sd-tab-set-9" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-getting_started" for="sd-tab-item-9">
+GETTING_STARTED</label><div class="sd-tab-content docutils">
+<div class="highlight-getting_started notranslate"><div class="highlight"><pre><span></span>This page details how to get started with molecool.
+</pre></div>
+</div>
+</div>
+</div>
+<p>To change this, we will edit the content of <code class="docutils literal notranslate"><span class="pre">getting_started.rst</span></code></p>
+<section id="exercise-getting-started">
+<h3>Exercise - Getting Started<a class="headerlink" href="#exercise-getting-started" title="Permalink to this heading">#</a></h3>
+<div class="exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Using the <a class="reference external" href="https://thomas-cokelaer.info/tutorials/sphinx/rest_syntax.html">reStructured Text Cheat Sheet</a>, add some information to your Getting Started page. Use the following guidelines</p>
+<ol class="arabic simple">
+<li><p>Add a text description under “Getting Started”.</p></li>
+<li><p>Create a subheading called “installation” which contains installation instructions.</p></li>
+<li><p>The “Installation” section should use a list for dependencies and a code block with the installation command.</p></li>
+</ol>
+<div class="solution dropdown admonition">
+<p class="admonition-title">Solution</p>
+<p>Following the guidelines and using the cheat sheet may lead you to a page which looks like this:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-10" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-getting_started.rst" for="sd-tab-item-10">
+GETTING_STARTED.RST</label><div class="sd-tab-content docutils">
+<div class="highlight-getting_started.rst notranslate"><div class="highlight"><pre><span></span><span class="gh">Getting Started</span>
+<span class="gh">===============</span>
+
+This page details how to get started with molecool. Molecool is a package which was developed for the MolSSI Best Practices workshop.
+
+<span class="gh">Installation</span>
+<span class="gh">------------</span>
+To install molecool, you will need an environment with the following packages:
+
+<span class="m">*</span> Python 3.11
+<span class="m">*</span> NumPy
+<span class="m">*</span> Matplotlib
+
+Once you have these packages installed, you can install molecool in the same environment using
+::
+
+    pip install -e .
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>We can also add a Python code block, for example.
+The Sphinx RTD Theme will use syntax highlighting for Python code.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-11" name="sd-tab-set-11" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-getting_started.rst" for="sd-tab-item-11">
+GETTING_STARTED.RST</label><div class="sd-tab-content docutils">
+<div class="highlight-getting_started.rst notranslate"><div class="highlight"><pre><span></span><span class="gh">Usage</span>
+<span class="gh">-------</span>
+Once installed, you can use the package. This example draws a benzene molecule from an xyz file.
+<span class="se">::</span>
+
+<span class="s">    import molecool</span>
+
+<span class="s">    benzene_symbols, benzene_coords = molecool.open_xyz(&#39;benzene.xyz&#39;)</span>
+<span class="s">    benzene_bonds = molecool.build_bond_list(benzene_coords)</span>
+<span class="s">    molecool.draw_molecule(benzene_coords, benzene_symbols, draw_bonds=benzene_bonds)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="sphinx-directives">
+<h2>Sphinx Directives<a class="headerlink" href="#sphinx-directives" title="Permalink to this heading">#</a></h2>
+<p>The thing that really gives Sphinx special abilities are <strong>directives</strong>.
+Directives are extensions which can be used with your restructured text to add special sections, images, warnings, etc to your documentation, and are part of a package called <a class="reference external" href="https://docutils.sourceforge.io/">docutils</a>, which Sphinx is built on top of.
+You can see a general list of directives <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html#rst-directives">here</a>, and a list of special Sphinx Directives <a class="reference external" href="https://www.sphinx-doc.org/en/1.8/usage/restructuredtext/directives.html">here</a>.</p>
+<p>In general, the syntax for a directive is (with appropriate options and syntax)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">directive_name</span><span class="p">::</span>
+  <span class="p">:</span><span class="n">option</span><span class="p">:</span>
+  <span class="p">:</span><span class="n">option</span><span class="p">:</span>
+
+  <span class="n">parameter</span>
+  <span class="n">parameter</span>
+</pre></div>
+</div>
+<section id="code-highlight-directive">
+<h3>Code Highlight Directive<a class="headerlink" href="#code-highlight-directive" title="Permalink to this heading">#</a></h3>
+<p>One useful directive is code highlighting.
+Previously, we automatically highlighted our code using <code class="docutils literal notranslate"><span class="pre">::</span></code> at the end of a line followed by a blank line, then an indented line with code.
+We could have alternatively used a directive and specified the language.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">code</span><span class="o">-</span><span class="n">block</span><span class="p">::</span> <span class="n">language</span>
+
+  <span class="o">*</span><span class="n">CODE</span> <span class="n">GOES</span> <span class="n">HERE</span><span class="o">*</span>
+</pre></div>
+</div>
+<p>For our Python example,</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">code-block</span><span class="p">::</span> <span class="k">python</span>
+
+    <span class="kn">import</span> <span class="nn">molecool</span>
+
+    <span class="n">benzene_symbols</span><span class="p">,</span> <span class="n">benzene_coords</span> <span class="o">=</span> <span class="n">molecool</span><span class="o">.</span><span class="n">open_xyz</span><span class="p">(</span><span class="s1">&#39;benzene.xyz&#39;</span><span class="p">)</span>
+    <span class="n">benzene_bonds</span> <span class="o">=</span> <span class="n">molecool</span><span class="o">.</span><span class="n">build_bond_list</span><span class="p">(</span><span class="n">benzene_coords</span><span class="p">)</span>
+    <span class="n">molecool</span><span class="o">.</span><span class="n">draw_molecule</span><span class="p">(</span><span class="n">benzene_coords</span><span class="p">,</span> <span class="n">benzene_symbols</span><span class="p">,</span> <span class="n">draw_bonds</span><span class="o">=</span><span class="n">benzene_bonds</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The line <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">code-block::</span> <span class="pre">python</span></code> is the line which starts the directive.
+Directives always start with two periods (<code class="docutils literal notranslate"><span class="pre">..</span></code>), followed by a space, then the directive name (<code class="docutils literal notranslate"><span class="pre">code-block</span></code> in this case), then two colons (<code class="docutils literal notranslate"><span class="pre">::</span></code>).
+Next, you press enter and add any options for the directive.
+What we want highlighted as code is indented below this directive line.</p>
+<p>Sphinx <code class="docutils literal notranslate"><span class="pre">code-block</span></code> directive supports many languages.
+For example, we could add a C++ code block.</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">code-block</span><span class="p">::</span> <span class="k">c++</span>
+
+    <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+
+    <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+    <span class="p">{</span>
+    <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Hello, world!&quot;</span><span class="p">;</span>
+    <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="the-table-of-contents-directive">
+<h3>The Table of Contents Directive<a class="headerlink" href="#the-table-of-contents-directive" title="Permalink to this heading">#</a></h3>
+<p>The next directive we will discuss is the Table of Contents directive.
+Look at the file <code class="docutils literal notranslate"><span class="pre">index.rst</span></code>. It contains the <code class="docutils literal notranslate"><span class="pre">toctree</span></code> directive, which generates a special section called a Table of Contents which links to other parts of your projects.
+The Table of Contents on your <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> file is what shows up on your main menu on the left of the page.
+It is also on your main page.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-12" name="sd-tab-set-12" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-index.rst" for="sd-tab-item-12">
+INDEX.RST</label><div class="sd-tab-content docutils">
+<div class="highlight-index.rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">toctree</span><span class="p">::</span>
+   <span class="nc">:maxdepth:</span> 2
+   <span class="nc">:caption:</span> Contents:
+
+   getting_started
+   api
+</pre></div>
+</div>
+</div>
+</div>
+<p>This directive has an example of directive options, namely <code class="docutils literal notranslate"><span class="pre">maxdepth</span></code> and <code class="docutils literal notranslate"><span class="pre">caption</span></code>.
+You can think of these as arguments to a function.
+We then have options for depth of the Table of Contents (what level of headers to show), as well as the “caption”.
+You can see other options for this directive under “Additional options” on the <a class="reference external" href="https://www.sphinx-doc.org/en/1.8/usage/restructuredtext/directives.html">documentation page</a>.</p>
+<p>After the settings for the TOC tree, you list the name of the pages you want to be included in this Table of Contents.
+Right now, we are including the ‘Getting Started’ page and the API page.</p>
+<p>Note that you add the <strong>file name</strong> in the TOC Tree, but the title of the page is what shows up in the TOC.
+For example, for the <code class="docutils literal notranslate"><span class="pre">Getting</span> <span class="pre">Started</span></code> page, the page heading is ‘Getting Started’, but you list the file name without the extension is the TOC tree as <code class="docutils literal notranslate"><span class="pre">getting_started</span></code>.</p>
+</section>
+<section id="exercise-adding-to-the-table-of-contents">
+<h3>Exercise - Adding to the Table of Contents<a class="headerlink" href="#exercise-adding-to-the-table-of-contents" title="Permalink to this heading">#</a></h3>
+<div class="exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Create a new page with the title “About” that gives a description of the project.
+Specify that this project is for a MolSSI Best Practices Workshop, and put a link to the MolSSI homepage (molssi.org).
+Add your new page to the Table of Contents.
+What happens if you remove the page from the table of contents and rebuild the documentation?</p>
+<div class="solution dropdown admonition">
+<p class="admonition-title">Solution</p>
+<p>First, create a new file called <code class="docutils literal notranslate"><span class="pre">about.rst</span></code>. Next, create a header and
+write a short desciption in <code class="docutils literal notranslate"><span class="pre">about.rst</span></code>.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-13" name="sd-tab-set-13" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-about.rst" for="sd-tab-item-13">
+ABOUT.RST</label><div class="sd-tab-content docutils">
+<div class="highlight-about.rst notranslate"><div class="highlight"><pre><span></span><span class="gh">About this package</span>
+<span class="gh">------------------</span>
+This package and documentation are a sample created for the Best Practices Workshop held by <span class="s">`The Molecular Sciences Software Institute </span><span class="si">&lt;https://molssi.org&gt;</span><span class="s">`_</span>.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then, in <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> add the name of the file at the top of your table of contents.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-14" name="sd-tab-set-14" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-index.rst" for="sd-tab-item-14">
+INDEX.RST</label><div class="sd-tab-content docutils">
+<div class="highlight-index.rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">toctree</span><span class="p">::</span>
+   <span class="nc">:maxdepth:</span> 2
+   <span class="nc">:caption:</span> Contents:
+   getting_started
+   api
+   about
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you remove <code class="docutils literal notranslate"><span class="pre">about</span></code> from the TOC tree and rebuild, you will see the following error</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span><span class="n">PATH_TO_DIRECTORY</span><span class="o">/</span><span class="n">molecool</span><span class="o">/</span><span class="n">docs</span><span class="o">/</span><span class="n">about</span><span class="o">.</span><span class="n">rst</span><span class="p">:</span> <span class="n">WARNING</span><span class="p">:</span> <span class="n">document</span> <span class="n">isn</span><span class="s1">&#39;t included in any toctree</span>
+</pre></div>
+</div>
+<p>Sphinx will warn you if you’ve created a page and not linked to it.</p>
+</div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">PDF Documentation</p>
+<p>You can build a PDF version of your documentation using latex. Note that you must have Latex installed for this to work.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">latexpdf</span>
+</pre></div>
+</div>
+<p>This will create a folder called <code class="docutils literal notranslate"><span class="pre">pdf</span></code> in the <code class="docutils literal notranslate"><span class="pre">build</span></code> directory, and you should have a file in this directory called <code class="docutils literal notranslate"><span class="pre">molecool.pdf</span></code> containing all of your documentation. Each <code class="docutils literal notranslate"><span class="pre">rst</span></code> file is a chapter of the documentation, instead of a different page.</p>
+</div>
+</section>
+<section id="math-on-pages-equation-directives">
+<h3>Math on pages - Equation Directives<a class="headerlink" href="#math-on-pages-equation-directives" title="Permalink to this heading">#</a></h3>
+<p>Consider a docstring a function called <code class="docutils literal notranslate"><span class="pre">calculate_center_of_mass</span></code> (you will write the code for this function in the testing lesson). It has a section where we give the formula for the center of mass.
+If you examine this docstring, you will see that it is specified using a Sphinx Directive.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_center_of_mass</span><span class="p">(</span><span class="n">symbols</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate the center of mass of a molecule.</span>
+<span class="sd">    </span>
+<span class="sd">    The center of mass is weighted by each atom&#39;s weight.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    symbols : list</span>
+<span class="sd">        A list of elements for the molecule</span>
+<span class="sd">    coordinates : np.ndarray</span>
+<span class="sd">        The coordinates of the molecule.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    center_of_mass: np.ndarray</span>
+<span class="sd">        The center of mass of the molecule.</span>
+<span class="sd">    </span>
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    The center of mass is calculated with the formula</span>
+<span class="sd">    </span>
+<span class="sd">    .. math:: \\vec{R}=\\frac{1}{M} \\sum_{i=1}^{n} m_{i}\\vec{r_{}i}</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>If you add the <code class="docutils literal notranslate"><span class="pre">Notes</span></code> section of this docstring to your Sphinx documentation, the <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">math::</span></code> directive will be rendered as an equation.</p>
+</section>
+</section>
+<section id="api-documentation">
+<h2>API Documentation<a class="headerlink" href="#api-documentation" title="Permalink to this heading">#</a></h2>
+<p>To use Sphinx to generate API documentation, you can use either <a class="reference external" href="https://github.com/readthedocs/sphinx-autoapi">Spinx-AutoAPI</a>
+or <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html">Sphinx-Autodoc</a>.
+The cookiecutter comes bundled with Sphinx-Autodoc, so we will focus on that tool for this tutorial.
+See the Note at the end of this section for instructions on building API documentation on using AutoAPI.</p>
+<p>AutoDoc will pull out and render your documentation strings so that they are viewable to the user.
+This makes maintaining code documentation easier on you, as you will only need to maintain documentation for usage of functions in one place (the source code.)</p>
+<p>CookieCutter has already added a page which uses these tools.
+On your index page, click <code class="docutils literal notranslate"><span class="pre">API</span> <span class="pre">Documentation</span></code>, then click on the <code class="docutils literal notranslate"><span class="pre">canvas</span></code> function.
+You will see the docstring written for the function.
+If you click the green ‘source’ button to the right, you will be taken to a page which shows the source code for the function.</p>
+<p>Opening, the <code class="docutils literal notranslate"><span class="pre">api.rst</span></code> file, you should see the following.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-15" name="sd-tab-set-15" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-api.rst" for="sd-tab-item-15">
+API.RST</label><div class="sd-tab-content docutils">
+<div class="highlight-api.rst notranslate"><div class="highlight"><pre><span></span><span class="gh">API Documentation</span>
+<span class="gh">=================</span>
+
+<span class="p">..</span> <span class="ow">autosummary</span><span class="p">::</span>
+   <span class="nc">:toctree:</span> autosummary
+
+   molecool.canvas
+</pre></div>
+</div>
+</div>
+</div>
+<p>We are using a Sphinx extension called <code class="docutils literal notranslate"><span class="pre">autosummary</span></code> which is part of AutoDoc.
+This tells Sphinx to insert a table that contains links to documented items.
+Autosummary will put <code class="docutils literal notranslate"><span class="pre">docstrings</span></code> out of functions and a page for each docstring.
+Under that, we are starting a Table of Contents for this page.
+We will list any functions we would like to have documented here.
+This is useful if we would like to separate our API documentation into several pages.</p>
+<p>For example, we can add documentation for our <code class="docutils literal notranslate"><span class="pre">calculate_distance</span></code> function.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-16" name="sd-tab-set-16" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-api.rst" for="sd-tab-item-16">
+API.RST</label><div class="sd-tab-content docutils">
+<div class="highlight-api.rst notranslate"><div class="highlight"><pre><span></span><span class="gh">API Documentation</span>
+<span class="gh">=================</span>
+
+<span class="p">..</span> <span class="ow">autosummary</span><span class="p">::</span>
+   <span class="nc">:toctree:</span> autosummary
+
+   molecool.canvas
+   molecool.calculate_distance
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="adding-docstrings-to-other-pages">
+<h2>Adding Docstrings to other pages<a class="headerlink" href="#adding-docstrings-to-other-pages" title="Permalink to this heading">#</a></h2>
+<p>Alternatively, you could choose to break your module documentation into different pages with additional text.
+To do this, you would use different directives in AutoDoc.
+You may want to write documentation in addition to your docstring.
+Add a page called <code class="docutils literal notranslate"><span class="pre">measure.rst</span></code> with the following contents:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-17" name="sd-tab-set-17" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-measure.rst" for="sd-tab-item-17">
+MEASURE.RST</label><div class="sd-tab-content docutils">
+<div class="highlight-measure.rst notranslate"><div class="highlight"><pre><span></span><span class="gh">Measure module</span>
+<span class="gh">==============</span>
+
+<span class="p">..</span> <span class="ow">automodule</span><span class="p">::</span> molecool.measure
+
+    This is some additional information I want to say about the measure module.
+
+<span class="p">..</span> <span class="ow">autofunction</span><span class="p">::</span> calculate_distance
+
+I can also put additional information about a function.
+
+<span class="p">..</span> <span class="ow">autofunction</span><span class="p">::</span> calculate_angle
+</pre></div>
+</div>
+</div>
+</div>
+<p>Using this strategy, you can selectively add documentation for functions or classes and write additional information to go with the docstrings.</p>
+</section>
+<section id="sphinx-autoapi">
+<h2>Sphinx AutoAPI<a class="headerlink" href="#sphinx-autoapi" title="Permalink to this heading">#</a></h2>
+<p>Another strategy for generating API documentation is using <a class="reference external" href="https://github.com/readthedocs/sphinx-autoapi">Spinx-AutoAPI</a>.</p>
+<p>AutoAPI will pull documentation for all of your functions at once, rather than you having to build them manually.</p>
+<p>To install Sphinx-AutoAPI, use <code class="docutils literal notranslate"><span class="pre">pip</span></code>:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-18" name="sd-tab-set-18" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-bash" for="sd-tab-item-18">
+BASH</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>sphinx-autoapi
+</pre></div>
+</div>
+</div>
+</div>
+<p>Modify your <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> file to look like the following:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-19" name="sd-tab-set-19" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-conf.py" for="sd-tab-item-19">
+CONF.PY</label><div class="sd-tab-content docutils">
+<div class="highlight-conf.py notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+
+<span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;autoapi.extension&#39;</span><span class="p">,</span>
+    <span class="c1">#&#39;sphinx.ext.autosummary&#39;,</span>
+    <span class="c1">#&#39;sphinx.ext.autodoc&#39;,</span>
+    <span class="s1">&#39;sphinx.ext.mathjax&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sphinx.ext.viewcode&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sphinx.ext.napoleon&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sphinx.ext.intersphinx&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sphinx.ext.extlinks&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">autoapi_dirs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;../molecool&#39;</span><span class="p">]</span>
+<span class="n">autoapi_ignore</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;*/tests/*&quot;</span><span class="p">,</span>
+                  <span class="s2">&quot;*_version.py&quot;</span><span class="p">]</span>
+                  
+<span class="n">autoapi_options</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;members&#39;</span><span class="p">,</span> 
+		<span class="s1">&#39;undoc-members&#39;</span><span class="p">,</span> 
+		<span class="c1">#&#39;private-members&#39;, </span>
+		<span class="c1">#&#39;special-members&#39;, </span>
+		<span class="s1">&#39;show-inheritance&#39;</span><span class="p">,</span> 
+		<span class="s1">&#39;show-module-summary&#39;</span><span class="p">,</span> 
+		<span class="s1">&#39;imported-members&#39;</span><span class="p">]</span>
+
+<span class="c1"># autosummary_generate = True	# or delete this</span>
+<span class="n">napoleon_google_docstring</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">napoleon_use_param</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">napoleon_use_ivar</span> <span class="o">=</span> <span class="kc">True</span>
+                  
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can then build your documentation to have your docstrings pulled out automatically.
+While this strategy is convenient, we consider it to be only a good first pass at creating documentation.
+Your documentation should always contain additional information on goals and usage of the project, in addition to API documentation.</p>
+<div class="note admonition">
+<p class="admonition-title">Structuring Your Documentation</p>
+<p>Realistically, you probably don’t want just a single page for API documentation.
+You could separate your documentation by purpose.
+For example, you could have separate pages explaining visualization, calculation, and/or measurement, with an autosummary table of contents for each page that has relevant functions.
+Many projects are structured this way.
+Now that you know how Python documentation is built, keep an eye out for documentation you like.
+If you find documentation you like, take a look at their files to see how they structured their project!.</p>
+</div>
+</section>
+<section id="the-conf-py-file">
+<h2>The <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> file<a class="headerlink" href="#the-conf-py-file" title="Permalink to this heading">#</a></h2>
+<p>Now that we’ve worked with Sphinx, let’s look a little closer at what’s going on.
+The file <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> in your <code class="docutils literal notranslate"><span class="pre">docs</span></code> folder gives all the configuration setting we are using for Sphinx to build our documentation.
+CookieCutter has added several extensions to Sphinx to make the documentation we’ve built.</p>
+<p>Open your <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> file and find the <code class="docutils literal notranslate"><span class="pre">extensions</span></code> section.</p>
+<p>You should see the following:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-20" name="sd-tab-set-20" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-conf.py" for="sd-tab-item-20">
+CONF.PY</label><div class="sd-tab-content docutils">
+<div class="highlight-conf.py notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+
+<span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;autoapi.extension&#39;</span><span class="p">,</span>
+    <span class="c1"># &#39;sphinx.ext.autosummary&#39;,</span>
+    <span class="s1">&#39;sphinx.ext.autodoc&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sphinx.ext.mathjax&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sphinx.ext.viewcode&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sphinx.ext.napoleon&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sphinx.ext.intersphinx&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sphinx.ext.extlinks&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="o">...</span>
+
+<span class="c1"># autosummary_generate = True # or delete this</span>
+<span class="n">napoleon_google_docstring</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">napoleon_use_param</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">napoleon_use_ivar</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>CookieCutter has added a few extensions here which will allow us to pull docstrings from our Python modules (<code class="docutils literal notranslate"><span class="pre">sphinx.ext.autosummary</span></code>, <code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc</span></code>), and another which we use because our docstrings are <code class="docutils literal notranslate"><span class="pre">NumPy</span></code> style (<code class="docutils literal notranslate"><span class="pre">sphinx.ext.napoleon</span></code>).
+The <code class="docutils literal notranslate"><span class="pre">mathjax</span></code> extension allows us to render latex into equations, and the <code class="docutils literal notranslate"><span class="pre">viewcode</span></code> extensions will add links to highlighted source code.</p>
+<p>Previously, we have used the line <code class="docutils literal notranslate"><span class="pre">autosummary_generate</span> <span class="pre">=</span> <span class="pre">True</span></code> to allow us to pull auto summaries from our modules and functions.</p>
+</section>
+<section id="hosting-your-documentation">
+<h2>Hosting your documentation<a class="headerlink" href="#hosting-your-documentation" title="Permalink to this heading">#</a></h2>
+<section id="read-the-docs">
+<h3>Read The Docs<a class="headerlink" href="#read-the-docs" title="Permalink to this heading">#</a></h3>
+<p>We recommend hosting your  documentation on <a class="reference external" href="https://readthedocs.org/">Read The Docs</a>.
+With this service, you can enable the building of your documentation every time you push to your repository.</p>
+<p>Go to the <a class="reference external" href="https://readthedocs.org/">Read The Docs</a> website.
+Log in with your GitHub username and hook the repository to ReadTheDocs.
+This is done by clicking <code class="docutils literal notranslate"><span class="pre">Import</span> <span class="pre">a</span> <span class="pre">Project</span></code> button on your dashboard.
+Then on <code class="docutils literal notranslate"><span class="pre">Import</span> <span class="pre">a</span> <span class="pre">Repository</span></code> page click the <code class="docutils literal notranslate"><span class="pre">Import</span> <span class="pre">Manually</span></code> button and fill the form as following:</p>
+<ol class="arabic simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">molecool-YOUR_GITHUB_USERNAME</span></code> in the <code class="docutils literal notranslate"><span class="pre">Name</span></code> field rather than just <code class="docutils literal notranslate"><span class="pre">molecool</span></code> to create unique URL for your Read The Docs documentation,</p></li>
+<li><p>Fill the <code class="docutils literal notranslate"><span class="pre">Repository</span> <span class="pre">URL</span></code> with your molecool repository URL,</p></li>
+<li><p>Choose Git as your <code class="docutils literal notranslate"><span class="pre">Repository</span> <span class="pre">type</span></code>, and</p></li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">main</span></code> as your <code class="docutils literal notranslate"><span class="pre">Default</span> <span class="pre">branch</span></code>.</p></li>
+</ol>
+<p>Next, trigger build by clicking the <code class="docutils literal notranslate"><span class="pre">Build</span> <span class="pre">version</span></code> on your Read The Docs project page.</p>
+<p>Unfortunately, your documentation build will fail.
+This is because we need our dependencies installed on RTD.
+There is another file the CookieCutter has added which we must now modify.
+Add your dependencies (NumPy and Matplotlib) to <code class="docutils literal notranslate"><span class="pre">docs/requirements.yaml</span></code>.
+You should also add <code class="docutils literal notranslate"><span class="pre">sphinx-autoapi</span></code> under <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">only</span> <span class="pre">installs</span></code>.
+Your <code class="docutils literal notranslate"><span class="pre">requirements.yaml</span></code> will look like this:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-21" name="sd-tab-set-21" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-yaml" for="sd-tab-item-21">
+YAML</label><div class="sd-tab-content docutils">
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docs</span>
+<span class="nt">channels</span><span class="p">:</span>
+<span class="nt">dependencies</span><span class="p">:</span>
+<span class="w">    </span><span class="c1"># Base depends</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip</span>
+
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain"># Package depends</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">numpy</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">matplotlib</span>
+
+
+
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain"># Pip-only installs</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pip</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sphinx-autoapi</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Commit and push - your documentation should build successfully and you should be able to view it!</p>
+<p>Later, when you share distributions of your package, you will want people to be able to find this documentation easily.
+Update your <code class="docutils literal notranslate"><span class="pre">README.md</span></code> and <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> files with your new ReadTheDocs URL.</p>
+</section>
+</section>
+<section id="key-points">
+<h2>Key Points<a class="headerlink" href="#key-points" title="Permalink to this heading">#</a></h2>
+<div class="key admonition">
+<p class="admonition-title">Key Points</p>
+<ul class="simple">
+<li><p>Some documentation is better than no documentation</p></li>
+<li><p>Python packages are often documented using the Sphinx software.</p></li>
+<li><p>Sphinx lets you write documentation in restructured text and can convert
+you documentation to PDF or HTML.</p></li>
+<li><p>Sphinx directives are used to add to documentation.</p></li>
+<li><p>You can deploy your Sphinx documentation online using ReadTheDocs.</p></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="06-type-hinting.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Type Hinting in Python</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="00-testing-continuous-integration.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Testing, Continuous Integration, and Distribution</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-documentation">Types of Documentation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sphinx-for-complex-modules">Sphinx for complex modules</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-sphinx-to-build-documentation">Using Sphinx to build documentation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-information-to-our-documentation">Adding Information to our Documentation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-getting-started">Exercise - Getting Started</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sphinx-directives">Sphinx Directives</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-highlight-directive">Code Highlight Directive</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-table-of-contents-directive">The Table of Contents Directive</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-adding-to-the-table-of-contents">Exercise - Adding to the Table of Contents</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#math-on-pages-equation-directives">Math on pages - Equation Directives</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api-documentation">API Documentation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-docstrings-to-other-pages">Adding Docstrings to other pages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sphinx-autoapi">Sphinx AutoAPI</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-conf-py-file">The <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> file</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hosting-your-documentation">Hosting your documentation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#read-the-docs">Read The Docs</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-points">Key Points</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div class="tocsection sourcelink">
+    <a href="_sources/10-documentation.md.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner"></div>
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  
+
+
+
+  
+  
+  
+  
+  
+  
+  
+
+
+<div class="row h-10">
+    <div class="col-2">
+        <a href="https://molssi.org/" target="_blank" title="Go to MolSSI in a new tab">
+            <img src="_static/molssi_main_logo.png" class="logo__image only-light footer_logo" alt="Logo image">
+            <img src="_static/molssi_main_logo_inverted_white.png" class="logo__image only-dark footer_logo" alt="Logo image">
+        </a>
+    </div>
+    <div class="col-8">
+        <p> &copy; Copyright 2019-2023 <a href="https://molssi.org/">The Molecular Sciences Software Institute</a></p>
+        <p>Funded by the National Science Foundation 
+          <a href="https://nsf.gov/awardsearch/showAward?AWD_ID=1547580">OAC-1547580</a> and 
+          <a href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=2136142">CHE-2136142.</a></p>
+ 
+        
+        <p class="sphinx-version">
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br>
+        </p>
+        
+
+        <p class="theme-version">
+        Built with a customized <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.1.
+        </p>
+
+    </div>
+    <div class="col-2">
+        <a href="https://nsf.gov/" target="_blank" title="Go to the NSF in a new tab">
+            <img src="_static/nsf.png" class="footer_logo" alt="The NSF">
+          </a>
+    </div>
+</div></div>
+      
+    </div>
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,239 @@
+@import "../basic.css";
+
+img {
+    display: block
+}
+
+
+html[data-theme="light"] {
+    --pst-color-primary: #ed1c24;
+	--pst-color-warning: #ed1c24;
+	--pst-color-primary-highlight: #bc151b;
+	--pst-color-secondary: #1d35e7;
+	--pst-color-secondary-highlight: #3e51e3;
+
+}
+
+html[data-theme="dark"] {
+    --pst-color-primary: #ed1c24;
+	--pst-color-warning: #ed1c24;
+	--pst-color-primary-highlight: #bc151b;
+	--pst-color-background: #1A1A1A;
+	--pst-color-secondary: #1d35e7;
+	--pst-color-secondary-highlight: #3e51e3;
+
+	
+}
+
+html[data-theme="light"] a:hover {
+	color: #1A1A1A;
+}
+
+html[data-theme="dark"] h1, html[data-theme="dark"] h2, html[data-theme="dark"] h3, html[data-theme="dark"] h4, html[data-theme="dark"] h5, html[data-theme="dark"] h6 {
+	color: #ffffff;
+}
+
+
+html[data-theme="dark"] a {
+	color: #ffffff;
+}
+
+html[data-theme="dark"] .reference.external {
+	text-decoration: underline;
+
+}
+
+html[data-theme="dark"] p .reference.internal {
+	text-decoration: underline;
+
+}
+
+html[data-theme="dark"] a:hover {
+	color: #ed1c24;
+}
+
+html[data-theme="dark"] .prev-next-area a p.prev-next-title {
+    color: white;
+}
+
+html[data-theme="dark"] .prev-next-area:hover a:hover p.prev-next-title:hover {
+    color: #ed1c24;
+}
+
+html[data-theme="dark"] dt:target {
+    background-color: #000000;
+}
+
+html .toctree-wrapper li[class^=toctree-l] {
+	list-style: circle;
+}
+
+img:not(.logo__image, .footer_logo) {
+	padding: 20px;
+}
+
+
+.footer_logo {
+	max-height: 60px;
+}
+
+/* Custom CSS * - mostly custom admonitions */
+
+/**********************************************************************************/
+/* Overview  Admonition*/
+
+/* Overview - title div background */
+.admonition.overview>.admonition-title, div.admonition.overview>.admonition-title,
+.admonition.day-overview>.admonition-title, div.admonition.day-overview>.admonition-title {
+    position: relative;
+    margin: 0 -.6rem!important;
+    padding: .4rem .6rem .4rem 2rem; 
+    font-weight: 700;
+    background-color: #ffc10733;
+}
+
+/* Overview admonition left border */
+
+.adomonition.overview, div.admonition.overview,
+.adomonition.day-overview, div.admonition.day-overview {
+    margin: 1.5625em auto;
+    padding: 0 .6rem .8rem!important;
+    overflow: hidden;
+    page-break-inside: avoid;
+    border-left: .2rem solid #ffc107;
+    border-radius: .1rem;
+    box-shadow: 0 0.2rem 0.5rem rgb(0 0 0 / 5%), 0 0 0.05rem rgb(0 0 0 / 10%);
+    transition: color .25s,background-color .25s,border-color .25s;
+}
+
+/* Overview admonition icon */
+.admonition.overview>.admonition-title:after, div.admonition.overview>.admonition-title:after,
+.admonition.overview>.admonition-title:before,  div.admonition.overview>.admonition-title:before {
+    position: absolute;
+    left: .6rem;
+    width: 1rem;
+    height: 1rem;
+    color: #ffc107;
+    font-family: Font Awesome\ 5 Free;
+    font-weight: 900;
+    content: "\f128";
+}
+
+/* day-overview admonition icon */
+.admonition.day-overview>.admonition-title:before, div.admonition.day-overview>.admonition-title:before {
+    position: absolute;
+    left: .6rem;
+    width: 1rem;
+    height: 1rem;
+    color: #ffc107;
+    font-family: Font Awesome\ 5 Free;
+    font-weight: 900;
+    content: "\f5fc";
+}
+/**********************************************************************************/
+
+/**********************************************************************************/
+/* Exercise and Solution Admonitions */
+
+/* Exercise and Solution - title div background */
+.admonition.exercise>.admonition-title, div.admonition.exercise>.admonition-title,
+.admonition.solution>.admonition-title, div.admonition.solution>.admonition-title {
+    position: relative;
+    margin: 0 -.6rem!important;
+    padding: .4rem .6rem .4rem 2rem; 
+    font-weight: 700;
+    background-color: #fd7e1433;
+}
+
+/* Exercise Admonition Icon */
+.admonition.exercise>.admonition-title:before, div.admonition.exercise>.admonition-title:before,
+.admonition.exercise>.admonition-title:after, div.admonition.exercise>.admonition-title:after {
+    position: absolute;
+    left: .6rem;
+    width: 1rem;
+    height: 1rem;
+    color: #fd7e14;
+    font-family: Font Awesome\ 5 Free;
+    font-weight: 900;
+    content: "\f303";
+}
+
+/* Solution Left Icon */
+.admonition.solution>.admonition-title:before, div.admonition.solution>.admonition-title:before,
+.admonition.solution>.admonition-title:after, div.admonition.solution>.admonition-title:after {
+    position: absolute;
+    left: .6rem;
+    width: 1rem;
+    height: 1rem;
+    color: #fd7e14;
+    font-family: Font Awesome\ 5 Free;
+    font-weight: 900;
+    content: "\f06e";
+}
+
+/* Overview and Exercise - Left Border */
+.adomonition.exercise, div.admonition.exercise,
+.adomonition.solution, div.admonition.solution {
+    margin: 1.5625em auto;
+    padding: 0 .6rem .8rem!important;
+    overflow: hidden;
+    page-break-inside: avoid;
+    border-left: .2rem solid #fd7e14;
+    border-radius: .1rem;
+    box-shadow: 0 0.2rem 0.5rem rgb(0 0 0 / 5%), 0 0 0.05rem rgb(0 0 0 / 10%);
+    transition: color .25s,background-color .25s,border-color .25s;
+}
+
+/**********************************************************************************/
+
+/**********************************************************************************/
+/* Key Points Admonition */
+
+/* Key Admonition Div Background */
+.admonition.key>.admonition-title, div.admonition.key>.admonition-title {
+    position: relative;
+    margin: 0 -.6rem!important;
+    padding: .4rem .6rem .4rem 2rem; 
+    font-weight: 700;
+    background-color: #00A30033;
+}
+
+/* Key Admonition Icon*/
+.admonition.key>.admonition-title:before, div.admonition.key>.admonition-title:before,
+.admonition.key>.admonition-title:after, div.admonition.key>.admonition-title:after {
+    position: absolute;
+    left: .6rem;
+    width: 1rem;
+    height: 1rem;
+    color: #00A300;
+    font-family: Font Awesome\ 5 Free;
+    font-weight: 900;
+    content: "\f084";
+}
+
+/* Key Admonition left border */
+.adomonition.key, div.admonition.key {
+    margin: 1.5625em auto;
+    padding: 0 .6rem .8rem!important;
+    overflow: hidden;
+    page-break-inside: avoid;
+    border-left: .2rem solid #00A300;
+    border-radius: .1rem;
+    box-shadow: 0 0.2rem 0.5rem rgb(0 0 0 / 5%), 0 0 0.05rem rgb(0 0 0 / 10%);
+    transition: color .25s,background-color .25s,border-color .25s;
+}
+
+/**********************************************************************************/
+
+.footer-items__start {
+	width: 100%;
+  }
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,1036 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Python Package Set-Up &#8212; molssi_best_practices  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '01-package-setup';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="git and GitHub" href="00-git-and-github.html" />
+    <link rel="prev" title="Set Up" href="setup.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  <div class="navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/molssi_main_logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/molssi_main_logo_inverted_white.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+    <p class="title logo__title">MolSSI Best Practices</p>
+  
+</a></div>
+    
+  </div>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="setup.html">
+                        Set Up
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Python Package Set-Up
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="00-git-and-github.html">
+                        git and GitHub
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="00-code-organization-documentation.html">
+                        Code Style and Documentation
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="00-testing-continuous-integration.html">
+                        Testing, Continuous Integration, and Distribution
+                      </a>
+                    </li>
+                
+
+                <li class="nav-item">
+                  <a class="nav-link nav-external" href="https://molssi.org">
+                    MolSSI
+                  </a>
+                </li>
+                
+                </div>
+            </div>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/jchen0506/molssi_doc_theme" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="setup.html">
+                        Set Up
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Python Package Set-Up
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="00-git-and-github.html">
+                        git and GitHub
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="00-code-organization-documentation.html">
+                        Code Style and Documentation
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="00-testing-continuous-integration.html">
+                        Testing, Continuous Integration, and Distribution
+                      </a>
+                    </li>
+                
+
+                <li class="nav-item">
+                  <a class="nav-link nav-external" href="https://molssi.org">
+                    MolSSI
+                  </a>
+                </li>
+                
+                </div>
+            </div>
+            
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/jchen0506/molssi_doc_theme" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumbs">
+  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Python Package Set-Up</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="python-package-set-up">
+<h1>Python Package Set-Up<a class="headerlink" href="#python-package-set-up" title="Permalink to this heading">#</a></h1>
+<div class="overview admonition">
+<p class="admonition-title">Overview</p>
+<p>Questions:</p>
+<ul class="simple">
+<li><p>What is the layout of a Python package?</p></li>
+<li><p>How can I quickly create the structure of a Python package?</p></li>
+<li><p>What license should I choose for my project?</p></li>
+</ul>
+<p>Objectives:</p>
+<ul class="simple">
+<li><p>Explain Python package structure.</p></li>
+<li><p>Use the CMS CookieCutter to build a Python package.</p></li>
+</ul>
+</div>
+<p>For this workshop,
+we are going to create a Python package that performs analysis and creates visualizations for molecules.
+We will start from a Jupyter notebook that has some functions and analysis.
+(You should have downloaded the Jupyter notebook during setup(setup).</p>
+<p>The idea is that we would like to take this Jupyter notebook
+and convert the functions we have created into a Python package.
+That way, if anyone (a lab-mate, for example) would like to use our functions,
+they can do so by installing the package and importing it into their own scripts.</p>
+<p>To start, we will first use a tool called <a class="reference external" href="https://cookiecutter.readthedocs.io/en/latest/">CookieCutter</a>,
+which will set up a Python package structure and several tools we will use during the workshop.</p>
+<section id="examples-of-python-package-structure">
+<h2>Examples of Python package structure<a class="headerlink" href="#examples-of-python-package-structure" title="Permalink to this heading">#</a></h2>
+<p>If you look at the GitHub repositories for several large Python packages such as <a class="reference external" href="https://github.com/numpy/numpy">numpy</a>, <a class="reference external" href="https://github.com/scipy/scipy">scipy</a>, or <a class="reference external" href="https://github.com/scikit-learn/scikit-learn">scikit-learn</a>, you will notice a lot of similarities between the directory layouts of these projects.</p>
+<p>Having a similar way to lay out Python packages allows people to more easily understand and contribute to your code.</p>
+</section>
+<section id="creating-a-python-package-using-cookiecutter">
+<h2>Creating a Python package using CookieCutter<a class="headerlink" href="#creating-a-python-package-using-cookiecutter" title="Permalink to this heading">#</a></h2>
+<p>To create a skeletal structure for our project, we will use the MolSSI Computational Molecular Science (CMS) CookieCutter.
+The <a class="reference external" href="https://github.com/MolSSI/cookiecutter-cms">CMS CookieCutter</a> is a special cookiecutter created specifically by MolSSI to use the tools and services we recommend in developing a Python project.</p>
+<p>CookieCutter will not only create our directory layout, but will also set up many tools we will use including testing, continuous integration, documentation, and version control using git.
+We will discuss what all of these are later in the workshop.</p>
+<section id="obtaining-cookiecutter">
+<h3>Obtaining CookieCutter<a class="headerlink" href="#obtaining-cookiecutter" title="Permalink to this heading">#</a></h3>
+<p>You should have the general CookieCutter installed, according to the directions given in the setup(setup) portion of this workshop.
+If you do not, please navigate to setup(setup) and follow the instructions given there.</p>
+</section>
+<section id="running-cookiecutter">
+<h3>Running CookieCutter<a class="headerlink" href="#running-cookiecutter" title="Permalink to this heading">#</a></h3>
+<p>Navigate to the <code class="docutils literal notranslate"><span class="pre">molssi_best_practices</span></code> directory created during setup(setup).
+(CookieCutter will generate the new project in a subdirectory.)
+Run the <a class="reference external" href="https://github.com/MolSSI/cookiecutter-cms">CMS CookieCutter</a> to start your project:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-0">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>cookiecutter<span class="w"> </span>gh:molssi/cookiecutter-cms
+</pre></div>
+</div>
+</div>
+</div>
+<p>This command runs the cookiecutter software (<code class="docutils literal notranslate"><span class="pre">cookiecutter</span></code> in the command)
+and tells cookiecutter to look at GitHub (<code class="docutils literal notranslate"><span class="pre">gh</span></code>) in the repository under <code class="docutils literal notranslate"><span class="pre">molssi/cookiecutter-cms</span></code>.
+This repository contains a template that cookiecutter uses to create your project,
+once you have provided some starting information.</p>
+<p>You will see an interactive prompt which asks questions about your project.
+Here, the prompt appears first, followed by the default value in square brackets.
+The first question will be on your project name.
+You have very cleverly decided to give it the name <code class="docutils literal notranslate"><span class="pre">molecool</span></code>
+(it’s like molecule, but with <code class="docutils literal notranslate"><span class="pre">cool</span></code> instead, because of your cool visualizations - get it?)</p>
+<p>Answer the questions according to the following.
+If nothing is given after the colon (<code class="docutils literal notranslate"><span class="pre">:</span></code>), hit enter to use the default value.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-1" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-1">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>project_name<span class="w"> </span><span class="o">[</span>ProjectName<span class="o">]</span>:<span class="w"> </span>molecool
+repo_name<span class="w"> </span><span class="o">[</span>molecool<span class="o">]</span>:
+first_module_name<span class="w"> </span><span class="o">[</span>molecool<span class="o">]</span>:<span class="w"> </span>functions
+author_name<span class="w"> </span><span class="o">[</span>Your<span class="w"> </span>name<span class="w"> </span><span class="o">(</span>or<span class="w"> </span>your<span class="w"> </span>organization/company/team<span class="o">)]</span>:<span class="w"> </span>*YOUR_NAME_HERE*
+author_email<span class="w"> </span><span class="o">[</span>Your<span class="w"> </span>email<span class="w"> </span><span class="o">(</span>or<span class="w"> </span>your<span class="w"> </span>organization/company/team<span class="o">)]</span>:<span class="w"> </span>*YOUR_EMAIL_ADDRESS_HERE*
+description<span class="w"> </span><span class="o">[</span>A<span class="w"> </span>short<span class="w"> </span>description<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>project<span class="w"> </span><span class="o">(</span>less<span class="w"> </span>than<span class="w"> </span>one<span class="w"> </span>line<span class="o">)</span>.<span class="o">]</span>:<span class="w"> </span>A<span class="w"> </span>Python<span class="w"> </span>package<span class="w"> </span><span class="k">for</span><span class="w"> </span>analyzing<span class="w"> </span>and<span class="w"> </span>visualizing<span class="w"> </span>xyz<span class="w"> </span>files.
+
+Select<span class="w"> </span>open_source_license:
+<span class="m">1</span><span class="w"> </span>-<span class="w"> </span>MIT
+<span class="m">2</span><span class="w"> </span>-<span class="w"> </span>BSD-3-Clause
+<span class="m">3</span><span class="w"> </span>-<span class="w"> </span>LGPLv3
+<span class="m">4</span><span class="w"> </span>-<span class="w"> </span>Not<span class="w"> </span>Open<span class="w"> </span>Source
+Choose<span class="w"> </span>from<span class="w"> </span><span class="m">1</span>,<span class="w"> </span><span class="m">2</span>,<span class="w"> </span><span class="m">3</span>,<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="o">(</span><span class="m">1</span>,<span class="w"> </span><span class="m">2</span>,<span class="w"> </span><span class="m">3</span>,<span class="w"> </span><span class="m">4</span><span class="o">)</span><span class="w"> </span><span class="o">[</span><span class="m">1</span><span class="o">]</span>:<span class="w"> </span><span class="m">2</span>
+
+Select<span class="w"> </span>dependency_source:
+<span class="m">1</span><span class="w"> </span>-<span class="w"> </span>Prefer<span class="w"> </span>conda-forge<span class="w"> </span>over<span class="w"> </span>the<span class="w"> </span>default<span class="w"> </span>anaconda<span class="w"> </span>channel<span class="w"> </span>with<span class="w"> </span>pip<span class="w"> </span>fallback
+<span class="m">2</span><span class="w"> </span>-<span class="w"> </span>Prefer<span class="w"> </span>default<span class="w"> </span>anaconda<span class="w"> </span>channel<span class="w"> </span>with<span class="w"> </span>pip<span class="w"> </span>fallback
+<span class="m">3</span><span class="w"> </span>-<span class="w"> </span>Dependencies<span class="w"> </span>from<span class="w"> </span>pip<span class="w"> </span>only<span class="w"> </span><span class="o">(</span>no<span class="w"> </span>conda<span class="o">)</span>
+
+Choose<span class="w"> </span>from<span class="w"> </span><span class="m">1</span>,<span class="w"> </span><span class="m">2</span>,<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="o">(</span><span class="m">1</span>,<span class="w"> </span><span class="m">2</span>,<span class="w"> </span><span class="m">3</span><span class="o">)</span><span class="w"> </span><span class="o">[</span><span class="m">1</span><span class="o">]</span>:
+
+Select<span class="w"> </span>include_ReadTheDocs:
+<span class="m">1</span><span class="w"> </span>-<span class="w"> </span>y
+<span class="m">2</span><span class="w"> </span>-<span class="w"> </span>n
+Choose<span class="w"> </span>from<span class="w"> </span><span class="m">1</span>,<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">(</span><span class="m">1</span>,<span class="w"> </span><span class="m">2</span><span class="o">)</span><span class="w"> </span><span class="o">[</span><span class="m">1</span><span class="o">]</span>:
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="explanation-of-cookiecutter-questions">
+<h3>Explanation of CookieCutter Questions<a class="headerlink" href="#explanation-of-cookiecutter-questions" title="Permalink to this heading">#</a></h3>
+<p>The first two questions are for the project and repository name.
+The project name is the name of the project, while the repo name is the name of the folder that cookiecutter will create. Usually, you will leave these two to be the same thing.
+The <code class="docutils literal notranslate"><span class="pre">repo_name</span></code> is the name which you will use to import the package you eventually create, and because of that has some rules.
+The <code class="docutils literal notranslate"><span class="pre">repo_name</span></code> must be a valid Python module name and cannot contain spaces.</p>
+<p>The next choice is about the first module name.
+Modules are the <code class="docutils literal notranslate"><span class="pre">.py</span></code> files which contain python code.
+The default for this is the <code class="docutils literal notranslate"><span class="pre">repo_name</span></code>, but we will change this to avoid confusion (the module <code class="docutils literal notranslate"><span class="pre">molecool.py</span></code> in a folder named <code class="docutils literal notranslate"><span class="pre">molecool</span></code> in a folder named <code class="docutils literal notranslate"><span class="pre">molecool</span></code>??).
+For now, we’ll just name our first module <code class="docutils literal notranslate"><span class="pre">functions</span></code>, and this is where we will put all of our starting functions.</p>
+<p>Another thing that CookieCutter checks for is your email address.
+Be sure to provide a valid email address to <code class="docutils literal notranslate"><span class="pre">cookiecutter</span></code>.
+(It must have an <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> symbol followed by a domain name, or <code class="docutils literal notranslate"><span class="pre">cookiecutter</span></code> will fail.)
+Note that your email address is not recorded or kept by the CookieCutter software, itself.
+<code class="docutils literal notranslate"><span class="pre">cookiecutter</span></code> inserts your email address into generated files so that people using your software will have contact information for you.</p>
+<section id="license-choice">
+<h4>License Choice<a class="headerlink" href="#license-choice" title="Permalink to this heading">#</a></h4>
+<p>Choosing which license to use is often confusing for new developers.
+The MIT license (option 1) is a very common license, and the default on GitHub.
+It allows for anyone to use, modify, or redistribute your work with no restrictions (and also no warranty).</p>
+<p>Here, we have chosen the <code class="docutils literal notranslate"><span class="pre">BSD-3-Clause</span></code>.
+The <code class="docutils literal notranslate"><span class="pre">BSD-3-Clause</span></code> license is an open-source, permissive license (meaning that few requirements are placed on developers of derivative works), similar to the MIT license.
+However, it adds a copyright notice with your name and requires redistributors of the code to keep the notice.
+It also prohibits others from using the name of the project or its contributors to promote derived products without written consent.</p>
+<p>You can see more detailed information on each license at <a class="reference external" href="https://choosealicense.com">choosealicense.com</a> or by clicking the links below:</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://choosealicense.com/licenses/mit/">MIT License</a></p></li>
+<li><p><a class="reference external" href="https://choosealicense.com/licenses/bsd-3-clause/">BSD-3-Clause</a></p></li>
+<li><p><a class="reference external" href="https://choosealicense.com/licenses/gpl-3.0/">LGPLv3</a></p></li>
+<li><p>Not Open Source - In this case, the cookiecutter will not generate a license.
+You can add a custom license, or choose to not add a license.
+If there is no license in a repository, you should assume that the project is <strong>not</strong> open source, and <a class="reference external" href="https://choosealicense.com/no-permission/">you cannot modify or redistribute the software</a>.</p></li>
+</ol>
+<p>For most of your projects, it is likely that the license you choose won’t matter a great deal.
+However, remember that if you ever want to change a license, you may have to get permission of all contributors.
+So, if you ever start a project that becomes popular or has contributors, be sure to decide your license early!</p>
+<div class="info admonition">
+<p class="admonition-title">Types of Open-Source Licenses</p>
+<p>Open-source licenses can either be ‘permissive’ or ‘copy-left’.
+Copy-left licenses require that derivative works also be open source.
+Out of the choices given above, MIT and BSD-3-Clause are permissive, while LGPLv3 is a copy left license.</p>
+<p>We recommend that you spend some time reading about licensing.
+One place to start is this <a class="reference external" href="https://github.com/choderalab/software-development/blob/master/LICENSING_GUIDELINES.md">helpful guide</a> from the Chodera Lab or the website <a class="reference external" href="https://choosealicense.com">choosealicense.com</a>.</p>
+</div>
+</section>
+<section id="dependency-source">
+<h4>Dependency Source<a class="headerlink" href="#dependency-source" title="Permalink to this heading">#</a></h4>
+<p>This determines some things in set-up for what will be used to install dependencies for testing.
+This mostly has consequence for the section on <a class="reference internal" href="#../08-CI/index.html"><span class="xref myst">Continuous Integration</span></a>.
+We have chosen to install dependencies from anaconda with pip fallback.
+Don’t worry too much about this choice for now.</p>
+</section>
+<section id="support-for-readthedocs">
+<h4>Support for ReadTheDocs<a class="headerlink" href="#support-for-readthedocs" title="Permalink to this heading">#</a></h4>
+<p>This option is to choose whether you would like files associated with the documentation hosting service
+<a class="reference external" href="https://readthedocs.org/">ReadTheDocs</a>.
+Choose “yes” for this workshop.</p>
+</section>
+</section>
+<section id="reviewing-directory-contents">
+<h3>Reviewing directory contents<a class="headerlink" href="#reviewing-directory-contents" title="Permalink to this heading">#</a></h3>
+<p>Now we can examine the project layout the CookieCutter has set up for us.
+Navigate to the newly created <code class="docutils literal notranslate"><span class="pre">molecool</span></code> directory.
+You should see the following directory structure.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>.
+├── CODE_OF_CONDUCT.md              &lt;- Code of Conduct for developers and users
+├── LICENSE                         &lt;- License file
+├── MANIFEST.in                     &lt;- Packaging information for pip
+├── README.md                       &lt;- Description of project which GitHub will render
+├── molecool                        &lt;- Basic Python Package import file
+│   ├── __init__.py                 &lt;- Basic Python Package import file
+│   ├── functions.py                &lt;- Starting package module
+│   ├── data                        &lt;- Sample additional data (non-code) which can be packaged. Just an example, delete in production
+│   │   ├── README.md
+│   │   └── look_and_say.dat
+│   └── tests                       &lt;- Unit test directory with sample tests
+│       ├── __init__.py
+│       └── test_molecool.py
+├── devtools                        &lt;- Deployment, packaging, and CI helpers directory
+│   ├── README.md
+│   ├── conda-envs                  &lt;- Conda environments for testing
+│   │   └── test_env.yaml
+│   ├── legacy-miniconda-setup      &lt;- Legacy Travis CI Helper, will likely be removed in later version
+│   │   └── before_install.sh
+│   └── scripts
+│       └── create_conda_env.py     &lt;- OS agnostic Helper script to make conda environments based on simple flags
+├── docs                            &lt;- Documentation template folder with many settings already filled in
+│   ├── Makefile
+│   ├── README.md                   &lt;- Instructions on how to build the docs
+│   ├── _static
+│   │   └── README.md
+│   ├── _templates
+│   │   └── README.md
+│   ├── api.rst
+│   ├── conf.py
+│   ├── getting_started.rst
+│   ├── index.rst
+│   ├── make.bat
+│   └── requirements.yaml           &lt;- Documenation building specific requirements. Usually a smaller set than the main program
+├── pyproject.toml                  &lt;- Generic Python build system configuration (PEP-517).
+├── readthedocs.yml
+├── setup.cfg                       &lt;- Near-master config file to make house INI-like settings for Coverage, Flake8, YAPF, etc.
+├── setup.py                        &lt;- Your package&#39;s setup file for installing with additional options that can be set
+├── .codecov.yml                    &lt;- Codecov config to help reduce its verbosity to more reasonable levels
+├── .github                         &lt;- GitHub hooks for user contribution, pull request guides and GitHub Actions CI
+│   ├── CONTRIBUTING.md
+│   ├── PULL_REQUEST_TEMPLATE.md
+│   └── workflows
+│       └── CI.yaml
+├── .gitignore                      &lt;- Stock helper file telling git what file name patterns to ignore when adding files
+└── .lgtm.yml
+</pre></div>
+</div>
+<p>To visualize your project like above you will use <code class="docutils literal notranslate"><span class="pre">tree</span></code>.
+If you do not have <code class="docutils literal notranslate"><span class="pre">tree</span></code>, you can get it using <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">tree</span></code> on Linux,
+or <code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span> <span class="pre">tree</span></code> on Mac.
+Note: <code class="docutils literal notranslate"><span class="pre">tree</span></code> will not show you the helpful labels after <code class="docutils literal notranslate"><span class="pre">&lt;-</span></code> (those were added by us).</p>
+<p>CookieCutter has created a lot of files!
+They can be thought of as three sections.
+In the top level of our project we have a folder for tools related to development (<code class="docutils literal notranslate"><span class="pre">devtools</span></code>),
+documentation (<code class="docutils literal notranslate"><span class="pre">docs</span></code>) and to the package itself (<code class="docutils literal notranslate"><span class="pre">molecool</span></code>).
+We will first be working in the <code class="docutils literal notranslate"><span class="pre">molecool</span></code> folder to build our package, and adding more things later.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>...
+├── molecool
+│   ├── __init__.py                 &lt;- Basic Python Package import file
+│   ├── functions.py                &lt;- Starting package module
+│   ├── data                        &lt;- Sample additional data (non-code) which can be packaged
+│   │   ├── README.md
+│   │   └── look_and_say.dat
+│   ├── tests                       &lt;- Unit test directory with sample tests
+│   │   ├── __init__.py
+│   │   └── test_functions.py
+</pre></div>
+</div>
+<p>This the only folder we actually have to work with to build our package.
+The other folders relate to “best practices”,
+which do not technically have to be used in order for your package to be working (but you should do them,
+and we will talk about them later).
+You could build this directory structure by hand, but we have just used <code class="docutils literal notranslate"><span class="pre">cookiecutter</span></code> to set it up for us.
+This directory will contain all of our Python code for our project,
+as well as sample data (in the <code class="docutils literal notranslate"><span class="pre">data</span></code> folder), and tests (in the <code class="docutils literal notranslate"><span class="pre">tests</span></code> folder.)</p>
+<div class="info admonition">
+<p class="admonition-title">Packages and modules</p>
+<p>What ‘packages’ or ‘modules’ are in Python may be confusing.
+In general, ‘module’ refers to a single <code class="docutils literal notranslate"><span class="pre">.py</span></code> file containing Python definitions and statements.
+It may be imported for use in another module or script.
+The module name is determined by the file name.
+A function defined in a module is used (once the module is imported) using the syntax <code class="docutils literal notranslate"><span class="pre">module_name.function_name()</span></code>.</p>
+<p>‘Package’ refers to a collection of Python modules.
+The package may also have an <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file.
+To read more about Python packages vs. modules, check out <a class="reference external" href="https://docs.python.org/3/tutorial/modules.html">Python’s documentation</a>.</p>
+</div>
+</section>
+</section>
+<section id="the-molecool-directory">
+<h2>The <code class="docutils literal notranslate"><span class="pre">molecool</span></code> directory<a class="headerlink" href="#the-molecool-directory" title="Permalink to this heading">#</a></h2>
+<p>Navigate inside our package directory. From the directory where you ran CookieCutter,</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-2">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>molecool
+</pre></div>
+</div>
+</div>
+</div>
+<section id="the-init-py-file">
+<h3>The <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file<a class="headerlink" href="#the-init-py-file" title="Permalink to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file is a special file recognized by the Python interpreter which makes a directory into a package.
+This file can be blank in some cases, however, we will use it to define how the user interacts with the functions in our package.</p>
+<p>Contents of <code class="docutils literal notranslate"><span class="pre">molecool/molecool/__init__.py</span></code>:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-3" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-3">
+PYTHON</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;A Python package for analyzing and visualizing xyz files.&quot;&quot;&quot;</span>
+
+<span class="c1"># Add imports here</span>
+<span class="kn">from</span> <span class="nn">.functions</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="kn">from</span> <span class="nn">._version</span> <span class="kn">import</span> <span class="n">__version__</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The very first section of this file contains a string opened and closed with three quotations.
+This is a <a class="reference external" href="https://www.python.org/dev/peps/pep-0257/">docstring</a>, and has a short description of the file.</p>
+<p>The section we will be concerned with is under <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">Add</span> <span class="pre">imports</span> <span class="pre">here</span></code>.
+This is how we define the way functions from modules are used.</p>
+<p>In particular, the line</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-4" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-4">
+PYTHON</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">.functions</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>goes to the <code class="docutils literal notranslate"><span class="pre">functions.py</span></code> file, and brings everything that is defined there into the file.
+When we use our function defined in <code class="docutils literal notranslate"><span class="pre">functions.py</span></code>,
+that means we will be able to just say <code class="docutils literal notranslate"><span class="pre">molecool.canvas()</span></code> instead of giving the full path <code class="docutils literal notranslate"><span class="pre">molecool.functions.canvas()</span></code>.
+If that’s confusing, don’t worry too much for now.
+We will be returning to <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> in a few minutes.
+For now, just note that it exists and makes our directory into a package.</p>
+</section>
+<section id="our-first-module">
+<h3>Our first module<a class="headerlink" href="#our-first-module" title="Permalink to this heading">#</a></h3>
+<p>Once inside the <code class="docutils literal notranslate"><span class="pre">molecool</span></code> folder (<code class="docutils literal notranslate"><span class="pre">molecool/molecool</span></code>), examine the files that are there.
+View the module (<code class="docutils literal notranslate"><span class="pre">functions.py</span></code>) in a text editor.
+We see a few things about this file.
+The top begins with a description of this module surrounded by three quotations (<code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;</span></code>).
+Right now, that is the file name, followed by our short description,
+then the sentence “Handles the primary functions”.
+We will change this to be more descriptive later.
+CookieCutter has also created a placeholder function called <code class="docutils literal notranslate"><span class="pre">canvas</span></code>.
+At the start of the <code class="docutils literal notranslate"><span class="pre">canvas</span></code> function, we have a <code class="docutils literal notranslate"><span class="pre">docstring</span></code> (more about this in [documentation]),
+which describes the function.</p>
+<p>We will be moving all of the functions we defined in the Jupyter notebook into python modules (<code class="docutils literal notranslate"><span class="pre">.py</span></code> files) like these.</p>
+<div class="alert admonition">
+<p class="admonition-title">Before proceeding, make sure your pip and setuptools packages are up-to-date</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-5" name="sd-tab-set-5" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-5">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>update<span class="w"> </span>pip<span class="w"> </span>setuptools
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="installing-from-local-source">
+<h3>Installing from local source.<a class="headerlink" href="#installing-from-local-source" title="Permalink to this heading">#</a></h3>
+<p>You may be accustomed to <code class="docutils literal notranslate"><span class="pre">pip</span></code> automatically retrieving packages from the internet.</p>
+<p>To develop this package, we will want to use what is called “development mode”, or an “editable install”,
+so that we can try out our functions and package as we develop it.
+We access development mode using the <code class="docutils literal notranslate"><span class="pre">-e</span></code> option to <code class="docutils literal notranslate"><span class="pre">pip</span></code>.</p>
+<section id="reviewing-the-generated-config-files">
+<h4>Reviewing the generated config files<a class="headerlink" href="#reviewing-the-generated-config-files" title="Permalink to this heading">#</a></h4>
+<p>Return to the top directory (<code class="docutils literal notranslate"><span class="pre">molecool</span></code>).
+Two of the files CookieCutter generated are <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> and <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code>.
+These are the configuration files for our packaging and testing tools.
+<code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> tells <a class="reference external" href="https://packaging.python.org/key_projects/#setuptools">setuptools</a> about your package (such as the name and version) as well as which code files to include.
+We’ll be using this file in the next section.</p>
+</section>
+<section id="installing-your-package">
+<h4>Installing your package<a class="headerlink" href="#installing-your-package" title="Permalink to this heading">#</a></h4>
+<p>A development install will allow you to import your package and use it from anywhere on your computer.
+You will then be able to import your package into scripts in the same way you import <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> or <code class="docutils literal notranslate"><span class="pre">numpy</span></code>.</p>
+<p>A development installation inserts a link to your project into your Python
+<code class="docutils literal notranslate"><span class="pre">site-packages</span></code> folder so that updates are immediately available the next time
+you launch Python, without having to reinstall your package.
+To find the location of your site-packages folder, you can check your Python path.
+Open Python (type <code class="docutils literal notranslate"><span class="pre">python</span></code> into your terminal window), and type</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-6" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-6">
+PYTHON</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sys</span><span class="o">.</span><span class="n">path</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This will give a list of locations python looks for packages when you do an import.
+One of the locations should end with <code class="docutils literal notranslate"><span class="pre">python3.7/site-packages</span></code>.
+The site packages folder is where all of your installed packages for a particular environment are located.</p>
+<p>To do a development mode install, type</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-7" name="sd-tab-set-7" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-7">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here, the <code class="docutils literal notranslate"><span class="pre">-e</span></code> indicates that we are installing this project in <em>editable</em> mode
+(i.e. setuptools
+<a class="reference external" href="https://setuptools.readthedocs.io/en/latest/userguide/commands.html#develop-deploy-the-project-source-in-development-mode"><em>development mode</em></a>),
+while <code class="docutils literal notranslate"><span class="pre">.</span></code> indicates to install from the local directory (you could also specify a path here).
+Now, if you examine the contents of your site packages folder,
+you should see a link to <code class="docutils literal notranslate"><span class="pre">molecool</span></code> (<code class="docutils literal notranslate"><span class="pre">molecool.egg-link</span></code>).
+The folder has also been added to your path (check <code class="docutils literal notranslate"><span class="pre">sys.path</span></code> again.)</p>
+<p>Now, we can use our package from any directory, similar to how we can use other installed packages like <code class="docutils literal notranslate"><span class="pre">numpy</span></code>.
+Open Python, and type</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-8" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-8">
+PYTHON</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">molecool</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">molecool</span><span class="o">.</span><span class="n">canvas</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This should print a quote.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-9" name="sd-tab-set-9" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-9">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">&#39;The code is but a canvas to our imagination.\n\t- Adapted from Henry David Thoreau&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This should work from anywhere on your computer.</p>
+<div class="exercise admonition">
+<p class="admonition-title">Check Your Understanding</p>
+<p>What happens if we use <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">deactivate</span></code> and attempt to execute the code above?</p>
+<p>What if we switch directories?</p>
+<div class="dropdown solution admonition">
+<p class="admonition-title">Solution</p>
+<p>If you are in the project directory, the code will still work. However, it will not work in any other location.</p>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="key-points">
+<h2>Key Points<a class="headerlink" href="#key-points" title="Permalink to this heading">#</a></h2>
+<div class="key admonition">
+<p class="admonition-title">Key Points</p>
+<ul class="simple">
+<li><p>There is a common way to structure Python packages.</p></li>
+<li><p>You can use the CMS CookieCutter to quickly create the layout for a Python package.</p></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="setup.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Set Up</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="00-git-and-github.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">git and GitHub</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-of-python-package-structure">Examples of Python package structure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-python-package-using-cookiecutter">Creating a Python package using CookieCutter</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#obtaining-cookiecutter">Obtaining CookieCutter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-cookiecutter">Running CookieCutter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#explanation-of-cookiecutter-questions">Explanation of CookieCutter Questions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#license-choice">License Choice</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dependency-source">Dependency Source</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#support-for-readthedocs">Support for ReadTheDocs</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reviewing-directory-contents">Reviewing directory contents</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-molecool-directory">The <code class="docutils literal notranslate"><span class="pre">molecool</span></code> directory</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-init-py-file">The <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#our-first-module">Our first module</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-from-local-source">Installing from local source.</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#reviewing-the-generated-config-files">Reviewing the generated config files</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-your-package">Installing your package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-points">Key Points</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div class="tocsection sourcelink">
+    <a href="_sources/01-package-setup.md.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner"></div>
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  
+
+
+
+  
+  
+  
+  
+  
+  
+  
+
+
+<div class="row h-10">
+    <div class="col-2">
+        <a href="https://molssi.org/" target="_blank" title="Go to MolSSI in a new tab">
+            <img src="_static/molssi_main_logo.png" class="logo__image only-light footer_logo" alt="Logo image">
+            <img src="_static/molssi_main_logo_inverted_white.png" class="logo__image only-dark footer_logo" alt="Logo image">
+        </a>
+    </div>
+    <div class="col-8">
+        <p> &copy; Copyright 2019-2023 <a href="https://molssi.org/">The Molecular Sciences Software Institute</a></p>
+        <p>Funded by the National Science Foundation 
+          <a href="https://nsf.gov/awardsearch/showAward?AWD_ID=1547580">OAC-1547580</a> and 
+          <a href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=2136142">CHE-2136142.</a></p>
+ 
+        
+        <p class="sphinx-version">
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br>
+        </p>
+        
+
+        <p class="theme-version">
+        Built with a customized <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.1.
+        </p>
+
+    </div>
+    <div class="col-2">
+        <a href="https://nsf.gov/" target="_blank" title="Go to the NSF in a new tab">
+            <img src="_static/nsf.png" class="footer_logo" alt="The NSF">
+          </a>
+    </div>
+</div></div>
+      
+    </div>
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,905 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Distributing Packages &#8212; molssi_best_practices  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '10-distribution';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Continuous Integration using GitHub Actions" href="09-CI.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  <div class="navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/molssi_main_logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/molssi_main_logo_inverted_white.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+    <p class="title logo__title">MolSSI Best Practices</p>
+  
+</a></div>
+    
+  </div>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="setup.html">
+                        Set Up
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="01-package-setup.html">
+                        Python Package Set-Up
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="00-git-and-github.html">
+                        git and GitHub
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="00-code-organization-documentation.html">
+                        Code Style and Documentation
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="00-testing-continuous-integration.html">
+                        Testing, Continuous Integration, and Distribution
+                      </a>
+                    </li>
+                
+
+                <li class="nav-item">
+                  <a class="nav-link nav-external" href="https://molssi.org">
+                    MolSSI
+                  </a>
+                </li>
+                
+                </div>
+            </div>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/jchen0506/molssi_doc_theme" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="setup.html">
+                        Set Up
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="01-package-setup.html">
+                        Python Package Set-Up
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="00-git-and-github.html">
+                        git and GitHub
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="00-code-organization-documentation.html">
+                        Code Style and Documentation
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="00-testing-continuous-integration.html">
+                        Testing, Continuous Integration, and Distribution
+                      </a>
+                    </li>
+                
+
+                <li class="nav-item">
+                  <a class="nav-link nav-external" href="https://molssi.org">
+                    MolSSI
+                  </a>
+                </li>
+                
+                </div>
+            </div>
+            
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/jchen0506/molssi_doc_theme" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="08-testing.html">Python Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09-CI.html">Continuous Integration using GitHub Actions</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Distributing Packages</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumbs">
+  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="00-testing-continuous-integration.html" class="nav-link">Testing, Continuous Integration, and Distribution</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Distributing Packages</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="distributing-packages">
+<h1>Distributing Packages<a class="headerlink" href="#distributing-packages" title="Permalink to this heading">#</a></h1>
+<div class="overview admonition">
+<p class="admonition-title">Overview</p>
+<p>Questions:</p>
+<ul class="simple">
+<li><p>How can I get my project out there?</p></li>
+</ul>
+<p>Objectives:</p>
+<ul class="simple">
+<li><p>Discuss community strategies</p></li>
+</ul>
+</div>
+<div class="attention admonition">
+<p class="admonition-title">This lesson is under development</p>
+<p>This lesson is in a preliminary stage, and is not as polished as the rests of the lessons.
+We expect to add more content to and update this lesson in the future!</p>
+</div>
+<p>This lesson will discuss how to distribute packages through the Python Package Index (PyPI) and conda.</p>
+<div class="admonition-prerequisites admonition">
+<p class="admonition-title">Prerequisites</p>
+<p>Register a test account on test.pypi.org.</p>
+<p><a class="reference external" href="https://test.pypi.org/manage/account/#api-tokens">Create</a> an <a class="reference external" href="https://test.pypi.org/help/#apitoken">access token</a>, and <em>don’t lose it!</em>
+(I keep a copy of the text for my token in my password manager.)</p>
+<p>The access token will be a string that begins with <code class="docutils literal notranslate"><span class="pre">pypi-</span></code> followed by a sequence of base64 encoded bytes
+that we will refer to as “YOURTOKEN” below.</p>
+<p>Create <code class="docutils literal notranslate"><span class="pre">$HOME/.pypirc</span></code>. It should look something like the following, substituting your access token in the password field.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-0">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">[testpypi]</span>
+<span class="go">  username = __token__</span>
+<span class="go">  password = YOURTOKEN</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<p>You will also eventually need to <a class="reference external" href="https://pypi.org/account/register/">get an account</a> on the main pypi.org,
+but you can do that later.</p>
+<p>Install some additional packages to help build and upload your distribution.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-1" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-1">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>build<span class="w"> </span>twine
+</pre></div>
+</div>
+</div>
+</div>
+<section id="preparing-a-release">
+<h2>Preparing a release<a class="headerlink" href="#preparing-a-release" title="Permalink to this heading">#</a></h2>
+<section id="release-notes">
+<h3>Release notes<a class="headerlink" href="#release-notes" title="Permalink to this heading">#</a></h3>
+<p>Make sure your README file and documentation are up to date.
+Check the project description in your project’s metadata, too.</p>
+<p>Consider whether there is some announcement text that you would
+want to include in a text file or in a blurb in your GitHub
+<a class="reference external" href="https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases">Releases tab</a>.
+This can be a good place to publish <a class="reference external" href="https://docs.github.com/en/repositories/releasing-projects-on-github/automatically-generated-release-notes">release notes</a>.</p>
+</section>
+<section id="tagging-the-release">
+<h3>Tagging the release<a class="headerlink" href="#tagging-the-release" title="Permalink to this heading">#</a></h3>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-2">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>status
+</pre></div>
+</div>
+</div>
+</div>
+<p>Make sure that your changes are checked in and that you don’t have
+extra files sitting around.</p>
+<p>Tag the latest commit with a version identifier.
+Let’s get ready to publish <code class="docutils literal notranslate"><span class="pre">molecool</span></code> 1.0.0a1, the first alpha release of our package.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-3" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-3">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>tag<span class="w"> </span><span class="m">1</span>.0.0a1
+</pre></div>
+</div>
+</div>
+</div>
+<p>Build the distribution archive(s) for the packaging system you are using (see below): <code class="docutils literal notranslate"><span class="pre">PyPI</span></code> or <code class="docutils literal notranslate"><span class="pre">Conda</span></code>.</p>
+<div class="tip admonition">
+<p class="admonition-title">Synchonizing Tags</p>
+<p>Tags created in your local repository are not automatically shared when you <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code> a branch.
+You can push tags the same way you push branches, or you can create the tag directly on GitHub.
+With the GitHub interface, you can associate tags with
+<a class="reference external" href="https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases">Releases</a>
+to provide a place to publish release notes and automatically generate links to archive files of
+your repository at the tagged commits.</p>
+<p>Tags created through the GitHub interface (or pushed from a different location) will be available
+locally the next time you <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span></code>.</p>
+<p>Keep in mind that the GitHub repository page is one of the main entry points for new users of your package.
+Your project looks healthier and better maintained with a nice, well documented history of
+<a class="reference external" href="https://docs.github.com/en/repositories/releasing-projects-on-github/viewing-your-repositorys-releases-and-tags">releases</a>.</p>
+</div>
+<p>Tags and GitHub releases do not automatically make your package easier to find or install,
+but they can be helpful in preparing the source of version information or the source archive
+as you prepare the <em>distribution</em> of your package.</p>
+</section>
+</section>
+<section id="packages-and-distributions">
+<h2>Packages and distributions<a class="headerlink" href="#packages-and-distributions" title="Permalink to this heading">#</a></h2>
+<p>A “distribution” is a collection of files including one (or more) Python packages that have been made portable and ready to share.</p>
+<p>The cookiecutter template provided several additional files and metadata
+to help you get your package ready for distribution,
+such as the <code class="docutils literal notranslate"><span class="pre">LICENSE</span></code> file, <code class="docutils literal notranslate"><span class="pre">MANIFEST.in</span></code>, <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code>, and <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>.</p>
+<p>Some of these files are essential details to make your distribution
+portable or discoverable.
+Others are specific to the build system (e.g. <code class="docutils literal notranslate"><span class="pre">setuptools</span></code> or <code class="docutils literal notranslate"><span class="pre">conda</span></code>).</p>
+<p>The build system is responsible for assembling your files into a distribution
+archive that can be easily placed into anyone’s <code class="docutils literal notranslate"><span class="pre">site-packages</span></code> directory.
+It also makes sure that various package metadata is assembled so that a
+package installer like <code class="docutils literal notranslate"><span class="pre">pip</span></code> can evaluate software dependencies, and so that
+your package looks good when it is shared, such as on pypi.org.</p>
+</section>
+<section id="distributing-packages-for-pip-install">
+<h2>Distributing packages for <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code><a class="headerlink" href="#distributing-packages-for-pip-install" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Packaging standards: <a class="reference external" href="https://packaging.python.org/en/latest/">Python Packaging Authority</a></p></li>
+<li><p>Build system: <code class="docutils literal notranslate"><span class="pre">setuptools</span></code></p></li>
+<li><p>Distribution network: pypi.org</p></li>
+</ul>
+<section id="building-the-distribution">
+<h3>Building the distribution<a class="headerlink" href="#building-the-distribution" title="Permalink to this heading">#</a></h3>
+<p>We previously mentioned that <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">.</span></code> invokes <code class="docutils literal notranslate"><span class="pre">setuptools</span></code> to build the
+distribution archive for our package before installing the package in our
+environment.
+What does this mean?
+More importantly, what does it have to do with letting other people do
+<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">molecool</span></code> and get my package automatically downloaded from
+“the cloud”?</p>
+<p>Setuptools is not the only package for configuring and building Python
+distribution archives,
+but it is what we will tell <code class="docutils literal notranslate"><span class="pre">pip</span></code> to use for this project.
+When <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code> is run on package sources, it notices the <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> file (which marks a folder as containing
+buildable packages),
+launches the configured build system, and then installs the resulting “wheel” (distribution archive).
+Note that, if we <em>only</em> want to prepare a distribution for sharing,
+we can just use the <code class="docutils literal notranslate"><span class="pre">build</span></code> module.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-4" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-4">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>build
+python<span class="w"> </span>-m<span class="w"> </span>build<span class="w"> </span>.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note the version string embedded in the distribution archive name.
+<code class="docutils literal notranslate"><span class="pre">versioningit</span></code> (configured in <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>) also participated in the build process.
+<code class="docutils literal notranslate"><span class="pre">versioningit</span></code> generated a <code class="docutils literal notranslate"><span class="pre">_version.py</span></code> file with a version string derived
+from your most recent <code class="docutils literal notranslate"><span class="pre">git</span></code> tag. We will not add this file to our <code class="docutils literal notranslate"><span class="pre">git</span></code>
+revision control, but it will be packaged in our distribution.
+<code class="docutils literal notranslate"><span class="pre">versioningit</span></code> will regenerate this file as necessary and appropriate.</p>
+<p>Note that the untagged post-release version strings
+(using our formatting rules in <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>)
+do not satisfy PEP 440 and will be rejected if we try to upload to pypi.
+This is probably a good thing; it will help keep us from accidentally publishing
+releases before they are ready, or messing up our versioning scheme by forgetting
+a semantic versioning tag.</p>
+<div class="note admonition">
+<p class="admonition-title">Goodbye to setup.py?</p>
+<p>Historically packages built with <code class="docutils literal notranslate"><span class="pre">setuptools</span></code> used a <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> script
+as the entry point to the <code class="docutils literal notranslate"><span class="pre">setuptools</span></code> build system. <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> is specific
+to <code class="docutils literal notranslate"><span class="pre">setuptools</span></code> and the <code class="docutils literal notranslate"><span class="pre">distutils</span></code> package it is built on.
+Many tools for helping to build and test packages came to
+rely on <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>, which made them incompatible with non-setuptools build
+systems.</p>
+<p>In an ongoing effort at generalization, the Python community is now
+encouraging package authors to use a <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> file to direct the build
+system. <code class="docutils literal notranslate"><span class="pre">distutils</span></code> is scheduled for retirement with Python 3.12.
+In preparation, <code class="docutils literal notranslate"><span class="pre">setuptools</span></code> no longer requires <code class="docutils literal notranslate"><span class="pre">distutils</span></code> or <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>,
+and can be configured entirely with <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>.</p>
+</div>
+</section>
+<section id="building-and-uploading-to-pypi">
+<h3>Building and uploading to PyPI<a class="headerlink" href="#building-and-uploading-to-pypi" title="Permalink to this heading">#</a></h3>
+<p>Read through https://packaging.python.org/en/latest/tutorials/packaging-projects/
+for a build-system-agnostic tutorial on</p>
+<ul class="simple">
+<li><p>packaging Python projects for distribution</p></li>
+<li><p>publishing packages to pypi.org for automatic download with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code></p></li>
+</ul>
+<p>By the end of the <a class="reference external" href="https://packaging.python.org/en/latest/tutorials/packaging-projects/">tutorial</a>,
+you will understand how to get an account on <code class="docutils literal notranslate"><span class="pre">pypi.org</span></code>,
+build a distribution archive with <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">build</span></code>,
+and use twine to upload your package.</p>
+<p>The <a class="reference external" href="https://packaging.python.org/en/latest/tutorials/packaging-projects/">tutorial</a> should go quickly because,
+as you will note, most of the configuration it describes
+has already been pre-configured by the cookiecutter.
+Caution: <em>strongly</em> consider creating an account on <code class="docutils literal notranslate"><span class="pre">test.pypi.org</span></code> and uploading
+an initial “alpha” or “beta” release of your package to see how it looks and to
+do test installations.</p>
+<p>Note that pypi.org enforces universal uniqueness of packages and versions.
+Once you have uploaded <code class="docutils literal notranslate"><span class="pre">molecool</span></code> version <code class="docutils literal notranslate"><span class="pre">1.0.0</span></code>, you cannot replace it;
+you can only upload additional versions. (You can “yank” a release, but this
+only marks the package as “yanked”, indicating it should not be used.
+It is still out there.)</p>
+<ul class="simple">
+<li><p>Be tidy with your official releases.</p></li>
+<li><p>Be conservative with alpha and beta pre-releases.</p></li>
+<li><p>Test the publication of new releases on test.pypi.org before pypi.org to avoid
+cluttering your versioning scheme and your release history on pypi.</p></li>
+</ul>
+<p>For more in depth documentation on packaging for PyPI specifically with setuptools,
+see https://packaging.python.org/en/latest/guides/distributing-packages-using-setuptools/</p>
+</section>
+</section>
+<section id="distributing-packages-for-conda-install">
+<h2>Distributing packages for <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span></code><a class="headerlink" href="#distributing-packages-for-conda-install" title="Permalink to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">conda</span></code> has a completely different approach to building and distributing
+packages, and is not yet PEP-517 compliant.
+(It does not use <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>.)
+For fundamental information about using <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">build</span></code>
+(such as preparing your build details and metadata with <code class="docutils literal notranslate"><span class="pre">meta.yml</span></code>),
+see <a class="reference external" href="https://docs.conda.io/projects/conda-build/en/latest/">conda-build docs</a>.
+For documentation on publishing packages through the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> channel,
+refer to the channel’s <a class="reference external" href="https://conda-forge.org/docs/maintainer/adding_pkgs.html">contribution docs</a>.</p>
+</section>
+<section id="preparing-for-future-releases">
+<h2>Preparing for future releases<a class="headerlink" href="#preparing-for-future-releases" title="Permalink to this heading">#</a></h2>
+<p>Consider adding or updating a CHANGELOG.</p>
+<section id="version-specifiers">
+<h3>Version specifiers<a class="headerlink" href="#version-specifiers" title="Permalink to this heading">#</a></h3>
+<p>Python has a strict syntax for version strings.</p>
+<ul class="simple">
+<li><p>Refer to <a class="reference external" href="https://peps.python.org/pep-0440/">PEP 440</a> for constraints on Python version specifiers.</p></li>
+<li><p>Know how to mark versions for pre-release (or post-release) and consider
+tagging “alpha” and “beta” releases.</p></li>
+</ul>
+</section>
+</section>
+<section id="versioning-semantics">
+<h2>Versioning semantics<a class="headerlink" href="#versioning-semantics" title="Permalink to this heading">#</a></h2>
+<p>Refer to <a class="reference external" href="https://semver.org">Semantic Versioning</a> for guidelines on how to use versions meaningfully.</p>
+<p>Once your package has outside users, consider how your changes affect
+your users.
+Avoid surprising your users by effectively supporting the package manager heuristics
+(e.g. use prerelease version semantics to make a version only available when <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--pre</span></code> is used).
+Make sure your version increments reflect the compatibilty changes
+in the distributions you release.</p>
+<p>Making these considerations may lead you to moderate the changes you make.
+For instance, instead of completely changing an interface,
+consider introducing a new function or module with a different name.
+Or provide backwards compatible support for the old interfaces.</p>
+<section id="exercises-versioning-semantics">
+<h3>Exercises - Versioning semantics<a class="headerlink" href="#exercises-versioning-semantics" title="Permalink to this heading">#</a></h3>
+<p>Answer the following questions about how you should change your package
+version in the following scenarios.</p>
+<div class="exercise admonition">
+<p class="admonition-title">Case 1</p>
+<p>This is a completely incompatible change to the interface of the package.</p>
+<div class="solution dropdown admonition">
+<p class="admonition-title">Solution</p>
+<p>Probably a major version increment.</p>
+</div>
+</div>
+<div class="exercise admonition">
+<p class="admonition-title">Case 2</p>
+<p>A backwards compatible update, or a new feature that does not conflict with existing features.</p>
+<div class="solution dropdown admonition">
+<p class="admonition-title">Solution</p>
+<p>Probably a minor version increment.</p>
+</div>
+</div>
+<div class="exercise admonition">
+<p class="admonition-title">Case 3</p>
+<p>An internal change or bug fix that you don’t expect users to notice (but who knows? there could be a bug…)?</p>
+<div class="solution dropdown admonition">
+<p class="admonition-title">Solution</p>
+<p>A patch release version increment.</p>
+</div>
+</div>
+<div class="exercise admonition">
+<p class="admonition-title">Case 4</p>
+<p>Is this a change to documentation or something that does not affect the code at all, with no implications for compatibility, but you just need some sort of version bump so that people get your edit the next time the package is downloaded?</p>
+<div class="solution dropdown admonition">
+<p class="admonition-title">Solution</p>
+<p>Use a “tweak” version or post-release version. Check <a class="reference external" href="https://peps.python.org/pep-0440/">PEP 440</a> for</p>
+</div>
+</div>
+<div class="key admonition">
+<p class="admonition-title">Key Points</p>
+<ul class="simple">
+<li><p>Add package metadata and build a distribution to share a package through community platforms.</p></li>
+<li><p>Adopt common conventions and establish clear expectations for compatibility versus breaking changes so that prospective users of your package have confidence in its stability and maturity.</p></li>
+<li><p>Multiple packaging systems exist, and require separate preparation.</p></li>
+</ul>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="09-CI.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Continuous Integration using GitHub Actions</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-a-release">Preparing a release</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#release-notes">Release notes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tagging-the-release">Tagging the release</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#packages-and-distributions">Packages and distributions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distributing-packages-for-pip-install">Distributing packages for <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#building-the-distribution">Building the distribution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#building-and-uploading-to-pypi">Building and uploading to PyPI</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distributing-packages-for-conda-install">Distributing packages for <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-for-future-releases">Preparing for future releases</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#version-specifiers">Version specifiers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#versioning-semantics">Versioning semantics</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-versioning-semantics">Exercises - Versioning semantics</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div class="tocsection sourcelink">
+    <a href="_sources/10-distribution.md.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner"></div>
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  
+
+
+
+  
+  
+  
+  
+  
+  
+  
+
+
+<div class="row h-10">
+    <div class="col-2">
+        <a href="https://molssi.org/" target="_blank" title="Go to MolSSI in a new tab">
+            <img src="_static/molssi_main_logo.png" class="logo__image only-light footer_logo" alt="Logo image">
+            <img src="_static/molssi_main_logo_inverted_white.png" class="logo__image only-dark footer_logo" alt="Logo image">
+        </a>
+    </div>
+    <div class="col-8">
+        <p> &copy; Copyright 2019-2023 <a href="https://molssi.org/">The Molecular Sciences Software Institute</a></p>
+        <p>Funded by the National Science Foundation 
+          <a href="https://nsf.gov/awardsearch/showAward?AWD_ID=1547580">OAC-1547580</a> and 
+          <a href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=2136142">CHE-2136142.</a></p>
+ 
+        
+        <p class="sphinx-version">
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br>
+        </p>
+        
+
+        <p class="theme-version">
+        Built with a customized <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.1.
+        </p>
+
+    </div>
+    <div class="col-2">
+        <a href="https://nsf.gov/" target="_blank" title="Go to the NSF in a new tab">
+            <img src="_static/nsf.png" class="footer_logo" alt="The NSF">
+          </a>
+    </div>
+</div></div>
+      
+    </div>
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1029 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Set Up &#8212; molssi_best_practices  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'setup';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Python Package Set-Up" href="01-package-setup.html" />
+    <link rel="prev" title="Best Practices in Python Package Development" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  <div class="navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/molssi_main_logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/molssi_main_logo_inverted_white.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+    <p class="title logo__title">MolSSI Best Practices</p>
+  
+</a></div>
+    
+  </div>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Set Up
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="01-package-setup.html">
+                        Python Package Set-Up
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="00-git-and-github.html">
+                        git and GitHub
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="00-code-organization-documentation.html">
+                        Code Style and Documentation
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="00-testing-continuous-integration.html">
+                        Testing, Continuous Integration, and Distribution
+                      </a>
+                    </li>
+                
+
+                <li class="nav-item">
+                  <a class="nav-link nav-external" href="https://molssi.org">
+                    MolSSI
+                  </a>
+                </li>
+                
+                </div>
+            </div>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/jchen0506/molssi_doc_theme" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Set Up
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="01-package-setup.html">
+                        Python Package Set-Up
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="00-git-and-github.html">
+                        git and GitHub
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="00-code-organization-documentation.html">
+                        Code Style and Documentation
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="00-testing-continuous-integration.html">
+                        Testing, Continuous Integration, and Distribution
+                      </a>
+                    </li>
+                
+
+                <li class="nav-item">
+                  <a class="nav-link nav-external" href="https://molssi.org">
+                    MolSSI
+                  </a>
+                </li>
+                
+                </div>
+            </div>
+            
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/jchen0506/molssi_doc_theme" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumbs">
+  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Set Up</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="set-up">
+<h1>Set Up<a class="headerlink" href="#set-up" title="Permalink to this heading">#</a></h1>
+<p>Participation in the MolSSI Best Practices Workshop will require use of your own personal computer or laptop and installation of some software.</p>
+<div class="attention admonition">
+<p class="admonition-title">Windows users take note</p>
+<p>If you are working on a Windows computer,
+participation in this workshop will require you to install the Windows Subsystem for Linux (WSL).
+You should install WSL 2, you will need to have the Windows 10 or Windows 11 OS with the following version requirements:</p>
+<ul class="simple">
+<li><p>For x64 systems: Version 1903 or higher, with Build 18362 or higher.</p></li>
+<li><p>For ARM64 systems: Version 2004 or higher, with Build 19041 or higher.</p></li>
+</ul>
+<p>If you haven’t updated your computer in a while,
+these updates could take a considerable amount of time.
+Plan accordingly!</p>
+<p>If you are on Windows 11, you can also <a class="reference external" href="https://docs.microsoft.com/en-us/windows/wsl/tutorials/gui-apps">set up WSL to be able to use graphical interfaces</a>.</p>
+</div>
+<p>Please follow the instructions given here to make sure you have the necessary software installed.
+We will be using Python and the conda package manager.
+If you are on MacOS, Linux, or WSL and you already have Anaconda (or miniconda) installed,
+skip to the environment creation portion of these set-up instructions.
+If you do not have Anaconda or miniconda installed please see the appropriate section below.
+<strong>Note</strong> If you are on Windows miniconda has to be installed on WSL (not Windows).
+This might be a separate installation.</p>
+<div class="info admonition">
+<p class="admonition-title">Anaconda vs. Minconda</p>
+<p>Anaconda is a distribution of Python, the conda package manager, and several third-party libraries which are commonly used in data science.
+Miniconda contains only Python and the conda package manager. You will be able to install any package you would like later using miniconda.
+Miniconda will take up a lot less space on your computer.
+We will be learning to manage conda environments and install the packages we need, so we consider miniconda to be the better option between the two.
+If you already have Anaconda installed, however, there is no need to install miniconda.</p>
+</div>
+<section id="installing-wsl-windows-users-only">
+<h2>Installing WSL (Windows users only)<a class="headerlink" href="#installing-wsl-windows-users-only" title="Permalink to this heading">#</a></h2>
+<p>If your computer uses the Windows operating system, we require installing Windows Subsystem for Linux (WSL).
+Follow the installation instructions at <a class="reference external" href="https://docs.microsoft.com/en-us/windows/wsl/install">this link</a>.
+If you don’t have a preference on Linux distribution, we recommend installing Ubuntu 20.04.</p>
+<p>Once WSL is installed, open your ‘Start’ menu and choose ‘Ubuntu’.
+This will open a terminal window.
+A terminal is an interface you can use to interact with your computer using text.
+The first time you have opened Ubuntu, you may see a message which says “Installing, this may take a few minutes…”.
+After the installation is done, you will have to create a username and password.
+After these are created, you should be able to use the terminal.</p>
+<p>The Windows Subsystem for Linux is like running another computer inside your computer.
+It is a different operating system and has different software installed than your Windows computer.
+For the WSL, you have to install miniconda from the terminal in your Linux operating system.
+Note that if you are using the WSL,
+your Linux OS is completely separated from your Windows operating system.
+This means that software installed on one operating system is not available in the other.
+If you are running the Windows 11 operating system,
+you can <a class="reference external" href="https://docs.microsoft.com/en-us/windows/wsl/tutorials/gui-apps">set up WSL to use graphical interfaces on your computer</a>.
+Otherwise, you will only be able to interact with WSL through the terminal (and the text editor VSCode,
+see later in the set-up for information on how to use VS Code in WSL)</p>
+</section>
+<section id="miniconda-installation">
+<h2>Miniconda Installation<a class="headerlink" href="#miniconda-installation" title="Permalink to this heading">#</a></h2>
+<p>You can install miniconda through a graphical interface or using your terminal.
+Pick either “Graphical Installation” or “Text-based (terminal) Installation”.
+<strong>If you are using WSL, it may be easiest to complete this using the terminal installation.</strong></p>
+<section id="graphical-installation">
+<h3>Graphical Installation<a class="headerlink" href="#graphical-installation" title="Permalink to this heading">#</a></h3>
+<p>Obtain the latest version of miniconda for your OS at this <a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html">link</a>.
+This will download an installer you can run to install miniconda on your system.
+Note that if you are using WSL, you will need the <strong>Linux</strong> installer,
+and you will have to move this file to WSL before running.</p>
+</section>
+<section id="text-based-terminal-installation">
+<h3>Text-based (terminal) Installation<a class="headerlink" href="#text-based-terminal-installation" title="Permalink to this heading">#</a></h3>
+<p>You can also use the terminal to download and install the miniconda compilers using the terminal.
+If you are using Linux or WSL, type the following into your terminal.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-0">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-O<span class="w"> </span>https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+bash<span class="w"> </span>Miniconda3-latest-Linux-x86_64.sh
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you are using Mac, you should pick the appropriate link for your architecture from the miniconda installer page.</p>
+<p>M1: https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh<br />
+x86: https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh</p>
+<p>After installation,
+close and reopen your terminal window.
+If you do not see <code class="docutils literal notranslate"><span class="pre">(base)</span></code> before your username on the command line, type</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-1" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-1">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>init
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="creating-a-conda-environment">
+<h2>Creating a conda environment<a class="headerlink" href="#creating-a-conda-environment" title="Permalink to this heading">#</a></h2>
+<p>A <code class="docutils literal notranslate"><span class="pre">conda</span></code> environment contains a specific collection of packages you have installed.
+This means that packages are isolated, and installed only for a specific environment – you can have several environments each with different installed packages, or different versions of installed packages in different environments.</p>
+<p>It’s considered a best practice to create a new Python environment for each project you work on.</p>
+<p>This section uses the command line interface (CLI), or terminal, to create an environment using <code class="docutils literal notranslate"><span class="pre">conda</span></code>.
+If you are on Mac or Linux, you will type these commands into your terminal.
+If you are on Windows, you will use WSL.</p>
+<p>To create an environment for this project using <code class="docutils literal notranslate"><span class="pre">conda</span></code>,</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-2">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>molssi_best_practices<span class="w"> </span><span class="s2">&quot;python=3.10&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For other projects, you should replace <code class="docutils literal notranslate"><span class="pre">molssi_best_practices</span></code> with a descriptive name for your project.
+<code class="docutils literal notranslate"><span class="pre">conda</span></code> also allows you to specify the Python version to use with the environment.
+Here, <code class="docutils literal notranslate"><span class="pre">python=3.10</span></code> specifies that we want to use Python 3.10 in this environment.
+Executing this command will list the environment location and a list of Python packages to be installed.
+Choose <code class="docutils literal notranslate"><span class="pre">y(es)</span></code> when prompted.</p>
+<p>Activate the environment using the command</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-3" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-3">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>molssi_best_practices
+</pre></div>
+</div>
+</div>
+</div>
+<p>To see a list of all your environments,</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-4" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-4">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>info<span class="w"> </span>--envs
+</pre></div>
+</div>
+</div>
+</div>
+<p>To deactivate an environment, type</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-5" name="sd-tab-set-5" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-5">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>deactivate
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can use <code class="docutils literal notranslate"><span class="pre">conda</span></code> to create environments with different Python versions.
+You might be able to see how this could be useful for running old code
+(you can change <code class="docutils literal notranslate"><span class="pre">3.10</span></code> in the command above to any version you want),
+or testing your code in different Python versions.</p>
+<section id="package-installation-using-conda">
+<h3>Package installation using conda<a class="headerlink" href="#package-installation-using-conda" title="Permalink to this heading">#</a></h3>
+<p>Using <code class="docutils literal notranslate"><span class="pre">conda</span></code>, we can install packages to our environments.
+<strong>Note</strong>: Make sure you have activated the environment where you want to install packages.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-6" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-6">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>activate<span class="w"> </span>molssi_best_practices
+</pre></div>
+</div>
+</div>
+</div>
+<p>To list all the Python packages installed in an environment, first activate it, then type</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-7" name="sd-tab-set-7" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-7">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>list
+</pre></div>
+</div>
+</div>
+</div>
+<p>Packages can be installed using the <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">package_name</span></code> command.
+For example, to install NumPy (do not execute this, we will install NumPy later),</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-8" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-8">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>install<span class="w"> </span>numpy
+</pre></div>
+</div>
+</div>
+</div>
+<p>Further, the desired version of NumPy can be specified by adding this following the package name.
+For example, if you wanted to install NumPy version 1.15: <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">numpy=1.15</span></code></p>
+<p>For this workshop, you will need to install the following packages into your environment</p>
+<ul class="simple">
+<li><p>NumPy</p></li>
+<li><p>Matplotlib</p></li>
+<li><p>jupyter notebook</p></li>
+</ul>
+<p>Packages available to Conda are stored within <code class="docutils literal notranslate"><span class="pre">channels</span></code>.
+Some packages are not stored in the default Conda channel, so we need to specify where Conda can find the package with <code class="docutils literal notranslate"><span class="pre">-c</span></code> followed by a channel name in our installation command.
+We will install all of our packages from the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> channel,
+so we include the syntax <code class="docutils literal notranslate"><span class="pre">-c</span> <span class="pre">conda-forge</span></code> in our installation command.</p>
+<p>You can install multiple libraries at the same time by listing them one after another.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-9" name="sd-tab-set-9" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-9">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>numpy<span class="w"> </span>matplotlib<span class="w"> </span>notebook
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="cookiecutter-installation">
+<h2>CookieCutter Installation <a name="cookiecutter"></a><a class="headerlink" href="#cookiecutter-installation" title="Permalink to this heading">#</a></h2>
+<p>For this workshop, we will create the structure of our Python package using the <a class="reference external" href="https://github.com/MolSSI/cookiecutter-cms">CMS CookieCutter</a>.
+Please have this package installed <strong>in your <code class="docutils literal notranslate"><span class="pre">molssi_best_practices</span></code> environment</strong>.</p>
+<p>First, switch to your environment for this workshop if you are not in it.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-10" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-10">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>activate<span class="w"> </span>molssi_best_practices
+</pre></div>
+</div>
+</div>
+</div>
+<p>Install the general cookiecutter with the following commands.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-11" name="sd-tab-set-11" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-11">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>cookiecutter
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="installing-and-configuring-git">
+<h2>Installing and configuring git<a class="headerlink" href="#installing-and-configuring-git" title="Permalink to this heading">#</a></h2>
+<section id="installation">
+<h3>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">#</a></h3>
+<p>We will be using the <code class="docutils literal notranslate"><span class="pre">git</span></code> software for version control during this workshop.
+This portion walks you through installing and configuring <code class="docutils literal notranslate"><span class="pre">git</span></code>.</p>
+<p>If you do not have the environment activated, activate it first:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-12" name="sd-tab-set-12" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-12">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>molssi_best_practices
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, make sure you have git installed.</p>
+<p>You can check if git is installed using the following command in your terminal:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-13" name="sd-tab-set-13" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-13">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>--version
+</pre></div>
+</div>
+</div>
+</div>
+<p>Make sure that this outputs at least version 2.28.
+If you do not have git installed, or if it is an older version of git,
+you can install git using conda:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-14" name="sd-tab-set-14" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-14">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>git
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that because of the solver that conda uses to decide which version of a package to install you may end up with a version that is &lt; 2.28.
+you can use the same command from above <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">--version</span></code> to see what version has been installed.</p>
+<p>If the output of that command is &lt; 2.28 you will want to use the following command to specify the version to install.
+Any version &gt;=2.28 is acceptable.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-15" name="sd-tab-set-15" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-15">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>git<span class="s2">&quot;&gt;=2.28&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="configuring-git">
+<h3>Configuring Git<a class="headerlink" href="#configuring-git" title="Permalink to this heading">#</a></h3>
+<p>The first time you use Git on a particular computer, you need to configure some things.</p>
+<p>First, you should set your identity.
+One of the most important things that version control like Git does is to keep track of who changes what.
+This helps repository maintainers coordinate the efforts of all the people who contribute to the project.
+Most importantly, it makes it easier to figure out who to blame when something goes wrong.
+You can provide git your name and contact information with the following commands:</p>
+<div class="info admonition">
+<p class="admonition-title">Configuring git</p>
+<p>In the command below, you do not need to put your name or your email address in all caps.</p>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-16" name="sd-tab-set-16" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-16">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.name<span class="w"> </span><span class="s2">&quot;YOUR_FIRSTNAME YOUR_LASTNAME&quot;</span>
+git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.email<span class="w"> </span><span class="s2">&quot;YOUR_EMAIL_ADDRESS&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, you will need to set the name of the default branch git uses.
+The following command will set your default branch name to be “main”</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-17" name="sd-tab-set-17" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-17">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>init.defaultBranch<span class="w"> </span>main
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, you might want to change the Git text editor.
+As we will see later, certain Git commands will open text files.
+When this happens, Git will use your environment’s default text editor, which might not be the editor you are most comfortable using.
+Using configuration commands, you can tell Git to use your favorite editor.</p>
+<p>We recommend installing <a class="reference external" href="https://code.visualstudio.com/">Visual Studio Code</a> as your text editor in the last portion of this set-up.
+Note that using VS Code on Windows or Mac requires additional set-up, which is outlined in the section <code class="docutils literal notranslate"><span class="pre">Installing</span> <span class="pre">a</span> <span class="pre">text</span> <span class="pre">editor</span></code>.
+To make VS Code your default editor for git, do</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-18" name="sd-tab-set-18" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-18">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>core.editor<span class="w"> </span><span class="s2">&quot;code --wait&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A more complete list of possible editors is available <a class="reference external" href="http://swcarpentry.github.io/git-novice/02-setup/index.html">here</a>.</p>
+<p>You can check the configuration commands that you have set using:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-19" name="sd-tab-set-19" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-19">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>config<span class="w"> </span>--list
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="github">
+<h2>GitHub<a class="headerlink" href="#github" title="Permalink to this heading">#</a></h2>
+<p>If you do not yet have a GitHub account, you will need to create one.
+To create an account, navigate to <a class="reference external" href="https://github.com/">github.com</a>, and click “Sign up”.
+When creating your GitHub username, remember that this is a professional profile where you can showcase your work.
+Keeping this in mind, make sure that your GitHub username is both <strong>professional</strong> and <strong>recognizable</strong>.</p>
+<section id="github-credentials">
+<h3>GitHub Credentials<a class="headerlink" href="#github-credentials" title="Permalink to this heading">#</a></h3>
+<p>We will be using the command line interface for GitHub.
+GitHub <em>very recently</em> deprecated using a username and password from the command line.
+Instead, you will need to create something called an ssh key to verify your account.</p>
+<p>Follow the <a class="reference external" href="https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh">instructions given by GitHub</a> to create an SSH key and add it to your account.</p>
+</section>
+</section>
+<section id="text-editor">
+<h2>Text Editor<a class="headerlink" href="#text-editor" title="Permalink to this heading">#</a></h2>
+<p>Everyone should have a text editor they can use to edit code.
+If you do not have a preference for text editors, we recommend <a class="reference external" href="https://code.visualstudio.com/">Visual Studio Code</a>.
+If you are using WSL, see <a class="reference external" href="https://code.visualstudio.com/docs/remote/wsl">these instructions</a> for installing Visual Studio Code for use with WSL.
+If you are using Mac, follow <a class="reference external" href="https://code.visualstudio.com/docs/setup/mac#:~:text=Launching%20from%20the%20command%20line,code'%20command%20in%20PATH%20command.">these instructions</a> to set-up VS Code so that you can use it from the command line.</p>
+<p>You should also install the <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">Microsoft Python Extension Plugin</a> for VSCode.
+When enabled, the Python extension will allow you to set the Python environment that VS Code will use to run static checks of your code.
+You can set the Python environment when you have a Python project open by clicking the Python version (will likely be 3.something) on
+in the blue ribbon at the botton of the editor on the right.
+Select the <code class="docutils literal notranslate"><span class="pre">molssi-best-practices</span></code> environment.</p>
+</section>
+<section id="downloading-workshop-materials">
+<h2>Downloading Workshop Materials<a name="materials_download"></a><a class="headerlink" href="#downloading-workshop-materials" title="Permalink to this heading">#</a></h2>
+<p>In this workshop, we will be moving code from a Jupyter notebook into a Python package that we can install and import into other scripts.</p>
+<ul class="simple">
+<li><p><a class="reference download internal" download="" href="_downloads/09f49efd173df80962bb6fb9a69faf2c/starting_material.zip"><code class="xref download docutils literal notranslate"><span class="pre">Starting</span> <span class="pre">materials</span> <span class="pre">for</span> <span class="pre">lesson</span></code></a>.</p></li>
+</ul>
+<div class="tip admonition">
+<p class="admonition-title">Downloading materials from the command line</p>
+<p>If you are on WSL, or would like to use the command line, you can download the workshop materials using <code class="docutils literal notranslate"><span class="pre">curl</span></code>
+(similar to how you downloaded the miniconda installer)</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-20" name="sd-tab-set-20" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-20">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-O<span class="w"> </span>https://education.molssi.org/python-package-best-practices/data/starting_material.zip
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li><p>Create a folder called <code class="docutils literal notranslate"><span class="pre">molssi_best_practices</span></code> and add the file you downloaded from the step above.</p></li>
+<li><p>The file you download as starting materials will be a <code class="docutils literal notranslate"><span class="pre">zip</span></code> file.
+You should unzip this file into the folder you have created. (On the command line, you can type <code class="docutils literal notranslate"><span class="pre">unzip</span> <span class="pre">data.zip</span></code>)
+After downloading and unzipping, verify that you see the following directory structure.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>molssi_best_practices
+└── starting_material  
+        ├── data
+        │   ├── pdb
+        │   │   ├── 1bna.pdb
+        │   │   ├── benzene.pdb
+        │   │   └── water.pdb
+        │   └── xyz
+        │       ├── 1bna.xyz
+        │       ├── benzene.xyz
+        │       └── water.xyz
+        └── starting_notebook.ipynb
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
+<p>At the end of this set-up, you should have created a Python environment (<code class="docutils literal notranslate"><span class="pre">molssi_best_practices</span></code>) which has Python 3.10, <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>, <code class="docutils literal notranslate"><span class="pre">jupyter</span></code>, and <code class="docutils literal notranslate"><span class="pre">cookiecutter</span></code> installed.
+You should also have downloaded starting material, installed and created an account on GitHub, and configured Git.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Best Practices in Python Package Development</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="01-package-setup.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Python Package Set-Up</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-wsl-windows-users-only">Installing WSL (Windows users only)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#miniconda-installation">Miniconda Installation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-installation">Graphical Installation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#text-based-terminal-installation">Text-based (terminal) Installation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-conda-environment">Creating a conda environment</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#package-installation-using-conda">Package installation using conda</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cookiecutter-installation">CookieCutter Installation <a name="cookiecutter"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-and-configuring-git">Installing and configuring git</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuring-git">Configuring Git</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#github">GitHub</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#github-credentials">GitHub Credentials</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#text-editor">Text Editor</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#downloading-workshop-materials">Downloading Workshop Materials<a name="materials_download"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div class="tocsection sourcelink">
+    <a href="_sources/setup.md.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner"></div>
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  
+
+
+
+  
+  
+  
+  
+  
+  
+  
+
+
+<div class="row h-10">
+    <div class="col-2">
+        <a href="https://molssi.org/" target="_blank" title="Go to MolSSI in a new tab">
+            <img src="_static/molssi_main_logo.png" class="logo__image only-light footer_logo" alt="Logo image">
+            <img src="_static/molssi_main_logo_inverted_white.png" class="logo__image only-dark footer_logo" alt="Logo image">
+        </a>
+    </div>
+    <div class="col-8">
+        <p> &copy; Copyright 2019-2023 <a href="https://molssi.org/">The Molecular Sciences Software Institute</a></p>
+        <p>Funded by the National Science Foundation 
+          <a href="https://nsf.gov/awardsearch/showAward?AWD_ID=1547580">OAC-1547580</a> and 
+          <a href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=2136142">CHE-2136142.</a></p>
+ 
+        
+        <p class="sphinx-version">
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br>
+        </p>
+        
+
+        <p class="theme-version">
+        Built with a customized <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.1.
+        </p>
+
+    </div>
+    <div class="col-2">
+        <a href="https://nsf.gov/" target="_blank" title="Go to the NSF in a new tab">
+            <img src="_static/nsf.png" class="footer_logo" alt="The NSF">
+          </a>
+    </div>
+</div></div>
+      
+    </div>
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

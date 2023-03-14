@@ -1,0 +1,1451 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Python Coding Style &#8212; molssi_best_practices  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '04-function-style';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Deciding Package Structure" href="05-package-structure.html" />
+    <link rel="prev" title="Code Style and Documentation" href="00-code-organization-documentation.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  <div class="navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/molssi_main_logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/molssi_main_logo_inverted_white.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+    <p class="title logo__title">MolSSI Best Practices</p>
+  
+</a></div>
+    
+  </div>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="setup.html">
+                        Set Up
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="01-package-setup.html">
+                        Python Package Set-Up
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="00-git-and-github.html">
+                        git and GitHub
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="00-code-organization-documentation.html">
+                        Code Style and Documentation
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="00-testing-continuous-integration.html">
+                        Testing, Continuous Integration, and Distribution
+                      </a>
+                    </li>
+                
+
+                <li class="nav-item">
+                  <a class="nav-link nav-external" href="https://molssi.org">
+                    MolSSI
+                  </a>
+                </li>
+                
+                </div>
+            </div>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/jchen0506/molssi_doc_theme" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="setup.html">
+                        Set Up
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="01-package-setup.html">
+                        Python Package Set-Up
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="00-git-and-github.html">
+                        git and GitHub
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="00-code-organization-documentation.html">
+                        Code Style and Documentation
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="00-testing-continuous-integration.html">
+                        Testing, Continuous Integration, and Distribution
+                      </a>
+                    </li>
+                
+
+                <li class="nav-item">
+                  <a class="nav-link nav-external" href="https://molssi.org">
+                    MolSSI
+                  </a>
+                </li>
+                
+                </div>
+            </div>
+            
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/jchen0506/molssi_doc_theme" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Python Coding Style</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-package-structure.html">Deciding Package Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-type-hinting.html">Type Hinting in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10-documentation.html">Package Documentation</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumbs">
+  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="00-code-organization-documentation.html" class="nav-link">Code Style and Documentation</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Python Coding Style</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="python-coding-style">
+<h1>Python Coding Style<a class="headerlink" href="#python-coding-style" title="Permalink to this heading">#</a></h1>
+<div class="overview admonition">
+<p class="admonition-title">Overview</p>
+<p>Questions:</p>
+<ul class="simple">
+<li><p>How can I write Python code that is readable?</p></li>
+</ul>
+<p>Objectives:</p>
+<ul class="simple">
+<li><p>Learn how to raise exceptions.</p></li>
+<li><p>Understand how to follow PEP8 style for Python.</p></li>
+<li><p>Understand what docstrings are and why they are important.</p></li>
+<li><p>Learn to write docstrings in numpy style.</p></li>
+</ul>
+</div>
+<div class="info admonition">
+<p class="admonition-title">Prerequisites</p>
+<p>Before starting this lesson, you should first complete
+the Using Branches Exercise in Episode 2.</p>
+</div>
+<section id="editing-a-function-in-our-package">
+<h2>Editing a function in our package<a class="headerlink" href="#editing-a-function-in-our-package" title="Permalink to this heading">#</a></h2>
+<p>Let’s look at one of the functions in our package.
+Open your <code class="docutils literal notranslate"><span class="pre">molecool/functions.py</span></code> module in a text editor.
+The function <code class="docutils literal notranslate"><span class="pre">open_pdb</span></code> reads coordinates and atom symbols from a pdb file.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-0">
+PYTHON</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">open_pdb</span><span class="p">(</span><span class="n">f_loc</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">f_loc</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">sym</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s1">&#39;ATOM&#39;</span> <span class="ow">in</span> <span class="n">l</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span> <span class="ow">or</span> <span class="s1">&#39;HETATM&#39;</span> <span class="ow">in</span> <span class="n">l</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">6</span><span class="p">]:</span>
+            <span class="n">sym</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">l</span><span class="p">[</span><span class="mi">76</span><span class="p">:</span><span class="mi">79</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+            <span class="n">c2</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">l</span><span class="p">[</span><span class="mi">30</span><span class="p">:</span><span class="mi">55</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()]</span>
+            <span class="n">c</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c2</span><span class="p">)</span>
+    <span class="n">coords</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">sym</span><span class="p">,</span> <span class="n">coords</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we want to test our function, we require a pdb file.
+The workshop materials downloaded during the setup include a set of pdb examples.
+These are found in <code class="docutils literal notranslate"><span class="pre">molssi_beter_practices/starting_material/data/pdb/</span></code>.
+We want to store these files in our <code class="docutils literal notranslate"><span class="pre">molecool</span></code> directory.
+Luckily, <code class="docutils literal notranslate"><span class="pre">cookiecutter</span></code> created a folder designed specifically for that purpose.
+The folder is in <code class="docutils literal notranslate"><span class="pre">molecool/data/</span></code>.
+This folder can contain any data useful for testing of the basic functionality of our code.
+Be mindful that this folder is also downloaded when installing our package,
+so do not include data whose size is significant.</p>
+<p>Go ahead and copy the pdb files to a new folder <code class="docutils literal notranslate"><span class="pre">pdb</span></code> inside the data folder.
+With the files in our <code class="docutils literal notranslate"><span class="pre">molecool</span></code> folder,
+we can access the function when we execute it in the interactive Python interpreter.
+Test this by opening the interactive Python interpreter and typing the following.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-1" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-1">
+PYTHON</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">os</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">molecool</span> <span class="kn">import</span> <span class="n">open_pdb</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pdb_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;molecool&#39;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;pdb&#39;</span><span class="p">,</span> <span class="s1">&#39;water.pdb&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">symbols</span><span class="p">,</span> <span class="n">coords</span> <span class="o">=</span> <span class="n">open_pdb</span><span class="p">(</span><span class="n">pdb_file</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">symbols</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-2">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">[&#39;O&#39;, &#39;H&#39;, &#39;H&#39;]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You should get a list of atomic symbols of the water molecule by executing this code.
+You can also see the atomic coordinates by executing:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-3" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-3">
+PYTHON</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">coords</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You should get a numpy array of atomic coordinates.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-4" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-4">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">array([[ 9.626,  6.787, 12.673],</span>
+<span class="go">       [ 9.626,  8.42 , 12.673],</span>
+<span class="go">       [10.203,  7.604, 12.673]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Hooray! It seems like this function works!
+This should come as no surprise since we are the authors of the function,
+and we know its internal structure.
+This is not necessarily true for someone editing our code and specially not true
+for someone just using our code.
+There are instances where unwanted behavior occurs, even though the code executes
+(i.e. there are no syntax errors).
+In these cases, our code should be able to stop itself to prevent further malfunction.</p>
+<section id="raising-exceptions">
+<h3>Raising Exceptions<a class="headerlink" href="#raising-exceptions" title="Permalink to this heading">#</a></h3>
+<p>Take for example the division by zero. If we try to calculate</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-5" name="sd-tab-set-5" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-5">
+PYTHON</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">1</span><span class="o">/</span><span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We would get</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-6" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-6">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">ZeroDivisionError: division by zero</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this example, the code was smart enough to identify the division by zero and halt.
+This type of feedback is much more helpful than just throwing an ugly <code class="docutils literal notranslate"><span class="pre">NaN</span></code>.
+This is called an <em>exception</em> error.
+There are several built-in exceptions, such as the “ZeroDivisionError”.
+You can choose to raise exceptions yourself when you think a function should fail
+(instead of the function not failing, or running until it hits some other failure.)</p>
+<p>Consider our function <code class="docutils literal notranslate"><span class="pre">write_xyz</span></code>.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-7" name="sd-tab-set-7" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-7">
+PYTHON</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">write_xyz</span><span class="p">(</span><span class="n">file_location</span><span class="p">,</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">):</span>
+    
+    <span class="c1">## Write an xyz file given a file location, symbols, and coordinates.</span>
+
+    <span class="n">num_atoms</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">symbols</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_location</span><span class="p">,</span> <span class="s1">&#39;w+&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">num_atoms</span><span class="p">))</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;XYZ file</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_atoms</span><span class="p">):</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="se">\t</span><span class="si">{}</span><span class="se">\t</span><span class="si">{}</span><span class="se">\t</span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">symbols</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> 
+                                              <span class="n">coordinates</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">coordinates</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">coordinates</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>When examining this function, you may see a few opportunities for failure.
+For example, a user could supply <code class="docutils literal notranslate"><span class="pre">symbols</span></code> and <code class="docutils literal notranslate"><span class="pre">coordinates</span></code> with different lengths.
+If the <code class="docutils literal notranslate"><span class="pre">coordinates</span></code> argument is the longer one, we will not see an error.
+The function will simply ignore the last coordinate.
+If <code class="docutils literal notranslate"><span class="pre">symbols</span></code> is the longer argument, we will not have enough <code class="docutils literal notranslate"><span class="pre">coordinates</span></code> and an error will occur.
+Neither of these is our intended behavior, but would occur without us knowing (some errors are silent)!</p>
+<p>Let’s try this out. In a python interpreter, try the following:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-8" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-8">
+PYTHON</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">molecool</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test_atoms</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="s2">&quot;O&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test_coords</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">molecool</span><span class="o">.</span><span class="n">write_xyz</span><span class="p">(</span><span class="s2">&quot;test.xyz&quot;</span><span class="p">,</span> <span class="n">test_atoms</span><span class="p">,</span> <span class="n">test_coords</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You will see that no error occurs. If we open the written XYZ file, the last coordinate point has been discarded.</p>
+<p>We probably intend for these variables to have the same number of elements.
+When they don’t, there’s no way to tell what the user wanted,
+or if they have accidentally passed us incorrect data.
+We should check the length of these and raise an appropriate exception to halt the program if necessary.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-9" name="sd-tab-set-9" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-9">
+PYTHON</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">write_xyz</span><span class="p">(</span><span class="n">file_location</span><span class="p">,</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">):</span>
+    
+    <span class="c1">## Write an xyz file given a file location, symbols, and coordinates.</span>
+    <span class="n">num_atoms</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">symbols</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">num_atoms</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">coordinates</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;write_xyz : the number of symbols (</span><span class="si">{</span><span class="n">num_atoms</span><span class="si">}</span><span class="s2">) and number of coordinates (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">coordinates</span><span class="p">)</span><span class="si">}</span><span class="s2">) must be the same to write xyz file!&quot;</span><span class="p">)</span>
+    
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_location</span><span class="p">,</span> <span class="s1">&#39;w+&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">num_atoms</span><span class="p">))</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;XYZ file</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_atoms</span><span class="p">):</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="se">\t</span><span class="si">{}</span><span class="se">\t</span><span class="si">{}</span><span class="se">\t</span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">symbols</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> 
+                                              <span class="n">coordinates</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">coordinates</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">coordinates</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As you can see, custom error messages can be quite descriptive of the problem.
+Let’s try this out with some fake data.
+Using the same example as before:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-10" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-10">
+PYTHON</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">molecool</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test_atoms</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="s2">&quot;O&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test_coords</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">molecool</span><span class="o">.</span><span class="n">write_xyz</span><span class="p">(</span><span class="s2">&quot;test.xyz&quot;</span><span class="p">,</span> <span class="n">test_atoms</span><span class="p">,</span> <span class="n">test_coords</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-11" name="sd-tab-set-11" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-11">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">ValueError: write_xyz : the number of symbols (2) and number of coordinates (3) must be the same to write xyz file!</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The built-in exceptions already include errors that are common while programming.
+For example, our function requires explicit use of [numpy] arrays.
+Nevertheless, a user may be tempted to use a list of length 3 to describe the position of two atoms.
+We know that it is not possible to perform arithmetic between full lists.
+In this case we might use the exception type <code class="docutils literal notranslate"><span class="pre">TypeError</span></code>.</p>
+<p>Other types of common exceptions include undefined variables (<code class="docutils literal notranslate"><span class="pre">NameError</span></code>)
+and failed assertions that two numbers are the same (<code class="docutils literal notranslate"><span class="pre">AssertionError</span></code>).
+The latter will be particularly useful when we want to automate testing within our package.</p>
+</section>
+<section id="coding-style">
+<h3>Coding Style<a class="headerlink" href="#coding-style" title="Permalink to this heading">#</a></h3>
+<p>Our functions are now smarter and will better guide users while using them.
+However, our function still might be hard to read and understand for others,
+so we might want to consider styling it better.</p>
+<p>As a developer, you spend a lot of time thinking about writing your code.
+However, code is read much more often than it is written.
+Following a style guide will help others (and perhaps you in the future!) to read your code.</p>
+<p>For Python, the common convention for code style is called <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP8</a>.
+PEP8 is a document that gives guidelines for best practices in Python coding style.
+PEP8 is a recommendation, not a rule.
+However, you should follow this convention when possible.</p>
+<blockquote>
+<div><h3 class="rubric" id="python-pep">Python PEP</h3>
+<p>If you spend a lot of time programming in Python, you will see references to PEPs a lot.
+PEP stands for “Python Enhancement Proposal”.
+These are design documents which provide information about features.
+PEPs come from the Python community, meaning anyone can author a PEP (however, there is a strict review process).
+PEPs are classified into three categories - standards, informational, or process.</p>
+<p>You can read more about PEPs in <a class="reference external" href="https://www.python.org/dev/peps/pep-0001/">Python’s documentation</a>.
+PEP1 outlines what a PEP is and how they work.
+{: .callout}</p>
+</div></blockquote>
+<p>PEP8 tells us several things about styling that will make our code easier to read.
+Let’s consider some of these and how they might change our function.</p>
+</section>
+<section id="variable-names">
+<h3>Variable names<a class="headerlink" href="#variable-names" title="Permalink to this heading">#</a></h3>
+<p>PEP8 recommends that</p>
+<blockquote>
+<div><p>Never use the characters ‘l’ (lowercase letter el), ‘O’ (uppercase letter oh), or ‘I’ (uppercase letter eye) as single character variable names.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Function names should be lowercase, with words separated by underscores as necessary to improve readability.</p>
+</div></blockquote>
+<p>Though not specifically referenced in PEP8,
+we also recommend making all variable names descriptive so that
+someone reading your code can easily understand what the variable is.</p>
+<p>Consider a few variable we have defined in our function (<code class="docutils literal notranslate"><span class="pre">c</span></code>, <code class="docutils literal notranslate"><span class="pre">sym</span></code>, <code class="docutils literal notranslate"><span class="pre">c2</span></code>, <code class="docutils literal notranslate"><span class="pre">l</span></code>).
+Is it clear what these are or mean? We can change them to be more descriptive and readable.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-12" name="sd-tab-set-12" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-12">
+PYTHON</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">open_pdb</span><span class="p">(</span><span class="n">file_location</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_location</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+    <span class="n">coordinates</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">symbols</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s1">&#39;ATOM&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span> <span class="ow">or</span> <span class="s1">&#39;HETATM&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">6</span><span class="p">]:</span>
+            <span class="n">symbols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">76</span><span class="p">:</span><span class="mi">79</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+            <span class="n">atom_coords</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">line</span><span class="p">[</span><span class="mi">30</span><span class="p">:</span><span class="mi">55</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()]</span>
+            <span class="n">coordinates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">atom_coords</span><span class="p">)</span>
+    <span class="n">coords</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">coordinates</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">coords</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For this rewrite of the function, we have made the following changes in variable names.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">f_loc</span></code>  —&gt; <code class="docutils literal notranslate"><span class="pre">file_location</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">c</span></code> —&gt; <code class="docutils literal notranslate"><span class="pre">coordinates</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sym</span></code> —&gt; <code class="docutils literal notranslate"><span class="pre">symbols</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">l</span></code> —&gt; <code class="docutils literal notranslate"><span class="pre">line</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">c2</span></code> —&gt; <code class="docutils literal notranslate"><span class="pre">atom_coords</span></code></p></li>
+</ul>
+<p>These variable names follow PEP8 convention and are much more descriptive and readable.</p>
+</section>
+<section id="indentation">
+<h3>Indentation<a class="headerlink" href="#indentation" title="Permalink to this heading">#</a></h3>
+<p>PEP8 indicates that indentation should be 4 spaces per indentation level.
+Our code meets these criteria.</p>
+</section>
+<section id="whitespace">
+<h3>Whitespace<a class="headerlink" href="#whitespace" title="Permalink to this heading">#</a></h3>
+<blockquote>
+<div><p>Always surround these binary operators with a single space on either side: assignment (=), augmented assignment (+=, -= etc.), comparisons (==, &lt;, &gt;, !=, &lt;&gt;, &lt;=, &gt;=, in, not in, is, is not), Booleans (and, or, not).</p>
+</div></blockquote>
+<p>This means that every time we have an expression assigning a variable, it should be <code class="docutils literal notranslate"><span class="pre">variable</span> <span class="pre">=</span> <span class="pre">value</span></code> instead of <code class="docutils literal notranslate"><span class="pre">variable=value</span></code>.</p>
+<p>You can also use whitespace to separate ideas within a function or code.</p>
+<blockquote>
+<div><p>Use blank lines in functions, sparingly, to indicate logical sections.</p>
+</div></blockquote>
+<p>Using these rules, our function becomes</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-13" name="sd-tab-set-13" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-13">
+PYTHON</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">open_pdb</span><span class="p">(</span><span class="n">file_location</span><span class="p">):</span>
+    
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_location</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+
+    <span class="n">coordinates</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">symbols</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s1">&#39;ATOM&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span> <span class="ow">or</span> <span class="s1">&#39;HETATM&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">6</span><span class="p">]:</span>
+            <span class="n">symbols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">76</span><span class="p">:</span><span class="mi">79</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+            <span class="n">atom_coords</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">line</span><span class="p">[</span><span class="mi">30</span><span class="p">:</span><span class="mi">55</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()]</span>
+            <span class="n">coordinates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">atom_coords</span><span class="p">)</span>
+
+    <span class="n">coords</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">coordinates</span><span class="p">)</span>
+    <span class="n">symbols</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">symbols</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">coords</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that we’ve written a new function in our project, we should commit our changes and push to GitHub.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-14" name="sd-tab-set-14" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-14">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>.
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;add open_pdb function to molecool&quot;</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-improving-the-calculate-distance-function">
+<h3>Exercise - Improving the <code class="docutils literal notranslate"><span class="pre">calculate_distance</span></code> function<a class="headerlink" href="#exercise-improving-the-calculate-distance-function" title="Permalink to this heading">#</a></h3>
+<div class="exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Below is the <code class="docutils literal notranslate"><span class="pre">calculate_distance</span></code> function that takes two points in 3D space
+and returns the distance between them. Even though it works just fine,
+it might hard for others to understand.
+Take a couple of minutes to reformat this function in the <code class="docutils literal notranslate"><span class="pre">molecool/functions.py</span></code> module.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-15" name="sd-tab-set-15" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-15">
+PYTHON</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_distance</span><span class="p">(</span><span class="n">rA</span><span class="p">,</span> <span class="n">rB</span><span class="p">):</span>
+    <span class="n">d</span><span class="o">=</span><span class="p">(</span><span class="n">rA</span><span class="o">-</span><span class="n">rB</span><span class="p">)</span>
+    <span class="n">dist</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">dist</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="solution dropdown admonition">
+<p class="admonition-title">Solution</p>
+<p>Here is a better formatted version of <code class="docutils literal notranslate"><span class="pre">calculate_distance</span></code>, which is easier to read and understand.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-16" name="sd-tab-set-16" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-16">
+PYTHON</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_distance</span><span class="p">(</span><span class="n">rA</span><span class="p">,</span> <span class="n">rB</span><span class="p">):</span>
+
+    <span class="n">dist_vec</span> <span class="o">=</span> <span class="p">(</span><span class="n">rA</span> <span class="o">-</span> <span class="n">rB</span><span class="p">)</span>
+    <span class="n">distance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">dist_vec</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">distance</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Now we’ve successfully styled function according to PEP8! However, if we compare what we’ve written above to the sample function, <code class="docutils literal notranslate"><span class="pre">canvas</span></code>, we notice that ours is a little different.</p>
+<p>Keeping your previous Python interpreter open, type the following:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-17" name="sd-tab-set-17" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-17">
+PYTHON</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">molecool</span> <span class="k">as</span> <span class="nn">mc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">help</span><span class="p">(</span><span class="n">mc</span><span class="o">.</span><span class="n">canvas</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Note: Do not use <code class="docutils literal notranslate"><span class="pre">help(mc.canvas())</span></code>, this will actually execute your code (not what we want).</strong></p>
+<p>The code above calls Python’s built-in function, <code class="docutils literal notranslate"><span class="pre">help</span></code>.
+For our canvas function, it displays the multi-line comment (called a <code class="docutils literal notranslate"><span class="pre">docstring</span></code>), that is written beneath the function definition.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-18" name="sd-tab-set-18" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-18">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">Help on function canvas in module molecool.functions:</span>
+
+<span class="go">canvas(with_attribution=True)</span>
+<span class="go">    Placeholder function to show example docstring (NumPy format)</span>
+
+<span class="go">    Replace this function and doc string for your own project</span>
+
+<span class="go">    Parameters</span>
+<span class="go">    ----------</span>
+<span class="go">    with_attribution : bool, Optional, default: True</span>
+<span class="go">        Set whether or not to display who the quote is from</span>
+
+<span class="go">    Returns</span>
+<span class="go">    -------</span>
+<span class="go">    quote : str</span>
+<span class="go">        Compiled string including quote and optional attribution</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we try the same thing on our <code class="docutils literal notranslate"><span class="pre">calculate_distance</span></code> function, we don’t get a helpful message.</p>
+<p>We will want to write a docstring for our new <code class="docutils literal notranslate"><span class="pre">calculate_distance</span></code> function.
+This way, it will be clear to new developers who use our code what the function does,
+and be accessible to anyone using the function interactively.
+Returning to the <code class="docutils literal notranslate"><span class="pre">functions.py</span></code> module file,
+edit your <code class="docutils literal notranslate"><span class="pre">calculate_distance</span></code> function to look like the following.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-19" name="sd-tab-set-19" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-19">
+PYTHON</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_distance</span><span class="p">(</span><span class="n">rA</span><span class="p">,</span> <span class="n">rB</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate the distance between two points.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    rA, rB : np.ndarray</span>
+<span class="sd">        The coordinates of each point.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    distance : float</span>
+<span class="sd">        The distance between the two points.</span>
+<span class="sd">    </span>
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; r1 = np.array([0, 0, 0])</span>
+<span class="sd">    &gt;&gt;&gt; r2 = np.array([0, 0.1, 0])</span>
+<span class="sd">    &gt;&gt;&gt; calculate_distance(r1, r2)</span>
+<span class="sd">    0.1</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dist_vec</span> <span class="o">=</span> <span class="p">(</span><span class="n">rA</span> <span class="o">-</span> <span class="n">rB</span><span class="p">)</span>
+    <span class="n">distance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">dist_vec</span><span class="p">)</span>
+        
+    <span class="k">return</span> <span class="n">distance</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="docstrings">
+<h3>Docstrings<a class="headerlink" href="#docstrings" title="Permalink to this heading">#</a></h3>
+<p>We’ve now added a multi-line comment (called a <code class="docutils literal notranslate"><span class="pre">docstring</span></code>, short for “documentation string”), to the beginning of our function.
+Docstrings <strong>are the first statement after a function or module definition</strong> and are opened and closed with three quotes.
+The docstring should explain what the function or module does (and not how it is done).</p>
+<p><a class="reference external" href="https://www.python.org/dev/peps/pep-0257/">PEP257</a> provides very basic guidelines for docstrings.
+There are many ways you could format a docstring (different styles/conventions).
+We recommend using <a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html">numpy style docstrings</a>,
+which we used for the example above and for the <code class="docutils literal notranslate"><span class="pre">calculate_distance</span></code> function.</p>
+<blockquote>
+<div><h3 class="rubric" id="the-doc-attribute">The <code class="docutils literal notranslate"><span class="pre">__doc__</span></code> attribute</h3>
+<p>When you add a docstring to a function or module, python automatically adds this to the <code class="docutils literal notranslate"><span class="pre">__doc__</span></code> attribute of the object.</p>
+<p>You can also see an object’s docstring by typing <code class="docutils literal notranslate"><span class="pre">object.__doc__</span></code> into the Python interpreter.
+For example, to see the docstring associated with the canvas function, <code class="docutils literal notranslate"><span class="pre">molecool.canvas.__doc__</span></code> into the Python interpreter (after importing <code class="docutils literal notranslate"><span class="pre">molecool</span></code>, of course.)
+{: .callout}</p>
+</div></blockquote>
+<section id="sections-of-a-docstring">
+<h4>Sections of a Docstring<a class="headerlink" href="#sections-of-a-docstring" title="Permalink to this heading">#</a></h4>
+<p>Each docstring has a number of sections which are separated by headings.
+Headings should be underlined with hyphens (<code class="docutils literal notranslate"><span class="pre">-----</span></code>).
+There are many options for sections, we will only cover the most relevant here.
+If you would like to see a full list, check out the documentation for <a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html">numpy style docstrings</a>.</p>
+<section id="short-summary">
+<h5>1. Short summary<a class="headerlink" href="#short-summary" title="Permalink to this heading">#</a></h5>
+<p>A one-line summary that does not use the variable name or the function name.
+In our <code class="docutils literal notranslate"><span class="pre">calculate_distance</span></code> function, this corresponds to the following.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-20" name="sd-tab-set-20" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-20">
+PYTHON</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Calculate the distance between two points.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="extended-summary">
+<h5>2. Extended summary<a class="headerlink" href="#extended-summary" title="Permalink to this heading">#</a></h5>
+<p>A few sentences giving a detailed description of the function or module.
+This section should be used to clarify <em>functionality</em>, not to discuss implementation.</p>
+<p>We do not have an extended summary in our <code class="docutils literal notranslate"><span class="pre">calculate_distance</span></code> function, since it is relatively straightforward.</p>
+</section>
+<section id="parameters">
+<h5>3. Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading">#</a></h5>
+<p>This section contains a description of the function arguments - keywords and expected types.</p>
+<p>The parameters for our <code class="docutils literal notranslate"><span class="pre">calculate_distance</span></code> function are shown below.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-21" name="sd-tab-set-21" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-21">
+PYTHON</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Parameters</span>
+<span class="sd">----------</span>
+<span class="sd">rA, rB : np.ndarray</span>
+<span class="sd">    The coordinates of each point.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here, you can see that the parameter section begins with the section title (“Parameters”),
+followed by a line of hyphens (”—-“).
+On the next line, we have the argument names (<code class="docutils literal notranslate"><span class="pre">rA,</span> <span class="pre">rB</span></code>),
+then a colon (<code class="docutils literal notranslate"><span class="pre">:</span></code>) followed by the input type of the argument.
+This line says that the arguments <code class="docutils literal notranslate"><span class="pre">rA</span></code> and <code class="docutils literal notranslate"><span class="pre">rB</span></code> should be of type <code class="docutils literal notranslate"><span class="pre">np.ndarray</span></code>.
+The next line gives a more detailed description of the parameter.
+When the input parameters are of different type, or they aren’t related to each other,
+they should be written on separate lines.</p>
+</section>
+<section id="returns">
+<h5>4. Returns<a class="headerlink" href="#returns" title="Permalink to this heading">#</a></h5>
+<p>This section is very similar to the <code class="docutils literal notranslate"><span class="pre">Parameters</span></code> section above.
+In contrast to the <code class="docutils literal notranslate"><span class="pre">Parameters</span></code> section, each returned value does not have to be named,
+but the type of the returned value is required.</p>
+<p>For our <code class="docutils literal notranslate"><span class="pre">calculate_distance</span></code> function, our <code class="docutils literal notranslate"><span class="pre">Returns</span></code> section looks like the following.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-22" name="sd-tab-set-22" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-22">
+PYTHON</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Returns</span>
+<span class="sd">-------</span>
+<span class="sd">distance : float</span>
+<span class="sd">    The distance between the two points.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="examples">
+<h5>5. Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h5>
+<p>This is an optional section to show examples of functionality.
+This section is meant to illustrate usage.
+Though this section is optional, its use is strongly encouraged.</p>
+<p>Consider the example we have in our docstring</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-23" name="sd-tab-set-23" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-23">
+PYTHON</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Examples</span>
+<span class="sd">--------</span>
+<span class="sd">&gt;&gt;&gt; r1 = np.array([0, 0, 0])</span>
+<span class="sd">&gt;&gt;&gt; r2 = np.array([0, 0.1, 0])</span>
+<span class="sd">&gt;&gt;&gt; calculate_distance(r1, r2)</span>
+<span class="sd">0.1</span>
+<span class="sd">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>It is important that your examples in docstrings are working Python.
+We will see in the <code class="docutils literal notranslate"><span class="pre">testing</span></code> lesson how we can run automatic tests on our docstrings,
+and in the <code class="docutils literal notranslate"><span class="pre">documentation</span></code> lesson, we will see how we can display examples in documentation to our users.</p>
+<p>We have three lines of code for our example. In examples, lines of code begin with <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code>.
+The first two lines define numpy arrays that are used in our <code class="docutils literal notranslate"><span class="pre">calculate_distance</span></code> function.
+Note that <code class="docutils literal notranslate"><span class="pre">r1</span></code> and <code class="docutils literal notranslate"><span class="pre">r2</span></code> must be numpy arrays (as indicated by our <code class="docutils literal notranslate"><span class="pre">Parameters</span></code> section),
+or our example will not give valid Python code (our function would error if we ran it).
+On the last line, you give the output (with no <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code> in front.)</p>
+<p>Now that we’ve written a function in our project, we should commit our changes and push to GitHub.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-24" name="sd-tab-set-24" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-24">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>.
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;edit style of calculate_distance function&quot;</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="exercise-docstrings">
+<h3>Exercise - Docstrings<a class="headerlink" href="#exercise-docstrings" title="Permalink to this heading">#</a></h3>
+<div class="exercise admonition">
+<p class="admonition-title">Exercise - Docstrings</p>
+<p>Let’s add a docstring to our <code class="docutils literal notranslate"><span class="pre">open_pdb</span></code> function including short summary, extended summary, parameters, and returns sections.</p>
+<p>Start with the following docstring.
+You will need to add the <code class="docutils literal notranslate"><span class="pre">Parameters</span></code> and <code class="docutils literal notranslate"><span class="pre">Returns</span></code> sections and edit the one-line description.
+We have filled in an extended summary.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-25" name="sd-tab-set-25" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-25">
+PYTHON</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">open_pdb</span><span class="p">(</span><span class="n">file_location</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;One line description here.</span>
+
+<span class="sd">    The pdb file must specify the atom elements in the last column, and follow</span>
+<span class="sd">    the conventions outlined in the PDB format specification.</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="solution dropdown admonition">
+<p class="admonition-title">Solution</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-26" name="sd-tab-set-26" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-26">
+PYTHON</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">open_pdb</span><span class="p">(</span><span class="n">file_location</span><span class="p">):</span>
+<span class="w">     </span><span class="sd">&quot;&quot;&quot;Open and read coordinates and atom symbols from a pdb file.</span>
+
+<span class="sd">     The pdb file must specify the atom elements in the last column, and follow</span>
+<span class="sd">     the conventions outlined in the PDB format specification.</span>
+
+<span class="sd">     Parameters</span>
+<span class="sd">     ----------</span>
+<span class="sd">     file_location : str</span>
+<span class="sd">         The location of the pdb file to read in.</span>
+
+<span class="sd">     Returns</span>
+<span class="sd">     -------</span>
+<span class="sd">     coords : np.ndarray</span>
+<span class="sd">         The coordinates of the pdb file.</span>
+<span class="sd">     symbols : list</span>
+<span class="sd">         The atomic symbols of the pdb file.</span>
+
+<span class="sd">     &quot;&quot;&quot;</span>
+
+     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_location</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+         <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+
+     <span class="n">coordinates</span> <span class="o">=</span> <span class="p">[]</span>
+     <span class="n">symbols</span> <span class="o">=</span> <span class="p">[]</span>
+
+     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+         <span class="k">if</span> <span class="s1">&#39;ATOM&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span> <span class="ow">or</span> <span class="s1">&#39;HETATM&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">6</span><span class="p">]:</span>
+             <span class="n">symbols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">76</span><span class="p">:</span><span class="mi">79</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+
+             <span class="n">coords</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">line</span><span class="p">[</span><span class="mi">30</span><span class="p">:</span><span class="mi">55</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()]</span>
+             <span class="n">coordinates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span>
+
+     <span class="n">coords</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">coordinates</span><span class="p">)</span>
+     <span class="n">symbols</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">symbols</span><span class="p">)</span>
+
+     <span class="k">return</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">coords</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Once you’re done make sure to add, commit, and push your changes to GitHub.</p>
+</div>
+</div>
+</section>
+<section id="more-on-coding-style">
+<h3>More on Coding Style<a class="headerlink" href="#more-on-coding-style" title="Permalink to this heading">#</a></h3>
+<p>If you look at PEP8, you will see that it is quite long.
+While you should definitely read it if you spend a lot of time programming in Python,
+there are luckily tools which will help us make sure
+our code is following PEP8 convention or other styling guidelines.
+There are auto-formatting tools such as <code class="docutils literal notranslate"><span class="pre">yapf</span></code> and <code class="docutils literal notranslate"><span class="pre">Black</span></code>,
+and static code “linters” such as <code class="docutils literal notranslate"><span class="pre">pylint</span></code> or <code class="docutils literal notranslate"><span class="pre">flake8</span></code>.</p>
+<p>Automatic code formatters will parse your python files and format them
+according to standards defined by that code formatter.
+It is usually a good idea to use a formatter (of your choice) when working on a python project.
+In particular, <a class="reference external" href="https://github.com/psf/black">Black</a> has gained popularity lately.</p>
+<p>We will use <a class="reference external" href="https://github.com/psf/black">Black</a> in this workshop.
+Black is an auto-formatter which is almost entirely non-customizable,
+ensuring all of your files will be uniform.</p>
+<p>Install <code class="docutils literal notranslate"><span class="pre">black</span></code> using <code class="docutils literal notranslate"><span class="pre">pip</span></code>. In your terminal, type</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-27" name="sd-tab-set-27" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-27">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>black
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can use <code class="docutils literal notranslate"><span class="pre">black</span></code> on our python files.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-28" name="sd-tab-set-28" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-28">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>black<span class="w"> </span>molecool/functions.py
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can see the changes to the <code class="docutils literal notranslate"><span class="pre">write_xyz</span></code> function, for example.
+You’ll notice that Black also has some rules which are in addition to PEP8 formatting.
+For example, strings are all normalized to use double quotes.
+Note that <code class="docutils literal notranslate"><span class="pre">black</span></code> does not always follow PEP8. For example,
+PEP8 recommends that line lengths be no more than 79 characters.
+This is a convention which is often not followed. Black defaults to 88 characters per line instead.
+When you are working on a project, the exact style you use may be different.
+However, it is important to choose a consistent style.
+This will make your code much cleaner and easier to read.</p>
+<p>Now that we’ve changed and formatted some functions in our project,
+we should commit our changes and push to GitHub.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-29" name="sd-tab-set-29" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-29">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>.
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;run black on molecool&quot;</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>master
+</pre></div>
+</div>
+</div>
+</div>
+<p>There are other tools, such as <a class="reference external" href="https://www.pylint.org/">pylint</a> and
+<a class="reference external" href="https://flake8.pycqa.org/en/latest/">flake8</a> that are not automatic formatters,
+but will check your code for adherence to the PEP8 standard.
+Pylint, for example, will find your variables which are not <code class="docutils literal notranslate"><span class="pre">snake_case</span></code>,
+functions which do not have <code class="docutils literal notranslate"><span class="pre">docstrings</span></code>, simple stylistic changes, unused variables, etc.
+Flake8 is a little less strict in general.
+We will try <code class="docutils literal notranslate"><span class="pre">flake8</span></code> out here.
+If you would like to try <code class="docutils literal notranslate"><span class="pre">flake8</span></code>, first install it.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-30" name="sd-tab-set-30" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-30">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>flake8
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can run it on our <code class="docutils literal notranslate"><span class="pre">functions</span></code> module.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-31" name="sd-tab-set-31" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-31">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>flake8<span class="w"> </span>molecool/functions.py
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s examine one of the errors shown by the flake8 command above.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-32" name="sd-tab-set-32" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-32">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">molecool/functions.py:1:1: F401 &#39;os&#39; imported but unused</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This tells us it is looking at line 1 of <code class="docutils literal notranslate"><span class="pre">molecool/functions.py</span></code> (your line number may vary).
+<code class="docutils literal notranslate"><span class="pre">F401</span></code> is an error code which you can look up.
+Here, we are importing <code class="docutils literal notranslate"><span class="pre">os</span></code>, but never using it.
+We should remove this from our file.</p>
+<p>You will also see a second “unused import” error:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-33" name="sd-tab-set-33" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-33">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">molecool/functions.py:5:1: F401 &#39;mpl_toolkits.mplot3d.Axes3D&#39; imported but unused</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Although it appears this isn’t used, this import is actually necessary for our 3D plot.
+We can tell <code class="docutils literal notranslate"><span class="pre">flake8</span></code> to ignore this problem by adding a special comment:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-34" name="sd-tab-set-34" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-34">
+PYTHON</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>  <span class="c1">## noqa: F401</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can run <code class="docutils literal notranslate"><span class="pre">flake8</span></code> again to see that the import error is no longer reported.</p>
+</section>
+</section>
+<section id="key-points">
+<h2>Key Points<a class="headerlink" href="#key-points" title="Permalink to this heading">#</a></h2>
+<div class="key admonition">
+<p class="admonition-title">Key Points</p>
+<ul class="simple">
+<li><p>Your project should adopt a consistent style so that others can easily read it.</p></li>
+<li><p>The style adopted in Python is called PEP8.</p></li>
+<li><p>There are autoformatting tools you can use to ensure that your code meets PEP8 standards.</p></li>
+<li><p>All functions and modules should be documented with docstrings.</p></li>
+<li><p>Docstrings have a specific format. We recommend the NumPy format for docstrings.</p></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="00-code-organization-documentation.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Code Style and Documentation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="05-package-structure.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Deciding Package Structure</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#editing-a-function-in-our-package">Editing a function in our package</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#raising-exceptions">Raising Exceptions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coding-style">Coding Style</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-names">Variable names</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indentation">Indentation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#whitespace">Whitespace</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-improving-the-calculate-distance-function">Exercise - Improving the <code class="docutils literal notranslate"><span class="pre">calculate_distance</span></code> function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docstrings">Docstrings</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sections-of-a-docstring">Sections of a Docstring</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#short-summary">1. Short summary</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#extended-summary">2. Extended summary</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#parameters">3. Parameters</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#returns">4. Returns</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">5. Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-docstrings">Exercise - Docstrings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#more-on-coding-style">More on Coding Style</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-points">Key Points</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div class="tocsection sourcelink">
+    <a href="_sources/04-function-style.md.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner"></div>
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  
+
+
+
+  
+  
+  
+  
+  
+  
+  
+
+
+<div class="row h-10">
+    <div class="col-2">
+        <a href="https://molssi.org/" target="_blank" title="Go to MolSSI in a new tab">
+            <img src="_static/molssi_main_logo.png" class="logo__image only-light footer_logo" alt="Logo image">
+            <img src="_static/molssi_main_logo_inverted_white.png" class="logo__image only-dark footer_logo" alt="Logo image">
+        </a>
+    </div>
+    <div class="col-8">
+        <p> &copy; Copyright 2019-2023 <a href="https://molssi.org/">The Molecular Sciences Software Institute</a></p>
+        <p>Funded by the National Science Foundation 
+          <a href="https://nsf.gov/awardsearch/showAward?AWD_ID=1547580">OAC-1547580</a> and 
+          <a href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=2136142">CHE-2136142.</a></p>
+ 
+        
+        <p class="sphinx-version">
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br>
+        </p>
+        
+
+        <p class="theme-version">
+        Built with a customized <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.1.
+        </p>
+
+    </div>
+    <div class="col-2">
+        <a href="https://nsf.gov/" target="_blank" title="Go to the NSF in a new tab">
+            <img src="_static/nsf.png" class="footer_logo" alt="The NSF">
+          </a>
+    </div>
+</div></div>
+      
+    </div>
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>
