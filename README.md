@@ -21,7 +21,7 @@ This workshop walks students through setting up, writing code, and setting up mu
 To contribute to this lesson, fork this repository and make changes on your local clone. Once you have changes you would like incorporated, create a pull request, and we will review your contributions.
 
 All edits to lessons should be done under `_episodes` in the appropriate markdown file. We use [Sphinx] with a variation of the [PyData Sphinx Theme](https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html) and [MyST parser](https://myst-parser.readthedocs.io/en/latest/) for lessons. 
-There are custom admonitions for overviews, key points, and exercises. You can see examples of custom admonitions on  
+There are custom admonitions for overviews, key points, and exercises. You can see examples of custom admonitions in the lesson files.  
 
 
 [cookiecutter]: https://github.com/MolSSI/cookiecutter-cms
