@@ -7,9 +7,9 @@ Questions:
 - How can we document our package?
 
 Objectives:
-- Run the lesson checking script and interpret its output correctly.
-- Explain in-code documentation
-- Explain documentation tools like Read The Docs
+- Explain types of documentation.
+- Learn to write and documentation using the Sphinx package.
+- Deploy documentation to the web using Read The Docs.
 ````
 
 
