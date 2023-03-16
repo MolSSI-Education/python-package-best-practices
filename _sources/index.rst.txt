@@ -5,15 +5,13 @@ This course by `The Molecular Sciences Software Institute <https://molssi.org/>`
 teaches users MolSSI's best practices
 in Python package development.
 
-MolSSI best practices provides a starting point to get into software
-development operations to ensure that your code is reliable and reproducible
-while decreasing long-term maintenance requirements, increasing long-term
-viability, and allow others to work on your code base to assist your own
-efforts. Before starting into MolSSI best practice one must first think about
-the user base of a given project whether this is a project only used by
-yourself, within a small group, or a large community project. If your project
-is small and personal you may want to consider each topic in detail before
-implementing while for large community projects each topic is quite crucial.
+MolSSI's best practices provide a starting point to learning software-development processes and protocols. 
+Adhering to these protocols will ensure that your code is reliable and reproducible while decreasing long-term maintenance, 
+increasing long-term viability, and allowing others to contribute to your code base. 
+Before starting to learn the MolSSI's best practices, you should first consider your project's user and developer community. 
+If your project is small with a limited number of potential contributors, 
+certain topics from the best practices course may be more important to your work than others.  
+However, for projects with a large user base, it is crucial to complete all components of the course.
 
 This lesson is under continual development, please report issues to the 
 `workshop repository <https://github.com/MolSSI-Education/python-package-best-practices>`_. 
