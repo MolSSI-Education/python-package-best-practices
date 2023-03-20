@@ -123,7 +123,6 @@ html_theme_options = {
       "molssi_dark": "molssi_main_logo_inverted_white.png",
     },
 	"show_toc_level": 2,
-    "google_analytics_id": "G-FHKVGE8HKZ",
 	"header_links_before_dropdown": 4,
 	"external_links": [
       {"name": "MolSSI", "url": "https://molssi.org"}
@@ -133,6 +132,10 @@ html_theme_options = {
     "footer_start": [ "molssi_footer" ],
     "footer_end": [],
     "icon_links":[],
+}
+
+html_theme_options["analytics"] = {
+    "google_analytics_id": "G-FHKVGE8HKZ",
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
