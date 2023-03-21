@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <title>404 Not Found</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-family: Arial, sans-serif;
+        text-align: center;
+      }
+    </style>
+    <script>
+      function redirectToPage() {
+        const currentURL = window.location.href;
+        let newURL;
+        if (currentURL.endsWith("index.html")) {
+          newURL = currentURL.replace(/index\.html$/, "");
+        } else {
+          newURL = currentURL.replace(/\/[^/]*$/, "");
+        }
+        window.location.replace(newURL);
+        return newURL;
+      }
+    </script>
+  </head>
+  <body onload="redirectToPage()">
+    <h1>404 Not Found</h1>
+    <p>If you are not redirected automatically, please <a href="#" onclick="this.href = redirectToPage()">click here</a>.</p>
+  </body>
+</html>

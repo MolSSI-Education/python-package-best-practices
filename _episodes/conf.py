@@ -26,7 +26,7 @@ import os
 import sys
 # -- Project information -----------------------------------------------------
 
-project = 'molssi_best_practices'
+project = 'MolSSI Best Practices'
 author = 'The Molecular Sciences Software Institute'
 
 # The short X.Y version
@@ -69,6 +69,10 @@ napoleon_use_ivar = True
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
+
+# Have the custom 404 page copied to the top
+# level of the build
+html_extra_path = ['_static/html']
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
