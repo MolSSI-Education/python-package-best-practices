@@ -400,8 +400,8 @@ If you are on WSL, or would like to use the command line, you can download the w
 (similar to how you downloaded the miniconda installer)
 
 ````{tab-set-code}
-```{code-block} shell
-curl -O https://education.molssi.org/python-package-best-practices/data/starting_material.zip
+```{code-block} shell URL_HERE
+curl -O -L https://github.com/MolSSI-Education/python-package-best-practices/raw/main/data/starting_material.zip
 ```
 ````
 
