@@ -116,13 +116,13 @@ To create an environment for this project using `conda`,
 ````{tab-set-code}
 
 ```{code-block} shell
-conda create --name molssi_best_practices "python=3.10"
+conda create --name molssi_best_practices "python=3.11"
 ```
 ````
 
 For other projects, you should replace `molssi_best_practices` with a descriptive name for your project.
 `conda` also allows you to specify the Python version to use with the environment.
-Here, `python=3.10` specifies that we want to use Python 3.10 in this environment.
+Here, `python=3.11` specifies that we want to use Python 3.11 in this environment.
 Executing this command will list the environment location and a list of Python packages to be installed.
 Choose `y(es)` when prompted.
 
@@ -156,7 +156,7 @@ $ conda deactivate
 
 You can use `conda` to create environments with different Python versions. 
 You might be able to see how this could be useful for running old code 
-(you can change `3.10` in the command above to any version you want), 
+(you can change `3.11` in the command above to any version you want),
 or testing your code in different Python versions.
 
 ### Package installation using conda
@@ -427,7 +427,7 @@ curl -O -L https://github.com/MolSSI-Education/python-package-best-practices/raw
     ~~~
 
 ## Conclusion
-At the end of this set-up, you should have created a Python environment (`molssi_best_practices`) which has Python 3.10, `numpy`, `matplotlib`, `jupyter`, and `cookiecutter` installed.
+At the end of this set-up, you should have created a Python environment (`molssi_best_practices`) which has Python 3.11, `numpy`, `matplotlib`, `jupyter`, and `cookiecutter` installed.
 You should also have downloaded starting material, installed and created an account on GitHub, and configured Git.
 
 [Anaconda]: https://www.anaconda.com/products/individual
