@@ -198,7 +198,7 @@ For example, if you wanted to install NumPy version 1.15: `conda install numpy=1
 For this workshop, you will need to install the following packages into your environment
 - NumPy
 - Matplotlib
-- jupyter notebook
+- JupyterLab
 
 Packages available to Conda are stored within `channels`.
 Some packages are not stored in the default Conda channel, so we need to specify where Conda can find the package with `-c` followed by a channel name in our installation command.
@@ -427,7 +427,8 @@ curl -O -L https://github.com/MolSSI-Education/python-package-best-practices/raw
     ~~~
 
 ## Conclusion
-At the end of this set-up, you should have created a Python environment (`molssi_best_practices`) which has Python 3.10, `numpy`, `matplotlib`, `jupyter`, and `cookiecutter` installed.
+At the end of this set-up, you should have created a Python environment (`molssi_best_practices`)
+which has Python 3.10, `numpy`, `matplotlib`, `jupyterlab`, and `cookiecutter` installed.
 You should also have downloaded starting material, installed and created an account on GitHub, and configured Git.
 
 [Anaconda]: https://www.anaconda.com/products/individual
