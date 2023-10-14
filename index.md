@@ -23,7 +23,7 @@ implementing while for large community projects each topic is quite crucial.
 > ## Prerequisites
 >
 > This material is best suited for people who have experience scripting in Python and are ready to learn about how to make their scripts into a software package.
-> You should have experience programming Python and in using the terminal (or shell)
+> You should have experience programming Python and in using the terminal (or shell).
 > 
 > You can see a tutorial on using the shell from [Software Carpentry](https://swcarpentry.github.io/shell-novice/).
 {: .prereq}
