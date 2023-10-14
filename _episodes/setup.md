@@ -58,7 +58,7 @@ This means that software installed on one operating system is not available in t
 If you are running the Windows 11 operating system, 
 you can [set up WSL to use graphical interfaces on your computer](https://docs.microsoft.com/en-us/windows/wsl/tutorials/gui-apps). 
 Otherwise, you will only be able to interact with WSL through the terminal (and the text editor VSCode, 
-see later in the set-up for information on how to use VS Code in WSL)
+see later in the set-up for information on how to use VS Code in WSL).
 
 ## Miniconda Installation
 You can install miniconda through a graphical interface or using your terminal. 
@@ -283,7 +283,7 @@ conda install -c conda-forge git
 
 
 Note that because of the solver that conda uses to decide which version of a package to install you may end up with a version that is < 2.28. 
-you can use the same command from above `git --version` to see what version has been installed.
+You can use the same command from above `git --version` to see what version has been installed.
 
 If the output of that command is < 2.28 you will want to use the following command to specify the version to install. 
 Any version >=2.28 is acceptable.
@@ -322,7 +322,7 @@ git config --global user.email "YOUR_EMAIL_ADDRESS"
 
 
 Next, you will need to set the name of the default branch git uses.
-The following command will set your default branch name to be "main"
+The following command will set your default branch name to be "main".
 
 ````{tab-set-code} 
 
