@@ -1,4 +1,4 @@
-# Set Up
+# `Set Up`_
 
 Participation in the MolSSI Best Practices Workshop will require using your own personal computer or laptop and installing some software.
 
