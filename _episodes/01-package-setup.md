@@ -20,7 +20,7 @@ Objectives:
 For this workshop,
 we are going to create a Python package that performs analysis and creates visualizations for molecules.
 We will start with a Jupyter Notebook that has some functions and analysis.
-(You should have downloaded the Jupyter Notebook during setup (`Setup`_). 
+(You should have downloaded the Jupyter Notebook during setup (:doc:`setup`). 
 
 The idea is that we would like to take this Jupyter Notebook
 and convert the functions we have created into a Python package.
@@ -44,11 +44,11 @@ We will discuss what all of these are later in the workshop.
 
 ### Obtaining CookieCutter
 
-You should have the general CookieCutter installed, according to the directions given in the setup (`Setup`_) portion of this workshop.
-If you do not, please navigate to setup (`Setup`_) and follow the instructions given there.
+You should have the general CookieCutter installed, according to the directions given in the setup (:doc:`setup`) portion of this workshop.
+If you do not, please navigate to setup (:doc:`setup`) and follow the instructions given there.
 
 ### Running CookieCutter
-Navigate to the `molssi_best_practices` directory created during setup (`Setup`_).
+Navigate to the `molssi_best_practices` directory created during setup (:doc:`setup`).
 (CookieCutter will generate the new project in a subdirectory.)
 Run the [CMS CookieCutter](https://github.com/MolSSI/cookiecutter-cms) to start your project:
 
