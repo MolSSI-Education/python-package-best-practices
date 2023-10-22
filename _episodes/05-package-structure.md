@@ -53,8 +53,6 @@ please review the [package setup] section of the lessons.
 │   ├── README.md
 │   ├── conda-envs                  <- Conda environments for testing
 │   │   └── test_env.yaml
-│   ├── legacy-miniconda-setup      <- Legacy Travis CI Helper, will likely be removed in later version
-│   │   └── before_install.sh
 │   └── scripts
 │       └── create_conda_env.py     <- OS agnostic Helper script to make conda environments based on simple flags
 ├── docs                            <- Documentation template folder with many settings already filled in
