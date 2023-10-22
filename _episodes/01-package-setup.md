@@ -381,7 +381,7 @@ Open Python (type `python` into your terminal window), and type
 
 
 This will give a list of locations python looks for packages when you do an import.
-One of the locations should end with `python3.7/site-packages`.
+One of the locations should end with `python3.11/site-packages`.
 The site packages folder is where all of your installed packages for a particular environment are located.
 
 To do a development mode install, type
