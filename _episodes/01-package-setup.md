@@ -44,11 +44,11 @@ We will discuss what all of these are later in the workshop.
 
 ### Obtaining CookieCutter
 
-You should have the general CookieCutter installed, according to the directions given in the setup (([Set Up](setup.md))) portion of this workshop.
-If you do not, please navigate to setup (([Set Up](setup.md))) and follow the instructions given there.
+You should have the general CookieCutter installed, according to the directions given in the setup ([Set Up](setup.md)) portion of this workshop.
+If you do not, please navigate to setup ([Set Up](setup.md)) and follow the instructions given there.
 
 ### Running CookieCutter
-Navigate to the `molssi_best_practices` directory created during setup (([Set Up](setup.md))).
+Navigate to the `molssi_best_practices` directory created during setup ([Set Up](setup.md)).
 (CookieCutter will generate the new project in a subdirectory.)
 Run the [CMS CookieCutter](https://github.com/MolSSI/cookiecutter-cms) to start your project:
 
