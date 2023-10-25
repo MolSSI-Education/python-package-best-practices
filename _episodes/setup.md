@@ -210,7 +210,7 @@ You can install multiple libraries at the same time by listing them one after an
 ````{tab-set-code} 
 
 ```{code-block} shell
-$ conda install -c conda-forge numpy matplotlib notebook
+$ conda install -c conda-forge numpy matplotlib jupyterlab
 ```
 ````
 
