@@ -192,8 +192,6 @@ You should see the following directory structure.
 │   ├── README.md
 │   ├── conda-envs                  <- Conda environments for testing
 │   │   └── test_env.yaml
-│   ├── legacy-miniconda-setup      <- Legacy Travis CI Helper, will likely be removed in later version
-│   │   └── before_install.sh
 │   └── scripts
 │       └── create_conda_env.py     <- OS agnostic Helper script to make conda environments based on simple flags
 ├── docs                            <- Documentation template folder with many settings already filled in
@@ -383,7 +381,7 @@ Open Python (type `python` into your terminal window), and type
 
 
 This will give a list of locations python looks for packages when you do an import.
-One of the locations should end with `python3.7/site-packages`.
+One of the locations should end with `python3.11/site-packages`.
 The site packages folder is where all of your installed packages for a particular environment are located.
 
 To do a development mode install, type
