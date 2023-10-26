@@ -100,6 +100,40 @@ conda init
 ```
 ````
 
+### Set conda to use the libmamba solver
+The libmamba solver is an optional replacement to the default conda solver.
+The libmamba solver will handle dependency solving much faster than the default solver.
+To use the libmamba solver, first ensure your conda is up to date.
+````{tab-set-code}
+
+```{code-block} shell
+conda update -n base conda
+```
+````
+
+Then install the libmamba solver into your base environment.
+````{tab-set-code}
+
+```{code-block} shell
+conda install -n base conda-libmamba-solver
+```
+````
+
+Finally, set the default solver to be the libmamba solver.
+````{tab-set-code}
+
+```{code-block} shell
+conda config --set solver libmamba
+```
+````
+
+```{admonition} Using Mamba instead of Conda
+:class: attention
+If desired, instead of using a miniconda installation with the libmamba solver, you can directly use Mamba or Micromamba.
+Installation instructions can be found in Mamba's documentation: https://mamba.readthedocs.io/en/latest/index.html
+If using a version of mamba instead of conda, simply replace `conda` in all following instructions with `mamba`.
+```
+
 ## Creating a conda environment
 
 A `conda` environment contains a specific collection of packages you have installed.
