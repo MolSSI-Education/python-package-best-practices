@@ -19,10 +19,10 @@ Objectives:
 
 For this workshop,
 we are going to create a Python package that performs analysis and creates visualizations for molecules.
-We will start from a Jupyter notebook that has some functions and analysis.
-(You should have downloaded the Jupyter notebook during setup(setup).
+We will start with a Jupyter Notebook that has some functions and analysis.
+(You should have downloaded the Jupyter Notebook during setup ([Set Up](setup.md)). 
 
-The idea is that we would like to take this Jupyter notebook
+The idea is that we would like to take this Jupyter Notebook
 and convert the functions we have created into a Python package.
 That way, if anyone (a lab-mate, for example) would like to use our functions,
 they can do so by installing the package and importing it into their own scripts.
@@ -44,11 +44,11 @@ We will discuss what all of these are later in the workshop.
 
 ### Obtaining CookieCutter
 
-You should have the general CookieCutter installed, according to the directions given in the setup(setup) portion of this workshop.
-If you do not, please navigate to setup(setup) and follow the instructions given there.
+You should have the general CookieCutter installed, according to the directions given in the setup ([Set Up](setup.md)) portion of this workshop.
+If you do not, please navigate to setup ([Set Up](setup.md)) and follow the instructions given there.
 
 ### Running CookieCutter
-Navigate to the `molssi_best_practices` directory created during setup(setup).
+Navigate to the `molssi_best_practices` directory created during setup ([Set Up](setup.md)).
 (CookieCutter will generate the new project in a subdirectory.)
 Run the [CMS CookieCutter](https://github.com/MolSSI/cookiecutter-cms) to start your project:
 
@@ -65,7 +65,7 @@ and tells cookiecutter to look at GitHub (`gh`) in the repository under `molssi/
 This repository contains a template that cookiecutter uses to create your project,
 once you have provided some starting information.
 
-You will see an interactive prompt which asks questions about your project.
+You will see an interactive prompt that asks questions about your project.
 Here, the prompt appears first, followed by the default value in square brackets.
 The first question will be on your project name.
 You have very cleverly decided to give it the name `molecool`
@@ -109,12 +109,12 @@ Choose from 1, 2 (1, 2) [1]:
 ### Explanation of CookieCutter Questions
 
 The first two questions are for the project and repository name.
-The project name is the name of the project, while the repo name is the name of the folder that cookiecutter will create. Usually, you will leave these two to be the same thing.
-The `repo_name` is the name which you will use to import the package you eventually create, and because of that has some rules.
+The project name is the name of the project, while the repo name is the name of the folder that CookieCutter will create. Usually, you will leave these two to be the same thing.
+The `repo_name` is the name that you will use to import the package you eventually create, and because of that has some rules.
 The `repo_name` must be a valid Python module name and cannot contain spaces.
 
 The next choice is about the first module name.
-Modules are the `.py` files which contain python code.
+Modules are the `.py` files that contain Python code.
 The default for this is the `repo_name`, but we will change this to avoid confusion (the module `molecool.py` in a folder named `molecool` in a folder named `molecool`??).
 For now, we'll just name our first module `functions`, and this is where we will put all of our starting functions.
 
@@ -126,8 +126,8 @@ Note that your email address is not recorded or kept by the CookieCutter softwar
 
 #### License Choice
 Choosing which license to use is often confusing for new developers.
-The MIT license (option 1) is a very common license, and the default on GitHub.
-It allows for anyone to use, modify, or redistribute your work with no restrictions (and also no warranty).
+The MIT license (option 1) is a very common license and the default on GitHub.
+It allows anyone to use, modify, or redistribute your work with no restrictions (and also no warranty).
 
 Here, we have chosen the `BSD-3-Clause`.
 The `BSD-3-Clause` license is an open-source, permissive license (meaning that few requirements are placed on developers of derivative works), similar to the MIT license.
@@ -151,16 +151,16 @@ So, if you ever start a project that becomes popular or has contributors, be sur
 
  Open-source licenses can either be 'permissive' or 'copy-left'.
  Copy-left licenses require that derivative works also be open source.
- Out of the choices given above, MIT and BSD-3-Clause are permissive, while LGPLv3 is a copy left license.
+ Out of the choices given above, MIT and BSD-3-Clause are permissive, while LGPLv3 is a copyleft license.
 
  We recommend that you spend some time reading about licensing.
  One place to start is this [helpful guide]( https://github.com/choderalab/software-development/blob/master/LICENSING_GUIDELINES.md) from the Chodera Lab or the website [choosealicense.com](https://choosealicense.com).  
 ```
 
 #### Dependency Source
-This determines some things in set-up for what will be used to install dependencies for testing.
-This mostly has consequence for the section on [Continuous Integration](../08-CI/index.html).
-We have chosen to install dependencies from anaconda with pip fallback.
+This determines some things in the setup for what will be used to install dependencies for testing.
+This mostly has consequences for the section on [Continuous Integration](../08-CI/index.html).
+We have chosen to install dependencies from Anaconda with pip fallback.
 Don't worry too much about this choice for now.
 
 #### Support for ReadTheDocs
@@ -169,7 +169,7 @@ This option is to choose whether you would like files associated with the docume
 Choose "yes" for this workshop.
 
 ### Reviewing directory contents
-Now we can examine the project layout the CookieCutter has set up for us.
+Now we can examine the project layout CookieCutter has set up for us.
 Navigate to the newly created `molecool` directory.
 You should see the following directory structure.
 
@@ -178,7 +178,7 @@ You should see the following directory structure.
 ├── CODE_OF_CONDUCT.md              <- Code of Conduct for developers and users
 ├── LICENSE                         <- License file
 ├── MANIFEST.in                     <- Packaging information for pip
-├── README.md                       <- Description of project which GitHub will render
+├── README.md                       <- Description of the project which GitHub will render
 ├── molecool                        <- Basic Python Package import file
 │   ├── __init__.py                 <- Basic Python Package import file
 │   ├── functions.py                <- Starting package module
@@ -206,13 +206,13 @@ You should see the following directory structure.
 │   ├── getting_started.rst
 │   ├── index.rst
 │   ├── make.bat
-│   └── requirements.yaml           <- Documenation building specific requirements. Usually a smaller set than the main program
+│   └── requirements.yaml           <- Documentation building specific requirements. Usually a smaller set than the main program
 ├── pyproject.toml                  <- Generic Python build system configuration (PEP-517).
 ├── readthedocs.yml
 ├── setup.cfg                       <- Near-master config file to make house INI-like settings for Coverage, Flake8, YAPF, etc.
-├── setup.py                        <- Your package's setup file for installing with additional options that can be set
+├── setup.py                        <- Your package's setup file for installation with additional options that can be set
 ├── .codecov.yml                    <- Codecov config to help reduce its verbosity to more reasonable levels
-├── .github                         <- GitHub hooks for user contribution, pull request guides and GitHub Actions CI
+├── .github                         <- GitHub hooks for user contribution, pull request guides, and GitHub Actions CI
 │   ├── CONTRIBUTING.md
 │   ├── PULL_REQUEST_TEMPLATE.md
 │   └── workflows
@@ -228,7 +228,7 @@ Note: `tree` will not show you the helpful labels after `<-` (those were added b
 
 CookieCutter has created a lot of files!
 They can be thought of as three sections.
-In the top level of our project we have a folder for tools related to development (`devtools`),
+In the top level of our project, we have a folder for tools related to development (`devtools`),
 documentation (`docs`) and to the package itself (`molecool`).
 We will first be working in the `molecool` folder to build our package, and adding more things later.
 
