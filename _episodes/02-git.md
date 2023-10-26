@@ -939,7 +939,7 @@ def open_xyz(file_location):
     xyz_file = np.genfromtxt(fname=file_location, skip_header=2, dtype='unicode')
     symbols = xyz_file[:,0]
     coords = (xyz_file[:,1:])
-    coords = coords.astype(np.float)
+    coords = coords.astype(float)
     return symbols, coords
 
 def write_xyz(file_location, symbols, coordinates):

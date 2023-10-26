@@ -130,7 +130,7 @@ You should see an output similar to the following.
 
 ```{code-block} output
 ============================= test session starts ==============================
-platform darwin -- Python 3.6.8, pytest-3.6.4, py-1.5.4, pluggy-0.6.0
+platform darwin -- Python 3.11.6, pytest-7.4.2, pluggy-1.3.0
 rootdir: /Users/jessica/dev/molecool, inifile:
 collected 1 item
 
@@ -163,7 +163,7 @@ There are a number of additional command line arguments to [explore](https://doc
 
 ```{code-block} output
 ============================= test session starts ==============================
-platform darwin -- Python 3.6.8, pytest-3.6.4, py-1.5.4, pluggy-0.6.0 -- /Users/jessica/miniconda3/bin/python
+platform darwin -- Python 3.11.6, pytest-7.4.2, pluggy-1.3.0 -- /Users/jessica/miniconda3/bin/python
 cachedir: .pytest_cache
 rootdir: /Users/jessica/dev/molecool, inifile:
 collected 1 item
@@ -231,7 +231,7 @@ You should now see an output similar to the following
 
 ```{code-block} output
 ============================================================ test session starts ============================================================
-platform darwin -- Python 3.7.3, pytest-5.2.1, py-1.8.0, pluggy-0.13.0
+platform darwin -- Python 3.11.6, pytest-7.4.2, pluggy-1.3.0
 rootdir: /Users/jessica/lessons/molecool
 collected 2 items
 
@@ -264,7 +264,7 @@ pytest -v
 
 ```{code-block} output
 ============================================================ test session starts ============================================================
-platform darwin -- Python 3.7.3, pytest-5.2.1, py-1.8.0, pluggy-0.13.0
+platform darwin -- Python 3.11.6, pytest-7.4.2, pluggy-1.3.0
 rootdir: /Users/jessica/lessons/molecool
 collected 2 items
 
@@ -1040,7 +1040,7 @@ pytest -v -k "test_calculate_angle_many"
 
 ```{code-block} output
 ============================================================= test session starts =============================================================
-platform darwin -- Python 3.7.3, pytest-5.2.1, py-1.8.0, pluggy-0.13.0 -- /Users/jessica/miniconda3/envs/molecool/bin/python
+platform darwin -- Python 3.11.6, pytest-7.4.2, pluggy-1.3.0 -- /Users/jessica/miniconda3/envs/molecool/bin/python
 cachedir: .pytest_cache
 rootdir: /Users/jessica/lessons/molecool
 collected 14 items / 11 deselected / 3 selected                                                                                               
@@ -1109,7 +1109,7 @@ pytest -v --doctest-modules molecool
 
 ```{code-block} output
 =========================================================================== test session starts ===========================================================================
-platform darwin -- Python 3.7.3, pytest-5.2.1, py-1.8.0, pluggy-0.13.0 -- /Users/jessica/miniconda3/envs/molecool/bin/python
+platform darwin -- Python 3.11.6, pytest-7.4.2, pluggy-1.3.0 -- /Users/jessica/miniconda3/envs/molecool/bin/python
 cachedir: .pytest_cache
 rootdir: /Users/jessica/lessons/molecool
 collected 11 items                                                                                                                                                        
@@ -1140,7 +1140,7 @@ Change the expected answer to 0.2 in the docstring and re-run the test to get th
 
 ```{code-block} output
 =========================================================================== test session starts ===========================================================================
-platform darwin -- Python 3.7.3, pytest-5.2.1, py-1.8.0, pluggy-0.13.0 -- /Users/jessica/miniconda3/envs/molecool/bin/python
+platform darwin -- Python 3.11.6, pytest-7.4.2, pluggy-1.3.0 -- /Users/jessica/miniconda3/envs/molecool/bin/python
 cachedir: .pytest_cache
 rootdir: /Users/jessica/lessons/molecool
 collected 11 items                                                                                                                                                        
@@ -1201,7 +1201,7 @@ pytest --cov=molecool
 
 ```{code-block} output
 =========================================================================== test session starts ===========================================================================
-platform darwin -- Python 3.7.3, pytest-5.2.1, py-1.8.0, pluggy-0.13.0
+platform darwin -- Python 3.11.6, pytest-7.4.2, pluggy-1.3.0
 rootdir: /Users/jessica/lessons/molecool
 plugins: cov-2.8.1
 collected 10 items                                                                                                                                                        
@@ -1209,7 +1209,7 @@ collected 10 items
 molecool/tests/test_measure.py ......                                                                                                                               [ 60%]
 molecool/tests/test_molecule.py ....                                                                                                                                [100%]
 
----------- coverage: platform darwin, python 3.7.3-final-0 -----------
+---------- coverage: platform darwin, Python 3.11.6-final-0 -----------
 Name                      Stmts   Miss  Cover
 ---------------------------------------------
 molecool/__init__.py          9      0   100%
