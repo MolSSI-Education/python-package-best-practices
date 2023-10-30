@@ -30,8 +30,8 @@ To complete this lesson you will need:
 Version control keeps a complete history of your work on a given project.
 It facilitates collaboration on projects where everyone can work freely on a part
 of the project without overwriting others’ changes.
-You can move between past versions and rollback when needed.
-Also, you can review the history of your project through commit messages that describe changes on the source code,
+You can move between past versions and roll back when needed.
+Also, you can review the history of your project through commit messages that describe changes in the source code,
 and see what exactly has been modified in any given commit.
 You can see who made the changes and when it happened.
 
@@ -53,13 +53,13 @@ Other examples of version control software include Subversion (`svn`) and Mercur
 
 You should have `git` installed and configured from the setup instructions.
 
-In this section, we are going to  edit files in the Python package that we created earlier, and use `git` to track those changes.
+In this section, we are going to  edit files in the Python package that we created earlier and use `git` to track those changes.
 
 First, use a terminal to `cd` into the top directory of the local repository (the outer molecool directory).
 
 In order for `git` to keep track of your project, or any changes in your project,
 you must first tell it that you want it to do this.
-You must manually create check-points in your project if you wish to have points to return to.
+You must manually create checkpoints in your project if you wish to have points to return to.
 If you were not using the CookieCutter, you would first have to initialize your project
 (i.e. tell `git` that you were working on a project) using the command `git init`. 
 
@@ -98,7 +98,7 @@ nothing to commit, working tree clean
 ````
 
 
-This tells us that we are on the `main` branch (more about branching later), and that no files have been changed since the last commit.
+This tells us that we are on the `main` branch (more about branching later) and that no files have been changed since the last commit.
 
 Next, type
 ````{tab-set-code} 
@@ -114,7 +114,7 @@ This is something called your git *commit log*.
 Whenever you make a version, or checkpoint, of your project,
 you will be able to see information about that checkpoint using the `git log` command.
 The CookieCutter has already made a commit and written a message for you,
-and that is what we see for this first commit in the log.
+and that is what we look for in this first commit in the log.
 
 ````{tab-set-code} 
 
@@ -131,8 +131,8 @@ Date:   Mon Feb 4 10:45:26 2019 -0500
 Your version number for the Cookiecutter will depend on when you ran the Cookiecutter and the current released version.
 
 Each line of this log tells you something important about the commit,
-or check point, that exists for the project.
-On the first line,
+or checkpoint, that exists for the project.
+In the first line,
 
 ```
 commit 25ab1f1a066f68e433a17454c66531e5a86c112d (HEAD -> main, tag: 0.0.0)
@@ -150,7 +150,7 @@ Author: Your Name <your_email@something.com>
 
 This should be your information.
 This way, anyone who downloads this project can see who made each commit.
-Note that this name and email address matches what you specified when you configured `git` in the setup,
+Note that this name and email address match what you specified when you configured `git` in the setup,
 with the name and email address you specified to `cookiecutter` having no effect.
 
 ```
@@ -164,7 +164,7 @@ Next, it lists the date and time the commit was made.
 ```
 
 Finally, there will be a blank line followed by a commit message.
-The commit message is a message that whoever made the commit chose to write,
+The commit message is a message that whoever made the commit chose to write
 but should describe the change that took place when the commit was made.
 This commit message was written by `cookiecutter` for you.
 
@@ -176,14 +176,14 @@ Right now, we have only one commit: the one created by the CMS CookieCutter.
 
 Now, we will change some files and use `git` to track those changes.
 
-Let's edit our README.
+Let's edit our README file.
 Open `README.md` in your text editor of choice.
 On line 8, you should see the description of the repository we typed when running `cookiecutter`.
 
 Add the following sentence to your `README.md` under the initial description and save the file.
 
 ```
-This repository is currently under development. To do a development install, download this repository and type
+This repository is currently under development. To do installation in development mode, download this repository and type
 
 `pip install -e .`
 
@@ -251,10 +251,10 @@ Changes to be committed:
 
 We are now on the second step of creating a commit.
 We have added our files to the staging area.
-In our case, we only have one file in the staging area, but we could add more if we needed.
+In our case, we only have one file in the staging area, but we could add more if needed.
 
 To create the checkpoint, or commit, we will now use the `git commit` command.
-We add a `-m` after the command for "message."
+We add a `-m` after the command for "message".
 Whenever you create a commit, you should write a message about what the commit does.
 
 ````{tab-set-code} 
@@ -266,7 +266,7 @@ git commit -m "update readme to have instructions for developmental install"
 
 Now when we look at our log using `git log`, we see the commit we just made along with information about the author and the date of the commit.
 
-If you neglect the `-m` option, and you configured an editor during set-up,
+If you neglect the `-m` option and configure an editor during set-up,
 `git` will open the editor for you to compose your commit message.
 
 Let's continue to edit this readme to include more information.
@@ -275,7 +275,7 @@ Open `README.md` in your text editor of choice and add the following to the end.
 
 ```
 This package requires the following:
-  - numpy
+  - NumPy
   - matplotlib
 ```
 
@@ -370,10 +370,10 @@ git diff HEAD~1
 The argument to `git diff` refers to the comparison point in our commit history.
 `HEAD` is an alias for the commit at the tip of our checked-out branch.
 `~1` is a modifier that refers to the given commit minus 1.
-We are asking git to show us the difference between the current files and the second-most-recent commit.
+We are asking git to show us the difference between the current files and the second most recent commit.
 
 Lines that have been added are indicated in green with a plus sign next to them (`+`),
-while lines that have been deleted are indicated in red with a minus sign next to them (`-`)
+while lines that have been deleted are indicated in red with a minus sign next to them (`-`).
 
 ## Viewing previous versions
 
@@ -389,7 +389,7 @@ git checkout COMMIT_ID
 
 This will temporarily revert the repository to whatever the state was at the specified commit ID.
 
-Let's checkout the version before we made the most recent edit to the README.
+Let's check out the version before the most recent edit we made to the README.
 
 ````{tab-set-code} 
 
@@ -439,8 +439,8 @@ git checkout main
 :class: exercise
 
 What list of commands would mimic what the CMS CookieCutter did when it created the 
-repository and made the first commit? (hint - to initialize a repository, you use
-the command `git init`)
+repository and made the first commit? (Hint - to initialize a repository, you use
+the command `git init`.)
 
 `````{admonition} Solution
 :class: solution dropdown
@@ -457,7 +457,7 @@ git commit -m "Initial commit after CMS Cookiecutter creation, version 1.0"
 ````
 
 The first line initializes the `git` repository.
-The second line add all modified files in the current working directory, and the third line commits these files and writes the commit message.
+The second line adds all modified files to the current working directory, and the third line commits these files and writes the commit message.
 `````
 ``````
 
@@ -512,7 +512,7 @@ index 94e0b50..a68f349 100644
 ````
 
 
-To compare against the commit just before the most recent commit, add "~1" to end of "HEAD":
+To compare against the commit just before the most recent commit, add "~1" to the end of "HEAD":
 
 ````{tab-set-code} 
 
@@ -529,9 +529,11 @@ diff --git a/README.md b/README.md
 index e778cd4..94e0b50 100644
 --- a/README.md
 +++ b/README.md
-@@ -13,6 +13,10 @@ This repository is currently under development. To do a development install, dow
+@@ -13,6 +13,10 @@ This repository is currently under development. To do installation in development mode, download this repository and type
 
- in the repository directory.
+`pip install -e .`
+
+in the repository directory.
 
 +This package requires the following:
 +  - numpy
