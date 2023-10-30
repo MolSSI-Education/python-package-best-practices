@@ -577,7 +577,7 @@ When you are working on a project to implement new features,
 it is a good practice to isolate the changes you are making and work on one particular topic at a time.
 To do this, you can use something called a **branch** in git.
 Working on branches allows you to isolate particular changes.
-If you make sure that your code works before merging to your main or **main** branch,
+If you make sure that your code works before merging to your main or master branch,
 you will ensure that you always have a working version of code on your `main` branch.
 
 If you followed the set-up instructions, you should be in the `main` branch by default.
@@ -616,7 +616,7 @@ There have been two commits, and the HEAD is currently after commit 2.
 ```
 
 After we have created a new branch and checked it out, we can imagine our git history looking like this.
-The `zen` branch 'branches' or starts from the point where we used the git branch command. 
+The `zen` branch 'branches' starts from the point where we used the git branch command. 
 
 ```{image} ../fig/github_workflows/git_branch.svg
 :align: center
@@ -629,7 +629,7 @@ Note that we have not yet made a commit, but this diagram is for illustrative pu
 :align: center
 ```
 
-Now that we have a better understanding of what branching looks like, lets make some changes to the `zen` branch.
+Now that we have a better understanding of what branching looks like, let's make some changes to the `zen` branch.
 Add a new function to your `functions.py` module.
 We are going to add the ability to print "The Zen of Python". You can get the Zen of Python by typing
 
@@ -728,7 +728,7 @@ git checkout -b doc_update
 ````
 
 
-Let's add some information about developing on branches to the README.
+Let's add some information about developing branches to the README.
 Update your README to include this information:
 
 ````{tab-set-code} 
@@ -752,7 +752,7 @@ To incorporate these changes in `main`, you will need to do a `git merge`.
 When you do a merge, you should be on the branch you would like to merge into.
 In this case, we will first merge the changes from our `doc_update` branch,
 then our `zen` branch, so we should be on our `main` branch.
-Next we will use the `git merge` command.
+Next, we will use the `git merge` command.
 
 The syntax for this command is 
 
@@ -788,7 +788,7 @@ git merge zen
 ````
 
 
-This time, you will see a different message, and a text editor will open for a merge commit message.
+This time, you will see a different message and a text editor will open for a merge commit message.
 
 ````{tab-set-code} 
 
@@ -797,7 +797,7 @@ Merge made by the 'recursive' strategy.
 ```
 ````
 
-This is because `main` and `zen` have development histories which have diverged.
+This is because `main` and `zen` have development histories that have diverged.
 `git` had to do some work in this case to merge the branches.
 A *merge commit* was created. 
 
@@ -821,11 +821,11 @@ git branch -d zen
 :class: exercise
 
 For this exercise, you will be adding all the functions from your Jupyter
-notebook to the package. Create a branch to add your functions.
-Add all of the functions from your Jupyter notebook to the module
+Notebook to the package. Create a branch to add your functions.
+Add all of the functions from your Jupyter Notebook to the module
 `functions.py` in your package.
 Verify that you can use your functions.
-Once the functions are added and working, merge into your `main` branch.
+Once the functions are added and working, merge them into your `main` branch.
 
 `````{admonition} Solution
 :class: solution dropdown
@@ -840,7 +840,7 @@ git checkout -b add-functions
 ```
 ````
  
-Next, copy all of your imports from the first cell of your Jupyter notebook and paste them into the top of your file.
+Next, copy all of your imports from the first cell of your Jupyter Notebook and paste them into the top of your file.
 
 Next, copy the function definitions from the first cell and paste them above or below the `canvas` function. 
 
@@ -1082,14 +1082,14 @@ git merge add-functions
 Sometimes while you work on a project, you may end up creating some temporary files.
 For example, if your text editor is Emacs, you may end up with lots of files called `<filename>~`.
 By default, Git tracks all files, including these.
-This tends to be annoying, since it means that any time you do `git status`,
+This tends to be annoying since it means that any time you do `git status`,
 all of these unimportant files show up.
 
-We are now going to find out how to tell Git to ignore these files,
-so that it doesn't keep telling us about them ever time we do `git status`.
-Even if you aren't working with Emacs, someone else working on your project might,
-so let's do the courtesy of telling Git not to track these temporary files.
-First, lets ensure that we have a few dummy files.
+We are now going to find out how to tell Git to ignore these files
+so that it doesn't keep telling us about them every time we do `git status`.
+Even if you aren't working with Emacs, someone else working on your project might.
+So let's do the courtesy of telling Git not to track these temporary files.
+First, let's ensure that we have a few dummy files.
 Make empty files called `testing.txt~` and `README.md~` in your repository using your text editor of choice.
 
 
@@ -1128,9 +1128,9 @@ nothing added to commit but untracked files present (use "git add" to track)
 Now we will make Git stop telling us about these files.
 
 Earlier, when we looked at the hidden files, you may have noticed a file called `.gitignore`.
-Cookiecutter created this for us, however, GitHub also has built in `.gitignore` files you can add when creating an empty repository.
+Cookiecutter created this for us, however, GitHub also has built-in `.gitignore` files you can add when creating an empty repository.
 
-This file is to tell `git` which types of files we would like to ignore (thus the name `.gitignore`)
+This file is to tell `git` which types of files we would like to ignore (thus the name `.gitignore`).
 
 Look at the contents of `.gitignore`
 
@@ -1163,7 +1163,7 @@ wheels/
 *.egg
 
 # PyInstaller
-#  Usually these files are written by a python script from a template
+#  Usually these files are written by a Python script from a template
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
@@ -1184,7 +1184,7 @@ Add the following to the end of `.gitignore`:
 
 ~~~
 
-Now do "git status" again. Notice that the files we added are no longer recognized by git.
+Now do "git status" again. Notice that the files we added are no longer recognized by Git.
 
 ````{tab-set-code} 
 
@@ -1260,5 +1260,5 @@ If you want more `git`, see the following tutorials.
 :class: key
 
 * Git provides a way to track changes in your project.
-* Git is a software for version control, and is separate from GitHub.
+* Git is a software for version control and is separate from GitHub.
 ````
