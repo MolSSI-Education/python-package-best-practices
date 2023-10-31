@@ -11,8 +11,8 @@ Questions:
 Objectives:
 
 * Learn about collaboration models.
-* Learn what a fork is on GitHub
-* Learn how to open a pull request
+* Learn what a fork is on GitHub.
+* Learn how to open a pull request.
 ````
 
 ## Repository collaborators
@@ -22,11 +22,11 @@ There are several ways for people to contribute to your project.
 If you are working with a small number of people who you know well, you may simply choose to add them as collaborators to your repo.
 This will give them the ability to push to your repository.
 
-To add collaborators to your project, navigate to your repository on GitHub
+To add collaborators to your project, navigate to your repository on GitHub.
 Click the "Settings" button to the right of the little gear.
 This will take you to some options that will help you to maintain your repository.
 
-This page lets you do several important things, including rename, relocate, transfer, or delete your repository.
+This page lets you do several important things including rename, relocate, transfer, or delete your repository.
 
 Underneath the "Features" heading you will notice an option to "Restrict editing to collaborators only".
 This option prevents random strangers from being able to push changes to your repository, and should always be kept on.
@@ -44,7 +44,7 @@ People you don't know very well shouldn't be listed as collaborators, but there 
 
 ### Protecting your main Branch
 If you choose to work with collaborators, there are still ways for you to protect your code.
-Click the "Branches" tab. You will see a heading which says "Branch protection rule".
+Click the "Branches" tab. You will see a heading that says "Branch protection rule".
 Adding the name of a branch here will make it a "protected branch" and the rules you choose in the section below will protect the branch (under the heading "protect matching branches").
 For example, you may want to choose to protect the `main` branch so that pull requests and reviews are required to change the branch.
 This way, your collaborators will not be able to push to the main branch, and must submit a `pull request` more on this later in order for their changes to be incorporated.
@@ -72,7 +72,7 @@ Add the following to your README and commit the change.
 ````{tab-set-code} 
 
 ```{code-block} README.md
-To submit your feature to be incorporated to the main branch, 
+To submit your feature to be incorporated into the main branch, 
 you should submit a `Pull Request`. 
 The repository maintainers will review your pull request before accepting your changes.
 ```
@@ -90,9 +90,9 @@ git commit -m "add collaboration instructions to readme"
 We want these changes incorporated into the main branch.
 You could do as we did before and switch to the `main` branch, `merge` then changes, and push to GitHub for the changes to be present there on the `main` branch.
 If you are the repository owner, this will work even if you have branch protection rules.
-However, if you are not, your push from main will be rejected by GitHub.
+However, if you are not, your push from the main will be rejected by GitHub.
 
-We will want to push to a new branch on the repo then open a pull request. 
+We will want to push to a new branch on the repo and then open a pull request. 
 
 ````{tab-set-code} 
 
@@ -129,13 +129,13 @@ You can click this link or copy and paste it to open a pull request.
 Write a description of the pull request in the box, then click "Create Pull Request".
 
 Once the PR is created, you will see a page describing the PR.
-On the top of the repo, you should see a button called "Pull Requests" and it should show that one is open for your repo.
-You can then choose to review the PR, or in this case you can just merge it without a review.
+On the top of the repo, you should see a button called "Pull Requests" and it should show that one PR is open for your repo.
+You can then choose to review the PR, or in this case, you can just merge it without a review.
 To review a PR, click the 'Files changed' tab. You can review the changes (green Review changes button).
 Since you are looking at your own PR, you won't be able to "Approve" if you have put in the branch protection rule.
 However, you can comment on and merge the changes if you wish.
 
-This kind of workflow is fine if you and everyone contributing has write access to the repo.
+This kind of workflow is fine if you and everyone contributing have write access to the repo.
 However, this will sometimes not be the case and you will want to contribute to repos where you do not have write access.
 In the next couple of sections, we will explore how this works in detail.
 
@@ -156,25 +156,25 @@ A fork is a copy of a repository that is largely independent of the original.
 The maintainer of the original repository doesn’t have to do anything or know about the existence of the fork.
 Want to make changes to an open-source project, but aren’t listed as a collaborator on the project?
 Just make a fork, which you own and can manage in the same way as any other repository that you create on GitHub.
-If you want to submit changes to the project’s official repository, you can create a “pull request”, which we will discuss in more detail in the next section.
+If you want to submit changes to the project’s official (original) repository, you can create a “pull request”, which we will discuss in more detail in the next section.
 
 For now, we will learn how to create and maintain a fork.
 
-During this section, we will all fork a central repository, make changes, then submit something called a Pull Request to have those changes incorporated into the code.
+During this section, we will all fork a central repository, make changes, and then submit something called a Pull Request to have those changes incorporated into the code.
 We will leave the package we are developing for this section.
 
 Navigate to the URL [https://github.com/molssi-education/periodic-table][periodic-table-repo] in your web browser.
 You should see a GitHub repo.
-This repository contains code to make a website which has the periodic table.
+This repository contains code to make a website that has the periodic table.
 [View the website](https://molssi-education.github.io/periodic-table).
-On the website page, elements which appear with a red background have a page and information filled in.
+On the website page, elements that appear with a red background have a page and information filled in.
 You can read more about each element by clicking on it.
 Elements with a white background do not yet have a page.
 Take a minute or two to click around. 
 
 Create a personal fork of the repository by pressing the “Fork” button near the top right on the [GitHub repository](https://github.com/molssi-education/periodic-table).
 GitHub will copy the repository to your profile. It should automatically redirect when it's done.
-You should notice at the top of the page, the name of the repository has a 'fork' symbol by it.
+You should notice at the top of the page, the name of the repository has a 'fork' symbol on it.
 It should say `YOUR_USERNAME/periodic-table`, and under that say `forked from molssi-education/periodic-table.`
 
 You can use the following diagram to visualize what you just did.
@@ -237,7 +237,7 @@ git remote -v
 ````
 
 
-You should see output similar to the following
+You should see output similar to the following:
 
 ````{tab-set-code} 
 
@@ -249,9 +249,9 @@ origin git@github.com:YOUR_GITHUB_USERNAME/periodic-table.git (push)
 
 
 This is similar to our own repository.
-However, since this is fork, we will want to add another remote to track the original repository.
+However, since this is a fork, we will want to add another remote to track the original repository.
 The standard names for remotes are `origin` for the repository we have cloned from, and `upstream` for the repository we forked from.
-Add an upstream using the following command
+Add an upstream using the following command.
 
 ````{tab-set-code} 
 
@@ -262,13 +262,13 @@ git remote add upstream git@github.com:molssi-education/periodic-table.git
 
 
 Now, when you check the remotes (`git remote -v`), it should list both the `origin`, and `upstream` repositories.
-If we wanted to pull changes from the original repo, we could do `git pull upstream branch_name`
+If we wanted to pull changes from the original repo, we could do `git pull upstream branch_name`.
 
 ```{image} ../fig/github_workflows/github_remotes.svg
 :align: center
 ```
 
-Next type
+Next, type:
 
 ````{tab-set-code} 
 
@@ -278,9 +278,9 @@ git fetch upstream
 ````
 
 
-To get a copy of the upstream repository.
+to get a copy of the upstream repository.
 This will be in a hidden branch.
-You should be able to see both the origin and upstream hidden branches by typing
+You should be able to see both the origin and upstream hidden branches by typing,
 
 ````{tab-set-code} 
 
@@ -312,7 +312,7 @@ This command creates the branch and checks it out (the `-b` stands for `branch`)
 Alternatively, we could have used the commands `git branch sodium` and `git checkout sodium`.
 In general, your branch name should describe the feature or changes that you plan to make on the branch.
 
-You will see the output
+You will see the output:
 
 ````{tab-set-code} 
 
@@ -327,7 +327,7 @@ We have now created a new branch called `sodium` and checked it out.
 ## Importance of Branching
 
 When you are doing development, particularly on a fork (but also if you are collaborating), it is very important that all development work be done on a branch.
-In the case of a collaborative repository where you are pushing directly, this will allow you to do pull requests from branches (more on pull requests below), and that your code is reviewed by another developer on the project before being merged to the main branch.
+In the case of a collaborative repository where you are pushing directly, this will allow you to do pull requests from branches (more on pull requests below), and your code is reviewed by another developer on the project before being merged to the main branch.
 
 The most important reason to work on a branch is to keep your main branch clean.
 In the workflow you are learning today, the main branch should track upstream, and only be changed by pulling from upstream.
@@ -337,7 +337,7 @@ It will make it easier to correct mistakes if they arise, and keep your reposito
 ## Editing our element
 
 Now it's time to edit our periodic table element.
-If you have picked an element which exists already, there will be a file with the name `element_name.md` where element name is the element you've chosen.
+If you have picked an element that exists already, there will be a file with the name `element_name.md` where the element name is the element you've chosen.
 If the file does not exist, create it.
 
 For example, to create the sodium file, 
@@ -351,7 +351,7 @@ touch sodium.md
 
 
 Once the file is created, open it in your text editor of choice.
-It is important that every element have the following at the top of the page (note - spacing is very important!)
+It is important that every element has the following at the top of the page (note - spacing is very important!).
 
 ````{tab-set-code} 
 
@@ -389,7 +389,7 @@ Save your file after you edit it.
 
 If you have [Jekyll](https://jekyllrb.com) installed, you can view a local copy of the webpage.
 This is not a necessary step.
-If you do not have Jekyll installed, or do not wish to install Jekyll skip this step. 
+If you do not have Jekyll installed or do not wish to install Jekyll skip this step. 
 
 Execute the command
 
@@ -418,8 +418,8 @@ git commit -m "update YOUR_ELEMENT page"
 
 
 Next, we must push these changes.
-But, where do we want to push the changes? We would like to have our changes incorporated into the central repository, but do not have permission to push upstream.
-We will have to push to origin (our repository) on the `sodium` branch (or whatever branch you're working on), then we will request that the maintainers of the upstream repository incorporate our changes, or pull from our repository.
+But, where do we want to push the changes? We would like to have our changes incorporated into the central repository but do not have permission to push upstream.
+We will have to push to the origin (our repository) on the `sodium` branch (or whatever branch you're working on), and then we will request that the maintainers of the upstream repository incorporate our changes, or pull from our repository.
 This is why it is called a `Pull Request`.
 We are literally requesting them to pull from our repository.
 
@@ -453,7 +453,7 @@ remote:
 
 
 `git` is correct.
-What we will want to do next is creating a pull request on the original repository to get our changes incorporated.
+What we will want to do next is create a pull request on the original repository to get our changes incorporated.
 
 ## Opening a Pull Request
 
@@ -461,10 +461,10 @@ It is now time to incorporate the edits you have made in your fork into the orig
 To do this, we must create a `Pull Request`.
 
 Navigate to the URL of your fork.
-You should see a highlighted area and green button which says "Compare and Pull Request".
+You should see a highlighted area and a green button that says "Compare and Pull Request".
 Alternatively, you can navigate to the URL given in the message where you did a push.
 
-Once you are on the page that says "Open a pull request", you should see fields which ask for the name of the pull request, as well as a larger text box which has space for a description.
+Once you are on the page that says "Open a pull request", you should see fields that ask for the name of the pull request, as well as a larger text box that has space for a description.
 Make the title of this pull request "add sodium page".
 Edit the description to describe what you have done in your pull request, then submit the pull request.
 
@@ -484,7 +484,7 @@ This is indicated in the figure below through the change in color of the word 'm
 
 ## Incorporating upstream changes to local
 
-After your change has been accepted to upstream, you will want to incorporate the changes into your local main branch.
+After your change has been accepted upstream, you will want to incorporate the changes into your local main branch.
 First, switch to your main branch.
 
 ````{tab-set-code} 
@@ -495,7 +495,7 @@ git checkout main
 ````
 
 
-You can get changes to your local main by either doing a `git pull` from upstream main, or by doing a `git fetch` from upstream main, followed by a merge.
+You can get changes to your local main by either doing a `git pull` from the upstream main, or by doing a `git fetch` from the upstream main, followed by a merge.
 For now, just do a pull.
 
 ````{tab-set-code} 
@@ -507,7 +507,7 @@ git pull upstream main
 
 
 Next, you will want to update your origin main.
-Push from the local main to origin.
+Push from the local main to the origin.
 
 ````{tab-set-code} 
 
@@ -531,7 +531,7 @@ git branch -d sodium
 
 The `-d` option means to delete the branch.
 
-To delete the branch on your origin repository on GitHub, you can use the command
+To delete the branch on your origin repository on GitHub, you can use the command:
 
 ````{tab-set-code} 
 
@@ -562,7 +562,7 @@ If you want more `git`, see the following tutorials.
 
 - To contribute to someone else's project, you should fork their repository.
 - All development work should be done on a new branch. Each branch should implement one feature.
-- Once you've implemented a new feature, push to your repository and create a pull request on the original repo.
+- Once you've implemented a new feature, push it to your repository and create a pull request on the original repo.
 ````
 
 
