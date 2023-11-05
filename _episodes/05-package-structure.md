@@ -53,8 +53,6 @@ please review the [package setup] section of the lessons.
 │   ├── README.md
 │   ├── conda-envs                  <- Conda environments for testing
 │   │   └── test_env.yaml
-│   ├── legacy-miniconda-setup      <- Legacy Travis CI Helper, will likely be removed in later version
-│   │   └── before_install.sh
 │   └── scripts
 │       └── create_conda_env.py     <- OS agnostic Helper script to make conda environments based on simple flags
 ├── docs                            <- Documentation template folder with many settings already filled in
@@ -452,7 +450,7 @@ def open_xyz(file_location):
     xyz_file = np.genfromtxt(fname=file_location, skip_header=2, dtype="unicode")
     symbols = xyz_file[:, 0]
     coords = xyz_file[:, 1:]
-    coords = coords.astype(np.float)
+    coords = coords.astype(float)
     return symbols, coords
 
 

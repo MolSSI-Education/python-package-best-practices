@@ -15,7 +15,7 @@ class PygmentsBridgeExtended(sphinx.highlighting.PygmentsBridge):
         opts: dict | None = None,
         force: bool = False,
         location: Any = None,
-    ) -> sphinx.highlighting.Lexer:
+    ):
         
         split = lang.split(".")
 

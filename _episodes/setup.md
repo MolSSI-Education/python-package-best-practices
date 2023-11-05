@@ -1,6 +1,6 @@
 # Set Up
 
-Participation in the MolSSI Best Practices Workshop will require use of your own personal computer or laptop and installation of some software.
+Participation in the MolSSI Best Practices Workshop will require using your own personal computer or laptop and installing some software.
 
 ```{admonition} Windows users take note
 :class: attention
@@ -21,58 +21,58 @@ If you are on Windows 11, you can also [set up WSL to be able to use graphical i
 
 Please follow the instructions given here to make sure you have the necessary software installed. 
 We will be using Python and the conda package manager. 
-If you are on MacOS, Linux, or WSL and you already have Anaconda (or miniconda) installed,
+If you are on MacOS, Linux, or WSL and you already have Anaconda (or Miniconda) installed,
 skip to the environment creation portion of these set-up instructions. 
-If you do not have Anaconda or miniconda installed please see the appropriate section below. 
-**Note** If you are on Windows miniconda has to be installed on WSL (not Windows). 
+If you do not have Anaconda or Miniconda installed please see the appropriate section below. 
+**Note** If you are on Windows Miniconda has to be installed on WSL (not Windows). 
 This might be a separate installation.
 
 ```{admonition} Anaconda vs. Minconda
 :class: info
 
-Anaconda is a distribution of Python, the conda package manager, and several third-party libraries which are commonly used in data science.
-Miniconda contains only Python and the conda package manager. You will be able to install any package you would like later using miniconda. 
+Anaconda is a distribution of Python, the conda package manager, and several third-party libraries that are commonly used in data science.
+Miniconda contains only Python and the conda package manager. You will be able to install any package you would like later using Miniconda. 
 Miniconda will take up a lot less space on your computer.
-We will be learning to manage conda environments and install the packages we need, so we consider miniconda to be the better option between the two.
-If you already have Anaconda installed, however, there is no need to install miniconda.
+We will be learning to manage conda environments and install the packages we need, so we consider Miniconda to be the better option between the two.
+If you already have Anaconda installed, however, there is no need to install Miniconda.
 ```
 
 ## Installing WSL (Windows users only)
 If your computer uses the Windows operating system, we require installing Windows Subsystem for Linux (WSL). 
 Follow the installation instructions at [this link](https://docs.microsoft.com/en-us/windows/wsl/install). 
-If you don’t have a preference on Linux distribution, we recommend installing Ubuntu 20.04. 
+If you don’t have a preference for Linux distribution, we recommend installing Ubuntu 20.04. 
 
 Once WSL is installed, open your ‘Start’ menu and choose ‘Ubuntu’. 
 This will open a terminal window. 
 A terminal is an interface you can use to interact with your computer using text.
-The first time you have opened Ubuntu, you may see a message which says “Installing, this may take a few minutes…”. 
+The first time you open Ubuntu, you may see a message which says “Installing, this may take a few minutes…”. 
 After the installation is done, you will have to create a username and password. 
 After these are created, you should be able to use the terminal.
 
 The Windows Subsystem for Linux is like running another computer inside your computer. 
-It is a different operating system and has different software installed than your Windows computer. 
-For the WSL, you have to install miniconda from the terminal in your Linux operating system. 
+It is a different operating system with different software installed than your Windows computer. 
+For the WSL, you have to install Miniconda from the terminal in your Linux operating system. 
 Note that if you are using the WSL, 
 your Linux OS is completely separated from your Windows operating system. 
-This means that software installed on one operating system is not available in the other. 
+This means that software installed on one operating system is not available on the other. 
 If you are running the Windows 11 operating system, 
 you can [set up WSL to use graphical interfaces on your computer](https://docs.microsoft.com/en-us/windows/wsl/tutorials/gui-apps). 
 Otherwise, you will only be able to interact with WSL through the terminal (and the text editor VSCode, 
-see later in the set-up for information on how to use VS Code in WSL)
+see later in the set-up for information on how to use VS Code in WSL).
 
 ## Miniconda Installation
-You can install miniconda through a graphical interface or using your terminal. 
+You can install Miniconda through a graphical interface or using your terminal. 
 Pick either "Graphical Installation" or "Text-based (terminal) Installation". 
 **If you are using WSL, it may be easiest to complete this using the terminal installation.**
 
 ### Graphical Installation
-Obtain the latest version of miniconda for your OS at this [link](https://docs.conda.io/en/latest/miniconda.html). 
-This will download an installer you can run to install miniconda on your system. 
+Obtain the latest version of Miniconda for your OS at this [link](https://docs.conda.io/en/latest/miniconda.html). 
+This will download an installer you can run to install Miniconda on your system. 
 Note that if you are using WSL, you will need the **Linux** installer, 
 and you will have to move this file to WSL before running. 
 
 ### Text-based (terminal) Installation
-You can also use the terminal to download and install the miniconda compilers using the terminal. 
+You can also use the terminal to download and install the Miniconda compilers using the terminal. 
 If you are using Linux or WSL, type the following into your terminal.
 
 ````{tab-set-code}
@@ -83,7 +83,7 @@ bash Miniconda3-latest-Linux-x86_64.sh
 ```
 ````
 
-If you are using Mac, you should pick the appropriate link for your architecture from the miniconda installer page.
+If you are using a Mac, you should pick the appropriate link for your architecture from the Miniconda installer page.
 
 M1: https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh  
 x86: https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
@@ -99,6 +99,40 @@ If you do not see `(base)` before your username on the command line, type
 conda init
 ```
 ````
+
+### Set conda to use the libmamba solver
+The libmamba solver is an optional replacement to the default conda solver.
+The libmamba solver will handle dependency solving much faster than the default solver.
+To use the libmamba solver, first ensure your conda is up to date.
+````{tab-set-code}
+
+```{code-block} shell
+conda update -n base conda
+```
+````
+
+Then install the libmamba solver into your base environment.
+````{tab-set-code}
+
+```{code-block} shell
+conda install -n base conda-libmamba-solver
+```
+````
+
+Finally, set the default solver to be the libmamba solver.
+````{tab-set-code}
+
+```{code-block} shell
+conda config --set solver libmamba
+```
+````
+
+```{admonition} Using Mamba instead of Conda
+:class: attention
+If desired, instead of using a miniconda installation with the libmamba solver, you can directly use Mamba or Micromamba.
+Installation instructions can be found in Mamba's documentation: https://mamba.readthedocs.io/en/latest/index.html
+If using a version of mamba instead of conda, simply replace `conda` in all following instructions with `mamba`.
+```
 
 ## Creating a conda environment
 
@@ -116,13 +150,13 @@ To create an environment for this project using `conda`,
 ````{tab-set-code}
 
 ```{code-block} shell
-conda create --name molssi_best_practices "python=3.10"
+conda create --name molssi_best_practices "python=3.11"
 ```
 ````
 
 For other projects, you should replace `molssi_best_practices` with a descriptive name for your project.
 `conda` also allows you to specify the Python version to use with the environment.
-Here, `python=3.10` specifies that we want to use Python 3.10 in this environment.
+Here, `python=3.11` specifies that we want to use Python 3.11 in this environment.
 Executing this command will list the environment location and a list of Python packages to be installed.
 Choose `y(es)` when prompted.
 
@@ -156,7 +190,7 @@ $ conda deactivate
 
 You can use `conda` to create environments with different Python versions. 
 You might be able to see how this could be useful for running old code 
-(you can change `3.10` in the command above to any version you want), 
+(you can change `3.11` in the command above to any version you want),
 or testing your code in different Python versions.
 
 ### Package installation using conda
@@ -281,9 +315,8 @@ conda install -c conda-forge git
 ```
 ````
 
-
 Note that because of the solver that conda uses to decide which version of a package to install you may end up with a version that is < 2.28. 
-you can use the same command from above `git --version` to see what version has been installed.
+You can use the same command from above `git --version` to see what version has been installed.
 
 If the output of that command is < 2.28 you will want to use the following command to specify the version to install. 
 Any version >=2.28 is acceptable.
@@ -322,7 +355,7 @@ git config --global user.email "YOUR_EMAIL_ADDRESS"
 
 
 Next, you will need to set the name of the default branch git uses.
-The following command will set your default branch name to be "main"
+The following command will set your default branch name to "main"
 
 ````{tab-set-code} 
 
@@ -384,20 +417,20 @@ If you are using Mac, follow [these instructions](https://code.visualstudio.com/
 You should also install the [Microsoft Python Extension Plugin](https://marketplace.visualstudio.com/items?itemName=ms-python.python) for VSCode.
 When enabled, the Python extension will allow you to set the Python environment that VS Code will use to run static checks of your code. 
 You can set the Python environment when you have a Python project open by clicking the Python version (will likely be 3.something) on
-in the blue ribbon at the botton of the editor on the right. 
+in the blue ribbon at the bottom of the editor on the right. 
 Select the `molssi-best-practices` environment.
 
 ## Downloading Workshop Materials<a name="materials_download"></a>
 
-In this workshop, we will be moving code from a Jupyter notebook into a Python package that we can install and import into other scripts.
+In this workshop, we will be moving code from a Jupyter Notebook into a Python package that we can install and import into other scripts.
 
 - {download}`Starting materials for lesson <../data/starting_material.zip>`.
 
 ``````{admonition} Downloading materials from the command line
 :class: tip
 
-If you are on WSL, or would like to use the command line, you can download the workshop materials using `curl` 
-(similar to how you downloaded the miniconda installer)
+If you are on WSL or would like to use the command line, you can download the workshop materials using `curl` 
+(similar to how you downloaded the Miniconda installer)
 
 ````{tab-set-code}
 ```{code-block} shell URL_HERE
@@ -427,8 +460,8 @@ curl -O -L https://github.com/MolSSI-Education/python-package-best-practices/raw
     ~~~
 
 ## Conclusion
-At the end of this set-up, you should have created a Python environment (`molssi_best_practices`)
-which has Python 3.10, `numpy`, `matplotlib`, `jupyterlab`, and `cookiecutter` installed.
+At the end of this set-up, you should have created a Python environment (`molssi_best_practices`) which has Python 3.11, `numpy`, `matplotlib`, `jupyter`, and `cookiecutter` installed.
+
 You should also have downloaded starting material, installed and created an account on GitHub, and configured Git.
 
 [Anaconda]: https://www.anaconda.com/products/individual
