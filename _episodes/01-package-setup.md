@@ -171,6 +171,14 @@ Choose "yes" for this workshop.
 ### Reviewing directory contents
 Now we can examine the project layout CookieCutter has set up for us.
 Navigate to the newly created `molecool` directory.
+
+````{tab-set-code} 
+
+```{code-block} shell   
+cd molecool
+```
+````
+
 You should see the following directory structure.
 
 ```
@@ -220,14 +228,28 @@ You should see the following directory structure.
 ├── .gitignore                      <- Stock helper file telling git what file name patterns to ignore when adding files
 └── .lgtm.yml
 ```
+```{admonition} Visualizing the Directory Structure
+:class: note
 
 To visualize your project like above you will use `tree`.
 If you do not have `tree`, you can get it using `sudo apt-get install tree` on Linux,
 or `brew install tree` on Mac.
 Note: `tree` will not show you the helpful labels after `<-` (those were added by us).
+```
 
 CookieCutter has created a lot of files!
-They can be thought of as three sections.
+
+If you have set up VSCode as your text editor as described in the setup ([Set Up](setup.md)), you can open a VSCode project that contains the newly created `molecool` directory by typing
+
+````{tab-set-code} 
+
+```{code-block} shell
+code .
+```
+````
+This will open a new VSCode window with your current directory (`.`) the `molecool` directory as the root directory.
+
+The files that Cookiecutter has created for us can be thought of as three sections.
 In the top level of our project, we have a folder for tools related to development (`devtools`),
 documentation (`docs`) and to the package itself (`molecool`).
 We will first be working in the `molecool` folder to build our package, and adding more things later.
@@ -269,15 +291,8 @@ To read more about Python packages vs. modules, check out [Python's documentatio
 ```
 
 ## The `molecool` directory
-Navigate inside our package directory. From the directory where you ran CookieCutter,
-
-````{tab-set-code} 
-
-```{code-block} shell
- cd molecool
-```
-````
-
+We will first examine some files in the `molecool` directory.
+This is the directory that contains our package code.
 
 ### The `__init__.py` file
 

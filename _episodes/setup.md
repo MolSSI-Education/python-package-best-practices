@@ -1,4 +1,4 @@
-# Set Up
+# Computer Set Up
 
 Participation in the MolSSI Best Practices Workshop will require using your own personal computer or laptop and installing some software.
 
@@ -409,16 +409,42 @@ Instead, you will need to create something called an ssh key to verify your acco
 Follow the [instructions given by GitHub](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh) to create an SSH key and add it to your account.
 
 ## Text Editor
+## Text Editor
 Everyone should have a text editor they can use to edit code. 
 If you do not have a preference for text editors, we recommend [Visual Studio Code](https://code.visualstudio.com/). 
 If you are using WSL, see [these instructions](https://code.visualstudio.com/docs/remote/wsl) for installing Visual Studio Code for use with WSL.
 If you are using Mac, follow [these instructions](https://code.visualstudio.com/docs/setup/mac#:~:text=Launching%20from%20the%20command%20line,code'%20command%20in%20PATH%20command.) to set-up VS Code so that you can use it from the command line.
 
-You should also install the [Microsoft Python Extension Plugin](https://marketplace.visualstudio.com/items?itemName=ms-python.python) for VSCode.
-When enabled, the Python extension will allow you to set the Python environment that VS Code will use to run static checks of your code. 
-You can set the Python environment when you have a Python project open by clicking the Python version (will likely be 3.something) on
-in the blue ribbon at the bottom of the editor on the right. 
-Select the `molssi-best-practices` environment.
+```{admonition} Remote Development Extension (for WSL or ssh)
+:class: tip
+
+The [Remote Development Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack) will allow you to connect to remote machines (like an HPC system) and use VS Code as if it were running on your local machine.
+This can be **very** useful for computational scientists.
+
+Note that if you are using WSL, you will *have* to install this extension to use VS Code with WSL.
+This is in the [above linked instructions](https://code.visualstudio.com/docs/remote/wsl).
+```
+
+When using VSCode with the Python extension, you will want to have it use the correct Python version and installation for analyzing your code.
+You will want it to use the Python installation and packages that are installed in the `molssi_best_practices` environment you created earlier.
+
+To set the Python interpreter for VSCode, first open a Python file using the editor.
+You might just open any Python file by typing `code test.py` in your terminal.
+Once you have an editor open, you can click the button on the bottom of VSCode, shown in the screenshot below as (1) (this could also say a Python version like "3.10"). 
+Alternatively, you can open the command palette (Ctrl+Shift+P on Windows/Linux, Cmd+Shift+P on Mac) and type "Python: Select Interpreter".
+
+```{image} ../fig/setup/vscode-button1.png
+:align: center
+```
+
+After you have clicked the button, you will see a list of Python interpreters that VSCode can use.
+You will want to choose the one that is in your `molssi_best_practices` environment.
+
+```{image} ../fig/setup/vscode-button2.png
+:align: center
+```
+
+You should do this for every Python file or project that you open in VSCode.
 
 ## Downloading Workshop Materials<a name="materials_download"></a>
 
