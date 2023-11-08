@@ -183,7 +183,7 @@ To deactivate an environment, type
 ````{tab-set-code} 
 
 ```{code-block} shell
-$ conda deactivate
+conda deactivate
 ```
 ````
 
@@ -200,7 +200,7 @@ Using `conda`, we can install packages to our environments.
 ````{tab-set-code} 
 
 ```{code-block} shell
-$ conda activate molssi_best_practices
+conda activate molssi_best_practices
 ```
 ````
 
@@ -210,7 +210,7 @@ To list all the Python packages installed in an environment, first activate it, 
 ````{tab-set-code} 
 
 ```{code-block} shell
-$ conda list
+conda list
 ```
 ````
 
@@ -221,7 +221,7 @@ For example, to install NumPy (do not execute this, we will install NumPy later)
 ````{tab-set-code} 
 
 ```{code-block} shell
-$ conda install numpy
+conda install numpy
 ```
 ````
 
@@ -244,7 +244,7 @@ You can install multiple libraries at the same time by listing them one after an
 ````{tab-set-code} 
 
 ```{code-block} shell
-$ conda install -c conda-forge numpy matplotlib jupyterlab
+conda install -c conda-forge numpy matplotlib jupyterlab
 ```
 ````
 
@@ -260,7 +260,7 @@ First, switch to your environment for this workshop if you are not in it.
 ````{tab-set-code} 
 
 ```{code-block} shell
-$ conda activate molssi_best_practices
+conda activate molssi_best_practices
 ```
 ````
 
@@ -270,7 +270,7 @@ Install the general cookiecutter with the following commands.
 ````{tab-set-code} 
 
 ```{code-block} shell
-$ conda install -c conda-forge cookiecutter
+conda install -c conda-forge cookiecutter
 ```
 ````
 
@@ -377,7 +377,7 @@ To make VS Code your default editor for git, do
 ````{tab-set-code} 
 
 ```{code-block} shell
-$ git config --global core.editor "code --wait"
+git config --global core.editor "code --wait"
 ```
 ````
 
@@ -389,7 +389,7 @@ You can check the configuration commands that you have set using:
 ````{tab-set-code} 
 
 ```{code-block} shell
-$ git config --list
+git config --list
 ```
 ````
 
@@ -408,7 +408,6 @@ Instead, you will need to create something called an ssh key to verify your acco
 
 Follow the [instructions given by GitHub](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh) to create an SSH key and add it to your account.
 
-## Text Editor
 ## Text Editor
 Everyone should have a text editor they can use to edit code. 
 If you do not have a preference for text editors, we recommend [Visual Studio Code](https://code.visualstudio.com/). 
@@ -429,7 +428,16 @@ When using VSCode with the Python extension, you will want to have it use the co
 You will want it to use the Python installation and packages that are installed in the `molssi_best_practices` environment you created earlier.
 
 To set the Python interpreter for VSCode, first open a Python file using the editor.
-You might just open any Python file by typing `code test.py` in your terminal.
+In order to change the Python interpreter, you will need to have a Python file open.
+Open a Python file called `test.py` by typing
+
+````{tab-set-code} 
+
+```{code-block} shell
+code test.py
+```
+````
+
 Once you have an editor open, you can click the button on the bottom of VSCode, shown in the screenshot below as (1) (this could also say a Python version like "3.10"). 
 Alternatively, you can open the command palette (Ctrl+Shift+P on Windows/Linux, Cmd+Shift+P on Mac) and type "Python: Select Interpreter".
 
@@ -445,6 +453,8 @@ You will want to choose the one that is in your `molssi_best_practices` environm
 ```
 
 You should do this for every Python file or project that you open in VSCode.
+Once you have correctly set your Python environment, VSCode can analyze your code as you write it.
+VSCode will be able to check that certain libraries are installed in your environment or that functions are being called correctly.
 
 ## Downloading Workshop Materials<a name="materials_download"></a>
 
