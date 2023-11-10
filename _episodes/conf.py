@@ -62,6 +62,10 @@ extensions = [
     'sphinx_togglebutton'
 ]
 
+myst_enable_extensions = [
+    'colon_fence',
+]
+
 autosummary_generate = True
 napoleon_google_docstring = False
 napoleon_use_param = False
