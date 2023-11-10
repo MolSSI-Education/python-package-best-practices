@@ -1,4 +1,4 @@
-# Set Up
+# Computer Set Up
 
 Participation in the MolSSI Best Practices Workshop will require using your own personal computer or laptop and installing some software.
 
@@ -183,7 +183,7 @@ To deactivate an environment, type
 ````{tab-set-code} 
 
 ```{code-block} shell
-$ conda deactivate
+conda deactivate
 ```
 ````
 
@@ -200,7 +200,7 @@ Using `conda`, we can install packages to our environments.
 ````{tab-set-code} 
 
 ```{code-block} shell
-$ conda activate molssi_best_practices
+conda activate molssi_best_practices
 ```
 ````
 
@@ -210,7 +210,7 @@ To list all the Python packages installed in an environment, first activate it, 
 ````{tab-set-code} 
 
 ```{code-block} shell
-$ conda list
+conda list
 ```
 ````
 
@@ -221,7 +221,7 @@ For example, to install NumPy (do not execute this, we will install NumPy later)
 ````{tab-set-code} 
 
 ```{code-block} shell
-$ conda install numpy
+conda install numpy
 ```
 ````
 
@@ -244,7 +244,7 @@ You can install multiple libraries at the same time by listing them one after an
 ````{tab-set-code} 
 
 ```{code-block} shell
-$ conda install -c conda-forge numpy matplotlib jupyterlab
+conda install -c conda-forge numpy matplotlib jupyterlab
 ```
 ````
 
@@ -260,7 +260,7 @@ First, switch to your environment for this workshop if you are not in it.
 ````{tab-set-code} 
 
 ```{code-block} shell
-$ conda activate molssi_best_practices
+conda activate molssi_best_practices
 ```
 ````
 
@@ -270,7 +270,7 @@ Install the general cookiecutter with the following commands.
 ````{tab-set-code} 
 
 ```{code-block} shell
-$ conda install -c conda-forge cookiecutter
+conda install -c conda-forge cookiecutter
 ```
 ````
 
@@ -377,7 +377,7 @@ To make VS Code your default editor for git, do
 ````{tab-set-code} 
 
 ```{code-block} shell
-$ git config --global core.editor "code --wait"
+git config --global core.editor "code --wait"
 ```
 ````
 
@@ -389,7 +389,7 @@ You can check the configuration commands that you have set using:
 ````{tab-set-code} 
 
 ```{code-block} shell
-$ git config --list
+git config --list
 ```
 ````
 
@@ -414,11 +414,47 @@ If you do not have a preference for text editors, we recommend [Visual Studio Co
 If you are using WSL, see [these instructions](https://code.visualstudio.com/docs/remote/wsl) for installing Visual Studio Code for use with WSL.
 If you are using Mac, follow [these instructions](https://code.visualstudio.com/docs/setup/mac#:~:text=Launching%20from%20the%20command%20line,code'%20command%20in%20PATH%20command.) to set-up VS Code so that you can use it from the command line.
 
-You should also install the [Microsoft Python Extension Plugin](https://marketplace.visualstudio.com/items?itemName=ms-python.python) for VSCode.
-When enabled, the Python extension will allow you to set the Python environment that VS Code will use to run static checks of your code. 
-You can set the Python environment when you have a Python project open by clicking the Python version (will likely be 3.something) on
-in the blue ribbon at the bottom of the editor on the right. 
-Select the `molssi-best-practices` environment.
+```{admonition} Remote Development Extension (for WSL or ssh)
+:class: tip
+
+The [Remote Development Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack) will allow you to connect to remote machines (like an HPC system) and use VS Code as if it were running on your local machine.
+This can be **very** useful for computational scientists.
+
+Note that if you are using WSL, you will *have* to install this extension to use VS Code with WSL.
+This is in the [above linked instructions](https://code.visualstudio.com/docs/remote/wsl).
+```
+
+When using VSCode with the Python extension, you will want to have it use the correct Python version and installation for analyzing your code.
+You will want it to use the Python installation and packages that are installed in the `molssi_best_practices` environment you created earlier.
+
+To set the Python interpreter for VSCode, first open a Python file using the editor.
+In order to change the Python interpreter, you will need to have a Python file open.
+Open a Python file called `test.py` by typing
+
+````{tab-set-code} 
+
+```{code-block} shell
+code test.py
+```
+````
+
+Once you have an editor open, you can click the button on the bottom of VSCode, shown in the screenshot below as (1) (this could also say a Python version like "3.10"). 
+Alternatively, you can open the command palette (Ctrl+Shift+P on Windows/Linux, Cmd+Shift+P on Mac) and type "Python: Select Interpreter".
+
+```{image} ../fig/setup/vscode-button1.png
+:align: center
+```
+
+After you have clicked the button, you will see a list of Python interpreters that VSCode can use.
+You will want to choose the one that is in your `molssi_best_practices` environment.
+
+```{image} ../fig/setup/vscode-button2.png
+:align: center
+```
+
+You should do this for every Python file or project that you open in VSCode.
+Once you have correctly set your Python environment, VSCode can analyze your code as you write it.
+VSCode will be able to check that certain libraries are installed in your environment or that functions are being called correctly.
 
 ## Downloading Workshop Materials<a name="materials_download"></a>
 
