@@ -49,7 +49,7 @@ This is a more holistic approach where you test the interface between modules, a
 Where you test your system as a whole to check if it meets all the requirements.
 
 Another important type of testing is **Regression tests**.
-In Regression tests,In regression tests, the software is checked to ensure that it consistently returns correct values given known inputs.
+In Regression tests, the software is checked to ensure that it consistently returns correct values given known inputs.
 This kind of testing can catch problems in previously working code that may have been broken by new changes or new features.
 
 It is highly encouraged to have Unit tests that *cover* most of your code.
@@ -414,7 +414,7 @@ Here, we assert the correct number of bonds and iterate through the dictionary t
 ## Testing Expected Exceptions
 
 If you expect your code to raise exceptions, you can test this behavior with pytest.
-For example in our `calculate_angle` function, our inputs must be numpy arrays, or the function will give error.
+For example in our `calculate_angle` function, our inputs must be numpy arrays, or the function will give an error.
 
 Consider our `build_bond_list` function. We may want to raise a `ValueError` if `min_bond` is set to be less than zero.
 We can add a type check to the function so that a more informative message is given to the user.
@@ -460,13 +460,13 @@ The test will pass if the `build_bond_list` method raises a `ValueError`, otherw
 
 ## Exercise - Test Driven Development
 
-It is common practice in software development to write tests before actually writing the code. 
+Sometimes, tests are written before writing the code. 
 This is called "Test Driven Development" or TDD.
 In this case, you would first write tests that define the behavior of your code, then run these tests to see if they pass, and finally write code to pass each of these tests.
 TDD is a common approach when developing a library with well-defined interfaces and features.
 
 TDD has another benefit of never having false positives.
-If you ensure that your tests first fail THEN pass, you know that you have really written a function that works and that your test is not just passing by default.
+If you ensure that your tests first fail and THEN pass, you know that you have written a function that works and that your test is not just passing by default.
 
 
 ``````{admonition} Exercise 1
