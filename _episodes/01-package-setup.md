@@ -59,11 +59,25 @@ Run the [CMS CookieCutter](https://github.com/MolSSI/cookiecutter-cms) to start 
 ```
 ````
 
-
 This command runs the cookiecutter software (`cookiecutter` in the command)
 and tells cookiecutter to look at GitHub (`gh`) in the repository under `molssi/cookiecutter-cms`.
 This repository contains a template that cookiecutter uses to create your project,
 once you have provided some starting information.
+
+
+:::{admonition} Cookiecutter Template Location
+:class: tip
+
+When we use the command `cookiecutter gh:molssi/cookiecutter-cms`, 
+we are using the Cookiecutter tool and telling it to use the GitHub repository `https://github.com/molssi/cookiecutter-cms` as a template.
+
+The `gh` is for GitHub, and the `molssi/cookiecutter-cms` is the repository name.
+
+You could point to any location where there is a Cookiecutter template,
+including files on your local file system or other online repositories.
+
+:::
+
 
 You will see an interactive prompt that asks questions about your project.
 Here, the prompt appears first, followed by the default value in square brackets.
