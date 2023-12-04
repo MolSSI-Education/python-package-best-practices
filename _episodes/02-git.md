@@ -642,6 +642,13 @@ import this
 
 into the interactive Python prompt.
 
+This will print the Zen of Python to the screen.
+The Zen of Python is a collection of 19 software principles that influence the design of Python.
+
+Let's make a function (similar to our existing `canvas` function) that prints the Zen of Python.
+
+Add the following function to your `functions.py` module.
+
 ````{tab-set-code} 
 
 ```{code-block} python
