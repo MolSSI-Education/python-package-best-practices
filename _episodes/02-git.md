@@ -16,14 +16,29 @@ Objectives:
 
 ```
 
-````{admonition} Prerequisites
-:class: info
 
-To complete this lesson you will need:
+:::{admonition} Follow Along with This Lesson
+:class: tip
 
-* To have configured git (as described in the set-up instructions)
-* The Python package created in the first lesson
+To follow along with this lesson, you can complete the previous lessons,
+or you can download a pre-made workshop repository that is at the starting 
+point.
+
+You will need to make sure that you have `git` installed and configured,
+as described in the set-up instructions.
+
+- [Download the pre-made workshop repository as a zip file](https://github.com/MolSSI-Education/molecool/archive/refs/tags/git-start.zip)
+
+Alternatively, download the repository using the command line:
+
+````{tab-set-code} 
+
+```{code-block} shell
+git clone https://github.com/MolSSI-Education/molecool.git
+git checkout git-start
+```
 ````
+:::
 
 ## What is version control?
 
@@ -1284,6 +1299,17 @@ Use -f if you really want to add them.
 
 
 It is possible to override this with the `-f` option for `git add`.
+
+
+:::{admonition} Final Repository State
+:class: tip
+
+You can see the final state of the repository after this section [here](https://github.com/MolSSI-Education/molecool/tree/b74f9bb50e5b614d1078730aef1d4f972cbde99c).
+
+You can also download a zip of the repository [here](https://github.com/MolSSI-Education/molecool/archive/refs/tags/git-end.zip).
+
+:::
+
 
 ## More Tutorials
 If you want more `git`, see the following tutorials.
