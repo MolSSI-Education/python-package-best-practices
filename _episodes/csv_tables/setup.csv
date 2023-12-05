@@ -1,5 +1,5 @@
 Lesson Title,Questions,Objectives
-`Set-Up <setup.html>`_,"* How do I set up my environment?
+`Computer Set-Up <setup.html>`_,"* How do I set up my environment?
 * How do I set up git and GitHub?
 * What text editor should I use?","* Use conda to create an environment and install packages.
 * Set up credentials for GitHub."

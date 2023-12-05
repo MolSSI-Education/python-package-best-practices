@@ -292,7 +292,7 @@ git branch -a
 
 We will use remotes/upstream/main to keep track of new changes that happen upstream that we do not have in our local main.
 
-# Developing a new feature - creating branches
+## Developing a new feature - creating branches
 We will implement a new element for the webpage.
 
 Create a new branch in your repo with your element of choice.
