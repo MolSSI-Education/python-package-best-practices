@@ -33,6 +33,8 @@ Alternatively, download the repository using the command line:
 git clone https://github.com/MolSSI-Education/molecool.git
 git checkout deciding-package-structure-start
 ```
+````
+
 As new features are implemented in codes, it is natural for new functions and objects to be added.
 In many projects, this often leads to a large number of functionalities defined within a single module.
 For small, single developer codes, this is not a major issue, but it can still make code difficult to work with.
