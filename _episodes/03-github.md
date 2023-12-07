@@ -14,6 +14,23 @@ Objectives:
 
 ````
 
+:::{admonition} Follow Along with This Lesson
+:class: tip
+
+To follow along with this lesson, you can complete the previous lessons,
+or you can download a pre-made workshop repository that is at the starting 
+point.
+
+- [Download the pre-made workshop repository as a zip file](https://github.com/MolSSI-Education/molecool/archive/refs/tags/github-start.zip)
+
+Alternatively, download the repository using the command line:
+
+````{tab-set-code} 
+```{code-block} shell
+git clone https://github.com/MolSSI-Education/molecool.git
+git checkout github-start
+```
+
 ## Securely accessing GitHub
 During the setup for this workshop, we generated an SSH key and added it to our GitHub account.
 The SSH key will allow us to authenticate our identity to GitHub, allowing us to access to our remote repositories.
@@ -546,6 +563,16 @@ The "Issues" tab lets you create discussions about bugs, performance limitations
 feature requests, or ongoing work that are shared with everyone else who is working on the project.
 Try filling out a quick issue now.
 Then comment and close the issue.
+
+:::{admonition} Final Repository State
+:class: tip
+
+You can see the final state of the repository after this section [here](https://github.com/MolSSI-Education/molecool/tree/efe8747f7253400d1a81354c62b4a1edc50e9ddd).
+
+You can also download a zip of the repository [here](https://github.com/MolSSI-Education/molecool/archive/refs/tags/github-end.zip).
+
+:::
+
 
 
 ## More Tutorials
