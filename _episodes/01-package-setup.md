@@ -270,6 +270,17 @@ To read more about Python packages vs. modules, check out [Python's documentatio
 
 ```
 
+:::{admonition} Final Repository State
+:class: tip
+
+You can see the final state of the repository after this section [here](https://github.com/MolSSI-Education/molecool/tree/e703f52e9381b051415264927d2bde6c1cebb52a).
+
+You can also download a zip of the repository [here](https://github.com/MolSSI-Education/molecool/archive/refs/tags/cookiecutter-end.zip).
+
+:::
+
+
+
 ## The `molecool` directory
 Navigate inside our package directory. From the directory where you ran CookieCutter,
 
