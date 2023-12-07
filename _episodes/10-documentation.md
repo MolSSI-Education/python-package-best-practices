@@ -16,6 +16,28 @@ Objectives:
 This episode discusses documentation strategies. 
 In particular, we will focus on how to build documentation using Sphinx and host that documentation online using [Read The Docs].
 
+:::{admonition} Follow Along with This Lesson
+:class: tip
+
+To follow along with this lesson, you can complete the previous lessons,
+or you can download a pre-made workshop repository that is at the starting 
+point.
+
+You will need to make sure that you have `git` installed and configured,
+as described in the set-up instructions.
+
+- [Download the pre-made workshop repository as a zip file](https://github.com/MolSSI-Education/molecool/archive/refs/tags/package-docs-start.zip)
+
+Alternatively, download the repository using the command line:
+
+````{tab-set-code} 
+```{code-block} shell
+git clone https://github.com/MolSSI-Education/molecool.git
+git checkout package-docs-start
+
+```
+````
+
 Documentation must be provided to allow for use, development, and maintenance of software. 
 Documentation is often overlooked by developers since it can be tedious and boring.
 However, writing good documentation is an extremely good habit to develop.
@@ -699,6 +721,16 @@ Commit and push - your documentation should build successfully and you should be
 
 Later, when you share distributions of your package, you will want people to be able to find this documentation easily.
 Update your `README.md` and `setup.cfg` files with your new ReadTheDocs URL.
+
+:::{admonition} Final Repository State
+:class: tip
+
+You can see the final state of the repository after this section [here](https://github.com/MolSSI-Education/molecool/tree/49dd852174be00d76a303cd8fd82ed08a9440d9f).
+
+You can also download a zip of the repository [here](https://github.com/MolSSI-Education/molecool/archive/refs/tags/package-docs-end.zip).
+
+:::
+
 
 [Sphinx]: https://www.sphinx-doc.org/en/master/
 [sphinx example]: https://www.sphinx-doc.org/en/master/examples.html
