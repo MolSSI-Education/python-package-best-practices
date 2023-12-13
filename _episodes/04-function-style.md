@@ -15,7 +15,7 @@ Objectives:
 - Learn to write docstrings in numpy style.
 ```
 
-```{admonition} Follow Along with This Lesson
+:::{admonition} Follow Along with This Lesson
 :class: tip
 
 To follow along with this lesson, you should first complete
@@ -33,6 +33,7 @@ git checkout python-coding-style-start
 
 ```
 ````
+:::
 
 ## Editing a function in our package
 Let's look at one of the functions in our package.

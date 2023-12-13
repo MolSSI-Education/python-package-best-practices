@@ -31,6 +31,7 @@ git clone https://github.com/MolSSI-Education/molecool.git
 git checkout python-type-hinting-start
 ```
 ```
+:::
 
 Python does not inherently require or enforce the *types* of variables in code.
 Python instead works under a principle called `Duck Typing`.

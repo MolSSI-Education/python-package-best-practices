@@ -37,6 +37,7 @@ git checkout package-docs-start
 
 ```
 ````
+:::
 
 Documentation must be provided to allow for use, development, and maintenance of software. 
 Documentation is often overlooked by developers since it can be tedious and boring.

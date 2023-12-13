@@ -31,6 +31,7 @@ git clone https://github.com/MolSSI-Education/molecool.git
 git checkout github-start
 ```
 ````
+:::
 
 ## Securely accessing GitHub
 During the setup for this workshop, we generated an SSH key and added it to our GitHub account.

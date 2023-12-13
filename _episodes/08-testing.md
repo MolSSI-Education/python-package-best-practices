@@ -28,6 +28,7 @@ git clone https://github.com/MolSSI-Education/molecool.git
 git checkout python-testing-start
 ```
 ````
+:::
 
 Until now, we have been writing functions and checking their behavior using an interactive Python interpreter and manually inspecting the output.
 While this seems to work, it can be tedious, and prone to error.

@@ -25,7 +25,7 @@ or you can download a pre-made workshop repository that is at the starting
 point.
 
 - [Download the pre-made workshop repository as a zip file](https://github.com/MolSSI-Education/molecool/archive/refs/tags/deciding-package-structure-start.zip)
-- 
+
 Alternatively, download the repository using the command line:
 
 ````{tab-set-code} 
@@ -34,6 +34,7 @@ git clone https://github.com/MolSSI-Education/molecool.git
 git checkout deciding-package-structure-start
 ```
 ````
+:::
 
 As new features are implemented in codes, it is natural for new functions and objects to be added.
 In many projects, this often leads to a large number of functionalities defined within a single module.
