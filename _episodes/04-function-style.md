@@ -114,6 +114,41 @@ array([[ 9.626,  6.787, 12.673],
 ```
 ````
 
+### Function Return Type
+
+When we examine our `open_pdb` function, you may notice some inconsistency in the data type of the returned values.
+Our function returns both molecules symbols and coordinates.
+However, the molecule symbols are returned as a list, while the coordinates are returned as a numpy array.
+This is not necessarily a problem, but it is inconsistent.
+We should make sure that our function returns the same type of data for each variable.
+This will be more clear to both users of our code and developers who are editing our code.
+To change both outputs to NumPy arrays, our function can now look like the following:
+
+````{tab-set-code} 
+
+```{code-block} python
+
+def open_pdb(f_loc):
+    with open(f_loc) as f:
+        data = f.readlines()
+    c = []
+    sym = []
+    for l in data:
+        if 'ATOM' in l[0:6] or 'HETATM' in l[0:6]:
+            sym.append(l[76:79].strip())
+            c2 = [float(x) for x in l[30:55].split()]
+            c.append(c2)
+    coords = np.array(c)
+    sym = np.array(sym)
+    return sym, coords
+
+```
+````
+
+You can test your function again using the same procedure we applied above,
+and now you will see that your function returns two NumPy arrays.
+
+### Raising Exceptions 
 
 Hooray! It seems like this function works!
 This should come as no surprise since we are the authors of the function,
@@ -123,8 +158,6 @@ for someone just using our code.
 There are instances where unwanted behavior occurs, even though the code executes
 (i.e. there are no syntax errors).
 In these cases, our code should be able to stop itself to prevent further malfunction.
-
-### Raising Exceptions 
 
 Take for example the division by zero. If we try to calculate 
 ````{tab-set-code} 
@@ -143,7 +176,6 @@ We would get
 ZeroDivisionError: division by zero
 ```
 ````
-
 
 In this example, the code was smart enough to identify the division by zero and halt.
 This type of feedback is much more helpful than just throwing an ugly `NaN`.
@@ -193,8 +225,8 @@ Let's try this out. In a python interpreter, try the following:
 ```
 ````
 
-
-You will see that no error occurs. If we open the written XYZ file, the last coordinate point has been discarded.
+You will see that no error occurs. 
+If we open the written XYZ file, the last coordinate point has been discarded.
 
 We probably intend for these variables to have the same number of elements.
 When they don't, there's no way to tell what the user wanted,
@@ -272,17 +304,17 @@ PEP8 is a document that gives guidelines for best practices in Python coding sty
 PEP8 is a recommendation, not a rule.
 However, you should follow this convention when possible.
 
-> ### Python PEP
->
-> If you spend a lot of time programming in Python, you will see references to PEPs a lot.
-> PEP stands for "Python Enhancement Proposal".
-> These are design documents which provide information about features.
-> PEPs come from the Python community, meaning anyone can author a PEP (however, there is a strict review process).
-> PEPs are classified into three categories - standards, informational, or process.
->
-> You can read more about PEPs in [Python's documentation](https://www.python.org/dev/peps/pep-0001/).
-> PEP1 outlines what a PEP is and how they work.
-{: .callout}
+:::{admonition} Python PEP
+:class: note
+If you spend a lot of time programming in Python, you will see references to PEPs a lot.
+PEP stands for "Python Enhancement Proposal".
+These are design documents which provide information about features.
+PEPs come from the Python community, meaning anyone can author a PEP (however, there is a strict review process).
+PEPs are classified into three categories - standards, informational, or process.
+
+You can read more about PEPs in [Python's documentation](https://www.python.org/dev/peps/pep-0001/).
+PEP1 outlines what a PEP is and how they work.
+:::
 
 PEP8 tells us several things about styling that will make our code easier to read.
 Let's consider some of these and how they might change our function.
@@ -315,6 +347,7 @@ def open_pdb(file_location):
             atom_coords = [float(x) for x in line[30:55].split()]
             coordinates.append(atom_coords)
     coords = np.array(coordinates)
+    symbols = np.array(symbols)
     return symbols, coords
 ```
 ````
@@ -510,13 +543,14 @@ There are many ways you could format a docstring (different styles/conventions).
 We recommend using [numpy style docstrings],
 which we used for the example above and for the `calculate_distance` function.
 
-> ### The `__doc__` attribute
->
-> When you add a docstring to a function or module, python automatically adds this to the `__doc__` attribute of the object.
->
-> You can also see an object's docstring by typing `object.__doc__` into the Python interpreter.
-> For example, to see the docstring associated with the canvas function, `molecool.canvas.__doc__` into the Python interpreter (after importing `molecool`, of course.)
-{: .callout}
+:::{admonition} The `__doc__` attribute
+:class: note
+
+When you add a docstring to a function or module, python automatically adds this to the `__doc__` attribute of the object.
+
+You can also see an object's docstring by typing `object.__doc__` into the Python interpreter.
+For example, to see the docstring associated with the canvas function, `molecool.canvas.__doc__` into the Python interpreter (after importing `molecool`, of course.)
+:::
 
 #### Sections of a Docstring
 Each docstring has a number of sections which are separated by headings.

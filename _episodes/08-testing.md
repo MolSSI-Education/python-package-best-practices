@@ -34,16 +34,16 @@ While this seems to work, it can be tedious, and prone to error.
 In this lesson, we'll discuss how to write tests and run them using the `pytest` testing framework.
 
 Using a testing framework will allow us to easily define tests for all of our functions and modules, and to test these each time we make a change.
-This will ensure that our code is behaving the way we expect, and that we do not break any features existing in the code by making new changes.
+This will ensure that our code is behaving the way we expect and that we do not break any features existing in the code by making new changes.
 
 This episode explains the importance of code testing and demonstrates the possible capabilities.
 
 ## Why testing
 
 Software should be tested regularly throughout the development cycle to ensure correct operation.
-Thorough testing is typically an afterthought, but for larger projects, it is essential for ensuring changes in some parts of the code do not negatively affect other parts.
+Thorough testing is typically an afterthought, but for larger projects, it is essential to ensure changes in some parts of the code do not negatively affect other parts.
 
-**Software testing is checking the behavior of part of the code (such as a method, class, or a module) by comparing its expected output or behavior with the observed one.**
+**Software testing is checking the behavior of part of the code (such as a method, class, or module) by comparing its expected output or behavior with the observed one.**
 We will explain this in more detail shortly.
 
 ## Levels of Testing
@@ -65,19 +65,19 @@ This is a more holistic approach where you test the interface between modules, a
 Where you test your system as a whole to check if it meets all the requirements.
 
 Another important type of testing is **Regression tests**.
-In Regression tests, given a known input, does the software correctly and consistently return the correct values.
+In Regression tests, the software is checked to ensure that it consistently returns correct values given known inputs.
 This kind of testing can catch problems in previously working code that may have been broken by new changes or new features.
 
 It is highly encouraged to have Unit tests that *cover* most of your code.
 It is also helpful to have some Integration and System tests.
 
 In this lesson, we are focusing on unit testing.
-Same concepts here can be applied to perform Integration tests across modules.
+The same concepts can be utilized to conduct integration tests throughout various modules.
 
 ## The pytest testing framework
 
 MolSSI recommends using the [pytest](https://pytest.org) testing framework.
-Other testing frameworks are available (such as unittest and nose tests);
+Other testing frameworks are available (such as [unittest](https://docs.python.org/3/library/unittest.html) and [nose tests](https://nose.readthedocs.io/en/latest/));
 however, the combination of easy implementation, [parametrization of tests](https://docs.pytest.org/en/latest/parametrize.html),
 [fixtures](https://docs.pytest.org/en/latest/fixture.html), and [test marking](https://docs.pytest.org/en/latest/example/markers.html)
 make `pytest` an ideal testing framework.
@@ -122,9 +122,9 @@ def test_molecool_imported:
 
 
 This file begins with `test_`, and contains a single function `test_molecool`.
-This module will import our package, then checks to see if it has been imported correctly by checking if the package name is in the list of imported modules.
+This module will import our package, then it checks to see if it has been imported correctly by checking if the package name is in the list of imported modules.
 
-The last line, containing the python keyword `assert`, is called an assertion.
+The last line, containing the Python keyword `assert`, is called an assertion.
 Assertions are used to check the behavior of the code during runtime.
 The `assert` keyword halts code execution instantly if the comparison is `False`, and does nothing if the comparison is `True`.
 Remember that pytest counts a test as passing if no error occurs while it is being run.
@@ -146,7 +146,7 @@ You should see an output similar to the following.
 
 ```{code-block} output
 ============================= test session starts ==============================
-platform darwin -- Python 3.6.8, pytest-3.6.4, py-1.5.4, pluggy-0.6.0
+platform darwin -- Python 3.11.6, pytest-7.4.2, pluggy-1.3.0
 rootdir: /Users/jessica/dev/molecool, inifile:
 collected 1 item
 
@@ -158,8 +158,7 @@ molecool/tests/test_molecool.py .                    [100%]
 
 
 Here, `pytest` has looked through our directory and its subdirectories for anything matching `test*`.
-It found the `tests` folder, and within that folder, it found the file `test_molecool.py`.
-It then executed the function `test_molecool_imported` within that module.
+If the `tests` folder exists, the code locates the `test_molecool.py` file within it and executes the `test_molecool_imported` function present within the module.
 Since our `assertion` was `True`, our test did not result in an error and the test passed.
 
 We can see the names of the tests `pytest` ran by adding a `-v` tag to the pytest command.
@@ -179,7 +178,7 @@ There are a number of additional command line arguments to [explore](https://doc
 
 ```{code-block} output
 ============================= test session starts ==============================
-platform darwin -- Python 3.6.8, pytest-3.6.4, py-1.5.4, pluggy-0.6.0 -- /Users/jessica/miniconda3/bin/python
+platform darwin -- Python 3.11.6, pytest-7.4.2, pluggy-1.3.0 -- /Users/jessica/miniconda3/bin/python
 cachedir: .pytest_cache
 rootdir: /Users/jessica/dev/molecool, inifile:
 collected 1 item
@@ -228,8 +227,8 @@ def test_calculate_distance():
 
 
 We have written one test in this file.
-In our test function `test_calculate_distance`, we defined two points.
-We know that these points should be a distance of 1 from one another.
+In our test function `test_calculate_distance`, we have defined two points.
+We know that these points should be at a distance of 1 from one another.
 
 Run this test using `pytest`. In the terminal window, type
 
@@ -241,13 +240,13 @@ pytest -v
 ````
 
 
-You should now see an output similar to the following
+You should now see an output similar to the following:
 
 ````{tab-set-code} 
 
 ```{code-block} output
 ============================================================ test session starts ============================================================
-platform darwin -- Python 3.7.3, pytest-5.2.1, py-1.8.0, pluggy-0.13.0
+platform darwin -- Python 3.11.6, pytest-7.4.2, pluggy-1.3.0
 rootdir: /Users/jessica/lessons/molecool
 collected 2 items
 
@@ -259,14 +258,14 @@ molecool/tests/test_measure.py::test_calculate_distance PASSED           [100%]
 ````
 
 
-We now see that we have two tests which have been run, and they both passed.
+Now we can see that two tests have been run and both have passed.
 This means that our calculated distance was equal to what we set as the expected distance, and the assertion did not fail.
 
 ### Failing tests
-Let's see what happens when one of the test fails.
+Let's see what happens when one of the tests fails.
 
-In case of test failure, Pytest will show detailed output from doing its own analysis to discover the error by inspecting your objects at runtime.
-Change the value of the `expected` variable in your test function to `2` and rerun the test.
+If a test fails, Pytest will provide detailed output by analyzing the objects at runtime to discover the error. 
+To rerun the test, you can change the value of the `expected` variable in your test function to `2`.
 
 ````{tab-set-code} 
 
@@ -280,7 +279,7 @@ pytest -v
 
 ```{code-block} output
 ============================================================ test session starts ============================================================
-platform darwin -- Python 3.7.3, pytest-5.2.1, py-1.8.0, pluggy-0.13.0
+platform darwin -- Python 3.11.6, pytest-7.4.2, pluggy-1.3.0
 rootdir: /Users/jessica/lessons/molecool
 collected 2 items
 
@@ -310,11 +309,9 @@ molecool/tests/test_measure.py:26: AssertionError
 ```
 ````
 
-
-Pytest shows a detailed failure report, including the source code around the failing line.
-The line that failed is marked with `>`.
-Next, it shows the values used in the assert comparison at runtime, that is `2 == 1.0`.
-This runtime analysis is one of the advantages of pytest that help you debug your code.
+Pytest displays a detailed failure report which includes the source code surrounding the line that failed. 
+The failed line is marked with `>`. Additionally, it displays the values used in the assert comparison at runtime, such as `2 == 1.0`. 
+This runtime analysis is one of the advantages of pytest, which can help you with debugging your code.
 
 ``````{admonition} Check Your Understanding
 :class: exercise
@@ -325,7 +322,7 @@ What happens if you leave your `expected_value` equal to 2, but remove the asser
 :class: solution dropdown
 
 If you remove the word `assert`, you should notice that your test still passes.
-This is because the expression evaluated to `False`, but since there was no Assertion, there was no error.
+This is because the expression is being evaluated as `False`. However, since there was no Assertion, there was no error.
 
 Since there was no error, pytest counted it as a passing test.
 The `assert` statement causes an error when it evaluates to False.
@@ -358,7 +355,7 @@ Change the expected value back to 1 so that your tests pass and make sure you ha
 ``````{admonition} Exericse
 :class: exercise
 
-Create a test for the `calculate_angle ` function. Use the three points
+Create a test for the `calculate_angle` function. Use the three points
 
 ```python
 r1 = np.array([0, 0, -1])
@@ -375,7 +372,7 @@ You should now see three passing tests.
 :class: solution dropdown
 
 Since `calculate_angle` is in the `measure` module, the tests for this function should go in the same file as `calculate_distance`.
-You should define a new function in `test_measure` called `test_calculate_angle`
+You should define a new function in `test_measure` called `test_calculate_angle`.
 ```python
 def test_calculate_angle():
    """Test the calculate_angle function"""
@@ -393,7 +390,7 @@ def test_calculate_angle():
 ````
 ``````
 Let's also make a test for the `build_bond_list` function.
-We start with creating `test_molecule.py`, then defining the test inside that file.
+We start with creating `test_molecule.py`, and then defining the test inside that file.
 
 We must have some coordinates to test.
 In our Jupyter Notebook, we were reading this data from an xyz file.
@@ -401,7 +398,7 @@ However, remember that for unit tests, we do not want to make our test dependent
 Therefore, we will just make up some coordinates in our test.
 
 Next, there are several things we might test about this function.
-We could check that we find the correct number of bonds, and that those bonds are the correct length.
+We could check that we find the correct number of bonds and that those bonds are of the correct length.
 You should write at least one test per function, but you may have multiple assertions in the same test.
 For example, we could write the following test for `build_bond_list`.
 
@@ -428,12 +425,12 @@ def test_build_bond_list():
 ````
 
 
-Here, we are asserting that the correct number of bonds were found, and next we are iterating through the dictionary to ensure that a distance of 1.4 angstrom was calculated for each bond.
+Here, we assert the correct number of bonds and iterate through the dictionary to ensure a 1.4 Angstrom distance for each bond.
 
 ## Testing Expected Exceptions
 
 If you expect your code to raise exceptions, you can test this behavior with pytest.
-For example in our `calculate_angle` function, our inputs must be numpy arrays, or the function will error.
+For example in our `calculate_angle` function, our inputs must be numpy arrays, or the function will give an error.
 
 Consider our `build_bond_list` function. We may want to raise a `ValueError` if `min_bond` is set to be less than zero.
 We can add a type check to the function so that a more informative message is given to the user.
@@ -479,13 +476,13 @@ The test will pass if the `build_bond_list` method raises a `ValueError`, otherw
 
 ## Exercise - Test Driven Development
 
-Sometimes, tests are written before code is actually written. 
+Sometimes, tests are written before writing the code. 
 This is called "Test Driven Development" or TDD.
-In this case, you would write tests which define the behavior of your code, run the tests to see they pass, then write code to pass each test.
-TDD is common when developing a library with well-defined interfaces and features.
+In this case, you would first write tests that define the behavior of your code, then run these tests to see if they pass, and finally write code to pass each of these tests.
+TDD is a common approach when developing a library with well-defined interfaces and features.
 
 TDD has another benefit of never having false positives.
-If you ensure that your tests first fail THEN pass, you know that you have really written a function that works and that your test is not just passing by default.
+If you ensure that your tests first fail and THEN pass, you know that you have written a function that works and that your test is not just passing by default.
 
 
 ``````{admonition} Exercise 1
@@ -516,7 +513,7 @@ def calculate_molecular_mass(symbols):
 ```
 ````
 
-This defines a function, inputs, and what the function should return.
+This defines a function, its inputs, and what the function should return.
 Next, add  the following test into `test_molecule.py`.
 
 ````{tab-set-code}
@@ -719,7 +716,7 @@ def calculate_center_of_mass(symbols, coordinates):
 Some of pytest's advanced features make use of decorators.
 Decorators are a very powerful tool in programming, which we will not explore in depth here.
 You can think of them as functions that act on other functions.
-To decorate a particular function, you write the name of the decorator, preceeded by `@`, in the line above the `def` statement:
+To decorate a particular function, you write the name of the decorator, preceded by `@`, in the line above the `def` statement:
 ```python
 @decorator
 def foo():
@@ -729,7 +726,7 @@ def foo():
 
 ### Pytest Marks
 Pytest marks allow you to mark your functions.
-There are built in marks for pytest and you can also define your own marks.
+There are built-in marks for pytest and you can also define your own marks.
 Marks are implemented using decorators.
 One of the built-in marks in pytest is `@pytest.mark.skip`.
 To use this mark we have to import pytest.
@@ -818,7 +815,7 @@ In your `test_molecule` module, you may have noticed that you kept having to cre
 For this particular case, you could use a global variable, but a better approach is to create something called a `pytest fixture`. 
 
 Fixtures are resources that tests can repeatedly request to use.
-Fixtures can be used for dependency injection (a way of passing or supplying resources from one object to another) which help decouple the code and make it cleaner.
+Fixtures can be used for dependency injection (a way of passing or supplying resources from one object to another) which helps to decouple the code and make it cleaner.
 
 To use fixtures, we need to import `pytest` and use the `@pytest.fixture` decorator.
 Fixtures can be defined as methods, where the name of the method is the name of this resource, and the returned data is its value.
@@ -842,7 +839,7 @@ def methane_molecule():
 ````
 
 
-we defined a fixture named `methane_molecule` which has symbols and coordinates.
+We defined a fixture named `methane_molecule` which has symbols and coordinates.
 Now, any test method can request this fixture by adding its name to its input argument.
 For example, our `test_molecular_mass` function becomes.
 
@@ -943,7 +940,7 @@ def test_move_methane(methane_molecule):
 ````
 
 
-When you run your tests, you will see that everything passes
+Once you run your tests, you will notice that all the tests pass without any errors.
 
 If you have an "expensive" fixture (one that takes a lot of time to generate), you may want to change this so that the fixture is created fewer times.
 You can do this by adding the `scope` argument to the fixture.
@@ -968,25 +965,26 @@ def methane_molecule():
 ````
 
 
-Notice that now when you run your tests, the `test_build_bond_list` will fail.
-This is because the `test_move_methane` moved the carbon atom and since the scope was module, it remained moved for the following tests. 
+Notice that when you run your tests now, the `test_build_bond_list` will fail.
+This is because the `test_move_methane` moved the carbon atom, and since the scope was set to `module`, the atom remained moved for the subsequent tests. 
 
 The `scope` keyword can be helpful for saving time, however, be aware if you are changing properties of the fixture in other tests!
 
 ````{admonition} Using fixtures across different test files
 :class: tip
 
-If during implementing your tests you realize that you want to use a fixture function from multiple test files you can move it to a conftest.py file.
-You don’t need to import the fixture you want to use in a test, it automatically gets discovered by pytest.
+If you realize while implementing your tests that a fixture function needs to be used in multiple test files, you can move it to a conftest.py file,
+ and you don't need to import it in the test as it will be automatically discovered by pytest.
+ For further information, please refer to [this article](https://www.tutorialspoint.com/pytest/pytest_conftest_py.htm).
 Read more about this [here](https://www.tutorialspoint.com/pytest/pytest_conftest_py.htm).
 ````
 
 ### Pytest Parametrize
 
 For some of our functions like `calculate_distance` or `calculate_angle`, we have only tested one measurement so far.
-This is not very complete, and we may be missing testing edge cases.
-You may think of writing another test where you change the values which you input into the calculation.
-This is definitely something you can do, and `pytest` has a feature which makes it easy to run a test with multiple inputs/values - the `parametrize` mark.
+This is not complete, and we may be missing testing edge cases.
+You may think of writing another test where you change the values that you can input into the calculation.
+This is definitely something you can do, and `pytest` has a feature that makes it easy to run a test with multiple inputs/values - the `parametrize` mark.
 
 ````{admonition} Edge and Corner Cases
 :class: note
@@ -996,13 +994,12 @@ The situation where the test examines either the beginning or the end of a range
 In a simple, one-dimensional problem, the two edge cases should always be tested along with at least one internal point.
 This ensures that you have good coverage over the range of values.
 
-Anecdotally, it is important to test edges cases because this is where errors tend to arise.
-Qualitatively different behavior happens at boundaries.
-As such, they tend to have special code dedicated to them in the implementation.
+Anecdotally, testing the edge cases is crucial since this is where errors often arise.
+Boundaries exhibit qualitatively distinct behavior, which is why they usually have a dedicated code in the implementation.
 
 ### Corner cases
 When two or more edge cases are combined, it is called a corner case.
-If a function is parametrized by two linear and independent variables, a test that is at the extreme of both variables is in a corner.
+If a function is parametrized by two linear and independent variables, a test at the extreme of both variables is in a corner.
 ````
 
 
@@ -1056,7 +1053,7 @@ pytest -v -k "test_calculate_angle_many"
 
 ```{code-block} output
 ============================================================= test session starts =============================================================
-platform darwin -- Python 3.7.3, pytest-5.2.1, py-1.8.0, pluggy-0.13.0 -- /Users/jessica/miniconda3/envs/molecool/bin/python
+platform darwin -- Python 3.11.6, pytest-7.4.2, pluggy-1.3.0 -- /Users/jessica/miniconda3/envs/molecool/bin/python
 cachedir: .pytest_cache
 rootdir: /Users/jessica/lessons/molecool
 collected 14 items / 11 deselected / 3 selected                                                                                               
@@ -1125,7 +1122,7 @@ pytest -v --doctest-modules molecool
 
 ```{code-block} output
 =========================================================================== test session starts ===========================================================================
-platform darwin -- Python 3.7.3, pytest-5.2.1, py-1.8.0, pluggy-0.13.0 -- /Users/jessica/miniconda3/envs/molecool/bin/python
+platform darwin -- Python 3.11.6, pytest-7.4.2, pluggy-1.3.0 -- /Users/jessica/miniconda3/envs/molecool/bin/python
 cachedir: .pytest_cache
 rootdir: /Users/jessica/lessons/molecool
 collected 11 items                                                                                                                                                        
@@ -1156,7 +1153,7 @@ Change the expected answer to 0.2 in the docstring and re-run the test to get th
 
 ```{code-block} output
 =========================================================================== test session starts ===========================================================================
-platform darwin -- Python 3.7.3, pytest-5.2.1, py-1.8.0, pluggy-0.13.0 -- /Users/jessica/miniconda3/envs/molecool/bin/python
+platform darwin -- Python 3.11.6, pytest-7.4.2, pluggy-1.3.0 -- /Users/jessica/miniconda3/envs/molecool/bin/python
 cachedir: .pytest_cache
 rootdir: /Users/jessica/lessons/molecool
 collected 11 items                                                                                                                                                        
@@ -1217,7 +1214,7 @@ pytest --cov=molecool
 
 ```{code-block} output
 =========================================================================== test session starts ===========================================================================
-platform darwin -- Python 3.7.3, pytest-5.2.1, py-1.8.0, pluggy-0.13.0
+platform darwin -- Python 3.11.6, pytest-7.4.2, pluggy-1.3.0
 rootdir: /Users/jessica/lessons/molecool
 plugins: cov-2.8.1
 collected 10 items                                                                                                                                                        
@@ -1225,7 +1222,7 @@ collected 10 items
 molecool/tests/test_measure.py ......                                                                                                                               [ 60%]
 molecool/tests/test_molecule.py ....                                                                                                                                [100%]
 
----------- coverage: platform darwin, python 3.7.3-final-0 -----------
+---------- coverage: platform darwin, Python 3.11.6-final-0 -----------
 Name                      Stmts   Miss  Cover
 ---------------------------------------------
 molecool/__init__.py          9      0   100%
@@ -1249,13 +1246,13 @@ The output shows how many statements (i.e. not comments) are in a file, how many
 
 To improve our coverage, we also want to see exactly which lines we missed and we can determine this using the `.coverage` file produced by `pytest`.
 Unfortunately, this strategy becomes impractical when we are working with anything larger than our test package because the `.coverage` file becomes too convoluted to read.
-We will need more tools to help us determine how to improve out tests and that will be the subject of Code Coverage part II, which we will cover later in the workshop.
+We will need more tools to help us determine how to improve our tests and that will be the subject of Code Coverage Part II, which we will cover later in the workshop.
 
 ```{admonition} Do we need to get 100% coverage?
 :class: attention
 
 Short answer: __no__.
-Code coverage is a useful tool to assess how comprehensive our set of tests are and in general the higher our code coverage the better.
+Code coverage is a useful tool to assess how comprehensive are our set of tests, and in general the higher our code coverage the better.
 __However__, trying to achieve 100% coverage on packages any larger than this sample package is a bit unrealistic and would require more time than that last bit of coverage is worth.
 ```
 

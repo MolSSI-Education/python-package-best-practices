@@ -1,5 +1,8 @@
+Overview
+--------
+
 Best Practices in Python Package Development
----------------------------------------------
+============================================
 
 This course by `The Molecular Sciences Software Institute <https://molssi.org/>`_ (MolSSI)
 teaches users MolSSI's best practices
@@ -57,8 +60,8 @@ Continuous Integration, Testing, Distribution
    :hidden:
    :titlesonly:
 
-   setup
-   01-package-setup
+   self
+   00-setup
    00-git-and-github
    00-code-organization-documentation
    00-testing-continuous-integration
