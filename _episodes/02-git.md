@@ -1300,6 +1300,14 @@ Use -f if you really want to add them.
 
 It is possible to override this with the `-f` option for `git add`.
 
+## More Tutorials
+If you want more `git`, see the following tutorials.
+
+### Basic git
+ - [Software Carpentry Version Control with Git](http://swcarpentry.github.io/git-novice/)
+ - [GitHub 15 Minutes to Learn Git](https://try.github.io/)
+ - [More on branches and merging](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
+ - [Git Commit Best Practices](https://github.com/trein/dev-best-practices/wiki/Git-Commit-Best-Practices)
 
 :::{admonition} Final Repository State
 :class: tip
@@ -1309,16 +1317,6 @@ You can see the final state of the repository after this section [here](https://
 You can also download a zip of the repository [here](https://github.com/MolSSI-Education/molecool/archive/refs/tags/git-end.zip).
 
 :::
-
-
-## More Tutorials
-If you want more `git`, see the following tutorials.
-
-### Basic git
- - [Software Carpentry Version Control with Git](http://swcarpentry.github.io/git-novice/)
- - [GitHub 15 Minutes to Learn Git](https://try.github.io/)
- - [More on branches and merging](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
- - [Git Commit Best Practices](https://github.com/trein/dev-best-practices/wiki/Git-Commit-Best-Practices)
 
 ## Key Points
 ````{admonition} Key Points
