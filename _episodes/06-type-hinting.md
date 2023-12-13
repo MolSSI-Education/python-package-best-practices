@@ -14,6 +14,24 @@ Objectives:
 - Learn the syntax to utilize type hinting in Python.
 
 ````
+:::{admonition} Follow Along with This Lesson
+:class: tip
+
+To follow along with this lesson, you can complete the previous lessons,
+or you can download a pre-made workshop repository that is at the starting 
+point.
+
+- [Download the pre-made workshop repository as a zip file](https://github.com/MolSSI-Education/molecool/archive/refs/tags/python-type-hinting-start.zip)
+
+Alternatively, download the repository using the command line:
+
+````{tab-set-code} 
+```{code-block} shell
+git clone https://github.com/MolSSI-Education/molecool.git
+git checkout python-type-hinting-start
+```
+:::
+
 Python does not inherently require or enforce the *types* of variables in code.
 Python instead works under a principle called `Duck Typing`.
 Duck Typing is derived from the phrase, "If it looks like a duck, swims like a duck, and quacks like a duck, then it probably is a duck."
@@ -211,7 +229,6 @@ Click the dropdown box and select `basic`.
 VS Code should now perform static type checking on your code.
 Try and pass a set of integers into the function and you should now see a red underline under each of the integers informing you that the types are incompatible.
 
-
 ## More
 
 For more complex or flexible typing, note that the abstract base classes in
@@ -224,6 +241,15 @@ The [typing](https://docs.python.org/3/library/typing.html) library includes a n
    can be used in a function argument annotated `arg: Iterable[SupportsFloat]`
 
 More information on Python's typing package can be found in the [Python documentation](https://docs.python.org/3/library/typing.html).
+
+:::{admonition} Final Repository State
+:class: tip
+
+You can see the final state of the repository after this section [here](https://github.com/MolSSI-Education/molecool/tree/cc3e3267215f8e773caa42d4dfc3b4d64646568e).
+
+You can also download a zip of the repository [here](https://github.com/MolSSI-Education/molecool/archive/refs/tags/python-type-hinting-end.zip).
+
+:::
 
 ## Key Points
 

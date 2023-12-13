@@ -17,6 +17,24 @@ Objectives:
 * Understand how the `__init__.py` file affects your Python package.
 
 ```
+:::{admonition} Follow Along with This Lesson
+:class: tip
+
+To follow along with this lesson, you can complete the previous lessons,
+or you can download a pre-made workshop repository that is at the starting 
+point.
+
+- [Download the pre-made workshop repository as a zip file](https://github.com/MolSSI-Education/molecool/archive/refs/tags/deciding-package-structure-start.zip)
+
+Alternatively, download the repository using the command line:
+
+````{tab-set-code} 
+```{code-block} shell
+git clone https://github.com/MolSSI-Education/molecool.git
+git checkout deciding-package-structure-start
+```
+````
+:::
 
 As new features are implemented in codes, it is natural for new functions and objects to be added.
 In many projects, this often leads to a large number of functionalities defined within a single module.
@@ -784,6 +802,15 @@ git push origin main
 ```
 ````
 
+:::{admonition} Final Repository State
+:class: tip
+
+You can see the final state of the repository after this section [here](https://github.com/MolSSI-Education/molecool/tree/5b7642b7fa140a833bc618a1561bc4a08d433257).
+
+You can also download a zip of the repository [here](https://github.com/MolSSI-Education/molecool/archive/refs/tags/deciding-package-structure-end.zip).
+
+:::
+
 ## Key Points
 
 ```{admonition} Key Points
@@ -792,6 +819,7 @@ git push origin main
 - Your package should be broken up into modules and subpackages depending on the amount of code and functionality.
 - You can use the `__init__.py` file to define what packages are imported with your package, and how the user interacts with it.
 ```
+
 
 [package setup]: https://molssi-education.github.io/python-package-best-practices/01-package-setup/index.html
 [PEP8]: https://www.python.org/dev/peps/pep-0008/

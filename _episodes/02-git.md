@@ -1320,6 +1320,15 @@ If you want more `git`, see the following tutorials.
  - [More on branches and merging](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
  - [Git Commit Best Practices](https://github.com/trein/dev-best-practices/wiki/Git-Commit-Best-Practices)
 
+:::{admonition} Final Repository State
+:class: tip
+
+You can see the final state of the repository after this section [here](https://github.com/MolSSI-Education/molecool/tree/b74f9bb50e5b614d1078730aef1d4f972cbde99c).
+
+You can also download a zip of the repository [here](https://github.com/MolSSI-Education/molecool/archive/refs/tags/git-end.zip).
+
+:::
+
 ## Key Points
 ````{admonition} Key Points
 :class: key

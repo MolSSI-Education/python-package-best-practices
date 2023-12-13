@@ -15,12 +15,25 @@ Objectives:
 - Learn to write docstrings in numpy style.
 ```
 
-```{admonition} Prerequisites
-:class: info
+:::{admonition} Follow Along with This Lesson
+:class: tip
 
-Before starting this lesson, you should first complete
-the Using Branches Exercise in Episode 2.
+To follow along with this lesson, you should first complete
+the 'Using Branches Exercise' in Episode 2 or you can download a pre-made workshop repository that is at the starting 
+point.
+
+- [Download the pre-made workshop repository as a zip file](https://github.com/MolSSI-Education/molecool/archive/refs/tags/python-coding-style-start.zip)
+
+Alternatively, download the repository using the command line:
+
+````{tab-set-code} 
+```{code-block} shell
+git clone https://github.com/MolSSI-Education/molecool.git
+git checkout python-coding-style-start
+
 ```
+````
+:::
 
 ## Editing a function in our package
 Let's look at one of the functions in our package.
@@ -851,6 +864,18 @@ from mpl_toolkits.mplot3d import Axes3D  ## noqa: F401
 
 
 You can run `flake8` again to see that the import error is no longer reported.
+
+
+:::{admonition} Final Repository State
+:class: tip
+
+You can see the final state of the repository after this section [here](https://github.com/MolSSI-Education/molecool/tree/ce11656b043846d6600b989eeba6a37ba541ea0c).
+
+You can also download a zip of the repository [here](https://github.com/MolSSI-Education/molecool/archive/refs/tags/python-coding-style-end.zip).
+
+:::
+
+
 
 ## Key Points
 

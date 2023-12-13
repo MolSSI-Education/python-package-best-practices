@@ -11,7 +11,24 @@ Objectives:
 - Explain the reasons why testing is important.
 - Understand how to write tests using the pytest framework.
 ````
+:::{admonition} Follow Along with This Lesson
+:class: tip
 
+To follow along with this lesson, you can complete the previous lessons,
+or you can download a pre-made workshop repository that is at the starting 
+point.
+
+- [Download the pre-made workshop repository as a zip file](https://github.com/MolSSI-Education/molecool/archive/refs/tags/python-testing-start.zip)
+
+Alternatively, download the repository using the command line:
+
+````{tab-set-code} 
+```{code-block} shell
+git clone https://github.com/MolSSI-Education/molecool.git
+git checkout python-testing-start
+```
+````
+:::
 
 Until now, we have been writing functions and checking their behavior using an interactive Python interpreter and manually inspecting the output.
 While this seems to work, it can be tedious, and prone to error.
@@ -1239,6 +1256,17 @@ Short answer: __no__.
 Code coverage is a useful tool to assess how comprehensive are our set of tests, and in general the higher our code coverage the better.
 __However__, trying to achieve 100% coverage on packages any larger than this sample package is a bit unrealistic and would require more time than that last bit of coverage is worth.
 ```
+
+:::{admonition} Final Repository State
+:class: tip
+
+You can see the final state of the repository after this section [here](https://github.com/MolSSI-Education/molecool/tree/7025c726eee958f0ad6b302e9f1118a7a9cadb36).
+
+You can also download a zip of the repository [here](https://github.com/MolSSI-Education/molecool/archive/refs/tags/python-testing-end.zip).
+
+:::
+
+
 ## Key Points
 ````{admonition} Key Points
 :class: key
