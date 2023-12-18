@@ -106,7 +106,7 @@ Select open_source_license:
 Choose from 1, 2, 3, 4 (1, 2, 3, 4) [1]: 2
 
 Select dependency_source:
-1 - Prefer conda-forge over the default anaconda channel with pip fallback
+1 - Prefer conda-forge with pip fallback
 2 - Prefer default anaconda channel with pip fallback
 3 - Dependencies from pip only (no conda)
 
