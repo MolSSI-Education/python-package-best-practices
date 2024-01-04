@@ -41,6 +41,14 @@ html[data-theme="dark"] a {
 	color: #ffffff;
 }
 
+html[data-theme="light"] a {
+    color: #ed1c24;
+}
+
+html[data-theme="light"] a:visited {
+    color: #ed1c24;
+}
+
 html[data-theme="dark"] .reference.external {
 	text-decoration: underline;
 
