@@ -17,6 +17,8 @@ these updates could take a considerable amount of time.
 Plan accordingly!
 
 If you are on Windows 11, you can also [set up WSL to be able to use graphical interfaces](https://docs.microsoft.com/en-us/windows/wsl/tutorials/gui-apps).
+
+As an alternative to WSL, or in addition to it, you can setup and use a Docker container to follow along with the workshop.
 ```
 
 Please follow the instructions given here to make sure you have the necessary software installed. 
@@ -70,14 +72,30 @@ Then run the following command in a terminal
 docker pull ghcr.io/molssi-education/python-best-practices-container:latest
 ```
 ````
-Once the image has been pulled to your local machine, you can run an interactive terminal to continue following along with the instructions.
+Once the image has been pulled to your local machine, you can run an interactive terminal to continue following along with the instructions. Be sure to replace `local_path` in the command with the path to the location on your computer you would like to save your files.
 ````{tab-set-code}
 
 ```{code-block} shell
-docker run -it ghcr.io/molssi-education/python-best-practices-container
+docker run -it --name molssi_best_practices -v local_path:/work ghcr.io/molssi-education/python-best-practices-container
 ```
 ````
-You do not need to install conda or git using this container, so you may skip ahead to Cookiecutter Installation.
+Once the container is running, you will want to move into the directory shared with your computer using
+````{tab-set-code}
+
+```{code-block} shell
+cd work
+```
+````
+You do not need to install conda, git, or the cookiecutter using this container, so you may skip ahead to Configuring Git.
+To exit your container, simply run `exit` from the command line.
+You can then restart the container by running
+````{tab-set-code}
+
+```{code-block} shell
+docker start -i molssi_best_practices
+```
+````
+moving into the `work` directory and resuming your work.
 
 ## Miniconda Installation
 You can install Miniconda through a graphical interface or using your terminal. 
