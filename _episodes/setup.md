@@ -39,10 +39,27 @@ We will be learning to manage conda environments and install the packages we nee
 If you already have Anaconda installed, however, there is no need to install Miniconda.
 ```
 
+`````{admonition} Ensure that your conda version is up-to-date
+:class: tip
+
+If you already have `conda` installed using Anaconda or Miniconda,
+you should make sure your `conda` version is up-to-date.  
+Ensuring you have an up-to-date version of `conda` will ensure that you are more easily able to install the packages we will be using in this workshop.
+
+
+````{tab-set-code}
+
+```{code-block} shell
+conda update -n base conda
+```
+````
+
+`````
+
 ## Installing WSL (Windows users only)
 If your computer uses the Windows operating system, we require installing Windows Subsystem for Linux (WSL). 
 Follow the installation instructions at [this link](https://docs.microsoft.com/en-us/windows/wsl/install). 
-If you don’t have a preference for Linux distribution, we recommend installing Ubuntu 20.04. 
+If you don’t have a preference for Linux distribution, we recommend installing Ubuntu 22.04. 
 
 Once WSL is installed, open your ‘Start’ menu and choose ‘Ubuntu’. 
 This will open a terminal window. 
@@ -136,40 +153,6 @@ If you do not see `(base)` before your username on the command line, type
 conda init
 ```
 ````
-
-### Set conda to use the libmamba solver
-The libmamba solver is an optional replacement to the default conda solver.
-The libmamba solver will handle dependency solving much faster than the default solver.
-To use the libmamba solver, first ensure your conda is up to date.
-````{tab-set-code}
-
-```{code-block} shell
-conda update -n base conda
-```
-````
-
-Then install the libmamba solver into your base environment.
-````{tab-set-code}
-
-```{code-block} shell
-conda install -n base conda-libmamba-solver
-```
-````
-
-Finally, set the default solver to be the libmamba solver.
-````{tab-set-code}
-
-```{code-block} shell
-conda config --set solver libmamba
-```
-````
-
-```{admonition} Using Mamba instead of Conda
-:class: attention
-If desired, instead of using a miniconda installation with the libmamba solver, you can directly use Mamba or Micromamba.
-Installation instructions can be found in Mamba's documentation: https://mamba.readthedocs.io/en/latest/index.html
-If using a version of mamba instead of conda, simply replace `conda` in all following instructions with `mamba`.
-```
 
 ## Creating a conda environment
 
