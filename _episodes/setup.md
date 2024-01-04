@@ -60,6 +60,25 @@ you can [set up WSL to use graphical interfaces on your computer](https://docs.m
 Otherwise, you will only be able to interact with WSL through the terminal (and the text editor VSCode, 
 see later in the set-up for information on how to use VS Code in WSL).
 
+## Docker (Optional Alternative)
+If you would prefer to use Docker instead of setting up an environment on your own machine, a Docker image has been prepared to get you most of the way through setup. Note this is an optional alternative to setting up conda on your computer.
+First, follow the [instructions to install Docker on your computer](https://docs.docker.com/get-docker/).
+Then run the following command in a terminal
+````{tab-set-code}
+
+```{code-block} shell
+docker pull ghcr.io/molssi-education/python-best-practices-container:latest
+```
+````
+Once the image has been pulled to your local machine, you can run an interactive terminal to continue following along with the instructions.
+````{tab-set-code}
+
+```{code-block} shell
+docker run -it ghcr.io/molssi-education/python-best-practices-container
+```
+````
+You do not need to install conda or git using this container, so you may skip ahead to Cookiecutter Installation.
+
 ## Miniconda Installation
 You can install Miniconda through a graphical interface or using your terminal. 
 Pick either "Graphical Installation" or "Text-based (terminal) Installation". 
