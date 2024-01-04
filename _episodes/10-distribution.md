@@ -13,7 +13,7 @@ Objectives:
 ````{admonition} This lesson is under development
 :class: attention
 
-This lesson is in a preliminary stage, and is not as polished as the rests of the lessons. 
+This lesson is in a preliminary stage and is not as polished as the rest of the lessons. 
 We expect to add more content to and update this lesson in the future!
  
 ````
@@ -107,13 +107,13 @@ Tags created through the GitHub interface (or pushed from a different location) 
 locally the next time you `git fetch`.
 
 Keep in mind that the GitHub repository page is one of the main entry points for new users of your package.
-Your project looks healthier and better maintained with a nice, well documented history of
+Your project looks healthier and better maintained with a nice, well-documented history of
 [releases](https://docs.github.com/en/repositories/releasing-projects-on-github/viewing-your-repositorys-releases-and-tags).
 
 ```
 
 Tags and GitHub releases do not automatically make your package easier to find or install,
-but they can be helpful in preparing the source of version information or the source archive
+but they can help prepare the source of version information or the source archive
 as you prepare the *distribution* of your package.
 
 ## Packages and distributions
@@ -131,7 +131,7 @@ Others are specific to the build system (e.g. `setuptools` or `conda`).
 The build system is responsible for assembling your files into a distribution
 archive that can be easily placed into anyone's `site-packages` directory.
 It also makes sure that various package metadata is assembled so that a
-package installer like `pip` can evaluate software dependencies, and so that
+package installer like `pip` can evaluate software dependencies so that
 your package looks good when it is shared, such as on pypi.org.
 
 ## Distributing packages for `pip install`
@@ -213,12 +213,12 @@ and use twine to upload your package.
 
 The [tutorial](https://packaging.python.org/en/latest/tutorials/packaging-projects/) should go quickly because,
 as you will note, most of the configuration it describes
-has already been pre-configured by the cookiecutter.
+has already been pre-configured by the CookieCutter.
 Caution: *strongly* consider creating an account on `test.pypi.org` and uploading
 an initial "alpha" or "beta" release of your package to see how it looks and to
 do test installations.
 
-Note that pypi.org enforces universal uniqueness of packages and versions.
+Note that pypi.org enforces the universal uniqueness of packages and versions.
 Once you have uploaded `molecool` version `1.0.0`, you cannot replace it;
 you can only upload additional versions. (You can "yank" a release, but this
 only marks the package as "yanked", indicating it should not be used.
@@ -228,7 +228,7 @@ It is still out there.)
 * Test the publication of new releases on test.pypi.org before pypi.org to avoid
   cluttering your versioning scheme and your release history on pypi.
 
-For more in depth documentation on packaging for PyPI specifically with setuptools,
+For more in-depth documentation on packaging for PyPI specifically with setuptools,
 see https://packaging.python.org/en/latest/guides/distributing-packages-using-setuptools/
 
 
@@ -263,13 +263,13 @@ Once your package has outside users, consider how your changes affect
 your users.
 Avoid surprising your users by effectively supporting the package manager heuristics
 (e.g. use prerelease version semantics to make a version only available when `pip install --pre` is used).
-Make sure your version increments reflect the compatibilty changes
+Make sure your version increments reflect the compatibility changes
 in the distributions you release.
 
 Making these considerations may lead you to moderate the changes you make.
 For instance, instead of completely changing an interface,
 consider introducing a new function or module with a different name.
-Or provide backwards compatible support for the old interfaces.
+Or provide backwards-compatible support for the old interfaces.
 
 ### Exercises - Versioning semantics
 
@@ -303,7 +303,7 @@ Probably a minor version increment.
 ````{admonition} Case 3
 :class: exercise
 
-An internal change or bug fix that you don't expect users to notice (but who knows? there could be a bug...)?
+An internal change or bug fix that you don't expect users to notice (but who knows? There could be a bug...)?
 
 ```{admonition} Solution
 :class: solution dropdown
@@ -330,5 +330,5 @@ Use a "tweak" version or post-release version. Check [PEP 440](https://peps.pyth
 
 - Add package metadata and build a distribution to share a package through community platforms.
 - Adopt common conventions and establish clear expectations for compatibility versus breaking changes so that prospective users of your package have confidence in its stability and maturity.
-- Multiple packaging systems exist, and require separate preparation.
+- Multiple packaging systems exist and require separate preparation.
 ````
