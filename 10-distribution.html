@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Distributing Packages &#8212; MolSSI Best Practices  documentation</title>
   
@@ -19,38 +18,46 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
-    <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=b3c15e6d" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=bd9e20870c6007c4c509"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
-    <script src="_static/design-tabs.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-FHKVGE8HKZ"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-FHKVGE8HKZ');
+            </script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
@@ -71,7 +78,16 @@
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -105,19 +121,24 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <header>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    <div class="bd-header navbar navbar-expand-lg bd-navbar">
 <div class="bd-header__inner bd-page-width">
   <label class="sidebar-toggle primary-toggle" for="__primary">
     <span class="fa-solid fa-bars"></span>
   </label>
   
-  <div class="navbar-header-items__start">
+  
+  <div class="col-lg-3 navbar-header-items__start">
     
       <div class="navbar-item">
+
   
 
 <a class="navbar-brand logo" href="index.html">
+  
   
   
   
@@ -127,8 +148,8 @@
       
     
     
-    <img src="_static/molssi_main_logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="_static/molssi_main_logo_inverted_white.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="_static/molssi_main_logo.png" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="_static/molssi_main_logo_inverted_white.png" class="logo__image only-dark" alt=""/>`);</script>
   
   
     <p class="title logo__title">MolSSI Best Practices</p>
@@ -137,30 +158,24 @@
     
   </div>
   
-  
   <div class="col-lg-9 navbar-header-items">
     
     <div class="me-auto navbar-header-items__center">
       
-        <div class="navbar-item"><nav class="navbar-nav">
-  <p class="sidebar-header-items__title"
-     role="heading"
-     aria-level="1"
-     aria-label="Site Navigation">
-    Site Navigation
-  </p>
+        <div class="navbar-item">
+<nav class="navbar-nav">
   <ul class="bd-navbar-elements navbar-nav">
     
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="setup.html">
-                        Set Up
+                      <a class="nav-link nav-internal" href="index.html">
+                        Overview
                       </a>
                     </li>
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="01-package-setup.html">
-                        Python Package Set-Up
+                      <a class="nav-link nav-internal" href="00-setup.html">
+                        Set-Up
                       </a>
                     </li>
                 
@@ -178,27 +193,27 @@
                       </a>
                     </li>
                 
-            <div class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
                     More
                 </button>
-                <div class="dropdown-menu">
+                <ul id="pst-nav-more-links" class="dropdown-menu">
                     
                     <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="00-testing-continuous-integration.html">
+                      <a class="nav-link dropdown-item nav-internal" href="00-testing-continuous-integration.html">
                         Testing, Continuous Integration, and Distribution
                       </a>
                     </li>
                 
 
                 <li class="nav-item">
-                  <a class="nav-link nav-external" href="https://molssi.org">
+                  <a class="nav-link dropdown-item nav-external" href="https://molssi.org">
                     MolSSI
                   </a>
                 </li>
                 
-                </div>
-            </div>
+                </ul>
+            </li>
             
   </ul>
 </nav></div>
@@ -210,23 +225,27 @@
       
         <div class="navbar-item navbar-persistent--container">
           
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
-  </button>
-`);
-</script>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
         </div>
       
       
         <div class="navbar-item">
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script></div>
@@ -242,8 +261,8 @@ document.write(`
           
           
           
-          <a href="https://github.com/MolSSI-Education/python-package-best-practices" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
-            <label class="sr-only">GitHub</label></a>
+          <a href="https://github.com/MolSSI-Education/python-package-best-practices" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
           
@@ -254,8 +273,8 @@ document.write(`
           
           
           
-          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter"></i></span>
-            <label class="sr-only">Twitter</label></a>
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Twitter</span></a>
         </li>
 </ul></div>
       
@@ -265,29 +284,38 @@ document.write(`
   
   
     <div class="navbar-persistent--mobile">
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
-  </button>
-`);
-</script>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
     </div>
   
 
   
-    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
       <span class="fa-solid fa-outdent"></span>
     </label>
   
 </div>
 
-    </nav>
+    </div>
   
+  </header>
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
         
 
   
@@ -296,25 +324,20 @@ document.write(`
     
       <div class="sidebar-header-items__center">
         
-          <div class="navbar-item"><nav class="navbar-nav">
-  <p class="sidebar-header-items__title"
-     role="heading"
-     aria-level="1"
-     aria-label="Site Navigation">
-    Site Navigation
-  </p>
+          <div class="navbar-item">
+<nav class="navbar-nav">
   <ul class="bd-navbar-elements navbar-nav">
     
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="setup.html">
-                        Set Up
+                      <a class="nav-link nav-internal" href="index.html">
+                        Overview
                       </a>
                     </li>
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="01-package-setup.html">
-                        Python Package Set-Up
+                      <a class="nav-link nav-internal" href="00-setup.html">
+                        Set-Up
                       </a>
                     </li>
                 
@@ -332,27 +355,27 @@ document.write(`
                       </a>
                     </li>
                 
-            <div class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links-2">
                     More
                 </button>
-                <div class="dropdown-menu">
+                <ul id="pst-nav-more-links-2" class="dropdown-menu">
                     
                     <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="00-testing-continuous-integration.html">
+                      <a class="nav-link dropdown-item nav-internal" href="00-testing-continuous-integration.html">
                         Testing, Continuous Integration, and Distribution
                       </a>
                     </li>
                 
 
                 <li class="nav-item">
-                  <a class="nav-link nav-external" href="https://molssi.org">
+                  <a class="nav-link dropdown-item nav-external" href="https://molssi.org">
                     MolSSI
                   </a>
                 </li>
                 
-                </div>
-            </div>
+                </ul>
+            </li>
             
   </ul>
 </nav></div>
@@ -364,12 +387,13 @@ document.write(`
       <div class="sidebar-header-items__end">
         
           <div class="navbar-item">
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script></div>
@@ -385,8 +409,8 @@ document.write(`
           
           
           
-          <a href="https://github.com/MolSSI-Education/python-package-best-practices" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
-            <label class="sr-only">GitHub</label></a>
+          <a href="https://github.com/MolSSI-Education/python-package-best-practices" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
           
@@ -397,27 +421,14 @@ document.write(`
           
           
           
-          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter"></i></span>
-            <label class="sr-only">Twitter</label></a>
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Twitter</span></a>
         </li>
 </ul></div>
         
       </div>
     
   </div>
-  
-    <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
-     aria-label="Section Navigation">
-  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="08-testing.html">Python Testing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="09-CI.html">Continuous Integration using GitHub Actions</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Distributing Packages</a></li>
-</ul>
-</div>
-</nav></div>
-    </div>
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
@@ -443,8 +454,8 @@ document.write(`
 
 
 
-<nav aria-label="Breadcrumbs">
-  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
     
     <li class="breadcrumb-item breadcrumb-home">
       <a href="index.html" class="nav-link" aria-label="Home">
@@ -454,7 +465,7 @@ document.write(`
     
     <li class="breadcrumb-item"><a href="00-testing-continuous-integration.html" class="nav-link">Testing, Continuous Integration, and Distribution</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">Distributing Packages</li>
+    <li class="breadcrumb-item active" aria-current="page">Distributing...</li>
   </ul>
 </nav>
 </div>
@@ -469,10 +480,10 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section id="distributing-packages">
-<h1>Distributing Packages<a class="headerlink" href="#distributing-packages" title="Permalink to this heading">#</a></h1>
+<h1>Distributing Packages<a class="headerlink" href="#distributing-packages" title="Link to this heading">#</a></h1>
 <div class="overview admonition">
 <p class="admonition-title">Overview</p>
 <p>Questions:</p>
@@ -486,7 +497,7 @@ document.write(`
 </div>
 <div class="attention admonition">
 <p class="admonition-title">This lesson is under development</p>
-<p>This lesson is in a preliminary stage, and is not as polished as the rests of the lessons.
+<p>This lesson is in a preliminary stage and is not as polished as the rest of the lessons.
 We expect to add more content to and update this lesson in the future!</p>
 </div>
 <p>This lesson will discuss how to distribute packages through the Python Package Index (PyPI) and conda.</p>
@@ -523,9 +534,9 @@ SHELL</label><div class="sd-tab-content docutils">
 </div>
 </div>
 <section id="preparing-a-release">
-<h2>Preparing a release<a class="headerlink" href="#preparing-a-release" title="Permalink to this heading">#</a></h2>
+<h2>Preparing a release<a class="headerlink" href="#preparing-a-release" title="Link to this heading">#</a></h2>
 <section id="release-notes">
-<h3>Release notes<a class="headerlink" href="#release-notes" title="Permalink to this heading">#</a></h3>
+<h3>Release notes<a class="headerlink" href="#release-notes" title="Link to this heading">#</a></h3>
 <p>Make sure your README file and documentation are up to date.
 Check the project description in your project’s metadata, too.</p>
 <p>Consider whether there is some announcement text that you would
@@ -534,7 +545,7 @@ want to include in a text file or in a blurb in your GitHub
 This can be a good place to publish <a class="reference external" href="https://docs.github.com/en/repositories/releasing-projects-on-github/automatically-generated-release-notes">release notes</a>.</p>
 </section>
 <section id="tagging-the-release">
-<h3>Tagging the release<a class="headerlink" href="#tagging-the-release" title="Permalink to this heading">#</a></h3>
+<h3>Tagging the release<a class="headerlink" href="#tagging-the-release" title="Link to this heading">#</a></h3>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-2" name="sd-tab-set-2" type="radio">
 </input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-2">
@@ -569,16 +580,16 @@ your repository at the tagged commits.</p>
 <p>Tags created through the GitHub interface (or pushed from a different location) will be available
 locally the next time you <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span></code>.</p>
 <p>Keep in mind that the GitHub repository page is one of the main entry points for new users of your package.
-Your project looks healthier and better maintained with a nice, well documented history of
+Your project looks healthier and better maintained with a nice, well-documented history of
 <a class="reference external" href="https://docs.github.com/en/repositories/releasing-projects-on-github/viewing-your-repositorys-releases-and-tags">releases</a>.</p>
 </div>
 <p>Tags and GitHub releases do not automatically make your package easier to find or install,
-but they can be helpful in preparing the source of version information or the source archive
+but they can help prepare the source of version information or the source archive
 as you prepare the <em>distribution</em> of your package.</p>
 </section>
 </section>
 <section id="packages-and-distributions">
-<h2>Packages and distributions<a class="headerlink" href="#packages-and-distributions" title="Permalink to this heading">#</a></h2>
+<h2>Packages and distributions<a class="headerlink" href="#packages-and-distributions" title="Link to this heading">#</a></h2>
 <p>A “distribution” is a collection of files including one (or more) Python packages that have been made portable and ready to share.</p>
 <p>The cookiecutter template provided several additional files and metadata
 to help you get your package ready for distribution,
@@ -589,18 +600,18 @@ Others are specific to the build system (e.g. <code class="docutils literal notr
 <p>The build system is responsible for assembling your files into a distribution
 archive that can be easily placed into anyone’s <code class="docutils literal notranslate"><span class="pre">site-packages</span></code> directory.
 It also makes sure that various package metadata is assembled so that a
-package installer like <code class="docutils literal notranslate"><span class="pre">pip</span></code> can evaluate software dependencies, and so that
+package installer like <code class="docutils literal notranslate"><span class="pre">pip</span></code> can evaluate software dependencies so that
 your package looks good when it is shared, such as on pypi.org.</p>
 </section>
 <section id="distributing-packages-for-pip-install">
-<h2>Distributing packages for <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code><a class="headerlink" href="#distributing-packages-for-pip-install" title="Permalink to this heading">#</a></h2>
+<h2>Distributing packages for <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code><a class="headerlink" href="#distributing-packages-for-pip-install" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Packaging standards: <a class="reference external" href="https://packaging.python.org/en/latest/">Python Packaging Authority</a></p></li>
 <li><p>Build system: <code class="docutils literal notranslate"><span class="pre">setuptools</span></code></p></li>
 <li><p>Distribution network: pypi.org</p></li>
 </ul>
 <section id="building-the-distribution">
-<h3>Building the distribution<a class="headerlink" href="#building-the-distribution" title="Permalink to this heading">#</a></h3>
+<h3>Building the distribution<a class="headerlink" href="#building-the-distribution" title="Link to this heading">#</a></h3>
 <p>We previously mentioned that <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">.</span></code> invokes <code class="docutils literal notranslate"><span class="pre">setuptools</span></code> to build the
 distribution archive for our package before installing the package in our
 environment.
@@ -654,7 +665,7 @@ and can be configured entirely with <code class="docutils literal notranslate"><
 </div>
 </section>
 <section id="building-and-uploading-to-pypi">
-<h3>Building and uploading to PyPI<a class="headerlink" href="#building-and-uploading-to-pypi" title="Permalink to this heading">#</a></h3>
+<h3>Building and uploading to PyPI<a class="headerlink" href="#building-and-uploading-to-pypi" title="Link to this heading">#</a></h3>
 <p>Read through https://packaging.python.org/en/latest/tutorials/packaging-projects/
 for a build-system-agnostic tutorial on</p>
 <ul class="simple">
@@ -667,11 +678,11 @@ build a distribution archive with <code class="docutils literal notranslate"><sp
 and use twine to upload your package.</p>
 <p>The <a class="reference external" href="https://packaging.python.org/en/latest/tutorials/packaging-projects/">tutorial</a> should go quickly because,
 as you will note, most of the configuration it describes
-has already been pre-configured by the cookiecutter.
+has already been pre-configured by the CookieCutter.
 Caution: <em>strongly</em> consider creating an account on <code class="docutils literal notranslate"><span class="pre">test.pypi.org</span></code> and uploading
 an initial “alpha” or “beta” release of your package to see how it looks and to
 do test installations.</p>
-<p>Note that pypi.org enforces universal uniqueness of packages and versions.
+<p>Note that pypi.org enforces the universal uniqueness of packages and versions.
 Once you have uploaded <code class="docutils literal notranslate"><span class="pre">molecool</span></code> version <code class="docutils literal notranslate"><span class="pre">1.0.0</span></code>, you cannot replace it;
 you can only upload additional versions. (You can “yank” a release, but this
 only marks the package as “yanked”, indicating it should not be used.
@@ -682,12 +693,12 @@ It is still out there.)</p>
 <li><p>Test the publication of new releases on test.pypi.org before pypi.org to avoid
 cluttering your versioning scheme and your release history on pypi.</p></li>
 </ul>
-<p>For more in depth documentation on packaging for PyPI specifically with setuptools,
+<p>For more in-depth documentation on packaging for PyPI specifically with setuptools,
 see https://packaging.python.org/en/latest/guides/distributing-packages-using-setuptools/</p>
 </section>
 </section>
 <section id="distributing-packages-for-conda-install">
-<h2>Distributing packages for <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span></code><a class="headerlink" href="#distributing-packages-for-conda-install" title="Permalink to this heading">#</a></h2>
+<h2>Distributing packages for <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span></code><a class="headerlink" href="#distributing-packages-for-conda-install" title="Link to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">conda</span></code> has a completely different approach to building and distributing
 packages, and is not yet PEP-517 compliant.
 (It does not use <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>.)
@@ -698,10 +709,10 @@ For documentation on publishing packages through the <code class="docutils liter
 refer to the channel’s <a class="reference external" href="https://conda-forge.org/docs/maintainer/adding_pkgs.html">contribution docs</a>.</p>
 </section>
 <section id="preparing-for-future-releases">
-<h2>Preparing for future releases<a class="headerlink" href="#preparing-for-future-releases" title="Permalink to this heading">#</a></h2>
+<h2>Preparing for future releases<a class="headerlink" href="#preparing-for-future-releases" title="Link to this heading">#</a></h2>
 <p>Consider adding or updating a CHANGELOG.</p>
 <section id="version-specifiers">
-<h3>Version specifiers<a class="headerlink" href="#version-specifiers" title="Permalink to this heading">#</a></h3>
+<h3>Version specifiers<a class="headerlink" href="#version-specifiers" title="Link to this heading">#</a></h3>
 <p>Python has a strict syntax for version strings.</p>
 <ul class="simple">
 <li><p>Refer to <a class="reference external" href="https://peps.python.org/pep-0440/">PEP 440</a> for constraints on Python version specifiers.</p></li>
@@ -711,20 +722,20 @@ tagging “alpha” and “beta” releases.</p></li>
 </section>
 </section>
 <section id="versioning-semantics">
-<h2>Versioning semantics<a class="headerlink" href="#versioning-semantics" title="Permalink to this heading">#</a></h2>
+<h2>Versioning semantics<a class="headerlink" href="#versioning-semantics" title="Link to this heading">#</a></h2>
 <p>Refer to <a class="reference external" href="https://semver.org">Semantic Versioning</a> for guidelines on how to use versions meaningfully.</p>
 <p>Once your package has outside users, consider how your changes affect
 your users.
 Avoid surprising your users by effectively supporting the package manager heuristics
 (e.g. use prerelease version semantics to make a version only available when <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--pre</span></code> is used).
-Make sure your version increments reflect the compatibilty changes
+Make sure your version increments reflect the compatibility changes
 in the distributions you release.</p>
 <p>Making these considerations may lead you to moderate the changes you make.
 For instance, instead of completely changing an interface,
 consider introducing a new function or module with a different name.
-Or provide backwards compatible support for the old interfaces.</p>
+Or provide backwards-compatible support for the old interfaces.</p>
 <section id="exercises-versioning-semantics">
-<h3>Exercises - Versioning semantics<a class="headerlink" href="#exercises-versioning-semantics" title="Permalink to this heading">#</a></h3>
+<h3>Exercises - Versioning semantics<a class="headerlink" href="#exercises-versioning-semantics" title="Link to this heading">#</a></h3>
 <p>Answer the following questions about how you should change your package
 version in the following scenarios.</p>
 <div class="exercise admonition">
@@ -745,7 +756,7 @@ version in the following scenarios.</p>
 </div>
 <div class="exercise admonition">
 <p class="admonition-title">Case 3</p>
-<p>An internal change or bug fix that you don’t expect users to notice (but who knows? there could be a bug…)?</p>
+<p>An internal change or bug fix that you don’t expect users to notice (but who knows? There could be a bug…)?</p>
 <div class="solution dropdown admonition">
 <p class="admonition-title">Solution</p>
 <p>A patch release version increment.</p>
@@ -764,7 +775,7 @@ version in the following scenarios.</p>
 <ul class="simple">
 <li><p>Add package metadata and build a distribution to share a package through community platforms.</p></li>
 <li><p>Adopt common conventions and establish clear expectations for compatibility versus breaking changes so that prospective users of your package have confidence in its stability and maturity.</p></li>
-<li><p>Multiple packaging systems exist, and require separate preparation.</p></li>
+<li><p>Multiple packaging systems exist and require separate preparation.</p></li>
 </ul>
 </div>
 </section>
@@ -776,11 +787,10 @@ version in the following scenarios.</p>
               
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="09-CI.html"
@@ -791,10 +801,7 @@ version in the following scenarios.</p>
         <p class="prev-next-title">Continuous Integration using GitHub Actions</p>
       </div>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -803,11 +810,14 @@ version in the following scenarios.</p>
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
   <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> On this page
   </div>
-  <nav class="bd-toc-nav page-toc">
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-a-release">Preparing a release</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#release-notes">Release notes</a></li>
@@ -833,6 +843,7 @@ version in the following scenarios.</p>
   </nav></div>
 
   <div class="sidebar-secondary-item">
+
   <div class="tocsection sourcelink">
     <a href="_sources/10-distribution.md.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
@@ -853,8 +864,8 @@ version in the following scenarios.</p>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -887,15 +898,20 @@ version in the following scenarios.</p>
         <p>Funded by the National Science Foundation 
           <a href="https://nsf.gov/awardsearch/showAward?AWD_ID=1547580">OAC-1547580</a> and 
           <a href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=2136142">CHE-2136142.</a></p>
+        <p> The MolSSI Best Practices Workshop is licesened under a <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0 International License.</a> 
+            You are free to adapt and share this material with attribution.
+            We'd also appreciate you letting us know if you use the material by emailing <a href="mailto:education@molssi.org">education@molssi.org</a>.
+          </p>
+        
  
         
         <p class="sphinx-version">
-        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 6.2.1.<br>
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6.<br>
         </p>
         
 
         <p class="theme-version">
-        Built with a customized <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.3.
+        Built with a customized <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.1.
         </p>
 
     </div>
@@ -907,6 +923,7 @@ version in the following scenarios.</p>
 </div></div>
       
     </div>
+  
   
   
 </div>

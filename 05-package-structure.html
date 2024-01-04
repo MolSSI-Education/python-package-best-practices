@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Deciding Package Structure &#8212; MolSSI Best Practices  documentation</title>
   
@@ -19,38 +18,46 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
-    <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=b3c15e6d" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=bd9e20870c6007c4c509"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
-    <script src="_static/design-tabs.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-FHKVGE8HKZ"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-FHKVGE8HKZ');
+            </script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
@@ -72,7 +79,16 @@
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -106,19 +122,24 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <header>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    <div class="bd-header navbar navbar-expand-lg bd-navbar">
 <div class="bd-header__inner bd-page-width">
   <label class="sidebar-toggle primary-toggle" for="__primary">
     <span class="fa-solid fa-bars"></span>
   </label>
   
-  <div class="navbar-header-items__start">
+  
+  <div class="col-lg-3 navbar-header-items__start">
     
       <div class="navbar-item">
+
   
 
 <a class="navbar-brand logo" href="index.html">
+  
   
   
   
@@ -128,8 +149,8 @@
       
     
     
-    <img src="_static/molssi_main_logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="_static/molssi_main_logo_inverted_white.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="_static/molssi_main_logo.png" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="_static/molssi_main_logo_inverted_white.png" class="logo__image only-dark" alt=""/>`);</script>
   
   
     <p class="title logo__title">MolSSI Best Practices</p>
@@ -138,30 +159,24 @@
     
   </div>
   
-  
   <div class="col-lg-9 navbar-header-items">
     
     <div class="me-auto navbar-header-items__center">
       
-        <div class="navbar-item"><nav class="navbar-nav">
-  <p class="sidebar-header-items__title"
-     role="heading"
-     aria-level="1"
-     aria-label="Site Navigation">
-    Site Navigation
-  </p>
+        <div class="navbar-item">
+<nav class="navbar-nav">
   <ul class="bd-navbar-elements navbar-nav">
     
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="setup.html">
-                        Set Up
+                      <a class="nav-link nav-internal" href="index.html">
+                        Overview
                       </a>
                     </li>
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="01-package-setup.html">
-                        Python Package Set-Up
+                      <a class="nav-link nav-internal" href="00-setup.html">
+                        Set-Up
                       </a>
                     </li>
                 
@@ -179,27 +194,27 @@
                       </a>
                     </li>
                 
-            <div class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
                     More
                 </button>
-                <div class="dropdown-menu">
+                <ul id="pst-nav-more-links" class="dropdown-menu">
                     
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="00-testing-continuous-integration.html">
+                      <a class="nav-link dropdown-item nav-internal" href="00-testing-continuous-integration.html">
                         Testing, Continuous Integration, and Distribution
                       </a>
                     </li>
                 
 
                 <li class="nav-item">
-                  <a class="nav-link nav-external" href="https://molssi.org">
+                  <a class="nav-link dropdown-item nav-external" href="https://molssi.org">
                     MolSSI
                   </a>
                 </li>
                 
-                </div>
-            </div>
+                </ul>
+            </li>
             
   </ul>
 </nav></div>
@@ -211,23 +226,27 @@
       
         <div class="navbar-item navbar-persistent--container">
           
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
-  </button>
-`);
-</script>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
         </div>
       
       
         <div class="navbar-item">
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script></div>
@@ -243,8 +262,8 @@ document.write(`
           
           
           
-          <a href="https://github.com/MolSSI-Education/python-package-best-practices" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
-            <label class="sr-only">GitHub</label></a>
+          <a href="https://github.com/MolSSI-Education/python-package-best-practices" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
           
@@ -255,8 +274,8 @@ document.write(`
           
           
           
-          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter"></i></span>
-            <label class="sr-only">Twitter</label></a>
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Twitter</span></a>
         </li>
 </ul></div>
       
@@ -266,29 +285,38 @@ document.write(`
   
   
     <div class="navbar-persistent--mobile">
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
-  </button>
-`);
-</script>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
     </div>
   
 
   
-    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
       <span class="fa-solid fa-outdent"></span>
     </label>
   
 </div>
 
-    </nav>
+    </div>
   
+  </header>
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
         
 
   
@@ -297,25 +325,20 @@ document.write(`
     
       <div class="sidebar-header-items__center">
         
-          <div class="navbar-item"><nav class="navbar-nav">
-  <p class="sidebar-header-items__title"
-     role="heading"
-     aria-level="1"
-     aria-label="Site Navigation">
-    Site Navigation
-  </p>
+          <div class="navbar-item">
+<nav class="navbar-nav">
   <ul class="bd-navbar-elements navbar-nav">
     
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="setup.html">
-                        Set Up
+                      <a class="nav-link nav-internal" href="index.html">
+                        Overview
                       </a>
                     </li>
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="01-package-setup.html">
-                        Python Package Set-Up
+                      <a class="nav-link nav-internal" href="00-setup.html">
+                        Set-Up
                       </a>
                     </li>
                 
@@ -333,27 +356,27 @@ document.write(`
                       </a>
                     </li>
                 
-            <div class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links-2">
                     More
                 </button>
-                <div class="dropdown-menu">
+                <ul id="pst-nav-more-links-2" class="dropdown-menu">
                     
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="00-testing-continuous-integration.html">
+                      <a class="nav-link dropdown-item nav-internal" href="00-testing-continuous-integration.html">
                         Testing, Continuous Integration, and Distribution
                       </a>
                     </li>
                 
 
                 <li class="nav-item">
-                  <a class="nav-link nav-external" href="https://molssi.org">
+                  <a class="nav-link dropdown-item nav-external" href="https://molssi.org">
                     MolSSI
                   </a>
                 </li>
                 
-                </div>
-            </div>
+                </ul>
+            </li>
             
   </ul>
 </nav></div>
@@ -365,12 +388,13 @@ document.write(`
       <div class="sidebar-header-items__end">
         
           <div class="navbar-item">
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script></div>
@@ -386,8 +410,8 @@ document.write(`
           
           
           
-          <a href="https://github.com/MolSSI-Education/python-package-best-practices" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
-            <label class="sr-only">GitHub</label></a>
+          <a href="https://github.com/MolSSI-Education/python-package-best-practices" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
           
@@ -398,28 +422,14 @@ document.write(`
           
           
           
-          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter"></i></span>
-            <label class="sr-only">Twitter</label></a>
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Twitter</span></a>
         </li>
 </ul></div>
         
       </div>
     
   </div>
-  
-    <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
-     aria-label="Section Navigation">
-  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="04-function-style.html">Python Coding Style</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Deciding Package Structure</a></li>
-<li class="toctree-l1"><a class="reference internal" href="06-type-hinting.html">Type Hinting in Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="10-documentation.html">Package Documentation</a></li>
-</ul>
-</div>
-</nav></div>
-    </div>
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
@@ -445,8 +455,8 @@ document.write(`
 
 
 
-<nav aria-label="Breadcrumbs">
-  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
     
     <li class="breadcrumb-item breadcrumb-home">
       <a href="index.html" class="nav-link" aria-label="Home">
@@ -456,7 +466,7 @@ document.write(`
     
     <li class="breadcrumb-item"><a href="00-code-organization-documentation.html" class="nav-link">Code Style and Documentation</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">Deciding Package Structure</li>
+    <li class="breadcrumb-item active" aria-current="page">Deciding...</li>
   </ul>
 </nav>
 </div>
@@ -471,10 +481,10 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section id="deciding-package-structure">
-<h1>Deciding Package Structure<a class="headerlink" href="#deciding-package-structure" title="Permalink to this heading">#</a></h1>
+<h1>Deciding Package Structure<a class="headerlink" href="#deciding-package-structure" title="Link to this heading">#</a></h1>
 <div class="overview admonition">
 <p class="admonition-title">Overview</p>
 <p>Questions:</p>
@@ -488,6 +498,26 @@ document.write(`
 <li><p>Understand how the <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file affects your Python package.</p></li>
 </ul>
 </div>
+<div class="tip admonition">
+<p class="admonition-title">Follow Along with This Lesson</p>
+<p>To follow along with this lesson, you can complete the previous lessons,
+or you can download a pre-made workshop repository that is at the starting
+point.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/MolSSI-Education/molecool/archive/refs/tags/deciding-package-structure-start.zip">Download the pre-made workshop repository as a zip file</a></p></li>
+</ul>
+<p>Alternatively, download the repository using the command line:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-0">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/MolSSI-Education/molecool.git
+git<span class="w"> </span>checkout<span class="w"> </span>deciding-package-structure-start
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 <p>As new features are implemented in codes, it is natural for new functions and objects to be added.
 In many projects, this often leads to a large number of functionalities defined within a single module.
 For small, single developer codes, this is not a major issue, but it can still make code difficult to work with.
@@ -496,7 +526,7 @@ With large or multi-developer codes, this can slow development progress to a cra
 We will start with a single python module containing all the methods we have developed,
 and convert it into a well-structured package.</p>
 <section id="package-structure">
-<h2>Package Structure<a class="headerlink" href="#package-structure" title="Permalink to this heading">#</a></h2>
+<h2>Package Structure<a class="headerlink" href="#package-structure" title="Link to this heading">#</a></h2>
 <p>Let’s start by reviewing the package structure provided to us by the <a class="reference external" href="https://github.com/MolSSI/cookiecutter-cms">CMS CookieCutter</a>.
 We have a directory containing our project with a number of additional features.
 Under our package directory, <code class="docutils literal notranslate"><span class="pre">molecool</span></code>, we can see our current python module <code class="docutils literal notranslate"><span class="pre">functions.py</span></code>.
@@ -520,8 +550,6 @@ please review the <a class="reference external" href="https://molssi-education.g
 │   ├── README.md
 │   ├── conda-envs                  &lt;- Conda environments for testing
 │   │   └── test_env.yaml
-│   ├── legacy-miniconda-setup      &lt;- Legacy Travis CI Helper, will likely be removed in later version
-│   │   └── before_install.sh
 │   └── scripts
 │       └── create_conda_env.py     &lt;- OS agnostic Helper script to make conda environments based on simple flags
 ├── docs                            &lt;- Documentation template folder with many settings already filled in
@@ -555,8 +583,8 @@ please review the <a class="reference external" href="https://molssi-education.g
 Looking through the <code class="docutils literal notranslate"><span class="pre">functions.py</span></code> file, we see a number of different functions,
 and for the sake of simplicity we abbreviate and rearrange them here:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-functions.py" for="sd-tab-item-0">
+<input checked="checked" id="sd-tab-item-1" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-functions.py" for="sd-tab-item-1">
 FUNCTIONS.PY</label><div class="sd-tab-content docutils">
 <div class="highlight-functions.py notranslate"><div class="highlight"><pre><span></span><span class="n">atomic_weights</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;H&#39;</span><span class="p">:</span> <span class="mf">1.00784</span><span class="p">,</span>
@@ -619,14 +647,14 @@ Looking at the functions, we see two functions that handle opening files, <code 
 It may make sense to group these three together in a module based on input and output.</p>
 <p>Let’s start making new modules to place our related functions into.</p>
 <section id="atom-data">
-<h3>Atom Data<a class="headerlink" href="#atom-data" title="Permalink to this heading">#</a></h3>
+<h3>Atom Data<a class="headerlink" href="#atom-data" title="Link to this heading">#</a></h3>
 <p>We will take the <code class="docutils literal notranslate"><span class="pre">atomic_weights</span></code> and <code class="docutils literal notranslate"><span class="pre">atom_colors</span></code> dictionaries and move them into a separate module called <code class="docutils literal notranslate"><span class="pre">atom_data.py</span></code>.
 This is enclosing the constant data that our system is using in a single place.
 This allows all the new modules we create to access the data from a single location, avoiding the need to copy the dictionaries to each module that needs them.
 If we have any other data, related to atoms, used by many of our functions, adding them to this module would be a good idea.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-1" name="sd-tab-set-1" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-atom_data.py" for="sd-tab-item-1">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-atom_data.py" for="sd-tab-item-2">
 ATOM_DATA.PY</label><div class="sd-tab-content docutils">
 <div class="highlight-atom_data.py notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Data used for the rest of the package.</span>
@@ -660,7 +688,7 @@ ATOM_DATA.PY</label><div class="sd-tab-content docutils">
 </section>
 </section>
 <section id="exercise-grouping-into-modules">
-<h2>Exercise - Grouping into Modules<a class="headerlink" href="#exercise-grouping-into-modules" title="Permalink to this heading">#</a></h2>
+<h2>Exercise - Grouping into Modules<a class="headerlink" href="#exercise-grouping-into-modules" title="Link to this heading">#</a></h2>
 <div class="exercise admonition">
 <p class="admonition-title">Exercise - Grouping into Modules</p>
 <p>Take approximately 10 minutes to look through the rest of the functions in the <code class="docutils literal notranslate"><span class="pre">functions</span></code> module and group them together.
@@ -678,14 +706,14 @@ Create a module for each group with a reasonable name.</p>
 </div>
 </div>
 <section id="measure-module">
-<h3>Measure Module<a class="headerlink" href="#measure-module" title="Permalink to this heading">#</a></h3>
+<h3>Measure Module<a class="headerlink" href="#measure-module" title="Link to this heading">#</a></h3>
 <p>Our <code class="docutils literal notranslate"><span class="pre">functions.py</span></code> file contains two functions that handle taking measurements:
 <code class="docutils literal notranslate"><span class="pre">calculate_distance</span></code> and <code class="docutils literal notranslate"><span class="pre">calculate_angle</span></code>.
 Similar to <code class="docutils literal notranslate"><span class="pre">atom_data</span></code>, we will simply place these in a module within the main package.
 Since both functions are taking measurements, we will call it <code class="docutils literal notranslate"><span class="pre">measure.py</span></code>.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-2" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-measure.py" for="sd-tab-item-2">
+<input checked="checked" id="sd-tab-item-3" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-measure.py" for="sd-tab-item-3">
 MEASURE.PY</label><div class="sd-tab-content docutils">
 <div class="highlight-measure.py notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">This module is for functions that perform measurements.</span>
@@ -732,12 +760,12 @@ MEASURE.PY</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="visualize-module">
-<h3>Visualize Module<a class="headerlink" href="#visualize-module" title="Permalink to this heading">#</a></h3>
+<h3>Visualize Module<a class="headerlink" href="#visualize-module" title="Link to this heading">#</a></h3>
 <p>Similarly, we have two functions that handle visualization of molecules.
 We will place them into a module called <code class="docutils literal notranslate"><span class="pre">visualize.py</span></code>.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-3" name="sd-tab-set-3" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-visualize.py" for="sd-tab-item-3">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-4" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-visualize.py" for="sd-tab-item-4">
 VISUALIZE.PY</label><div class="sd-tab-content docutils">
 <div class="highlight-visualize.py notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Functions for visualization of molecules</span>
@@ -798,14 +826,14 @@ VISUALIZE.PY</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="molecule-module">
-<h3>Molecule Module<a class="headerlink" href="#molecule-module" title="Permalink to this heading">#</a></h3>
+<h3>Molecule Module<a class="headerlink" href="#molecule-module" title="Link to this heading">#</a></h3>
 <p>Our last function is <code class="docutils literal notranslate"><span class="pre">build_bond_list</span></code>, which is not particularly related to any of our other functions.
 The name <code class="docutils literal notranslate"><span class="pre">functions.py</span></code> does not really give a lot of information about what is available in the module.
 We can rename the module to something more fitting, say <code class="docutils literal notranslate"><span class="pre">molecule.py</span></code>.
 We also add a docstring.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-4" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-molecule.py" for="sd-tab-item-4">
+<input checked="checked" id="sd-tab-item-5" name="sd-tab-set-5" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-molecule.py" for="sd-tab-item-5">
 MOLECULE.PY</label><div class="sd-tab-content docutils">
 <div class="highlight-molecule.py notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Functions for molecule analysis</span>
@@ -849,7 +877,7 @@ MOLECULE.PY</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="i-o-subpackage">
-<h3>I/O Subpackage<a class="headerlink" href="#i-o-subpackage" title="Permalink to this heading">#</a></h3>
+<h3>I/O Subpackage<a class="headerlink" href="#i-o-subpackage" title="Link to this heading">#</a></h3>
 <p>When looking at the three I/O functions,
 it may be easy to jump ahead and create an I/O module, as mentioned previously.
 However, what we really have is two distinct groups of functions that are related.
@@ -862,8 +890,8 @@ Instead of making a single module,
 we are going to create a subpackage to handle i/o and place a module for each group within it.</p>
 <p>Create a new directory called “io” within the package (using the command ‘mkdir directory_name’) and create two new files <code class="docutils literal notranslate"><span class="pre">pdb.py</span></code> and <code class="docutils literal notranslate"><span class="pre">xyz.py</span></code> (using the command <code class="docutils literal notranslate"><span class="pre">touch</span> <span class="pre">file_name</span></code>):</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-5" name="sd-tab-set-5" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-io/pdb.py" for="sd-tab-item-5">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-6" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-io/pdb.py" for="sd-tab-item-6">
 IO/PDB.PY</label><div class="sd-tab-content docutils">
 <div class="highlight-io/pdb.py notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Functions for manipulating pdb files.</span>
@@ -909,8 +937,8 @@ IO/PDB.PY</label><div class="sd-tab-content docutils">
 </div>
 </div>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-6" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-io/xyz.py" for="sd-tab-item-6">
+<input checked="checked" id="sd-tab-item-7" name="sd-tab-set-7" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-io/xyz.py" for="sd-tab-item-7">
 IO/XYZ.PY</label><div class="sd-tab-content docutils">
 <div class="highlight-io/xyz.py notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">functions for manipulating xyz files.</span>
@@ -922,7 +950,7 @@ IO/XYZ.PY</label><div class="sd-tab-content docutils">
     <span class="n">xyz_file</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="n">fname</span><span class="o">=</span><span class="n">file_location</span><span class="p">,</span> <span class="n">skip_header</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;unicode&quot;</span><span class="p">)</span>
     <span class="n">symbols</span> <span class="o">=</span> <span class="n">xyz_file</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
     <span class="n">coords</span> <span class="o">=</span> <span class="n">xyz_file</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]</span>
-    <span class="n">coords</span> <span class="o">=</span> <span class="n">coords</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
+    <span class="n">coords</span> <span class="o">=</span> <span class="n">coords</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">coords</span>
 
 
@@ -956,8 +984,8 @@ It will quickly create inefficiencies to leave them in one module.</p>
 <p>Now that we’ve organized and changed the structure in our project,
 we should commit our changes and push to GitHub.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-7" name="sd-tab-set-7" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-7">
+<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-8" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-8">
 SHELL</label><div class="sd-tab-content docutils">
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>.
 git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;organize molecool into modules and subpackage&quot;</span>
@@ -969,7 +997,7 @@ git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </
 </section>
 </section>
 <section id="fixing-imports">
-<h2>Fixing Imports<a class="headerlink" href="#fixing-imports" title="Permalink to this heading">#</a></h2>
+<h2>Fixing Imports<a class="headerlink" href="#fixing-imports" title="Link to this heading">#</a></h2>
 <p>When we first copied the functions from the Jupyter Notebook into <code class="docutils literal notranslate"><span class="pre">functions.py</span></code>,
 we were able to import <code class="docutils literal notranslate"><span class="pre">molecool</span></code> package and access the functions within <code class="docutils literal notranslate"><span class="pre">functions.py</span></code>.
 After we extracted the functions from that file, we won’t be able to import those functions in the same way.
@@ -977,8 +1005,8 @@ In fact, we won’t be able to access them at all.
 Every time we restructure our code or create new folders we have to be careful and modify the <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> accordingly.
 Let us then add the new functions into the <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code>.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-8" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-__init__.py" for="sd-tab-item-8">
+<input checked="checked" id="sd-tab-item-9" name="sd-tab-set-9" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-__init__.py" for="sd-tab-item-9">
 __INIT__.PY</label><div class="sd-tab-content docutils">
 <div class="highlight-__init__.py notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add imports here</span>
 <span class="kn">from</span> <span class="nn">.functions</span> <span class="kn">import</span> <span class="o">*</span>
@@ -991,8 +1019,8 @@ __INIT__.PY</label><div class="sd-tab-content docutils">
 </div>
 <p>In this way, we should be able to call each of the functions after importing our module.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-9" name="sd-tab-set-9" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-9">
+<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-10" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-10">
 PYTHON</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">molecool</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">molecool</span><span class="o">.</span><span class="n">build_bond_list</span><span class="p">()</span>
@@ -1007,8 +1035,8 @@ Each set of functions now exist in the context of their module “namespace”.<
 <p>If we look at our original <code class="docutils literal notranslate"><span class="pre">functions.py</span></code> module,
 we will see that we had a number of import statements at the top of the file:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-10" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-original_functions.py" for="sd-tab-item-10">
+<input checked="checked" id="sd-tab-item-11" name="sd-tab-set-11" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-original_functions.py" for="sd-tab-item-11">
 ORIGINAL_FUNCTIONS.PY</label><div class="sd-tab-content docutils">
 <div class="highlight-original_functions.py notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -1026,8 +1054,8 @@ which is what we imported <code class="docutils literal notranslate"><span class
 <p>Aside from visual inspection,
 you could have also seen these missing imports by using <code class="docutils literal notranslate"><span class="pre">flake8</span></code> on the modules.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-11" name="sd-tab-set-11" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-11">
+<input checked="checked" id="sd-tab-item-12" name="sd-tab-set-12" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-12">
 SHELL</label><div class="sd-tab-content docutils">
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>flake8<span class="w"> </span>measure.py
 </pre></div>
@@ -1037,8 +1065,8 @@ SHELL</label><div class="sd-tab-content docutils">
 <p>You will see a message which says “undefined name np”.</p>
 <p>In order to make these functions work again, we need to add the following <code class="docutils literal notranslate"><span class="pre">import</span></code> statement.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-12" name="sd-tab-set-12" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-12">
+<input checked="checked" id="sd-tab-item-13" name="sd-tab-set-13" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-13">
 PYTHON</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
@@ -1053,8 +1081,8 @@ We also see references to <code class="docutils literal notranslate"><span class
 Add imports of the external libraries to the top of the <code class="docutils literal notranslate"><span class="pre">visualize.py</span></code> module.
 Of course, don’t forget our “unused import” for 3D axes.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-13" name="sd-tab-set-13" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-visualize.py" for="sd-tab-item-13">
+<input checked="checked" id="sd-tab-item-14" name="sd-tab-set-14" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-visualize.py" for="sd-tab-item-14">
 VISUALIZE.PY</label><div class="sd-tab-content docutils">
 <div class="highlight-visualize.py notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -1071,8 +1099,8 @@ However, we have now moved <code class="docutils literal notranslate"><span clas
 In order to reference the dictionaries in <code class="docutils literal notranslate"><span class="pre">visualize.py</span></code>, we need to import them using an import statement.
 This is an intra-package import, meaning that we are importing modules from within our packages to other imports in our package (see intra package imports <a class="reference external" href="https://docs.python.org/3/tutorial/modules.html">here</a>)</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-14" name="sd-tab-set-14" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-visualize.py" for="sd-tab-item-14">
+<input checked="checked" id="sd-tab-item-15" name="sd-tab-set-15" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-visualize.py" for="sd-tab-item-15">
 VISUALIZE.PY</label><div class="sd-tab-content docutils">
 <div class="highlight-visualize.py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">.atom_data</span> <span class="kn">import</span> <span class="n">atom_colors</span>
 </pre></div>
@@ -1083,8 +1111,8 @@ VISUALIZE.PY</label><div class="sd-tab-content docutils">
 This is because it is a <em>relative import</em>. Just like when using bash, a dot (<code class="docutils literal notranslate"><span class="pre">.</span></code>) means to look in the current folder.</p>
 <p>To think about this more, let’s first look at the dot in a different <code class="docutils literal notranslate"><span class="pre">import</span></code> statement:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-15" name="sd-tab-set-15" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-15">
+<input checked="checked" id="sd-tab-item-16" name="sd-tab-set-16" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-16">
 PYTHON</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
@@ -1095,7 +1123,7 @@ PYTHON</label><div class="sd-tab-content docutils">
 In our case, we are not using a name before the <code class="docutils literal notranslate"><span class="pre">.</span></code> so where is it looking?
 It is looking within the current package/directory, or in this case <code class="docutils literal notranslate"><span class="pre">molecool</span></code> for a module or package named <code class="docutils literal notranslate"><span class="pre">atom_data</span></code>, from which it will import the <code class="docutils literal notranslate"><span class="pre">atom_colors</span></code> dictionary.</p>
 <section id="check-your-understanding-relative-imports">
-<h3>Check your Understanding - Relative Imports<a class="headerlink" href="#check-your-understanding-relative-imports" title="Permalink to this heading">#</a></h3>
+<h3>Check your Understanding - Relative Imports<a class="headerlink" href="#check-your-understanding-relative-imports" title="Link to this heading">#</a></h3>
 <div class="exercise admonition">
 <p class="admonition-title">Check your Understanding</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">molecule.py</span></code> module also utilizes functions that are no longer available in the module.
@@ -1104,8 +1132,8 @@ Correct the missing import statements in the module.</p>
 <p class="admonition-title">Solution</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">build_bond_list</span></code> functions utilizes the <code class="docutils literal notranslate"><span class="pre">calculate_distance</span></code> function, which is now in the <code class="docutils literal notranslate"><span class="pre">measure</span></code> module, so we want to create a relative import from the <code class="docutils literal notranslate"><span class="pre">measure</span></code> module.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-16" name="sd-tab-set-16" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-molecule.py" for="sd-tab-item-16">
+<input checked="checked" id="sd-tab-item-17" name="sd-tab-set-17" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-molecule.py" for="sd-tab-item-17">
 MOLECULE.PY</label><div class="sd-tab-content docutils">
 <div class="highlight-molecule.py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">.measure</span> <span class="kn">import</span> <span class="n">calculate_distance</span>
 </pre></div>
@@ -1116,13 +1144,13 @@ MOLECULE.PY</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="using-import">
-<h3>Using <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">*</span></code><a class="headerlink" href="#using-import" title="Permalink to this heading">#</a></h3>
+<h3>Using <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">*</span></code><a class="headerlink" href="#using-import" title="Link to this heading">#</a></h3>
 <p>We have moved all of our functions into modules and we’ve updated our <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file.
 If you use a Python interpreter in a directory which is not directly above your project, you can see the consequences of this.
 We can use the <code class="docutils literal notranslate"><span class="pre">dir</span></code> functions to see what is available in a particular module or object:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-17" name="sd-tab-set-17" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-17">
+<input checked="checked" id="sd-tab-item-18" name="sd-tab-set-18" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-18">
 PYTHON</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">molecool</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">dir</span><span class="p">(</span><span class="n">molecool</span><span class="p">)</span>
@@ -1132,8 +1160,8 @@ PYTHON</label><div class="sd-tab-content docutils">
 </div>
 <p>You should see something similar to the following</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-18" name="sd-tab-set-18" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-18">
+<input checked="checked" id="sd-tab-item-19" name="sd-tab-set-19" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-19">
 OUTPUT</label><div class="sd-tab-content docutils">
 <div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">[&#39;__builtins__&#39;, &#39;__cached__&#39;, &#39;__doc__&#39;, &#39;__file__&#39;, &#39;__git_revision__&#39;, &#39;__loader__&#39;, &#39;__name__&#39;, &#39;__package__&#39;, &#39;__path__&#39;, &#39;__spec__&#39;, &#39;__version__&#39;, &#39;_version&#39;, &#39;functions&#39;, &#39;np&#39;, &#39;plt&#39;, &#39;calculate_distance&#39;, &#39;calculate_angle,</span>
 <span class="go">&#39;build_bond_list&#39;, &#39;draw_molecule&#39;, &#39;bond_histogram&#39; ]</span>
@@ -1147,12 +1175,12 @@ This comes from using <code class="docutils literal notranslate"><span class="pr
 <p>Since we are no longer using any code from <code class="docutils literal notranslate"><span class="pre">functions.py</span></code>, we will remove the statement importing it from <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code>.</p>
 </section>
 <section id="io-subpackage">
-<h3>IO Subpackage<a class="headerlink" href="#io-subpackage" title="Permalink to this heading">#</a></h3>
+<h3>IO Subpackage<a class="headerlink" href="#io-subpackage" title="Link to this heading">#</a></h3>
 <p>We haven’t yet included our <code class="docutils literal notranslate"><span class="pre">io</span></code> subpackage, meaning that the user would have to import this package if they wanted to use it.
 For example, to use the xyz functions,</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-19" name="sd-tab-set-19" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-19">
+<input checked="checked" id="sd-tab-item-20" name="sd-tab-set-20" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-20">
 PYTHON</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">molecool.io.xyz</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">dir</span><span class="p">(</span><span class="n">molecool</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">xyz</span><span class="o">.</span><span class="n">open_xyz</span><span class="p">)</span>
@@ -1166,8 +1194,8 @@ Right now this has come at the cost of slightly more complicated import statemen
 At this point, the way we actually do this import is going to be stylistic - how do you want people to interact with your package?</p>
 <p>The goal we are going for is to call an IO function using</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-20" name="sd-tab-set-20" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-20">
+<input checked="checked" id="sd-tab-item-21" name="sd-tab-set-21" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-21">
 PYTHON</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">molecool</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">IO_FUNCTION</span>
 </pre></div>
@@ -1178,8 +1206,8 @@ PYTHON</label><div class="sd-tab-content docutils">
 <p>Within the <code class="docutils literal notranslate"><span class="pre">io</span></code> directory, create a new file called <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code>.
 Open that file with your desired editor and add the following two lines.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-21" name="sd-tab-set-21" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-__init__.py" for="sd-tab-item-21">
+<input checked="checked" id="sd-tab-item-22" name="sd-tab-set-22" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-__init__.py" for="sd-tab-item-22">
 __INIT__.PY</label><div class="sd-tab-content docutils">
 <div class="highlight-__init__.py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">.pdb</span> <span class="kn">import</span> <span class="n">open_pdb</span>
 <span class="kn">from</span> <span class="nn">.xyz</span> <span class="kn">import</span> <span class="n">open_xyz</span><span class="p">,</span> <span class="n">write_xyz</span>
@@ -1193,8 +1221,8 @@ When we look at the <code class="docutils literal notranslate"><span class="pre"
 so we do not need to look within each submodule.
 This allows us to use the following <code class="docutils literal notranslate"><span class="pre">import</span></code> statement to our top level <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> to access the functions:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-22" name="sd-tab-set-22" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-__init__.py" for="sd-tab-item-22">
+<input checked="checked" id="sd-tab-item-23" name="sd-tab-set-23" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-__init__.py" for="sd-tab-item-23">
 __INIT__.PY</label><div class="sd-tab-content docutils">
 <div class="highlight-__init__.py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">io</span>
 </pre></div>
@@ -1203,8 +1231,8 @@ __INIT__.PY</label><div class="sd-tab-content docutils">
 </div>
 <p>We can now call our I/O functions using our target syntax.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-23" name="sd-tab-set-23" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-23">
+<input checked="checked" id="sd-tab-item-24" name="sd-tab-set-24" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-24">
 PYTHON</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">molecool</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">open_pdb</span><span class="p">()</span>
 </pre></div>
@@ -1214,8 +1242,8 @@ PYTHON</label><div class="sd-tab-content docutils">
 <p>If we wanted the I/O functions to mimic the imports from the rest of the modules,
 we could modify our top level <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file to reflect that.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-24" name="sd-tab-set-24" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-__init__.py" for="sd-tab-item-24">
+<input checked="checked" id="sd-tab-item-25" name="sd-tab-set-25" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-__init__.py" for="sd-tab-item-25">
 __INIT__.PY</label><div class="sd-tab-content docutils">
 <div class="highlight-__init__.py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">.measure</span> <span class="kn">import</span> <span class="n">calculate_distance</span><span class="p">,</span> <span class="n">calculate_angle</span>
 <span class="kn">from</span> <span class="nn">.molecule</span> <span class="kn">import</span> <span class="n">build_bond_list</span>
@@ -1228,8 +1256,8 @@ __INIT__.PY</label><div class="sd-tab-content docutils">
 <p>We could even make these functions more accessible by removing the need for the  <code class="docutils literal notranslate"><span class="pre">io</span></code> module.</p>
 <p>This would allow us to call functions by simply typing the following.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-25" name="sd-tab-set-25" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-25">
+<input checked="checked" id="sd-tab-item-26" name="sd-tab-set-26" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-26">
 PYTHON</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">molecool</span><span class="o">.</span><span class="n">open_pdb</span><span class="p">()</span>
 </pre></div>
@@ -1240,8 +1268,8 @@ PYTHON</label><div class="sd-tab-content docutils">
 <p>Now that we’ve made some changes to <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code>,
 we should commit our changes and push to GitHub.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-26" name="sd-tab-set-26" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-26">
+<input checked="checked" id="sd-tab-item-27" name="sd-tab-set-27" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-27">
 SHELL</label><div class="sd-tab-content docutils">
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>.
 git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;fixing imports&quot;</span>
@@ -1250,10 +1278,15 @@ git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </
 </div>
 </div>
 </div>
+<div class="tip admonition">
+<p class="admonition-title">Final Repository State</p>
+<p>You can see the final state of the repository after this section <a class="reference external" href="https://github.com/MolSSI-Education/molecool/tree/5b7642b7fa140a833bc618a1561bc4a08d433257">here</a>.</p>
+<p>You can also download a zip of the repository <a class="reference external" href="https://github.com/MolSSI-Education/molecool/archive/refs/tags/deciding-package-structure-end.zip">here</a>.</p>
+</div>
 </section>
 </section>
 <section id="key-points">
-<h2>Key Points<a class="headerlink" href="#key-points" title="Permalink to this heading">#</a></h2>
+<h2>Key Points<a class="headerlink" href="#key-points" title="Link to this heading">#</a></h2>
 <div class="key admonition">
 <p class="admonition-title">Key Points</p>
 <ul class="simple">
@@ -1269,11 +1302,10 @@ git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </
               
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="04-function-style.html"
@@ -1293,10 +1325,7 @@ git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1305,11 +1334,14 @@ git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
   <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> On this page
   </div>
-  <nav class="bd-toc-nav page-toc">
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#package-structure">Package Structure</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atom-data">Atom Data</a></li>
@@ -1333,6 +1365,7 @@ git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </
   </nav></div>
 
   <div class="sidebar-secondary-item">
+
   <div class="tocsection sourcelink">
     <a href="_sources/05-package-structure.md.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
@@ -1353,8 +1386,8 @@ git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1387,15 +1420,20 @@ git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </
         <p>Funded by the National Science Foundation 
           <a href="https://nsf.gov/awardsearch/showAward?AWD_ID=1547580">OAC-1547580</a> and 
           <a href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=2136142">CHE-2136142.</a></p>
+        <p> The MolSSI Best Practices Workshop is licesened under a <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0 International License.</a> 
+            You are free to adapt and share this material with attribution.
+            We'd also appreciate you letting us know if you use the material by emailing <a href="mailto:education@molssi.org">education@molssi.org</a>.
+          </p>
+        
  
         
         <p class="sphinx-version">
-        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 6.2.1.<br>
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6.<br>
         </p>
         
 
         <p class="theme-version">
-        Built with a customized <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.3.
+        Built with a customized <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.1.
         </p>
 
     </div>
@@ -1407,6 +1445,7 @@ git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </
 </div></div>
       
     </div>
+  
   
   
 </div>

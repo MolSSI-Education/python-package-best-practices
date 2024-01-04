@@ -1,6 +1,6 @@
-# Set Up
+# Computer Set Up
 
-Participation in the MolSSI Best Practices Workshop will require use of your own personal computer or laptop and installation of some software.
+Participation in the MolSSI Best Practices Workshop will require using your own personal computer or laptop and installing some software.
 
 ```{admonition} Windows users take note
 :class: attention
@@ -17,62 +17,116 @@ these updates could take a considerable amount of time.
 Plan accordingly!
 
 If you are on Windows 11, you can also [set up WSL to be able to use graphical interfaces](https://docs.microsoft.com/en-us/windows/wsl/tutorials/gui-apps).
+
+As an alternative to WSL, or in addition to it, you can setup and use a Docker container to follow along with the workshop.
 ```
 
 Please follow the instructions given here to make sure you have the necessary software installed. 
 We will be using Python and the conda package manager. 
-If you are on MacOS, Linux, or WSL and you already have Anaconda (or miniconda) installed,
+If you are on MacOS, Linux, or WSL and you already have Anaconda (or Miniconda) installed,
 skip to the environment creation portion of these set-up instructions. 
-If you do not have Anaconda or miniconda installed please see the appropriate section below. 
-**Note** If you are on Windows miniconda has to be installed on WSL (not Windows). 
+If you do not have Anaconda or Miniconda installed please see the appropriate section below. 
+**Note** If you are on Windows Miniconda has to be installed on WSL (not Windows). 
 This might be a separate installation.
 
 ```{admonition} Anaconda vs. Minconda
 :class: info
 
-Anaconda is a distribution of Python, the conda package manager, and several third-party libraries which are commonly used in data science.
-Miniconda contains only Python and the conda package manager. You will be able to install any package you would like later using miniconda. 
+Anaconda is a distribution of Python, the conda package manager, and several third-party libraries that are commonly used in data science.
+Miniconda contains only Python and the conda package manager. You will be able to install any package you would like later using Miniconda. 
 Miniconda will take up a lot less space on your computer.
-We will be learning to manage conda environments and install the packages we need, so we consider miniconda to be the better option between the two.
-If you already have Anaconda installed, however, there is no need to install miniconda.
+We will be learning to manage conda environments and install the packages we need, so we consider Miniconda to be the better option between the two.
+If you already have Anaconda installed, however, there is no need to install Miniconda.
 ```
+
+`````{admonition} Ensure that your conda version is up-to-date
+:class: tip
+
+If you already have `conda` installed using Anaconda or Miniconda,
+you should make sure your `conda` version is up-to-date.  
+Ensuring you have an up-to-date version of `conda` will ensure that you are more easily able to install the packages we will be using in this workshop.
+
+
+````{tab-set-code}
+
+```{code-block} shell
+conda update -n base conda
+```
+````
+
+`````
 
 ## Installing WSL (Windows users only)
 If your computer uses the Windows operating system, we require installing Windows Subsystem for Linux (WSL). 
 Follow the installation instructions at [this link](https://docs.microsoft.com/en-us/windows/wsl/install). 
-If you don’t have a preference on Linux distribution, we recommend installing Ubuntu 20.04. 
+If you don’t have a preference for Linux distribution, we recommend installing Ubuntu 22.04. 
 
 Once WSL is installed, open your ‘Start’ menu and choose ‘Ubuntu’. 
 This will open a terminal window. 
 A terminal is an interface you can use to interact with your computer using text.
-The first time you have opened Ubuntu, you may see a message which says “Installing, this may take a few minutes…”. 
+The first time you open Ubuntu, you may see a message which says “Installing, this may take a few minutes…”. 
 After the installation is done, you will have to create a username and password. 
 After these are created, you should be able to use the terminal.
 
 The Windows Subsystem for Linux is like running another computer inside your computer. 
-It is a different operating system and has different software installed than your Windows computer. 
-For the WSL, you have to install miniconda from the terminal in your Linux operating system. 
+It is a different operating system with different software installed than your Windows computer. 
+For the WSL, you have to install Miniconda from the terminal in your Linux operating system. 
 Note that if you are using the WSL, 
 your Linux OS is completely separated from your Windows operating system. 
-This means that software installed on one operating system is not available in the other. 
+This means that software installed on one operating system is not available on the other. 
 If you are running the Windows 11 operating system, 
 you can [set up WSL to use graphical interfaces on your computer](https://docs.microsoft.com/en-us/windows/wsl/tutorials/gui-apps). 
 Otherwise, you will only be able to interact with WSL through the terminal (and the text editor VSCode, 
-see later in the set-up for information on how to use VS Code in WSL)
+see later in the set-up for information on how to use VS Code in WSL).
+
+## Docker (Optional Alternative)
+If you would prefer to use Docker instead of setting up an environment on your own machine, a Docker image has been prepared to get you most of the way through setup. Note this is an optional alternative to setting up conda on your computer.
+First, follow the [instructions to install Docker on your computer](https://docs.docker.com/get-docker/).
+Then run the following command in a terminal
+````{tab-set-code}
+
+```{code-block} shell
+docker pull ghcr.io/molssi-education/python-best-practices-container:latest
+```
+````
+Once the image has been pulled to your local machine, you can run an interactive terminal to continue following along with the instructions. Be sure to replace `local_path` in the command with the path to the location on your computer you would like to save your files.
+````{tab-set-code}
+
+```{code-block} shell
+docker run -it --name molssi_best_practices -v local_path:/work ghcr.io/molssi-education/python-best-practices-container
+```
+````
+Once the container is running, you will want to move into the directory shared with your computer using
+````{tab-set-code}
+
+```{code-block} shell
+cd work
+```
+````
+You do not need to install conda, git, or the cookiecutter using this container, so you may skip ahead to Configuring Git.
+To exit your container, simply run `exit` from the command line.
+You can then restart the container by running
+````{tab-set-code}
+
+```{code-block} shell
+docker start -i molssi_best_practices
+```
+````
+moving into the `work` directory and resuming your work.
 
 ## Miniconda Installation
-You can install miniconda through a graphical interface or using your terminal. 
+You can install Miniconda through a graphical interface or using your terminal. 
 Pick either "Graphical Installation" or "Text-based (terminal) Installation". 
 **If you are using WSL, it may be easiest to complete this using the terminal installation.**
 
 ### Graphical Installation
-Obtain the latest version of miniconda for your OS at this [link](https://docs.conda.io/en/latest/miniconda.html). 
-This will download an installer you can run to install miniconda on your system. 
+Obtain the latest version of Miniconda for your OS at this [link](https://docs.conda.io/en/latest/miniconda.html). 
+This will download an installer you can run to install Miniconda on your system. 
 Note that if you are using WSL, you will need the **Linux** installer, 
 and you will have to move this file to WSL before running. 
 
 ### Text-based (terminal) Installation
-You can also use the terminal to download and install the miniconda compilers using the terminal. 
+You can also use the terminal to download and install the Miniconda compilers using the terminal. 
 If you are using Linux or WSL, type the following into your terminal.
 
 ````{tab-set-code}
@@ -83,7 +137,7 @@ bash Miniconda3-latest-Linux-x86_64.sh
 ```
 ````
 
-If you are using Mac, you should pick the appropriate link for your architecture from the miniconda installer page.
+If you are using a Mac, you should pick the appropriate link for your architecture from the Miniconda installer page.
 
 M1: https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh  
 x86: https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
@@ -116,13 +170,13 @@ To create an environment for this project using `conda`,
 ````{tab-set-code}
 
 ```{code-block} shell
-conda create --name molssi_best_practices "python=3.10"
+conda create --name molssi_best_practices "python=3.11"
 ```
 ````
 
 For other projects, you should replace `molssi_best_practices` with a descriptive name for your project.
 `conda` also allows you to specify the Python version to use with the environment.
-Here, `python=3.10` specifies that we want to use Python 3.10 in this environment.
+Here, `python=3.11` specifies that we want to use Python 3.11 in this environment.
 Executing this command will list the environment location and a list of Python packages to be installed.
 Choose `y(es)` when prompted.
 
@@ -149,14 +203,14 @@ To deactivate an environment, type
 ````{tab-set-code} 
 
 ```{code-block} shell
-$ conda deactivate
+conda deactivate
 ```
 ````
 
 
 You can use `conda` to create environments with different Python versions. 
 You might be able to see how this could be useful for running old code 
-(you can change `3.10` in the command above to any version you want), 
+(you can change `3.11` in the command above to any version you want),
 or testing your code in different Python versions.
 
 ### Package installation using conda
@@ -166,7 +220,7 @@ Using `conda`, we can install packages to our environments.
 ````{tab-set-code} 
 
 ```{code-block} shell
-$ conda activate molssi_best_practices
+conda activate molssi_best_practices
 ```
 ````
 
@@ -176,7 +230,7 @@ To list all the Python packages installed in an environment, first activate it, 
 ````{tab-set-code} 
 
 ```{code-block} shell
-$ conda list
+conda list
 ```
 ````
 
@@ -187,7 +241,7 @@ For example, to install NumPy (do not execute this, we will install NumPy later)
 ````{tab-set-code} 
 
 ```{code-block} shell
-$ conda install numpy
+conda install numpy
 ```
 ````
 
@@ -198,7 +252,7 @@ For example, if you wanted to install NumPy version 1.15: `conda install numpy=1
 For this workshop, you will need to install the following packages into your environment
 - NumPy
 - Matplotlib
-- jupyter notebook
+- JupyterLab
 
 Packages available to Conda are stored within `channels`.
 Some packages are not stored in the default Conda channel, so we need to specify where Conda can find the package with `-c` followed by a channel name in our installation command.
@@ -210,7 +264,7 @@ You can install multiple libraries at the same time by listing them one after an
 ````{tab-set-code} 
 
 ```{code-block} shell
-$ conda install -c conda-forge numpy matplotlib notebook
+conda install -c conda-forge numpy matplotlib jupyterlab
 ```
 ````
 
@@ -226,7 +280,7 @@ First, switch to your environment for this workshop if you are not in it.
 ````{tab-set-code} 
 
 ```{code-block} shell
-$ conda activate molssi_best_practices
+conda activate molssi_best_practices
 ```
 ````
 
@@ -236,7 +290,7 @@ Install the general cookiecutter with the following commands.
 ````{tab-set-code} 
 
 ```{code-block} shell
-$ conda install -c conda-forge cookiecutter
+conda install -c conda-forge cookiecutter
 ```
 ````
 
@@ -281,9 +335,8 @@ conda install -c conda-forge git
 ```
 ````
 
-
 Note that because of the solver that conda uses to decide which version of a package to install you may end up with a version that is < 2.28. 
-you can use the same command from above `git --version` to see what version has been installed.
+You can use the same command from above `git --version` to see what version has been installed.
 
 If the output of that command is < 2.28 you will want to use the following command to specify the version to install. 
 Any version >=2.28 is acceptable.
@@ -322,7 +375,7 @@ git config --global user.email "YOUR_EMAIL_ADDRESS"
 
 
 Next, you will need to set the name of the default branch git uses.
-The following command will set your default branch name to be "main"
+The following command will set your default branch name to "main"
 
 ````{tab-set-code} 
 
@@ -344,7 +397,7 @@ To make VS Code your default editor for git, do
 ````{tab-set-code} 
 
 ```{code-block} shell
-$ git config --global core.editor "code --wait"
+git config --global core.editor "code --wait"
 ```
 ````
 
@@ -356,7 +409,7 @@ You can check the configuration commands that you have set using:
 ````{tab-set-code} 
 
 ```{code-block} shell
-$ git config --list
+git config --list
 ```
 ````
 
@@ -381,23 +434,59 @@ If you do not have a preference for text editors, we recommend [Visual Studio Co
 If you are using WSL, see [these instructions](https://code.visualstudio.com/docs/remote/wsl) for installing Visual Studio Code for use with WSL.
 If you are using Mac, follow [these instructions](https://code.visualstudio.com/docs/setup/mac#:~:text=Launching%20from%20the%20command%20line,code'%20command%20in%20PATH%20command.) to set-up VS Code so that you can use it from the command line.
 
-You should also install the [Microsoft Python Extension Plugin](https://marketplace.visualstudio.com/items?itemName=ms-python.python) for VSCode.
-When enabled, the Python extension will allow you to set the Python environment that VS Code will use to run static checks of your code. 
-You can set the Python environment when you have a Python project open by clicking the Python version (will likely be 3.something) on
-in the blue ribbon at the botton of the editor on the right. 
-Select the `molssi-best-practices` environment.
+```{admonition} Remote Development Extension (for WSL or ssh)
+:class: tip
+
+The [Remote Development Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack) will allow you to connect to remote machines (like an HPC system) and use VS Code as if it were running on your local machine.
+This can be **very** useful for computational scientists.
+
+Note that if you are using WSL, you will *have* to install this extension to use VS Code with WSL.
+This is in the [above linked instructions](https://code.visualstudio.com/docs/remote/wsl).
+```
+
+When using VSCode with the Python extension, you will want to have it use the correct Python version and installation for analyzing your code.
+You will want it to use the Python installation and packages that are installed in the `molssi_best_practices` environment you created earlier.
+
+To set the Python interpreter for VSCode, first open a Python file using the editor.
+In order to change the Python interpreter, you will need to have a Python file open.
+Open a Python file called `test.py` by typing
+
+````{tab-set-code} 
+
+```{code-block} shell
+code test.py
+```
+````
+
+Once you have an editor open, you can click the button on the bottom of VSCode, shown in the screenshot below as (1) (this could also say a Python version like "3.10"). 
+Alternatively, you can open the command palette (Ctrl+Shift+P on Windows/Linux, Cmd+Shift+P on Mac) and type "Python: Select Interpreter".
+
+```{image} ../fig/setup/vscode-button1.png
+:align: center
+```
+
+After you have clicked the button, you will see a list of Python interpreters that VSCode can use.
+You will want to choose the one that is in your `molssi_best_practices` environment.
+
+```{image} ../fig/setup/vscode-button2.png
+:align: center
+```
+
+You should do this for every Python file or project that you open in VSCode.
+Once you have correctly set your Python environment, VSCode can analyze your code as you write it.
+VSCode will be able to check that certain libraries are installed in your environment or that functions are being called correctly.
 
 ## Downloading Workshop Materials<a name="materials_download"></a>
 
-In this workshop, we will be moving code from a Jupyter notebook into a Python package that we can install and import into other scripts.
+In this workshop, we will be moving code from a Jupyter Notebook into a Python package that we can install and import into other scripts.
 
 - {download}`Starting materials for lesson <../data/starting_material.zip>`.
 
 ``````{admonition} Downloading materials from the command line
 :class: tip
 
-If you are on WSL, or would like to use the command line, you can download the workshop materials using `curl` 
-(similar to how you downloaded the miniconda installer)
+If you are on WSL or would like to use the command line, you can download the workshop materials using `curl` 
+(similar to how you downloaded the Miniconda installer)
 
 ````{tab-set-code}
 ```{code-block} shell URL_HERE
@@ -427,7 +516,8 @@ curl -O -L https://github.com/MolSSI-Education/python-package-best-practices/raw
     ~~~
 
 ## Conclusion
-At the end of this set-up, you should have created a Python environment (`molssi_best_practices`) which has Python 3.10, `numpy`, `matplotlib`, `jupyter`, and `cookiecutter` installed.
+At the end of this set-up, you should have created a Python environment (`molssi_best_practices`) which has Python 3.11, `numpy`, `matplotlib`, `jupyter`, and `cookiecutter` installed.
+
 You should also have downloaded starting material, installed and created an account on GitHub, and configured Git.
 
 [Anaconda]: https://www.anaconda.com/products/individual

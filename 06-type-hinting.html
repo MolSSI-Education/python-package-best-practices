@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Type Hinting in Python &#8212; MolSSI Best Practices  documentation</title>
   
@@ -19,38 +18,46 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
-    <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=b3c15e6d" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=bd9e20870c6007c4c509"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
-    <script src="_static/design-tabs.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-FHKVGE8HKZ"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-FHKVGE8HKZ');
+            </script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
@@ -72,7 +79,16 @@
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -106,19 +122,24 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <header>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    <div class="bd-header navbar navbar-expand-lg bd-navbar">
 <div class="bd-header__inner bd-page-width">
   <label class="sidebar-toggle primary-toggle" for="__primary">
     <span class="fa-solid fa-bars"></span>
   </label>
   
-  <div class="navbar-header-items__start">
+  
+  <div class="col-lg-3 navbar-header-items__start">
     
       <div class="navbar-item">
+
   
 
 <a class="navbar-brand logo" href="index.html">
+  
   
   
   
@@ -128,8 +149,8 @@
       
     
     
-    <img src="_static/molssi_main_logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="_static/molssi_main_logo_inverted_white.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="_static/molssi_main_logo.png" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="_static/molssi_main_logo_inverted_white.png" class="logo__image only-dark" alt=""/>`);</script>
   
   
     <p class="title logo__title">MolSSI Best Practices</p>
@@ -138,30 +159,24 @@
     
   </div>
   
-  
   <div class="col-lg-9 navbar-header-items">
     
     <div class="me-auto navbar-header-items__center">
       
-        <div class="navbar-item"><nav class="navbar-nav">
-  <p class="sidebar-header-items__title"
-     role="heading"
-     aria-level="1"
-     aria-label="Site Navigation">
-    Site Navigation
-  </p>
+        <div class="navbar-item">
+<nav class="navbar-nav">
   <ul class="bd-navbar-elements navbar-nav">
     
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="setup.html">
-                        Set Up
+                      <a class="nav-link nav-internal" href="index.html">
+                        Overview
                       </a>
                     </li>
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="01-package-setup.html">
-                        Python Package Set-Up
+                      <a class="nav-link nav-internal" href="00-setup.html">
+                        Set-Up
                       </a>
                     </li>
                 
@@ -179,27 +194,27 @@
                       </a>
                     </li>
                 
-            <div class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
                     More
                 </button>
-                <div class="dropdown-menu">
+                <ul id="pst-nav-more-links" class="dropdown-menu">
                     
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="00-testing-continuous-integration.html">
+                      <a class="nav-link dropdown-item nav-internal" href="00-testing-continuous-integration.html">
                         Testing, Continuous Integration, and Distribution
                       </a>
                     </li>
                 
 
                 <li class="nav-item">
-                  <a class="nav-link nav-external" href="https://molssi.org">
+                  <a class="nav-link dropdown-item nav-external" href="https://molssi.org">
                     MolSSI
                   </a>
                 </li>
                 
-                </div>
-            </div>
+                </ul>
+            </li>
             
   </ul>
 </nav></div>
@@ -211,23 +226,27 @@
       
         <div class="navbar-item navbar-persistent--container">
           
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
-  </button>
-`);
-</script>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
         </div>
       
       
         <div class="navbar-item">
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script></div>
@@ -243,8 +262,8 @@ document.write(`
           
           
           
-          <a href="https://github.com/MolSSI-Education/python-package-best-practices" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
-            <label class="sr-only">GitHub</label></a>
+          <a href="https://github.com/MolSSI-Education/python-package-best-practices" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
           
@@ -255,8 +274,8 @@ document.write(`
           
           
           
-          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter"></i></span>
-            <label class="sr-only">Twitter</label></a>
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Twitter</span></a>
         </li>
 </ul></div>
       
@@ -266,29 +285,38 @@ document.write(`
   
   
     <div class="navbar-persistent--mobile">
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
-  </button>
-`);
-</script>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
     </div>
   
 
   
-    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
       <span class="fa-solid fa-outdent"></span>
     </label>
   
 </div>
 
-    </nav>
+    </div>
   
+  </header>
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
         
 
   
@@ -297,25 +325,20 @@ document.write(`
     
       <div class="sidebar-header-items__center">
         
-          <div class="navbar-item"><nav class="navbar-nav">
-  <p class="sidebar-header-items__title"
-     role="heading"
-     aria-level="1"
-     aria-label="Site Navigation">
-    Site Navigation
-  </p>
+          <div class="navbar-item">
+<nav class="navbar-nav">
   <ul class="bd-navbar-elements navbar-nav">
     
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="setup.html">
-                        Set Up
+                      <a class="nav-link nav-internal" href="index.html">
+                        Overview
                       </a>
                     </li>
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="01-package-setup.html">
-                        Python Package Set-Up
+                      <a class="nav-link nav-internal" href="00-setup.html">
+                        Set-Up
                       </a>
                     </li>
                 
@@ -333,27 +356,27 @@ document.write(`
                       </a>
                     </li>
                 
-            <div class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links-2">
                     More
                 </button>
-                <div class="dropdown-menu">
+                <ul id="pst-nav-more-links-2" class="dropdown-menu">
                     
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="00-testing-continuous-integration.html">
+                      <a class="nav-link dropdown-item nav-internal" href="00-testing-continuous-integration.html">
                         Testing, Continuous Integration, and Distribution
                       </a>
                     </li>
                 
 
                 <li class="nav-item">
-                  <a class="nav-link nav-external" href="https://molssi.org">
+                  <a class="nav-link dropdown-item nav-external" href="https://molssi.org">
                     MolSSI
                   </a>
                 </li>
                 
-                </div>
-            </div>
+                </ul>
+            </li>
             
   </ul>
 </nav></div>
@@ -365,12 +388,13 @@ document.write(`
       <div class="sidebar-header-items__end">
         
           <div class="navbar-item">
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script></div>
@@ -386,8 +410,8 @@ document.write(`
           
           
           
-          <a href="https://github.com/MolSSI-Education/python-package-best-practices" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
-            <label class="sr-only">GitHub</label></a>
+          <a href="https://github.com/MolSSI-Education/python-package-best-practices" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
           
@@ -398,28 +422,14 @@ document.write(`
           
           
           
-          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter"></i></span>
-            <label class="sr-only">Twitter</label></a>
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Twitter</span></a>
         </li>
 </ul></div>
         
       </div>
     
   </div>
-  
-    <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
-     aria-label="Section Navigation">
-  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="04-function-style.html">Python Coding Style</a></li>
-<li class="toctree-l1"><a class="reference internal" href="05-package-structure.html">Deciding Package Structure</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Type Hinting in Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="10-documentation.html">Package Documentation</a></li>
-</ul>
-</div>
-</nav></div>
-    </div>
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
@@ -445,8 +455,8 @@ document.write(`
 
 
 
-<nav aria-label="Breadcrumbs">
-  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
     
     <li class="breadcrumb-item breadcrumb-home">
       <a href="index.html" class="nav-link" aria-label="Home">
@@ -456,7 +466,7 @@ document.write(`
     
     <li class="breadcrumb-item"><a href="00-code-organization-documentation.html" class="nav-link">Code Style and Documentation</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">Type Hinting in Python</li>
+    <li class="breadcrumb-item active" aria-current="page">Type...</li>
   </ul>
 </nav>
 </div>
@@ -471,10 +481,10 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section id="type-hinting-in-python">
-<h1>Type Hinting in Python<a class="headerlink" href="#type-hinting-in-python" title="Permalink to this heading">#</a></h1>
+<h1>Type Hinting in Python<a class="headerlink" href="#type-hinting-in-python" title="Link to this heading">#</a></h1>
 <div class="overview admonition">
 <p class="admonition-title">Overview</p>
 <p>Questions:</p>
@@ -488,6 +498,26 @@ document.write(`
 <li><p>Learn the syntax to utilize type hinting in Python.</p></li>
 </ul>
 </div>
+<div class="tip admonition">
+<p class="admonition-title">Follow Along with This Lesson</p>
+<p>To follow along with this lesson, you can complete the previous lessons,
+or you can download a pre-made workshop repository that is at the starting
+point.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/MolSSI-Education/molecool/archive/refs/tags/python-type-hinting-start.zip">Download the pre-made workshop repository as a zip file</a></p></li>
+</ul>
+<p>Alternatively, download the repository using the command line:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-0">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/MolSSI-Education/molecool.git
+git<span class="w"> </span>checkout<span class="w"> </span>python-type-hinting-start
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 <p>Python does not inherently require or enforce the <em>types</em> of variables in code.
 Python instead works under a principle called <code class="docutils literal notranslate"><span class="pre">Duck</span> <span class="pre">Typing</span></code>.
 Duck Typing is derived from the phrase, “If it looks like a duck, swims like a duck, and quacks like a duck, then it probably is a duck.”
@@ -495,8 +525,8 @@ Similarily, if the value assigned to a variable can be used when an integer is c
 <p>Though Duck Typing allows for flexibility in the use of variables, and similarily functions which take and return values of arbitrary type, a number of issues can arise.</p>
 <p>Consider the <code class="docutils literal notranslate"><span class="pre">calculate_distance</span></code> function from <code class="docutils literal notranslate"><span class="pre">measure.py</span></code>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-measure.py" for="sd-tab-item-0">
+<input checked="checked" id="sd-tab-item-1" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-measure.py" for="sd-tab-item-1">
 MEASURE.PY</label><div class="sd-tab-content docutils">
 <div class="highlight-measure.py notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_distance</span><span class="p">(</span><span class="n">rA</span><span class="p">,</span> <span class="n">rB</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate the distance between two points.</span>
@@ -535,8 +565,8 @@ First, <code class="docutils literal notranslate"><span class="pre">rB</span></c
 Any types that do not support the <code class="docutils literal notranslate"><span class="pre">-</span></code> operation will cause an error.
 As an example, try running the function with two lists.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-1" name="sd-tab-set-1" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-1">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-2">
 PYTHON</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">calculate_distance</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
 </pre></div>
@@ -545,8 +575,8 @@ PYTHON</label><div class="sd-tab-content docutils">
 </div>
 <p>Python will throw an exception.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-2" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-2">
+<input checked="checked" id="sd-tab-item-3" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-3">
 OUTPUT</label><div class="sd-tab-content docutils">
 <div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">TypeError: unsupported operand type(s) for -: &#39;list&#39; and &#39;list&#39;</span>
 </pre></div>
@@ -563,15 +593,15 @@ Python’s Duck Typing will allow the code to <em>try</em> to execute with argum
 Since (as the author) we <em>know</em> that the code will not behave as expected if the user provides inappropriate arguments,
 we should do more to help make sure the code is used and behaves as expected.</p>
 <section id="type-hinting">
-<h2>Type Hinting<a class="headerlink" href="#type-hinting" title="Permalink to this heading">#</a></h2>
+<h2>Type Hinting<a class="headerlink" href="#type-hinting" title="Link to this heading">#</a></h2>
 <p>Type hinting a function, and in fact any variable, can improve how easy it is to understand the needs and behaviors of a function.
 It is important to note that type hints will not be enforced by Python.
 The benefits of type hinting are to support error checking at development time to help avoid errors at run time.
 Python makes it easy to specify a type hint for any variable.
 We can specify a type with or without providing a default value.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-3" name="sd-tab-set-3" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-3">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-4" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-4">
 PYTHON</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">my_integer</span><span class="p">:</span> <span class="nb">int</span>
 
@@ -595,12 +625,12 @@ but specifically a <code class="docutils literal notranslate"><span class="pre">
 <p>This syntax is only relevant to static type checking.
 At run time, <code class="docutils literal notranslate"><span class="pre">list[int]</span></code> is identically the same type as <code class="docutils literal notranslate"><span class="pre">list</span></code>.</p>
 <section id="function-type-hinting">
-<h3>Function Type Hinting<a class="headerlink" href="#function-type-hinting" title="Permalink to this heading">#</a></h3>
+<h3>Function Type Hinting<a class="headerlink" href="#function-type-hinting" title="Link to this heading">#</a></h3>
 <p>The same syntax can be used to specify function inputs.
 We can add type hints to a function to specify what types the function works on.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-4" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-4">
+<input checked="checked" id="sd-tab-item-5" name="sd-tab-set-5" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-5">
 PYTHON</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_function</span><span class="p">(</span><span class="n">var1</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">var2</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
     <span class="o">...</span>
@@ -613,8 +643,8 @@ PYTHON</label><div class="sd-tab-content docutils">
 <p>The syntax for type hinting a function output is a bit different.
 We follow the function declaration with an <code class="docutils literal notranslate"><span class="pre">-&gt;</span></code> and then the type before the <code class="docutils literal notranslate"><span class="pre">:</span></code>.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-5" name="sd-tab-set-5" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-5">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-6" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-6">
 PYTHON</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_function</span><span class="p">(</span><span class="n">var1</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">var2</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
     <span class="o">...</span>
@@ -626,7 +656,7 @@ PYTHON</label><div class="sd-tab-content docutils">
 </section>
 </section>
 <section id="exercise-adding-type-annotations-to-calculate-distance">
-<h2>Exercise - Adding type annotations to <code class="docutils literal notranslate"><span class="pre">calculate_distance</span></code><a class="headerlink" href="#exercise-adding-type-annotations-to-calculate-distance" title="Permalink to this heading">#</a></h2>
+<h2>Exercise - Adding type annotations to <code class="docutils literal notranslate"><span class="pre">calculate_distance</span></code><a class="headerlink" href="#exercise-adding-type-annotations-to-calculate-distance" title="Link to this heading">#</a></h2>
 <div class="exercise admonition">
 <p class="admonition-title">Exercise</p>
 <p>Add type hints to the <code class="docutils literal notranslate"><span class="pre">calculate_distance</span></code> function.
@@ -634,8 +664,8 @@ Hint: our docstring specifies what types we should be using for the parameters a
 <div class="solution dropdown admonition">
 <p class="admonition-title">Solution</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-6" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-6">
+<input checked="checked" id="sd-tab-item-7" name="sd-tab-set-7" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-7">
 PYTHON</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_distance</span><span class="p">(</span><span class="n">rA</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">rB</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate the distance between two points.</span>
@@ -666,7 +696,7 @@ PYTHON</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="static-type-checking">
-<h2>Static Type Checking<a class="headerlink" href="#static-type-checking" title="Permalink to this heading">#</a></h2>
+<h2>Static Type Checking<a class="headerlink" href="#static-type-checking" title="Link to this heading">#</a></h2>
 <p>After adding the type hint annotations, you may already notice that your IDE
 warns you if you try to write <code class="docutils literal notranslate"><span class="pre">calculate_distance([0,</span> <span class="pre">0,</span> <span class="pre">0],</span> <span class="pre">[0,</span> <span class="pre">0.1,</span> <span class="pre">0])</span></code>
 (with lists instead of numpy arrays) before you even try to run the command.
@@ -680,7 +710,7 @@ type checking in your editor or with a standalone tool.</p>
 </ul>
 </section>
 <section id="type-checking-in-vs-code">
-<h2>Type Checking in VS Code<a class="headerlink" href="#type-checking-in-vs-code" title="Permalink to this heading">#</a></h2>
+<h2>Type Checking in VS Code<a class="headerlink" href="#type-checking-in-vs-code" title="Link to this heading">#</a></h2>
 <p>Enabling type checking through your IDE is a simple step to benefit from type hinting in python.
 Pylance is an optional dependency of the Python extension for VS Code, which means it is likely already installed and just needs to be activated.</p>
 <p>To activate Pylance, click the gear icon in the bottom left corner of VS Code and then select the “Settings” option.
@@ -691,7 +721,7 @@ VS Code should now perform static type checking on your code.
 Try and pass a set of integers into the function and you should now see a red underline under each of the integers informing you that the types are incompatible.</p>
 </section>
 <section id="more">
-<h2>More<a class="headerlink" href="#more" title="Permalink to this heading">#</a></h2>
+<h2>More<a class="headerlink" href="#more" title="Link to this heading">#</a></h2>
 <p>For more complex or flexible typing, note that the abstract base classes in
 <a class="reference external" href="https://docs.python.org/3/library/collections.abc.html">collections.abc</a> can be used as <code class="docutils literal notranslate"><span class="pre">Generic</span></code> types.
 The <a class="reference external" href="https://docs.python.org/3/library/typing.html">typing</a> library includes a number of other useful types.</p>
@@ -703,9 +733,14 @@ It is a Generic class. The return value of a function annotated <code class="doc
 can be used in a function argument annotated <code class="docutils literal notranslate"><span class="pre">arg:</span> <span class="pre">Iterable[SupportsFloat]</span></code></p></li>
 </ul>
 <p>More information on Python’s typing package can be found in the <a class="reference external" href="https://docs.python.org/3/library/typing.html">Python documentation</a>.</p>
+<div class="tip admonition">
+<p class="admonition-title">Final Repository State</p>
+<p>You can see the final state of the repository after this section <a class="reference external" href="https://github.com/MolSSI-Education/molecool/tree/cc3e3267215f8e773caa42d4dfc3b4d64646568e">here</a>.</p>
+<p>You can also download a zip of the repository <a class="reference external" href="https://github.com/MolSSI-Education/molecool/archive/refs/tags/python-type-hinting-end.zip">here</a>.</p>
+</div>
 </section>
 <section id="key-points">
-<h2>Key Points<a class="headerlink" href="#key-points" title="Permalink to this heading">#</a></h2>
+<h2>Key Points<a class="headerlink" href="#key-points" title="Link to this heading">#</a></h2>
 <div class="key admonition">
 <p class="admonition-title">Key Points</p>
 <ul class="simple">
@@ -721,11 +756,10 @@ can be used in a function argument annotated <code class="docutils literal notra
               
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="05-package-structure.html"
@@ -745,10 +779,7 @@ can be used in a function argument annotated <code class="docutils literal notra
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -757,11 +788,14 @@ can be used in a function argument annotated <code class="docutils literal notra
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
   <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> On this page
   </div>
-  <nav class="bd-toc-nav page-toc">
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#type-hinting">Type Hinting</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#function-type-hinting">Function Type Hinting</a></li>
@@ -776,6 +810,7 @@ can be used in a function argument annotated <code class="docutils literal notra
   </nav></div>
 
   <div class="sidebar-secondary-item">
+
   <div class="tocsection sourcelink">
     <a href="_sources/06-type-hinting.md.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
@@ -796,8 +831,8 @@ can be used in a function argument annotated <code class="docutils literal notra
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -830,15 +865,20 @@ can be used in a function argument annotated <code class="docutils literal notra
         <p>Funded by the National Science Foundation 
           <a href="https://nsf.gov/awardsearch/showAward?AWD_ID=1547580">OAC-1547580</a> and 
           <a href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=2136142">CHE-2136142.</a></p>
+        <p> The MolSSI Best Practices Workshop is licesened under a <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0 International License.</a> 
+            You are free to adapt and share this material with attribution.
+            We'd also appreciate you letting us know if you use the material by emailing <a href="mailto:education@molssi.org">education@molssi.org</a>.
+          </p>
+        
  
         
         <p class="sphinx-version">
-        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 6.2.1.<br>
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6.<br>
         </p>
         
 
         <p class="theme-version">
-        Built with a customized <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.3.
+        Built with a customized <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.1.
         </p>
 
     </div>
@@ -850,6 +890,7 @@ can be used in a function argument annotated <code class="docutils literal notra
 </div></div>
       
     </div>
+  
   
   
 </div>

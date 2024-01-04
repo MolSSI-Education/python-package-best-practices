@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Continuous Integration using GitHub Actions &#8212; MolSSI Best Practices  documentation</title>
   
@@ -19,38 +18,46 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
-    <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=b3c15e6d" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=bd9e20870c6007c4c509"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
-    <script src="_static/design-tabs.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-FHKVGE8HKZ"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-FHKVGE8HKZ');
+            </script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
@@ -72,7 +79,16 @@
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -106,19 +122,24 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <header>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    <div class="bd-header navbar navbar-expand-lg bd-navbar">
 <div class="bd-header__inner bd-page-width">
   <label class="sidebar-toggle primary-toggle" for="__primary">
     <span class="fa-solid fa-bars"></span>
   </label>
   
-  <div class="navbar-header-items__start">
+  
+  <div class="col-lg-3 navbar-header-items__start">
     
       <div class="navbar-item">
+
   
 
 <a class="navbar-brand logo" href="index.html">
+  
   
   
   
@@ -128,8 +149,8 @@
       
     
     
-    <img src="_static/molssi_main_logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="_static/molssi_main_logo_inverted_white.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="_static/molssi_main_logo.png" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="_static/molssi_main_logo_inverted_white.png" class="logo__image only-dark" alt=""/>`);</script>
   
   
     <p class="title logo__title">MolSSI Best Practices</p>
@@ -138,30 +159,24 @@
     
   </div>
   
-  
   <div class="col-lg-9 navbar-header-items">
     
     <div class="me-auto navbar-header-items__center">
       
-        <div class="navbar-item"><nav class="navbar-nav">
-  <p class="sidebar-header-items__title"
-     role="heading"
-     aria-level="1"
-     aria-label="Site Navigation">
-    Site Navigation
-  </p>
+        <div class="navbar-item">
+<nav class="navbar-nav">
   <ul class="bd-navbar-elements navbar-nav">
     
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="setup.html">
-                        Set Up
+                      <a class="nav-link nav-internal" href="index.html">
+                        Overview
                       </a>
                     </li>
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="01-package-setup.html">
-                        Python Package Set-Up
+                      <a class="nav-link nav-internal" href="00-setup.html">
+                        Set-Up
                       </a>
                     </li>
                 
@@ -179,27 +194,27 @@
                       </a>
                     </li>
                 
-            <div class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
                     More
                 </button>
-                <div class="dropdown-menu">
+                <ul id="pst-nav-more-links" class="dropdown-menu">
                     
                     <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="00-testing-continuous-integration.html">
+                      <a class="nav-link dropdown-item nav-internal" href="00-testing-continuous-integration.html">
                         Testing, Continuous Integration, and Distribution
                       </a>
                     </li>
                 
 
                 <li class="nav-item">
-                  <a class="nav-link nav-external" href="https://molssi.org">
+                  <a class="nav-link dropdown-item nav-external" href="https://molssi.org">
                     MolSSI
                   </a>
                 </li>
                 
-                </div>
-            </div>
+                </ul>
+            </li>
             
   </ul>
 </nav></div>
@@ -211,23 +226,27 @@
       
         <div class="navbar-item navbar-persistent--container">
           
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
-  </button>
-`);
-</script>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
         </div>
       
       
         <div class="navbar-item">
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script></div>
@@ -243,8 +262,8 @@ document.write(`
           
           
           
-          <a href="https://github.com/MolSSI-Education/python-package-best-practices" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
-            <label class="sr-only">GitHub</label></a>
+          <a href="https://github.com/MolSSI-Education/python-package-best-practices" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
           
@@ -255,8 +274,8 @@ document.write(`
           
           
           
-          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter"></i></span>
-            <label class="sr-only">Twitter</label></a>
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Twitter</span></a>
         </li>
 </ul></div>
       
@@ -266,29 +285,38 @@ document.write(`
   
   
     <div class="navbar-persistent--mobile">
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
-  </button>
-`);
-</script>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
     </div>
   
 
   
-    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
       <span class="fa-solid fa-outdent"></span>
     </label>
   
 </div>
 
-    </nav>
+    </div>
   
+  </header>
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
         
 
   
@@ -297,25 +325,20 @@ document.write(`
     
       <div class="sidebar-header-items__center">
         
-          <div class="navbar-item"><nav class="navbar-nav">
-  <p class="sidebar-header-items__title"
-     role="heading"
-     aria-level="1"
-     aria-label="Site Navigation">
-    Site Navigation
-  </p>
+          <div class="navbar-item">
+<nav class="navbar-nav">
   <ul class="bd-navbar-elements navbar-nav">
     
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="setup.html">
-                        Set Up
+                      <a class="nav-link nav-internal" href="index.html">
+                        Overview
                       </a>
                     </li>
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="01-package-setup.html">
-                        Python Package Set-Up
+                      <a class="nav-link nav-internal" href="00-setup.html">
+                        Set-Up
                       </a>
                     </li>
                 
@@ -333,27 +356,27 @@ document.write(`
                       </a>
                     </li>
                 
-            <div class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links-2">
                     More
                 </button>
-                <div class="dropdown-menu">
+                <ul id="pst-nav-more-links-2" class="dropdown-menu">
                     
                     <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="00-testing-continuous-integration.html">
+                      <a class="nav-link dropdown-item nav-internal" href="00-testing-continuous-integration.html">
                         Testing, Continuous Integration, and Distribution
                       </a>
                     </li>
                 
 
                 <li class="nav-item">
-                  <a class="nav-link nav-external" href="https://molssi.org">
+                  <a class="nav-link dropdown-item nav-external" href="https://molssi.org">
                     MolSSI
                   </a>
                 </li>
                 
-                </div>
-            </div>
+                </ul>
+            </li>
             
   </ul>
 </nav></div>
@@ -365,12 +388,13 @@ document.write(`
       <div class="sidebar-header-items__end">
         
           <div class="navbar-item">
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script></div>
@@ -386,8 +410,8 @@ document.write(`
           
           
           
-          <a href="https://github.com/MolSSI-Education/python-package-best-practices" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
-            <label class="sr-only">GitHub</label></a>
+          <a href="https://github.com/MolSSI-Education/python-package-best-practices" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
           
@@ -398,27 +422,14 @@ document.write(`
           
           
           
-          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter"></i></span>
-            <label class="sr-only">Twitter</label></a>
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Twitter</span></a>
         </li>
 </ul></div>
         
       </div>
     
   </div>
-  
-    <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
-     aria-label="Section Navigation">
-  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="08-testing.html">Python Testing</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Continuous Integration using GitHub Actions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="10-distribution.html">Distributing Packages</a></li>
-</ul>
-</div>
-</nav></div>
-    </div>
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
@@ -444,8 +455,8 @@ document.write(`
 
 
 
-<nav aria-label="Breadcrumbs">
-  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
     
     <li class="breadcrumb-item breadcrumb-home">
       <a href="index.html" class="nav-link" aria-label="Home">
@@ -455,7 +466,7 @@ document.write(`
     
     <li class="breadcrumb-item"><a href="00-testing-continuous-integration.html" class="nav-link">Testing, Continuous Integration, and Distribution</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">Continuous Integration using GitHub Actions</li>
+    <li class="breadcrumb-item active" aria-current="page">Continuous...</li>
   </ul>
 </nav>
 </div>
@@ -470,10 +481,10 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section id="continuous-integration-using-github-actions">
-<h1>Continuous Integration using GitHub Actions<a class="headerlink" href="#continuous-integration-using-github-actions" title="Permalink to this heading">#</a></h1>
+<h1>Continuous Integration using GitHub Actions<a class="headerlink" href="#continuous-integration-using-github-actions" title="Link to this heading">#</a></h1>
 <div class="overview admonition">
 <p class="admonition-title">Overview</p>
 <p>Questions:</p>
@@ -485,43 +496,73 @@ document.write(`
 <ul class="simple">
 <li><p>Explain the concept and benefits of continuous integration.</p></li>
 <li><p>Introduce the GitHub Marketplace as a one-stop shop for continuous integration services.</p></li>
-<li><p>Demonstrate how to setup continuous integration using GitHub Actions.</p></li>
+<li><p>Demonstrate how to set up continuous integration using GitHub Actions.</p></li>
 <li><p>Familiarize learners with YAML configuration files.</p></li>
 </ul>
 </div>
-<div class="attention admonition">
-<p class="admonition-title">Prerequisites</p>
+<div class="tip admonition">
+<p class="admonition-title">Follow Along with This Lesson</p>
+<p>To follow along with this lesson, either you meet the following prerequisites:</p>
 <ul class="simple">
-<li><p>All Python code and tests described so far in the lesson.</p></li>
-<li><p>Configured Git and GitHub account (described in set-up)</p></li>
+<li><p>All Python code and tests described so far in the workshop.</p></li>
+<li><p>Configured Git and GitHub account (described in <a class="reference internal" href="setup.html"><span class="std std-doc">Set Up</span></a>)</p></li>
 <li><p>Pushed up-to-date version - with tests - of the <code class="docutils literal notranslate"><span class="pre">molecool</span></code> project to GitHub.</p></li>
 </ul>
+<p>or you can download a pre-made workshop repository that is at the starting
+point.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/MolSSI-Education/molecool/archive/refs/tags/CI-Github-actions-start.zip">Download the pre-made workshop repository as a zip file</a></p></li>
+</ul>
+<p>Alternatively, download the repository using the command line:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-0">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/MolSSI-Education/molecool.git
+git<span class="w"> </span>checkout<span class="w"> </span>CI-Github-actions-start
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Note</strong> - For this lesson, you must be able to push to GitHub.
+If you are using the pre-made repository, you will need to create an <em>empty</em> repository on GitHub, then
+change the remote URL to your own repository.</p>
+<p>If you cloned using the command above, you will use the following command to change the remote URL:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-1" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-1">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>remote<span class="w"> </span>set-url<span class="w"> </span>origin<span class="w"> </span>YOUR_REPOSTIORY_LOCATION
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 <p>From <a class="reference external" href="https://en.wikipedia.org/wiki/Continuous_integration">Wikipedia</a>,
 continuous integration (CI) is the practice of merging all developers’ working copies of code to a shared mainline, several times a day.
 In other words, CI refers to the coupling of version control and unit testing in an automated way.
 Typically, CI runs either when you commit new code to your project, or beforehand, when you try to merge experimental code into the main repository (through a pull request).
-CI is useful not only for catching bugs before they reach your fellow developers and your end users, but also for expanding your testing to platforms that are not available to you.</p>
+CI is useful not only for catching bugs before they reach your fellow developers and your end users but also for expanding your testing to platforms that are not available to you.</p>
 <p>Most CI services are tightly integrated with GitHub.
 In this episode, we will be using <a class="reference external" href="https://docs.github.com/en/free-pro-team&#64;latest/actions">GitHub Actions</a>,
 because it is tightly integrated with GitHub and is free to use.
 Other options you might consider include <a class="reference external" href="https://circleci.com">CircleCI</a>, <a class="reference external" href="https://azure.microsoft.com/en-us/services/devops/pipelines/">Azure Pipelines</a>, or <a class="reference external" href="https://travis-ci.com/">Travis-CI</a>.</p>
 <p>Using any of these services is essentially getting access to empty remote computers that we can configure as we wish.
-In order to test our projects using GitHub Actions, we will have to set up the correct environment and tell our CI service what to do.</p>
+To test our projects using GitHub Actions, we will have to set up the correct environment and tell our CI service what to do.</p>
 <section id="setting-up-github-actions">
-<h2>Setting up GitHub Actions<a class="headerlink" href="#setting-up-github-actions" title="Permalink to this heading">#</a></h2>
+<h2>Setting up GitHub Actions<a class="headerlink" href="#setting-up-github-actions" title="Link to this heading">#</a></h2>
 <p>All of GitHub Actions’ settings are stored in the file <code class="docutils literal notranslate"><span class="pre">.github/workflows/CI.yaml</span></code>.
 Note the leading period on the <code class="docutils literal notranslate"><span class="pre">.github</span></code> folder, which makes this a hidden folder in Linux and Mac OS.
-The <code class="docutils literal notranslate"><span class="pre">.github</span></code> file stores information which is relevant for GitHub in general.
+The <code class="docutils literal notranslate"><span class="pre">.github</span></code> file stores information that is relevant to GitHub in general.
 For example, you will also see in this folder a file called <code class="docutils literal notranslate"><span class="pre">CONTRIBUTING.md</span></code> which contains contributing guidelines
 (the information in this file is displayed to someone when they contribute to your project).
-The file <code class="docutils literal notranslate"><span class="pre">PULL_REQUEST_TEMPLATE.md</span></code> is the file which gives the template which users see when they open a pull request on your repository.
+The file <code class="docutils literal notranslate"><span class="pre">PULL_REQUEST_TEMPLATE.md</span></code> is the file that gives the template that users see when they open a pull request on your repository.
 If you wanted to change the template or contributing text, you would do so by editing these files.
-Though not included with the cookiecutter, you can also have
+Though not included with the CookieCutter, you can also have
 an <a class="reference external" href="https://docs.github.com/en/free-pro-team&#64;latest/github/building-a-strong-community/configuring-issue-templates-for-your-repository">issue template</a>.</p>
-<p>Workflows for GitHub Actions are in <code class="docutils literal notranslate"><span class="pre">.github/workflows</span></code> in yaml files.
+<p>Workflows for GitHub Actions are in <code class="docutils literal notranslate"><span class="pre">.github/workflows</span></code> in YAML files.
 Fortunately for us, CookieCutter has created a file for us (<code class="docutils literal notranslate"><span class="pre">CI.yaml</span></code>) and set it up to run our tests with pytest.
-GitHub has seen this folder and has actually been running tests on our repository every time we push to GitHub.
+GitHub has seen this folder and has been running tests on our repository every time we push to GitHub.
 You might have noticed this, and you might have also noticed that our tests are not passing on GitHub despite passing locally.
 We will address this soon.
 First, let’s go over the file <code class="docutils literal notranslate"><span class="pre">CI.yaml</span></code> in detail so you can understand what is happening under the hood.</p>
@@ -530,13 +571,13 @@ We will now focus on the <code class="docutils literal notranslate"><span class=
 <p>First, open the <code class="docutils literal notranslate"><span class="pre">.github/workflows/CI.yaml</span></code> file.
 You will see something like the following at the top of the file:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-CI.yaml" for="sd-tab-item-0">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-CI.yaml" for="sd-tab-item-2">
 CI.YAML</label><div class="sd-tab-content docutils">
 <div class="highlight-CI.yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CI</span>
 
 <span class="nt">on</span><span class="p">:</span>
-<span class="w">  </span><span class="c1"># GitHub has started calling new repo&#39;s first branch &quot;main&quot; https://github.com/github/renaming</span>
+<span class="w">  </span><span class="c1"># GitHub has started calling the new repo&#39;s first branch &quot;main&quot; https://github.com/github/renaming</span>
 <span class="w">  </span><span class="c1"># Existing codes likely still have &quot;master&quot; as the primary branch</span>
 <span class="w">  </span><span class="c1"># Both are tracked here to keep legacy and new codes working</span>
 <span class="w">  </span><span class="nt">push</span><span class="p">:</span>
@@ -564,7 +605,7 @@ You can always refer to the <a class="reference external" href="https://docs.git
 for a list of all the available keywords and a more in-depth explanation of each one.</p>
 <p>This first section of the file tells GitHub what events should trigger our workflows to run.
 In this section, we are specifying the action to run on pushes to the “main” branch or to the “master” branch.
-This is intended by the cookiecutter authors to catch both “main” and “master” since both are common as primary branches.
+This is intended by the CookieCutter authors to catch both “main” and “master” since both are common as primary branches.
 If you wanted your CI to run on events to another branch, you would add the name here.</p>
 <p>GitHub Actions also allows you to run workflows <a class="reference external" href="https://docs.github.com/en/free-pro-team&#64;latest/actions/reference/workflow-syntax-for-github-actions#onschedule">on a schedule</a>.
 The cookiecutter has set our workflows up to run nightly at midnight using the <code class="docutils literal notranslate"><span class="pre">cron</span></code> keyword.
@@ -572,8 +613,8 @@ GitHub Actions allows you to specify schedules or intervals for running CI jobs.
 <p>Next, we will tell GHA what “jobs” we want to be part of our workflow.
 To specify a job, we will need to specify the operating system on which the job will run, as well as other things like the Python version to use.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-1" name="sd-tab-set-1" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-CI.yaml" for="sd-tab-item-1">
+<input checked="checked" id="sd-tab-item-3" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-CI.yaml" for="sd-tab-item-3">
 CI.YAML</label><div class="sd-tab-content docutils">
 <div class="highlight-CI.yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">jobs</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">test</span><span class="p">:</span>
@@ -594,35 +635,35 @@ For our matrix, we are using two keywords called <code class="docutils literal n
 It should be noted that we have made these keyword names up.
 Adding keywords here with associated values just means that these are available as variables in the rest of our workflow.</p>
 <p>To use variables in your GHA workflow you use the syntax <code class="docutils literal notranslate"><span class="pre">${{</span> <span class="pre">variable_name</span> <span class="pre">}}</span></code>.
-You will see we have used the variables we defined in <code class="docutils literal notranslate"><span class="pre">matrix</span></code> in the job <code class="docutils literal notranslate"><span class="pre">name</span></code> and to specify the operating system to run on <code class="docutils literal notranslate"><span class="pre">runs-on</span></code> keyword in this section.
+You will see we have used the variables we defined in the <code class="docutils literal notranslate"><span class="pre">matrix</span></code> in the job <code class="docutils literal notranslate"><span class="pre">name</span></code> and to specify the operating system to run on the <code class="docutils literal notranslate"><span class="pre">runs-on</span></code> keyword in this section.
 This is enough for us right now, but if you would want to specify exactly which versions of the operative systems you wanted to run your tests on, you could!</p>
-<p>Next, we tell GitHub Actions the <code class="docutils literal notranslate"><span class="pre">steps</span></code> which are part of our workflow.
+<p>Next, we tell GitHub Actions the <code class="docutils literal notranslate"><span class="pre">steps</span></code> that are part of our workflow.
 GitHub Actions are unique in that the CI is made up of different steps.
-Steps may be custom code which you write, but, steps may also be modular, commonly used code blocks which have been made available to the community.
-For example, many Python projects will need to install miniconda to run.
+Steps may be custom code that you write, but, steps may also be modular, commonly used code blocks that have been made available to the community.
+For example, many Python projects will need to install Miniconda to run.
 GHA makes it possible for one person to write this step and share it, instead of everyone having to write their own implementation.
 Some steps in Actions are modular and can be moved between workflows.
 To see what this means, let’s look at our first step.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-2" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-CI.yaml" for="sd-tab-item-2">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-4" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-CI.yaml" for="sd-tab-item-4">
 CI.YAML</label><div class="sd-tab-content docutils">
 <div class="highlight-CI.yaml notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v2</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>This starts our <code class="docutils literal notranslate"><span class="pre">steps</span></code> section. Steps in our workflow are indicated either with the <code class="docutils literal notranslate"><span class="pre">uses</span></code> keyword or with the <code class="docutils literal notranslate"><span class="pre">name</span></code> keyword (will see next).
-If we use <code class="docutils literal notranslate"><span class="pre">uses,</span></code>, we are using a modular step which someone else has written and made available on the GitHub Actions Marketplace.
-It then says that it uses <code class="docutils literal notranslate"><span class="pre">actions/checkout&#64;v1</span></code>.
+<p>This starts our <code class="docutils literal notranslate"><span class="pre">steps</span></code> section. Steps in our workflow are indicated either with the <code class="docutils literal notranslate"><span class="pre">uses</span></code> keyword or with the <code class="docutils literal notranslate"><span class="pre">name</span></code> keyword (will see next).</p>
+<p>If we use <code class="docutils literal notranslate"><span class="pre">uses,</span></code>, we are using a modular step which someone else has written and made available on the GitHub Actions Marketplace.
+It then says that it uses <code class="docutils literal notranslate"><span class="pre">actions/checkout&#64;v4</span></code>.
 This is an action which checks out your project.
 You can see the <a class="reference external" href="https://github.com/marketplace/actions/checkout">documentation</a> to learn more about this action.
 By specifying that this step uses the checkout action, we don’t have to write code to do the checkout ourselves.</p>
 <p>Next, we want to get some info about the build. This is a custom step, so we give it a <code class="docutils literal notranslate"><span class="pre">name</span></code> and then give the shell commands we want.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-3" name="sd-tab-set-3" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-CI.yaml" for="sd-tab-item-3">
+<input checked="checked" id="sd-tab-item-5" name="sd-tab-set-5" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-CI.yaml" for="sd-tab-item-5">
 CI.YAML</label><div class="sd-tab-content docutils">
 <div class="highlight-CI.yaml notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Additional info about the build</span>
 <span class="w">      </span><span class="nt">shell</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bash</span>
@@ -635,23 +676,20 @@ CI.YAML</label><div class="sd-tab-content docutils">
 </div>
 </div>
 <p>We then give this step a descriptive name. After we have checked out our code for CI, we run some bash commands to get some information about our build.</p>
-<p>Next, we set up miniconda. This is a common action which many people have to do in their workflows, so we’ve used an action which is available on marketplace</p>
+<p>Next, we set up Miniconda. This is a common action that many people have to do in their workflows, so we’ve used an action that is available on the marketplace.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-4" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-CI.yaml" for="sd-tab-item-4">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-6" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-CI.yaml" for="sd-tab-item-6">
 CI.YAML</label><div class="sd-tab-content docutils">
-<div class="highlight-CI.yaml notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="c1"># More info on options: https://github.com/conda-incubator/setup-miniconda</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-incubator/setup-miniconda@v2</span>
+<div class="highlight-CI.yaml notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="c1"># More info on options: https://github.com/marketplace/actions/setup-micromamba</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mamba-org/setup-micromamba@v1</span>
 <span class="w">      </span><span class="nt">with</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ matrix.python-version }}</span>
 <span class="w">        </span><span class="nt">environment-file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">devtools/conda-envs/test_env.yaml</span>
-
-<span class="w">        </span><span class="nt">channels</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge,defaults</span>
-
-<span class="w">        </span><span class="nt">activate-environment</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test</span>
-<span class="w">        </span><span class="nt">auto-update-conda</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">        </span><span class="nt">auto-activate-base</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">        </span><span class="nt">show-channel-urls</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">        </span><span class="nt">condarc</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">channels:</span>
+<span class="w">            </span><span class="no">- conda-forge</span>
+<span class="w">            </span><span class="no">- defaults</span>
 </pre></div>
 </div>
 </div>
@@ -661,20 +699,20 @@ Important again to note is that the keywords given in this step are specific to 
 If we were setting this up ourselves, we would have had to find the action, read the documentation, and set up the options for the action to perform as we wanted.
 You will see we are specifying the Python version as well as the environment file.
 This environment file for testing is in our <code class="docutils literal notranslate"><span class="pre">devtools</span></code> folder, and we will return to it soon.</p>
-<p>Before we discuss the rest of the steps, let’s consider how you might have found this action if the cookiecutter did not set it up for you.
+<p>Before we discuss the rest of the steps, let’s consider how you might have found this action if CookieCutter did not set it up for you.
 We’ve already mentioned the “marketplace” several times in this tutorial, so let’s look at that.
 Navigate to <a class="github reference external" href="https://github.com/marketplace">marketplace</a>.</p>
-<p>The GitHub Marketplace is a place you can find Actions and other apps which can be added to your repositories.
+<p>The GitHub Marketplace is a place where you can find Actions and other apps that can be added to your repositories.
 If we are using GitHub Actions and there is a task we are trying to achieve, it’s a good idea to check the marketplace for it.
-Let’s find the miniconda action by searching the marketplace.
+Let’s find the Miniconda action by searching the marketplace.
 Search for “set up miniconda” in the marketplace.</p>
 <p>If you search for this, you will find the action that we used.
 You can click on it to see the documentation.</p>
 <p>Since we’re using a yaml file for our environment, let’s look at this file.
 Open <code class="docutils literal notranslate"><span class="pre">devtools/conda-envs/test_env.yaml</span></code> in your text editor.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-5" name="sd-tab-set-5" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-test_env.yaml" for="sd-tab-item-5">
+<input checked="checked" id="sd-tab-item-7" name="sd-tab-set-7" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-test_env.yaml" for="sd-tab-item-7">
 TEST_ENV.YAML</label><div class="sd-tab-content docutils">
 <div class="highlight-test_env.yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test</span>
 <span class="nt">channels</span><span class="p">:</span>
@@ -697,10 +735,10 @@ TEST_ENV.YAML</label><div class="sd-tab-content docutils">
 </div>
 </div>
 </div>
-<p>This is a yaml file just like our GitHub Actions file (remember we said YAML is commonly used for configuration files).
-This is a file which can be used to create a conda environment with specified packages.
+<p>This is a YAML file just like our GitHub Actions file (remember we said YAML is commonly used for configuration files).
+This is a file that can be used to create a conda environment with specified packages.
 For this workshop, we created our environment by typing the command into the terminal.
-This could be inconvenient or impossible to reproduce if we have a lot of dependencies, so conda allows us to specify environments using a yaml file which can be passed on or reused.</p>
+This could be inconvenient or impossible to reproduce if we have a lot of dependencies, so conda allows us to specify environments using a YAML file which can be passed on or reused.</p>
 <p>We can see that this file specifies what packages will be installed in this environment.
 There are the two base dependencies, <code class="docutils literal notranslate"><span class="pre">python</span></code> and <code class="docutils literal notranslate"><span class="pre">pip</span></code>, followed by dependencies specific to unit testing: <code class="docutils literal notranslate"><span class="pre">pytest</span></code>, <code class="docutils literal notranslate"><span class="pre">pytest-cov</span></code>, <code class="docutils literal notranslate"><span class="pre">codecov</span></code>.
 The last few lines are commented out, but allow you to install certain packages via <code class="docutils literal notranslate"><span class="pre">pip</span></code>, instead of <code class="docutils literal notranslate"><span class="pre">conda</span></code>.
@@ -709,8 +747,8 @@ Sometimes, some dependencies are not available on any Conda channel but exist on
 We use <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">list</span></code> command to print the details of the environment.
 This way, the installed packages will be in the GitHub Actions log file in case you need to check it.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-6" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-CI.yaml" for="sd-tab-item-6">
+<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-8" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-CI.yaml" for="sd-tab-item-8">
 CI.YAML</label><div class="sd-tab-content docutils">
 <div class="highlight-CI.yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install package</span>
 
@@ -725,8 +763,8 @@ CI.YAML</label><div class="sd-tab-content docutils">
 </div>
 <p>After our package is installed, we run the test:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-7" name="sd-tab-set-7" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-CI.yaml" for="sd-tab-item-7">
+<input checked="checked" id="sd-tab-item-9" name="sd-tab-set-9" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-CI.yaml" for="sd-tab-item-9">
 CI.YAML</label><div class="sd-tab-content docutils">
 <div class="highlight-CI.yaml notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run tests</span>
 
@@ -741,15 +779,15 @@ CI.YAML</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="getting-our-ci-to-work">
-<h2>Getting our CI to work<a class="headerlink" href="#getting-our-ci-to-work" title="Permalink to this heading">#</a></h2>
-<p>Unfortunately, our CI runs failed, which can be seen from the red cross that appear after the last commit message on your main GitHub repository page.
+<h2>Getting our CI to work<a class="headerlink" href="#getting-our-ci-to-work" title="Link to this heading">#</a></h2>
+<p>Unfortunately, our CI runs failed, which can be seen from the red cross that appears after the last commit message on your main GitHub repository page.
 To know more about why this was the case, we have to read the GitHub Actions log files.
-Click on the red cross then click the Details link from one of the failing entries that marked with red cross.
+Click on the red cross then click the Details link from one of the failing entries that marked with a red cross.
 The new page you will be redirected to has details about the job at the top and then the contents of the log file underneath.
 Look for red lines that indicate errors in your build.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-8" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-error" for="sd-tab-item-8">
+<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-10" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-error" for="sd-tab-item-10">
 ERROR</label><div class="sd-tab-content docutils">
 <div class="highlight-error notranslate"><div class="highlight"><pre><span></span>==================================== ERRORS ====================================
 __________ ERROR collecting molecool/tests/test_molecool.py __________
@@ -775,8 +813,8 @@ We need to add them to the <code class="docutils literal notranslate"><span clas
 in our CI environment.</p>
 <p>Your <code class="docutils literal notranslate"><span class="pre">test_env.yaml</span></code> should look like this once you are done with your edits:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-9" name="sd-tab-set-9" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-test_env.yaml" for="sd-tab-item-9">
+<input checked="checked" id="sd-tab-item-11" name="sd-tab-set-11" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-test_env.yaml" for="sd-tab-item-11">
 TEST_ENV.YAML</label><div class="sd-tab-content docutils">
 <div class="highlight-test_env.yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test</span>
 <span class="nt">channels</span><span class="p">:</span>
@@ -818,15 +856,15 @@ building documentation, and even building and uploading packages to conda and Py
 </div>
 <p>This repository is just for demonstration, so we probably do not want to actually waste resources running these tests every 24 hours.
 Go to your <code class="docutils literal notranslate"><span class="pre">CI.yaml</span></code> file and remove the scheduled jobs.
-You should remove the schedule keyword from your YAML file, so that the <code class="docutils literal notranslate"><span class="pre">on</span></code> section matches below:</p>
+You should remove the schedule keyword from your YAML file so that the <code class="docutils literal notranslate"><span class="pre">on</span></code> section matches below:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-10" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-CI.yaml" for="sd-tab-item-10">
+<input checked="checked" id="sd-tab-item-12" name="sd-tab-set-12" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-CI.yaml" for="sd-tab-item-12">
 CI.YAML</label><div class="sd-tab-content docutils">
 <div class="highlight-CI.yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CI</span>
 
 <span class="nt">on</span><span class="p">:</span>
-<span class="w">  </span><span class="c1"># GitHub has started calling new repo&#39;s first branch &quot;main&quot; https://github.com/github/renaming</span>
+<span class="w">  </span><span class="c1"># GitHub has started calling the new repo&#39;s first branch &quot;main&quot; https://github.com/github/renaming</span>
 <span class="w">  </span><span class="c1"># Existing codes likely still have &quot;master&quot; as the primary branch</span>
 <span class="w">  </span><span class="c1"># Both are tracked here to keep legacy and new codes working</span>
 <span class="w">  </span><span class="nt">push</span><span class="p">:</span>
@@ -843,7 +881,7 @@ CI.YAML</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="code-coverage-part-ii">
-<h2>Code Coverage - Part II<a class="headerlink" href="#code-coverage-part-ii" title="Permalink to this heading">#</a></h2>
+<h2>Code Coverage - Part II<a class="headerlink" href="#code-coverage-part-ii" title="Link to this heading">#</a></h2>
 <p>In the previous episode, we introduced the concept of code coverage as a measure of how much of our code is run by our unit tests.
 Projects should aim for a high coverage percentage, but not obsess over the number.
 Remember that even if your project has 100% coverage, it does not mean it is actually bug-free.</p>
@@ -851,12 +889,12 @@ Remember that even if your project has 100% coverage, it does not mean it is act
 While this summary is helpful, it would be much more useful to know <em>which</em> lines are covered by our tests.
 In the following section, we will explore two methods that allow us to do just that.</p>
 <section id="assessing-code-coverage-locally">
-<h3>Assessing code coverage locally<a class="headerlink" href="#assessing-code-coverage-locally" title="Permalink to this heading">#</a></h3>
+<h3>Assessing code coverage locally<a class="headerlink" href="#assessing-code-coverage-locally" title="Link to this heading">#</a></h3>
 <p>Besides coverage summaries, the <code class="docutils literal notranslate"><span class="pre">pytest-cov</span></code> module can also produce details reports.
 Run the following command at the root of your project to generate a report in HTML format:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-11" name="sd-tab-set-11" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-11">
+<input checked="checked" id="sd-tab-item-13" name="sd-tab-set-13" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-13">
 SHELL</label><div class="sd-tab-content docutils">
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pytest<span class="w"> </span>-v<span class="w"> </span>--cov<span class="o">=</span>molecool<span class="w"> </span>--cov-report<span class="o">=</span>html
 </pre></div>
@@ -875,7 +913,7 @@ We can see that in our <code class="docutils literal notranslate"><span class="p
 Let’s go ahead and fix that by writing a new test.</p>
 </section>
 <section id="exercise-increasing-code-coverage">
-<h3>Exercise - Increasing Code Coverage<a class="headerlink" href="#exercise-increasing-code-coverage" title="Permalink to this heading">#</a></h3>
+<h3>Exercise - Increasing Code Coverage<a class="headerlink" href="#exercise-increasing-code-coverage" title="Link to this heading">#</a></h3>
 <div class="exercise admonition">
 <p class="admonition-title">Exercise</p>
 <p>Write a new test in <code class="docutils literal notranslate"><span class="pre">tests/test_measure.py</span></code> to check that <code class="docutils literal notranslate"><span class="pre">calculate_angle</span></code> returns the
@@ -900,7 +938,7 @@ correct value when <code class="docutils literal notranslate"><span class="pre">
 </div>
 </section>
 <section id="adding-code-coverage-to-your-ci-workflow">
-<h3>Adding code coverage to your CI workflow<a class="headerlink" href="#adding-code-coverage-to-your-ci-workflow" title="Permalink to this heading">#</a></h3>
+<h3>Adding code coverage to your CI workflow<a class="headerlink" href="#adding-code-coverage-to-your-ci-workflow" title="Link to this heading">#</a></h3>
 <p>Besides running tests for you, GitHub can interface with other services to help you get reports on code coverage.
 In this last section, we will introduce <a class="reference external" href="https://codecov.io/">Codecov</a>, one of many services that was created to help developers assess which areas of their projects lack sufficient test coverage.
 Codecov is free for open-source projects and integrates very nicely with GitHub.</p>
@@ -912,16 +950,16 @@ After going through the installation process, you will be redirected to codecov.
 <p>Once on the <code class="docutils literal notranslate"><span class="pre">Codecov</span></code> web page, notice that <code class="docutils literal notranslate"><span class="pre">molecool</span></code> is already in your repositories and it already has results to show you. How is this possible?</p>
 <p>The last line step of our <code class="docutils literal notranslate"><span class="pre">CI.yml</span></code> configuration file is a call to an executable called <code class="docutils literal notranslate"><span class="pre">codecov</span></code>.
 The CookieCutter includes this utility program and sets it up automatically for us.
-As a result, when our CI workflow runs successfully (all tests pass), GitHub Actions runs <code class="docutils literal notranslate"><span class="pre">codecov</span></code>, which send statistics of our test coverage automatically to Codecov.io. Neat!</p>
+As a result, when our CI workflow runs successfully (all tests pass), GitHub Actions runs <code class="docutils literal notranslate"><span class="pre">codecov</span></code>, which sends statistics of our test coverage automatically to Codecov.io. Neat!</p>
 <p>Back to the Codecov <code class="docutils literal notranslate"><span class="pre">molecool</span></code> report page, the sunburst plot gives a hierarchical view of our project and its coverage.</p>
 <img alt="_images/codecov_screenshot.png" class="align-center" src="_images/codecov_screenshot.png" />
 <p>Red areas represent code that is poorly covered by our tests.
-On the right, you see the latest commits and can click on each one of them to see how they changed overall coverage of the project.
-The bottom of the page shows a simple file-browser like interface, much like the HTML page we obtained before.</p>
+On the right, you see the latest commits and can click on each one of them to see how they changed the overall coverage of the project.
+The bottom of the page shows a simple file-browser-like interface, much like the HTML page we obtained before.</p>
 </section>
 </section>
 <section id="modifying-the-workflow-adding-an-action">
-<h2>Modifying the Workflow - Adding an Action<a class="headerlink" href="#modifying-the-workflow-adding-an-action" title="Permalink to this heading">#</a></h2>
+<h2>Modifying the Workflow - Adding an Action<a class="headerlink" href="#modifying-the-workflow-adding-an-action" title="Link to this heading">#</a></h2>
 <p>A great feature of GitHub Actions is that they are modular.
 Anyone can make an action and it can be plugged into someone else’s workflow if it is available on the GitHub Marketplace.
 This means that if you ever need to do something which is something that may be commonly done, you should check the GitHub Marketplace to see if anyone has made this action before.</p>
@@ -938,8 +976,8 @@ This is not in the documentation, but you will see a failure of your job if you 
 <p>Here is the configuration to add the step. The added step is called ‘welcome’.
 We show more of the yaml file than necessary to demonstrate placement.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-12" name="sd-tab-set-12" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-CI.yaml" for="sd-tab-item-12">
+<input checked="checked" id="sd-tab-item-14" name="sd-tab-set-14" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-CI.yaml" for="sd-tab-item-14">
 CI.YAML</label><div class="sd-tab-content docutils">
 <div class="highlight-CI.yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">jobs</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">welcome</span><span class="p">:</span>
@@ -962,10 +1000,10 @@ CI.YAML</label><div class="sd-tab-content docutils">
 </div>
 </div>
 <p>If you push this, you should see an additional job under your CI workflow where you can see molecool displayed as ASCII art.</p>
-<p>Note that you could have also used <a class="reference external" href="https://docs.github.com/en/free-pro-team&#64;latest/actions/reference/environment-variables">GitHub’s Built in environment variables</a> to print this</p>
+<p>Note that you could have also used <a class="reference external" href="https://docs.github.com/en/free-pro-team&#64;latest/actions/reference/environment-variables">GitHub’s built-in environment variables</a> to print this</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-13" name="sd-tab-set-13" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-CI.yaml" for="sd-tab-item-13">
+<input checked="checked" id="sd-tab-item-15" name="sd-tab-set-15" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-CI.yaml" for="sd-tab-item-15">
 CI.YAML</label><div class="sd-tab-content docutils">
 <div class="highlight-CI.yaml notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nt">welcome</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Welcome the user with ASCII art</span>
@@ -982,16 +1020,21 @@ CI.YAML</label><div class="sd-tab-content docutils">
 </div>
 <p>A GitHub Action can be made and used by anyone.
 You can even see <a class="reference external" href="https://docs.github.com/en/free-pro-team&#64;latest/actions/creating-actions">this guide</a> from GitHub on creating actions.</p>
+<div class="tip admonition">
+<p class="admonition-title">Final Repository State</p>
+<p>You can see the final state of the repository after this section <a class="reference external" href="https://github.com/MolSSI-Education/molecool/tree/3cb3812df24d27009845d52ff097c2dda2184ea3">here</a>.</p>
+<p>You can also download a zip of the repository <a class="reference external" href="https://github.com/MolSSI-Education/molecool/archive/refs/tags/CI-Github-actions-end.zip">here</a>.</p>
+</div>
 </section>
 <section id="key-points">
-<h2>Key Points<a class="headerlink" href="#key-points" title="Permalink to this heading">#</a></h2>
+<h2>Key Points<a class="headerlink" href="#key-points" title="Link to this heading">#</a></h2>
 <div class="key admonition">
 <p class="admonition-title">Key Points</p>
 <ul class="simple">
 <li><p>Continuous integration automates development steps, such as testing, coverage, and packaging.</p></li>
 <li><p>Continuous integration also allows you to test your code on a variety of operative systems and platforms.</p></li>
 <li><p>The CookieCutter includes (almost) ready-to-use configuration files for GitHub Actions.</p></li>
-<li><p>You can find GitHub Actions steps and other services in GitHub Marketplace</p></li>
+<li><p>You can find GitHub Actions steps and other services in GitHub Marketplace.</p></li>
 </ul>
 </div>
 </section>
@@ -1002,11 +1045,10 @@ You can even see <a class="reference external" href="https://docs.github.com/en/
               
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="08-testing.html"
@@ -1026,10 +1068,7 @@ You can even see <a class="reference external" href="https://docs.github.com/en/
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1038,11 +1077,14 @@ You can even see <a class="reference external" href="https://docs.github.com/en/
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
   <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> On this page
   </div>
-  <nav class="bd-toc-nav page-toc">
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-github-actions">Setting up GitHub Actions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-our-ci-to-work">Getting our CI to work</a></li>
@@ -1058,6 +1100,7 @@ You can even see <a class="reference external" href="https://docs.github.com/en/
   </nav></div>
 
   <div class="sidebar-secondary-item">
+
   <div class="tocsection sourcelink">
     <a href="_sources/09-CI.md.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
@@ -1078,8 +1121,8 @@ You can even see <a class="reference external" href="https://docs.github.com/en/
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1112,15 +1155,20 @@ You can even see <a class="reference external" href="https://docs.github.com/en/
         <p>Funded by the National Science Foundation 
           <a href="https://nsf.gov/awardsearch/showAward?AWD_ID=1547580">OAC-1547580</a> and 
           <a href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=2136142">CHE-2136142.</a></p>
+        <p> The MolSSI Best Practices Workshop is licesened under a <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0 International License.</a> 
+            You are free to adapt and share this material with attribution.
+            We'd also appreciate you letting us know if you use the material by emailing <a href="mailto:education@molssi.org">education@molssi.org</a>.
+          </p>
+        
  
         
         <p class="sphinx-version">
-        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 6.2.1.<br>
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6.<br>
         </p>
         
 
         <p class="theme-version">
-        Built with a customized <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.3.
+        Built with a customized <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.1.
         </p>
 
     </div>
@@ -1132,6 +1180,7 @@ You can even see <a class="reference external" href="https://docs.github.com/en/
 </div></div>
       
     </div>
+  
   
   
 </div>

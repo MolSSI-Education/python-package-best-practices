@@ -16,22 +16,37 @@ Objectives:
 
 ```
 
-````{admonition} Prerequisites
-:class: info
 
-To complete this lesson you will need:
+:::{admonition} Follow Along with This Lesson
+:class: tip
 
-* To have configured git (as described in the set-up instructions)
-* The Python package created in the first lesson
+To follow along with this lesson, you can complete the previous lessons,
+or you can download a pre-made workshop repository that is at the starting 
+point.
+
+You will need to make sure that you have `git` installed and configured,
+as described in the set-up instructions.
+
+- [Download the pre-made workshop repository as a zip file](https://github.com/MolSSI-Education/molecool/archive/refs/tags/git-start.zip)
+
+Alternatively, download the repository using the command line:
+
+````{tab-set-code} 
+
+```{code-block} shell
+git clone https://github.com/MolSSI-Education/molecool.git
+git checkout git-start
+```
 ````
+:::
 
 ## What is version control?
 
 Version control keeps a complete history of your work on a given project.
 It facilitates collaboration on projects where everyone can work freely on a part
 of the project without overwriting others’ changes.
-You can move between past versions and rollback when needed.
-Also, you can review the history of your project through commit messages that describe changes on the source code,
+You can move between past versions and roll back when needed.
+Also, you can review the history of your project through commit messages that describe changes in the source code,
 and see what exactly has been modified in any given commit.
 You can see who made the changes and when it happened.
 
@@ -53,13 +68,13 @@ Other examples of version control software include Subversion (`svn`) and Mercur
 
 You should have `git` installed and configured from the setup instructions.
 
-In this section, we are going to  edit files in the Python package that we created earlier, and use `git` to track those changes.
+In this section, we are going to  edit files in the Python package that we created earlier and use `git` to track those changes.
 
 First, use a terminal to `cd` into the top directory of the local repository (the outer molecool directory).
 
 In order for `git` to keep track of your project, or any changes in your project,
 you must first tell it that you want it to do this.
-You must manually create check-points in your project if you wish to have points to return to.
+You must manually create checkpoints in your project if you wish to have points to return to.
 If you were not using the CookieCutter, you would first have to initialize your project
 (i.e. tell `git` that you were working on a project) using the command `git init`. 
 
@@ -98,7 +113,7 @@ nothing to commit, working tree clean
 ````
 
 
-This tells us that we are on the `main` branch (more about branching later), and that no files have been changed since the last commit.
+This tells us that we are on the `main` branch (more about branching later) and that no files have been changed since the last commit.
 
 Next, type
 ````{tab-set-code} 
@@ -114,7 +129,7 @@ This is something called your git *commit log*.
 Whenever you make a version, or checkpoint, of your project,
 you will be able to see information about that checkpoint using the `git log` command.
 The CookieCutter has already made a commit and written a message for you,
-and that is what we see for this first commit in the log.
+and that is what we look for in this first commit in the log.
 
 ````{tab-set-code} 
 
@@ -131,8 +146,8 @@ Date:   Mon Feb 4 10:45:26 2019 -0500
 Your version number for the Cookiecutter will depend on when you ran the Cookiecutter and the current released version.
 
 Each line of this log tells you something important about the commit,
-or check point, that exists for the project.
-On the first line,
+or checkpoint, that exists for the project.
+In the first line,
 
 ```
 commit 25ab1f1a066f68e433a17454c66531e5a86c112d (HEAD -> main, tag: 0.0.0)
@@ -150,7 +165,7 @@ Author: Your Name <your_email@something.com>
 
 This should be your information.
 This way, anyone who downloads this project can see who made each commit.
-Note that this name and email address matches what you specified when you configured `git` in the setup,
+Note that this name and email address match what you specified when you configured `git` in the setup,
 with the name and email address you specified to `cookiecutter` having no effect.
 
 ```
@@ -164,7 +179,7 @@ Next, it lists the date and time the commit was made.
 ```
 
 Finally, there will be a blank line followed by a commit message.
-The commit message is a message that whoever made the commit chose to write,
+The commit message is a message that whoever made the commit chose to write
 but should describe the change that took place when the commit was made.
 This commit message was written by `cookiecutter` for you.
 
@@ -176,14 +191,14 @@ Right now, we have only one commit: the one created by the CMS CookieCutter.
 
 Now, we will change some files and use `git` to track those changes.
 
-Let's edit our README.
+Let's edit our README file.
 Open `README.md` in your text editor of choice.
 On line 8, you should see the description of the repository we typed when running `cookiecutter`.
 
 Add the following sentence to your `README.md` under the initial description and save the file.
 
 ```
-This repository is currently under development. To do a development install, download this repository and type
+This repository is currently under development. To do installation in development mode, download this repository and type
 
 `pip install -e .`
 
@@ -251,10 +266,10 @@ Changes to be committed:
 
 We are now on the second step of creating a commit.
 We have added our files to the staging area.
-In our case, we only have one file in the staging area, but we could add more if we needed.
+In our case, we only have one file in the staging area, but we could add more if needed.
 
 To create the checkpoint, or commit, we will now use the `git commit` command.
-We add a `-m` after the command for "message."
+We add a `-m` after the command for "message".
 Whenever you create a commit, you should write a message about what the commit does.
 
 ````{tab-set-code} 
@@ -266,7 +281,7 @@ git commit -m "update readme to have instructions for developmental install"
 
 Now when we look at our log using `git log`, we see the commit we just made along with information about the author and the date of the commit.
 
-If you neglect the `-m` option, and you configured an editor during set-up,
+If you neglect the `-m` option and configure an editor during set-up,
 `git` will open the editor for you to compose your commit message.
 
 Let's continue to edit this readme to include more information.
@@ -275,7 +290,7 @@ Open `README.md` in your text editor of choice and add the following to the end.
 
 ```
 This package requires the following:
-  - numpy
+  - NumPy
   - matplotlib
 ```
 
@@ -370,10 +385,10 @@ git diff HEAD~1
 The argument to `git diff` refers to the comparison point in our commit history.
 `HEAD` is an alias for the commit at the tip of our checked-out branch.
 `~1` is a modifier that refers to the given commit minus 1.
-We are asking git to show us the difference between the current files and the second-most-recent commit.
+We are asking git to show us the difference between the current files and the second most recent commit.
 
 Lines that have been added are indicated in green with a plus sign next to them (`+`),
-while lines that have been deleted are indicated in red with a minus sign next to them (`-`)
+while lines that have been deleted are indicated in red with a minus sign next to them (`-`).
 
 ## Viewing previous versions
 
@@ -389,7 +404,7 @@ git checkout COMMIT_ID
 
 This will temporarily revert the repository to whatever the state was at the specified commit ID.
 
-Let's checkout the version before we made the most recent edit to the README.
+Let's check out the version before the most recent edit we made to the README.
 
 ````{tab-set-code} 
 
@@ -439,8 +454,8 @@ git checkout main
 :class: exercise
 
 What list of commands would mimic what the CMS CookieCutter did when it created the 
-repository and made the first commit? (hint - to initialize a repository, you use
-the command `git init`)
+repository and made the first commit? (Hint - to initialize a repository, you use
+the command `git init`.)
 
 `````{admonition} Solution
 :class: solution dropdown
@@ -457,7 +472,7 @@ git commit -m "Initial commit after CMS Cookiecutter creation, version 1.0"
 ````
 
 The first line initializes the `git` repository.
-The second line add all modified files in the current working directory, and the third line commits these files and writes the commit message.
+The second line adds all modified files to the current working directory, and the third line commits these files and writes the commit message.
 `````
 ``````
 
@@ -512,7 +527,7 @@ index 94e0b50..a68f349 100644
 ````
 
 
-To compare against the commit just before the most recent commit, add "~1" to end of "HEAD":
+To compare against the commit just before the most recent commit, add "~1" to the end of "HEAD":
 
 ````{tab-set-code} 
 
@@ -529,9 +544,11 @@ diff --git a/README.md b/README.md
 index e778cd4..94e0b50 100644
 --- a/README.md
 +++ b/README.md
-@@ -13,6 +13,10 @@ This repository is currently under development. To do a development install, dow
+@@ -13,6 +13,10 @@ This repository is currently under development. To do installation in development mode, download this repository and type
 
- in the repository directory.
+`pip install -e .`
+
+in the repository directory.
 
 +This package requires the following:
 +  - numpy
@@ -575,7 +592,7 @@ When you are working on a project to implement new features,
 it is a good practice to isolate the changes you are making and work on one particular topic at a time.
 To do this, you can use something called a **branch** in git.
 Working on branches allows you to isolate particular changes.
-If you make sure that your code works before merging to your main or **main** branch,
+If you make sure that your code works before merging to your main or master branch,
 you will ensure that you always have a working version of code on your `main` branch.
 
 If you followed the set-up instructions, you should be in the `main` branch by default.
@@ -614,7 +631,7 @@ There have been two commits, and the HEAD is currently after commit 2.
 ```
 
 After we have created a new branch and checked it out, we can imagine our git history looking like this.
-The `zen` branch 'branches' or starts from the point where we used the git branch command. 
+The `zen` branch 'branches' starts from the point where we used the git branch command. 
 
 ```{image} ../fig/github_workflows/git_branch.svg
 :align: center
@@ -627,7 +644,7 @@ Note that we have not yet made a commit, but this diagram is for illustrative pu
 :align: center
 ```
 
-Now that we have a better understanding of what branching looks like, lets make some changes to the `zen` branch.
+Now that we have a better understanding of what branching looks like, let's make some changes to the `zen` branch.
 Add a new function to your `functions.py` module.
 We are going to add the ability to print "The Zen of Python". You can get the Zen of Python by typing
 
@@ -639,6 +656,13 @@ import this
 ````
 
 into the interactive Python prompt.
+
+This will print the Zen of Python to the screen.
+The Zen of Python is a collection of 19 software principles that influence the design of Python.
+
+Let's make a function (similar to our existing `canvas` function) that prints the Zen of Python.
+
+Add the following function to your `functions.py` module.
 
 ````{tab-set-code} 
 
@@ -679,7 +703,7 @@ Next, commit this change:
 
 ```{code-block} shell
 git add .
-git commit -m "add function to print Zen of Python
+git commit -m "add function to print Zen of Python"
 ```
 ````
 
@@ -726,7 +750,7 @@ git checkout -b doc_update
 ````
 
 
-Let's add some information about developing on branches to the README.
+Let's add some information about developing branches to the README.
 Update your README to include this information:
 
 ````{tab-set-code} 
@@ -746,21 +770,21 @@ To switch to an existing branch, use
 
 Save and commit this change.
 
+````{tab-set-code} 
+
+```{code-block} shell
+git add README.md
+git commit -m "add information about branching to readme"
+```
+````
+
 To incorporate these changes in `main`, you will need to do a `git merge`.
 When you do a merge, you should be on the branch you would like to merge into.
 In this case, we will first merge the changes from our `doc_update` branch,
 then our `zen` branch, so we should be on our `main` branch.
-Next we will use the `git merge` command.
+Next, we will use the `git merge` command.
 
-The syntax for this command is 
-
-````{tab-set-code}
-```{code-block} shell
-git merge branch_name
-```
-````
-
-
+The syntax for this command is `git merge branch_name` 
 where `branch_name` is the name of the branch you would like to merge.
 
 We can merge our `doc_update` branch to get changes on our `main` branch:
@@ -786,16 +810,19 @@ git merge zen
 ````
 
 
-This time, you will see a different message, and a text editor will open for a merge commit message.
+This time, you will see a different message and a text editor will open for a merge commit message.
+
+**Note** that if you have an older version of git, you may see `Merge made by recursive strategy.` instead 
+instead of `Merge made by the 'ort' strategy.`
 
 ````{tab-set-code} 
 
 ```{code-block} output
-Merge made by the 'recursive' strategy.
+Merge made by the 'ort' strategy.
 ```
 ````
 
-This is because `main` and `zen` have development histories which have diverged.
+This is because `main` and `zen` have development histories that have diverged.
 `git` had to do some work in this case to merge the branches.
 A *merge commit* was created. 
 
@@ -819,11 +846,11 @@ git branch -d zen
 :class: exercise
 
 For this exercise, you will be adding all the functions from your Jupyter
-notebook to the package. Create a branch to add your functions.
-Add all of the functions from your Jupyter notebook to the module
+Notebook to the package. Create a branch to add your functions.
+Add all of the functions from your Jupyter Notebook to the module
 `functions.py` in your package.
 Verify that you can use your functions.
-Once the functions are added and working, merge into your `main` branch.
+Once the functions are added and working, merge them into your `main` branch.
 
 `````{admonition} Solution
 :class: solution dropdown
@@ -838,19 +865,14 @@ git checkout -b add-functions
 ```
 ````
  
-Next, copy all of your imports from the first cell of your Jupyter notebook and paste them into the top of your file.
+Next, copy all of your imports from the first cell of your Jupyter Notebook and paste them into the top of your file.
 
 Next, copy the function definitions from the first cell and paste them above or below the `canvas` function. 
 
 Your file should look something like this.
 
 ```python
-"""
-functions.py
-A Python package for analyzing and visualizing xyz files. For MolSSI Workshop Python Package development workshop.
-
-Handles the primary functions
-"""
+"""Provide the primary functions."""
 
 import os
 import numpy as np
@@ -858,29 +880,29 @@ import matplotlib.pyplot as plt
 
 from mpl_toolkits.mplot3d import Axes3D
 
-
 def canvas(with_attribution=True):
     """
-    Placeholder function to show example docstring (NumPy format)
+    Placeholder function to show example docstring (NumPy format).
 
-    Replace this function and doc string for your own project
+    Replace this function and doc string for your own project.
 
     Parameters
     ----------
     with_attribution : bool, Optional, default: True
-        Set whether or not to display who the quote is from
+        Set whether or not to display who the quote is from.
 
     Returns
     -------
     quote : str
-        Compiled string including quote and optional attribution
+        Compiled string including quote and optional attribution.
     """
 
     quote = "The code is but a canvas to our imagination."
     if with_attribution:
         quote += "\n\t- Adapted from Henry David Thoreau"
     return quote
-def zen():
+
+def zen(with_attribution=True):
     quote = """Beautiful is better than ugly.
     Explicit is better than implicit.
     Simple is better than complex.
@@ -900,15 +922,20 @@ def zen():
     If the implementation is hard to explain, it's a bad idea.
     If the implementation is easy to explain, it may be a good idea.
     Namespaces are one honking great idea -- let's do more of those!"""
-    
+
+    if with_attribution:
+      quote += "\n\tTim Peters"
+
     return quote
 
 def calculate_distance(rA, rB):
+    # This function calculates the distance between two points given as numpy arrays.
     d=(rA-rB)
     dist=np.linalg.norm(d)
     return dist
 
 def open_pdb(f_loc):
+    # This function reads in a pdb file and returns the atom names and coordinates.
     with open(f_loc) as f:
         data = f.readlines()
     c = []
@@ -944,6 +971,7 @@ def open_xyz(file_location):
 
 def write_xyz(file_location, symbols, coordinates):
     
+    # Write an xyz file given a file location, symbols, and coordinates.
     num_atoms = len(symbols)
     
     with open(file_location, 'w+') as f:
@@ -955,6 +983,8 @@ def write_xyz(file_location, symbols, coordinates):
                                               coordinates[i,0], coordinates[i,1], coordinates[i,2]))
 
 def draw_molecule(coordinates, symbols, draw_bonds=None, save_location=None, dpi=300):
+    
+    # Draw a picture of a molecule using matplotlib.
     
     # Create figure
     fig = plt.figure()
@@ -978,8 +1008,6 @@ def draw_molecule(coordinates, symbols, draw_bonds=None, save_location=None, dpi
             
             ax.plot(coordinates[[atom1,atom2], 0], coordinates[[atom1,atom2], 1],
                     coordinates[[atom1,atom2], 2], color='k')
-            
-    plt.axis('square')
     
     # Save figure
     if save_location:
@@ -988,6 +1016,8 @@ def draw_molecule(coordinates, symbols, draw_bonds=None, save_location=None, dpi
     return ax
 
 def calculate_angle(rA, rB, rC, degrees=False):
+    # Calculate the angle between three points. Answer is given in radians by default, but can be given in degrees
+    # by setting degrees=True
     AB = rB - rA
     BC = rB - rC
     theta=np.arccos(np.dot(AB, BC)/(np.linalg.norm(AB)*np.linalg.norm(BC)))
@@ -998,6 +1028,8 @@ def calculate_angle(rA, rB, rC, degrees=False):
         return theta
 
 def bond_histogram(bond_list, save_location=None, dpi=300, graph_min=0, graph_max=2):
+    # Draw a histogram of bond lengths based on a bond_list (output from build_bond_list function)
+    
     
     lengths = []
     for atoms, bond_length in bond_list.items():
@@ -1022,7 +1054,7 @@ def bond_histogram(bond_list, save_location=None, dpi=300, graph_min=0, graph_ma
         
 def build_bond_list(coordinates, max_bond=1.5, min_bond=0):
     
-    # Find the bonds in a molecule
+    # Find the bonds in a molecule (set of coordinates) based on distance criteria.
     bonds = {}
     num_atoms = len(coordinates)
 
@@ -1050,7 +1082,6 @@ atom_colors = {
 if __name__ == "__main__":
     # Do something if this file is invoked on its own
     print(canvas())
-
 ```
 
  Open the interactive Python interface and try out some functions to verify that your package still works.
@@ -1075,19 +1106,44 @@ git merge add-functions
 `````
 ``````
 
+## Adding data
+We now have a package with some functions.
+Let's add the data from our starting material to our package as well.
+We will add this to the `molecool/testing/data` directory.
+Although it would be a best practice to add these files through a branch,
+we will add them directly to the `main` branch for simplicity.
+
+Assuming that you ran the cookiecutter from the starting material directory,
+
+````{tab-set-code} 
+```{code-block} shell   
+cp -r ../data molecool/tests/
+```
+````
+
+Then, commit the change:
+
+````{tab-set-code} 
+
+```{code-block} shell   
+git add .
+git commit -m "add data to package"
+```
+````
+
 ## Ignoring files - .gitignore
 
 Sometimes while you work on a project, you may end up creating some temporary files.
 For example, if your text editor is Emacs, you may end up with lots of files called `<filename>~`.
 By default, Git tracks all files, including these.
-This tends to be annoying, since it means that any time you do `git status`,
+This tends to be annoying since it means that any time you do `git status`,
 all of these unimportant files show up.
 
-We are now going to find out how to tell Git to ignore these files,
-so that it doesn't keep telling us about them ever time we do `git status`.
-Even if you aren't working with Emacs, someone else working on your project might,
-so let's do the courtesy of telling Git not to track these temporary files.
-First, lets ensure that we have a few dummy files.
+We are now going to find out how to tell Git to ignore these files
+so that it doesn't keep telling us about them every time we do `git status`.
+Even if you aren't working with Emacs, someone else working on your project might.
+So let's do the courtesy of telling Git not to track these temporary files.
+First, let's ensure that we have a few dummy files.
 Make empty files called `testing.txt~` and `README.md~` in your repository using your text editor of choice.
 
 
@@ -1126,9 +1182,9 @@ nothing added to commit but untracked files present (use "git add" to track)
 Now we will make Git stop telling us about these files.
 
 Earlier, when we looked at the hidden files, you may have noticed a file called `.gitignore`.
-Cookiecutter created this for us, however, GitHub also has built in `.gitignore` files you can add when creating an empty repository.
+Cookiecutter created this for us, however, GitHub also has built-in `.gitignore` files you can add when creating an empty repository.
 
-This file is to tell `git` which types of files we would like to ignore (thus the name `.gitignore`)
+This file is to tell `git` which types of files we would like to ignore (thus the name `.gitignore`).
 
 Look at the contents of `.gitignore`
 
@@ -1161,7 +1217,7 @@ wheels/
 *.egg
 
 # PyInstaller
-#  Usually these files are written by a python script from a template
+#  Usually these files are written by a Python script from a template
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
@@ -1182,7 +1238,7 @@ Add the following to the end of `.gitignore`:
 
 ~~~
 
-Now do "git status" again. Notice that the files we added are no longer recognized by git.
+Now do "git status" again. Notice that the files we added are no longer recognized by Git.
 
 ````{tab-set-code} 
 
@@ -1215,7 +1271,7 @@ We want these additions to `.gitignore` to become a permanent part of the reposi
 
 ```{code-block} shell
 git add .gitignore
-git commit -m "Ignores Emacs temporary files and data directory"
+git commit -m "Ignores Emacs temporary files and input/output files from calculations."
 ```
 ````
 
@@ -1244,6 +1300,17 @@ Use -f if you really want to add them.
 
 It is possible to override this with the `-f` option for `git add`.
 
+
+:::{admonition} Final Repository State
+:class: tip
+
+You can see the final state of the repository after this section [here](https://github.com/MolSSI-Education/molecool/tree/b74f9bb50e5b614d1078730aef1d4f972cbde99c).
+
+You can also download a zip of the repository [here](https://github.com/MolSSI-Education/molecool/archive/refs/tags/git-end.zip).
+
+:::
+
+
 ## More Tutorials
 If you want more `git`, see the following tutorials.
 
@@ -1253,10 +1320,19 @@ If you want more `git`, see the following tutorials.
  - [More on branches and merging](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
  - [Git Commit Best Practices](https://github.com/trein/dev-best-practices/wiki/Git-Commit-Best-Practices)
 
+:::{admonition} Final Repository State
+:class: tip
+
+You can see the final state of the repository after this section [here](https://github.com/MolSSI-Education/molecool/tree/b74f9bb50e5b614d1078730aef1d4f972cbde99c).
+
+You can also download a zip of the repository [here](https://github.com/MolSSI-Education/molecool/archive/refs/tags/git-end.zip).
+
+:::
+
 ## Key Points
 ````{admonition} Key Points
 :class: key
 
 * Git provides a way to track changes in your project.
-* Git is a software for version control, and is separate from GitHub.
+* Git is a software for version control and is separate from GitHub.
 ````

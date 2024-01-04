@@ -14,11 +14,30 @@ Objectives:
 
 ````
 
+:::{admonition} Follow Along with This Lesson
+:class: tip
+
+To follow along with this lesson, you can complete the previous lessons,
+or you can download a pre-made workshop repository that is at the starting 
+point.
+
+- [Download the pre-made workshop repository as a zip file](https://github.com/MolSSI-Education/molecool/archive/refs/tags/github-start.zip)
+
+Alternatively, download the repository using the command line:
+
+````{tab-set-code} 
+```{code-block} shell
+git clone https://github.com/MolSSI-Education/molecool.git
+git checkout github-start
+```
+````
+:::
+
 ## Securely accessing GitHub
 During the setup for this workshop, we generated an SSH key and added it to our GitHub account.
-The SSH key will allow us to authenticate our identity to GitHub, allowing us to access to our remote repositories.
+The SSH key will allow us to authenticate our identity to GitHub, allowing us to access our remote repositories.
 For the purposes of this workshop, an SSH key is a good way to quickly and conveniently get set up using GitHub.
-If you completed the set up instructions, you will have an SSH key set up already.
+If you completed the [Set Up](setup.md) instructions, you will have an SSH key set up already.
 
 If you continue further development using GitHub after this workshop, you may want to consider alternatives.
 
@@ -30,7 +49,7 @@ GitHub has good documentation for [generating and using a PAT](https://docs.gith
 ## Putting your repository on GitHub.
 Now, let's put this project on GitHub so that we can share it with others.
 In your browser, navigate to [github.com](https://www.github.com).
-Log in to you account if you are not already logged in.
+Log in to your account if you are not already logged in.
 On the left side of the page, click the green button that says `New` to create a new repository.
 Give the repository the name `molecool`.
 
@@ -50,7 +69,7 @@ Now, GitHub very helpfully gives us directions for how to get our code on GitHub
 
 Before we follow these directions, let's look at a few things in the repository.
 When you want to be able to put your code online in a repository, you have to add what git calls `remotes`.
-Currently, our repository has no remotes. See this by typing
+Currently, our repository has no remotes. Check this by typing:
 
 ````{tab-set-code} 
 
@@ -61,7 +80,7 @@ git remote -v
 
 
 
-You should see no output.
+you should see no output.
 Now, follow the instructions on GitHub under "...or push an existing repository from the command line"
 ````{tab-set-code} 
 
@@ -81,12 +100,12 @@ Now, whenever we say `origin`, git knows that we really mean `git@github.com:YOU
 The second command changes our primary branch name from `master` to `main`.
 GitHub recently decided (as of June 2020) to switch the name of your `main` branch from `master` to `main`.
 However, the `git` software will still name your primary (or first) branch `master`. 
-After the second command, you will no longer see `master` when using the command `git branch` (instead seeing `main`). 
+After the second command, you will no longer see `master` when using the command `git branch` (instead you will see `main`). 
 
 The third command copies (or "pushes") everything which we have tracked using git to `origin`.
 The word `main` means we are pushing the `main` branch. 
 
-Now if you refresh the GitHub webpage you should be able to see all the new files you added to the repository.
+Now, if you refresh the GitHub webpage you should be able to see all the new files you added to the repository.
 
 This is now an effective entry point for people discovering your project,
 but you should document the URL within your repository contents, in case people
@@ -99,7 +118,7 @@ for the Source URL for your package's metadata.
 One of the most potentially frustrating problems in software development is keeping track of all the different copies of the code.
 For example, we might start a project on a local desktop computer, switch to working on a laptop during a conference, and then do performance optimization on a supercomputer.
 In the olden days, switching between computers was typically accomplished
-by copying files via a USB drive, or with `ssh`, or by emailing things to oneself.
+by copying files via a USB drive or with `ssh` or by emailing things to oneself.
 After copying files, it was very easy to make an important change on one computer,
 forget about it, then resume work with the original code version on another computer
 (having forgotten to reapply the important change).
@@ -298,7 +317,7 @@ Now we can actually see `testing.txt` in our original repository.
 
 Now we will make a few new edits to `testing.txt`:
 
-Add a dummy header and footer the `testing.txt`, so that it looks like this:
+Add a dummy header and footer for the `testing.txt`, so that it looks like this:
 
 ````{tab-set-code} 
 
@@ -374,7 +393,7 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 ````
 
 
-The push failed, because the `friend` clone is not up-to-date with the repository on GitHub.
+The push failed because the `friend` clone is not up-to-date with the repository on GitHub.
 We can fix this by doing a pull:
 
 ````{tab-set-code} 
@@ -510,7 +529,7 @@ Navigate to the GitHub page for your project.
 Click on `testing.txt`.
 Here you can see the file and make changes to it.
 Click the edit button, which looks like a small pencil near the upper right of the file text box.
-Add a line that says "I added this line from the GitHub web interface!", so that the file looks like:
+Add a line that says "I added this line from the GitHub web interface!", so that the file looks like this:
 
 ````{tab-set-code}
 ```{code-block} testing.txt
@@ -546,6 +565,16 @@ The "Issues" tab lets you create discussions about bugs, performance limitations
 feature requests, or ongoing work that are shared with everyone else who is working on the project.
 Try filling out a quick issue now.
 Then comment and close the issue.
+
+:::{admonition} Final Repository State
+:class: tip
+
+You can see the final state of the repository after this section [here](https://github.com/MolSSI-Education/molecool/tree/efe8747f7253400d1a81354c62b4a1edc50e9ddd).
+
+You can also download a zip of the repository [here](https://github.com/MolSSI-Education/molecool/archive/refs/tags/github-end.zip).
+
+:::
+
 
 
 ## More Tutorials
