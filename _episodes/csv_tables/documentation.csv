@@ -16,8 +16,6 @@ Lesson Title,Questions,Objectives
 * What does type hinting do for my software?","* Learn about type hinting in Python.
 
 * Learn the syntax to utilize type hinting in Python."
-`Package Documentation <10-documentation.html>`_,* How can we document our package?,"* Run the lesson checking script and interpret its output correctly.
-
-* Explain in-code documentation
+`Package Documentation <10-documentation.html>`_,* How can we document our package?,"* Explain in-code documentation
 
 * Explain documentation tools like Read The Docs"
