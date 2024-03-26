@@ -18,12 +18,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
@@ -35,9 +35,9 @@
     <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=f098cca5" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509" />
-  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=bd9e20870c6007c4c509"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
     <script src="_static/documentation_options.js?v=5929fcd5"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
@@ -82,7 +82,6 @@
   <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>
@@ -122,10 +121,8 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
-
-  <header>
   
-    <div class="bd-header navbar navbar-expand-lg bd-navbar">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
 <div class="bd-header__inner bd-page-width">
   <label class="sidebar-toggle primary-toggle" for="__primary">
     <span class="fa-solid fa-bars"></span>
@@ -305,18 +302,15 @@ document.write(`
   
 </div>
 
-    </div>
+    </header>
   
-  </header>
 
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
       
       
       
-        
-      
-      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -430,6 +424,19 @@ document.write(`
       </div>
     
   </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Computer Set Up</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Python Package Set-Up</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
@@ -853,30 +860,14 @@ We’ll be using this file in the next section.</p>
 </section>
 <section id="installing-your-package">
 <h4>Installing your package<a class="headerlink" href="#installing-your-package" title="Link to this heading">#</a></h4>
-<p>A development install will allow you to import your package and use it from anywhere on your computer.
-You will then be able to import your package into scripts in the same way you import <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> or <code class="docutils literal notranslate"><span class="pre">numpy</span></code>.</p>
-<p>A development installation inserts a link to your project into your Python
-<code class="docutils literal notranslate"><span class="pre">site-packages</span></code> folder so that updates are immediately available the next time
-you launch Python, without having to reinstall your package.
-To find the location of your site-packages folder, you can check your Python path.
-Open Python (type <code class="docutils literal notranslate"><span class="pre">python</span></code> into your terminal window), and type</p>
+<p>A development install, also known as an “editable” install, will allow you to import your package and use it from anywhere on your computer.
+You will then be able to import your package into scripts in the same way you import <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> or <code class="docutils literal notranslate"><span class="pre">numpy</span></code>.
+This setup is particularly useful during development, as it ensures that any changes you make to your package’s code are immediately reflected in your Python environment, without the need for reinstallation.</p>
+<p>To perform a development installation, you use pip with the <code class="docutils literal notranslate"><span class="pre">-e</span></code> option, which stands for “editable”.
+This tells pip to install the package in such a way that it links directly to your project’s source code.</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-7" name="sd-tab-set-7" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-7">
-PYTHON</label><div class="sd-tab-content docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">sys</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">sys</span><span class="o">.</span><span class="n">path</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>This will give a list of locations python looks for packages when you do an import.
-One of the locations should end with <code class="docutils literal notranslate"><span class="pre">python3.11/site-packages</span></code>.
-The site packages folder is where all of your installed packages for a particular environment are located.</p>
-<p>To do a development mode install, type</p>
-<div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-8" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-8">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-7">
 SHELL</label><div class="sd-tab-content docutils">
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
 </pre></div>
@@ -886,11 +877,32 @@ SHELL</label><div class="sd-tab-content docutils">
 <p>Here, the <code class="docutils literal notranslate"><span class="pre">-e</span></code> indicates that we are installing this project in <em>editable</em> mode
 (i.e. setuptools
 <a class="reference external" href="https://setuptools.readthedocs.io/en/latest/userguide/commands.html#develop-deploy-the-project-source-in-development-mode"><em>development mode</em></a>),
-while <code class="docutils literal notranslate"><span class="pre">.</span></code> indicates to install from the local directory (you could also specify a path here).
-Now, if you examine the contents of your site packages folder,
-you should see a link to <code class="docutils literal notranslate"><span class="pre">molecool</span></code> (<code class="docutils literal notranslate"><span class="pre">molecool.egg-link</span></code>).
-The folder has also been added to your path (check <code class="docutils literal notranslate"><span class="pre">sys.path</span></code> again.)</p>
-<p>Now, we can use our package from any directory, similar to how we can use other installed packages like <code class="docutils literal notranslate"><span class="pre">numpy</span></code>.
+while <code class="docutils literal notranslate"><span class="pre">.</span></code> indicates to install from the local directory (you could also specify a path here).</p>
+<p>When you install a Python package using either <code class="docutils literal notranslate"><span class="pre">pip</span></code> or <code class="docutils literal notranslate"><span class="pre">conda</span></code>, that package is installed in your Python
+environment’s <code class="docutils literal notranslate"><span class="pre">site-packages</span></code> folder.
+You can see where this is by checking your Python system path.
+To do this, open Python (type <code class="docutils literal notranslate"><span class="pre">python</span></code> into your terminal window), and type</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-8" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-8">
+PYTHON</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sys</span><span class="o">.</span><span class="n">path</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This will output a list of locations that Python searches for packages.
+One of these will typically end with <code class="docutils literal notranslate"><span class="pre">site-packages</span></code>, indicating the directory where Python looks for installed packages.</p>
+<p>If you examine <code class="docutils literal notranslate"><span class="pre">site-packages</span></code>, you are likely to see a folder with your package’s name followed by a <code class="docutils literal notranslate"><span class="pre">.dist-info</span></code>.
+Inside, the <code class="docutils literal notranslate"><span class="pre">direct_url.json</span></code> file signifies an editable installation by pointing back to your project’s directory.</p>
+<div class="tip admonition">
+<p class="admonition-title">Python Packaging’s Rapidly Evolving Landscape</p>
+<p>In recent years, the Python packaging ecosystem has seen the development of numerous tools designed to streamline the process.
+While the MolSSI CookieCutter primarily utilizes <code class="docutils literal notranslate"><span class="pre">setuptools</span></code> and <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> for packaging, alternatives like poetry and flit offer different features and workflows.
+Depending on your tool of choice or even your Python version, you may encounter various files or configurations within <code class="docutils literal notranslate"><span class="pre">site-packages</span></code> following an editable installation.</p>
+</div>
+<p>After our install, we can use our package from any directory, similar to how we can use other installed packages like <code class="docutils literal notranslate"><span class="pre">numpy</span></code>.
 Open Python, and type</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-9" name="sd-tab-set-9" type="radio">
@@ -912,8 +924,10 @@ OUTPUT</label><div class="sd-tab-content docutils">
 </div>
 </div>
 </div>
-<p>This should work from anywhere on your computer.</p>
-<div class="exercise admonition">
+<p>A development installation inserts a link to your project into your Python
+<code class="docutils literal notranslate"><span class="pre">site-packages</span></code> folder so that updates are immediately available the next time
+you launch Python, without having to reinstall your package.</p>
+<div class="attention admonition">
 <p class="admonition-title">Check Your Understanding</p>
 <p>What happens if we use <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">deactivate</span></code> and attempt to execute the code above?</p>
 <p>What if we switch directories?</p>
@@ -937,6 +951,7 @@ OUTPUT</label><div class="sd-tab-content docutils">
 <ul class="simple">
 <li><p>There is a common way to structure Python packages.</p></li>
 <li><p>You can use the CMS CookieCutter to quickly create the layout for a Python package.</p></li>
+<li><p>An editable installation allows you to use your package from anywhere on your computer, and with updates immediately available.</p></li>
 </ul>
 </div>
 </section>
@@ -1037,8 +1052,8 @@ OUTPUT</label><div class="sd-tab-content docutils">
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509"></script>
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1084,7 +1099,7 @@ OUTPUT</label><div class="sd-tab-content docutils">
         
 
         <p class="theme-version">
-        Built with a customized <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.1.
+        Built with a customized <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.2.
         </p>
 
     </div>

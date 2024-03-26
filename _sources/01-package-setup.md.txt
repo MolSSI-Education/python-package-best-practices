@@ -390,15 +390,29 @@ These are the configuration files for our packaging and testing tools.
 We'll be using this file in the next section.
 
 #### Installing your package
-A development install will allow you to import your package and use it from anywhere on your computer.
+A development install, also known as an "editable" install, will allow you to import your package and use it from anywhere on your computer.
 You will then be able to import your package into scripts in the same way you import `matplotlib` or `numpy`. 
+This setup is particularly useful during development, as it ensures that any changes you make to your package's code are immediately reflected in your Python environment, without the need for reinstallation.
 
-A development installation inserts a link to your project into your Python
-`site-packages` folder so that updates are immediately available the next time
-you launch Python, without having to reinstall your package.
-To find the location of your site-packages folder, you can check your Python path.
-Open Python (type `python` into your terminal window), and type
+To perform a development installation, you use pip with the `-e` option, which stands for "editable". 
+This tells pip to install the package in such a way that it links directly to your project's source code. 
 
+````{tab-set-code} 
+
+```{code-block} shell
+pip install -e .
+```
+````
+
+Here, the `-e` indicates that we are installing this project in *editable* mode
+(i.e. setuptools
+[*development mode*](https://setuptools.readthedocs.io/en/latest/userguide/commands.html#develop-deploy-the-project-source-in-development-mode)),
+while `.` indicates to install from the local directory (you could also specify a path here).
+
+When you install a Python package using either `pip` or `conda`, that package is installed in your Python
+environment's `site-packages` folder.
+You can see where this is by checking your Python system path. 
+To do this, open Python (type `python` into your terminal window), and type
 
 ````{tab-set-code} 
 
@@ -408,30 +422,21 @@ Open Python (type `python` into your terminal window), and type
 ```
 ````
 
+This will output a list of locations that Python searches for packages. 
+One of these will typically end with `site-packages`, indicating the directory where Python looks for installed packages.
 
-This will give a list of locations python looks for packages when you do an import.
-One of the locations should end with `python3.11/site-packages`.
-The site packages folder is where all of your installed packages for a particular environment are located.
+If you examine `site-packages`, you are likely to see a folder with your package's name followed by a `.dist-info`. 
+Inside, the `direct_url.json` file signifies an editable installation by pointing back to your project's directory. 
 
-To do a development mode install, type
+:::{admonition} Python Packaging's Rapidly Evolving Landscape
+:class: tip
 
-````{tab-set-code} 
+In recent years, the Python packaging ecosystem has seen the development of numerous tools designed to streamline the process. 
+While the MolSSI CookieCutter primarily utilizes `setuptools` and `pyproject.toml` for packaging, alternatives like poetry and flit offer different features and workflows. 
+Depending on your tool of choice or even your Python version, you may encounter various files or configurations within `site-packages` following an editable installation. 
+::: 
 
-```{code-block} shell
-pip install -e .
-```
-````
-
-
-Here, the `-e` indicates that we are installing this project in *editable* mode
-(i.e. setuptools
-[*development mode*](https://setuptools.readthedocs.io/en/latest/userguide/commands.html#develop-deploy-the-project-source-in-development-mode)),
-while `.` indicates to install from the local directory (you could also specify a path here).
-Now, if you examine the contents of your site packages folder,
-you should see a link to `molecool` (`molecool.egg-link`).
-The folder has also been added to your path (check `sys.path` again.)
-
-Now, we can use our package from any directory, similar to how we can use other installed packages like `numpy`.
+After our install, we can use our package from any directory, similar to how we can use other installed packages like `numpy`.
 Open Python, and type
 
 ````{tab-set-code} 
@@ -442,7 +447,6 @@ Open Python, and type
 ```
 ````
 
-
 This should print a quote.
 
 ````{tab-set-code} 
@@ -452,12 +456,12 @@ This should print a quote.
 ```
 ````
 
-
-This should work from anywhere on your computer.
-
+A development installation inserts a link to your project into your Python
+`site-packages` folder so that updates are immediately available the next time
+you launch Python, without having to reinstall your package.
 
 ````{admonition} Check Your Understanding
-:class: exercise
+:class: attention
 
 What happens if we use `conda deactivate` and attempt to execute the code above?
 
@@ -488,4 +492,5 @@ You can also download a zip of the repository [here](https://github.com/MolSSI-E
 
 * There is a common way to structure Python packages.
 * You can use the CMS CookieCutter to quickly create the layout for a Python package.
+* An editable installation allows you to use your package from anywhere on your computer, and with updates immediately available. 
 ```
