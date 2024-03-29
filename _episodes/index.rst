@@ -26,10 +26,19 @@ If you see a subject you would like to contribute to, submit a pull request!
    This material is best suited for people who have experience scripting in Python and are ready to learn about how to make their scripts into a software package.
    You should have experience programming Python and in using the terminal (or shell)
 
-   You can see a tutorial on using the shell from `Software Carpentry <https://swcarpentry.github.io/shell-novice/>`_.
+   You can see a tutorial on using the shell from `Software Carpentry <https://swcarpentry.github.io/shell-novice/>`_. or 
+   use our :doc:`command line basics lesson<00-command-line-basics>`.
 
 Workshop Lessons
 ================
+
+The workshop lessons listed in this table below are designed to be completed sequentially. 
+In this workshop sequence, we first run the CookieCutter, then use the produced repository for the lesson on version control.
+
+If you need a refresher on the command line, see our :doc:`command line basics lesson<00-command-line-basics>`.
+If you would like to do the `git` and GitHub lessons outside of the context of the CookieCutter, 
+see our :doc:`standalone lesson on git<00-git-standalone>` and :doc:`standalone lesson on GitHub<00-github-standalone>`.
+
 
 Set-Up
 #######
