@@ -112,7 +112,7 @@ You could use the `ls` command to confirm that there is now a folder called `com
 ``````
 
 
-This has created an empty folder, or directory, named `chem_280` in your home directory.
+This has created an empty folder, or directory, named `command_line_lesson` in your home directory.
 To navigate to be inside of that directory, we need to **c**hange the **d**irectory we are in using the `cd` command.
 
 ```{admonition} Spaces in file and directory names
