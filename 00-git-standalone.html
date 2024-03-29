@@ -1,0 +1,1541 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Introduction to Version Control with git - Standalone Lesson &#8212; MolSSI Best Practices  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=f098cca5" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-FHKVGE8HKZ"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-FHKVGE8HKZ');
+            </script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-FHKVGE8HKZ');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '00-git-standalone';</script>
+    <link rel="icon" href="_static/molssi_square.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/molssi_main_logo.png" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="_static/molssi_main_logo_inverted_white.png" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">MolSSI Best Practices</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="index.html">
+                        Overview
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="00-setup.html">
+                        Set-Up
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="00-git-and-github.html">
+                        git and GitHub
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="00-code-organization-documentation.html">
+                        Code Style and Documentation
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="00-testing-continuous-integration.html">
+                        Testing, Continuous Integration, and Distribution
+                      </a>
+                    </li>
+                
+
+                <li class="nav-item">
+                  <a class="nav-link dropdown-item nav-external" href="https://molssi.org">
+                    MolSSI
+                  </a>
+                </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MolSSI-Education/python-package-best-practices" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="index.html">
+                        Overview
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="00-setup.html">
+                        Set-Up
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="00-git-and-github.html">
+                        git and GitHub
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="00-code-organization-documentation.html">
+                        Code Style and Documentation
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links-2">
+                    More
+                </button>
+                <ul id="pst-nav-more-links-2" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="00-testing-continuous-integration.html">
+                        Testing, Continuous Integration, and Distribution
+                      </a>
+                    </li>
+                
+
+                <li class="nav-item">
+                  <a class="nav-link dropdown-item nav-external" href="https://molssi.org">
+                    MolSSI
+                  </a>
+                </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MolSSI-Education/python-package-best-practices" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Introduction...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="introduction-to-version-control-with-git-standalone-lesson">
+<h1>Introduction to Version Control with <code class="docutils literal notranslate"><span class="pre">git</span></code> - Standalone Lesson<a class="headerlink" href="#introduction-to-version-control-with-git-standalone-lesson" title="Link to this heading">#</a></h1>
+<div class="overview admonition">
+<p class="admonition-title">Overview</p>
+<p>Questions:</p>
+<ul class="simple">
+<li><p>What is version control?</p></li>
+<li><p>How do I use git to keep a record of my project?</p></li>
+<li><p>What is a branch and why would I use it?</p></li>
+<li><p>How do I tell <code class="docutils literal notranslate"><span class="pre">git</span></code> to ignore files?</p></li>
+</ul>
+<p>Objectives:</p>
+<ul class="simple">
+<li><p>Explain the purpose of version control.</p></li>
+<li><p>Introduce common git commands.</p></li>
+<li><p>Understand how to view and check out previous versions of files.</p></li>
+</ul>
+</div>
+<div class="caution admonition">
+<p class="admonition-title">Prerequisites</p>
+<ul class="simple">
+<li><p>Completed the previous lesson.</p></li>
+<li><p>Created GitHub account (described in set-up instructions)</p></li>
+<li><p>Configured git (described in set-up instructions)</p></li>
+</ul>
+</div>
+<section id="version-control">
+<h2>Version Control<a class="headerlink" href="#version-control" title="Link to this heading">#</a></h2>
+<p>Version control keeps a complete history of your work on a given project.
+It facilitates collaboration where everyone can work freely on different parts of a project without overriding others’ changes.
+You can move between past versions and rollback when needed.<br />
+You can also review the history of your project through commit messages that describe changes on the source code
+and see what exactly has been modified in any given commit.</p>
+<p>This is greatly beneficial whether you are working independently or within a team. We recommend <em>always</em> using git when working on a programming project.</p>
+<div class="admonition-git-vs-github admonition">
+<p class="admonition-title">git vs. GitHub</p>
+<p><code class="docutils literal notranslate"><span class="pre">git</span></code> is the software used for version control, while GitHub is a hosting service.
+You can use <code class="docutils literal notranslate"><span class="pre">git</span></code> locally (without using an online hosting service), or you can use it with other hosting services such as GitLab or BitBucket.
+Other examples of version control software include SVN and Mercurial.</p>
+</div>
+<p>MolSSI recommends using the software <code class="docutils literal notranslate"><span class="pre">git</span></code> for version control, and <a class="reference external" href="https://github.com">GitHub</a> as a hosting service, though there are other options.</p>
+</section>
+<section id="using-git-to-keep-a-record-of-your-project">
+<h2>Using <code class="docutils literal notranslate"><span class="pre">git</span></code> to keep a record of your project<a class="headerlink" href="#using-git-to-keep-a-record-of-your-project" title="Link to this heading">#</a></h2>
+<p>You should have git installed and configured from the setup instructions.</p>
+<p>In this section, we are going to create a file with some Python functions and use <code class="docutils literal notranslate"><span class="pre">git</span></code> to track changes to our project.</p>
+<p>First, use a terminal to <code class="docutils literal notranslate"><span class="pre">cd</span></code> into the directory where you are keeping your files for the workshop (<code class="docutils literal notranslate"><span class="pre">molssi_best_practices</span></code>).
+Then, create a folder for your git lesson.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-0">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>molssi_best_practices
+mkdir<span class="w"> </span>git-lesson
+<span class="nb">cd</span><span class="w"> </span>git-lesson
+</pre></div>
+</div>
+</div>
+</div>
+<div class="exercise admonition">
+<p class="admonition-title">Challenge</p>
+<p>Use the skills you used in the previous lesson to create a directory called <code class="docutils literal notranslate"><span class="pre">git-lesson</span></code>.</p>
+<p>Then, change directories into the folder you just created.</p>
+<div class="solution dropdown admonition">
+<p class="admonition-title">Solution</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-1" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-1">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>git-lesson
+<span class="nb">cd</span><span class="w"> </span>git-lesson
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p><strong>Make sure you execute the commands that are in the solution of the challenge above before continuing.</strong></p>
+<p>We will do our first <code class="docutils literal notranslate"><span class="pre">git</span></code> project in this folder.</p>
+<p>In order for git to keep track of your project, or any changes in your project, you must first tell git that you want it start a project and track your changes.
+After starting a project, you must manually create check-points if you wish to have points to return to.
+If we want to tell <code class="docutils literal notranslate"><span class="pre">git</span></code> that the folder we are working in represents a project, we do so with the command <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">init</span></code>.
+In your folder, use the command</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-2">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>init
+</pre></div>
+</div>
+</div>
+</div>
+<p>You will see an output message similar to the following, except with the path to your directory</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-3" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-3">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">Initialized empty Git repository in /PATH/TO/REPOSITORY</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, when you check the contents of the directory using <code class="docutils literal notranslate"><span class="pre">ls</span></code>, it will still look empty.
+However, if you look at the hidden files (files or folders beginning with a dot <code class="docutils literal notranslate"><span class="pre">.</span></code>) using the <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-a</span></code>, you will see that the directory is no longer empty</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-4" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-4">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ls<span class="w"> </span>-a
+</pre></div>
+</div>
+</div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-5" name="sd-tab-set-5" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-5">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">.   ..  .git</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The presence of the <code class="docutils literal notranslate"><span class="pre">.git</span></code> folder indicates to us that the <code class="docutils literal notranslate"><span class="pre">git</span></code> software is now watching the folder for changes.
+<code class="docutils literal notranslate"><span class="pre">.git</span></code> is a directory where <code class="docutils literal notranslate"><span class="pre">git</span></code> stores the repository data.
+We can tell from this output that we are in a git repository.</p>
+<p>Another way we can tell if we are in a git repository is to use the command <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code>.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-6" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-6">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>status
+</pre></div>
+</div>
+</div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-7" name="sd-tab-set-7" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-7">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">On branch main</span>
+
+<span class="go">No commits yet</span>
+
+<span class="go">nothing to commit (create/copy files and use &quot;git add&quot; to track)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The command <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> gives us the current state of our repository.
+This message tells us that we are on the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch, and that we haven’t yet created a checkpoint, or commit, of our project.</p>
+</section>
+<section id="the-3-steps-of-a-commit">
+<h2>The 3 steps of a commit<a class="headerlink" href="#the-3-steps-of-a-commit" title="Link to this heading">#</a></h2>
+<p>A particular version of your project is called a “commit”. There is a very specific procedure that you should follow when making a commit. These steps are : (1) Making changes to your project. (2) Marking the changes you want to record (<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code>). (3) Creating a version, or a “commit” to the repository (you can also think of this as a project checkpoint).</p>
+<p>Now that we’ve covered the steps, let’s see how to make versions of our project and view the project history.</p>
+<p>Create a file called <code class="docutils literal notranslate"><span class="pre">README.md</span></code> in your text editor of choice.
+The README file is a file which typically accompanies git repositories and gives information about that project.
+We will use <a class="reference external" href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">markdown</a>, which we covered in the last lesson, for the README to give it a nice formatting when viewed online.</p>
+<p>Add the following to your README</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-8" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-README.md" for="sd-tab-item-8">
+README.MD</label><div class="sd-tab-content docutils">
+<div class="highlight-README.md notranslate"><div class="highlight"><pre><span></span><span class="gh"># Git Lesson</span>
+
+This lesson covers the basics of git for version control.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Save this file an return to the terminal.
+Now that we have made a change, check the status of your project again.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-9" name="sd-tab-set-9" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-9">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>status
+</pre></div>
+</div>
+</div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-10" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-10">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">On branch main</span>
+
+<span class="go">No commits yet</span>
+
+<span class="go">Untracked files:</span>
+<span class="go">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</span>
+<span class="go">	README.md</span>
+
+<span class="go">nothing added to commit but untracked files present (use &quot;git add&quot; to track)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice how <code class="docutils literal notranslate"><span class="pre">git</span></code> is watching our repository!
+It tells us that it sees that we have added a new file (<code class="docutils literal notranslate"><span class="pre">README.md</span></code>), but git is not actually tracking that file yet.
+Remember that <code class="docutils literal notranslate"><span class="pre">git</span></code> only watches what we tell it to watch, and only tracks changes in files we tell it to track changes in.
+Next, we will want to tell <code class="docutils literal notranslate"><span class="pre">git</span></code> to watch <code class="docutils literal notranslate"><span class="pre">README.md</span></code> and to make a version of our project which includes the file.
+In other words, we want to <code class="docutils literal notranslate"><span class="pre">commit</span></code> our changes.</p>
+<section id="git-add-git-status-git-commit">
+<h3>git add, git status, git commit<a class="headerlink" href="#git-add-git-status-git-commit" title="Link to this heading">#</a></h3>
+<p>Making a commit is like making a checkpoint for a particular version of your code.
+You can easily return to, or revert to that checkpoint.</p>
+<p>To create the checkpoint, we first have to make changes to our project.
+We might modify <em>many</em> files at a time in a repository.
+Thus, the first step in creating a checkpoint (or commit) is to tell <code class="docutils literal notranslate"><span class="pre">git</span></code> which files we want to include in the checkpoint.
+We do this with a command called <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code>.
+This adds files to what is called the <em>staging area</em>.</p>
+<p>Let’s look at our output from <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> again.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-11" name="sd-tab-set-11" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-11">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">On branch main</span>
+
+<span class="go">No commits yet</span>
+
+<span class="go">Untracked files:</span>
+<span class="go">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</span>
+<span class="go">	README.md</span>
+
+<span class="go">nothing added to commit but untracked files present (use &quot;git add&quot; to track)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Git even tells us to use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> to include what will be committed.
+Let’s follow the instructions and tell <code class="docutils literal notranslate"><span class="pre">git</span></code> that we want to create a checkpoint with the current version of <code class="docutils literal notranslate"><span class="pre">README.md</span></code></p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-12" name="sd-tab-set-12" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-12">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>README.md
+</pre></div>
+</div>
+</div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-13" name="sd-tab-set-13" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-13">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>status
+</pre></div>
+</div>
+</div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-14" name="sd-tab-set-14" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-14">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">On branch main</span>
+
+<span class="go">No commits yet</span>
+
+<span class="go">Changes to be committed:</span>
+<span class="go">  (use &quot;git rm --cached &lt;file&gt;...&quot; to unstage)</span>
+<span class="go">	new file:   README.md</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We are now on the second step of creating a commit.
+We have <code class="docutils literal notranslate"><span class="pre">added</span></code> our files to the staging area.
+In our case, we only have one file in the staging area, but we could add more if we had more files.</p>
+<p>To create the checkpoint, or commit, we will now use the <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code> command.
+We add a <code class="docutils literal notranslate"><span class="pre">-m</span></code> after the command for “message.”
+Whenever you create a commit, you should write a message about what the commit does.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-15" name="sd-tab-set-15" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-15">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;add README with information about project.&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-16" name="sd-tab-set-16" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-16">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">[main (root-commit) dc466ff] add README with information about project</span>
+<span class="go"> 1 file changed, 3 insertions(+)</span>
+<span class="go"> create mode 100644 README.md</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Check your status after the commit</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-17" name="sd-tab-set-17" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-17">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>git<span class="w"> </span>status
+</pre></div>
+</div>
+</div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-18" name="sd-tab-set-18" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-18">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go"> On branch main</span>
+<span class="go">nothing to commit, working tree clean</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This message means nothing in the directory has changed since our last checkpoint, or commit.</p>
+</section>
+<section id="git-log">
+<h3>git log<a class="headerlink" href="#git-log" title="Link to this heading">#</a></h3>
+<p>Next, type</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-19" name="sd-tab-set-19" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-19">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>log
+</pre></div>
+</div>
+</div>
+</div>
+<p>You will get an output resembling the following:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-20" name="sd-tab-set-20" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-20">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">commit dc466ff70070312b622ab0041f4d770bd37bb248 (HEAD -&gt; main)</span>
+<span class="go">Author: Jessica Nash &lt;janash@vt.edu&gt;</span>
+<span class="go">Date:   Wed Jul 8 15:59:57 2020 -0400</span>
+
+<span class="go">    add README with information about project</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Each line of this log tells you something important about the commit, or check point that exists for the project.
+On the first line,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">commit</span> <span class="n">dc466ff70070312b622ab0041f4d770bd37bb248</span> <span class="p">(</span><span class="n">HEAD</span> <span class="o">-&gt;</span> <span class="n">main</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You have a unique identifier for the commit (dc466…).
+You can use this number to reference this checkpoint.
+This number is unique for every commit, meaning you will have a different number than that shown above.</p>
+<p>Then, git records the name of the author who made the change.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Author</span><span class="p">:</span> <span class="n">Your</span> <span class="n">Name</span> <span class="o">&lt;</span><span class="n">your_email</span><span class="nd">@something</span><span class="o">.</span><span class="n">com</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>This should be your information.
+This way, anyone who is working with this project can see who made each commit.
+Note that this name and email address matches what you specified when you configured git in the setup.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Date</span><span class="p">:</span>   <span class="n">Wed</span> <span class="n">Jul</span> <span class="mi">8</span> <span class="mi">15</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">57</span> <span class="mi">2020</span> <span class="o">-</span><span class="mi">0400</span>
+</pre></div>
+</div>
+<p>Next, it lists the date and time the commit was made.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">add</span> <span class="n">README</span> <span class="k">with</span> <span class="n">information</span> <span class="n">about</span> <span class="n">project</span>
+</pre></div>
+</div>
+<p>Finally, there will be a blank line followed by a commit message.
+The commit message is a message whoever made the commit chose to write, but should describe the change that took place when the commit was made.
+You’ll recognize this message from what you just wrote when you used the <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code> command.</p>
+<p>To exit the log, press the <code class="docutils literal notranslate"><span class="pre">q</span></code> key.</p>
+<p>When we have more commits (or versions) of our code, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code> will show a history of these commits, and they will all have the same format discussed above.
+Right now, we have only one commit.</p>
+<p>Let’s continue to edit this readme to include more information.
+This is a file which will describe what is in this directory.
+Open <code class="docutils literal notranslate"><span class="pre">README.md</span></code> in your text editor of choice and add the following to the end</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-21" name="sd-tab-set-21" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-README.md" for="sd-tab-item-21">
+README.MD</label><div class="sd-tab-content docutils">
+<div class="highlight-README.md notranslate"><div class="highlight"><pre><span></span>This lesson is for the MolSSI Best Practices Workshop.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s make another version of our file that contains this information:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-22" name="sd-tab-set-22" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-22">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>README.md
+git<span class="w"> </span>status
+</pre></div>
+</div>
+</div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-23" name="sd-tab-set-23" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-23">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">On branch main</span>
+<span class="go">Changes to be committed:</span>
+<span class="go">  (use &quot;git restore --staged &lt;file&gt;...&quot; to unstage)</span>
+<span class="go">        modified:   README.md</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-24" name="sd-tab-set-24" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-24">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;add more information to README&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="exercise admonition">
+<p class="admonition-title">Check your understanding</p>
+<p>Add the following information about how to make a commit to your README.md and commit the change.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-25" name="sd-tab-set-25" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-README.md" for="sd-tab-item-25">
+README.MD</label><div class="sd-tab-content docutils">
+<div class="highlight-README.md notranslate"><div class="highlight"><pre><span></span>To make a commit (&quot;version&quot; or &quot;checkpoint&quot;) of your files, follow this procedure:
+
+<span class="k">1.</span> Make changes to your project you would like to keep.
+<span class="k">1.</span> When you have your changes, tell git you are ready to create a checkpoint of the files using <span class="sb">`git add filename`</span>
+<span class="k">1.</span> Create a checkpoint using `git commit -m &quot;message about what you did&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="solution dropdown admonition">
+<p class="admonition-title">Solution</p>
+<p>To add the file to the staging area and tell <code class="docutils literal notranslate"><span class="pre">git</span></code> we would like to track the changes to the file, we first use the <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> command.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-26" name="sd-tab-set-26" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-26">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>README.md
+</pre></div>
+</div>
+</div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-27" name="sd-tab-set-27" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-27">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;add more information to readme&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Now, check <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> and <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code>.
+You should see the following:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-28" name="sd-tab-set-28" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-28">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>status
+</pre></div>
+</div>
+</div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-29" name="sd-tab-set-29" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-29">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">On branch main</span>
+<span class="go">nothing to commit, working tree clean</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-30" name="sd-tab-set-30" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-30">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>log
+</pre></div>
+</div>
+</div>
+</div>
+<p>We now have a log with three commits.
+This means there are three versions of the repository we are working in.</p>
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code> lists all commits  made to a repository in reverse chronological order.
+The listing for each commit includes the commit’s full identifier,the commit’s author, when it was created, and the commit title.</p>
+<p>We can see differences in files between commits using git diff.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-31" name="sd-tab-set-31" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-31">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>diff<span class="w"> </span>HEAD~1
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here HEAD refers to the point in our commit history (and current branch).
+When we use <code class="docutils literal notranslate"><span class="pre">~1</span></code>, we are asking git to show us the different of the current point minus one commit.</p>
+<p>Lines that have been added are indicated in green with a plus sign next to them (‘+’), while lines that have been deleted, if we had any, would be indicated in red with a minus sign next to them (‘-‘).</p>
+</section>
+</section>
+<section id="viewing-previous-versions">
+<h2>Viewing previous versions<a class="headerlink" href="#viewing-previous-versions" title="Link to this heading">#</a></h2>
+<p>If you need to check out a previous version</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-32" name="sd-tab-set-32" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-32">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>COMMIT_ID
+</pre></div>
+</div>
+</div>
+</div>
+<p>This will temporarily revert the repository to whatever the state was at the specified commit ID.</p>
+<p>Let’s checkout the version before we made the most recent edit to the README.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-33" name="sd-tab-set-33" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-33">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>log<span class="w"> </span>--oneline
+</pre></div>
+</div>
+</div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-34" name="sd-tab-set-34" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-34">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">fe357b0 (HEAD -&gt; main) add information about how to make a commit to the readme</span>
+<span class="go">8c39357 add more information to README</span>
+<span class="go">dc466ff add README with information about project</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this log, the commit ID is the first number on the left.</p>
+<p>To revert to the version of the repository where we first edited the readme, use the <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span></code> command with the appropriate commit id.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-35" name="sd-tab-set-35" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-35">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>8c39357
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you now view your readme, it is the previous version of the file.</p>
+<p>To return to the most recent point,</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-36" name="sd-tab-set-36" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-36">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>main
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="creating-new-features-using-branches">
+<h2>Creating new features - using branches<a class="headerlink" href="#creating-new-features-using-branches" title="Link to this heading">#</a></h2>
+<p>When you are working on a project to implement new features, it is a good practice to isolate the the changes you are making and work on one particular topic at a time.
+To do this, you can use something called a <strong>branch</strong> in git.
+Working on branches allows you to isolate particular changes.
+If you make sure that your code works before merging to your main or <strong>main</strong> branch, you will ensure that you always have a working version of code on your main branch.</p>
+<p>By default, you are typically in the main branch.
+To create a new branch and move to it, you can use the command</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-37" name="sd-tab-set-37" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-37">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>switch<span class="w"> </span>-c<span class="w"> </span>new_branch_name
+</pre></div>
+</div>
+</div>
+</div>
+<p>The command <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">switch</span></code> switches branches when followed by a branch name.
+When you use the <code class="docutils literal notranslate"><span class="pre">-c</span></code> option, git will create a branch with the specified name and switch to it.
+For this exercise, we will add a new feature - we are going to a python function to print “Hello, World!” (the famous first programming exercise).</p>
+<p>First, we’ll create a new branch:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-38" name="sd-tab-set-38" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-38">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>switch<span class="w"> </span>-c<span class="w"> </span>hello_world
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, create a new file called <code class="docutils literal notranslate"><span class="pre">quotes.py</span></code>.
+We are going to add the ability to print “Hello, World!”</p>
+<p>Add the function to your <code class="docutils literal notranslate"><span class="pre">quotes.py</span></code> file.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-39" name="sd-tab-set-39" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-39">
+PYTHON</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Some quotes.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="k">def</span> <span class="nf">hello_world</span><span class="p">():</span>
+    <span class="n">quote</span> <span class="o">=</span> <span class="s2">&quot;Hello, World!&quot;</span>
+    <span class="k">return</span> <span class="n">quote</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Verify that this function works in the interactive Python prompt.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-40" name="sd-tab-set-40" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-40">
+PYTHON</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">quotes</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">quotes</span><span class="o">.</span><span class="n">hello_world</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, commit this change:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-41" name="sd-tab-set-41" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-41">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>hello_world.py
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;add function to print Hello World&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s switch back to the main branch to see what it is like.
+You can see a list of all the branches in your repo by using the command</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-42" name="sd-tab-set-42" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-42">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>branch
+</pre></div>
+</div>
+</div>
+</div>
+<p>This will list all of your branches.
+he active branch, or the branch you are on will be noted with an asterisk (<code class="docutils literal notranslate"><span class="pre">*</span></code>).</p>
+<p>To switch back to the main branch,</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-43" name="sd-tab-set-43" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-43">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>switch<span class="w"> </span>main
+</pre></div>
+</div>
+</div>
+</div>
+<p>On your main branch, you should see that there is no <code class="docutils literal notranslate"><span class="pre">quotes.py</span></code> module.</p>
+<p>You can further verify this by using the <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code> command.</p>
+<p>Consider that at the same time we have some changes or features we’d like to implement.
+Let’s make a branch to do a documentation update.</p>
+<p>Create a new branch</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-44" name="sd-tab-set-44" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-44">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>switch<span class="w"> </span>-c<span class="w"> </span>doc_update
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s add some information about developing on branches to the README.
+Update your README to include this information:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-45" name="sd-tab-set-45" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-README.md" for="sd-tab-item-45">
+README.MD</label><div class="sd-tab-content docutils">
+<div class="highlight-README.md notranslate"><div class="highlight"><pre><span></span><span class="gu">## Adding Features</span>
+Features should be developed on branches. To create and switch to a branch, use the command
+
+<span class="sb">`git switch -c new_branch_name`</span>
+
+To switch to an existing branch, use
+
+<span class="sb">`git switch branch_name`</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Save and commit this change.</p>
+</section>
+<section id="getting-changes-to-your-main-branch">
+<h2>Getting Changes to Your main Branch<a class="headerlink" href="#getting-changes-to-your-main-branch" title="Link to this heading">#</a></h2>
+<p>This is as far as we complete in class.
+Do not do the next sections if you want to follow along.</p>
+<p>The portion below here should only be used if you are working on a project alone.
+Otherwise, we will discuss how to get changes all on the same branch in the lesson on collaboration using GitHb.</p>
+<p>To incorporate these changes in main, you will need to do a <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">merge</span></code>.
+When you do a merge, you should be on the branch you would like to merge into. In this case, we will first merge the changes from our <code class="docutils literal notranslate"><span class="pre">doc_update</span></code> branch, then our <code class="docutils literal notranslate"><span class="pre">hello_world</span></code> branch, so we should be on our <code class="docutils literal notranslate"><span class="pre">main</span></code> branch.
+Next we will use the <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">merge</span></code> command.</p>
+<p>The syntax for this command is</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-46" name="sd-tab-set-46" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-46">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>merge<span class="w"> </span>branch_name
+</pre></div>
+</div>
+</div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">branch_name</span></code> is the name of the branch you would like to merge.</p>
+<p>We can merge our <code class="docutils literal notranslate"><span class="pre">doc_update</span></code> branch to get changes from our <code class="docutils literal notranslate"><span class="pre">doc_update</span></code> branch to our main branch:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-47" name="sd-tab-set-47" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-47">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>main
+git<span class="w"> </span>merge<span class="w"> </span>doc_update
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now our changes from the branch are on main.</p>
+<p>We can merge our <code class="docutils literal notranslate"><span class="pre">hello_world</span></code> branch to get our changes on main:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-48" name="sd-tab-set-48" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-48">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>merge<span class="w"> </span>hello_world
+</pre></div>
+</div>
+</div>
+</div>
+<p>This time, you will see a different message, and a text editor will open for a merge commit message.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-49" name="sd-tab-set-49" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-49">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">Merge made by the &#39;recursive&#39; strategy.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is because <code class="docutils literal notranslate"><span class="pre">main</span></code> and <code class="docutils literal notranslate"><span class="pre">hello_world</span></code> had development histories which have diverged (their commit histories were different).
+Git had to do some work in this case to merge the branches. A merge commit was created.</p>
+<p>Merge commits create a branched git history.
+We can visualize the history of our project by adding <code class="docutils literal notranslate"><span class="pre">--graph</span></code> to git log.
+There are other workflows you can use to make the commit history more linear, but we will not discuss them in this course.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-50" name="sd-tab-set-50" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-50">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>log<span class="w"> </span>--graph
+</pre></div>
+</div>
+</div>
+</div>
+<p>Once we are done with a feature branch,  we can delete it:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-51" name="sd-tab-set-51" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-51">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>branch<span class="w"> </span>-d<span class="w"> </span>hello_world
+git<span class="w"> </span>branch<span class="w"> </span>-d<span class="w"> </span>doc_update
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ignoring-files">
+<h2>Ignoring Files<a class="headerlink" href="#ignoring-files" title="Link to this heading">#</a></h2>
+<p>Sometimes while you work on a project, you may end up creating some temporary files.
+For example, if your text editor is Emacs, you may end up with lots of files called <code class="docutils literal notranslate"><span class="pre">&lt;filename&gt;~</span></code>.
+By default, Git tracks all files, including these.
+This tends to be annoying, since it means that any time you do “git status”, all of these unimportant files show up.</p>
+<p>We are now going to find out how to tell Git to ignore these files, so that it doesn’t keep telling us about them ever time we do “git status”.
+Even if you aren’t working with Emacs, someone else working on your project might, so let’s do the courtesy of telling Git not to track these temporary files.
+First, lets ensure that we have a few dummy files. Create empty files in your text editor called <code class="docutils literal notranslate"><span class="pre">quotes.py~</span></code> and <code class="docutils literal notranslate"><span class="pre">README.md~</span></code>.</p>
+<p>Now check what Git says about these files:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-52" name="sd-tab-set-52" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-52">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>status
+</pre></div>
+</div>
+</div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-53" name="sd-tab-set-53" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-53">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">On branch main</span>
+<span class="go">Your branch is up to date with &#39;origin/main&#39;.</span>
+
+<span class="go">Untracked files:</span>
+<span class="go">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</span>
+
+<span class="go">	README.md~</span>
+<span class="go">	quotes.py~</span>
+
+<span class="go">nothing added to commit but untracked files present (use &quot;git add&quot; to track)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we will make Git stop telling us about these files.
+We do this with a file called <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code>.
+A <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> does what it sounds like - it tells <code class="docutils literal notranslate"><span class="pre">git</span></code> files or directories to ignore.
+If we can created our repository on GitHub and cloned it to our computer, we could have selected to create the repository with a <code class="docutils literal notranslate"><span class="pre">.gitignore.</span></code>
+We could have told <code class="docutils literal notranslate"><span class="pre">GitHub</span></code> what language we were planning to use, and it would have given us a starting <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> with files we would be likely to want to ignore.</p>
+<p>Navigate <a class="reference external" href="https://raw.githubusercontent.com/github/gitignore/master/Python.gitignore">here</a> to get a good starting gitignore for python.
+Copy the contents of this file to a file in your repository called <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code>.</p>
+<p>Look at the contents of <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code></p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-54" name="sd-tab-set-54" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-.gitignore" for="sd-tab-item-54">
+.GITIGNORE</label><div class="sd-tab-content docutils">
+<div class="highlight-.gitignore notranslate"><div class="highlight"><pre><span></span># Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+...
+</pre></div>
+</div>
+</div>
+</div>
+<p>Git looks at <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> and ignores any files or directories that match one of the lines.</p>
+<p>Commit your gitignore to the repository.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-55" name="sd-tab-set-55" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-55">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>.gitignore
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;add gitignore to repository</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, let’s ignore those emacs temporary files we added.</p>
+<p>Add the following to the end of <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># emacs</span>
+<span class="o">*~</span>
+</pre></div>
+</div>
+<p>Now do “git status” again.
+Notice that the files we added are no longer recognized by git.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-56" name="sd-tab-set-56" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-56">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>status
+</pre></div>
+</div>
+</div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-57" name="sd-tab-set-57" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-57">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">On branch main</span>
+<span class="go">Your branch is up to date with &#39;origin/main&#39;.</span>
+
+<span class="go">Changes not staged for commit:</span>
+<span class="go">  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)</span>
+<span class="go">  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)</span>
+
+<span class="go">	modified:   .gitignore</span>
+
+<span class="go">no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We want these additions to .gitignore to become a permanent part of the repository, so do</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-58" name="sd-tab-set-58" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-58">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>.gitignore
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Ignores Emacs temporary files and data directory&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="more-tutorials">
+<h2>More Tutorials<a class="headerlink" href="#more-tutorials" title="Link to this heading">#</a></h2>
+<p>If you want more <code class="docutils literal notranslate"><span class="pre">git</span></code>, see the following tutorials.</p>
+<section id="basic-git">
+<h3>Basic git<a class="headerlink" href="#basic-git" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="http://swcarpentry.github.io/git-novice/">Software Carpentry Version Control with Git</a></p></li>
+<li><p><a class="reference external" href="https://try.github.io/">GitHub 15 Minutes to Learn Git</a></p></li>
+<li><p><a class="reference external" href="https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging">More on branches and merging</a></p></li>
+<li><p><a class="reference external" href="https://github.com/trein/dev-best-practices/wiki/Git-Commit-Best-Practices">Git Commit Best Practices</a></p></li>
+</ul>
+<div class="key admonition">
+<p class="admonition-title">Key Points</p>
+<ul class="simple">
+<li><p>Git provides a way to track changes in your project.</p></li>
+<li><p>Making a commit (or version or checkpoint) of your project requires several steps which allow to selectively choose what files you want to include.</p></li>
+<li><p>Git is a software for version control, and is separate from GitHub.</p></li>
+</ul>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-control">Version Control</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-git-to-keep-a-record-of-your-project">Using <code class="docutils literal notranslate"><span class="pre">git</span></code> to keep a record of your project</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-3-steps-of-a-commit">The 3 steps of a commit</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#git-add-git-status-git-commit">git add, git status, git commit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#git-log">git log</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#viewing-previous-versions">Viewing previous versions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-new-features-using-branches">Creating new features - using branches</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-changes-to-your-main-branch">Getting Changes to Your main Branch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ignoring-files">Ignoring Files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-tutorials">More Tutorials</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-git">Basic git</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="_sources/00-git-standalone.md.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  
+
+
+
+  
+  
+  
+  
+  
+  
+  
+
+
+<div class="row h-10">
+    <div class="col-2">
+        <a href="https://molssi.org/" target="_blank" title="Go to MolSSI in a new tab">
+            <img src="_static/molssi_main_logo.png" class="logo__image only-light footer_logo" alt="Logo image">
+            <img src="_static/molssi_main_logo_inverted_white.png" class="logo__image only-dark footer_logo" alt="Logo image">
+        </a>
+    </div>
+    <div class="col-8">
+        <p> &copy; Copyright 2019-2023 <a href="https://molssi.org/">The Molecular Sciences Software Institute</a></p>
+        <p>Funded by the National Science Foundation 
+          <a href="https://nsf.gov/awardsearch/showAward?AWD_ID=1547580">OAC-1547580</a> and 
+          <a href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=2136142">CHE-2136142.</a></p>
+        <p> The MolSSI Best Practices Workshop is licesened under a <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0 International License.</a> 
+            You are free to adapt and share this material with attribution.
+            We'd also appreciate you letting us know if you use the material by emailing <a href="mailto:education@molssi.org">education@molssi.org</a>.
+          </p>
+        
+ 
+        
+        <p class="sphinx-version">
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6.<br>
+        </p>
+        
+
+        <p class="theme-version">
+        Built with a customized <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.2.
+        </p>
+
+    </div>
+    <div class="col-2">
+        <a href="https://nsf.gov/" target="_blank" title="Go to the NSF in a new tab">
+            <img src="_static/nsf.png" class="footer_logo" alt="The NSF">
+          </a>
+    </div>
+</div></div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

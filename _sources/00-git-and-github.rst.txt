@@ -10,6 +10,10 @@ GitHub is a web-based hosting service for git repositories, and it provides a nu
 
 This section covers the basics of version control using git and sharing and collaborating on code using GitHub.
 
+If you would like to do the `git` and GitHub lessons outside of the context of the CookieCutter, 
+see our :doc:`standalone lesson on git<00-git-standalone>` and :doc:`standalone lesson on GitHub<00-github-standalone>`.
+
+
 .. csv-table:: 
   :file: csv_tables/git_and_github.csv
   :header-rows: 1

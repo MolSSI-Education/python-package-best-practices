@@ -1,0 +1,1132 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Using GitHub &#8212; MolSSI Best Practices  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=f098cca5" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-FHKVGE8HKZ"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-FHKVGE8HKZ');
+            </script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-FHKVGE8HKZ');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '00-github-standalone';</script>
+    <link rel="icon" href="_static/molssi_square.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/molssi_main_logo.png" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="_static/molssi_main_logo_inverted_white.png" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">MolSSI Best Practices</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="index.html">
+                        Overview
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="00-setup.html">
+                        Set-Up
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="00-git-and-github.html">
+                        git and GitHub
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="00-code-organization-documentation.html">
+                        Code Style and Documentation
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="00-testing-continuous-integration.html">
+                        Testing, Continuous Integration, and Distribution
+                      </a>
+                    </li>
+                
+
+                <li class="nav-item">
+                  <a class="nav-link dropdown-item nav-external" href="https://molssi.org">
+                    MolSSI
+                  </a>
+                </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MolSSI-Education/python-package-best-practices" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="index.html">
+                        Overview
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="00-setup.html">
+                        Set-Up
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="00-git-and-github.html">
+                        git and GitHub
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="00-code-organization-documentation.html">
+                        Code Style and Documentation
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links-2">
+                    More
+                </button>
+                <ul id="pst-nav-more-links-2" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="00-testing-continuous-integration.html">
+                        Testing, Continuous Integration, and Distribution
+                      </a>
+                    </li>
+                
+
+                <li class="nav-item">
+                  <a class="nav-link dropdown-item nav-external" href="https://molssi.org">
+                    MolSSI
+                  </a>
+                </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MolSSI-Education/python-package-best-practices" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Using GitHub</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="using-github">
+<h1>Using GitHub<a class="headerlink" href="#using-github" title="Link to this heading">#</a></h1>
+<div class="overview admonition">
+<p class="admonition-title">Overview</p>
+<p>Questions:</p>
+<ul class="simple">
+<li><p>How do I use git and GitHub?</p></li>
+</ul>
+<p>Objectives:</p>
+<ul class="simple">
+<li><p>Explain reasons to use GitHub.</p></li>
+</ul>
+</div>
+<section id="putting-your-repository-on-github">
+<h2>Putting your repository on GitHub.<a class="headerlink" href="#putting-your-repository-on-github" title="Link to this heading">#</a></h2>
+<p>Now, let’s put this project on GitHub so that we can share it with others.
+In your browser, navigate to <code class="docutils literal notranslate"><span class="pre">github.com</span></code>.
+Log in to you account if you are not already logged in.
+On the left side of the page, click the green button that says <code class="docutils literal notranslate"><span class="pre">New</span></code> to create a new repository.
+Give the repository the name <code class="docutils literal notranslate"><span class="pre">git-lesson</span></code>.</p>
+<p>Note for the last question, “Initialize this repository with a README”.
+We will leave this unchecked in our case because we have an existing repository
+(as described by GitHub, “This will let you immediately clone the repository to your computer.
+Skip this step if you’re importing an existing repository.”).
+If you were creating the repository on GitHub, you would select this.
+Sometimes it is more convenient to do this than to initialize the repository locally because of the inclusion of these extra files.</p>
+<p>Click <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">repository</span></code>.</p>
+<p>Now, GitHub very helpfully gives us directions for how to get our code on GitHub.</p>
+<p>Before we follow these directions, let’s look at a few things in the repository.
+When you want to be able to put your code online in a repository, you have to tell the <code class="docutils literal notranslate"><span class="pre">git</span></code> software that you have an online repository and where it is located.
+Git calls these <code class="docutils literal notranslate"><span class="pre">remotes</span></code>.
+Currently, our repository has no remotes.
+See this by typing</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-0">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>remote<span class="w"> </span>-v
+</pre></div>
+</div>
+</div>
+</div>
+<p>You should see no output.
+Now, follow the instructions on GitHub under “…or push an existing repository from the command line”</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-1" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-1">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>origin<span class="w"> </span>git@github.com:github.com/YOUR_GITHUB_USERNAME/git-lesson.git
+git<span class="w"> </span>branch<span class="w"> </span>-M<span class="w"> </span>main
+git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>main
+</pre></div>
+</div>
+</div>
+</div>
+<p>The first command adds a remote named <code class="docutils literal notranslate"><span class="pre">origin</span></code> and sets the URL to our repository.
+The word <code class="docutils literal notranslate"><span class="pre">origin</span></code> here is simply a word that is a shortcut for the location of our repository.
+We could have called it anything (like <code class="docutils literal notranslate"><span class="pre">banana</span></code> or <code class="docutils literal notranslate"><span class="pre">elephant</span></code>, or anything we wanted), but <code class="docutils literal notranslate"><span class="pre">origin</span></code> is used by convention.
+Now, whenever we say <code class="docutils literal notranslate"><span class="pre">origin</span></code>, git knows that we really mean <code class="docutils literal notranslate"><span class="pre">git&#64;github.com/YOUR_GITHUB_USERNAME/git-lesson.git</span></code>.
+The second command renames your branch to <code class="docutils literal notranslate"><span class="pre">main</span></code> if that is not already your default branch name.
+The third command copies (or “pushes”) everything which we have tracked using git to <code class="docutils literal notranslate"><span class="pre">origin</span></code>.
+The word <code class="docutils literal notranslate"><span class="pre">main</span></code> means we are pushing the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch.</p>
+<p>Now if you refresh the GitHub webpage you should be able to see all of the new files you added to the repository.</p>
+</section>
+<section id="working-with-multiple-repositories">
+<h2>Working With Multiple Repositories<a class="headerlink" href="#working-with-multiple-repositories" title="Link to this heading">#</a></h2>
+<p>One of the most potentially frustrating problems in software development is keeping track of all the different copies of the code.
+For example, we might start a project on a local desktop computer, switch to working on a laptop during a conference, and then do performance optimization on a supercomputer.
+In ye olden days, switching between computers was typically accomplished
+by copying files via a USB drive, or with <code class="docutils literal notranslate"><span class="pre">ssh</span></code>, or by emailing things to oneself.
+After copying files, it was very easy to make an important change on one computer,
+forget about it, then resume work with the original code version on another computer
+(having forgotten to reapply the important change).
+Of course, when collaborating with other people such problems get dramatically worse.</p>
+<p>Git greatly simplifies the process of maintaining multiple copies of a code development project.
+Let’s see this in action by making another clone of our GitHub repository.
+For this next exercise <strong>you must first navigate out of your project folder</strong>.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-2">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>../
+git<span class="w"> </span>status
+</pre></div>
+</div>
+</div>
+</div>
+<p>Before continuing to the next command, make sure you see the following output:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-3" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-3">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">fatal: Not a git repository (or any of the parent directories): .git</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you do not get this message, do <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">../</span></code> until you see it.</p>
+<p>Next, make another copy of your repository.
+We’ll use this to simulate working on another computer.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-4" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-4">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>git@github.com:YOUR_GITHUB_USERNAME/git-lesson.git<span class="w"> </span>git-lesson-copy
+<span class="nb">cd</span><span class="w"> </span>git-lesson-copy
+</pre></div>
+</div>
+</div>
+</div>
+<p>Check the <code class="docutils literal notranslate"><span class="pre">remote</span></code> on this repository.
+Notice that when you clone a repository,
+the source is automatically recorded as <code class="docutils literal notranslate"><span class="pre">origin</span></code>,
+and you do not have to add the remote the way we did when we created the repository locally.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-5" name="sd-tab-set-5" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-5">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>remote<span class="w"> </span>-v
+</pre></div>
+</div>
+</div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-6" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-6">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">origin  git@github.com:YOUR_GITHUB_USERNAME/git-lesson.git (fetch)</span>
+<span class="go">origin  git@github.com:YOUR_GITHUB_USERNAME/git-lesson.git (push)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Create the file <code class="docutils literal notranslate"><span class="pre">testing.txt</span></code> in this new directory and make it contain the following.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-7" name="sd-tab-set-7" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-testing.txt" for="sd-tab-item-7">
+TESTING.TXT</label><div class="sd-tab-content docutils">
+<div class="highlight-testing.txt notranslate"><div class="highlight"><pre><span></span>I added this file from a clone!
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we will commit this new file:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-8" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-8">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>status
+</pre></div>
+</div>
+</div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-9" name="sd-tab-set-9" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-9">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">On branch main</span>
+<span class="go">Your branch is up to date with &#39;origin/main&#39;.</span>
+
+<span class="go">Untracked files:</span>
+<span class="go">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</span>
+
+<span class="go">  testing.txt</span>
+
+<span class="go">nothing added to commit but untracked files present (use &quot;git add&quot; to track)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-10" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-10">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>.
+git<span class="w"> </span>status
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note admonition">
+<p class="admonition-title">git add</p>
+<p>Here, we’ve used <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">.</span></code> instead of <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">testing.txt</span></code>.
+Using this command will add all untracked or changed files.</p>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-11" name="sd-tab-set-11" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-11">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">On branch main</span>
+<span class="go">Your branch is up to date with &#39;origin/main&#39;.</span>
+
+<span class="go">Changes to be committed:</span>
+<span class="go">  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)</span>
+
+<span class="go">  new file:   testing.txt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-12" name="sd-tab-set-12" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-12">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Adds testing.txt&quot;</span>
+git<span class="w"> </span>log
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now push the commit:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-13" name="sd-tab-set-13" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-13">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you check the GitHub page, you should see the <code class="docutils literal notranslate"><span class="pre">testing.txt</span></code> file.</p>
+<p>Now change directories into the original local clone, and check if <code class="docutils literal notranslate"><span class="pre">testing.txt</span></code> is there:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-14" name="sd-tab-set-14" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-14">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>../&lt;original<span class="w"> </span>clone&gt;
+ls<span class="w"> </span>-l
+</pre></div>
+</div>
+</div>
+</div>
+<p>To get the newest commit into this clone, we need to pull from the GitHub repository:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-15" name="sd-tab-set-15" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-15">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>pull<span class="w"> </span>origin<span class="w"> </span>main
+</pre></div>
+</div>
+</div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-16" name="sd-tab-set-16" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-16">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">remote: Enumerating objects: 4, done.</span>
+<span class="go">remote: Counting objects: 100% (4/4), done.</span>
+<span class="go">remote: Compressing objects: 100% (1/1), done.</span>
+<span class="go">remote: Total 3 (delta 1), reused 3 (delta 1), pack-reused 0</span>
+<span class="go">Unpacking objects: 100% (3/3), done.</span>
+<span class="go">From github.com:YOUR_GITHUB_USERNAME/git-lesson</span>
+<span class="go"> * branch            main     -&gt; FETCH_HEAD</span>
+<span class="go">   2ac4843..754da2b  main     -&gt; origin/main</span>
+<span class="go">Updating 2ac4843..754da2b</span>
+<span class="go">Fast-forward</span>
+<span class="go"> testing.txt | 1 +</span>
+<span class="go"> 1 file changed, 1 insertion(+)</span>
+<span class="go"> create mode 100644 testing.txt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can actually see <code class="docutils literal notranslate"><span class="pre">testing.txt</span></code> in our original repository.</p>
+</section>
+<section id="conflict-resolution">
+<h2>Conflict Resolution<a class="headerlink" href="#conflict-resolution" title="Link to this heading">#</a></h2>
+<p>Now we will make a few new edits to <code class="docutils literal notranslate"><span class="pre">testing.txt</span></code>:</p>
+<p>Add a dummy header and footer the <code class="docutils literal notranslate"><span class="pre">testing.txt</span></code>, so that it looks like this:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-17" name="sd-tab-set-17" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-testing.txt" for="sd-tab-item-17">
+TESTING.TXT</label><div class="sd-tab-content docutils">
+<div class="highlight-testing.txt notranslate"><div class="highlight"><pre><span></span>***************************************
+This is	the start of testing.txt
+***************************************
+
+I added this file from a new clone!
+
+***************************************
+This is	the end	of testing.txt
+***************************************
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now commit and push this edit.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-18" name="sd-tab-set-18" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-18">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>testing.txt
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Adds a new line to testing.txt&quot;</span>
+git<span class="w"> </span>push
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now switch over to the <code class="docutils literal notranslate"><span class="pre">copy</span></code> clone.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-19" name="sd-tab-set-19" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-19">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>../git-lesson-copy
+</pre></div>
+</div>
+</div>
+</div>
+<p>We are going to add another line to <code class="docutils literal notranslate"><span class="pre">testing.txt</span></code>, so that it looks like this:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-20" name="sd-tab-set-20" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-testing.txt" for="sd-tab-item-20">
+TESTING.TXT</label><div class="sd-tab-content docutils">
+<div class="highlight-testing.txt notranslate"><div class="highlight"><pre><span></span>I added this file from a new clone!
+Now I added a new line!
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now try committing and pushing the change:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-21" name="sd-tab-set-21" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-21">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>testing.txt
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Adds another line to testing.txt&quot;</span>
+git<span class="w"> </span>push
+</pre></div>
+</div>
+</div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-22" name="sd-tab-set-22" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-22">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">To github.com:YOUR_GITHUB_USERNAME/git-lesson.git</span>
+<span class="go"> ! [rejected]        main -&gt; main (fetch first)</span>
+<span class="go">error: failed to push some refs to &#39;github.com:YOUR_GITHUB_USERNAME/git-lesson.git&#39;</span>
+<span class="go">hint: Updates were rejected because the remote contains work that you do</span>
+<span class="go">hint: not have locally. This is usually caused by another repository pushing</span>
+<span class="go">hint: to the same ref. You may want to first integrate the remote changes</span>
+<span class="go">hint: (e.g., &#39;git pull ...&#39;) before pushing again.</span>
+<span class="go">hint: See the &#39;Note about fast-forwards&#39; in &#39;git push --help&#39; for details.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The push failed, because the <code class="docutils literal notranslate"><span class="pre">copy</span></code> clone is not up-to-date with the repository on GitHub.
+The changes you made were not compatible with the updated version of the projectt.
+We can fix this by doing a pull:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-23" name="sd-tab-set-23" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-23">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>pull
+</pre></div>
+</div>
+</div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-24" name="sd-tab-set-24" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-24">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">remote: Enumerating objects: 9, done.</span>
+<span class="go">remote: Counting objects: 100% (9/9), done.</span>
+<span class="go">remote: Compressing objects: 100% (4/4), done.</span>
+<span class="go">remote: Total 6 (delta 3), reused 5 (delta 2), pack-reused 0</span>
+<span class="go">Unpacking objects: 100% (6/6), done.</span>
+<span class="go">From github.com:YOUR_GITHUB_USERNAME/git-lesson</span>
+<span class="go">   754da2b..de54818  main     -&gt; origin/main</span>
+<span class="go">Auto-merging testing.txt</span>
+<span class="go">CONFLICT (content): Merge conflict in testing.txt</span>
+<span class="go">Automatic merge failed; fix conflicts and then commit the result.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Unfortunately, the <code class="docutils literal notranslate"><span class="pre">pull</span></code> also failed, due to a <code class="docutils literal notranslate"><span class="pre">conflict</span></code>.
+To see which files have the conflict, we can do:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-25" name="sd-tab-set-25" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-25">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>status
+</pre></div>
+</div>
+</div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-26" name="sd-tab-set-26" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-26">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">On branch main</span>
+<span class="go">Your branch and &#39;origin/main&#39; have diverged,</span>
+<span class="go">and have 1 and 2 different commits each, respectively.</span>
+<span class="go">  (use &quot;git pull&quot; to merge the remote branch into yours)</span>
+
+<span class="go">You have unmerged paths.</span>
+<span class="go">  (fix conflicts and run &quot;git commit&quot;)</span>
+<span class="go">  (use &quot;git merge --abort&quot; to abort the merge)</span>
+
+<span class="go">Changes to be committed:</span>
+
+<span class="go">	modified:   .gitignore</span>
+
+<span class="go">Unmerged paths:</span>
+<span class="go">  (use &quot;git add &lt;file&gt;...&quot; to mark resolution)</span>
+
+<span class="go">	both modified:   testing.txt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The conflict is in testing.txt, so let’s open it up:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-27" name="sd-tab-set-27" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-testing.txt" for="sd-tab-item-27">
+TESTING.TXT</label><div class="sd-tab-content docutils">
+<div class="highlight-testing.txt notranslate"><div class="highlight"><pre><span></span>***************************************
+This is the start of testing.txt
+***************************************
+
+I added this file from a new clone!
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+Now I added a new line!
+=======
+
+***************************************
+This is the end of testing.txt
+***************************************
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 12651a37de10d61d9e9eea31c260c15b7ef3b5d4
+</pre></div>
+</div>
+</div>
+</div>
+<p>The conflict is shown within the <code class="docutils literal notranslate"><span class="pre">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></code> bits.
+The part before the <code class="docutils literal notranslate"><span class="pre">=======</span></code> is what we added in the commit in the <code class="docutils literal notranslate"><span class="pre">git-copy</span></code> clone,
+while the part after it comes from the original local clone.
+We need to decide what to do about the conflict, tidy it up, and then make a new commit.
+Edit <code class="docutils literal notranslate"><span class="pre">testing.txt</span></code> so that it reads:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-28" name="sd-tab-set-28" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-testing.txt" for="sd-tab-item-28">
+TESTING.TXT</label><div class="sd-tab-content docutils">
+<div class="highlight-testing.txt notranslate"><div class="highlight"><pre><span></span>***************************************
+This is the start of testing.txt
+***************************************
+
+I added this file from a new clone!
+Now I added a new line!
+
+***************************************
+This is the end of testing.txt
+***************************************
+</pre></div>
+</div>
+</div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-29" name="sd-tab-set-29" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-29">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>.
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Fixed merge conflicts in testing.txt&quot;</span>
+git<span class="w"> </span>push
+</pre></div>
+</div>
+</div>
+</div>
+<p>This time everything should work correctly.
+Generally speaking, your procedure when ready to commit should be:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-30" name="sd-tab-set-30" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-30">
+SHELL</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Commit message&quot;</span>
+git<span class="w"> </span>pull
+&lt;fix<span class="w"> </span>any<span class="w"> </span>merge<span class="w"> </span>conflicts&gt;
+git<span class="w"> </span>push
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="more-github-features">
+<h2>More GitHub Features<a class="headerlink" href="#more-github-features" title="Link to this heading">#</a></h2>
+<p>Navigate to the GitHub page for your project.
+Click on “testing.txt”.
+Here you can see the file and make changes to it.
+Click the edit button, which looks like a small pencil near the upper right of the file text box.
+Add a line that says “I added this line from the GitHub web interface!”, so that the file looks like:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-31" name="sd-tab-set-31" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-testing.txt" for="sd-tab-item-31">
+TESTING.TXT</label><div class="sd-tab-content docutils">
+<div class="highlight-testing.txt notranslate"><div class="highlight"><pre><span></span>***************************************
+This is the start of testing.txt
+***************************************
+
+I added this file from a new clone!
+Now I added a new line!
+I added this line from the GitHub web interface!
+
+***************************************
+This is the end of testing.txt
+***************************************
+</pre></div>
+</div>
+</div>
+</div>
+<p>Scroll to the bottom of the page and write the name “Added a line to testing.txt from the web interface” for this commit.
+Then, click the green “Commit changes” button at the bottom left.
+You should now see that your change appears in the text box.</p>
+<p>Click the “Blame” button to find out who is responsible for each line of code.
+Click the “History” button to see a list of all commits that affected this file.
+You can click on a commit to see exactly what it did.</p>
+<p>Go back to the main project page, and click the “commits” button.
+Here you can see a list of all the commits for this project.
+Clicking them reveals how they changed the code.</p>
+<p>The “Issues” tab lets you create discussions about bugs, performance limitations, feature requests, or ongoing work that are shared with everyone else who is working on the project.
+Try filling out a quick issue now.
+Then comment and close the issue.</p>
+<div class="key admonition">
+<p class="admonition-title">Key Points</p>
+<ul class="simple">
+<li><p>You can use GitHub to store your project online where you or others can access it from a central repository.</p></li>
+<li><p>You can use GitHub to store your projects so you can work on them from multiple computers.</p></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#putting-your-repository-on-github">Putting your repository on GitHub.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-multiple-repositories">Working With Multiple Repositories</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conflict-resolution">Conflict Resolution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-github-features">More GitHub Features</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="_sources/00-github-standalone.md.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  
+
+
+
+  
+  
+  
+  
+  
+  
+  
+
+
+<div class="row h-10">
+    <div class="col-2">
+        <a href="https://molssi.org/" target="_blank" title="Go to MolSSI in a new tab">
+            <img src="_static/molssi_main_logo.png" class="logo__image only-light footer_logo" alt="Logo image">
+            <img src="_static/molssi_main_logo_inverted_white.png" class="logo__image only-dark footer_logo" alt="Logo image">
+        </a>
+    </div>
+    <div class="col-8">
+        <p> &copy; Copyright 2019-2023 <a href="https://molssi.org/">The Molecular Sciences Software Institute</a></p>
+        <p>Funded by the National Science Foundation 
+          <a href="https://nsf.gov/awardsearch/showAward?AWD_ID=1547580">OAC-1547580</a> and 
+          <a href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=2136142">CHE-2136142.</a></p>
+        <p> The MolSSI Best Practices Workshop is licesened under a <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0 International License.</a> 
+            You are free to adapt and share this material with attribution.
+            We'd also appreciate you letting us know if you use the material by emailing <a href="mailto:education@molssi.org">education@molssi.org</a>.
+          </p>
+        
+ 
+        
+        <p class="sphinx-version">
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6.<br>
+        </p>
+        
+
+        <p class="theme-version">
+        Built with a customized <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.2.
+        </p>
+
+    </div>
+    <div class="col-2">
+        <a href="https://nsf.gov/" target="_blank" title="Go to the NSF in a new tab">
+            <img src="_static/nsf.png" class="footer_logo" alt="The NSF">
+          </a>
+    </div>
+</div></div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>
