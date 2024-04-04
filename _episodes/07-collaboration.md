@@ -28,11 +28,10 @@ This will take you to some options that will help you to maintain your repositor
 
 This page lets you do several important things including rename, relocate, transfer, or delete your repository.
 
-Underneath the "Features" heading you will notice an option to "Restrict editing to collaborators only".
-This option prevents random strangers from being able to push changes to your repository, and should always be kept on.
 To allow other people to work with you, you can assign collaborators.
-Click the "Manage access" tab on the left. This will bring up a page where you can see some details about your repository.
-The box under the heading "Manage access" will allow you to invite collaborators to your project.
+Click the “Collaborators” tab on the left
+This will bring up a page where you can see some details about your repository.
+The “Add people” button under the heading “Manage access” will allow you to invite collaborators to your project.
 
 A pop-up with a search bar will appear where you can search for the names of other GitHub users.
 By finding someone using the search bar and then clicking "Add collaborator", you can allow specific people to contribute to your project.
@@ -43,6 +42,7 @@ Adding them to the repository as a collaborator will allow them to push to the r
 People you don't know very well shouldn't be listed as collaborators, but there are still ways for them to contribute improvements to your project.
 
 ### Protecting your main Branch
+
 If you choose to work with collaborators, there are still ways for you to protect your code.
 Click the "Branches" tab. You will see a heading that says "Branch protection rule".
 Adding the name of a branch here will make it a "protected branch" and the rules you choose in the section below will protect the branch (under the heading "protect matching branches").
@@ -51,6 +51,7 @@ This way, your collaborators will not be able to push to the main branch, and mu
 You can read more about [branch protection](https://help.github.com/en/enterprise/2.18/admin/developer-workflow/).
 
 ### Pull Requests - Branch and Pull Request (PR)
+
 Protecting your main branch will require contributors to submit their changes through a process called a Pull Request.
 As the repository owner, you can also change the code through a pull request on GitHub.
 
@@ -293,6 +294,7 @@ git branch -a
 We will use remotes/upstream/main to keep track of new changes that happen upstream that we do not have in our local main.
 
 ## Developing a new feature - creating branches
+
 We will implement a new element for the webpage.
 
 Create a new branch in your repo with your element of choice.
