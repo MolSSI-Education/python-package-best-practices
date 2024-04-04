@@ -65,6 +65,7 @@ The third command copies (or "pushes") everything which we have tracked using gi
 The word `main` means we are pushing the `main` branch. 
 
 Now if you refresh the GitHub webpage you should be able to see all of the new files you added to the repository.
+
 ## Working With Multiple Repositories
 
 One of the most potentially frustrating problems in software development is keeping track of all the different copies of the code.
@@ -350,6 +351,14 @@ git pull
 ```
 ````
 
+```{admonition} Configuring git pull
+:class: note
+
+You may get a message that says `You have divergent branches and need to specify how to reconcile them.`
+In this case, execute the command `git config pull.rebase false` and then run `git pull` again.
+```
+
+You should see a message that says:
 
 ````{tab-set-code} 
 
@@ -497,7 +506,7 @@ This is the end of testing.txt
 ````
 
 Scroll to the bottom of the page and write the name "Added a line to testing.txt from the web interface" for this commit.
-Then, click the green "Commit changes" button at the bottom left.
+Then, click the green "Commit changes" button.
 You should now see that your change appears in the text box.
 
 Click the "Blame" button to find out who is responsible for each line of code.

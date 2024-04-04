@@ -1024,7 +1024,7 @@ SHELL</label><div class="sd-tab-content docutils">
 <input checked="checked" id="sd-tab-item-36" name="sd-tab-set-36" type="radio">
 </input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-36">
 SHELL</label><div class="sd-tab-content docutils">
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>main
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>switch<span class="w"> </span>main
 </pre></div>
 </div>
 </div>
@@ -1094,7 +1094,7 @@ PYTHON</label><div class="sd-tab-content docutils">
 <input checked="checked" id="sd-tab-item-41" name="sd-tab-set-41" type="radio">
 </input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-41">
 SHELL</label><div class="sd-tab-content docutils">
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>hello_world.py
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>quotes.py
 git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;add function to print Hello World&quot;</span>
 </pre></div>
 </div>
@@ -1159,10 +1159,6 @@ To switch to an existing branch, use
 </section>
 <section id="getting-changes-to-your-main-branch">
 <h2>Getting Changes to Your main Branch<a class="headerlink" href="#getting-changes-to-your-main-branch" title="Link to this heading">#</a></h2>
-<p>This is as far as we complete in class.
-Do not do the next sections if you want to follow along.</p>
-<p>The portion below here should only be used if you are working on a project alone.
-Otherwise, we will discuss how to get changes all on the same branch in the lesson on collaboration using GitHb.</p>
 <p>To incorporate these changes in main, you will need to do a <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">merge</span></code>.
 When you do a merge, you should be on the branch you would like to merge into. In this case, we will first merge the changes from our <code class="docutils literal notranslate"><span class="pre">doc_update</span></code> branch, then our <code class="docutils literal notranslate"><span class="pre">hello_world</span></code> branch, so we should be on our <code class="docutils literal notranslate"><span class="pre">main</span></code> branch.
 Next we will use the <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">merge</span></code> command.</p>
@@ -1182,7 +1178,7 @@ SHELL</label><div class="sd-tab-content docutils">
 <input checked="checked" id="sd-tab-item-47" name="sd-tab-set-47" type="radio">
 </input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-47">
 SHELL</label><div class="sd-tab-content docutils">
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>main
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>switch<span class="w"> </span>main
 git<span class="w"> </span>merge<span class="w"> </span>doc_update
 </pre></div>
 </div>

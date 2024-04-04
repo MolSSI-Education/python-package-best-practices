@@ -833,6 +833,12 @@ SHELL</label><div class="sd-tab-content docutils">
 </div>
 </div>
 </div>
+<div class="note admonition">
+<p class="admonition-title">Configuring git pull</p>
+<p>You may get a message that says <code class="docutils literal notranslate"><span class="pre">You</span> <span class="pre">have</span> <span class="pre">divergent</span> <span class="pre">branches</span> <span class="pre">and</span> <span class="pre">need</span> <span class="pre">to</span> <span class="pre">specify</span> <span class="pre">how</span> <span class="pre">to</span> <span class="pre">reconcile</span> <span class="pre">them.</span></code>
+In this case, execute the command <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">pull.rebase</span> <span class="pre">false</span></code> and then run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code> again.</p>
+</div>
+<p>You should see a message that says:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-24" name="sd-tab-set-24" type="radio">
 </input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-24">
@@ -985,7 +991,7 @@ This is the end of testing.txt
 </div>
 </div>
 <p>Scroll to the bottom of the page and write the name “Added a line to testing.txt from the web interface” for this commit.
-Then, click the green “Commit changes” button at the bottom left.
+Then, click the green “Commit changes” button.
 You should now see that your change appears in the text box.</p>
 <p>Click the “Blame” button to find out who is responsible for each line of code.
 Click the “History” button to see a list of all commits that affected this file.

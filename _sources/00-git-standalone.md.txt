@@ -560,7 +560,7 @@ To return to the most recent point,
 ````{tab-set-code} 
 
 ```{code-block} shell
-git checkout main
+git switch main
 ```
 ````
 
@@ -632,7 +632,7 @@ Next, commit this change:
 ````{tab-set-code} 
 
 ```{code-block} shell
-git add hello_world.py
+git add quotes.py
 git commit -m "add function to print Hello World"
 ```
 ````
@@ -700,12 +700,6 @@ Save and commit this change.
 
 ## Getting Changes to Your main Branch
 
-This is as far as we complete in class. 
-Do not do the next sections if you want to follow along.
-
-The portion below here should only be used if you are working on a project alone. 
-Otherwise, we will discuss how to get changes all on the same branch in the lesson on collaboration using GitHb.
-
 To incorporate these changes in main, you will need to do a `git merge`. 
 When you do a merge, you should be on the branch you would like to merge into. In this case, we will first merge the changes from our `doc_update` branch, then our `hello_world` branch, so we should be on our `main` branch. 
 Next we will use the `git merge` command.
@@ -726,7 +720,7 @@ We can merge our `doc_update` branch to get changes from our `doc_update` branch
 ````{tab-set-code} 
 
 ```{code-block} shell
-git checkout main
+git switch main
 git merge doc_update
 ```
 ````
