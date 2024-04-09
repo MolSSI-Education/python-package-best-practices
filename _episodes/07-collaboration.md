@@ -63,7 +63,7 @@ Create a new branch in your repository to make a small change.
 ````{tab-set-code} 
 
 ```{code-block} shell
-git checkout -b collab_instructions
+git switch -c collab_instructions
 ```
 ````
 
@@ -305,12 +305,12 @@ This can either be an element that exists (red background), or an element that d
 ````{tab-set-code} 
 
 ```{code-block} shell
-git checkout -b sodium
+git switch -c sodium
 ```
 ````
 
 
-This command creates the branch and checks it out (the `-b` stands for `branch`).
+This command creates the branch and checks it out.
 Alternatively, we could have used the commands `git branch sodium` and `git checkout sodium`.
 In general, your branch name should describe the feature or changes that you plan to make on the branch.
 
@@ -492,7 +492,7 @@ First, switch to your main branch.
 ````{tab-set-code} 
 
 ```{code-block} shell
-git checkout main
+git switch main
 ```
 ````
 
