@@ -49,7 +49,7 @@ Now, follow the instructions on GitHub under "...or push an existing repository 
 ````{tab-set-code} 
 
 ```{code-block} shell
-git remote add origin git@github.com:github.com/YOUR_GITHUB_USERNAME/git-lesson.git
+git remote add origin git@github.com:YOUR_GITHUB_USERNAME/git-lesson.git
 git branch -M main
 git push -u origin main
 ```
