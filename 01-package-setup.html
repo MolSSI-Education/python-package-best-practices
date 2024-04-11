@@ -581,19 +581,18 @@ Select<span class="w"> </span>open_source_license:
 <span class="m">2</span><span class="w"> </span>-<span class="w"> </span>BSD-3-Clause
 <span class="m">3</span><span class="w"> </span>-<span class="w"> </span>LGPLv3
 <span class="m">4</span><span class="w"> </span>-<span class="w"> </span>Not<span class="w"> </span>Open<span class="w"> </span>Source
-Choose<span class="w"> </span>from<span class="w"> </span><span class="m">1</span>,<span class="w"> </span><span class="m">2</span>,<span class="w"> </span><span class="m">3</span>,<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="o">(</span><span class="m">1</span>,<span class="w"> </span><span class="m">2</span>,<span class="w"> </span><span class="m">3</span>,<span class="w"> </span><span class="m">4</span><span class="o">)</span><span class="w"> </span><span class="o">[</span><span class="m">1</span><span class="o">]</span>:<span class="w"> </span><span class="m">2</span>
+Choose<span class="w"> </span>from<span class="w"> </span><span class="o">[</span><span class="m">1</span>/2/3/4<span class="o">]</span><span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="o">)</span>:
 
 Select<span class="w"> </span>dependency_source:
 <span class="m">1</span><span class="w"> </span>-<span class="w"> </span>Prefer<span class="w"> </span>conda-forge<span class="w"> </span>with<span class="w"> </span>pip<span class="w"> </span>fallback
 <span class="m">2</span><span class="w"> </span>-<span class="w"> </span>Prefer<span class="w"> </span>default<span class="w"> </span>anaconda<span class="w"> </span>channel<span class="w"> </span>with<span class="w"> </span>pip<span class="w"> </span>fallback
 <span class="m">3</span><span class="w"> </span>-<span class="w"> </span>Dependencies<span class="w"> </span>from<span class="w"> </span>pip<span class="w"> </span>only<span class="w"> </span><span class="o">(</span>no<span class="w"> </span>conda<span class="o">)</span>
-
-Choose<span class="w"> </span>from<span class="w"> </span><span class="m">1</span>,<span class="w"> </span><span class="m">2</span>,<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="o">(</span><span class="m">1</span>,<span class="w"> </span><span class="m">2</span>,<span class="w"> </span><span class="m">3</span><span class="o">)</span><span class="w"> </span><span class="o">[</span><span class="m">1</span><span class="o">]</span>:
+Choose<span class="w"> </span>from<span class="w"> </span><span class="o">[</span><span class="m">1</span>/2/3<span class="o">]</span><span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="o">)</span>:
 
 Select<span class="w"> </span>include_ReadTheDocs:
 <span class="m">1</span><span class="w"> </span>-<span class="w"> </span>y
 <span class="m">2</span><span class="w"> </span>-<span class="w"> </span>n
-Choose<span class="w"> </span>from<span class="w"> </span><span class="m">1</span>,<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">(</span><span class="m">1</span>,<span class="w"> </span><span class="m">2</span><span class="o">)</span><span class="w"> </span><span class="o">[</span><span class="m">1</span><span class="o">]</span>:
+Choose<span class="w"> </span>from<span class="w"> </span><span class="o">[</span><span class="m">1</span>/2<span class="o">]</span><span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="o">)</span>:
 </pre></div>
 </div>
 </div>
@@ -824,8 +823,7 @@ For now, just note that it exists and makes our directory into a package.</p>
 View the module (<code class="docutils literal notranslate"><span class="pre">functions.py</span></code>) in a text editor.
 We see a few things about this file.
 The top begins with a description of this module surrounded by three quotations (<code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;</span></code>).
-Right now, that is the file name, followed by our short description,
-then the sentence “Handles the primary functions”.
+Right now, that is the sentence “Provides the primary functions”.
 We will change this to be more descriptive later.
 CookieCutter has also created a placeholder function called <code class="docutils literal notranslate"><span class="pre">canvas</span></code>.
 At the start of the <code class="docutils literal notranslate"><span class="pre">canvas</span></code> function, we have a <code class="docutils literal notranslate"><span class="pre">docstring</span></code> (more about this in [documentation]),
