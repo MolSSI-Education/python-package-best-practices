@@ -103,7 +103,7 @@ Select open_source_license:
 2 - BSD-3-Clause
 3 - LGPLv3
 4 - Not Open Source
-Choose from [1/2/3/4] (1):
+Choose from [1/2/3/4] (1): 2
 
 Select dependency_source:
 1 - Prefer conda-forge with pip fallback
