@@ -61,7 +61,7 @@ def open_pdb(f_loc):
 
 If we want to test our function, we require a pdb file.
 The workshop materials downloaded during the setup include a set of pdb examples.
-These are found in `molssi_beter_practices/starting_material/data/pdb/`.
+These are found in `molssi_best_practices/starting_material/data/pdb/`.
 We want to store these files in our `molecool` directory.
 Luckily, `cookiecutter` created a folder designed specifically for that purpose.
 The folder is in `molecool/data/`.
