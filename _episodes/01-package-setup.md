@@ -103,19 +103,18 @@ Select open_source_license:
 2 - BSD-3-Clause
 3 - LGPLv3
 4 - Not Open Source
-Choose from 1, 2, 3, 4 (1, 2, 3, 4) [1]: 2
+Choose from [1/2/3/4] (1):
 
 Select dependency_source:
 1 - Prefer conda-forge with pip fallback
 2 - Prefer default anaconda channel with pip fallback
 3 - Dependencies from pip only (no conda)
-
-Choose from 1, 2, 3 (1, 2, 3) [1]:
+Choose from [1/2/3] (1):
 
 Select include_ReadTheDocs:
 1 - y
 2 - n
-Choose from 1, 2 (1, 2) [1]:
+Choose from [1/2] (1):
 ```
 
 ````
@@ -355,8 +354,7 @@ Once inside the `molecool` folder (`molecool/molecool`), examine the files that 
 View the module (`functions.py`) in a text editor.
 We see a few things about this file.
 The top begins with a description of this module surrounded by three quotations (`"""`).
-Right now, that is the file name, followed by our short description,
-then the sentence "Handles the primary functions".
+Right now, that is the sentence "Provides the primary functions".
 We will change this to be more descriptive later.
 CookieCutter has also created a placeholder function called `canvas`.
 At the start of the `canvas` function, we have a `docstring` (more about this in [documentation]),
