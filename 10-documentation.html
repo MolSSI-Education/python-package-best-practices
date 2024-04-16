@@ -550,7 +550,7 @@ These strategies work well for small projects, and may be all the documentation 
 However, if you are preparing a software package to be widely used, you may want to make a website for people to find information about your package.</p>
 <section id="types-of-documentation">
 <h2>Types of Documentation<a class="headerlink" href="#types-of-documentation" title="Link to this heading">#</a></h2>
-<p>There are many types of documentation which you might find associated with a software project.
+<p>There are many types of documentation that you might find associated with a software project.
 A smaller project may be fully documented in the README.
 However, larger libraries may have several documentation sets, each with a different audience.
 One example of this is the <a class="reference external" href="https://numpy.org/doc/stable/">NumPy library</a>.
@@ -842,8 +842,9 @@ For example, we could add a C++ code block.</p>
 <section id="the-table-of-contents-directive">
 <h3>The Table of Contents Directive<a class="headerlink" href="#the-table-of-contents-directive" title="Link to this heading">#</a></h3>
 <p>The next directive we will discuss is the Table of Contents directive.
-Look at the file <code class="docutils literal notranslate"><span class="pre">index.rst</span></code>. It contains the <code class="docutils literal notranslate"><span class="pre">toctree</span></code> directive, which generates a special section called a Table of Contents which links to other parts of your projects.
-The Table of Contents on your <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> file is what shows up on your main menu on the left of the page.
+Look at the file <code class="docutils literal notranslate"><span class="pre">index.rst</span></code>.
+It contains the <code class="docutils literal notranslate"><span class="pre">toctree</span></code> directive, which generates a special section called a Table of Contents that links to other parts of your projects.
+The Table of Contents on your <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> file shows up on your main menu on the left of the page.
 It is also on your main page.</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-13" name="sd-tab-set-13" type="radio">
@@ -922,6 +923,100 @@ INDEX.RST</label><div class="sd-tab-content docutils">
 <p>This will create a folder called <code class="docutils literal notranslate"><span class="pre">pdf</span></code> in the <code class="docutils literal notranslate"><span class="pre">build</span></code> directory, and you should have a file in this directory called <code class="docutils literal notranslate"><span class="pre">molecool.pdf</span></code> containing all of your documentation. Each <code class="docutils literal notranslate"><span class="pre">rst</span></code> file is a chapter of the documentation, instead of a different page.</p>
 </div>
 </section>
+</section>
+<section id="api-documentation">
+<h2>API Documentation<a class="headerlink" href="#api-documentation" title="Link to this heading">#</a></h2>
+<p>To use Sphinx to generate API documentation, you can use either <a class="reference external" href="https://github.com/readthedocs/sphinx-autoapi">Spinx-AutoAPI</a>
+or <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html">Sphinx-Autodoc</a>.
+The cookiecutter comes bundled with Sphinx-Autodoc, so we will focus on that tool for this tutorial.
+See the Note at the end of this section for instructions on building API documentation on using AutoAPI.</p>
+<p>AutoDoc will pull out and render your documentation strings so that they are viewable to the user.
+This makes maintaining code documentation easier on you, as you will only need to maintain documentation for usage of functions in one place (the source code.)</p>
+<p>CookieCutter has already added a page which uses these tools.
+Open the <code class="docutils literal notranslate"><span class="pre">api.rst</span></code>.
+You will see that CookieCutter automatically added <code class="docutils literal notranslate"><span class="pre">canvas</span></code> here for us.
+However, we have changed our package so that <code class="docutils literal notranslate"><span class="pre">canvas</span></code> is not imported on package initialization.
+Change your <code class="docutils literal notranslate"><span class="pre">api.rst</span></code> page to</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-16" name="sd-tab-set-16" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-api.rst" for="sd-tab-item-16">
+API.RST</label><div class="sd-tab-content docutils">
+<div class="highlight-api.rst notranslate"><div class="highlight"><pre><span></span><span class="gh">API Documentation</span>
+<span class="gh">=================</span>
+
+<span class="p">..</span> <span class="ow">autosummary</span><span class="p">::</span>
+   <span class="nc">:toctree:</span> autosummary
+
+   molecool.calculate_distance
+</pre></div>
+</div>
+</div>
+</div>
+<p>Rebuild your documentation:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-17" name="sd-tab-set-17" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-bash" for="sd-tab-item-17">
+BASH</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>clean
+make<span class="w"> </span>html
+</pre></div>
+</div>
+</div>
+</div>
+<p>On your index page, click <code class="docutils literal notranslate"><span class="pre">API</span> <span class="pre">Documentation</span></code>, then click on the <code class="docutils literal notranslate"><span class="pre">calculate_distance</span></code> function.
+You will see the docstring written for the function.
+If you click the green ‘source’ button to the right, you will be taken to a page which shows the source code for the function.</p>
+<p>We are using a Sphinx extension called <code class="docutils literal notranslate"><span class="pre">autosummary</span></code> which is part of AutoDoc.
+This tells Sphinx to insert a table that contains links to documented items.
+Autosummary will put <code class="docutils literal notranslate"><span class="pre">docstrings</span></code> out of functions and a page for each docstring.
+Under that, we are starting a Table of Contents for this page.
+We will list any functions we would like to have documented here.
+This is useful if we would like to separate our API documentation into several pages.</p>
+<p>For example, we can add documentation for our <code class="docutils literal notranslate"><span class="pre">calculate_distance</span></code> function.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-18" name="sd-tab-set-18" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-api.rst" for="sd-tab-item-18">
+API.RST</label><div class="sd-tab-content docutils">
+<div class="highlight-api.rst notranslate"><div class="highlight"><pre><span></span><span class="gh">API Documentation</span>
+<span class="gh">=================</span>
+
+<span class="p">..</span> <span class="ow">autosummary</span><span class="p">::</span>
+   <span class="nc">:toctree:</span> autosummary
+
+   molecool.calculate_distance
+   molecool.calculate_angle
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="adding-docstrings-to-other-pages">
+<h2>Adding Docstrings to other pages<a class="headerlink" href="#adding-docstrings-to-other-pages" title="Link to this heading">#</a></h2>
+<p>Alternatively, you could choose to break your module documentation into different pages with additional text.
+To do this, you would use different directives in AutoDoc.
+You may want to write documentation in addition to your docstring.
+Add a page called <code class="docutils literal notranslate"><span class="pre">measure.rst</span></code> with the following contents:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-19" name="sd-tab-set-19" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-measure.rst" for="sd-tab-item-19">
+MEASURE.RST</label><div class="sd-tab-content docutils">
+<div class="highlight-measure.rst notranslate"><div class="highlight"><pre><span></span><span class="gh">Measure module</span>
+<span class="gh">==============</span>
+
+<span class="p">..</span> <span class="ow">automodule</span><span class="p">::</span> molecool.measure
+
+    This is some additional information I want to say about the measure module.
+
+<span class="p">..</span> <span class="ow">autofunction</span><span class="p">::</span> calculate_distance
+
+I can also put additional information about a function.
+
+<span class="p">..</span> <span class="ow">autofunction</span><span class="p">::</span> calculate_angle
+</pre></div>
+</div>
+</div>
+</div>
+<p>Using this strategy, you can selectively add documentation for functions or classes and write additional information to go with the docstrings.</p>
 <section id="math-on-pages-equation-directives">
 <h3>Math on pages - Equation Directives<a class="headerlink" href="#math-on-pages-equation-directives" title="Link to this heading">#</a></h3>
 <p>Consider a docstring a function called <code class="docutils literal notranslate"><span class="pre">calculate_center_of_mass</span></code> (you will write the code for this function in the testing lesson). It has a section where we give the formula for the center of mass.
@@ -952,25 +1047,12 @@ If you examine this docstring, you will see that it is specified using a Sphinx 
 <span class="sd">    &quot;&quot;&quot;</span>
 </pre></div>
 </div>
-<p>If you add the <code class="docutils literal notranslate"><span class="pre">Notes</span></code> section of this docstring to your Sphinx documentation, the <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">math::</span></code> directive will be rendered as an equation.</p>
-</section>
-</section>
-<section id="api-documentation">
-<h2>API Documentation<a class="headerlink" href="#api-documentation" title="Link to this heading">#</a></h2>
-<p>To use Sphinx to generate API documentation, you can use either <a class="reference external" href="https://github.com/readthedocs/sphinx-autoapi">Spinx-AutoAPI</a>
-or <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html">Sphinx-Autodoc</a>.
-The cookiecutter comes bundled with Sphinx-Autodoc, so we will focus on that tool for this tutorial.
-See the Note at the end of this section for instructions on building API documentation on using AutoAPI.</p>
-<p>AutoDoc will pull out and render your documentation strings so that they are viewable to the user.
-This makes maintaining code documentation easier on you, as you will only need to maintain documentation for usage of functions in one place (the source code.)</p>
-<p>CookieCutter has already added a page which uses these tools.
-On your index page, click <code class="docutils literal notranslate"><span class="pre">API</span> <span class="pre">Documentation</span></code>, then click on the <code class="docutils literal notranslate"><span class="pre">canvas</span></code> function.
-You will see the docstring written for the function.
-If you click the green ‘source’ button to the right, you will be taken to a page which shows the source code for the function.</p>
-<p>Opening, the <code class="docutils literal notranslate"><span class="pre">api.rst</span></code> file, you should see the following.</p>
+<p>If you add the <code class="docutils literal notranslate"><span class="pre">Notes</span></code> section of this docstring to your Sphinx documentation, the <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">math::</span></code> directive will be rendered as an equation.
+Add this to your <code class="docutils literal notranslate"><span class="pre">molecule.py</span></code> module, and to you <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code>.</p>
+<p>Next, add it to your autosummary table:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-16" name="sd-tab-set-16" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-api.rst" for="sd-tab-item-16">
+<input checked="checked" id="sd-tab-item-20" name="sd-tab-set-20" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-api.rst" for="sd-tab-item-20">
 API.RST</label><div class="sd-tab-content docutils">
 <div class="highlight-api.rst notranslate"><div class="highlight"><pre><span></span><span class="gh">API Documentation</span>
 <span class="gh">=================</span>
@@ -978,71 +1060,24 @@ API.RST</label><div class="sd-tab-content docutils">
 <span class="p">..</span> <span class="ow">autosummary</span><span class="p">::</span>
    <span class="nc">:toctree:</span> autosummary
 
-   molecool.canvas
-</pre></div>
-</div>
-</div>
-</div>
-<p>We are using a Sphinx extension called <code class="docutils literal notranslate"><span class="pre">autosummary</span></code> which is part of AutoDoc.
-This tells Sphinx to insert a table that contains links to documented items.
-Autosummary will put <code class="docutils literal notranslate"><span class="pre">docstrings</span></code> out of functions and a page for each docstring.
-Under that, we are starting a Table of Contents for this page.
-We will list any functions we would like to have documented here.
-This is useful if we would like to separate our API documentation into several pages.</p>
-<p>For example, we can add documentation for our <code class="docutils literal notranslate"><span class="pre">calculate_distance</span></code> function.</p>
-<div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-17" name="sd-tab-set-17" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-api.rst" for="sd-tab-item-17">
-API.RST</label><div class="sd-tab-content docutils">
-<div class="highlight-api.rst notranslate"><div class="highlight"><pre><span></span><span class="gh">API Documentation</span>
-<span class="gh">=================</span>
-
-<span class="p">..</span> <span class="ow">autosummary</span><span class="p">::</span>
-   <span class="nc">:toctree:</span> autosummary
-
-   molecool.canvas
    molecool.calculate_distance
+   molecool.calculate_angle
+   molecool.calculate_center_of_mass
 </pre></div>
 </div>
 </div>
 </div>
+<p>When you click the <code class="docutils literal notranslate"><span class="pre">calculate_center_of_mass</span></code> function in this table, you will see your docstring with your nicely rendered equation.</p>
 </section>
-<section id="adding-docstrings-to-other-pages">
-<h2>Adding Docstrings to other pages<a class="headerlink" href="#adding-docstrings-to-other-pages" title="Link to this heading">#</a></h2>
-<p>Alternatively, you could choose to break your module documentation into different pages with additional text.
-To do this, you would use different directives in AutoDoc.
-You may want to write documentation in addition to your docstring.
-Add a page called <code class="docutils literal notranslate"><span class="pre">measure.rst</span></code> with the following contents:</p>
-<div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-18" name="sd-tab-set-18" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-measure.rst" for="sd-tab-item-18">
-MEASURE.RST</label><div class="sd-tab-content docutils">
-<div class="highlight-measure.rst notranslate"><div class="highlight"><pre><span></span><span class="gh">Measure module</span>
-<span class="gh">==============</span>
-
-<span class="p">..</span> <span class="ow">automodule</span><span class="p">::</span> molecool.measure
-
-    This is some additional information I want to say about the measure module.
-
-<span class="p">..</span> <span class="ow">autofunction</span><span class="p">::</span> calculate_distance
-
-I can also put additional information about a function.
-
-<span class="p">..</span> <span class="ow">autofunction</span><span class="p">::</span> calculate_angle
-</pre></div>
-</div>
-</div>
-</div>
-<p>Using this strategy, you can selectively add documentation for functions or classes and write additional information to go with the docstrings.</p>
 </section>
-<section id="sphinx-autoapi">
-<h2>Sphinx AutoAPI<a class="headerlink" href="#sphinx-autoapi" title="Link to this heading">#</a></h2>
+<section id="sphinx-autoapi-optional">
+<h2>Sphinx AutoAPI (Optional)<a class="headerlink" href="#sphinx-autoapi-optional" title="Link to this heading">#</a></h2>
 <p>Another strategy for generating API documentation is using <a class="reference external" href="https://github.com/readthedocs/sphinx-autoapi">Spinx-AutoAPI</a>.</p>
 <p>AutoAPI will pull documentation for all of your functions at once, rather than you having to build them manually.</p>
 <p>To install Sphinx-AutoAPI, use <code class="docutils literal notranslate"><span class="pre">pip</span></code>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-19" name="sd-tab-set-19" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-bash" for="sd-tab-item-19">
+<input checked="checked" id="sd-tab-item-21" name="sd-tab-set-21" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-bash" for="sd-tab-item-21">
 BASH</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>sphinx-autoapi
 </pre></div>
@@ -1051,8 +1086,8 @@ BASH</label><div class="sd-tab-content docutils">
 </div>
 <p>Modify your <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> file to look like the following:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-20" name="sd-tab-set-20" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-conf.py" for="sd-tab-item-20">
+<input checked="checked" id="sd-tab-item-22" name="sd-tab-set-22" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-conf.py" for="sd-tab-item-22">
 CONF.PY</label><div class="sd-tab-content docutils">
 <div class="highlight-conf.py notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
 
@@ -1109,8 +1144,8 @@ CookieCutter has added several extensions to Sphinx to make the documentation we
 <p>Open your <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> file and find the <code class="docutils literal notranslate"><span class="pre">extensions</span></code> section.</p>
 <p>You should see the following:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-21" name="sd-tab-set-21" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-conf.py" for="sd-tab-item-21">
+<input checked="checked" id="sd-tab-item-23" name="sd-tab-set-23" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-conf.py" for="sd-tab-item-23">
 CONF.PY</label><div class="sd-tab-content docutils">
 <div class="highlight-conf.py notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
 
@@ -1143,6 +1178,26 @@ The <code class="docutils literal notranslate"><span class="pre">mathjax</span><
 </section>
 <section id="hosting-your-documentation">
 <h2>Hosting your documentation<a class="headerlink" href="#hosting-your-documentation" title="Link to this heading">#</a></h2>
+<p>In order to complete this part of the lesson, you will need
+to make sure the most recent version of your project is on GitHub.
+Commit and push your changes.</p>
+<div class="note admonition">
+<p class="admonition-title">Preparing for Documentation Hosting</p>
+<p>If you are completing this lesson using the starting point provided by MolSSI,
+you will need to change the location of <code class="docutils literal notranslate"><span class="pre">origin</span></code> for your project.</p>
+<p>Create an empty repository on GitHub and note its location (starting with <code class="docutils literal notranslate"><span class="pre">git&#64;..</span></code>).
+Then, change the location of the repository’s origin with:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-24" name="sd-tab-set-24" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-bash" for="sd-tab-item-24">
+BASH</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>remote<span class="w"> </span>set-url<span class="w"> </span>origin<span class="w"> </span>YOUR-GITHUB-REPOSITORY
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, commit your code and push it to your repository!</p>
+</div>
 <section id="read-the-docs">
 <h3>Read The Docs<a class="headerlink" href="#read-the-docs" title="Link to this heading">#</a></h3>
 <p>We recommend hosting your  documentation on <a class="reference external" href="https://readthedocs.org/">Read The Docs</a>.
@@ -1159,31 +1214,61 @@ Then on <code class="docutils literal notranslate"><span class="pre">Import</spa
 </ol>
 <p>Next, trigger build by clicking the <code class="docutils literal notranslate"><span class="pre">Build</span> <span class="pre">version</span></code> on your Read The Docs project page.</p>
 <p>Unfortunately, your documentation build will fail.
-This is because we need our dependencies installed on RTD.
-There is another file the CookieCutter has added which we must now modify.
-Add your dependencies (NumPy and Matplotlib) to <code class="docutils literal notranslate"><span class="pre">docs/requirements.yaml</span></code>.
-You should also add <code class="docutils literal notranslate"><span class="pre">sphinx-autoapi</span></code> under <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">only</span> <span class="pre">installs</span></code>.
-Your <code class="docutils literal notranslate"><span class="pre">requirements.yaml</span></code> will look like this:</p>
+Currently, this failure will be for a couple of reasons.
+One being that ReadTheDocs has recently updated the format of their configuraiton file,
+and the CookieCutter hasn’t caught up.
+This will hopefully be fixed soon, but for the time being, first change the contents of the file
+<code class="docutils literal notranslate"><span class="pre">readthedocs.yml</span></code> in the top level of your repository to the following:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-22" name="sd-tab-set-22" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-yaml" for="sd-tab-item-22">
-YAML</label><div class="sd-tab-content docutils">
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docs</span>
-<span class="nt">channels</span><span class="p">:</span>
-<span class="nt">dependencies</span><span class="p">:</span>
-<span class="w">    </span><span class="c1"># Base depends</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip</span>
+<input checked="checked" id="sd-tab-item-25" name="sd-tab-set-25" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-readthedocs.yml" for="sd-tab-item-25">
+READTHEDOCS.YML</label><div class="sd-tab-content docutils">
+<div class="highlight-readthedocs.yml notranslate"><div class="highlight"><pre><span></span># .readthedocs.yaml
+# Read the Docs configuration file
+# See https://docs.readthedocs.io/en/stable/config-file/v2.html for details
 
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain"># Package depends</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">numpy</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">matplotlib</span>
+# Required
+version: 2
 
+# Set the OS, Python version and other tools you might need
+build:
+  os: ubuntu-22.04
+  tools:
+    python: &quot;3.11&quot;
+    # You can also specify other tool versions:
+    # nodejs: &quot;19&quot;
+    # rust: &quot;1.64&quot;
+    # golang: &quot;1.19&quot;
 
+# Build documentation in the &quot;docs/&quot; directory with Sphinx
+sphinx:
+  configuration: docs/conf.py
 
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain"># Pip-only installs</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pip</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sphinx-autoapi</span>
+# Optionally build your docs in additional formats such as PDF and ePub
+# formats:
+#    - pdf
+#    - epub
+
+# Optional but recommended, declare the Python requirements required
+# to build your documentation
+# See https://docs.readthedocs.io/en/stable/guides/reproducible-builds.html
+python:
+    install:
+    - requirements: docs/requirements.txt
+</pre></div>
+</div>
+</div>
+</div>
+<p>We need to also make sure we are specifying our project dependencies.
+Create a new file in your <code class="docutils literal notranslate"><span class="pre">docs</span></code> folder called <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> and add the following:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-26" name="sd-tab-set-26" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-docs/requirements.txt" for="sd-tab-item-26">
+DOCS/REQUIREMENTS.TXT</label><div class="sd-tab-content docutils">
+<div class="highlight-docs/requirements.txt notranslate"><div class="highlight"><pre><span></span>numpy
+matplotlib
+sphinx
+sphinx_rtd_theme
 </pre></div>
 </div>
 </div>
@@ -1273,12 +1358,14 @@ you documentation to PDF or HTML.</p></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-highlight-directive">Code Highlight Directive</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-table-of-contents-directive">The Table of Contents Directive</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-adding-to-the-table-of-contents">Exercise - Adding to the Table of Contents</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#math-on-pages-equation-directives">Math on pages - Equation Directives</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api-documentation">API Documentation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-docstrings-to-other-pages">Adding Docstrings to other pages</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sphinx-autoapi">Sphinx AutoAPI</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-docstrings-to-other-pages">Adding Docstrings to other pages</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#math-on-pages-equation-directives">Math on pages - Equation Directives</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sphinx-autoapi-optional">Sphinx AutoAPI (Optional)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-conf-py-file">The <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> file</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hosting-your-documentation">Hosting your documentation</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#read-the-docs">Read The Docs</a></li>

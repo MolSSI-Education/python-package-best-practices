@@ -510,18 +510,11 @@ document.write(`
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Follow Along with This Lesson</p>
-<p>To follow along with this lesson, either you meet the following prerequisites:</p>
-<ul class="simple">
-<li><p>All Python code and tests described so far in the workshop.</p></li>
-<li><p>Configured Git and GitHub account (described in <a class="reference internal" href="setup.html"><span class="std std-doc">Set Up</span></a>)</p></li>
-<li><p>Pushed up-to-date version - with tests - of the <code class="docutils literal notranslate"><span class="pre">molecool</span></code> project to GitHub.</p></li>
-</ul>
-<p>or you can download a pre-made workshop repository that is at the starting
+<p>To follow along with this lesson, you can complete the previous lessons,
+or you can download a pre-made workshop repository that is at the starting
 point.</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/MolSSI-Education/molecool/archive/refs/tags/CI-Github-actions-start.zip">Download the pre-made workshop repository as a zip file</a></p></li>
-</ul>
-<p>Alternatively, download the repository using the command line:</p>
+<p>You will need to make sure that you have <code class="docutils literal notranslate"><span class="pre">git</span></code> installed and configured,
+as described in the set-up instructions.</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
 </input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-0">
@@ -529,9 +522,13 @@ SHELL</label><div class="sd-tab-content docutils">
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/MolSSI-Education/molecool.git
 <span class="nb">cd</span><span class="w"> </span>molecool
 git<span class="w"> </span>checkout<span class="w"> </span>CI-Github-actions-start
+git<span class="w"> </span>switch<span class="w"> </span>-c<span class="w"> </span>main
 </pre></div>
 </div>
 </div>
+</div>
+<p>You can also <a class="reference external" href="https://github.com/MolSSI-Education/molecool/archive/refs/tags/git-start.zip">download the pre-made workshop repository as a zip file</a>.
+If downloading as a zip file, you will need to initialize <code class="docutils literal notranslate"><span class="pre">git</span></code> in the repository and make an initial commit in order to use git.</p>
 </div>
 <p><strong>Note</strong> - For this lesson, you must be able to push to GitHub.
 If you are using the pre-made repository, you will need to create an <em>empty</em> repository on GitHub, then
@@ -546,7 +543,7 @@ SHELL</label><div class="sd-tab-content docutils">
 </div>
 </div>
 </div>
-</div>
+<div class="docutils">
 <p>From <a class="reference external" href="https://en.wikipedia.org/wiki/Continuous_integration">Wikipedia</a>,
 continuous integration (CI) is the practice of merging all developers’ working copies of code to a shared mainline, several times a day.
 In other words, CI refers to the coupling of version control and unit testing in an automated way.
@@ -558,8 +555,7 @@ because it is tightly integrated with GitHub and is free to use.
 Other options you might consider include <a class="reference external" href="https://circleci.com">CircleCI</a>, <a class="reference external" href="https://azure.microsoft.com/en-us/services/devops/pipelines/">Azure Pipelines</a>, or <a class="reference external" href="https://travis-ci.com/">Travis-CI</a>.</p>
 <p>Using any of these services is essentially getting access to empty remote computers that we can configure as we wish.
 To test our projects using GitHub Actions, we will have to set up the correct environment and tell our CI service what to do.</p>
-<section id="setting-up-github-actions">
-<h2>Setting up GitHub Actions<a class="headerlink" href="#setting-up-github-actions" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="setting-up-github-actions">Setting up GitHub Actions</h2>
 <p>All of GitHub Actions’ settings are stored in the file <code class="docutils literal notranslate"><span class="pre">.github/workflows/CI.yaml</span></code>.
 Note the leading period on the <code class="docutils literal notranslate"><span class="pre">.github</span></code> folder, which makes this a hidden folder in Linux and Mac OS.
 The <code class="docutils literal notranslate"><span class="pre">.github</span></code> file stores information that is relevant to GitHub in general.
@@ -786,9 +782,7 @@ CI.YAML</label><div class="sd-tab-content docutils">
 </div>
 </div>
 </div>
-</section>
-<section id="getting-our-ci-to-work">
-<h2>Getting our CI to work<a class="headerlink" href="#getting-our-ci-to-work" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="getting-our-ci-to-work">Getting our CI to work</h2>
 <p>Unfortunately, our CI runs failed, which can be seen from the red cross that appears after the last commit message on your main GitHub repository page.
 To know more about why this was the case, we have to read the GitHub Actions log files.
 Click on the red cross then click the Details link from one of the failing entries that marked with a red cross.
@@ -888,17 +882,14 @@ CI.YAML</label><div class="sd-tab-content docutils">
 </div>
 </div>
 </div>
-</section>
-<section id="code-coverage-part-ii">
-<h2>Code Coverage - Part II<a class="headerlink" href="#code-coverage-part-ii" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="code-coverage-part-ii">Code Coverage - Part II</h2>
 <p>In the previous episode, we introduced the concept of code coverage as a measure of how much of our code is run by our unit tests.
 Projects should aim for a high coverage percentage, but not obsess over the number.
 Remember that even if your project has 100% coverage, it does not mean it is actually bug-free.</p>
 <p>When we run <code class="docutils literal notranslate"><span class="pre">pytest</span></code>, we can get a summary of our coverage with the <code class="docutils literal notranslate"><span class="pre">--cov=molecool</span></code> option.
 While this summary is helpful, it would be much more useful to know <em>which</em> lines are covered by our tests.
 In the following section, we will explore two methods that allow us to do just that.</p>
-<section id="assessing-code-coverage-locally">
-<h3>Assessing code coverage locally<a class="headerlink" href="#assessing-code-coverage-locally" title="Link to this heading">#</a></h3>
+<h3 class="rubric" id="assessing-code-coverage-locally">Assessing code coverage locally</h3>
 <p>Besides coverage summaries, the <code class="docutils literal notranslate"><span class="pre">pytest-cov</span></code> module can also produce details reports.
 Run the following command at the root of your project to generate a report in HTML format:</p>
 <div class="sd-tab-set docutils">
@@ -920,9 +911,7 @@ These percentages depend on how you wrote your functions and your tests, so don�
 The colors indicate which lines are covered (in green) and which are not.
 We can see that in our <code class="docutils literal notranslate"><span class="pre">calculate_angle</span></code> function, the return value in radians is never checked by our tests.
 Let’s go ahead and fix that by writing a new test.</p>
-</section>
-<section id="exercise-increasing-code-coverage">
-<h3>Exercise - Increasing Code Coverage<a class="headerlink" href="#exercise-increasing-code-coverage" title="Link to this heading">#</a></h3>
+<h3 class="rubric" id="exercise-increasing-code-coverage">Exercise - Increasing Code Coverage</h3>
 <div class="exercise admonition">
 <p class="admonition-title">Exercise</p>
 <p>Write a new test in <code class="docutils literal notranslate"><span class="pre">tests/test_measure.py</span></code> to check that <code class="docutils literal notranslate"><span class="pre">calculate_angle</span></code> returns the
@@ -945,9 +934,7 @@ correct value when <code class="docutils literal notranslate"><span class="pre">
 <p>If you refresh the coverage page on your browser (or re-open it if you closed it before), you will see that <code class="docutils literal notranslate"><span class="pre">measure.py</span></code> now has 100% coverage.</p>
 </div>
 </div>
-</section>
-<section id="adding-code-coverage-to-your-ci-workflow">
-<h3>Adding code coverage to your CI workflow<a class="headerlink" href="#adding-code-coverage-to-your-ci-workflow" title="Link to this heading">#</a></h3>
+<h3 class="rubric" id="adding-code-coverage-to-your-ci-workflow">Adding code coverage to your CI workflow</h3>
 <p>Besides running tests for you, GitHub can interface with other services to help you get reports on code coverage.
 In this last section, we will introduce <a class="reference external" href="https://codecov.io/">Codecov</a>, one of many services that was created to help developers assess which areas of their projects lack sufficient test coverage.
 Codecov is free for open-source projects and integrates very nicely with GitHub.</p>
@@ -965,10 +952,7 @@ As a result, when our CI workflow runs successfully (all tests pass), GitHub Act
 <p>Red areas represent code that is poorly covered by our tests.
 On the right, you see the latest commits and can click on each one of them to see how they changed the overall coverage of the project.
 The bottom of the page shows a simple file-browser-like interface, much like the HTML page we obtained before.</p>
-</section>
-</section>
-<section id="modifying-the-workflow-adding-an-action">
-<h2>Modifying the Workflow - Adding an Action<a class="headerlink" href="#modifying-the-workflow-adding-an-action" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="modifying-the-workflow-adding-an-action">Modifying the Workflow - Adding an Action</h2>
 <p>A great feature of GitHub Actions is that they are modular.
 Anyone can make an action and it can be plugged into someone else’s workflow if it is available on the GitHub Marketplace.
 This means that if you ever need to do something which is something that may be commonly done, you should check the GitHub Marketplace to see if anyone has made this action before.</p>
@@ -1034,7 +1018,7 @@ You can even see <a class="reference external" href="https://docs.github.com/en/
 <p>You can see the final state of the repository after this section <a class="reference external" href="https://github.com/MolSSI-Education/molecool/tree/3cb3812df24d27009845d52ff097c2dda2184ea3">here</a>.</p>
 <p>You can also download a zip of the repository <a class="reference external" href="https://github.com/MolSSI-Education/molecool/archive/refs/tags/CI-Github-actions-end.zip">here</a>.</p>
 </div>
-</section>
+</div>
 <section id="key-points">
 <h2>Key Points<a class="headerlink" href="#key-points" title="Link to this heading">#</a></h2>
 <div class="key admonition">
@@ -1095,15 +1079,6 @@ You can even see <a class="reference external" href="https://docs.github.com/en/
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-github-actions">Setting up GitHub Actions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-our-ci-to-work">Getting our CI to work</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-coverage-part-ii">Code Coverage - Part II</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assessing-code-coverage-locally">Assessing code coverage locally</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-increasing-code-coverage">Exercise - Increasing Code Coverage</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-code-coverage-to-your-ci-workflow">Adding code coverage to your CI workflow</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modifying-the-workflow-adding-an-action">Modifying the Workflow - Adding an Action</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-points">Key Points</a></li>
 </ul>
   </nav></div>

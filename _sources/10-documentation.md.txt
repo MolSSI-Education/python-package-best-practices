@@ -60,7 +60,7 @@ However, if you are preparing a software package to be widely used, you may want
 
 ## Types of Documentation
 
-There are many types of documentation which you might find associated with a software project.
+There are many types of documentation that you might find associated with a software project.
 A smaller project may be fully documented in the README.
 However, larger libraries may have several documentation sets, each with a different audience.
 One example of this is the [NumPy library](https://numpy.org/doc/stable/).
@@ -368,8 +368,9 @@ For example, we could add a C++ code block.
 
 ### The Table of Contents Directive
 The next directive we will discuss is the Table of Contents directive. 
-Look at the file `index.rst`. It contains the `toctree` directive, which generates a special section called a Table of Contents which links to other parts of your projects. 
-The Table of Contents on your `index.rst` file is what shows up on your main menu on the left of the page. 
+Look at the file `index.rst`. 
+It contains the `toctree` directive, which generates a special section called a Table of Contents that links to other parts of your projects. 
+The Table of Contents on your `index.rst` file shows up on your main menu on the left of the page. 
 It is also on your main page.
 
 ````{tab-set-code} 
@@ -451,6 +452,96 @@ make latexpdf
 This will create a folder called `pdf` in the `build` directory, and you should have a file in this directory called `molecool.pdf` containing all of your documentation. Each `rst` file is a chapter of the documentation, instead of a different page.
 ````
 
+## API Documentation
+
+To use Sphinx to generate API documentation, you can use either [Spinx-AutoAPI]
+or [Sphinx-Autodoc]. 
+The cookiecutter comes bundled with Sphinx-Autodoc, so we will focus on that tool for this tutorial. 
+See the Note at the end of this section for instructions on building API documentation on using AutoAPI.
+
+AutoDoc will pull out and render your documentation strings so that they are viewable to the user. 
+This makes maintaining code documentation easier on you, as you will only need to maintain documentation for usage of functions in one place (the source code.)
+
+CookieCutter has already added a page which uses these tools. 
+Open the `api.rst`. 
+You will see that CookieCutter automatically added `canvas` here for us.
+However, we have changed our package so that `canvas` is not imported on package initialization.
+Change your `api.rst` page to 
+
+````{tab-set-code}
+```{code-block} api.rst
+API Documentation
+=================
+
+.. autosummary::
+   :toctree: autosummary
+
+   molecool.calculate_distance
+```
+````
+
+Rebuild your documentation:
+
+````{tab-set-code}
+```{code-block} bash
+make clean
+make html
+```
+````
+
+On your index page, click `API Documentation`, then click on the `calculate_distance` function. 
+You will see the docstring written for the function. 
+If you click the green 'source' button to the right, you will be taken to a page which shows the source code for the function.
+
+We are using a Sphinx extension called `autosummary` which is part of AutoDoc.
+This tells Sphinx to insert a table that contains links to documented items.
+Autosummary will put `docstrings` out of functions and a page for each docstring.
+Under that, we are starting a Table of Contents for this page.
+We will list any functions we would like to have documented here.
+This is useful if we would like to separate our API documentation into several pages.
+
+For example, we can add documentation for our `calculate_distance` function.
+
+
+````{tab-set-code}
+```{code-block} api.rst
+API Documentation
+=================
+
+.. autosummary::
+   :toctree: autosummary
+
+   molecool.calculate_distance
+   molecool.calculate_angle
+```
+````
+
+## Adding Docstrings to other pages
+
+Alternatively, you could choose to break your module documentation into different pages with additional text.
+To do this, you would use different directives in AutoDoc.
+You may want to write documentation in addition to your docstring. 
+Add a page called `measure.rst` with the following contents:
+
+````{tab-set-code}
+```{code-block} measure.rst
+Measure module
+==============
+
+.. automodule:: molecool.measure
+
+    This is some additional information I want to say about the measure module.
+
+.. autofunction:: calculate_distance
+
+I can also put additional information about a function.
+
+.. autofunction:: calculate_angle
+```
+````
+
+Using this strategy, you can selectively add documentation for functions or classes and write additional information to go with the docstrings.
+
 ### Math on pages - Equation Directives
 
 Consider a docstring a function called `calculate_center_of_mass` (you will write the code for this function in the testing lesson). It has a section where we give the formula for the center of mass. 
@@ -482,24 +573,10 @@ def calculate_center_of_mass(symbols, coordinates):
     
     """
 ```
-If you add the `Notes` section of this docstring to your Sphinx documentation, the `.. math::` directive will be rendered as an equation.
+If you add the `Notes` section of this docstring to your Sphinx documentation, the `.. math::` directive will be rendered as an equation. 
+Add this to your `molecule.py` module, and to you `__init__.py`.
 
-## API Documentation
-
-To use Sphinx to generate API documentation, you can use either [Spinx-AutoAPI]
-or [Sphinx-Autodoc]. 
-The cookiecutter comes bundled with Sphinx-Autodoc, so we will focus on that tool for this tutorial. 
-See the Note at the end of this section for instructions on building API documentation on using AutoAPI.
-
-AutoDoc will pull out and render your documentation strings so that they are viewable to the user. 
-This makes maintaining code documentation easier on you, as you will only need to maintain documentation for usage of functions in one place (the source code.)
-
-CookieCutter has already added a page which uses these tools. 
-On your index page, click `API Documentation`, then click on the `canvas` function. 
-You will see the docstring written for the function. 
-If you click the green 'source' button to the right, you will be taken to a page which shows the source code for the function.
-
-Opening, the `api.rst` file, you should see the following.
+Next, add it to your autosummary table:
 
 ````{tab-set-code}
 ```{code-block} api.rst
@@ -509,61 +586,15 @@ API Documentation
 .. autosummary::
    :toctree: autosummary
 
-   molecool.canvas
-```
-````
-
-We are using a Sphinx extension called `autosummary` which is part of AutoDoc.
-This tells Sphinx to insert a table that contains links to documented items.
-Autosummary will put `docstrings` out of functions and a page for each docstring.
-Under that, we are starting a Table of Contents for this page.
-We will list any functions we would like to have documented here.
-This is useful if we would like to separate our API documentation into several pages.
-
-For example, we can add documentation for our `calculate_distance` function.
-
-
-````{tab-set-code}
-```{code-block} api.rst
-API Documentation
-=================
-
-.. autosummary::
-   :toctree: autosummary
-
-   molecool.canvas
    molecool.calculate_distance
+   molecool.calculate_angle
+   molecool.calculate_center_of_mass
 ```
 ````
 
-## Adding Docstrings to other pages
+When you click the `calculate_center_of_mass` function in this table, you will see your docstring with your nicely rendered equation.
 
-Alternatively, you could choose to break your module documentation into different pages with additional text.
-To do this, you would use different directives in AutoDoc.
-You may want to write documentation in addition to your docstring. 
-Add a page called `measure.rst` with the following contents:
-
-````{tab-set-code}
-```{code-block} measure.rst
-Measure module
-==============
-
-.. automodule:: molecool.measure
-
-    This is some additional information I want to say about the measure module.
-
-.. autofunction:: calculate_distance
-
-I can also put additional information about a function.
-
-.. autofunction:: calculate_angle
-```
-````
-
-Using this strategy, you can selectively add documentation for functions or classes and write additional information to go with the docstrings.
-
-
-## Sphinx AutoAPI
+## Sphinx AutoAPI (Optional)
 Another strategy for generating API documentation is using [Spinx-AutoAPI].
 
 AutoAPI will pull documentation for all of your functions at once, rather than you having to build them manually.
@@ -674,6 +705,29 @@ Previously, we have used the line `autosummary_generate = True` to allow us to p
 
 ## Hosting your documentation
 
+In order to complete this part of the lesson, you will need 
+to make sure the most recent version of your project is on GitHub.
+Commit and push your changes.
+
+:::{admonition} Preparing for Documentation Hosting
+:class: note
+
+If you are completing this lesson using the starting point provided by MolSSI,
+you will need to change the location of `origin` for your project.
+
+Create an empty repository on GitHub and note its location (starting with `git@..`).
+Then, change the location of the repository's origin with:
+
+````{tab-set-code}
+```{code-block} bash
+git remote set-url origin YOUR-GITHUB-REPOSITORY
+```
+````
+
+Now, commit your code and push it to your repository!
+
+:::
+
 ### Read The Docs
 We recommend hosting your  documentation on [Read The Docs].
 With this service, you can enable the building of your documentation every time you push to your repository.
@@ -690,34 +744,62 @@ Then on `Import a Repository` page click the `Import Manually` button and fill t
 Next, trigger build by clicking the `Build version` on your Read The Docs project page.
 
 Unfortunately, your documentation build will fail.
-This is because we need our dependencies installed on RTD.
-There is another file the CookieCutter has added which we must now modify.
-Add your dependencies (NumPy and Matplotlib) to `docs/requirements.yaml`.
-You should also add `sphinx-autoapi` under `pip only installs`.
-Your `requirements.yaml` will look like this:
+Currently, this failure will be for a couple of reasons.
+One being that ReadTheDocs has recently updated the format of their configuraiton file,
+and the CookieCutter hasn't caught up. 
+This will hopefully be fixed soon, but for the time being, first change the contents of the file
+`readthedocs.yml` in the top level of your repository to the following:
 
 ````{tab-set-code} 
 
-```{code-block} yaml
-name: docs
-channels:
-dependencies:
-    # Base depends
-  - python
-  - pip
+```{code-block} readthedocs.yml
+# .readthedocs.yaml
+# Read the Docs configuration file
+# See https://docs.readthedocs.io/en/stable/config-file/v2.html for details
 
-    # Package depends
-  - numpy
-  - matplotlib
+# Required
+version: 2
 
+# Set the OS, Python version and other tools you might need
+build:
+  os: ubuntu-22.04
+  tools:
+    python: "3.11"
+    # You can also specify other tool versions:
+    # nodejs: "19"
+    # rust: "1.64"
+    # golang: "1.19"
 
+# Build documentation in the "docs/" directory with Sphinx
+sphinx:
+  configuration: docs/conf.py
 
-    # Pip-only installs
-  - pip:
-    - sphinx-autoapi
+# Optionally build your docs in additional formats such as PDF and ePub
+# formats:
+#    - pdf
+#    - epub
+
+# Optional but recommended, declare the Python requirements required
+# to build your documentation
+# See https://docs.readthedocs.io/en/stable/guides/reproducible-builds.html
+python:
+    install:
+    - requirements: docs/requirements.txt
 ```
 ````
 
+We need to also make sure we are specifying our project dependencies.
+Create a new file in your `docs` folder called `requirements.txt` and add the following:
+
+````{tab-set-code} 
+
+```{code-block} docs/requirements.txt
+numpy
+matplotlib
+sphinx
+sphinx_rtd_theme
+```
+````
 
 Commit and push - your documentation should build successfully and you should be able to view it!
 
