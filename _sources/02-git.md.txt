@@ -35,6 +35,7 @@ Alternatively, download the repository using the command line:
 
 ```{code-block} shell
 git clone https://github.com/MolSSI-Education/molecool.git
+cd molecool
 git checkout git-start
 ```
 ````
