@@ -516,10 +516,6 @@ or you can download a pre-made workshop repository that is at the starting
 point.</p>
 <p>You will need to make sure that you have <code class="docutils literal notranslate"><span class="pre">git</span></code> installed and configured,
 as described in the set-up instructions.</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/MolSSI-Education/molecool/archive/refs/tags/package-docs-start.zip">Download the pre-made workshop repository as a zip file</a></p></li>
-</ul>
-<p>Alternatively, download the repository using the command line:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
 </input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-0">
@@ -527,10 +523,13 @@ SHELL</label><div class="sd-tab-content docutils">
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/MolSSI-Education/molecool.git
 <span class="nb">cd</span><span class="w"> </span>molecool
 git<span class="w"> </span>checkout<span class="w"> </span>package-docs-start
+git<span class="w"> </span>switch<span class="w"> </span>-c<span class="w"> </span>main
 </pre></div>
 </div>
 </div>
 </div>
+<p>You can also <a class="reference external" href="https://github.com/MolSSI-Education/molecool/archive/refs/tags/git-start.zip">download the pre-made workshop repository as a zip file</a>.
+If downloading as a zip file, you will need to initialize <code class="docutils literal notranslate"><span class="pre">git</span></code> in the repository and make an initial commit in order to use git.</p>
 </div>
 <p>Documentation must be provided to allow for use, development, and maintenance of software.
 Documentation is often overlooked by developers since it can be tedious and boring.
