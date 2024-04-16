@@ -29,6 +29,7 @@ Alternatively, download the repository using the command line:
 ````{tab-set-code} 
 ```{code-block} shell
 git clone https://github.com/MolSSI-Education/molecool.git
+cd molecool
 git checkout python-coding-style-start
 
 ```
