@@ -18,22 +18,25 @@ Objectives:
 :::{admonition} Follow Along with This Lesson
 :class: tip
 
-To follow along with this lesson, you should first complete
-the 'Using Branches Exercise' in Episode 2 or you can download a pre-made workshop repository that is at the starting 
+To follow along with this lesson, you can complete the previous lessons,
+or you can download a pre-made workshop repository that is at the starting 
 point.
 
-- [Download the pre-made workshop repository as a zip file](https://github.com/MolSSI-Education/molecool/archive/refs/tags/python-coding-style-start.zip)
-
-Alternatively, download the repository using the command line:
+You will need to make sure that you have `git` installed and configured,
+as described in the set-up instructions.
 
 ````{tab-set-code} 
+
 ```{code-block} shell
 git clone https://github.com/MolSSI-Education/molecool.git
 cd molecool
 git checkout python-coding-style-start
-
+git switch -c main
 ```
 ````
+You can also [download the pre-made workshop repository as a zip file](https://github.com/MolSSI-Education/molecool/archive/refs/tags/git-start.zip).
+If downloading as a zip file, you will need to initialize `git` in the repository and make an initial commit in order to use git.
+
 :::
 
 ## Editing a function in our package
