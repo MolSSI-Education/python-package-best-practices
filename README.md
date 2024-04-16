@@ -13,7 +13,7 @@ This workshop walks students through setting up, writing code, and setting up mu
 - [x] Python coding style, docstrings.
 - [x] Code collaboration on [GitHub] (Fork-PR workflow)
 - [x] Unit testing using [pytest].
-- [x] Continuous integration using [travis-ci].
+- [x] Continuous integration using [GitHub Actions].
 - [x] Documentation using [sphinx] and [readthedocs]
 - [x] Distributing packages on [PyPI] and [conda-forge]
 
@@ -32,6 +32,7 @@ There are custom admonitions for overviews, key points, and exercises. You can s
 [example-issues]: https://github.com/carpentries/lesson-example/issues/
 [github-pages]: https://help.github.com/articles/creating-project-pages-manually/
 [GitHub]: https://github.com
+[GitHub Actions]: https://github.com/features/actions
 [lesson pages]: https://molssi-education.github.io/python-package-best-practices/
 [MolSSI's Best Practices]: https://molssi.org/molssis-best-practices/
 [pytest]: https://pytest.org
