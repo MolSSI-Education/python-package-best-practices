@@ -16,6 +16,7 @@ Objectives:
 This episode discusses documentation strategies. 
 In particular, we will focus on how to build documentation using Sphinx and host that documentation online using [Read The Docs].
 
+
 :::{admonition} Follow Along with This Lesson
 :class: tip
 
@@ -26,19 +27,20 @@ point.
 You will need to make sure that you have `git` installed and configured,
 as described in the set-up instructions.
 
-- [Download the pre-made workshop repository as a zip file](https://github.com/MolSSI-Education/molecool/archive/refs/tags/package-docs-start.zip)
-
-Alternatively, download the repository using the command line:
-
 ````{tab-set-code} 
+
 ```{code-block} shell
 git clone https://github.com/MolSSI-Education/molecool.git
 cd molecool
 git checkout package-docs-start
-
+git switch -c main
 ```
 ````
+You can also [download the pre-made workshop repository as a zip file](https://github.com/MolSSI-Education/molecool/archive/refs/tags/git-start.zip).
+If downloading as a zip file, you will need to initialize `git` in the repository and make an initial commit in order to use git.
+
 :::
+
 
 Documentation must be provided to allow for use, development, and maintenance of software. 
 Documentation is often overlooked by developers since it can be tedious and boring.
