@@ -393,7 +393,7 @@ def test_calculate_angle():
    assert expected_value == calculated_value
 
 ```
-````
+`````
 ``````
 Let's also make a test for the `build_bond_list` function.
 We start with creating `test_molecule.py`, and then defining the test inside that file.
@@ -410,7 +410,14 @@ For example, we could write the following test for `build_bond_list`.
 
 ````{tab-set-code} 
 
-```{code-block} python
+```{code-block} test_molecule.py
+"""Tests for the molecule module"""
+
+import numpy as np
+import molecool
+
+import pytest
+
 def test_build_bond_list():
 
     coordinates = np.array([
@@ -426,12 +433,19 @@ def test_build_bond_list():
     assert len(bonds) == 4
 
     for bond_length in bonds.values():
-        assert bond_length == 1.4
+        assert pytest.approx(bond_length) == 1.4
 ```
 ````
 
-
 Here, we assert the correct number of bonds and iterate through the dictionary to ensure a 1.4 Angstrom distance for each bond.
+
+:::{admonition} `pytest.approx`
+:class: note
+
+The `pytest.approx` function is used to compare floating point numbers.
+Usually, when doing mathematical calculations, you will probably expect some small differences in the floating point numbers.
+Although we could have used an `==` for this particular example, it is better to use `pytest.approx` to account for small differences in floating point numbers.
+:::
 
 ## Testing Expected Exceptions
 

@@ -860,9 +860,6 @@ You should define a new function in <code class="docutils literal notranslate"><
 
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
 </div>
 </div>
 <p>Let’s also make a test for the <code class="docutils literal notranslate"><span class="pre">build_bond_list</span></code> function.
@@ -877,9 +874,16 @@ You should write at least one test per function, but you may have multiple asser
 For example, we could write the following test for <code class="docutils literal notranslate"><span class="pre">build_bond_list</span></code>.</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-12" name="sd-tab-set-12" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-12">
-PYTHON</label><div class="sd-tab-content docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_build_bond_list</span><span class="p">():</span>
+</input><label class="sd-tab-label" data-sync-id="tabcode-test_molecule.py" for="sd-tab-item-12">
+TEST_MOLECULE.PY</label><div class="sd-tab-content docutils">
+<div class="highlight-test_molecule.py notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Tests for the molecule module&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">molecool</span>
+
+<span class="kn">import</span> <span class="nn">pytest</span>
+
+<span class="k">def</span> <span class="nf">test_build_bond_list</span><span class="p">():</span>
 
     <span class="n">coordinates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
         <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
@@ -894,12 +898,18 @@ PYTHON</label><div class="sd-tab-content docutils">
     <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">bonds</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span>
 
     <span class="k">for</span> <span class="n">bond_length</span> <span class="ow">in</span> <span class="n">bonds</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
-        <span class="k">assert</span> <span class="n">bond_length</span> <span class="o">==</span> <span class="mf">1.4</span>
+        <span class="k">assert</span> <span class="n">pytest</span><span class="o">.</span><span class="n">approx</span><span class="p">(</span><span class="n">bond_length</span><span class="p">)</span> <span class="o">==</span> <span class="mf">1.4</span>
 </pre></div>
 </div>
 </div>
 </div>
 <p>Here, we assert the correct number of bonds and iterate through the dictionary to ensure a 1.4 Angstrom distance for each bond.</p>
+<div class="note admonition">
+<p class="admonition-title"><code class="docutils literal notranslate"><span class="pre">pytest.approx</span></code></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">pytest.approx</span></code> function is used to compare floating point numbers.
+Usually, when doing mathematical calculations, you will probably expect some small differences in the floating point numbers.
+Although we could have used an <code class="docutils literal notranslate"><span class="pre">==</span></code> for this particular example, it is better to use <code class="docutils literal notranslate"><span class="pre">pytest.approx</span></code> to account for small differences in floating point numbers.</p>
+</div>
 </section>
 </section>
 <section id="testing-expected-exceptions">
