@@ -40,7 +40,7 @@
   <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
     <script src="_static/documentation_options.js?v=5929fcd5"></script>
-    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
@@ -529,7 +529,6 @@ git<span class="w"> </span>switch<span class="w"> </span>-c<span class="w"> </sp
 </div>
 <p>You can also <a class="reference external" href="https://github.com/MolSSI-Education/molecool/archive/refs/tags/git-start.zip">download the pre-made workshop repository as a zip file</a>.
 If downloading as a zip file, you will need to initialize <code class="docutils literal notranslate"><span class="pre">git</span></code> in the repository and make an initial commit in order to use git.</p>
-</div>
 <p><strong>Note</strong> - For this lesson, you must be able to push to GitHub.
 If you are using the pre-made repository, you will need to create an <em>empty</em> repository on GitHub, then
 change the remote URL to your own repository.</p>
@@ -543,7 +542,7 @@ SHELL</label><div class="sd-tab-content docutils">
 </div>
 </div>
 </div>
-<div class="docutils">
+</div>
 <p>From <a class="reference external" href="https://en.wikipedia.org/wiki/Continuous_integration">Wikipedia</a>,
 continuous integration (CI) is the practice of merging all developers’ working copies of code to a shared mainline, several times a day.
 In other words, CI refers to the coupling of version control and unit testing in an automated way.
@@ -555,7 +554,8 @@ because it is tightly integrated with GitHub and is free to use.
 Other options you might consider include <a class="reference external" href="https://circleci.com">CircleCI</a>, <a class="reference external" href="https://azure.microsoft.com/en-us/services/devops/pipelines/">Azure Pipelines</a>, or <a class="reference external" href="https://travis-ci.com/">Travis-CI</a>.</p>
 <p>Using any of these services is essentially getting access to empty remote computers that we can configure as we wish.
 To test our projects using GitHub Actions, we will have to set up the correct environment and tell our CI service what to do.</p>
-<h2 class="rubric" id="setting-up-github-actions">Setting up GitHub Actions</h2>
+<section id="setting-up-github-actions">
+<h2>Setting up GitHub Actions<a class="headerlink" href="#setting-up-github-actions" title="Link to this heading">#</a></h2>
 <p>All of GitHub Actions’ settings are stored in the file <code class="docutils literal notranslate"><span class="pre">.github/workflows/CI.yaml</span></code>.
 Note the leading period on the <code class="docutils literal notranslate"><span class="pre">.github</span></code> folder, which makes this a hidden folder in Linux and Mac OS.
 The <code class="docutils literal notranslate"><span class="pre">.github</span></code> file stores information that is relevant to GitHub in general.
@@ -782,7 +782,9 @@ CI.YAML</label><div class="sd-tab-content docutils">
 </div>
 </div>
 </div>
-<h2 class="rubric" id="getting-our-ci-to-work">Getting our CI to work</h2>
+</section>
+<section id="getting-our-ci-to-work">
+<h2>Getting our CI to work<a class="headerlink" href="#getting-our-ci-to-work" title="Link to this heading">#</a></h2>
 <p>Unfortunately, our CI runs failed, which can be seen from the red cross that appears after the last commit message on your main GitHub repository page.
 To know more about why this was the case, we have to read the GitHub Actions log files.
 Click on the red cross then click the Details link from one of the failing entries that marked with a red cross.
@@ -882,14 +884,17 @@ CI.YAML</label><div class="sd-tab-content docutils">
 </div>
 </div>
 </div>
-<h2 class="rubric" id="code-coverage-part-ii">Code Coverage - Part II</h2>
+</section>
+<section id="code-coverage-part-ii">
+<h2>Code Coverage - Part II<a class="headerlink" href="#code-coverage-part-ii" title="Link to this heading">#</a></h2>
 <p>In the previous episode, we introduced the concept of code coverage as a measure of how much of our code is run by our unit tests.
 Projects should aim for a high coverage percentage, but not obsess over the number.
 Remember that even if your project has 100% coverage, it does not mean it is actually bug-free.</p>
 <p>When we run <code class="docutils literal notranslate"><span class="pre">pytest</span></code>, we can get a summary of our coverage with the <code class="docutils literal notranslate"><span class="pre">--cov=molecool</span></code> option.
 While this summary is helpful, it would be much more useful to know <em>which</em> lines are covered by our tests.
 In the following section, we will explore two methods that allow us to do just that.</p>
-<h3 class="rubric" id="assessing-code-coverage-locally">Assessing code coverage locally</h3>
+<section id="assessing-code-coverage-locally">
+<h3>Assessing code coverage locally<a class="headerlink" href="#assessing-code-coverage-locally" title="Link to this heading">#</a></h3>
 <p>Besides coverage summaries, the <code class="docutils literal notranslate"><span class="pre">pytest-cov</span></code> module can also produce details reports.
 Run the following command at the root of your project to generate a report in HTML format:</p>
 <div class="sd-tab-set docutils">
@@ -911,7 +916,9 @@ These percentages depend on how you wrote your functions and your tests, so don�
 The colors indicate which lines are covered (in green) and which are not.
 We can see that in our <code class="docutils literal notranslate"><span class="pre">calculate_angle</span></code> function, the return value in radians is never checked by our tests.
 Let’s go ahead and fix that by writing a new test.</p>
-<h3 class="rubric" id="exercise-increasing-code-coverage">Exercise - Increasing Code Coverage</h3>
+</section>
+<section id="exercise-increasing-code-coverage">
+<h3>Exercise - Increasing Code Coverage<a class="headerlink" href="#exercise-increasing-code-coverage" title="Link to this heading">#</a></h3>
 <div class="exercise admonition">
 <p class="admonition-title">Exercise</p>
 <p>Write a new test in <code class="docutils literal notranslate"><span class="pre">tests/test_measure.py</span></code> to check that <code class="docutils literal notranslate"><span class="pre">calculate_angle</span></code> returns the
@@ -934,7 +941,9 @@ correct value when <code class="docutils literal notranslate"><span class="pre">
 <p>If you refresh the coverage page on your browser (or re-open it if you closed it before), you will see that <code class="docutils literal notranslate"><span class="pre">measure.py</span></code> now has 100% coverage.</p>
 </div>
 </div>
-<h3 class="rubric" id="adding-code-coverage-to-your-ci-workflow">Adding code coverage to your CI workflow</h3>
+</section>
+<section id="adding-code-coverage-to-your-ci-workflow">
+<h3>Adding code coverage to your CI workflow<a class="headerlink" href="#adding-code-coverage-to-your-ci-workflow" title="Link to this heading">#</a></h3>
 <p>Besides running tests for you, GitHub can interface with other services to help you get reports on code coverage.
 In this last section, we will introduce <a class="reference external" href="https://codecov.io/">Codecov</a>, one of many services that was created to help developers assess which areas of their projects lack sufficient test coverage.
 Codecov is free for open-source projects and integrates very nicely with GitHub.</p>
@@ -952,7 +961,10 @@ As a result, when our CI workflow runs successfully (all tests pass), GitHub Act
 <p>Red areas represent code that is poorly covered by our tests.
 On the right, you see the latest commits and can click on each one of them to see how they changed the overall coverage of the project.
 The bottom of the page shows a simple file-browser-like interface, much like the HTML page we obtained before.</p>
-<h2 class="rubric" id="modifying-the-workflow-adding-an-action">Modifying the Workflow - Adding an Action</h2>
+</section>
+</section>
+<section id="modifying-the-workflow-adding-an-action">
+<h2>Modifying the Workflow - Adding an Action<a class="headerlink" href="#modifying-the-workflow-adding-an-action" title="Link to this heading">#</a></h2>
 <p>A great feature of GitHub Actions is that they are modular.
 Anyone can make an action and it can be plugged into someone else’s workflow if it is available on the GitHub Marketplace.
 This means that if you ever need to do something which is something that may be commonly done, you should check the GitHub Marketplace to see if anyone has made this action before.</p>
@@ -963,7 +975,9 @@ Searching the GitHub Marketplace, you might find <a class="reference external" h
 <p class="admonition-title">Exercise - Adding an Action to our Workflow</p>
 <p>Implement this <a class="reference external" href="https://github.com/marketplace/actions/ascii-art-action">ASCII Art Action</a> as <strong>another job</strong> in your workflow.
 Make it print your package name. Note that this Action will only run on Linux systems.
+This means you will want to change the <code class="docutils literal notranslate"><span class="pre">runs-on</span></code> keyword to an appropriate operating system.
 This is not in the documentation, but you will see a failure of your job if you try to run on another operating system.</p>
+<p>See if you can use some of <a class="reference external" href="https://docs.github.com/en/actions/learn-github-actions/variables#default-environment-variables">GitHub’s built-in variables</a> to print the package name or the username of the person who opened the pull request.</p>
 <div class="solution dropdown admonition">
 <p class="admonition-title">Solution</p>
 <p>Here is the configuration to add the step. The added step is called ‘welcome’.
@@ -1018,7 +1032,7 @@ You can even see <a class="reference external" href="https://docs.github.com/en/
 <p>You can see the final state of the repository after this section <a class="reference external" href="https://github.com/MolSSI-Education/molecool/tree/3cb3812df24d27009845d52ff097c2dda2184ea3">here</a>.</p>
 <p>You can also download a zip of the repository <a class="reference external" href="https://github.com/MolSSI-Education/molecool/archive/refs/tags/CI-Github-actions-end.zip">here</a>.</p>
 </div>
-</div>
+</section>
 <section id="key-points">
 <h2>Key Points<a class="headerlink" href="#key-points" title="Link to this heading">#</a></h2>
 <div class="key admonition">
@@ -1079,6 +1093,15 @@ You can even see <a class="reference external" href="https://docs.github.com/en/
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-github-actions">Setting up GitHub Actions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-our-ci-to-work">Getting our CI to work</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-coverage-part-ii">Code Coverage - Part II</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assessing-code-coverage-locally">Assessing code coverage locally</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-increasing-code-coverage">Exercise - Increasing Code Coverage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-code-coverage-to-your-ci-workflow">Adding code coverage to your CI workflow</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modifying-the-workflow-adding-an-action">Modifying the Workflow - Adding an Action</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-points">Key Points</a></li>
 </ul>
   </nav></div>
@@ -1147,7 +1170,7 @@ You can even see <a class="reference external" href="https://docs.github.com/en/
  
         
         <p class="sphinx-version">
-        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6.<br>
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.3.6.<br>
         </p>
         
 
