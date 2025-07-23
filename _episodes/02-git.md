@@ -1110,7 +1110,7 @@ git merge add-functions
 ## Adding data
 We now have a package with some functions.
 Let's add the data from our starting material to our package as well.
-We will add this to the `molecool/testing/data` directory.
+We will add this to the `molecool/tests/data` directory.
 Although it would be a best practice to add these files through a branch,
 we will add them directly to the `main` branch for simplicity.
 
@@ -1284,7 +1284,7 @@ For example:
 ````{tab-set-code} 
 
 ```{code-block} shell
-git add data/calculation.in
+git add molecool/data/calculation.out
 ```
 ````
 
@@ -1293,8 +1293,10 @@ git add data/calculation.in
 
 ```{code-block} output
 The following paths are ignored by one of your .gitignore files:
-data/calculation.in
-Use -f if you really want to add them.
+molecool/data/calculation.out
+hint: Use -f if you really want to add them.
+hint: Turn this message off by running
+hint: "git config advice.addIgnoredFile false"
 ```
 ````
 

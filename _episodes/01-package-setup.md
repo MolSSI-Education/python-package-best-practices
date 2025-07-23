@@ -202,7 +202,9 @@ You should see the following directory structure.
 ├── README.md                       <- Description of the project which GitHub will render
 ├── molecool                        <- Basic Python Package import file
 │   ├── __init__.py                 <- Basic Python Package import file
+│   ├── _version.py                 <- Package version information
 │   ├── functions.py                <- Starting package module
+│   ├── py.typed                    <- Marker file for type information
 │   ├── data                        <- Sample additional data (non-code) which can be packaged. Just an example, delete in production
 │   │   ├── README.md
 │   │   └── look_and_say.dat
@@ -224,22 +226,24 @@ You should see the following directory structure.
 │   │   └── README.md
 │   ├── api.rst
 │   ├── conf.py
+│   ├── developer_guide.rst
 │   ├── getting_started.rst
 │   ├── index.rst
 │   ├── make.bat
-│   └── requirements.yaml           <- Documentation building specific requirements. Usually a smaller set than the main program
+│   ├── requirements.yaml           <- Documentation building specific requirements. Usually a smaller set than the main program
+│   └── user_guide.rst
 ├── pyproject.toml                  <- Generic Python build system configuration (PEP-517).
-├── readthedocs.yml
+├── .readthedocs.yaml               <- ReadTheDocs configuration for documentation hosting
 ├── setup.cfg                       <- Near-master config file to make house INI-like settings for Coverage, Flake8, YAPF, etc.
-├── setup.py                        <- Your package's setup file for installation with additional options that can be set
 ├── .codecov.yml                    <- Codecov config to help reduce its verbosity to more reasonable levels
 ├── .github                         <- GitHub hooks for user contribution, pull request guides, and GitHub Actions CI
 │   ├── CONTRIBUTING.md
 │   ├── PULL_REQUEST_TEMPLATE.md
 │   └── workflows
-│       └── CI.yaml
-├── .gitignore                      <- Stock helper file telling git what file name patterns to ignore when adding files
-└── .lgtm.yml
+│       ├── CI.yaml
+│       └── codeql.yaml
+├── .gitattributes                  <- Git configuration for file attributes
+└── .gitignore                      <- Stock helper file telling git what file name patterns to ignore when adding files
 ```
 ```{admonition} Visualizing the Directory Structure
 :class: note
@@ -277,7 +281,7 @@ We will first be working in the `molecool` folder to build our package, and addi
 │   │   └── look_and_say.dat
 │   ├── tests                       <- Unit test directory with sample tests
 │   │   ├── __init__.py
-│   │   └── test_functions.py
+│   │   └── test_molecool.py
 ```
 
 This the only folder we actually have to work with to build our package.
@@ -381,6 +385,7 @@ so that we can try out our functions and package as we develop it.
 We access development mode using the `-e` option to `pip`.
 
 #### Reviewing the generated config files
+
 Return to the top directory (`molecool`).
 Two of the files CookieCutter generated are `pyproject.toml` and `setup.cfg`.
 These are the configuration files for our packaging and testing tools.
@@ -388,14 +393,15 @@ These are the configuration files for our packaging and testing tools.
 We'll be using this file in the next section.
 
 #### Installing your package
+
 A development install, also known as an "editable" install, will allow you to import your package and use it from anywhere on your computer.
-You will then be able to import your package into scripts in the same way you import `matplotlib` or `numpy`. 
+You will then be able to import your package into scripts in the same way you import `matplotlib` or `numpy`.
 This setup is particularly useful during development, as it ensures that any changes you make to your package's code are immediately reflected in your Python environment, without the need for reinstallation.
 
-To perform a development installation, you use pip with the `-e` option, which stands for "editable". 
-This tells pip to install the package in such a way that it links directly to your project's source code. 
+To perform a development installation, you use pip with the `-e` option, which stands for "editable".
+This tells pip to install the package in such a way that it links directly to your project's source code.
 
-````{tab-set-code} 
+````{tab-set-code}
 
 ```{code-block} shell
 pip install -e .
@@ -409,10 +415,10 @@ while `.` indicates to install from the local directory (you could also specify 
 
 When you install a Python package using either `pip` or `conda`, that package is installed in your Python
 environment's `site-packages` folder.
-You can see where this is by checking your Python system path. 
+You can see where this is by checking your Python system path.
 To do this, open Python (type `python` into your terminal window), and type
 
-````{tab-set-code} 
+````{tab-set-code}
 
 ```{code-block} python
 >>> import sys
@@ -420,24 +426,35 @@ To do this, open Python (type `python` into your terminal window), and type
 ```
 ````
 
-This will output a list of locations that Python searches for packages. 
+This will output a list of locations that Python searches for packages.
 One of these will typically end with `site-packages`, indicating the directory where Python looks for installed packages.
 
-If you examine `site-packages`, you are likely to see a folder with your package's name followed by a `.dist-info`. 
-Inside, the `direct_url.json` file signifies an editable installation by pointing back to your project's directory. 
+You can also confirm that your package is installed in editable mode by using `pip show`:
+
+````{tab-set-code}
+
+```{code-block} shell
+pip show molecool
+```
+````
+
+Look for the `Editable project location:` line in the output, which indicates that your environment is using the live version from your source directory.
+
+In the `site-packages` directory, you may see a folder with your package's name followed by `.dist-info`, which contains metadata about your installed package.
+If the install is editable, Python also includes special `.pth` files or loader scripts (like `__editable__.pkg-version.pth`) to point back to your project directory.
 
 :::{admonition} Python Packaging's Rapidly Evolving Landscape
 :class: tip
 
-In recent years, the Python packaging ecosystem has seen the development of numerous tools designed to streamline the process. 
-While the MolSSI CookieCutter primarily utilizes `setuptools` and `pyproject.toml` for packaging, alternatives like poetry and flit offer different features and workflows. 
-Depending on your tool of choice or even your Python version, you may encounter various files or configurations within `site-packages` following an editable installation. 
-::: 
+In recent years, the Python packaging ecosystem has seen the development of numerous tools designed to streamline the process.
+While the MolSSI CookieCutter primarily utilizes `setuptools` and `pyproject.toml` for packaging, alternatives like poetry and flit offer different features and workflows.
+Depending on your tool of choice or even your Python version, you may encounter various files or configurations within `site-packages` following an editable installation.
+:::
 
 After our install, we can use our package from any directory, similar to how we can use other installed packages like `numpy`.
 Open Python, and type
 
-````{tab-set-code} 
+````{tab-set-code}
 
 ```{code-block} python
 >>> import molecool
@@ -447,14 +464,14 @@ Open Python, and type
 
 This should print a quote.
 
-````{tab-set-code} 
+````{tab-set-code}
 
 ```{code-block} output
 'The code is but a canvas to our imagination.\n\t- Adapted from Henry David Thoreau'
 ```
 ````
 
-A development installation inserts a link to your project into your Python
+A development installation inserts a reference to your project into your Python
 `site-packages` folder so that updates are immediately available the next time
 you launch Python, without having to reinstall your package.
 
@@ -468,7 +485,8 @@ What if we switch directories?
 ```{admonition} Solution
 :class: dropdown solution
 
-If you are in the project directory, the code will still work. However, it will not work in any other location.
+If you deactivate your environment, the code will not work unless your environment is reactivated.
+If the package is installed in editable mode and your environment is active, the code will work from *any* directory.
 ```
 
 ````
