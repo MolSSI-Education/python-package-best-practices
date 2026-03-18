@@ -14,55 +14,51 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-  
-  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=f098cca5" />
   
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
-  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="_static/documentation_options.js?v=5929fcd5"></script>
-    <script src="_static/doctools.js?v=9a2dae69"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js?v=4a39c7ea"></script>
-    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-FHKVGE8HKZ"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-2NEP9LE9KQ"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
                 gtag('js', new Date());
-                gtag('config', 'G-FHKVGE8HKZ');
-            </script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){ dataLayer.push(arguments); }
-                gtag('js', new Date());
-                gtag('config', 'G-FHKVGE8HKZ');
+                gtag('config', 'G-2NEP9LE9KQ');
             </script>
     <script>DOCUMENTATION_OPTIONS.pagename = '07-collaboration';</script>
     <link rel="icon" href="_static/molssi_square.png"/>
@@ -72,6 +68,7 @@
     <link rel="prev" title="GitHub" href="03-github.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -79,31 +76,16 @@
 
   
   
-  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -111,7 +93,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search the docs ..."
          aria-label="Search the docs ..."
          autocomplete="off"
@@ -119,20 +100,27 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
 <div class="bd-header__inner bd-page-width">
-  <label class="sidebar-toggle primary-toggle" for="__primary">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
     <span class="fa-solid fa-bars"></span>
-  </label>
+  </button>
   
   
   <div class="col-lg-3 navbar-header-items__start">
     
       <div class="navbar-item">
 
+  
+    
   
 
 <a class="navbar-brand logo" href="index.html">
@@ -147,7 +135,7 @@
     
     
     <img src="_static/molssi_main_logo.png" class="logo__image only-light" alt=""/>
-    <script>document.write(`<img src="_static/molssi_main_logo_inverted_white.png" class="logo__image only-dark" alt=""/>`);</script>
+    <img src="_static/molssi_main_logo_inverted_white.png" class="logo__image only-dark pst-js-only" alt=""/>
   
   
     <p class="title logo__title">MolSSI Best Practices</p>
@@ -161,55 +149,57 @@
     <div class="me-auto navbar-header-items__center">
       
         <div class="navbar-item">
-<nav class="navbar-nav">
+<nav>
   <ul class="bd-navbar-elements navbar-nav">
     
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="index.html">
-                        Overview
-                      </a>
-                    </li>
-                
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="index.html">
+    Overview
+  </a>
+</li>
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="00-setup.html">
-                        Set-Up
-                      </a>
-                    </li>
-                
 
-                    <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="00-git-and-github.html">
-                        git and GitHub
-                      </a>
-                    </li>
-                
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="00-setup.html">
+    Set-Up
+  </a>
+</li>
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="00-code-organization-documentation.html">
-                        Code Style and Documentation
-                      </a>
-                    </li>
-                
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="00-git-and-github.html">
+    git and GitHub
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="00-code-organization-documentation.html">
+    Code Style and Documentation
+  </a>
+</li>
+
             <li class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
                     More
                 </button>
                 <ul id="pst-nav-more-links" class="dropdown-menu">
                     
-                    <li class="nav-item">
-                      <a class="nav-link dropdown-item nav-internal" href="00-testing-continuous-integration.html">
-                        Testing, Continuous Integration, and Distribution
-                      </a>
-                    </li>
-                
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="00-testing-continuous-integration.html">
+    Testing, Continuous Integration, and Distribution
+  </a>
+</li>
 
-                <li class="nav-item">
-                  <a class="nav-link dropdown-item nav-external" href="https://molssi.org">
-                    MolSSI
-                  </a>
-                </li>
-                
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://molssi.org">
+    MolSSI
+  </a>
+</li>
+
                 </ul>
             </li>
             
@@ -224,31 +214,23 @@
         <div class="navbar-item navbar-persistent--container">
           
 
- <script>
- document.write(`
-   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
         </div>
       
       
         <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
       
-        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+        <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
         <li class="nav-item">
           
@@ -259,7 +241,7 @@ document.write(`
           
           
           
-          <a href="https://github.com/MolSSI-Education/python-package-best-practices" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+          <a href="https://github.com/MolSSI-Education/python-package-best-practices" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
             <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
@@ -271,7 +253,7 @@ document.write(`
           
           
           
-          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i></span>
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
             <span class="sr-only">Twitter</span></a>
         </li>
 </ul></div>
@@ -283,22 +265,18 @@ document.write(`
   
     <div class="navbar-persistent--mobile">
 
- <script>
- document.write(`
-   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
     </div>
   
 
   
-    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
       <span class="fa-solid fa-outdent"></span>
-    </label>
+    </button>
   
 </div>
 
@@ -310,7 +288,8 @@ document.write(`
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -319,61 +298,56 @@ document.write(`
     
       <div class="sidebar-header-items__center">
         
-          <div class="navbar-item">
-<nav class="navbar-nav">
+          
+          
+            <div class="navbar-item">
+<nav>
   <ul class="bd-navbar-elements navbar-nav">
     
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="index.html">
-                        Overview
-                      </a>
-                    </li>
-                
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="index.html">
+    Overview
+  </a>
+</li>
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="00-setup.html">
-                        Set-Up
-                      </a>
-                    </li>
-                
 
-                    <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="00-git-and-github.html">
-                        git and GitHub
-                      </a>
-                    </li>
-                
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="00-setup.html">
+    Set-Up
+  </a>
+</li>
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="00-code-organization-documentation.html">
-                        Code Style and Documentation
-                      </a>
-                    </li>
-                
-            <li class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links-2">
-                    More
-                </button>
-                <ul id="pst-nav-more-links-2" class="dropdown-menu">
-                    
-                    <li class="nav-item">
-                      <a class="nav-link dropdown-item nav-internal" href="00-testing-continuous-integration.html">
-                        Testing, Continuous Integration, and Distribution
-                      </a>
-                    </li>
-                
 
-                <li class="nav-item">
-                  <a class="nav-link dropdown-item nav-external" href="https://molssi.org">
-                    MolSSI
-                  </a>
-                </li>
-                
-                </ul>
-            </li>
-            
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="00-git-and-github.html">
+    git and GitHub
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="00-code-organization-documentation.html">
+    Code Style and Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="00-testing-continuous-integration.html">
+    Testing, Continuous Integration, and Distribution
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://molssi.org">
+    MolSSI
+  </a>
+</li>
+
   </ul>
 </nav></div>
+          
         
       </div>
     
@@ -383,17 +357,13 @@ document.write(`
         
           <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
         
-          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+          <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
         <li class="nav-item">
           
@@ -404,7 +374,7 @@ document.write(`
           
           
           
-          <a href="https://github.com/MolSSI-Education/python-package-best-practices" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+          <a href="https://github.com/MolSSI-Education/python-package-best-practices" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
             <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
@@ -416,7 +386,7 @@ document.write(`
           
           
           
-          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i></span>
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
             <span class="sr-only">Twitter</span></a>
         </li>
 </ul></div>
@@ -441,29 +411,32 @@ document.write(`
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
         <div class="header-article-item">
 
-
-
-<nav aria-label="Breadcrumb">
+<nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
     <li class="breadcrumb-item breadcrumb-home">
@@ -474,7 +447,7 @@ document.write(`
     
     <li class="breadcrumb-item"><a href="00-git-and-github.html" class="nav-link">git and GitHub</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">Code Collaboration</li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Code Collaboration</span></li>
   </ul>
 </nav>
 </div>
@@ -544,7 +517,7 @@ This is still true, however, we are now going to incorporate those changes throu
 <p>Create a new branch in your repository to make a small change.</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-0">
+<label class="sd-tab-label" data-sync-group="code" data-sync-id="shell" for="sd-tab-item-0">
 SHELL</label><div class="sd-tab-content docutils">
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>switch<span class="w"> </span>-c<span class="w"> </span>collab_instructions
 </pre></div>
@@ -554,7 +527,7 @@ SHELL</label><div class="sd-tab-content docutils">
 <p>Add the following to your README and commit the change.</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-1" name="sd-tab-set-1" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-README.md" for="sd-tab-item-1">
+<label class="sd-tab-label" data-sync-group="code" data-sync-id="README.md" for="sd-tab-item-1">
 README.MD</label><div class="sd-tab-content docutils">
 <div class="highlight-README.md notranslate"><div class="highlight"><pre><span></span>To submit your feature to be incorporated into the main branch, 
 you should submit a <span class="sb">`Pull Request`</span>. 
@@ -565,7 +538,7 @@ The repository maintainers will review your pull request before accepting your c
 </div>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-2" name="sd-tab-set-2" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-2">
+<label class="sd-tab-label" data-sync-group="code" data-sync-id="shell" for="sd-tab-item-2">
 SHELL</label><div class="sd-tab-content docutils">
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>README.md
 git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;add collaboration instructions to readme&quot;</span>
@@ -580,7 +553,7 @@ However, if you are not, your push from the main will be rejected by GitHub.</p>
 <p>We will want to push to a new branch on the repo and then open a pull request.</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-3" name="sd-tab-set-3" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-3">
+<label class="sd-tab-label" data-sync-group="code" data-sync-id="shell" for="sd-tab-item-3">
 SHELL</label><div class="sd-tab-content docutils">
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>collab_instructions
 </pre></div>
@@ -590,7 +563,7 @@ SHELL</label><div class="sd-tab-content docutils">
 <p>You will get an output similar to the following:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-4" name="sd-tab-set-4" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-4">
+<label class="sd-tab-label" data-sync-group="code" data-sync-id="output" for="sd-tab-item-4">
 OUTPUT</label><div class="sd-tab-content docutils">
 <div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">Enumerating objects: 5, done.</span>
 <span class="go">Counting objects: 100% (5/5), done.</span>
@@ -654,12 +627,13 @@ GitHub will copy the repository to your profile. It should automatically redirec
 You should notice at the top of the page, the name of the repository has a ‘fork’ symbol on it.
 It should say <code class="docutils literal notranslate"><span class="pre">YOUR_USERNAME/periodic-table</span></code>, and under that say <code class="docutils literal notranslate"><span class="pre">forked</span> <span class="pre">from</span> <span class="pre">molssi-education/periodic-table.</span></code></p>
 <p>You can use the following diagram to visualize what you just did.</p>
-<img alt="_images/github_fork.svg" class="align-center" src="_images/github_fork.svg" /><p>Then, make a clone of the fork on your personal computer.
+<img alt="_images/github_fork.svg" class="align-center" src="_images/github_fork.svg" />
+<p>Then, make a clone of the fork on your personal computer.
 Before you make the clone, <strong>MAKE SURE YOU ARE NOT IN A GIT REPOSITORY</strong>.</p>
 <p>Type</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-5" name="sd-tab-set-5" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-5">
+<label class="sd-tab-label" data-sync-group="code" data-sync-id="shell" for="sd-tab-item-5">
 SHELL</label><div class="sd-tab-content docutils">
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>status
 </pre></div>
@@ -669,7 +643,7 @@ SHELL</label><div class="sd-tab-content docutils">
 <p>You should see the message</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-6" name="sd-tab-set-6" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-6">
+<label class="sd-tab-label" data-sync-group="code" data-sync-id="output" for="sd-tab-item-6">
 OUTPUT</label><div class="sd-tab-content docutils">
 <div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">fatal: not a git repository (or any of the parent directories): .git</span>
 </pre></div>
@@ -681,7 +655,7 @@ OUTPUT</label><div class="sd-tab-content docutils">
 Use the green button (Clone or download) on your fork and <strong>make sure you choose SSH rather than HTTPS</strong> to get the <code class="docutils literal notranslate"><span class="pre">fork</span> <span class="pre">URL</span></code>.</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-7" name="sd-tab-set-7" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-7">
+<label class="sd-tab-label" data-sync-group="code" data-sync-id="shell" for="sd-tab-item-7">
 SHELL</label><div class="sd-tab-content docutils">
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>&lt;fork<span class="w"> </span>URL&gt;
 <span class="nb">cd</span><span class="w"> </span>periodic-table
@@ -690,14 +664,15 @@ SHELL</label><div class="sd-tab-content docutils">
 </div>
 </div>
 <p>Now, when we visualize what our repositories look like, we have a copy of our fork on our local machine.</p>
-<img alt="_images/github_clone_fork.svg" class="align-center" src="_images/github_clone_fork.svg" /><p>In a real development situation, we would also create a new <code class="docutils literal notranslate"><span class="pre">conda</span></code> environment for developing in this repository.</p>
+<img alt="_images/github_clone_fork.svg" class="align-center" src="_images/github_clone_fork.svg" />
+<p>In a real development situation, we would also create a new <code class="docutils literal notranslate"><span class="pre">conda</span></code> environment for developing in this repository.</p>
 </section>
 <section id="upstream-tracking-the-original-repository">
 <h2>Upstream - Tracking the original repository<a class="headerlink" href="#upstream-tracking-the-original-repository" title="Link to this heading">#</a></h2>
 <p>In your terminal window, type</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-8" name="sd-tab-set-8" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-8">
+<label class="sd-tab-label" data-sync-group="code" data-sync-id="shell" for="sd-tab-item-8">
 SHELL</label><div class="sd-tab-content docutils">
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>remote<span class="w"> </span>-v
 </pre></div>
@@ -707,7 +682,7 @@ SHELL</label><div class="sd-tab-content docutils">
 <p>You should see output similar to the following:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-9" name="sd-tab-set-9" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-9">
+<label class="sd-tab-label" data-sync-group="code" data-sync-id="output" for="sd-tab-item-9">
 OUTPUT</label><div class="sd-tab-content docutils">
 <div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">origin git@github.com:YOUR_GITHUB_USERNAME/periodic-table.git (fetch)</span>
 <span class="go">origin git@github.com:YOUR_GITHUB_USERNAME/periodic-table.git (push)</span>
@@ -721,7 +696,7 @@ The standard names for remotes are <code class="docutils literal notranslate"><s
 Add an upstream using the following command.</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-10" name="sd-tab-set-10" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-10">
+<label class="sd-tab-label" data-sync-group="code" data-sync-id="shell" for="sd-tab-item-10">
 SHELL</label><div class="sd-tab-content docutils">
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>upstream<span class="w"> </span>git@github.com:molssi-education/periodic-table.git
 </pre></div>
@@ -730,10 +705,11 @@ SHELL</label><div class="sd-tab-content docutils">
 </div>
 <p>Now, when you check the remotes (<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">-v</span></code>), it should list both the <code class="docutils literal notranslate"><span class="pre">origin</span></code>, and <code class="docutils literal notranslate"><span class="pre">upstream</span></code> repositories.
 If we wanted to pull changes from the original repo, we could do <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">upstream</span> <span class="pre">branch_name</span></code>.</p>
-<img alt="_images/github_remotes.svg" class="align-center" src="_images/github_remotes.svg" /><p>Next, type:</p>
+<img alt="_images/github_remotes.svg" class="align-center" src="_images/github_remotes.svg" />
+<p>Next, type:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-11" name="sd-tab-set-11" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-11">
+<label class="sd-tab-label" data-sync-group="code" data-sync-id="shell" for="sd-tab-item-11">
 SHELL</label><div class="sd-tab-content docutils">
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>fetch<span class="w"> </span>upstream
 </pre></div>
@@ -745,7 +721,7 @@ This will be in a hidden branch.
 You should be able to see both the origin and upstream hidden branches by typing,</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-12" name="sd-tab-set-12" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-12">
+<label class="sd-tab-label" data-sync-group="code" data-sync-id="shell" for="sd-tab-item-12">
 SHELL</label><div class="sd-tab-content docutils">
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>branch<span class="w"> </span>-a
 </pre></div>
@@ -763,7 +739,7 @@ You should choose another element.
 This can either be an element that exists (red background), or an element that doesn’t exist yet (white background).</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-13" name="sd-tab-set-13" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-13">
+<label class="sd-tab-label" data-sync-group="code" data-sync-id="shell" for="sd-tab-item-13">
 SHELL</label><div class="sd-tab-content docutils">
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>switch<span class="w"> </span>-c<span class="w"> </span>sodium
 </pre></div>
@@ -776,7 +752,7 @@ In general, your branch name should describe the feature or changes that you pla
 <p>You will see the output:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-14" name="sd-tab-set-14" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-14">
+<label class="sd-tab-label" data-sync-group="code" data-sync-id="output" for="sd-tab-item-14">
 OUTPUT</label><div class="sd-tab-content docutils">
 <div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">Switched to a new branch &#39;sodium&#39;</span>
 </pre></div>
@@ -802,7 +778,7 @@ If the file does not exist, create it.</p>
 <p>For example, to create the sodium file,</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-15" name="sd-tab-set-15" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-15">
+<label class="sd-tab-label" data-sync-group="code" data-sync-id="shell" for="sd-tab-item-15">
 SHELL</label><div class="sd-tab-content docutils">
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>touch<span class="w"> </span>sodium.md
 </pre></div>
@@ -813,7 +789,7 @@ SHELL</label><div class="sd-tab-content docutils">
 It is important that every element has the following at the top of the page (note - spacing is very important!).</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-16" name="sd-tab-set-16" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-element.md" for="sd-tab-item-16">
+<label class="sd-tab-label" data-sync-group="code" data-sync-id="element.md" for="sd-tab-item-16">
 ELEMENT.MD</label><div class="sd-tab-content docutils">
 <div class="highlight-element.md notranslate"><div class="highlight"><pre><span></span>---
 layout: page
@@ -828,7 +804,7 @@ Add some text about the element below the heading.
 For example, our sodium page might look like the following.</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-17" name="sd-tab-set-17" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-sodium.md" for="sd-tab-item-17">
+<label class="sd-tab-label" data-sync-group="code" data-sync-id="sodium.md" for="sd-tab-item-17">
 SODIUM.MD</label><div class="sd-tab-content docutils">
 <div class="highlight-sodium.md notranslate"><div class="highlight"><pre><span></span>---
 layout: page
@@ -851,7 +827,7 @@ If you do not have Jekyll installed or do not wish to install Jekyll skip this s
 <p>Execute the command</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-18" name="sd-tab-set-18" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-18">
+<label class="sd-tab-label" data-sync-group="code" data-sync-id="shell" for="sd-tab-item-18">
 SHELL</label><div class="sd-tab-content docutils">
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>bundle<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>jekyll<span class="w"> </span>serve
 </pre></div>
@@ -866,7 +842,7 @@ Navigate to the local address to view your website and make sure your new elemen
 <p>Let’s add and commit these changes.</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-19" name="sd-tab-set-19" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-19">
+<label class="sd-tab-label" data-sync-group="code" data-sync-id="shell" for="sd-tab-item-19">
 SHELL</label><div class="sd-tab-content docutils">
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>elements/YOUR_ELEMENT.md
 git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;update YOUR_ELEMENT page&quot;</span>
@@ -881,7 +857,7 @@ This is why it is called a <code class="docutils literal notranslate"><span clas
 We are literally requesting them to pull from our repository.</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-20" name="sd-tab-set-20" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-20">
+<label class="sd-tab-label" data-sync-group="code" data-sync-id="shell" for="sd-tab-item-20">
 SHELL</label><div class="sd-tab-content docutils">
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>sodium
 </pre></div>
@@ -891,10 +867,11 @@ SHELL</label><div class="sd-tab-content docutils">
 <p>Here, the last line indicates that we are pushing to <code class="docutils literal notranslate"><span class="pre">origin</span></code> (our fork) to the <code class="docutils literal notranslate"><span class="pre">sodium</span></code> branch.
 The branch name you type in place of sodium should match the name of the branch you are working on.
 If you view your repository on GitHub, you should now see that you have another branch in addition to the main branch.</p>
-<img alt="_images/push_branch.svg" class="align-center" src="_images/push_branch.svg" /><p>As part of the output from this command, you should see the following:</p>
+<img alt="_images/push_branch.svg" class="align-center" src="_images/push_branch.svg" />
+<p>As part of the output from this command, you should see the following:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-21" name="sd-tab-set-21" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-21">
+<label class="sd-tab-label" data-sync-group="code" data-sync-id="output" for="sd-tab-item-21">
 OUTPUT</label><div class="sd-tab-content docutils">
 <div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">remote:</span>
 <span class="go">remote: Create a pull request for &#39;sodium&#39; on GitHub by visiting:</span>
@@ -924,14 +901,15 @@ You can leave comments/reactions.
 Take a few minutes to review someone else’s pull request.</p>
 <p>Once your changes have been accepted, upstream will have those changes on the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch.
 This is indicated in the figure below through the change in color of the word ‘main’.</p>
-<img alt="_images/accepted_PR.svg" class="align-center" src="_images/accepted_PR.svg" /></section>
+<img alt="_images/accepted_PR.svg" class="align-center" src="_images/accepted_PR.svg" />
+</section>
 <section id="incorporating-upstream-changes-to-local">
 <h2>Incorporating upstream changes to local<a class="headerlink" href="#incorporating-upstream-changes-to-local" title="Link to this heading">#</a></h2>
 <p>After your change has been accepted upstream, you will want to incorporate the changes into your local main branch.
 First, switch to your main branch.</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-22" name="sd-tab-set-22" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-22">
+<label class="sd-tab-label" data-sync-group="code" data-sync-id="shell" for="sd-tab-item-22">
 SHELL</label><div class="sd-tab-content docutils">
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>switch<span class="w"> </span>main
 </pre></div>
@@ -942,7 +920,7 @@ SHELL</label><div class="sd-tab-content docutils">
 For now, just do a pull.</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-23" name="sd-tab-set-23" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-23">
+<label class="sd-tab-label" data-sync-group="code" data-sync-id="shell" for="sd-tab-item-23">
 SHELL</label><div class="sd-tab-content docutils">
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>pull<span class="w"> </span>upstream<span class="w"> </span>main
 </pre></div>
@@ -953,7 +931,7 @@ SHELL</label><div class="sd-tab-content docutils">
 Push from the local main to the origin.</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-24" name="sd-tab-set-24" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-24">
+<label class="sd-tab-label" data-sync-group="code" data-sync-id="shell" for="sd-tab-item-24">
 SHELL</label><div class="sd-tab-content docutils">
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main
 </pre></div>
@@ -964,7 +942,7 @@ SHELL</label><div class="sd-tab-content docutils">
 <p>If you are done working with your feature branch, you can now delete it.</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-25" name="sd-tab-set-25" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-25">
+<label class="sd-tab-label" data-sync-group="code" data-sync-id="shell" for="sd-tab-item-25">
 SHELL</label><div class="sd-tab-content docutils">
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>branch<span class="w"> </span>-d<span class="w"> </span>sodium
 </pre></div>
@@ -975,14 +953,15 @@ SHELL</label><div class="sd-tab-content docutils">
 <p>To delete the branch on your origin repository on GitHub, you can use the command:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-26" name="sd-tab-set-26" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tabcode-shell" for="sd-tab-item-26">
+<label class="sd-tab-label" data-sync-group="code" data-sync-id="shell" for="sd-tab-item-26">
 SHELL</label><div class="sd-tab-content docutils">
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>--delete<span class="w"> </span>sodium
 </pre></div>
 </div>
 </div>
 </div>
-<img alt="_images/final.svg" class="align-center" src="_images/final.svg" /></section>
+<img alt="_images/final.svg" class="align-center" src="_images/final.svg" />
+</section>
 <section id="more-tutorials">
 <h2>More Tutorials<a class="headerlink" href="#more-tutorials" title="Link to this heading">#</a></h2>
 <p>If you want more <code class="docutils literal notranslate"><span class="pre">git</span></code>, see the following tutorials.</p>
@@ -1015,7 +994,7 @@ SHELL</label><div class="sd-tab-content docutils">
               
               
               
-                <footer class="prev-next-footer">
+                <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
     <a class="left-prev"
@@ -1043,7 +1022,8 @@ SHELL</label><div class="sd-tab-content docutils">
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1078,13 +1058,13 @@ SHELL</label><div class="sd-tab-content docutils">
   </nav></div>
 
   <div class="sidebar-secondary-item">
-
-  <div class="tocsection sourcelink">
-    <a href="_sources/07-collaboration.md.txt">
-      <i class="fa-solid fa-file-lines"></i> Show Source
-    </a>
-  </div>
-</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/07-collaboration.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
 
 </div></div>
               
@@ -1099,8 +1079,8 @@ SHELL</label><div class="sd-tab-content docutils">
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1141,12 +1121,12 @@ SHELL</label><div class="sd-tab-content docutils">
  
         
         <p class="sphinx-version">
-        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.3.6.<br>
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 9.0.4.<br>
         </p>
         
 
         <p class="theme-version">
-        Built with a customized <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.2.
+        Built with a customized <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
         </p>
 
     </div>
