@@ -143,7 +143,7 @@ html_theme_options = {
 }
 
 html_theme_options["analytics"] = {
-    "google_analytics_id": "G-FHKVGE8HKZ",
+    "google_analytics_id": "G-2NEP9LE9KQ",
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
